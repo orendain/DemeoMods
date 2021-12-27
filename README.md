@@ -35,7 +35,8 @@ light of OSS.
 
 ## Installation
 
-Download the the mod that you would like from the releases page.
+Download the the mod that you would like to install from
+the [releases page](https://github.com/orendain/DemeoMods/releases).
 
 Place the mod's DLL into the `/Mods` folder (created by MelonLoader) in your game directory.
 
