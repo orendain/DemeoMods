@@ -7,6 +7,7 @@ using HarmonyLib;
 using MelonLoader;
 using Photon.Realtime;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace RoomFinder.UI
 {
@@ -18,7 +19,7 @@ namespace RoomFinder.UI
         {
             return new RoomListPanel();
         }
-        
+
         private RoomListPanel()
         {
             panelObject = new GameObject("RoomListPanel");
@@ -28,9 +29,9 @@ namespace RoomFinder.UI
         {
             foreach (Transform child in panelObject.transform)
             {
-                UnityEngine.Object.Destroy(child.gameObject);
+                Object.Destroy(child.gameObject);
             }
-            
+
             RenderHeader();
             for (var i = 0; i < rooms.Count; i++)
             {
@@ -44,19 +45,19 @@ namespace RoomFinder.UI
         {
             var headerContainer = new GameObject("Header");
             headerContainer.transform.SetParent(panelObject.transform, worldPositionStays: false);
-            
+
             var joinLabel = UiUtil.CreateLabelText("Code");
             joinLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             joinLabel.transform.localPosition = new Vector3(-3f, 0, 0);
-            
+
             var gameLabel = UiUtil.CreateLabelText("Game");
             gameLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
-            gameLabel.transform.localPosition = new Vector3(-0.2f, 0, 0);
-            
+            gameLabel.transform.localPosition = new Vector3(-0.4f, 0, 0);
+
             var floorLabel = UiUtil.CreateLabelText("Floor");
             floorLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             floorLabel.transform.localPosition = new Vector3(1.75f, 0, 0);
-            
+
             var playersLabel = UiUtil.CreateLabelText("Players");
             playersLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             playersLabel.transform.localPosition = new Vector3(3.5f, 0, 0);
@@ -81,7 +82,7 @@ namespace RoomFinder.UI
             joinButton.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             joinButton.transform.localScale = new Vector3(0.4f, 0.7f, 0.7f);
             joinButton.transform.localPosition = new Vector3(-3f, 0, 0);
-            
+
             var joinText = UiUtil.CreateText(room.Name, Color.white, UiUtil.DefaultLabelFontSize);
             joinText.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             joinText.transform.localPosition = new Vector3(-3f, 0, 0);
@@ -89,12 +90,12 @@ namespace RoomFinder.UI
             var gameName = StringifyGameType(gameType);
             var gameLabel = UiUtil.CreateLabelText(gameName);
             gameLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
-            gameLabel.transform.localPosition = new Vector3(-0.2f, 0, 0);
-            
+            gameLabel.transform.localPosition = new Vector3(-0.4f, 0, 0);
+
             var floorLabel = UiUtil.CreateLabelText(floorIndex.ToString());
             floorLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
-            floorLabel.transform.localPosition = new Vector3(1.5f, 0, 0);
-            
+            floorLabel.transform.localPosition = new Vector3(1.75f, 0, 0);
+
             var playersText = $"{room.PlayerCount}/{room.MaxPlayers}";
             var playersLabel = UiUtil.CreateLabelText(playersText);
             playersLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
@@ -103,17 +104,7 @@ namespace RoomFinder.UI
 
         private static string StringifyGameType(LevelSequence.GameType gameType)
         {
-            switch (gameType)
-            {
-                case LevelSequence.GameType.ElvenQueen:
-                    return "BS";
-                case LevelSequence.GameType.RatKing:
-                    return "RK";
-                case LevelSequence.GameType.Forest:
-                    return "RoE";
-                default:
-                    return "Unknown";
-            }
+            return gameType.ToString();
         }
 
         private static Action JoinRoomAction(string roomCode)
