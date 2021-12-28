@@ -7,6 +7,7 @@ using HarmonyLib;
 using MelonLoader;
 using Photon.Realtime;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace RoomFinder.UI
 {
@@ -28,7 +29,7 @@ namespace RoomFinder.UI
         {
             foreach (Transform child in panelObject.transform)
             {
-                UnityEngine.Object.Destroy(child.gameObject);
+                Object.Destroy(child.gameObject);
             }
 
             RenderHeader();
