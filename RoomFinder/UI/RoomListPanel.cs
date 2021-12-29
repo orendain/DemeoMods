@@ -6,15 +6,12 @@
     using Common.States;
     using Common.UI;
     using HarmonyLib;
-    using MelonLoader;
     using Photon.Realtime;
     using UnityEngine;
     using Object = UnityEngine.Object;
 
     internal class RoomListPanel
     {
-        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance(nameof(RoomFinderMod));
-
         private readonly UiHelper _uiHelper;
         private readonly GameObject _panel;
 
@@ -118,7 +115,7 @@
         {
             return () =>
             {
-                Logger.Msg($"Joining room [{roomCode}].");
+                RoomFinderMod.Logger.Msg($"Joining room [{roomCode}].");
                 Traverse.Create(GameContextState.LobbyMenuController).Method("JoinGame", roomCode, true).GetValue();
             };
         }

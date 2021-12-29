@@ -1,6 +1,5 @@
 ﻿namespace RoomFinder
 {
-    using System;
     using Common.Patches;
     using MelonLoader;
     using RoomFinder.UI;
@@ -8,10 +7,9 @@
 
     internal class RoomFinderMod : MelonMod
     {
-        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance(nameof(RoomFinderMod));
+        public static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
 
-        private const int SteamLobbySceneIndex = 1;
-        private const string QuestLobbySceneName = "Lobby";
+        private const int LobbySceneIndex = 1;
 
         public override void OnApplicationStart()
         {
@@ -22,10 +20,9 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (buildIndex == SteamLobbySceneIndex ||
-                sceneName.Equals(QuestLobbySceneName, StringComparison.OrdinalIgnoreCase))
+            if (buildIndex == LobbySceneIndex)
             {
-                Logger.Msg($"Initializing RoomFinder in scene [{sceneName}] with scene index [{buildIndex}].");
+                RoomFinderMod.Logger.Msg($"Initializing RoomFinder in scene [{sceneName}] with scene index [{buildIndex}].");
                 new GameObject("RoomListUI", typeof(RoomListUI));
             }
         }

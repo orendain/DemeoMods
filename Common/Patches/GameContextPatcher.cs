@@ -8,7 +8,7 @@
 
     internal static class GameContextPatcher
     {
-        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance(nameof(GameContextPatcher));
+        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("Common");
 
         internal static void Patch(Harmony harmony)
         {
