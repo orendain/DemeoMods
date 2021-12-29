@@ -13,6 +13,8 @@
 
     internal class RoomListUI : MonoBehaviour
     {
+        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance(nameof(RoomListUI));
+
         private bool _isInitialized;
         private UiHelper _uiHelper;
         private GameObject _background;
@@ -27,11 +29,11 @@
         {
             while (!UiHelper.IsReady())
             {
-                MelonLogger.Msg("UI utility not yet ready. Trying again...");
+                Logger.Msg("UI utility not yet ready. Trying again...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            MelonLogger.Msg("UI utility ready. Proceeding with setup.");
+            Logger.Msg("UI utility ready. Proceeding with setup.");
 
             _uiHelper = UiHelper.Instance();
             _roomListPanel = RoomListPanel.NewInstance(_uiHelper);
@@ -100,7 +102,7 @@
             var cachedRooms =
                 Traverse.Create(GameContextState.GameContext.gameStateMachine)
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
-            MelonLogger.Msg($"[RoomListUI] Retrieved {cachedRooms.Count} rooms.");
+            Logger.Msg($"[RoomListUI] Retrieved {cachedRooms.Count} rooms.");
 
             var roomListPanelContainer = _roomListPanel.Reinitialize(cachedRooms.Values.ToList());
             roomListPanelContainer.transform.SetParent(this.transform, worldPositionStays: false);

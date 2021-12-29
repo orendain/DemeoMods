@@ -13,6 +13,8 @@
 
     internal class RoomListPanel
     {
+        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance(nameof(RoomFinderMod));
+
         private readonly UiHelper _uiHelper;
         private readonly GameObject _panel;
 
@@ -116,7 +118,7 @@
         {
             return () =>
             {
-                MelonLogger.Msg($"Joining room [{roomCode}].");
+                Logger.Msg($"Joining room [{roomCode}].");
                 Traverse.Create(GameContextState.LobbyMenuController).Method("JoinGame", roomCode, true).GetValue();
             };
         }
