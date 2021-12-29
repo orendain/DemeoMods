@@ -22,22 +22,24 @@
 
         private void Start()
         {
-            StartCoroutine(Setup());
+            StartCoroutine(WaitAndInitialize());
         }
 
-        private IEnumerator Setup()
+        private IEnumerator WaitAndInitialize()
         {
             while (!UiHelper.IsReady())
             {
-                Logger.Msg("UI utility not yet ready. Trying again...");
+                Logger.Msg("UI helper not yet ready. Trying again...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            Logger.Msg("UI utility ready. Proceeding with setup.");
+            Logger.Msg("UI helper ready. Proceeding with initialization.");
 
             _uiHelper = UiHelper.Instance();
             _roomListPanel = RoomListPanel.NewInstance(_uiHelper);
             Initialize();
+
+            Logger.Msg("Initialization complete.");
         }
 
         private void Update()
