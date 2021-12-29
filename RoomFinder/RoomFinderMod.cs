@@ -20,8 +20,11 @@ namespace RoomFinder
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
+            MelonLogger.Msg($"[OnSceneWasInitialized] Index [{buildIndex}] Scene [{sceneName}].");
+
             if (buildIndex == SteamLobbySceneIndex || sceneName.Equals(QuestLobbySceneName, StringComparison.OrdinalIgnoreCase))
             {
+                MelonLogger.Msg($"[OnSceneWasInitialized] Loading roomlistUI.");
                 new GameObject("RoomListUI", typeof(RoomListUI));
             }
         }
