@@ -14,7 +14,7 @@
     internal class RoomListUI : MonoBehaviour
     {
         private bool _isInitialized;
-        private UiUtil _uiUtil;
+        private UiHelper _uiHelper;
         private GameObject _background;
         private RoomListPanel _roomListPanel;
 
@@ -25,7 +25,7 @@
 
         private IEnumerator Setup()
         {
-            while (!UiUtil.IsReady())
+            while (!UiHelper.IsReady())
             {
                 MelonLogger.Msg("UI utility not yet ready. Trying again...");
                 yield return new WaitForSecondsRealtime(1);
@@ -33,8 +33,8 @@
 
             MelonLogger.Msg("UI utility ready. Proceeding with setup.");
 
-            _uiUtil = UiUtil.Instance();
-            _roomListPanel = RoomListPanel.NewInstance(_uiUtil);
+            _uiHelper = UiHelper.Instance();
+            _roomListPanel = RoomListPanel.NewInstance(_uiHelper);
             Initialize();
         }
 
@@ -55,13 +55,13 @@
 
         private void Initialize()
         {
-            this.transform.SetParent(_uiUtil.DemeoResource.LobbyAnchor.transform, worldPositionStays: true);
+            this.transform.SetParent(_uiHelper.DemeoResource.LobbyAnchor.transform, worldPositionStays: true);
             this.transform.position = new Vector3(25, 30, 0);
             this.transform.rotation = Quaternion.Euler(0, 40, 0);
 
             _background = new GameObject("RoomListUIBackground");
-            _background.AddComponent<MeshFilter>().mesh = _uiUtil.DemeoResource.MenuBoxMesh;
-            _background.AddComponent<MeshRenderer>().material = _uiUtil.DemeoResource.MenuBoxMaterial;
+            _background.AddComponent<MeshFilter>().mesh = _uiHelper.DemeoResource.MenuBoxMesh;
+            _background.AddComponent<MeshRenderer>().material = _uiHelper.DemeoResource.MenuBoxMaterial;
 
             _background.transform.SetParent(this.transform, worldPositionStays: false);
             _background.transform.localPosition = new Vector3(0, -3.6f, 0);
@@ -69,15 +69,15 @@
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             _background.transform.localScale = new Vector3(2, 1, 2.5f);
 
-            var menuTitle = _uiUtil.CreateMenuHeaderText("Public Rooms");
+            var menuTitle = _uiHelper.CreateMenuHeaderText("Public Rooms");
             menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
             menuTitle.transform.localPosition = new Vector3(0, 2.375f, 0);
 
-            var refreshButton = _uiUtil.CreateButton(RefreshRoomList);
+            var refreshButton = _uiHelper.CreateButton(RefreshRoomList);
             refreshButton.transform.SetParent(this.transform, worldPositionStays: false);
             refreshButton.transform.localPosition = new Vector3(0, 0.3f, 0);
 
-            var refreshText = _uiUtil.CreateButtonText("Refresh");
+            var refreshText = _uiHelper.CreateButtonText("Refresh");
             refreshText.transform.SetParent(this.transform, worldPositionStays: false);
             refreshText.transform.localPosition = new Vector3(0, 0.3f, 0);
 

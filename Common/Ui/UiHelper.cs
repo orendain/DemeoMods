@@ -6,17 +6,17 @@
 
     // Helpful discussion on transforms:
     // https://forum.unity.com/threads/whats-the-best-practice-for-moving-recttransforms-in-script.264495
-    internal class UiUtil
+    internal class UiHelper
     {
         public const int DefaultButtonFontSize = 7;
         public const int DefaultLabelFontSize = 5;
         public const int DefaultMenuHeaderFontSize = 10;
 
-        private static UiUtil _instance;
+        private static UiHelper _instance;
 
         public DemeoResource DemeoResource { get; }
 
-        public static UiUtil Instance()
+        public static UiHelper Instance()
         {
             if (_instance != null)
             {
@@ -25,14 +25,14 @@
 
             if (!IsReady())
             {
-                throw new InvalidOperationException("UiUtil dependencies not yet available.");
+                throw new InvalidOperationException("UI dependencies not yet ready.");
             }
 
-            _instance = new UiUtil(DemeoResource.Instance());
+            _instance = new UiHelper(DemeoResource.Instance());
             return _instance;
         }
 
-        private UiUtil(DemeoResource demeoResource)
+        private UiHelper(DemeoResource demeoResource)
         {
             DemeoResource = demeoResource;
         }
