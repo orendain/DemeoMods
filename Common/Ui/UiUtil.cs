@@ -1,9 +1,9 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
-
-namespace Common.Ui
+﻿namespace Common.Ui
 {
+    using System;
+    using TMPro;
+    using UnityEngine;
+
     // Helpful discussion on transforms: https://forum.unity.com/threads/whats-the-best-practice-for-moving-recttransforms-in-script.264495
     internal class UiUtil
     {
@@ -11,15 +11,15 @@ namespace Common.Ui
         public static readonly int DefaultLabelFontSize = 5;
         public static readonly int DefaultMenuHeaderFontSize = 10;
 
-        private static UiUtil instance;
+        private static UiUtil _instance;
 
         public DemeoUi DemeoUi { get; }
 
         public static UiUtil Instance()
         {
-            if (instance != null)
+            if (_instance != null)
             {
-                return instance;
+                return _instance;
             }
 
             if (!IsReady())
@@ -27,8 +27,8 @@ namespace Common.Ui
                 throw new InvalidOperationException("UiUtil dependencies not yet available.");
             }
 
-            instance = new UiUtil();
-            return instance;
+            _instance = new UiUtil();
+            return _instance;
         }
 
         public static bool IsReady()
@@ -43,12 +43,12 @@ namespace Common.Ui
 
         public GameObject CreateButtonText(string text)
         {
-            return CreateText(text, DemeoUi.DemeoColorBeige, fontSize:DefaultButtonFontSize);
+            return CreateText(text, DemeoUi.DemeoColorBeige, fontSize: DefaultButtonFontSize);
         }
 
         public GameObject CreateLabelText(string text)
         {
-            return CreateText(text, DemeoUi.DemeoColorBrown, fontSize:DefaultLabelFontSize);
+            return CreateText(text, DemeoUi.DemeoColorBrown, fontSize: DefaultLabelFontSize);
         }
 
         public GameObject CreateMenuHeaderText(string text)
@@ -70,7 +70,7 @@ namespace Common.Ui
             menuButtonHoverEffect.Init();
 
             // Added after HoverMaterial to enable effect.
-            buttonObject.AddComponent<ClickableButton>().InitButton(0, "", callback, false);
+            buttonObject.AddComponent<ClickableButton>().InitButton(0, string.Empty, callback, false);
 
             // Added last to allow ray to hit full object.
             buttonObject.AddComponent<BoxCollider>();
