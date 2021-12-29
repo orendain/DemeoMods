@@ -63,7 +63,7 @@
     <ItemGroup>
         <Compile Include="RoomFinderMod.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="RoomFinderPatcher.cs" />
+        <Compile Include="Patcher.cs" />
         <Compile Include="RoomFinderState.cs" />
         <Compile Include="UI\RoomListPanel.cs" />
         <Compile Include="UI\RoomListUI.cs" />

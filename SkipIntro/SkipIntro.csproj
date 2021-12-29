@@ -43,7 +43,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="SkipIntroPatcher.cs" />
+        <Compile Include="Patcher.cs" />
         <Compile Include="SkipIntroMod.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
