@@ -33,31 +33,31 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(DemeoDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="MelonLoader">
-            <HintPath>$(DemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
+            <HintPath>$(SteamDemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>
         <Reference Include="Photon3Unity3D">
-            <HintPath>$(DemeoDir)\demeo_Data\Managed\Photon3Unity3D.dll</HintPath>
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\Photon3Unity3D.dll</HintPath>
         </Reference>
         <Reference Include="PhotonRealtime">
-            <HintPath>$(DemeoDir)\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
         </Reference>
         <Reference Include="PhotonUnityNetworking">
-            <HintPath>$(DemeoDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
         </Reference>
         <Reference Include="Unity.TextMeshPro">
-            <HintPath>$(DemeoDir)\demeo_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\Unity.TextMeshPro.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-            <HintPath>$(DemeoDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
-            <HintPath>$(DemeoDir)\demeo_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UI">
-            <HintPath>$(DemeoDir)\demeo_Data\Managed\UnityEngine.UI.dll</HintPath>
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.UI.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
@@ -73,6 +73,7 @@
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="CopyToModsDir" AfterTargets="Build">
-        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoDir)\Mods" />
+        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(SteamDemeoDir)\Mods" />
+        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(OculusDemeoDir)\Mods"/>
     </Target>
 </Project>
