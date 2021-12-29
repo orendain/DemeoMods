@@ -4,17 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
-    using Common.States;
     using Common.UI;
     using HarmonyLib;
-    using MelonLoader;
     using Photon.Realtime;
     using UnityEngine;
 
     internal class RoomListUI : MonoBehaviour
     {
-        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance(nameof(RoomListUI));
-
         private bool _isInitialized;
         private UiHelper _uiHelper;
         private GameObject _background;
@@ -29,17 +25,17 @@
         {
             while (!UiHelper.IsReady())
             {
-                Logger.Msg("UI helper not yet ready. Trying again...");
+                RoomFinderMod.Logger.Msg("UI helper not yet ready. Trying again...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            Logger.Msg("UI helper ready. Proceeding with initialization.");
+            RoomFinderMod.Logger.Msg("UI helper ready. Proceeding with initialization.");
 
             _uiHelper = UiHelper.Instance();
             _roomListPanel = RoomListPanel.NewInstance(_uiHelper);
             Initialize();
 
-            Logger.Msg("Initialization complete.");
+            RoomFinderMod.Logger.Msg("Initialization complete.");
         }
 
         private void Update()
@@ -49,10 +45,10 @@
                 return;
             }
 
-            if (RoomFinderState.IsRefreshingRoomList && RoomFinderState.HasRoomListUpdated)
+            if (RoomFinderMod.ModState.IsRefreshingRoomList && RoomFinderMod.ModState.HasRoomListUpdated)
             {
-                RoomFinderState.IsRefreshingRoomList = false;
-                RoomFinderState.HasRoomListUpdated = false;
+                RoomFinderMod.ModState.IsRefreshingRoomList = false;
+                RoomFinderMod.ModState.HasRoomListUpdated = false;
                 PopulateRoomList();
             }
         }
@@ -93,8 +89,8 @@
 
         private static void RefreshRoomList()
         {
-            RoomFinderState.IsRefreshingRoomList = true;
-            Traverse.Create(GameContextState.LobbyMenuController)
+            RoomFinderMod.ModState.IsRefreshingRoomList = true;
+            Traverse.Create(RoomFinderMod.GameContextState.LobbyMenuController)
                 .Method("QuickPlay", LevelSequence.GameType.Invalid, true)
                 .GetValue();
         }
@@ -102,9 +98,9 @@
         private void PopulateRoomList()
         {
             var cachedRooms =
-                Traverse.Create(GameContextState.GameContext.gameStateMachine)
+                Traverse.Create(RoomFinderMod.GameContextState.GameContext.gameStateMachine)
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
-            Logger.Msg($"[RoomListUI] Retrieved {cachedRooms.Count} rooms.");
+            RoomFinderMod.Logger.Msg($"[RoomListUI] Retrieved {cachedRooms.Count} rooms.");
 
             var roomListPanelContainer = _roomListPanel.Reinitialize(cachedRooms.Values.ToList());
             roomListPanelContainer.transform.SetParent(this.transform, worldPositionStays: false);

@@ -4,18 +4,27 @@
     using Boardgame.Ui.LobbyMenu;
     using Data.GameData;
 
-    internal static class GameContextState
+    internal class GameContextState
     {
-        public static GameContext GameContext { get; set; }
+        public GameContext GameContext { get; set; }
 
-        public static AvatarController AvatarController { get; set; }
+        public AvatarController AvatarController { get; set; }
 
-        public static ICardHandController CardHandController { get; set; }
+        public ICardHandController CardHandController { get; set; }
 
-        public static GameDataAPI GameDataAPI { get; set; }
+        public GameDataAPI GameDataAPI { get; set; }
 
-        public static LobbyMenuController LobbyMenuController { get; set; }
+        public LobbyMenuController LobbyMenuController { get; set; }
 
-        public static PieceAndTurnController PieceAndTurnController { get; set; }
+        public PieceAndTurnController PieceAndTurnController { get; set; }
+
+        public static GameContextState NewInstance()
+        {
+            return new GameContextState();
+        }
+
+        private GameContextState()
+        {
+        }
     }
 }

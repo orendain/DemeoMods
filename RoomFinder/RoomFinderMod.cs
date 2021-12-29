@@ -1,32 +1,33 @@
 ﻿namespace RoomFinder
 {
-    using System;
-    using Common.Patches;
+    using Common;
+    using Common.States;
     using MelonLoader;
     using RoomFinder.UI;
     using UnityEngine;
 
     internal class RoomFinderMod : MelonMod
     {
-        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance(nameof(RoomFinderMod));
+        public static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
+        public static readonly GameContextState GameContextState = CommonModule.GameContextState;
+        public static readonly ModState ModState = ModState.NewInstance();
 
-        private const int SteamLobbySceneIndex = 1;
-        private const string QuestLobbySceneName = "Lobby";
+        private const int LobbySceneIndex = 1;
+
+        private GameObject _roomListUI;
 
         public override void OnApplicationStart()
         {
             var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.roomfinder");
-            RoomFinderPatcher.Patch(harmony);
-            GameContextPatcher.Patch(harmony);
+            ModPatcher.Patch(harmony);
         }
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (buildIndex == SteamLobbySceneIndex ||
-                sceneName.Equals(QuestLobbySceneName, StringComparison.OrdinalIgnoreCase))
+            if (buildIndex == LobbySceneIndex)
             {
                 Logger.Msg($"Initializing RoomFinder in scene [{sceneName}] with scene index [{buildIndex}].");
-                new GameObject("RoomListUI", typeof(RoomListUI));
+                _roomListUI = new GameObject("RoomListUI", typeof(RoomListUI));
             }
         }
     }

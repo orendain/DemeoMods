@@ -52,8 +52,9 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Patches\GameContextPatcher.cs" />
+        <Compile Include="Patchers\GameContextPatcher.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="CommonModule.cs" />
         <Compile Include="States\GameContextState.cs" />
         <Compile Include="UI\DemeoResource.cs" />
         <Compile Include="UI\UiHelper.cs" />

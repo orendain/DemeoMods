@@ -5,8 +5,14 @@ indent_size = 4
 
 # StyleCop.Analyzers
 
+# SA0001XmlCommentAnalysisDisabled.
+dotnet_diagnostic.SA0001.severity = None
+
 # SA1101PrefixLocalCallsWithThis
 dotnet_diagnostic.SA1101.severity = None
+
+# SA1201ElementsMustAppearInTheCorrectOrder.
+dotnet_diagnostic.SA1201.severity = None
 
 # SA1204StaticElementsMustAppearBeforeInstanceElements.
 dotnet_diagnostic.SA1204.severity = None
