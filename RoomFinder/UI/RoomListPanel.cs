@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Boardgame;
     using Common.States;
-    using Common.Ui;
+    using Common.UI;
     using HarmonyLib;
     using MelonLoader;
     using Photon.Realtime;
@@ -13,23 +13,23 @@
 
     internal class RoomListPanel
     {
-        private readonly UiUtil _uiUtil;
-        private readonly GameObject _panelObject;
+        private readonly UiHelper _uiHelper;
+        private readonly GameObject _panel;
 
-        public static RoomListPanel NewInstance(UiUtil uiUtil)
+        public static RoomListPanel NewInstance(UiHelper uiHelper)
         {
-            return new RoomListPanel(uiUtil, new GameObject("RoomListPanel"));
+            return new RoomListPanel(uiHelper, new GameObject("RoomListPanel"));
         }
 
-        private RoomListPanel(UiUtil uiUtil, GameObject panelObject)
+        private RoomListPanel(UiHelper uiHelper, GameObject panel)
         {
-            this._uiUtil = uiUtil;
-            this._panelObject = panelObject;
+            this._uiHelper = uiHelper;
+            this._panel = panel;
         }
 
         public GameObject Reinitialize(List<RoomInfo> rooms)
         {
-            foreach (Transform child in _panelObject.transform)
+            foreach (Transform child in _panel.transform)
             {
                 Object.Destroy(child.gameObject);
             }
@@ -40,27 +40,27 @@
                 RenderRoomRow(rooms[i], i);
             }
 
-            return _panelObject;
+            return _panel;
         }
 
         private void RenderHeader()
         {
             var headerContainer = new GameObject("Header");
-            headerContainer.transform.SetParent(_panelObject.transform, worldPositionStays: false);
+            headerContainer.transform.SetParent(_panel.transform, worldPositionStays: false);
 
-            var joinLabel = _uiUtil.CreateLabelText("Code");
+            var joinLabel = _uiHelper.CreateLabelText("Code");
             joinLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             joinLabel.transform.localPosition = new Vector3(-3f, 0, 0);
 
-            var gameLabel = _uiUtil.CreateLabelText("Game");
+            var gameLabel = _uiHelper.CreateLabelText("Game");
             gameLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             gameLabel.transform.localPosition = new Vector3(-0.4f, 0, 0);
 
-            var floorLabel = _uiUtil.CreateLabelText("Floor");
+            var floorLabel = _uiHelper.CreateLabelText("Floor");
             floorLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             floorLabel.transform.localPosition = new Vector3(1.75f, 0, 0);
 
-            var playersLabel = _uiUtil.CreateLabelText("Players");
+            var playersLabel = _uiHelper.CreateLabelText("Players");
             playersLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             playersLabel.transform.localPosition = new Vector3(3.5f, 0, 0);
         }
@@ -69,7 +69,7 @@
         {
             var yOffset = (1 + row) * -1f;
             var roomRowContainer = new GameObject($"Row{row}");
-            roomRowContainer.transform.SetParent(_panelObject.transform, worldPositionStays: false);
+            roomRowContainer.transform.SetParent(_panel.transform, worldPositionStays: false);
             roomRowContainer.transform.localPosition = new Vector3(0, yOffset, 0);
 
             object obj;
@@ -83,26 +83,26 @@
                 return;
             }
 
-            var joinButton = _uiUtil.CreateButton(JoinRoomAction(room.Name));
+            var joinButton = _uiHelper.CreateButton(JoinRoomAction(room.Name));
             joinButton.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             joinButton.transform.localScale = new Vector3(0.4f, 0.7f, 0.7f);
             joinButton.transform.localPosition = new Vector3(-3f, 0, 0);
 
-            var joinText = _uiUtil.CreateText(room.Name, Color.white, UiUtil.DefaultLabelFontSize);
+            var joinText = _uiHelper.CreateText(room.Name, Color.white, UiHelper.DefaultLabelFontSize);
             joinText.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             joinText.transform.localPosition = new Vector3(-3f, 0, 0);
 
             var gameName = StringifyGameType(gameType);
-            var gameLabel = _uiUtil.CreateLabelText(gameName);
+            var gameLabel = _uiHelper.CreateLabelText(gameName);
             gameLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             gameLabel.transform.localPosition = new Vector3(-0.4f, 0, 0);
 
-            var floorLabel = _uiUtil.CreateLabelText(floorIndex.ToString());
+            var floorLabel = _uiHelper.CreateLabelText(floorIndex.ToString());
             floorLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             floorLabel.transform.localPosition = new Vector3(1.75f, 0, 0);
 
             var playersText = $"{room.PlayerCount}/{room.MaxPlayers}";
-            var playersLabel = _uiUtil.CreateLabelText(playersText);
+            var playersLabel = _uiHelper.CreateLabelText(playersText);
             playersLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             playersLabel.transform.localPosition = new Vector3(3.25f, 0, 0);
         }

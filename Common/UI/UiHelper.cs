@@ -1,21 +1,22 @@
-﻿namespace Common.Ui
+﻿namespace Common.UI
 {
     using System;
     using TMPro;
     using UnityEngine;
 
-    // Helpful discussion on transforms: https://forum.unity.com/threads/whats-the-best-practice-for-moving-recttransforms-in-script.264495
-    internal class UiUtil
+    // Helpful discussion on transforms:
+    // https://forum.unity.com/threads/whats-the-best-practice-for-moving-recttransforms-in-script.264495
+    internal class UiHelper
     {
-        public static readonly int DefaultButtonFontSize = 7;
-        public static readonly int DefaultLabelFontSize = 5;
-        public static readonly int DefaultMenuHeaderFontSize = 10;
+        public const int DefaultButtonFontSize = 7;
+        public const int DefaultLabelFontSize = 5;
+        public const int DefaultMenuHeaderFontSize = 10;
 
-        private static UiUtil _instance;
+        private static UiHelper _instance;
 
-        public DemeoUi DemeoUi { get; }
+        public DemeoResource DemeoResource { get; }
 
-        public static UiUtil Instance()
+        public static UiHelper Instance()
         {
             if (_instance != null)
             {
@@ -24,36 +25,36 @@
 
             if (!IsReady())
             {
-                throw new InvalidOperationException("UiUtil dependencies not yet available.");
+                throw new InvalidOperationException("UI dependencies not yet ready.");
             }
 
-            _instance = new UiUtil();
+            _instance = new UiHelper(DemeoResource.Instance());
             return _instance;
+        }
+
+        private UiHelper(DemeoResource demeoResource)
+        {
+            DemeoResource = demeoResource;
         }
 
         public static bool IsReady()
         {
-            return DemeoUi.IsReady();
-        }
-
-        private UiUtil()
-        {
-            DemeoUi = DemeoUi.Instance();
+            return DemeoResource.IsReady();
         }
 
         public GameObject CreateButtonText(string text)
         {
-            return CreateText(text, DemeoUi.DemeoColorBeige, fontSize: DefaultButtonFontSize);
+            return CreateText(text, DemeoResource.ColorBeige, fontSize: DefaultButtonFontSize);
         }
 
         public GameObject CreateLabelText(string text)
         {
-            return CreateText(text, DemeoUi.DemeoColorBrown, fontSize: DefaultLabelFontSize);
+            return CreateText(text, DemeoResource.ColorBrown, fontSize: DefaultLabelFontSize);
         }
 
         public GameObject CreateMenuHeaderText(string text)
         {
-            return CreateText(text, DemeoUi.DemeoColorBeige, fontSize: DefaultMenuHeaderFontSize);
+            return CreateText(text, DemeoResource.ColorBeige, fontSize: DefaultMenuHeaderFontSize);
         }
 
         public GameObject CreateButton(Action callback)
@@ -62,11 +63,11 @@
             buttonObject.transform.localRotation = Quaternion.Euler(0, 180, 0); // Un-reverse button from its default.
             buttonObject.layer = 5; // UI layer.
 
-            buttonObject.AddComponent<MeshFilter>().mesh = DemeoUi.DemeoButtonMesh;
-            buttonObject.AddComponent<MeshRenderer>().material = DemeoUi.DemeoButtonMaterial;
+            buttonObject.AddComponent<MeshFilter>().mesh = DemeoResource.ButtonMesh;
+            buttonObject.AddComponent<MeshRenderer>().material = DemeoResource.ButtonMaterial;
 
             var menuButtonHoverEffect = buttonObject.AddComponent<MenuButtonHoverEffect>();
-            menuButtonHoverEffect.hoverMaterial = DemeoUi.DemeoButtonHoverMaterial;
+            menuButtonHoverEffect.hoverMaterial = DemeoResource.ButtonHoverMaterial;
             menuButtonHoverEffect.Init();
 
             // Added after HoverMaterial to enable effect.
@@ -83,11 +84,11 @@
             var textObject = new GameObject($"Text");
 
             var textMeshPro = textObject.AddComponent<TextMeshPro>();
-            textMeshPro.font = DemeoUi.DemeoFont;
+            textMeshPro.font = DemeoResource.Font;
             textMeshPro.fontStyle = FontStyles.Normal;
             textMeshPro.text = text;
             textMeshPro.color = color;
-            textMeshPro.colorGradientPreset = DemeoUi.DemeoFontColorGradient;
+            textMeshPro.colorGradientPreset = DemeoResource.FontColorGradient;
             textMeshPro.alignment = TextAlignmentOptions.Center;
             textMeshPro.fontSize = fontSize;
             textMeshPro.fontSizeMax = fontSize;
