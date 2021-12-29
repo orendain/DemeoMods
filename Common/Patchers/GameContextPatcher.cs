@@ -2,14 +2,10 @@
 {
     using Boardgame;
     using Boardgame.Ui.LobbyMenu;
-    using Common.States;
     using HarmonyLib;
-    using MelonLoader;
 
-    internal static class GameContextPatcher
+    internal class GameContextPatcher
     {
-        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("Common");
-
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
@@ -24,18 +20,18 @@
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
             var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
-            GameContextState.GameContext = gameContext;
-            GameContextState.AvatarController = gameContext.avatarController;
-            GameContextState.CardHandController = gameContext.cardHandController;
-            GameContextState.GameDataAPI = gameContext.gameDataAPI;
-            GameContextState.PieceAndTurnController = gameContext.pieceAndTurnController;
-            Logger.Msg("Captured GameContext values.");
+            CommonModule.GameContextState.GameContext = gameContext;
+            CommonModule.GameContextState.AvatarController = gameContext.avatarController;
+            CommonModule.GameContextState.CardHandController = gameContext.cardHandController;
+            CommonModule.GameContextState.GameDataAPI = gameContext.gameDataAPI;
+            CommonModule.GameContextState.PieceAndTurnController = gameContext.pieceAndTurnController;
+            CommonModule.Logger.Msg("Captured GameContext values.");
         }
 
         private static void Lobby_Init_Postfix(LobbyMenuController lobbyMenuController)
         {
-            GameContextState.LobbyMenuController = lobbyMenuController;
-            Logger.Msg("Captured LobbyMenuController.");
+            CommonModule.GameContextState.LobbyMenuController = lobbyMenuController;
+            CommonModule.Logger.Msg("Captured LobbyMenuController.");
         }
     }
 }

@@ -9,7 +9,7 @@
         public override void OnApplicationStart()
         {
             var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.skipintro");
-            SkipIntroPatcher.Patch(harmony);
+            ModPatcher.Patch(harmony);
         }
     }
 }

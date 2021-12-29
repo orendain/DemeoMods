@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using Boardgame;
-    using Common.States;
     using Common.UI;
     using HarmonyLib;
     using Photon.Realtime;
@@ -116,7 +115,7 @@
             return () =>
             {
                 RoomFinderMod.Logger.Msg($"Joining room [{roomCode}].");
-                Traverse.Create(GameContextState.LobbyMenuController).Method("JoinGame", roomCode, true).GetValue();
+                Traverse.Create(RoomFinderMod.GameContextState.LobbyMenuController).Method("JoinGame", roomCode, true).GetValue();
             };
         }
     }

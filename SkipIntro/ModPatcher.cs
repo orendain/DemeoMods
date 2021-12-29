@@ -2,16 +2,15 @@
 {
     using Boardgame;
     using HarmonyLib;
-    using MelonLoader;
     using UnityEngine;
 
-    internal static class SkipIntroPatcher
+    internal class ModPatcher
     {
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: typeof(MotherbrainSceneUtil).GetMethod("LoadIntro"),
-                prefix: new HarmonyMethod(typeof(SkipIntroPatcher), nameof(MotherbrainSceneUtil_LoadIntro_Prefix)));
+                prefix: new HarmonyMethod(typeof(ModPatcher), nameof(MotherbrainSceneUtil_LoadIntro_Prefix)));
         }
 
         private static bool MotherbrainSceneUtil_LoadIntro_Prefix(ref AsyncOperation __result)

@@ -4,10 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
-    using Common.States;
     using Common.UI;
     using HarmonyLib;
-    using MelonLoader;
     using Photon.Realtime;
     using UnityEngine;
 
@@ -47,10 +45,10 @@
                 return;
             }
 
-            if (RoomFinderState.IsRefreshingRoomList && RoomFinderState.HasRoomListUpdated)
+            if (RoomFinderMod.ModState.IsRefreshingRoomList && RoomFinderMod.ModState.HasRoomListUpdated)
             {
-                RoomFinderState.IsRefreshingRoomList = false;
-                RoomFinderState.HasRoomListUpdated = false;
+                RoomFinderMod.ModState.IsRefreshingRoomList = false;
+                RoomFinderMod.ModState.HasRoomListUpdated = false;
                 PopulateRoomList();
             }
         }
@@ -91,8 +89,8 @@
 
         private static void RefreshRoomList()
         {
-            RoomFinderState.IsRefreshingRoomList = true;
-            Traverse.Create(GameContextState.LobbyMenuController)
+            RoomFinderMod.ModState.IsRefreshingRoomList = true;
+            Traverse.Create(RoomFinderMod.GameContextState.LobbyMenuController)
                 .Method("QuickPlay", LevelSequence.GameType.Invalid, true)
                 .GetValue();
         }
@@ -100,7 +98,7 @@
         private void PopulateRoomList()
         {
             var cachedRooms =
-                Traverse.Create(GameContextState.GameContext.gameStateMachine)
+                Traverse.Create(RoomFinderMod.GameContextState.GameContext.gameStateMachine)
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
             RoomFinderMod.Logger.Msg($"[RoomListUI] Retrieved {cachedRooms.Count} rooms.");
 

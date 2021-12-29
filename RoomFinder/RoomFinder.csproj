@@ -63,8 +63,8 @@
     <ItemGroup>
         <Compile Include="RoomFinderMod.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Patcher.cs" />
-        <Compile Include="RoomFinderState.cs" />
+        <Compile Include="ModPatcher.cs" />
+        <Compile Include="ModState.cs" />
         <Compile Include="UI\RoomListPanel.cs" />
         <Compile Include="UI\RoomListUI.cs" />
         <Compile Include="..\Common\**\*.cs" Exclude="..\Common\Properties\AssemblyInfo.cs;..\Common\bin\**\*.*;..\Common\obj\**\*.*;..\Common\**\*.csproj;..\Common\**\*.user;..\Common\**\*.vstemplate">
