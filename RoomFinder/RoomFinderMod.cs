@@ -11,6 +11,8 @@
 
         private const int LobbySceneIndex = 1;
 
+        private GameObject _roomListUI;
+
         public override void OnApplicationStart()
         {
             var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.roomfinder");
@@ -23,7 +25,7 @@
             if (buildIndex == LobbySceneIndex)
             {
                 RoomFinderMod.Logger.Msg($"Initializing RoomFinder in scene [{sceneName}] with scene index [{buildIndex}].");
-                new GameObject("RoomListUI", typeof(RoomListUI));
+                _roomListUI = new GameObject("RoomListUI", typeof(RoomListUI));
             }
         }
     }
