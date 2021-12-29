@@ -1,13 +1,13 @@
-﻿using Boardgame;
-using HarmonyLib;
-using MelonLoader;
-using UnityEngine;
-
-namespace SkipIntro
+﻿namespace SkipIntro
 {
+    using Boardgame;
+    using HarmonyLib;
+    using MelonLoader;
+    using UnityEngine;
+
     internal static class SkipIntroPatcher
     {
-        internal static void Patch(HarmonyLib.Harmony harmony)
+        internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: typeof(MotherbrainSceneUtil).GetMethod("LoadIntro"),

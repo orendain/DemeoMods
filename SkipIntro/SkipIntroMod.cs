@@ -1,7 +1,7 @@
-﻿using MelonLoader;
-
-namespace SkipIntro
+﻿namespace SkipIntro
 {
+    using MelonLoader;
+
     internal class SkipIntroMod : MelonMod
     {
         public override void OnApplicationStart()

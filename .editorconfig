@@ -1,0 +1,21 @@
+[*.cs]
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+
+# StyleCop.Analyzers
+
+# SA1101PrefixLocalCallsWithThis
+dotnet_diagnostic.SA1101.severity = None
+
+# SA1204StaticElementsMustAppearBeforeInstanceElements.
+dotnet_diagnostic.SA1204.severity = None
+
+# SA1309FieldNamesMustNotBeginWithUnderscore.
+dotnet_diagnostic.SA1309.severity = None
+
+# SA1600ElementsMustBeDocumented.
+dotnet_diagnostic.SA1600.severity = None
+
+# SA1633FileMustHaveHeader.
+dotnet_diagnostic.SA1633.severity = None

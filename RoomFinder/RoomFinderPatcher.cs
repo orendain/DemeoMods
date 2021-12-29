@@ -1,12 +1,12 @@
-﻿using System.Reflection;
-using Common.States;
-using HarmonyLib;
-
-namespace RoomFinder
+﻿namespace RoomFinder
 {
+    using System.Reflection;
+    using Common.States;
+    using HarmonyLib;
+
     internal static class RoomFinderPatcher
     {
-        internal static void Patch(HarmonyLib.Harmony harmony)
+        internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Inner(typeof(GameStateMachine), "MatchMakingState").GetTypeInfo().GetDeclaredMethod("OnRoomListUpdated"),
@@ -15,8 +15,7 @@ namespace RoomFinder
             harmony.Patch(
                 original: AccessTools.Inner(typeof(GameStateMachine), "MatchMakingState").GetTypeInfo()
                     .GetDeclaredMethod("FindGame"),
-                prefix: new HarmonyMethod(typeof(RoomFinderPatcher),
-                    nameof(MatchMakingState_FindGame_Prefix)));
+                prefix: new HarmonyMethod(typeof(RoomFinderPatcher), nameof(MatchMakingState_FindGame_Prefix)));
         }
 
         private static void MatchMakingState_OnRoomListUpdated_Postfix()

@@ -1,24 +1,24 @@
-﻿using Boardgame;
-using Boardgame.Ui.LobbyMenu;
-using Common.States;
-using HarmonyLib;
-using MelonLoader;
-
-namespace Common.Patches
+﻿namespace Common.Patches
 {
+    using Boardgame;
+    using Boardgame.Ui.LobbyMenu;
+    using Common.States;
+    using HarmonyLib;
+    using MelonLoader;
+
     internal static class GameContextPatcher
     {
-        internal static void Patch(HarmonyLib.Harmony harmony)
+        internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
                 postfix: new HarmonyMethod(typeof(GameContextPatcher), nameof(GameStartup_InitializeGame_Postfix)));
-            
+
             harmony.Patch(
                 original: typeof(Lobby).GetMethod("Init"),
                 postfix: new HarmonyMethod(typeof(GameContextPatcher), nameof(Lobby_Init_Postfix)));
         }
-        
+
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
             var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Linq;
-using TMPro;
-using UnityEngine;
-
-namespace Common.Ui
+﻿namespace Common.Ui
 {
+    using System;
+    using System.Linq;
+    using TMPro;
+    using UnityEngine;
+
     // TODO(orendain): Rename to DemeoResources.
     internal class DemeoUi
     {
-        private static DemeoUi instance;
-
         public readonly Color DemeoColorBrown = new Color(0.0392f, 0.0157f, 0, 1);
         public readonly Color DemeoColorBeige = new Color(0.878f, 0.752f, 0.384f, 1);
 
@@ -38,11 +36,13 @@ namespace Common.Ui
         public readonly Material DemeoMenuBoxMaterial = Resources.FindObjectsOfTypeAll<Material>()
             .First(x => x.name == "MainMenuMat (Instance)");
 
+        private static DemeoUi _instance;
+
         public static DemeoUi Instance()
         {
-            if (instance != null)
+            if (_instance != null)
             {
-                return instance;
+                return _instance;
             }
 
             if (!IsReady())
@@ -50,8 +50,8 @@ namespace Common.Ui
                 throw new InvalidOperationException("Demeo UI resources not yet available.");
             }
 
-            instance = new DemeoUi();
-            return instance;
+            _instance = new DemeoUi();
+            return _instance;
         }
 
         private DemeoUi()
@@ -60,18 +60,15 @@ namespace Common.Ui
 
         public static bool IsReady()
         {
-            return Resources.FindObjectsOfTypeAll<TMP_FontAsset>().Where(x => x.name == "Demeo SDF").Count() > 0
-                   && Resources
-                       .FindObjectsOfTypeAll<TMP_ColorGradient>()
-                       .Where(x => x.name == "Demeo - Main Menu Buttons").Count() > 0
-                   && Resources.FindObjectsOfTypeAll<Mesh>().Where(x => x.name == "UIMenuMainButton").Count() > 0
-                   && Resources.FindObjectsOfTypeAll<Material>().Where(x => x.name == "MainMenuMat").Count() > 0
-                   && Resources.FindObjectsOfTypeAll<Material>().Where(x => x.name == "MainMenuHover").Count() > 0
-                   && Resources.FindObjectsOfTypeAll<Mesh>().Where(x => x.name == "MenuBox_SettingsButton").Count() > 0
-                   && Resources.FindObjectsOfTypeAll<Material>()
-                       .Where(x => x.name == "MainMenuMat (Instance)").Count() > 0
+            return Resources.FindObjectsOfTypeAll<TMP_FontAsset>().Any(x => x.name == "Demeo SDF")
+                   && Resources.FindObjectsOfTypeAll<TMP_ColorGradient>().Any(x => x.name == "Demeo - Main Menu Buttons")
+                   && Resources.FindObjectsOfTypeAll<Mesh>().Any(x => x.name == "UIMenuMainButton")
+                   && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuMat")
+                   && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuHover")
+                   && Resources.FindObjectsOfTypeAll<Mesh>().Any(x => x.name == "MenuBox_SettingsButton")
+                   && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuMat (Instance)")
                    && Resources.FindObjectsOfTypeAll<charactersoundlistener>()
-                       .Where(x => x.name == "MenuBox_BindPose").Count() > 1;
+                       .Count(x => x.name == "MenuBox_BindPose") > 1;
         }
     }
 }

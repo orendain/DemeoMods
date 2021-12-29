@@ -6,6 +6,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomFinder", "RoomFinder\Ro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkipIntro", "SkipIntro\SkipIntro.csproj", "{E986568C-684F-4DD3-980C-8D8443982EC6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{550F1D71-6355-4D67-91BB-15D2E1891870}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +30,11 @@ Global
 		{E986568C-684F-4DD3-980C-8D8443982EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0B15766-A7B9-4CB1-A9A0-EE502996942A}
 	EndGlobalSection
 EndGlobal
