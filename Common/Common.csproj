@@ -55,8 +55,8 @@
         <Compile Include="Patches\GameContextPatcher.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="States\GameContextState.cs" />
-        <Compile Include="Ui\DemeoResource.cs" />
-        <Compile Include="Ui\UiHelper.cs" />
+        <Compile Include="UI\DemeoResource.cs" />
+        <Compile Include="UI\UiHelper.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

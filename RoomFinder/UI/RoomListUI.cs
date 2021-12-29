@@ -5,7 +5,7 @@
     using System.Linq;
     using Boardgame;
     using Common.States;
-    using Common.Ui;
+    using Common.UI;
     using HarmonyLib;
     using MelonLoader;
     using Photon.Realtime;

@@ -1,4 +1,4 @@
-﻿namespace Common.Ui
+﻿namespace Common.UI
 {
     using System;
     using System.Linq;
