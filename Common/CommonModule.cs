@@ -6,7 +6,7 @@
 
     internal class CommonModule
     {
-        public static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("Common");
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("Common");
 
         public static GameContextState GameContextState { get; } = GameContextState.NewInstance();
 

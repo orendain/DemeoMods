@@ -18,7 +18,7 @@
 
         public PieceAndTurnController PieceAndTurnController { get; set; }
 
-        public static GameContextState NewInstance()
+        internal static GameContextState NewInstance()
         {
             return new GameContextState();
         }

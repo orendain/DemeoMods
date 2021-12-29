@@ -8,9 +8,9 @@
 
     internal class RoomFinderMod : MelonMod
     {
-        public static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
-        public static readonly GameContextState GameContextState = CommonModule.GameContextState;
-        public static readonly ModState ModState = ModState.NewInstance();
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
+        internal static readonly GameContextState GameContextState = CommonModule.GameContextState;
+        internal static readonly ModState ModState = ModState.NewInstance();
 
         private const int LobbySceneIndex = 1;
 

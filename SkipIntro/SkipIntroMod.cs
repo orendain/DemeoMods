@@ -4,7 +4,7 @@
 
     internal class SkipIntroMod : MelonMod
     {
-        public static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("SkipIntro");
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("SkipIntro");
 
         public override void OnApplicationStart()
         {
