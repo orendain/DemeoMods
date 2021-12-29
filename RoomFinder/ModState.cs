@@ -2,11 +2,11 @@
 {
     internal class ModState
     {
-        public bool IsRefreshingRoomList { get; set; }
+        internal bool IsRefreshingRoomList { get; set; }
 
-        public bool HasRoomListUpdated { get; set; }
+        internal bool HasRoomListUpdated { get; set; }
 
-        public static ModState NewInstance()
+        internal static ModState NewInstance()
         {
             return new ModState();
         }

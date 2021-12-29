@@ -14,7 +14,7 @@
         private readonly UiHelper _uiHelper;
         private readonly GameObject _panel;
 
-        public static RoomListPanel NewInstance(UiHelper uiHelper)
+        internal static RoomListPanel NewInstance(UiHelper uiHelper)
         {
             return new RoomListPanel(uiHelper, new GameObject("RoomListPanel"));
         }
@@ -25,7 +25,7 @@
             this._panel = panel;
         }
 
-        public GameObject Reinitialize(List<RoomInfo> rooms)
+        internal GameObject Reinitialize(List<RoomInfo> rooms)
         {
             foreach (Transform child in _panel.transform)
             {
