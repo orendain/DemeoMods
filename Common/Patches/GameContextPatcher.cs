@@ -8,6 +8,8 @@
 
     internal static class GameContextPatcher
     {
+        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance(nameof(GameContextPatcher));
+
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
@@ -27,13 +29,13 @@
             GameContextState.CardHandController = gameContext.cardHandController;
             GameContextState.GameDataAPI = gameContext.gameDataAPI;
             GameContextState.PieceAndTurnController = gameContext.pieceAndTurnController;
-            MelonLogger.Msg("Captured GameContext values.");
+            Logger.Msg("Captured GameContext values.");
         }
 
         private static void Lobby_Init_Postfix(LobbyMenuController lobbyMenuController)
         {
             GameContextState.LobbyMenuController = lobbyMenuController;
-            MelonLogger.Msg("Captured LobbyMenuController.");
+            Logger.Msg("Captured LobbyMenuController.");
         }
     }
 }

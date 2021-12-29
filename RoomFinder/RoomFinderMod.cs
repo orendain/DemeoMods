@@ -8,6 +8,8 @@
 
     internal class RoomFinderMod : MelonMod
     {
+        private static readonly MelonLogger.Instance Logger = new MelonLogger.Instance(nameof(RoomFinderMod));
+
         private const int SteamLobbySceneIndex = 1;
         private const string QuestLobbySceneName = "Lobby";
 
@@ -23,7 +25,7 @@
             if (buildIndex == SteamLobbySceneIndex ||
                 sceneName.Equals(QuestLobbySceneName, StringComparison.OrdinalIgnoreCase))
             {
-                MelonLogger.Msg($"Initializing RoomFinder in scene [{sceneName}] with scene index [{buildIndex}].");
+                Logger.Msg($"Initializing RoomFinder in scene [{sceneName}] with scene index [{buildIndex}].");
                 new GameObject("RoomListUI", typeof(RoomListUI));
             }
         }

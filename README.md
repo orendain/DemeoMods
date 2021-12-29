@@ -54,7 +54,7 @@ common/util mod or a [nuget](https://www.nuget.org/).
 
 Please file an issue if interested.
 
-### `/Common/UiUtil`
+### `/Common/UI`
 
 The start of a UI library, before the author decided too much time was being spent on it :wink:. Now a set of helpers to
 make development of Unity views for Demeo significantly easier.
