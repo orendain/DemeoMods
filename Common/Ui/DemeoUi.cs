@@ -38,7 +38,6 @@
 
         private static DemeoUi _instance;
 
-
         public static DemeoUi Instance()
         {
             if (_instance != null)
