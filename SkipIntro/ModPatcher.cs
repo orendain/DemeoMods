@@ -4,7 +4,7 @@
     using HarmonyLib;
     using UnityEngine;
 
-    internal class ModPatcher
+    internal static class ModPatcher
     {
         internal static void Patch(Harmony harmony)
         {

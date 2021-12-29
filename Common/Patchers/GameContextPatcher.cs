@@ -4,7 +4,7 @@
     using Boardgame.Ui.LobbyMenu;
     using HarmonyLib;
 
-    internal class GameContextPatcher
+    internal static class GameContextPatcher
     {
         internal static void Patch(Harmony harmony)
         {

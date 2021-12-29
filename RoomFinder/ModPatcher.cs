@@ -3,7 +3,7 @@
     using System.Reflection;
     using HarmonyLib;
 
-    internal class ModPatcher
+    internal static class ModPatcher
     {
         internal static void Patch(Harmony harmony)
         {
