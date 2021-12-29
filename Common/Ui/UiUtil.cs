@@ -4,12 +4,13 @@
     using TMPro;
     using UnityEngine;
 
-    // Helpful discussion on transforms: https://forum.unity.com/threads/whats-the-best-practice-for-moving-recttransforms-in-script.264495
+    // Helpful discussion on transforms:
+    // https://forum.unity.com/threads/whats-the-best-practice-for-moving-recttransforms-in-script.264495
     internal class UiUtil
     {
-        public static readonly int DefaultButtonFontSize = 7;
-        public static readonly int DefaultLabelFontSize = 5;
-        public static readonly int DefaultMenuHeaderFontSize = 10;
+        public const int DefaultButtonFontSize = 7;
+        public const int DefaultLabelFontSize = 5;
+        public const int DefaultMenuHeaderFontSize = 10;
 
         private static UiUtil _instance;
 
@@ -27,18 +28,18 @@
                 throw new InvalidOperationException("UiUtil dependencies not yet available.");
             }
 
-            _instance = new UiUtil();
+            _instance = new UiUtil(DemeoResource.Instance());
             return _instance;
+        }
+
+        private UiUtil(DemeoResource demeoResource)
+        {
+            DemeoResource = demeoResource;
         }
 
         public static bool IsReady()
         {
             return DemeoResource.IsReady();
-        }
-
-        private UiUtil()
-        {
-            DemeoResource = DemeoResource.Instance();
         }
 
         public GameObject CreateButtonText(string text)
