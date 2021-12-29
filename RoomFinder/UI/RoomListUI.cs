@@ -55,13 +55,13 @@
 
         private void Initialize()
         {
-            this.transform.SetParent(_uiUtil.DemeoUi.DemeoLobbyAnchor.transform, worldPositionStays: true);
+            this.transform.SetParent(_uiUtil.DemeoResource.LobbyAnchor.transform, worldPositionStays: true);
             this.transform.position = new Vector3(25, 30, 0);
             this.transform.rotation = Quaternion.Euler(0, 40, 0);
 
             _background = new GameObject("RoomListUIBackground");
-            _background.AddComponent<MeshFilter>().mesh = _uiUtil.DemeoUi.DemeoMenuBoxMesh;
-            _background.AddComponent<MeshRenderer>().material = _uiUtil.DemeoUi.DemeoMenuBoxMaterial;
+            _background.AddComponent<MeshFilter>().mesh = _uiUtil.DemeoResource.MenuBoxMesh;
+            _background.AddComponent<MeshRenderer>().material = _uiUtil.DemeoResource.MenuBoxMaterial;
 
             _background.transform.SetParent(this.transform, worldPositionStays: false);
             _background.transform.localPosition = new Vector3(0, -3.6f, 0);

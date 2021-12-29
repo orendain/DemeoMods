@@ -5,40 +5,40 @@
     using TMPro;
     using UnityEngine;
 
-    // TODO(orendain): Rename to DemeoResources.
-    internal class DemeoUi
+    internal class DemeoResource
     {
-        public readonly Color DemeoColorBrown = new Color(0.0392f, 0.0157f, 0, 1);
-        public readonly Color DemeoColorBeige = new Color(0.878f, 0.752f, 0.384f, 1);
+        private static DemeoResource _instance;
 
-        public readonly Component DemeoLobbyAnchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
+        public Color ColorBrown { get; } = new Color(0.0392f, 0.0157f, 0, 1);
+
+        public Color ColorBeige { get; } = new Color(0.878f, 0.752f, 0.384f, 1);
+
+        public Component LobbyAnchor { get; } = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
             .First(x => x.name == "MenuBox_BindPose");
 
-        public readonly TMP_FontAsset DemeoFont =
+        public TMP_FontAsset Font { get; } =
             Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(x => x.name == "Demeo SDF");
 
-        public readonly TMP_ColorGradient DemeoFontColorGradient = Resources
+        public TMP_ColorGradient FontColorGradient { get; } = Resources
             .FindObjectsOfTypeAll<TMP_ColorGradient>()
             .First(x => x.name == "Demeo - Main Menu Buttons");
 
-        public readonly Mesh DemeoButtonMesh =
+        public Mesh ButtonMesh { get; } =
             Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "UIMenuMainButton");
 
-        public readonly Material DemeoButtonMaterial =
+        public Material ButtonMaterial { get; } =
             Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuMat");
 
-        public readonly Material DemeoButtonHoverMaterial =
+        public Material ButtonHoverMaterial { get; } =
             Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuHover");
 
-        public readonly Mesh DemeoMenuBoxMesh =
+        public Mesh MenuBoxMesh { get; } =
             Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "MenuBox_SettingsButton");
 
-        public readonly Material DemeoMenuBoxMaterial = Resources.FindObjectsOfTypeAll<Material>()
+        public Material MenuBoxMaterial { get; } = Resources.FindObjectsOfTypeAll<Material>()
             .First(x => x.name == "MainMenuMat (Instance)");
 
-        private static DemeoUi _instance;
-
-        public static DemeoUi Instance()
+        public static DemeoResource Instance()
         {
             if (_instance != null)
             {
@@ -50,11 +50,11 @@
                 throw new InvalidOperationException("Demeo UI resources not yet available.");
             }
 
-            _instance = new DemeoUi();
+            _instance = new DemeoResource();
             return _instance;
         }
 
-        private DemeoUi()
+        private DemeoResource()
         {
         }
 

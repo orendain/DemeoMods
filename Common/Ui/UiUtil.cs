@@ -13,7 +13,7 @@
 
         private static UiUtil _instance;
 
-        public DemeoUi DemeoUi { get; }
+        public DemeoResource DemeoResource { get; }
 
         public static UiUtil Instance()
         {
@@ -33,27 +33,27 @@
 
         public static bool IsReady()
         {
-            return DemeoUi.IsReady();
+            return DemeoResource.IsReady();
         }
 
         private UiUtil()
         {
-            DemeoUi = DemeoUi.Instance();
+            DemeoResource = DemeoResource.Instance();
         }
 
         public GameObject CreateButtonText(string text)
         {
-            return CreateText(text, DemeoUi.DemeoColorBeige, fontSize: DefaultButtonFontSize);
+            return CreateText(text, DemeoResource.ColorBeige, fontSize: DefaultButtonFontSize);
         }
 
         public GameObject CreateLabelText(string text)
         {
-            return CreateText(text, DemeoUi.DemeoColorBrown, fontSize: DefaultLabelFontSize);
+            return CreateText(text, DemeoResource.ColorBrown, fontSize: DefaultLabelFontSize);
         }
 
         public GameObject CreateMenuHeaderText(string text)
         {
-            return CreateText(text, DemeoUi.DemeoColorBeige, fontSize: DefaultMenuHeaderFontSize);
+            return CreateText(text, DemeoResource.ColorBeige, fontSize: DefaultMenuHeaderFontSize);
         }
 
         public GameObject CreateButton(Action callback)
@@ -62,11 +62,11 @@
             buttonObject.transform.localRotation = Quaternion.Euler(0, 180, 0); // Un-reverse button from its default.
             buttonObject.layer = 5; // UI layer.
 
-            buttonObject.AddComponent<MeshFilter>().mesh = DemeoUi.DemeoButtonMesh;
-            buttonObject.AddComponent<MeshRenderer>().material = DemeoUi.DemeoButtonMaterial;
+            buttonObject.AddComponent<MeshFilter>().mesh = DemeoResource.ButtonMesh;
+            buttonObject.AddComponent<MeshRenderer>().material = DemeoResource.ButtonMaterial;
 
             var menuButtonHoverEffect = buttonObject.AddComponent<MenuButtonHoverEffect>();
-            menuButtonHoverEffect.hoverMaterial = DemeoUi.DemeoButtonHoverMaterial;
+            menuButtonHoverEffect.hoverMaterial = DemeoResource.ButtonHoverMaterial;
             menuButtonHoverEffect.Init();
 
             // Added after HoverMaterial to enable effect.
@@ -83,11 +83,11 @@
             var textObject = new GameObject($"Text");
 
             var textMeshPro = textObject.AddComponent<TextMeshPro>();
-            textMeshPro.font = DemeoUi.DemeoFont;
+            textMeshPro.font = DemeoResource.Font;
             textMeshPro.fontStyle = FontStyles.Normal;
             textMeshPro.text = text;
             textMeshPro.color = color;
-            textMeshPro.colorGradientPreset = DemeoUi.DemeoFontColorGradient;
+            textMeshPro.colorGradientPreset = DemeoResource.FontColorGradient;
             textMeshPro.alignment = TextAlignmentOptions.Center;
             textMeshPro.fontSize = fontSize;
             textMeshPro.fontSizeMax = fontSize;
