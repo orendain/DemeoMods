@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Boardgame;
 using Common.States;
@@ -12,17 +13,38 @@ namespace RoomFinder.UI
 {
     internal class RoomListUI : MonoBehaviour
     {
+        private bool isInitialized;
+        private UiUtil uiUtil;
         private GameObject background;
         private RoomListPanel roomListPanel;
 
-        private void Awake()
+        private void Start()
         {
+            StartCoroutine(Setup());
+        }
+
+        private IEnumerator Setup()
+        {
+            while (!UiUtil.IsReady())
+            {
+                MelonLogger.Msg("UI utility not yet ready. Trying again...");
+                yield return new WaitForSecondsRealtime(1);
+            }
+
+            MelonLogger.Msg("UI utility ready. Proceeding with setup.");
+
+            uiUtil = UiUtil.Instance();
+            roomListPanel = RoomListPanel.NewInstance(uiUtil);
             Initialize();
-            roomListPanel = RoomListPanel.NewInstance();
         }
 
         private void Update()
         {
+            if (!isInitialized)
+            {
+                return;
+            }
+
             if (RoomFinderState.IsRefreshingRoomList && RoomFinderState.HasRoomListUpdated)
             {
                 RoomFinderState.IsRefreshingRoomList = false;
@@ -33,13 +55,13 @@ namespace RoomFinder.UI
 
         private void Initialize()
         {
-            this.transform.SetParent(DemeoUi.DemeoLobbyAnchor.transform, worldPositionStays: true);
+            this.transform.SetParent(uiUtil.DemeoUi.DemeoLobbyAnchor.transform, worldPositionStays: true);
             this.transform.position = new Vector3(25, 30, 0);
             this.transform.rotation = Quaternion.Euler(0, 40, 0);
 
             background = new GameObject("RoomListUIBackground");
-            background.AddComponent<MeshFilter>().mesh = DemeoUi.DemeoMenuBoxMesh;
-            background.AddComponent<MeshRenderer>().material = DemeoUi.DemeoMenuBoxMaterial;
+            background.AddComponent<MeshFilter>().mesh = uiUtil.DemeoUi.DemeoMenuBoxMesh;
+            background.AddComponent<MeshRenderer>().material = uiUtil.DemeoUi.DemeoMenuBoxMaterial;
 
             background.transform.SetParent(this.transform, worldPositionStays: false);
             background.transform.localPosition = new Vector3(0, -3.6f, 0);
@@ -47,20 +69,22 @@ namespace RoomFinder.UI
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             background.transform.localScale = new Vector3(2, 1, 2.5f);
 
-            var menuTitle = UiUtil.CreateMenuHeaderText("Public Rooms");
+            var menuTitle = uiUtil.CreateMenuHeaderText("Public Rooms");
             menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
             menuTitle.transform.localPosition = new Vector3(0, 2.375f, 0);
 
-            var refreshButton = UiUtil.CreateButton(RefreshRoomList);
+            var refreshButton = uiUtil.CreateButton(RefreshRoomList);
             refreshButton.transform.SetParent(this.transform, worldPositionStays: false);
             refreshButton.transform.localPosition = new Vector3(0, 0.3f, 0);
 
-            var refreshText = UiUtil.CreateButtonText("Refresh");
+            var refreshText = uiUtil.CreateButtonText("Refresh");
             refreshText.transform.SetParent(this.transform, worldPositionStays: false);
             refreshText.transform.localPosition = new Vector3(0, 0.3f, 0);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             this.gameObject.AddComponent<BoxCollider>();
+
+            isInitialized = true;
         }
 
         private static void RefreshRoomList()
