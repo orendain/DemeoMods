@@ -1,4 +1,5 @@
-﻿using Common.Patches;
+﻿using System;
+using Common.Patches;
 using MelonLoader;
 using RoomFinder.UI;
 using UnityEngine;
@@ -7,7 +8,8 @@ namespace RoomFinder
 {
     internal class RoomFinderMod : MelonMod
     {
-        private const int LobbySceneIndex = 1;
+        private const int SteamLobbySceneIndex = 1;
+        private const string QuestLobbySceneName = "Lobby";
 
         public override void OnApplicationStart()
         {
@@ -18,7 +20,7 @@ namespace RoomFinder
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (buildIndex == LobbySceneIndex)
+            if (buildIndex == SteamLobbySceneIndex || sceneName.Equals(QuestLobbySceneName, StringComparison.OrdinalIgnoreCase))
             {
                 new GameObject("RoomListUI", typeof(RoomListUI));
             }
