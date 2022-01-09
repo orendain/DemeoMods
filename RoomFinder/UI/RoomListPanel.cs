@@ -13,14 +13,13 @@
     internal class RoomListPanel
     {
         private readonly UiHelper _uiHelper;
-        public GameObject GameObject { get; }
-
-        private List<RoomListEntry> _originalRooms;
-        private List<RoomListEntry> _rooms;
-
         private Func<RoomListEntry, object> _sortOrder;
         private bool _shouldHideFullRooms;
         private bool _isDescendingOrder;
+        private List<RoomListEntry> _originalRooms;
+        private List<RoomListEntry> _rooms;
+
+        internal GameObject GameObject { get; }
 
         internal static RoomListPanel NewInstance(UiHelper uiHelper)
         {
