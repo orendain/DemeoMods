@@ -66,32 +66,47 @@
             var headerContainer = new GameObject("Header");
             headerContainer.transform.SetParent(GameObject.transform, worldPositionStays: false);
 
-            var toggleHideFull = CreateActionButton("ToggleHideFull", ToggleHideFull);
+            var toggleHideFull = CreateHideButton("Hide Full?", ToggleHideFull);
             toggleHideFull.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             toggleHideFull.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            toggleHideFull.transform.localPosition = new Vector3(3.5f, 1, 0);
+            toggleHideFull.transform.localPosition = new Vector3(2.5f, 1, 0);
 
             var sortLabel = _uiHelper.CreateLabelText("Sort by:");
             sortLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             sortLabel.transform.localPosition = new Vector3(-3f, 0, 0);
 
-            var gameButton = CreateActionButton("Game", () => SortListBy(r => r.GameType));
+            var gameButton = CreateSortButton("Game", () => SortListBy(r => r.GameType));
             gameButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             gameButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             gameButton.transform.localPosition = new Vector3(-0.5f, 0, 0);
 
-            var floorButton = CreateActionButton("Floor", () => SortListBy(r => r.Floor));
+            var floorButton = CreateSortButton("Floor", () => SortListBy(r => r.Floor));
             floorButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             floorButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             floorButton.transform.localPosition = new Vector3(1.5f, 0, 0);
 
-            var playersButton = CreateActionButton("Players", () => SortListBy(r => r.CurrentPlayers));
+            var playersButton = CreateSortButton("Players", () => SortListBy(r => r.CurrentPlayers));
             playersButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             playersButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             playersButton.transform.localPosition = new Vector3(3.5f, 0, 0);
         }
 
-        private GameObject CreateActionButton(string text, Action action)
+        private GameObject CreateHideButton(string text, Action action)
+        {
+            var container = new GameObject(text);
+
+            var button = _uiHelper.CreateButton(action);
+            button.transform.SetParent(container.transform, worldPositionStays: false);
+            button.transform.localScale = new Vector3(1.2f, 1, 1);
+
+            var buttonText = _uiHelper.CreateText(text, Color.white, UiHelper.DefaultButtonFontSize);
+            buttonText.transform.SetParent(container.transform, worldPositionStays: false);
+            buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+
+            return container;
+        }
+
+        private GameObject CreateSortButton(string text, Action action)
         {
             var container = new GameObject(text);
 
