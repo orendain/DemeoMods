@@ -102,9 +102,9 @@
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
             RoomFinderMod.Logger.Msg($"[RoomListUI] Retrieved {cachedRooms.Count} rooms.");
 
-            var roomListPanelContainer = _roomListPanel.Reinitialize(cachedRooms.Values.ToList());
-            roomListPanelContainer.transform.SetParent(this.transform, worldPositionStays: false);
-            roomListPanelContainer.transform.localPosition = new Vector3(0, -1, 0);
+            _roomListPanel.SetRooms(cachedRooms.Values.ToList());
+            _roomListPanel.GameObject.transform.SetParent(this.transform, worldPositionStays: false);
+            _roomListPanel.GameObject.transform.localPosition = new Vector3(0, -1, 0);
         }
     }
 }
