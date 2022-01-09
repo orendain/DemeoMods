@@ -13,7 +13,7 @@
     internal class RoomListPanel
     {
         private readonly UiHelper _uiHelper;
-        private readonly GameObject _panel;
+        public GameObject GameObject { get; }
 
         private List<RoomListEntry> _originalRooms;
         private List<RoomListEntry> _rooms;
@@ -30,7 +30,7 @@
         private RoomListPanel(UiHelper uiHelper, GameObject panel)
         {
             this._uiHelper = uiHelper;
-            this._panel = panel;
+            this.GameObject = panel;
             this._sortOrder = r => r;
             this._shouldHideFullRooms = false;
             this._isDescendingOrder = false;
@@ -39,18 +39,17 @@
             this._rooms = this._originalRooms;
         }
 
-        internal GameObject Update(List<RoomInfo> rooms)
+        internal void SetRooms(IEnumerable<RoomInfo> rooms)
         {
             _originalRooms = rooms.Select(RoomListEntry.Parse).ToList();
             _rooms = _originalRooms;
 
             Render();
-            return _panel;
         }
 
         private void Render()
         {
-            foreach (Transform child in _panel.transform)
+            foreach (Transform child in GameObject.transform)
             {
                 Object.Destroy(child.gameObject);
             }
@@ -66,7 +65,7 @@
         private void RenderHeader()
         {
             var headerContainer = new GameObject("Header");
-            headerContainer.transform.SetParent(_panel.transform, worldPositionStays: false);
+            headerContainer.transform.SetParent(GameObject.transform, worldPositionStays: false);
 
             var toggleHideFull = CreateActionButton("ToggleHideFull", ToggleHideFull);
             toggleHideFull.transform.SetParent(headerContainer.transform, worldPositionStays: false);
@@ -142,7 +141,7 @@
         {
             var yOffset = (1 + row) * -1f;
             var roomRowContainer = new GameObject($"Row{row}");
-            roomRowContainer.transform.SetParent(_panel.transform, worldPositionStays: false);
+            roomRowContainer.transform.SetParent(GameObject.transform, worldPositionStays: false);
             roomRowContainer.transform.localPosition = new Vector3(0, yOffset, 0);
 
             if (room.GameType == LevelSequence.GameType.Invalid || room.Floor < 0)
