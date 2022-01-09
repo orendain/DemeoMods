@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Boardgame;
     using Common.UI;
     using HarmonyLib;
@@ -14,6 +15,13 @@
         private readonly UiHelper _uiHelper;
         private readonly GameObject _panel;
 
+        private List<RoomListEntry> _originalRooms;
+        private List<RoomListEntry> _rooms;
+
+        private Func<RoomListEntry, object> _sortOrder;
+        private bool _shouldHideFullRooms;
+        private bool _isDescendingOrder;
+
         internal static RoomListPanel NewInstance(UiHelper uiHelper)
         {
             return new RoomListPanel(uiHelper, new GameObject("RoomListPanel"));
@@ -23,9 +31,24 @@
         {
             this._uiHelper = uiHelper;
             this._panel = panel;
+            this._sortOrder = r => r;
+            this._shouldHideFullRooms = false;
+            this._isDescendingOrder = false;
+
+            this._originalRooms = new List<RoomListEntry>();
+            this._rooms = this._originalRooms;
         }
 
-        internal GameObject Reinitialize(List<RoomInfo> rooms)
+        internal GameObject Update(List<RoomInfo> rooms)
+        {
+            _originalRooms = rooms.Select(RoomListEntry.Parse).ToList();
+            _rooms = _originalRooms;
+
+            Render();
+            return _panel;
+        }
+
+        private void Render()
         {
             foreach (Transform child in _panel.transform)
             {
@@ -33,12 +56,11 @@
             }
 
             RenderHeader();
-            for (var i = 0; i < rooms.Count; i++)
-            {
-                RenderRoomRow(rooms[i], i);
-            }
 
-            return _panel;
+            for (var i = 0; i < _rooms.Count; i++)
+            {
+                RenderRoomRow(_rooms[i], i);
+            }
         }
 
         private void RenderHeader()
@@ -46,37 +68,84 @@
             var headerContainer = new GameObject("Header");
             headerContainer.transform.SetParent(_panel.transform, worldPositionStays: false);
 
-            var joinLabel = _uiHelper.CreateLabelText("Code");
-            joinLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
-            joinLabel.transform.localPosition = new Vector3(-3f, 0, 0);
+            var toggleHideFull = CreateActionButton("ToggleHideFull", ToggleHideFull);
+            toggleHideFull.transform.SetParent(headerContainer.transform, worldPositionStays: false);
+            toggleHideFull.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            toggleHideFull.transform.localPosition = new Vector3(3.5f, 1, 0);
 
-            var gameLabel = _uiHelper.CreateLabelText("Game");
-            gameLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
-            gameLabel.transform.localPosition = new Vector3(-0.4f, 0, 0);
+            var sortLabel = _uiHelper.CreateLabelText("Sort by:");
+            sortLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
+            sortLabel.transform.localPosition = new Vector3(-3f, 0, 0);
 
-            var floorLabel = _uiHelper.CreateLabelText("Floor");
-            floorLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
-            floorLabel.transform.localPosition = new Vector3(1.75f, 0, 0);
+            var gameButton = CreateActionButton("Game", () => SortListBy(r => r.GameType));
+            gameButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
+            gameButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            gameButton.transform.localPosition = new Vector3(-0.5f, 0, 0);
 
-            var playersLabel = _uiHelper.CreateLabelText("Players");
-            playersLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
-            playersLabel.transform.localPosition = new Vector3(3.5f, 0, 0);
+            var floorButton = CreateActionButton("Floor", () => SortListBy(r => r.Floor));
+            floorButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
+            floorButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            floorButton.transform.localPosition = new Vector3(1.5f, 0, 0);
+
+            var playersButton = CreateActionButton("Players", () => SortListBy(r => r.CurrentPlayers));
+            playersButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
+            playersButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            playersButton.transform.localPosition = new Vector3(3.5f, 0, 0);
         }
 
-        private void RenderRoomRow(RoomInfo room, int row)
+        private GameObject CreateActionButton(string text, Action action)
+        {
+            var container = new GameObject(text);
+
+            var button = _uiHelper.CreateButton(action);
+            button.transform.SetParent(container.transform, worldPositionStays: false);
+            button.transform.localScale = new Vector3(0.75f, 1, 1);
+
+            var buttonText = _uiHelper.CreateText(text, Color.white, UiHelper.DefaultButtonFontSize);
+            buttonText.transform.SetParent(container.transform, worldPositionStays: false);
+            buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+
+            return container;
+        }
+
+        private void SortListBy(Func<RoomListEntry, object> sortOrder)
+        {
+            if (_sortOrder == sortOrder)
+            {
+                _isDescendingOrder = !_isDescendingOrder;
+            }
+
+            _sortOrder = sortOrder;
+            ResortRooms();
+        }
+
+        private void ToggleHideFull()
+        {
+            _shouldHideFullRooms = !_shouldHideFullRooms;
+            ResortRooms();
+        }
+
+        private void ResortRooms()
+        {
+            _rooms = _shouldHideFullRooms
+                ? _originalRooms.Where(r => r.CurrentPlayers != r.MaxPlayers).ToList()
+                : _originalRooms;
+
+            _rooms = _isDescendingOrder
+                ? _rooms.OrderByDescending(_sortOrder).ToList()
+                : _rooms.OrderBy(_sortOrder).ToList();
+
+            Render();
+        }
+
+        private void RenderRoomRow(RoomListEntry room, int row)
         {
             var yOffset = (1 + row) * -1f;
             var roomRowContainer = new GameObject($"Row{row}");
             roomRowContainer.transform.SetParent(_panel.transform, worldPositionStays: false);
             roomRowContainer.transform.localPosition = new Vector3(0, yOffset, 0);
 
-            object obj;
-            var gameType = room.CustomProperties.TryGetValue("at", out obj)
-                ? (LevelSequence.GameType)obj
-                : LevelSequence.GameType.Invalid;
-            var floorIndex = room.CustomProperties.TryGetValue("fi", out obj) ? (int)obj : -1;
-
-            if (gameType == LevelSequence.GameType.Invalid || floorIndex < 0)
+            if (room.GameType == LevelSequence.GameType.Invalid || room.Floor < 0)
             {
                 return;
             }
@@ -90,24 +159,19 @@
             joinText.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             joinText.transform.localPosition = new Vector3(-3f, 0, 0);
 
-            var gameName = StringifyGameType(gameType);
+            var gameName = room.GameType.ToString();
             var gameLabel = _uiHelper.CreateLabelText(gameName);
             gameLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             gameLabel.transform.localPosition = new Vector3(-0.4f, 0, 0);
 
-            var floorLabel = _uiHelper.CreateLabelText(floorIndex.ToString());
+            var floorLabel = _uiHelper.CreateLabelText(room.Floor.ToString());
             floorLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             floorLabel.transform.localPosition = new Vector3(1.75f, 0, 0);
 
-            var playersText = $"{room.PlayerCount}/{room.MaxPlayers}";
+            var playersText = $"{room.CurrentPlayers}/{room.MaxPlayers}";
             var playersLabel = _uiHelper.CreateLabelText(playersText);
             playersLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             playersLabel.transform.localPosition = new Vector3(3.25f, 0, 0);
-        }
-
-        private static string StringifyGameType(LevelSequence.GameType gameType)
-        {
-            return gameType.ToString();
         }
 
         private static Action JoinRoomAction(string roomCode)
@@ -115,7 +179,8 @@
             return () =>
             {
                 RoomFinderMod.Logger.Msg($"Joining room [{roomCode}].");
-                Traverse.Create(RoomFinderMod.GameContextState.LobbyMenuController).Method("JoinGame", roomCode, true).GetValue();
+                Traverse.Create(RoomFinderMod.GameContextState.LobbyMenuController).Method("JoinGame", roomCode, true)
+                    .GetValue();
             };
         }
     }
