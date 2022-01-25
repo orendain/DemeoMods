@@ -18,7 +18,11 @@ Skips the intro loading scene.
 A framework allowing the definition of modular gameplay modifications ("rules")
 and the selection of them.
 
-See the [RulesAPI readme](RulesAPI/README.md) for more information.
+See the [RulesAPI readme](RulesAPI/README.md) for information about the
+RulesAPI framework.
+
+See the [Rules readme](Rules/README.md) for a list of all predefined RulesAPI
+rules and rulesets.
 
 ### RoomFinder
 

@@ -6,7 +6,7 @@
 
     public sealed class BallistaAttackDamageAdjustedRule : RulesAPI.Rule
     {
-        public override string Description => "Ballista attack damage are adjusted";
+        public override string Description => "Ballista attack damage is adjusted";
 
         private readonly int _attackDamage;
         private int _originalAttackDamage;
