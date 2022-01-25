@@ -42,6 +42,7 @@
         public void Register(Type ruleType)
         {
             RulesAPIMod.Logger.Msg($"Registering rule type: {ruleType}");
+
             if (RuleTypes.Contains(ruleType))
             {
                 throw new ArgumentException("Rule type already registered.");
@@ -57,18 +58,18 @@
 
         public void Register(RuleSet ruleSet)
         {
-            RulesAPIMod.Logger.Msg($"Registering rule set: {ruleSet.GetType()} (with {ruleSet.Rules.Count} rules)");
+            RulesAPIMod.Logger.Msg($"Registering ruleset: {ruleSet.GetType()} (with {ruleSet.Rules.Count} rules)");
 
             if (RuleSets.Contains(ruleSet))
             {
-                throw new ArgumentException("Rule set already registered.");
+                throw new ArgumentException("Ruleset already registered.");
             }
 
             foreach (var rule in ruleSet.Rules)
             {
                 if (!IsRegistered(rule.GetType()))
                 {
-                    throw new ArgumentException($"Rule set includes unregistered rule type: {rule.GetType()}");
+                    throw new ArgumentException($"Ruleset includes unregistered rule type: {rule.GetType()}");
                 }
             }
 
