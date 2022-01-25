@@ -33,6 +33,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="RuleSet\SampleRuleSet.cs" />
         <Compile Include="RulesMod.cs" />
         <Compile Include="Rule\SampleRule.cs" />
     </ItemGroup>
@@ -53,9 +54,6 @@
         <Project>{b412463f-a4f7-46ce-ac4e-37448762b45b}</Project>
         <Name>RulesAPI</Name>
       </ProjectReference>
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="RuleSet" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="CopyToModsDir" AfterTargets="Build">

@@ -19,6 +19,7 @@
         private static void RegisterNewRuleSets()
         {
             var registrar = RulesAPI.Registrar.Instance();
+            registrar.Register(new RuleSet.SampleRuleSet());
         }
     }
 }
