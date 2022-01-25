@@ -6,18 +6,18 @@
     public abstract class RuleSet
     {
         /// <summary>
-        /// Gets the description of the rule set.
+        /// Gets the description of the ruleset.
         /// </summary>
         public abstract string Description { get; }
 
         /// <summary>
-        /// Gets the rules of the rule set.
+        /// Gets the rules of the ruleset.
         /// </summary>
         protected internal abstract HashSet<Rule> Rules { get; }
 
         internal void Activate()
         {
-            RulesAPIMod.Logger.Msg($"Activating rule set: {GetType()} (with {Rules.Count} rules)");
+            RulesAPIMod.Logger.Msg($"Activating ruleset: {GetType()} (with {Rules.Count} rules)");
 
             foreach (var rule in Rules)
             {
@@ -35,7 +35,7 @@
 
         internal void Deactivate()
         {
-            RulesAPIMod.Logger.Msg($"Deactivating rule set: {GetType()} (with {Rules.Count} rules)");
+            RulesAPIMod.Logger.Msg($"Deactivating ruleset: {GetType()} (with {Rules.Count} rules)");
             foreach (var rule in Rules)
             {
                 try

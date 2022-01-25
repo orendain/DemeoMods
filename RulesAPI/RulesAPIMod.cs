@@ -25,11 +25,11 @@
         {
             if (!Registrar.Instance().IsRegistered(ruleSet))
             {
-                throw new ArgumentException("Rule set must first be registered.");
+                throw new ArgumentException("Ruleset must first be registered.");
             }
 
             ModState.SelectedRuleSet = ruleSet;
-            Logger.Msg($"Rule set selected: {ruleSet.GetType()}");
+            Logger.Msg($"Ruleset selected: {ruleSet.GetType()}");
         }
 
         private static void LoadRegisteredRules()
