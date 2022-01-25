@@ -13,6 +13,7 @@
         private static void RegisterNewRuleTypes()
         {
             var registrar = RulesAPI.Registrar.Instance();
+            registrar.Register(typeof(Rule.SampleRule));
         }
 
         private static void RegisterNewRuleSets()
