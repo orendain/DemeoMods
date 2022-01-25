@@ -1,4 +1,4 @@
-﻿namespace Rules.RuleSet
+﻿namespace Rules.Ruleset
 {
     using System.Collections.Generic;
 
@@ -7,10 +7,10 @@
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///     It is recommended to use the suffix <c>RuleSet</c> for ruleset classes.
+    ///     It is recommended to use the suffix <c>Ruleset</c> for ruleset classes.
     ///     </para>
     /// </remarks>
-    public sealed class SampleRuleSet : RulesAPI.RuleSet
+    public sealed class SampleRuleset : RulesAPI.Ruleset
     {
         /// <summary>
         /// Gets the description of the ruleset.

@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public abstract class RuleSet
+    public abstract class Ruleset
     {
         /// <summary>
         /// Gets the description of the ruleset.

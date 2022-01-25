@@ -21,15 +21,15 @@
             LoadRegisteredRules();
         }
 
-        public void SetSelectedRuleSet(RuleSet ruleSet)
+        public void SetSelectedRuleset(Ruleset ruleset)
         {
-            if (!Registrar.Instance().IsRegistered(ruleSet))
+            if (!Registrar.Instance().IsRegistered(ruleset))
             {
                 throw new ArgumentException("Ruleset must first be registered.");
             }
 
-            ModState.SelectedRuleSet = ruleSet;
-            Logger.Msg($"Ruleset selected: {ruleSet.GetType()}");
+            ModState.SelectedRuleset = ruleset;
+            Logger.Msg($"Ruleset selected: {ruleset.GetType()}");
         }
 
         private static void LoadRegisteredRules()
@@ -52,25 +52,25 @@
                 }
                 catch (Exception e)
                 {
-                    // TODO(orendain): Perm disable rules/ruleSets that fail to patch/load.
+                    // TODO(orendain): Perm disable rules/rulesets that fail to patch/load.
                     Logger.Error($"Failed to apply patch for rule [{ruleType}]: {e}");
                 }
             }
         }
 
-        internal static void ActivateSelectedRuleSet()
+        internal static void ActivateSelectedRuleset()
         {
-            if (ModState.SelectedRuleSet == null)
+            if (ModState.SelectedRuleset == null)
             {
                 return;
             }
 
-            ModState.SelectedRuleSet.Activate();
+            ModState.SelectedRuleset.Activate();
         }
 
-        internal static void DeactivateSelectedRuleSet()
+        internal static void DeactivateSelectedRuleset()
         {
-            ModState.SelectedRuleSet.Deactivate();
+            ModState.SelectedRuleset.Deactivate();
         }
     }
 }

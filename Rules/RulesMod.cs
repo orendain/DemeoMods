@@ -7,7 +7,7 @@
         public override void OnApplicationStart()
         {
             RegisterNewRuleTypes();
-            RegisterNewRuleSets();
+            RegisterNewRulesets();
         }
 
         private static void RegisterNewRuleTypes()
@@ -16,10 +16,10 @@
             registrar.Register(typeof(Rule.SampleRule));
         }
 
-        private static void RegisterNewRuleSets()
+        private static void RegisterNewRulesets()
         {
             var registrar = RulesAPI.Registrar.Instance();
-            registrar.Register(new RuleSet.SampleRuleSet());
+            registrar.Register(new Ruleset.SampleRuleset());
         }
     }
 }

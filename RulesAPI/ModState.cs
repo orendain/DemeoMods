@@ -2,7 +2,7 @@
 {
     internal class ModState
     {
-        internal RuleSet SelectedRuleSet { get; set; }
+        internal Ruleset SelectedRuleset { get; set; }
 
         internal static ModState NewInstance()
         {

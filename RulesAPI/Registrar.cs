@@ -9,7 +9,7 @@
 
         internal HashSet<Type> RuleTypes { get; }
 
-        internal HashSet<RuleSet> RuleSets { get; }
+        internal HashSet<Ruleset> Rulesets { get; }
 
         public static Registrar Instance()
         {
@@ -25,7 +25,7 @@
         private Registrar()
         {
             RuleTypes = new HashSet<Type>();
-            RuleSets = new HashSet<RuleSet>();
+            Rulesets = new HashSet<Ruleset>();
         }
 
         public bool IsRegistered(Type ruleType)
@@ -33,9 +33,9 @@
             return RuleTypes.Contains(ruleType);
         }
 
-        public bool IsRegistered(RuleSet ruleSet)
+        public bool IsRegistered(Ruleset ruleset)
         {
-            return RuleSets.Contains(ruleSet);
+            return Rulesets.Contains(ruleset);
         }
 
         // TODO(orendain): Disallow registration after a certain point in init process.
@@ -56,16 +56,16 @@
             RuleTypes.Add(ruleType);
         }
 
-        public void Register(RuleSet ruleSet)
+        public void Register(Ruleset ruleset)
         {
-            RulesAPIMod.Logger.Msg($"Registering ruleset: {ruleSet.GetType()} (with {ruleSet.Rules.Count} rules)");
+            RulesAPIMod.Logger.Msg($"Registering ruleset: {ruleset.GetType()} (with {ruleset.Rules.Count} rules)");
 
-            if (RuleSets.Contains(ruleSet))
+            if (Rulesets.Contains(ruleset))
             {
                 throw new ArgumentException("Ruleset already registered.");
             }
 
-            foreach (var rule in ruleSet.Rules)
+            foreach (var rule in ruleset.Rules)
             {
                 if (!IsRegistered(rule.GetType()))
                 {
@@ -73,7 +73,7 @@
                 }
             }
 
-            RuleSets.Add(ruleSet);
+            Rulesets.Add(ruleset);
         }
     }
 }
