@@ -1,6 +1,7 @@
 ﻿namespace RulesAPI
 {
     using System;
+    using System.Linq;
     using HarmonyLib;
     using MelonLoader;
 
@@ -21,7 +22,7 @@
             LoadRegisteredRules();
         }
 
-        public void SetSelectedRuleset(Ruleset ruleset)
+        public static void SetSelectedRuleset(Ruleset ruleset)
         {
             if (!Registrar.Instance().IsRegistered(ruleset))
             {
@@ -60,9 +61,10 @@
 
         internal static void ActivateSelectedRuleset()
         {
+            // TODO(orendain): Do not automatically load the first ruleset when a game is hosted. For dev only.
             if (ModState.SelectedRuleset == null)
             {
-                return;
+                SetSelectedRuleset(Registrar.Instance().Rulesets.ElementAt(0));
             }
 
             ModState.SelectedRuleset.Activate();
