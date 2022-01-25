@@ -12,6 +12,8 @@ RulesAPI.
 - **BallistaActionPointsAdjustedRule**: Ballista action points are adjusted
 - **BallistaAttackDamageAdjustedRule**: Ballista attack damage is adjusted
 - **RatNestsSpawnGoldRule**: Rat nests spawn gold
+- **ZapDamageAdjustedRule**: Zap damage is adjusted
+- **ZapStartingInventoryAdjustedRule**: Zap starting inventory is adjusted
 
 ## Rulesets
 
