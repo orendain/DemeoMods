@@ -42,6 +42,7 @@
         public void Register(Type ruleType)
         {
             RulesAPIMod.Logger.Msg($"Registering rule type: {ruleType}");
+
             if (RuleTypes.Contains(ruleType))
             {
                 throw new ArgumentException("Rule type already registered.");

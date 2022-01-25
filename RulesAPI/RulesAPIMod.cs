@@ -1,7 +1,6 @@
 ﻿namespace RulesAPI
 {
     using System;
-    using System.Linq;
     using HarmonyLib;
     using MelonLoader;
 
@@ -9,18 +8,17 @@
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI");
         private static readonly ModState ModState = ModState.NewInstance();
-        private static readonly Harmony RulesPatcher = new Harmony("com.orendain.demeomods.rules.api.patcher");
+        private static readonly Harmony RulesPatcher = new Harmony("com.orendain.demeomods.rulesapi.patcher");
 
         public override void OnApplicationStart()
         {
-            var harmony = new Harmony("com.orendain.demeomods.rules.api");
+            var harmony = new Harmony("com.orendain.demeomods.rulesapi");
             ModPatcher.Patch(harmony);
         }
 
         public override void OnApplicationLateStart()
         {
             LoadRegisteredRules();
-            SetSelectedRuleSet(Registrar.Instance().RuleSets.ElementAt(0));
         }
 
         public void SetSelectedRuleSet(RuleSet ruleSet)
@@ -31,12 +29,12 @@
             }
 
             ModState.SelectedRuleSet = ruleSet;
-            Logger.Msg($"Rule selected: {ruleSet.GetType()}");
+            Logger.Msg($"Rule set selected: {ruleSet.GetType()}");
         }
 
         private static void LoadRegisteredRules()
         {
-            Logger.Msg($"Loading [{Registrar.Instance().RuleTypes.Count}] registered rules types.");
+            Logger.Msg($"Loading [{Registrar.Instance().RuleTypes.Count}] registered rule types.");
 
             foreach (var ruleType in Registrar.Instance().RuleTypes)
             {
