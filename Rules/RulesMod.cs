@@ -15,6 +15,7 @@
             var registrar = RulesAPI.Registrar.Instance();
             registrar.Register(typeof(Rule.SampleRule));
             registrar.Register(typeof(Rule.ZapDamageAdjustedRule));
+            registrar.Register(typeof(Rule.ZapStartingInventoryAdjustedRule));
         }
 
         private static void RegisterNewRulesets()
