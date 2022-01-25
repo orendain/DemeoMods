@@ -2,6 +2,11 @@
 
 A collection of mods for Demeo.
 
+Join the Demeo modding community if you are looking for support, other Demeo
+mods, or are interested in learning to build your own mods.
+
+[![Discord](https://img.shields.io/discord/841011788195823626?logo=discord&logoColor=fff&style=for-the-badge)](https://discord.gg/4BNSwmr784)
+
 ## Mods
 
 ### SkipIntro
@@ -16,6 +21,13 @@ you'd like and join it directly.
 
 ![RoomFinder Screenshot](docs/roomfinder_screenshot.jpg)
 
+### RulesAPI + Rules
+
+A framework allowing the definition of modular gameplay modifications ("rules")
+and the selection of them.
+
+See the [RulesAPI readme](RulesAPI/README.md) for more information.
+
 ### Hmm ...
 
 A handful of other mods are in use/development privately, but it is unknown if
@@ -25,7 +37,6 @@ any will be cleaned up enough to see the light of OSS.
 - RoomCode, allows players to set their own room code instead of one being
   randomly generated.
 - Highlighter, ...
-- RuleSets, ...
 - DungeonMasterView, ...
 
 ## Installation
@@ -62,11 +73,6 @@ spent on it :wink:. Now a set of helpers to make development of Unity views for
 Demeo significantly easier.
 
 ## Shoutouts
-
-Looking for support, other Demeo mods, or want to learn to build your own? Join
-the Demeo modding community:
-
-[![Discord](https://img.shields.io/discord/841011788195823626?logo=discord&logoColor=fff&style=for-the-badge)](https://discord.gg/4BNSwmr784)
 
 - Thanks to [PyrrhaDevs](https://github.com/PyrrhaDevs) for fostering the Demeo
   modding community.
