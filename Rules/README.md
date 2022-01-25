@@ -2,7 +2,7 @@
 
 A collection of predefined rules and rulesets for RulesAPI.
 
-See the [RulesAPI readme](RulesAPI/README.md) for more information about
+See the [RulesAPI readme](../RulesAPI/README.md) for more information about
 RulesAPI.
 
 ## Rules
