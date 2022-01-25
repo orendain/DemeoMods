@@ -3,7 +3,7 @@
 A collection of mods for Demeo.
 
 Join the Demeo modding community if you are looking for support, other Demeo
-mods, or are interested in learning to build your own mods.
+mods, or are interested in learning to build your own.
 
 [![Discord](https://img.shields.io/discord/841011788195823626?logo=discord&logoColor=fff&style=for-the-badge)](https://discord.gg/4BNSwmr784)
 
@@ -13,20 +13,20 @@ mods, or are interested in learning to build your own mods.
 
 Skips the intro loading scene.
 
-### RoomFinder
-
-Tired of Demeo's "Quickjoin" endlessly placing you into random games? This mod
-lists all public rooms, along with their properties, so you can find a game
-you'd like and join it directly.
-
-![RoomFinder Screenshot](docs/roomfinder_screenshot.jpg)
-
 ### RulesAPI + Rules
 
 A framework allowing the definition of modular gameplay modifications ("rules")
 and the selection of them.
 
 See the [RulesAPI readme](RulesAPI/README.md) for more information.
+
+### RoomFinder
+
+Tired of Demeo's "Quickjoin" endlessly placing you into random games? This mod
+lists all public rooms, along with their properties, so you can pick which one
+to join.
+
+![RoomFinder Screenshot](docs/roomfinder_screenshot.jpg)
 
 ### Hmm ...
 
