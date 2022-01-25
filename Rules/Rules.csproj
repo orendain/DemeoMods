@@ -35,6 +35,8 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="RuleSet\SampleRuleSet.cs" />
         <Compile Include="RulesMod.cs" />
+        <Compile Include="Rule\BallistaActionPointsAdjustedRule.cs" />
+        <Compile Include="Rule\BallistaAttackDamageAdjustedRule.cs" />
         <Compile Include="Rule\SampleRule.cs" />
     </ItemGroup>
     <ItemGroup>
