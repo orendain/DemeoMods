@@ -11,7 +11,7 @@ using RoomFinder;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Orendain")]
 [assembly: AssemblyProduct("RoomFinder")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

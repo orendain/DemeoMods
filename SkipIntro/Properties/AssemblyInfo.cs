@@ -11,7 +11,7 @@ using SkipIntro;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Orendain")]
 [assembly: AssemblyProduct("SkipIntro")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
