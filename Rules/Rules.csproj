@@ -37,6 +37,7 @@
         <Compile Include="RulesMod.cs" />
         <Compile Include="Rule\BallistaActionPointsAdjustedRule.cs" />
         <Compile Include="Rule\BallistaAttackDamageAdjustedRule.cs" />
+        <Compile Include="Rule\CardSellValueMultipliedRule.cs" />
         <Compile Include="Rule\RatNestsSpawnGoldRule.cs" />
         <Compile Include="Rule\SampleRule.cs" />
         <Compile Include="Rule\ZapStartingInventoryAdjustedRule.cs" />
