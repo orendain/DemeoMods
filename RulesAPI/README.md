@@ -36,3 +36,9 @@ RulesAPI rule or a full-blown mod:
 
 For everything else, developers are encouraged to write their own full-blown
 mod, rather than try to jam their idea into the RulesAPI framework. 
+
+## Behavior and Conditions
+
+- Rules are activated only for private or offline games where the user is the host.
+- Rules must be registered with RulesAPI before they can be part of a ruleset.
+- Rulesets must be registered before they can be selected for activation.
