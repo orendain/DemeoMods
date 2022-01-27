@@ -22,7 +22,7 @@ namespace RulesAPI
                 throw new ArgumentException("Ruleset must first be registered.", e);
             }
 
-            Logger.Msg($"Ruleset selected: {SelectedRuleset.Name}");
+            Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
         }
 
         internal static void ActivateSelectedRuleset()
