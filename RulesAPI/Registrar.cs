@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class Registrar
     {
@@ -28,16 +29,6 @@
             Rulesets = new HashSet<Ruleset>();
         }
 
-        public bool IsRegistered(Type ruleType)
-        {
-            return RuleTypes.Contains(ruleType);
-        }
-
-        public bool IsRegistered(Ruleset ruleset)
-        {
-            return Rulesets.Contains(ruleset);
-        }
-
         // TODO(orendain): Disallow registration after a certain point in init process.
         public void Register(Type ruleType)
         {
@@ -58,22 +49,32 @@
 
         public void Register(Ruleset ruleset)
         {
-            RulesAPI.Logger.Msg($"Registering ruleset: {ruleset.GetType()} (with {ruleset.Rules.Count} rules)");
+            RulesAPI.Logger.Msg($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
 
-            if (Rulesets.Contains(ruleset))
+            if (IsRulesetRegistered(ruleset.Name))
             {
-                throw new ArgumentException("Ruleset already registered.");
+                throw new ArgumentException("Ruleset with that name already registered.");
             }
 
             foreach (var rule in ruleset.Rules)
             {
-                if (!IsRegistered(rule.GetType()))
+                if (!IsRuleRegistered(rule.GetType()))
                 {
                     throw new ArgumentException($"Ruleset includes unregistered rule type: {rule.GetType()}");
                 }
             }
 
             Rulesets.Add(ruleset);
+        }
+
+        private bool IsRuleRegistered(Type ruleType)
+        {
+            return RuleTypes.Contains(ruleType);
+        }
+
+        private bool IsRulesetRegistered(string ruleset)
+        {
+            return Rulesets.Any(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
         }
     }
 }
