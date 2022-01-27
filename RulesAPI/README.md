@@ -22,6 +22,29 @@ RulesAPI provides the framework for defining custom rules and rulesets, and the
 mechanisms by which they are patched into the game and activated/deactivated
 during gameplay.
 
+## Choosing a Ruleset
+
+If installation instructions were followed (i.e., MelonLoader was installed),
+the following file will appear in the Demeo game directory:
+`UserData/MelonPreferences.cfg`.
+
+After RulesAPI is installed and Demeo is run at least once, the following will
+appear somewhere in that configuration file:
+
+```toml
+[RulesAPI]
+ruleset = ""
+```
+
+Select the ruleset to use by typing its name within the quotes.  Alternatively,
+use empty quotes `""` to specify no ruleset should be used.
+
+For now, Demeo should not be running when the configuration file is modified.
+Else your changes may not be saved.
+
+A list of out-of-the-box ruleset names can be found in the
+[Rules readme](../Rules/README.md).
+
 ## Rules vs Mods
 
 A RulesAPI rule can be written with as few as a couple dozen lines of code,

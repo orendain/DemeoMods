@@ -17,5 +17,5 @@ RulesAPI.
 
 ## Rulesets
 
-- **SampleRuleset**: A [sample ruleset](Ruleset/SampleRuleset.cs) documenting
-  the anatomy of a RulesAPI ruleset.
+- **SampleRuleset**: A [sample ruleset](https://github.com/orendain/DemeoMods/blob/045aec568fdddb95b63a1ed34abcb64065e4ca99/Rules/RulesMod.cs#L27-L28)
+  for the purposes of documenting how to create a ruleset (and for testing during development).
