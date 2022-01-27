@@ -10,15 +10,19 @@ namespace RulesAPI
 
         private static Ruleset SelectedRuleset { get; set; }
 
-        public static void SelectRuleset(Ruleset ruleset)
+        public static void SelectRuleset(string ruleset)
         {
-            if (!Registrar.Instance().IsRegistered(ruleset))
+            try
             {
-                throw new ArgumentException("Ruleset must first be registered.");
+                SelectedRuleset = Registrar.Instance().Rulesets
+                    .Single(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new ArgumentException("Ruleset must first be registered.", e);
             }
 
-            SelectedRuleset = ruleset;
-            Logger.Msg($"Ruleset selected: {ruleset.GetType()}");
+            Logger.Msg($"Ruleset selected: {SelectedRuleset.Name}");
         }
 
         internal static void ActivateSelectedRuleset()
@@ -26,7 +30,7 @@ namespace RulesAPI
             // TODO(orendain): Do not automatically load the first ruleset when a game is hosted. For dev only.
             if (SelectedRuleset == null)
             {
-                SelectRuleset(Registrar.Instance().Rulesets.ElementAt(0));
+                SelectRuleset(Registrar.Instance().Rulesets.ElementAt(0).Name);
                 return;
             }
 
