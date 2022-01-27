@@ -16,7 +16,7 @@
         public string Description { get; }
 
         /// <summary>
-        /// Gets the set of rules for this ruleset.
+        /// Gets the rules for the ruleset.
         /// </summary>
         public HashSet<Rule> Rules { get; }
 
