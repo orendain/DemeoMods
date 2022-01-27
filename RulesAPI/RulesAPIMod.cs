@@ -8,6 +8,9 @@
     {
         private static readonly Harmony RulesPatcher = new Harmony("com.orendain.demeomods.rulesapi.patcher");
 
+        private MelonPreferences_Category _configCategory;
+        private MelonPreferences_Entry<string> _rulesetConfig;
+
         public override void OnApplicationStart()
         {
             var harmony = new Harmony("com.orendain.demeomods.rulesapi");
@@ -17,6 +20,34 @@
         public override void OnApplicationLateStart()
         {
             LoadRegisteredRules();
+            InitializeConfig();
+        }
+
+        public override void OnApplicationQuit()
+        {
+            _rulesetConfig.Value = RulesAPI.SelectedRuleset != null ? RulesAPI.SelectedRuleset.Name : string.Empty;
+            _configCategory.SaveToFile();
+        }
+
+        private void InitializeConfig()
+        {
+            _configCategory = MelonPreferences.CreateCategory("RulesAPI");
+            _configCategory.SetFilePath("RulesAPI.cfg");
+
+            _rulesetConfig = _configCategory.CreateEntry("ruleset", string.Empty);
+            if (string.IsNullOrEmpty(_rulesetConfig.Value))
+            {
+                return;
+            }
+
+            try
+            {
+                RulesAPI.SelectRuleset(_rulesetConfig.Value);
+            }
+            catch (ArgumentException e)
+            {
+                RulesAPI.Logger.Warning($"Failed to select ruleset [{_rulesetConfig.Value}] from config: {e}");
+            }
         }
 
         private static void LoadRegisteredRules()

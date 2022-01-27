@@ -8,7 +8,7 @@ namespace RulesAPI
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI");
 
-        private static Ruleset SelectedRuleset { get; set; }
+        internal static Ruleset SelectedRuleset { get; private set; }
 
         public static void SelectRuleset(string ruleset)
         {
