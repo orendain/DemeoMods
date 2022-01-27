@@ -17,7 +17,7 @@
 
         internal void Activate()
         {
-            RulesAPIMod.Logger.Msg($"Activating ruleset: {GetType()} (with {Rules.Count} rules)");
+            RulesAPI.Logger.Msg($"Activating ruleset: {GetType()} (with {Rules.Count} rules)");
 
             foreach (var rule in Rules)
             {
@@ -28,14 +28,14 @@
                 catch (Exception e)
                 {
                     // TODO(orendain): Rollback activation.
-                    RulesAPIMod.Logger.Warning($"Failed to activate rule [{rule.GetType()}]: {e}");
+                    RulesAPI.Logger.Warning($"Failed to activate rule [{rule.GetType()}]: {e}");
                 }
             }
         }
 
         internal void Deactivate()
         {
-            RulesAPIMod.Logger.Msg($"Deactivating ruleset: {GetType()} (with {Rules.Count} rules)");
+            RulesAPI.Logger.Msg($"Deactivating ruleset: {GetType()} (with {Rules.Count} rules)");
             foreach (var rule in Rules)
             {
                 try
@@ -44,7 +44,7 @@
                 }
                 catch (Exception e)
                 {
-                    RulesAPIMod.Logger.Warning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
+                    RulesAPI.Logger.Warning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
                 }
             }
         }

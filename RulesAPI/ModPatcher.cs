@@ -24,7 +24,7 @@
             }
 
             // TODO(orendain): Ensure rules are also activated for offline skirmishes.
-            RulesAPIMod.ActivateSelectedRuleset();
+            RulesAPI.ActivateSelectedRuleset();
         }
     }
 }
