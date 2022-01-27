@@ -3,7 +3,6 @@ namespace RulesAPI
     public class RulesAPI
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI");
-        private static readonly ModState ModState = ModState.NewInstance();
         
         private static Ruleset SelectedRuleset { get; set; }
         
