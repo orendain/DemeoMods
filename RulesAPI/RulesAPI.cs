@@ -27,10 +27,8 @@ namespace RulesAPI
 
         internal static void ActivateSelectedRuleset()
         {
-            // TODO(orendain): Do not automatically load the first ruleset when a game is hosted. For dev only.
             if (SelectedRuleset == null)
             {
-                SelectRuleset(Registrar.Instance().Rulesets.ElementAt(0).Name);
                 return;
             }
 
