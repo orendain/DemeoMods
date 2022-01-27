@@ -9,13 +9,13 @@
 
         internal void Activate()
         {
-            RulesAPIMod.Logger.Msg($"Activating rule type: {GetType()}");
+            RulesAPI.Logger.Msg($"Activating rule type: {GetType()}");
             OnActivate();
         }
 
         internal void Deactivate()
         {
-            RulesAPIMod.Logger.Msg($"Deactivating rule type: {GetType()}");
+            RulesAPI.Logger.Msg($"Deactivating rule type: {GetType()}");
             OnDeactivate();
         }
 

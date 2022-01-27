@@ -41,7 +41,7 @@
         // TODO(orendain): Disallow registration after a certain point in init process.
         public void Register(Type ruleType)
         {
-            RulesAPIMod.Logger.Msg($"Registering rule type: {ruleType}");
+            RulesAPI.Logger.Msg($"Registering rule type: {ruleType}");
 
             if (RuleTypes.Contains(ruleType))
             {
@@ -58,7 +58,7 @@
 
         public void Register(Ruleset ruleset)
         {
-            RulesAPIMod.Logger.Msg($"Registering ruleset: {ruleset.GetType()} (with {ruleset.Rules.Count} rules)");
+            RulesAPI.Logger.Msg($"Registering ruleset: {ruleset.GetType()} (with {ruleset.Rules.Count} rules)");
 
             if (Rulesets.Contains(ruleset))
             {
