@@ -30,7 +30,7 @@
             {
                 if (instruction.opcode == OpCodes.Ldc_I4_S && instruction.operand.ToString().Contains("26"))
                 {
-                    subsequentInstructionsToNop = 2;
+                    subsequentInstructionsToNop = 3;
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ZapStartingInventoryAdjustedRule), nameof(AddZapCardsToInventory), new[] { typeof(Piece) }));
                     yield return instruction;
                     continue;
