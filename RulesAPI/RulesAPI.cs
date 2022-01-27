@@ -8,7 +8,7 @@ namespace RulesAPI
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI");
 
-        private static Ruleset SelectedRuleset { get; set; }
+        internal static Ruleset SelectedRuleset { get; private set; }
 
         public static void SelectRuleset(string ruleset)
         {
@@ -22,7 +22,7 @@ namespace RulesAPI
                 throw new ArgumentException("Ruleset must first be registered.", e);
             }
 
-            Logger.Msg($"Ruleset selected: {SelectedRuleset.Name}");
+            Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
         }
 
         internal static void ActivateSelectedRuleset()
