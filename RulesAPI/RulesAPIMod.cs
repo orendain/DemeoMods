@@ -32,9 +32,8 @@
         private void InitializeConfig()
         {
             _configCategory = MelonPreferences.CreateCategory("RulesAPI");
-            _configCategory.SetFilePath("RulesAPI.cfg");
-
             _rulesetConfig = _configCategory.CreateEntry("ruleset", string.Empty);
+
             if (string.IsNullOrEmpty(_rulesetConfig.Value))
             {
                 return;
