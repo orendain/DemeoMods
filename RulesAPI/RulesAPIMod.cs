@@ -1,7 +1,6 @@
 ﻿namespace RulesAPI
 {
     using System;
-    using System.Linq;
     using HarmonyLib;
     using MelonLoader;
 
