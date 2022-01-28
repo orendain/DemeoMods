@@ -15,8 +15,9 @@ Skips the intro loading scene.
 
 ### RulesAPI + Rules
 
-A framework allowing the definition of modular gameplay modifications ("rules")
-and the selection of them.
+A framework allowing the definition of modular gameplay modifications (or
+"rules") and the ability to group them to create custom gamemodes (or
+"rulesets").
 
 See the [RulesAPI readme](RulesAPI/README.md) for information about the
 RulesAPI framework.

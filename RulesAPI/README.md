@@ -1,7 +1,8 @@
 # RulesAPI
 
-A framework allowing the definition of modular gameplay modifications ("rules")
-and the selection of them.
+A framework allowing the definition of modular gameplay modifications (or
+"rules") and the ability to group them to create custom gamemodes (or
+"rulesets").
 
 ## Overview
 
@@ -16,7 +17,7 @@ some gameplay modification. E.g.:
 
 Rules can be grouped into predefined sets.  Users (or other mods) can specify
 which ruleset to load at the start of a game.  Thus, rulesets can also be
-considered "game modes".
+considered gamemodes.
 
 RulesAPI provides the framework for defining custom rules and rulesets, and the
 mechanisms by which they are patched into the game and activated/deactivated
@@ -62,6 +63,7 @@ mod, rather than try to jam their idea into the RulesAPI framework.
 
 ## Behavior and Conditions
 
+- Only the host of the game needs to have the mod installed.
 - Rules are activated only for private or offline games where the user is the host.
 - Rules must be registered with RulesAPI before they can be part of a ruleset.
 - Rulesets must be registered before they can be selected for activation.
