@@ -53,11 +53,12 @@
                 return;
             }
 
-            // TODO(orendain): Call rules' OnPreGameCreated().
+            RulesAPI.TriggerPreGameCreated();
         }
 
         private static void BoardGameActionStartNewGame_StartNewGame_Postfix()
         {
+            RulesAPI.TriggerPostGameCreated();
             RulesAPI.ActivateSelectedRuleset();
         }
     }
