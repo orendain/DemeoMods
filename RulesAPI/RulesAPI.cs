@@ -85,6 +85,11 @@ namespace RulesAPI
 
         internal static void TriggerPreGameCreated()
         {
+            if (SelectedRuleset == null)
+            {
+                return;
+            }
+
             foreach (var rule in SelectedRuleset.Rules)
             {
                 try
@@ -102,6 +107,11 @@ namespace RulesAPI
 
         internal static void TriggerPostGameCreated()
         {
+            if (SelectedRuleset == null)
+            {
+                return;
+            }
+
             foreach (var rule in SelectedRuleset.Rules)
             {
                 try
