@@ -14,6 +14,12 @@ namespace RulesAPI
 
         public static void SelectRuleset(string ruleset)
         {
+            if (SelectedRuleset != null && _isRulesetActive)
+            {
+                Logger.Msg($"Deactivating current ruleset before selecting a new one.");
+                TriggerDeactivateRuleset();
+            }
+
             try
             {
                 SelectedRuleset = Registrar.Instance().Rulesets
@@ -85,6 +91,11 @@ namespace RulesAPI
 
         internal static void TriggerPreGameCreated()
         {
+            if (SelectedRuleset == null)
+            {
+                return;
+            }
+
             foreach (var rule in SelectedRuleset.Rules)
             {
                 try
@@ -102,6 +113,11 @@ namespace RulesAPI
 
         internal static void TriggerPostGameCreated()
         {
+            if (SelectedRuleset == null)
+            {
+                return;
+            }
+
             foreach (var rule in SelectedRuleset.Rules)
             {
                 try
