@@ -1,46 +1,65 @@
 ﻿namespace RulesAPI
 {
     using System.Reflection;
+    using Boardgame;
+    using Boardgame.BoardgameActions;
     using Boardgame.Networking;
     using HarmonyLib;
 
     internal class ModPatcher
     {
-        private static bool _isCreatingGame;
+        private static GameContext _gameContext;
 
         internal static void Patch(Harmony harmony)
         {
-            harmony.Patch(
-                original: AccessTools.Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo().GetDeclaredMethod("Enter"),
-                prefix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateMachine_Enter_Prefix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(GameStateMachine), "GoToPlayingState"),
-                postfix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateMachine_GoToPlayingState_Postfix)));
+                original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
+                postfix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStartup_InitializeGame_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo().GetDeclaredMethod("OnJoinedRoom"),
+                prefix: new HarmonyMethod(typeof(ModPatcher), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(BoardGameActionStartNewGame), "StartNewGame"),
+                postfix: new HarmonyMethod(typeof(ModPatcher), nameof(BoardGameActionStartNewGame_StartNewGame_Postfix)));
 
             // TODO(orendain): Hook into game ending events in order to deactivate activated rules.
         }
 
-        private static void GameStateMachine_Enter_Prefix(GameStateMachine gsm)
+
+        private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
-            var createGameMode = Traverse.Create(gsm).Field<CreateGameMode>("createGameMode").Value;
+            var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
+            _gameContext = gameContext;
+        }
+
+        private static void CreatingGameState_OnJoinedRoom_Prefix()
+        {
+            if (_gameContext.gameStateMachine.goBackToMenuState)
+            {
+                return;
+            }
+
+            var createdGameFromSave = Traverse.Create(_gameContext.gameStateMachine).Field<bool>("createdGameFromSave").Value;
+            if (createdGameFromSave)
+            {
+                return;
+            }
+
+            var createGameMode = Traverse.Create(_gameContext.gameStateMachine).Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
             }
 
-            _isCreatingGame = true;
+            // TODO(orendain): Call rules' OnPreGameCreated().
         }
 
-        private static void GameStateMachine_GoToPlayingState_Postfix()
+        private static void BoardGameActionStartNewGame_StartNewGame_Postfix()
         {
-            // TODO(orendain): Finding more appropriate hook locations than GSM's GoToPlayingState,
-            // which is called at the end of BoardGameActionStartNewGame.
-            if (_isCreatingGame)
-            {
-                _isCreatingGame = false;
-                RulesAPI.ActivateSelectedRuleset();
-            }
+            RulesAPI.ActivateSelectedRuleset();
         }
     }
 }
