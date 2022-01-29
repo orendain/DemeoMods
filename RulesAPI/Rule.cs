@@ -14,7 +14,6 @@
         ///     <para>
         ///     Rules should use this as an indication that they may begin to take effect.
         ///     </para>
-        ///
         ///     <para>
         ///     This will be called at some point after the rule is selected to be used, but before a game begins
         ///     to be created.
