@@ -58,13 +58,13 @@
                 return;
             }
 
+            RulesAPI.ActivateSelectedRuleset();
             RulesAPI.TriggerPreGameCreated();
         }
 
         private static void BoardGameActionStartNewGame_StartNewGame_Postfix()
         {
             RulesAPI.TriggerPostGameCreated();
-            RulesAPI.ActivateSelectedRuleset();
         }
 
         private static void GameStateMachine_EndGame_Prefix()

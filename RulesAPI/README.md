@@ -53,7 +53,7 @@ and allows it to be loaded selectively by users, or other mods, at playtime.
 
 There are several considerations to make when deciding between writing a
 RulesAPI rule or a full-blown mod:
-- **Gameplay Only**: Rules are activate only during gameplay and not, for
+- **Gameplay Only**: Rules are activated only during gameplay and not, for
   example, in the main menu.
 - **Runs on Host**: Rules are applied only host-side, where the majority of
   gameplay logic is resolved.
