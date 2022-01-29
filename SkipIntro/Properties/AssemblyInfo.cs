@@ -39,3 +39,5 @@ using SkipIntro;
 // Melon Loader.
 [assembly: MelonInfo(typeof(SkipIntroMod), "SkipIntro", "1.2.0", "Orendain", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
+[assembly: MelonID("566782")]
+[assembly: VerifyLoaderVersion("0.5.3", true)]
