@@ -22,10 +22,9 @@
             _adjustments = adjustments;
         }
 
-        protected override void OnActivate()
+        protected override void PostGameCreated()
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-
             foreach (var item in _adjustments)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Key}"));
@@ -37,7 +36,6 @@
         protected override void OnDeactivate()
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-
             foreach (var item in _adjustments)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Key}"));

@@ -5,6 +5,8 @@
 
     internal class RulesMod : MelonMod
     {
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("Rules");
+
         public override void OnApplicationStart()
         {
             RegisterNewRuleTypes();
