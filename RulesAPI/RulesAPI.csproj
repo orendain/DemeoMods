@@ -56,7 +56,7 @@
         <Compile Include="Registrar.cs" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="README.md" />
+        <Content Include="README.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="CopyToModsDir" AfterTargets="Build">
