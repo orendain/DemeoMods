@@ -16,6 +16,7 @@
 
         private static void BoardGameActionStartNewGame_StartNewGame_Postfix()
         {
+            // TODO(orendain): Reintroduce checks on private/public gamemode.
             RulesAPI.ActivateSelectedRuleset();
         }
     }
