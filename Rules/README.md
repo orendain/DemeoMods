@@ -9,11 +9,10 @@ RulesAPI.
 
 - **SampleRule**: A [sample rule](Rule/SampleRule.cs) documenting the anatomy
   of a RulesAPI rule.
+- **AbilityDamageAdjustedRule**: Ability damage is adjusted
 - **ActionPointsAdjustedRule**: Action points are adjusted
-- **BallistaAttackDamageAdjustedRule**: Ballista attack damage is adjusted
 - **RatNestsSpawnGoldRule**: Rat nests spawn gold
 - **StartHealthAdjustedRule**: Starting Health is adjusted
-- **ZapDamageAdjustedRule**: Zap damage is adjusted
 - **ZapStartingInventoryAdjustedRule**: Zap starting inventory is adjusted
 
 ## Rulesets
