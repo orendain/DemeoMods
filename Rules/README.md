@@ -11,6 +11,7 @@ RulesAPI.
   of a RulesAPI rule.
 - **AbilityDamageAdjustedRule**: Ability damage is adjusted
 - **ActionPointsAdjustedRule**: Action points are adjusted
+- **PieceConfigAdjustedRule**: Piece configuration is adjusted
 - **RatNestsSpawnGoldRule**: Rat nests spawn gold
 - **StartHealthAdjustedRule**: Starting Health is adjusted
 - **ZapStartingInventoryAdjustedRule**: Zap starting inventory is adjusted

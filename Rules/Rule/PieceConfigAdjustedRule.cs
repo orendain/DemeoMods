@@ -8,7 +8,7 @@
 
     public sealed class PieceConfigAdjustedRule : RulesAPI.Rule
     {
-        public override string Description => "Start Health is adjusted";
+        public override string Description => "Piece configuration is adjusted";
 
         private readonly List<List<string>> _adjustments;
 
