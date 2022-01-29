@@ -14,6 +14,12 @@ namespace RulesAPI
 
         public static void SelectRuleset(string ruleset)
         {
+            if (SelectedRuleset != null && _isRulesetActive)
+            {
+                Logger.Msg($"Deactivating current ruleset before selecting a new one.");
+                TriggerDeactivateRuleset();
+            }
+
             try
             {
                 SelectedRuleset = Registrar.Instance().Rulesets
