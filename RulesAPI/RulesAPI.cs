@@ -39,5 +39,37 @@ namespace RulesAPI
         {
             SelectedRuleset.Deactivate();
         }
+
+        internal static void TriggerPreGameCreated()
+        {
+            foreach (var rule in SelectedRuleset.Rules)
+            {
+                try
+                {
+                    rule.PreGameCreated();
+                }
+                catch (Exception e)
+                {
+                    // TODO(orendain): Rollback activation.
+                    RulesAPI.Logger.Warning($"Failed to successfully call PreGameCreated on rule [{rule.GetType()}]: {e}");
+                }
+            }
+        }
+
+        internal static void TriggerPostGameCreated()
+        {
+            foreach (var rule in SelectedRuleset.Rules)
+            {
+                try
+                {
+                    rule.PostGameCreated();
+                }
+                catch (Exception e)
+                {
+                    // TODO(orendain): Rollback activation.
+                    RulesAPI.Logger.Warning($"Failed to successfully call PostGameCreated on rule [{rule.GetType()}]: {e}");
+                }
+            }
+        }
     }
 }
