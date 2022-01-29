@@ -22,7 +22,7 @@
             _adjustments = adjustments;
         }
 
-        protected override void PostGameCreated()
+        protected override void OnPostGameCreated()
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
             foreach (var item in _adjustments)
