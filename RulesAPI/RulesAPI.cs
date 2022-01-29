@@ -10,6 +10,8 @@ namespace RulesAPI
 
         internal static Ruleset SelectedRuleset { get; private set; }
 
+        private static bool _isRulesetActive;
+
         public static void SelectRuleset(string ruleset)
         {
             try
@@ -27,16 +29,28 @@ namespace RulesAPI
 
         internal static void ActivateSelectedRuleset()
         {
+            if (_isRulesetActive)
+            {
+                Logger.Warning("Ruleset activation was triggered while ruleset was already activated. This should not happen. Please report this to RulesAPI developers.");
+                return;
+            }
+
             if (SelectedRuleset == null)
             {
                 return;
             }
 
+            _isRulesetActive = true;
             SelectedRuleset.Activate();
         }
 
         internal static void DeactivateSelectedRuleset()
         {
+            if (!_isRulesetActive)
+            {
+                return;
+            }
+
             SelectedRuleset.Deactivate();
         }
 
@@ -51,7 +65,7 @@ namespace RulesAPI
                 catch (Exception e)
                 {
                     // TODO(orendain): Rollback activation.
-                    RulesAPI.Logger.Warning($"Failed to successfully call PreGameCreated on rule [{rule.GetType()}]: {e}");
+                    Logger.Warning($"Failed to successfully call PreGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -67,7 +81,7 @@ namespace RulesAPI
                 catch (Exception e)
                 {
                     // TODO(orendain): Rollback activation.
-                    RulesAPI.Logger.Warning($"Failed to successfully call PostGameCreated on rule [{rule.GetType()}]: {e}");
+                    Logger.Warning($"Failed to successfully call PostGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
         }

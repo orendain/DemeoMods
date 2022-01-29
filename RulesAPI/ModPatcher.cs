@@ -12,7 +12,6 @@
 
         internal static void Patch(Harmony harmony)
         {
-
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
                 postfix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStartup_InitializeGame_Postfix)));
@@ -24,8 +23,6 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(BoardGameActionStartNewGame), "StartNewGame"),
                 postfix: new HarmonyMethod(typeof(ModPatcher), nameof(BoardGameActionStartNewGame_StartNewGame_Postfix)));
-
-            // TODO(orendain): Hook into game ending events in order to deactivate activated rules.
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "EndGame"),
