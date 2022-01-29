@@ -17,7 +17,7 @@
             _actionPoints = actionPoints;
         }
 
-        protected override void OnActivate()
+        protected override void OnPostGameCreated()
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
             var pieceConfig = pieceConfigs.First(c => c.name.Equals("PieceConfig_SwordOfAvalon"));

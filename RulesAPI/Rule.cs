@@ -36,7 +36,7 @@
         /// <summary>
         /// Called before a game is created.
         /// </summary>
-        protected internal virtual void PreGameCreated()
+        protected internal virtual void OnPreGameCreated()
         {
         }
 
@@ -46,7 +46,7 @@
         /// <remarks>
         /// Note that even though the game is created, the level/POIs/enemies may not yet fully be loaded/spawned.
         /// </remarks>
-        protected internal virtual void PostGameCreated()
+        protected internal virtual void OnPostGameCreated()
         {
         }
     }

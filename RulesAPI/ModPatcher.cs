@@ -58,7 +58,7 @@
                 return;
             }
 
-            RulesAPI.ActivateSelectedRuleset();
+            RulesAPI.TriggerActivateRuleset();
 
             _isStartingGame = true;
             RulesAPI.TriggerPreGameCreated();
@@ -77,12 +77,12 @@
 
         private static void GameStateMachine_EndGame_Prefix()
         {
-            RulesAPI.DeactivateSelectedRuleset();
+            RulesAPI.TriggerDeactivateRuleset();
         }
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
-            RulesAPI.DeactivateSelectedRuleset();
+            RulesAPI.TriggerDeactivateRuleset();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace RulesAPI
             Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
         }
 
-        internal static void ActivateSelectedRuleset()
+        internal static void TriggerActivateRuleset()
         {
             if (_isRulesetActive)
             {
@@ -58,7 +58,7 @@ namespace RulesAPI
             }
         }
 
-        internal static void DeactivateSelectedRuleset()
+        internal static void TriggerDeactivateRuleset()
         {
             if (!_isRulesetActive)
             {
@@ -90,7 +90,7 @@ namespace RulesAPI
                 try
                 {
                     Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
-                    rule.PreGameCreated();
+                    rule.OnPreGameCreated();
                 }
                 catch (Exception e)
                 {
@@ -107,7 +107,7 @@ namespace RulesAPI
                 try
                 {
                     Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
-                    rule.PostGameCreated();
+                    rule.OnPostGameCreated();
                 }
                 catch (Exception e)
                 {
