@@ -8,9 +8,9 @@ namespace RulesAPI
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI");
 
-        internal static Ruleset SelectedRuleset { get; private set; }
-
         private static bool _isRulesetActive;
+
+        internal static Ruleset SelectedRuleset { get; private set; }
 
         public static void SelectRuleset(string ruleset)
         {
@@ -52,7 +52,7 @@ namespace RulesAPI
                 }
                 catch (Exception e)
                 {
-                    // TODO(orendain): Rollback activation.
+                    // TODO(orendain): Consider rolling back or disable rule.
                     Logger.Warning($"Failed to activate rule [{rule.GetType()}]: {e}");
                 }
             }
@@ -75,6 +75,7 @@ namespace RulesAPI
                 }
                 catch (Exception e)
                 {
+                    // TODO(orendain): Consider rolling back or disable rule.
                     Logger.Warning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
                 }
             }
@@ -91,7 +92,7 @@ namespace RulesAPI
                 }
                 catch (Exception e)
                 {
-                    // TODO(orendain): Rollback activation.
+                    // TODO(orendain): Consider rolling back or disable rule.
                     Logger.Warning($"Failed to successfully call OnPreGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
@@ -108,7 +109,7 @@ namespace RulesAPI
                 }
                 catch (Exception e)
                 {
-                    // TODO(orendain): Rollback activation.
+                    // TODO(orendain): Consider rolling back or disable rule.
                     Logger.Warning($"Failed to successfully call OnPostGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
