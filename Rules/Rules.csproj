@@ -1,69 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{8FC09405-8E06-4090-BB68-94882F0A52D8}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>Rules</RootNamespace>
-        <AssemblyName>Rules</AssemblyName>
-        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="RulesMod.cs" />
-        <Compile Include="Rule\AbilityDamageAdjustedRule.cs" />
-        <Compile Include="Rule\ActionPointsAdjustedRule.cs" />
-        <Compile Include="Rule\RatNestsSpawnGoldRule.cs" />
-        <Compile Include="Rule\SampleRule.cs" />
-        <Compile Include="Rule\ZapStartingInventoryAdjustedRule.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Reference Include="Assembly-CSharp">
-            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
-        </Reference>
-        <Reference Include="MelonLoader">
-            <HintPath>$(SteamDemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
-        </Reference>
-        <Reference Include="System" />
-        <Reference Include="UnityEngine.CoreModule">
-            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-        </Reference>
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\RulesAPI\RulesAPI.csproj">
-        <Project>{b412463f-a4f7-46ce-ac4e-37448762b45b}</Project>
-        <Name>RulesAPI</Name>
-      </ProjectReference>
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="README.md" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <Target Name="CopyToModsDir" AfterTargets="Build">
-        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(SteamDemeoDir)\Mods" />
-        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(OculusDemeoDir)\Mods" />
-    </Target>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8FC09405-8E06-4090-BB68-94882F0A52D8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rules</RootNamespace>
+    <AssemblyName>Rules</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RulesMod.cs" />
+    <Compile Include="Rule\AbilityDamageAdjustedRule.cs" />
+    <Compile Include="Rule\ActionPointsAdjustedRule.cs" />
+    <Compile Include="Rule\RatNestsSpawnGoldRule.cs" />
+    <Compile Include="Rule\SampleRule.cs" />
+    <Compile Include="Rule\PieceConfigAdjustedRule.cs" />
+    <Compile Include="Rule\StartHealthAdjustedRule.cs" />
+    <Compile Include="Rule\ZapStartingInventoryAdjustedRule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MelonLoader">
+      <HintPath>$(SteamDemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RulesAPI\RulesAPI.csproj">
+      <Project>{b412463f-a4f7-46ce-ac4e-37448762b45b}</Project>
+      <Name>RulesAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.md" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="CopyToModsDir" AfterTargets="Build">
+    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(SteamDemeoDir)\Mods" />
+    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(OculusDemeoDir)\Mods" />
+  </Target>
 </Project>
