@@ -28,6 +28,7 @@
             {
                 var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
                 ability.abilityDamage.targetDamage += item.Value;
+                ability.abilityDamage.critDamage = ability.abilityDamage.targetDamage * 2;
             }
         }
 
@@ -38,6 +39,7 @@
             {
                 var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
                 ability.abilityDamage.targetDamage -= item.Value;
+                ability.abilityDamage.critDamage = ability.abilityDamage.targetDamage * 2;
             }
         }
     }
