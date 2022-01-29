@@ -49,7 +49,7 @@
         /// <summary>
         /// Called before a game is created.
         /// </summary>
-        protected override void PreGameCreated()
+        protected override void OnPreGameCreated()
         {
         }
 
@@ -59,7 +59,7 @@
         /// <remarks>
         /// Note that even though the game is created, the level/POIs/enemies may not yet fully be loaded/spawned.
         /// </remarks>
-        protected override void PostGameCreated()
+        protected override void OnPostGameCreated()
         {
         }
 
