@@ -41,7 +41,21 @@ namespace RulesAPI
             }
 
             _isRulesetActive = true;
-            SelectedRuleset.Activate();
+
+            Logger.Msg($"Activating ruleset: {SelectedRuleset.Name} (with {SelectedRuleset.Rules.Count} rules)");
+            foreach (var rule in SelectedRuleset.Rules)
+            {
+                try
+                {
+                    Logger.Msg($"Activating rule type: {rule.GetType()}");
+                    rule.OnActivate();
+                }
+                catch (Exception e)
+                {
+                    // TODO(orendain): Rollback activation.
+                    Logger.Warning($"Failed to activate rule [{rule.GetType()}]: {e}");
+                }
+            }
         }
 
         internal static void DeactivateSelectedRuleset()
@@ -51,7 +65,19 @@ namespace RulesAPI
                 return;
             }
 
-            SelectedRuleset.Deactivate();
+            Logger.Msg($"Deactivating ruleset: {SelectedRuleset.Name} (with {SelectedRuleset.Rules.Count} rules)");
+            foreach (var rule in SelectedRuleset.Rules)
+            {
+                try
+                {
+                    Logger.Msg($"Deactivating rule type: {rule.GetType()}");
+                    rule.OnDeactivate();
+                }
+                catch (Exception e)
+                {
+                    Logger.Warning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
+                }
+            }
         }
 
         internal static void TriggerPreGameCreated()
@@ -60,12 +86,13 @@ namespace RulesAPI
             {
                 try
                 {
+                    Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
                     rule.PreGameCreated();
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Rollback activation.
-                    Logger.Warning($"Failed to successfully call PreGameCreated on rule [{rule.GetType()}]: {e}");
+                    Logger.Warning($"Failed to successfully call OnPreGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -76,12 +103,13 @@ namespace RulesAPI
             {
                 try
                 {
+                    Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
                     rule.PostGameCreated();
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Rollback activation.
-                    Logger.Warning($"Failed to successfully call PostGameCreated on rule [{rule.GetType()}]: {e}");
+                    Logger.Warning($"Failed to successfully call OnPostGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
         }

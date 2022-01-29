@@ -7,34 +7,12 @@
         /// </summary>
         public abstract string Description { get; }
 
-        internal void Activate()
-        {
-            RulesAPI.Logger.Msg($"Activating rule type: {GetType()}");
-            OnActivate();
-        }
-
-        internal void Deactivate()
-        {
-            RulesAPI.Logger.Msg($"Deactivating rule type: {GetType()}");
-            OnDeactivate();
-        }
-
-        internal void PreGameCreated()
-        {
-            RulesAPI.Logger.Msg($"Calling OnPreGameCreated for rule type: {GetType()}");
-            OnPreGameCreated();
-        }
-
-        internal void PostGameCreated()
-        {
-            RulesAPI.Logger.Msg($"Calling OnPostGameCreated for rule type: {GetType()}");
-            OnPostGameCreated();
-        }
-
         /// <summary>
         /// Called when the rule is activated.
         /// </summary>
-        protected abstract void OnActivate();
+        protected internal virtual void OnActivate()
+        {
+        }
 
         /// <summary>
         /// Called when the rule is deactivated.
@@ -42,12 +20,16 @@
         /// <remarks>
         /// This method should undo any persistant changes made during <see cref="OnActivate"/>.
         /// </remarks>
-        protected abstract void OnDeactivate();
+        protected internal virtual void OnDeactivate()
+        {
+        }
 
         /// <summary>
         /// Called before a game is created.
         /// </summary>
-        protected abstract void OnPreGameCreated();
+        protected internal virtual void PreGameCreated()
+        {
+        }
 
         /// <summary>
         /// Called after a game is created.
@@ -55,6 +37,8 @@
         /// <remarks>
         /// Note that even though the game is created, the level/POIs/enemies may not yet fully be loaded/spawned.
         /// </remarks>
-        protected abstract void OnPostGameCreated();
+        protected internal virtual void PostGameCreated()
+        {
+        }
     }
 }
