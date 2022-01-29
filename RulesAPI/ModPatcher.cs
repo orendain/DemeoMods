@@ -30,6 +30,10 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "EndGame"),
                 prefix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateMachine_EndGame_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(SerializableEventQueue), "DisconnectLocalPlayer"),
+                prefix: new HarmonyMethod(typeof(ModPatcher), nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -67,6 +71,11 @@
         }
 
         private static void GameStateMachine_EndGame_Prefix()
+        {
+            RulesAPI.DeactivateSelectedRuleset();
+        }
+
+        private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
             RulesAPI.DeactivateSelectedRuleset();
         }
