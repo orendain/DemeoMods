@@ -19,6 +19,18 @@
             OnDeactivate();
         }
 
+        internal void PreGameCreated()
+        {
+            RulesAPI.Logger.Msg($"Calling OnPreGameCreated for rule type: {GetType()}");
+            OnPreGameCreated();
+        }
+
+        internal void PostGameCreated()
+        {
+            RulesAPI.Logger.Msg($"Calling OnPostGameCreated for rule type: {GetType()}");
+            OnPostGameCreated();
+        }
+
         /// <summary>
         /// Called when the rule is activated.
         /// </summary>
@@ -31,5 +43,18 @@
         /// This method should undo any persistant changes made during <see cref="OnActivate"/>.
         /// </remarks>
         protected abstract void OnDeactivate();
+
+        /// <summary>
+        /// Called before a game is created.
+        /// </summary>
+        protected abstract void OnPreGameCreated();
+
+        /// <summary>
+        /// Called after a game is created.
+        /// </summary>
+        /// <remarks>
+        /// Note that even though the game is created, the level/POIs/enemies may not yet fully be loaded/spawned.
+        /// </remarks>
+        protected abstract void OnPostGameCreated();
     }
 }
