@@ -26,6 +26,10 @@
                 postfix: new HarmonyMethod(typeof(ModPatcher), nameof(BoardGameActionStartNewGame_StartNewGame_Postfix)));
 
             // TODO(orendain): Hook into game ending events in order to deactivate activated rules.
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(GameStateMachine), "EndGame"),
+                prefix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateMachine_EndGame_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -60,6 +64,11 @@
         {
             RulesAPI.TriggerPostGameCreated();
             RulesAPI.ActivateSelectedRuleset();
+        }
+
+        private static void GameStateMachine_EndGame_Prefix()
+        {
+            RulesAPI.DeactivateSelectedRuleset();
         }
     }
 }
