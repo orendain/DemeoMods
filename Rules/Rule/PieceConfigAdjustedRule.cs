@@ -15,7 +15,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PieceConfigAdjustedRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Key-value pairs mapping the name of an entity to the number of action points
+        /// <param name="adjustments">Lists of PieceNames, PropertyNames and Values
         /// added to their base. Negative numbers are allowed.</param>
         public PieceConfigAdjustedRule(List<List<string>> adjustments)
         {
