@@ -2,13 +2,13 @@
 {
     using System.Reflection;
     using Boardgame;
-    using Boardgame.BoardgameActions;
     using Boardgame.Networking;
     using HarmonyLib;
 
     internal class ModPatcher
     {
         private static GameContext _gameContext;
+        private static bool _isStartingGame;
 
         internal static void Patch(Harmony harmony)
         {
@@ -21,8 +21,8 @@
                 prefix: new HarmonyMethod(typeof(ModPatcher), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(BoardGameActionStartNewGame), "StartNewGame"),
-                postfix: new HarmonyMethod(typeof(ModPatcher), nameof(BoardGameActionStartNewGame_StartNewGame_Postfix)));
+                original: AccessTools.Method(typeof(GameStateMachine), "GoToPlayingState"),
+                postfix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateMachine_GoToPlayingState_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "EndGame"),
@@ -59,11 +59,19 @@
             }
 
             RulesAPI.ActivateSelectedRuleset();
+
+            _isStartingGame = true;
             RulesAPI.TriggerPreGameCreated();
         }
 
-        private static void BoardGameActionStartNewGame_StartNewGame_Postfix()
+        private static void GameStateMachine_GoToPlayingState_Postfix()
         {
+            if (!_isStartingGame)
+            {
+                return;
+            }
+
+            _isStartingGame = false;
             RulesAPI.TriggerPostGameCreated();
         }
 

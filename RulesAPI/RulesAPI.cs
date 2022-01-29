@@ -65,6 +65,8 @@ namespace RulesAPI
                 return;
             }
 
+            _isRulesetActive = false;
+
             Logger.Msg($"Deactivating ruleset: {SelectedRuleset.Name} (with {SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in SelectedRuleset.Rules)
             {
