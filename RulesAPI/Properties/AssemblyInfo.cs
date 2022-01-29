@@ -39,5 +39,5 @@ using RulesAPI;
 // Melon Loader.
 [assembly: MelonInfo(typeof(RulesAPIMod), "RulesAPI", "0.1.0", "Orendain", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
-[assembly: MelonID("")]
+[assembly: MelonID("574512")]
 [assembly: VerifyLoaderVersion("0.5.3", true)]
