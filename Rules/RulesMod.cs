@@ -19,6 +19,7 @@
             registrar.Register(typeof(Rule.SampleRule));
             registrar.Register(typeof(Rule.AbilityDamageAdjustedRule));
             registrar.Register(typeof(Rule.ActionPointsAdjustedRule));
+            registrar.Register(typeof(Rule.CardEnergyFromAttackMultipliedRule));
             registrar.Register(typeof(Rule.CardSellValueMultipliedRule));
             registrar.Register(typeof(Rule.EnemyRespawnDisabledRule));
             registrar.Register(typeof(Rule.GoldPickedUpMultipliedRule));
@@ -30,7 +31,7 @@
 
         private static void RegisterNewRulesets()
         {
-            var sampleRules = new HashSet<RulesAPI.Rule> { new Rule.SampleRule() };
+            var sampleRules = new HashSet<RulesAPI.Rule> { new Rule.CardEnergyFromAttackMultipliedRule(10) };
             var sampleRuleset = RulesAPI.Ruleset.NewInstance("SampleRuleset", "Just a sample ruleset.", sampleRules);
 
             var registrar = RulesAPI.Registrar.Instance();

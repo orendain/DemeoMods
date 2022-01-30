@@ -11,6 +11,7 @@ RulesAPI.
   of a RulesAPI rule.
 - **AbilityDamageAdjustedRule**: Ability damage is adjusted
 - **ActionPointsAdjustedRule**: Action points are adjusted
+- **CardEnergyFromAttackMultipliedRule**: Card energy from attack is multiplied
 - **CardSellValueMultipliedRule**: Card sell values are multiplied
 - **EnemyRespawnDisabledRule**: Enemy respawns are disabled
 - **GoldPickedUpMultipliedRule**: Gold picked up is multiplied
