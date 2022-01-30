@@ -12,6 +12,7 @@ RulesAPI.
 - **AbilityDamageAdjustedRule**: Ability damage is adjusted
 - **ActionPointsAdjustedRule**: Action points are adjusted
 - **EnemyRespawnDisabledRule**: Enemy respawns are disabled
+- **GoldPickedUpMultipliedRule**: Gold picked up is multiplied
 - **PieceConfigAdjustedRule**: Piece configuration is adjusted
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
 - **RatNestsSpawnGoldRule**: Rat nests spawn gold
