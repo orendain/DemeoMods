@@ -19,6 +19,7 @@
             registrar.Register(typeof(Rule.SampleRule));
             registrar.Register(typeof(Rule.AbilityDamageAdjustedRule));
             registrar.Register(typeof(Rule.ActionPointsAdjustedRule));
+            registrar.Register(typeof(Rule.EnemyRespawnDisabledRule));
             registrar.Register(typeof(Rule.PieceConfigAdjustedRule));
             registrar.Register(typeof(Rule.RatNestsSpawnGoldRule));
             registrar.Register(typeof(Rule.StartHealthAdjustedRule));
