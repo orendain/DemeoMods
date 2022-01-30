@@ -18,7 +18,7 @@
         /// <summary>
         /// Gets the description of the rule.
         /// </summary>
-        public override string Description => "Sample rule.";
+        public override string Description => "Sample rule";
 
         /// <summary>
         /// Called when the rule is activated.
