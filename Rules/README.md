@@ -12,6 +12,7 @@ RulesAPI.
 - **AbilityDamageAdjustedRule**: Ability damage is adjusted
 - **ActionPointsAdjustedRule**: Action points are adjusted
 - **PieceConfigAdjustedRule**: Piece configuration is adjusted
+  - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
 - **RatNestsSpawnGoldRule**: Rat nests spawn gold
 - **StartHealthAdjustedRule**: Starting Health is adjusted
 - **ZapStartingInventoryAdjustedRule**: Zap starting inventory is adjusted
