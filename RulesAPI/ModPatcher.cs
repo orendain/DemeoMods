@@ -73,6 +73,7 @@
 
             _isStartingGame = false;
             RulesAPI.TriggerPostGameCreated();
+            RulesAPI.TriggerWelcomeMessage();
         }
 
         private static void GameStateMachine_EndGame_Prefix()

@@ -2,11 +2,14 @@ namespace RulesAPI
 {
     using System;
     using System.Linq;
+    using System.Text;
+    using Boardgame;
     using MelonLoader;
 
     public static class RulesAPI
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI");
+        private const float WelcomeMessageDurationSeconds = 30f;
 
         private static bool _isRulesetActive;
 
@@ -131,6 +134,27 @@ namespace RulesAPI
                     Logger.Warning($"Failed to successfully call OnPostGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
+        }
+
+        internal static void TriggerWelcomeMessage()
+        {
+            if (!_isRulesetActive)
+            {
+                return;
+            }
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Welcome to a game using a custom ruleset!");
+            sb.AppendLine();
+            sb.AppendFormat("{0}: {1}\n", SelectedRuleset.Name, SelectedRuleset.Description);
+            sb.AppendLine();
+            sb.AppendLine("Rules:");
+            foreach (var rule in SelectedRuleset.Rules)
+            {
+                sb.AppendLine(rule.Description);
+            }
+
+            GameUI.ShowCameraMessage(sb.ToString(), WelcomeMessageDurationSeconds);
         }
     }
 }
