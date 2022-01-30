@@ -1,15 +1,15 @@
 ﻿namespace RulesAPI
 {
     using System;
-    using System.Linq;
     using HarmonyLib;
     using MelonLoader;
 
     internal class RulesAPIMod : MelonMod
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI");
-        private static readonly ModState ModState = ModState.NewInstance();
         private static readonly Harmony RulesPatcher = new Harmony("com.orendain.demeomods.rulesapi.patcher");
+
+        private MelonPreferences_Category _configCategory;
+        private MelonPreferences_Entry<string> _rulesetConfig;
 
         public override void OnApplicationStart()
         {
@@ -20,30 +20,46 @@
         public override void OnApplicationLateStart()
         {
             LoadRegisteredRules();
+            InitializeConfig();
         }
 
-        public static void SetSelectedRuleset(Ruleset ruleset)
+        public override void OnApplicationQuit()
         {
-            if (!Registrar.Instance().IsRegistered(ruleset))
+            _rulesetConfig.Value = RulesAPI.SelectedRuleset != null ? RulesAPI.SelectedRuleset.Name : string.Empty;
+            _configCategory.SaveToFile();
+        }
+
+        private void InitializeConfig()
+        {
+            _configCategory = MelonPreferences.CreateCategory("RulesAPI");
+            _rulesetConfig = _configCategory.CreateEntry("ruleset", string.Empty);
+
+            if (string.IsNullOrEmpty(_rulesetConfig.Value))
             {
-                throw new ArgumentException("Ruleset must first be registered.");
+                return;
             }
 
-            ModState.SelectedRuleset = ruleset;
-            Logger.Msg($"Ruleset selected: {ruleset.GetType()}");
+            try
+            {
+                RulesAPI.SelectRuleset(_rulesetConfig.Value);
+            }
+            catch (ArgumentException e)
+            {
+                RulesAPI.Logger.Warning($"Failed to select ruleset [{_rulesetConfig.Value}] from config: {e}");
+            }
         }
 
         private static void LoadRegisteredRules()
         {
-            Logger.Msg($"Loading [{Registrar.Instance().RuleTypes.Count}] registered rule types.");
+            RulesAPI.Logger.Msg($"Loading [{Registrar.Instance().RuleTypes.Count}] registered rule types.");
 
             foreach (var ruleType in Registrar.Instance().RuleTypes)
             {
-                Logger.Msg($"Loading rule type: {ruleType}");
+                RulesAPI.Logger.Msg($"Loading rule type: {ruleType}");
                 var patchMethod = AccessTools.Method(ruleType, "OnPatch");
                 if (patchMethod == null)
                 {
-                    Logger.Warning($"Did not find suitable 'OnPatch' method for rule [{ruleType}]. No patching is done for that rule.");
+                    RulesAPI.Logger.Warning($"Did not find suitable 'OnPatch' method for rule [{ruleType}]. No patching is done for that rule.");
                     continue;
                 }
 
@@ -54,25 +70,9 @@
                 catch (Exception e)
                 {
                     // TODO(orendain): Perm disable rules/rulesets that fail to patch/load.
-                    Logger.Error($"Failed to apply patch for rule [{ruleType}]: {e}");
+                    RulesAPI.Logger.Error($"Failed to apply patch for rule [{ruleType}]: {e}");
                 }
             }
-        }
-
-        internal static void ActivateSelectedRuleset()
-        {
-            // TODO(orendain): Do not automatically load the first ruleset when a game is hosted. For dev only.
-            if (ModState.SelectedRuleset == null)
-            {
-                SetSelectedRuleset(Registrar.Instance().Rulesets.ElementAt(0));
-            }
-
-            ModState.SelectedRuleset.Activate();
-        }
-
-        internal static void DeactivateSelectedRuleset()
-        {
-            ModState.SelectedRuleset.Deactivate();
         }
     }
 }

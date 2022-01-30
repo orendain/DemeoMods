@@ -1,52 +1,34 @@
 ﻿namespace RulesAPI
 {
-    using System;
     using System.Collections.Generic;
 
-    public abstract class Ruleset
+    public class Ruleset
     {
+        /// <summary>
+        /// Gets the name of the ruleset.
+        /// </summary>
+        public string Name { get; }
+
         /// <summary>
         /// Gets the description of the ruleset.
         /// </summary>
-        public abstract string Description { get; }
+        public string Description { get; }
 
         /// <summary>
         /// Gets the rules of the ruleset.
         /// </summary>
-        protected internal abstract HashSet<Rule> Rules { get; }
+        public HashSet<Rule> Rules { get; }
 
-        internal void Activate()
+        public static Ruleset NewInstance(string name, string description, HashSet<Rule> rules)
         {
-            RulesAPIMod.Logger.Msg($"Activating ruleset: {GetType()} (with {Rules.Count} rules)");
-
-            foreach (var rule in Rules)
-            {
-                try
-                {
-                    rule.Activate();
-                }
-                catch (Exception e)
-                {
-                    // TODO(orendain): Rollback activation.
-                    RulesAPIMod.Logger.Warning($"Failed to activate rule [{rule.GetType()}]: {e}");
-                }
-            }
+            return new Ruleset(name, description, rules);
         }
 
-        internal void Deactivate()
+        private Ruleset(string name, string description, HashSet<Rule> rules)
         {
-            RulesAPIMod.Logger.Msg($"Deactivating ruleset: {GetType()} (with {Rules.Count} rules)");
-            foreach (var rule in Rules)
-            {
-                try
-                {
-                    rule.Deactivate();
-                }
-                catch (Exception e)
-                {
-                    RulesAPIMod.Logger.Warning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
-                }
-            }
+            Name = name;
+            Description = description;
+            Rules = rules;
         }
     }
 }
