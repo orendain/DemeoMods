@@ -36,6 +36,7 @@
         <Compile Include="RulesMod.cs" />
         <Compile Include="Rule\AbilityDamageAdjustedRule.cs" />
         <Compile Include="Rule\ActionPointsAdjustedRule.cs" />
+        <Compile Include="Rule\CardEnergyFromAttackMultipliedRule.cs" />
         <Compile Include="Rule\CardSellValueMultipliedRule.cs" />
         <Compile Include="Rule\EnemyRespawnDisabledRule.cs" />
         <Compile Include="Rule\GoldPickedUpMultipliedRule.cs" />
