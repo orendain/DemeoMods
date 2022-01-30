@@ -17,7 +17,7 @@
             _maxPileCount = maxPileCount;
         }
 
-        protected override void OnActivate()
+        protected override void OnPostGameCreated()
         {
             var abilities = Resources.FindObjectsOfTypeAll<Ability>();
             var ability = abilities.First(c => c.name.Equals("SpawnRat(Clone)"));

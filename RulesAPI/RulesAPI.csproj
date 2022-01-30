@@ -48,15 +48,15 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="ModPatcher.cs" />
-        <Compile Include="ModState.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Rule.cs" />
+        <Compile Include="RulesAPI.cs" />
         <Compile Include="Ruleset.cs" />
         <Compile Include="RulesAPIMod.cs" />
         <Compile Include="Registrar.cs" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="README.md" />
+        <Content Include="README.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="CopyToModsDir" AfterTargets="Build">
