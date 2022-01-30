@@ -15,8 +15,9 @@ Skips the intro loading scene.
 
 ### RulesAPI + Rules
 
-A framework allowing the definition of modular gameplay modifications ("rules")
-and the selection of them.
+A framework allowing the definition of modular gameplay modifications (or
+"rules") and the ability to group them to create custom gamemodes (or
+"rulesets").
 
 See the [RulesAPI readme](RulesAPI/README.md) for information about the
 RulesAPI framework.
@@ -48,7 +49,8 @@ any will be cleaned up enough to see the light of OSS.
 > Note: Only PCVR versions of games are currently supported.
 > E.g., playing on a Quest2 works, but only when linked to a PC.
 
-1. Install [MelonLoader](https://github.com/LavaGang/MelonLoader#how-to-use-the-installer).
+1. Install [MelonLoader](https://github.com/LavaGang/MelonLoader#how-to-use-the-installer)
+   (must be version `0.5.3` or later).
 2. Download the the mods that you would like to use from
    the [releases page](https://github.com/orendain/DemeoMods/releases).
 3. Place the mod DLL files in the `/Mods` folder (created by MelonLoader) in
