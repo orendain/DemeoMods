@@ -13,7 +13,7 @@
         public CardEnergyFromAttackMultipliedRule(float multiplier)
         {
             _multiplier = multiplier;
-            _originalValue = AIDirectorConfig.CardEnergy_EnergyToGetFromKill;
+            _originalValue = AIDirectorConfig.CardEnergy_EnergyToGetFromDealingDamage;
         }
 
         protected override void OnPostGameCreated()

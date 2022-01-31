@@ -20,6 +20,7 @@
             registrar.Register(typeof(Rule.AbilityDamageAdjustedRule));
             registrar.Register(typeof(Rule.ActionPointsAdjustedRule));
             registrar.Register(typeof(Rule.CardEnergyFromAttackMultipliedRule));
+            registrar.Register(typeof(Rule.CardEnergyFromRecyclingMultipliedRule));
             registrar.Register(typeof(Rule.CardSellValueMultipliedRule));
             registrar.Register(typeof(Rule.EnemyRespawnDisabledRule));
             registrar.Register(typeof(Rule.GoldPickedUpMultipliedRule));
