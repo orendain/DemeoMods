@@ -40,6 +40,7 @@
         <Compile Include="Rule\CardEnergyFromRecyclingMultipliedRule.cs" />
         <Compile Include="Rule\CardSellValueMultipliedRule.cs" />
         <Compile Include="Rule\EnemyDoorOpeningDisabledRule.cs" />
+        <Compile Include="Rule\EnemyHealthScaledRule.cs" />
         <Compile Include="Rule\EnemyRespawnDisabledRule.cs" />
         <Compile Include="Rule\GoldPickedUpMultipliedRule.cs" />
         <Compile Include="Rule\RatNestsSpawnGoldRule.cs" />
