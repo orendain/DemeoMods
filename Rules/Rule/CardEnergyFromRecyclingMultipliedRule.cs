@@ -1,7 +1,6 @@
 ﻿namespace Rules.Rule
 {
     using Boardgame;
-    using Data.GameData;
     using HarmonyLib;
 
     public sealed class CardEnergyFromRecyclingMultipliedRule : RulesAPI.Rule
@@ -20,12 +19,6 @@
         protected override void OnActivate() => _isActivated = true;
 
         protected override void OnDeactivate() => _isActivated = false;
-
-        protected override void OnPostGameCreated()
-        {
-            Traverse.Create(typeof(AIDirectorConfig))
-                .Field<int>("CardEnergy_PowerRankRequiredToGiveEnergy").Value = 0;
-        }
 
         private static void OnPatch(Harmony harmony)
         {
