@@ -18,6 +18,7 @@
             var registrar = RulesAPI.Registrar.Instance();
             registrar.Register(typeof(Rule.SampleRule));
             registrar.Register(typeof(Rule.AbilityDamageAdjustedRule));
+            registrar.Register(typeof(Rule.AbilityActionCostAdjustedRule));
             registrar.Register(typeof(Rule.ActionPointsAdjustedRule));
             registrar.Register(typeof(Rule.CardEnergyFromAttackMultipliedRule));
             registrar.Register(typeof(Rule.CardEnergyFromRecyclingMultipliedRule));

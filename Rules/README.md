@@ -10,6 +10,7 @@ RulesAPI.
 - **SampleRule**: A [sample rule](Rule/SampleRule.cs) documenting the anatomy
   of a RulesAPI rule.
 - **AbilityDamageAdjustedRule**: Ability damage is adjusted
+- **AbilityActionCostAdjustedRule**: Ability Action Cost is adjusted
 - **ActionPointsAdjustedRule**: Action points are adjusted
 - **CardEnergyFromAttackMultipliedRule**: Card energy from attack is multiplied
 - **CardEnergyFromRecyclingMultipliedRule**: Card energy from recycling is multiplied
