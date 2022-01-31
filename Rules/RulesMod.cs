@@ -22,6 +22,7 @@
             registrar.Register(typeof(Rule.CardEnergyFromAttackMultipliedRule));
             registrar.Register(typeof(Rule.CardEnergyFromRecyclingMultipliedRule));
             registrar.Register(typeof(Rule.CardSellValueMultipliedRule));
+            registrar.Register(typeof(Rule.EnemyAttackScaledRule));
             registrar.Register(typeof(Rule.EnemyDoorOpeningDisabledRule));
             registrar.Register(typeof(Rule.EnemyHealthScaledRule));
             registrar.Register(typeof(Rule.EnemyRespawnDisabledRule));
