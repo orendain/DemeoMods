@@ -14,6 +14,7 @@ RulesAPI.
 - **CardEnergyFromAttackMultipliedRule**: Card energy from attack is multiplied
 - **CardEnergyFromRecyclingMultipliedRule**: Card energy from recycling is multiplied
 - **CardSellValueMultipliedRule**: Card sell values are multiplied
+- **EnemyDoorOpeningDisabledRule**: Enemy door opening ability disabled
 - **EnemyRespawnDisabledRule**: Enemy respawns are disabled
 - **GoldPickedUpMultipliedRule**: Gold picked up is multiplied
 - **PieceConfigAdjustedRule**: Piece configuration is adjusted
