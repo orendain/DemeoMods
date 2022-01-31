@@ -28,8 +28,8 @@
             foreach (var item in _adjustments)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item[0]}"));
-                var actionPoint = Traverse.Create(pieceConfig).Property<int>(item[1]);
-                actionPoint.Value += int.Parse(item[2]);
+                var property = Traverse.Create(pieceConfig).Property<int>(item[1]);
+                property.Value += int.Parse(item[2]);
             }
         }
 
@@ -39,8 +39,8 @@
             foreach (var item in _adjustments)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item[0]}"));
-                var actionPoint = Traverse.Create(pieceConfig).Property<int>(item[1]);
-                actionPoint.Value -= int.Parse(item[2]);
+                var property = Traverse.Create(pieceConfig).Property<int>(item[1]);
+                property.Value -= int.Parse(item[2]);
             }
         }
     }
