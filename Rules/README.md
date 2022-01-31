@@ -9,6 +9,7 @@ RulesAPI.
 
 - **SampleRule**: A [sample rule](Rule/SampleRule.cs) documenting the anatomy
   of a RulesAPI rule.
+- **AbilityAOEAdjustedRule**: Ability AOE is adjsuted
 - **AbilityDamageAdjustedRule**: Ability damage is adjusted
 - **ActionPointsAdjustedRule**: Action points are adjusted
 - **CardEnergyFromAttackMultipliedRule**: Card energy from attack is multiplied
