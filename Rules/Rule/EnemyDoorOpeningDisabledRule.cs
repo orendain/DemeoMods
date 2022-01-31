@@ -5,7 +5,7 @@
 
     public sealed class EnemyDoorOpeningDisabledRule : RulesAPI.Rule
     {
-        public override string Description => "Enemy door opening ability disabled";
+        public override string Description => "Enemy door opening ability is disabled";
 
         private static bool _isActivated;
 
