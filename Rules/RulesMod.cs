@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
-using Rules.Rule;
-
-namespace Rules
+﻿namespace Rules
 {
     using System.Collections.Generic;
+    using DataKeys;
     using MelonLoader;
 
     internal class RulesMod : MelonMod
@@ -34,40 +31,21 @@ namespace Rules
             registrar.Register(typeof(Rule.GoldPickedUpMultipliedRule));
             registrar.Register(typeof(Rule.PieceConfigAdjustedRule));
             registrar.Register(typeof(Rule.RatNestsSpawnGoldRule));
-            registrar.Register(typeof(Rule.StartCardsModifiedRule));
+            registrar.Register(typeof(Rule.SorcererStartCardsModifiedRule));
             registrar.Register(typeof(Rule.StartHealthAdjustedRule));
             registrar.Register(typeof(Rule.ZapStartingInventoryAdjustedRule));
         }
 
         private static void RegisterNewRulesets()
         {
-            var sorcererCards = new List<(string, bool)>()
-                          {
-                              ("SongOfRecovery", true),
-                              ( "Freeze", false ),
-                              ( "Fireball", true ),
-                              ( "Zap", false ),
-                              ( "Zap", false )
-                          };
-
-            var guardianCards = new List<(string, bool)>()
+            var cards = new List<Rule.SorcererStartCardsModifiedRule.Card>()
             {
-                ( "Blink", false ),
-                ( "Javelin", true ),
-                ( "Whirlwind", true ),
+                new Rule.SorcererStartCardsModifiedRule.Card() { Name = AbilityKey.Whip, IsReplenishable = true },
+                new Rule.SorcererStartCardsModifiedRule.Card() { Name = AbilityKey.Freeze, IsReplenishable = false },
             };
+            var sampleRules = new HashSet<RulesAPI.Rule> { new Rule.SorcererStartCardsModifiedRule(cards) };
 
-            var heroesCards = new Dictionary<string, List<(string, bool)>>()
-            {
-                {"HeroSorcerer", sorcererCards},
-                {"HeroGuardian", guardianCards}
-            };
-
-
-
-            var sampleRules = new HashSet<RulesAPI.Rule> { new StartCardsModifiedRule(heroesCards) };
             var sampleRuleset = RulesAPI.Ruleset.NewInstance("SampleRuleset", "Just a sample ruleset.", sampleRules);
-
             var registrar = RulesAPI.Registrar.Instance();
             registrar.Register(sampleRuleset);
         }
