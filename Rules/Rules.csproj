@@ -40,6 +40,7 @@
     <Compile Include="Rule\CardEnergyFromAttackMultipliedRule.cs" />
     <Compile Include="Rule\CardEnergyFromRecyclingMultipliedRule.cs" />
     <Compile Include="Rule\CardSellValueMultipliedRule.cs" />
+    <Compile Include="Rule\AbilityAOEAdjustedRule.cs" />
     <Compile Include="Rule\EnemyAttackScaledRule.cs" />
     <Compile Include="Rule\EnemyDoorOpeningDisabledRule.cs" />
     <Compile Include="Rule\EnemyHealthScaledRule.cs" />
