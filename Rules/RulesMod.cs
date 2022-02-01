@@ -1,7 +1,6 @@
 ﻿namespace Rules
 {
     using System.Collections.Generic;
-    using DataKeys;
     using MelonLoader;
 
     internal class RulesMod : MelonMod
@@ -38,13 +37,7 @@
 
         private static void RegisterNewRulesets()
         {
-            var cards = new List<Rule.SorcererStartCardsModifiedRule.Card>()
-            {
-                new Rule.SorcererStartCardsModifiedRule.Card() { Name = AbilityKey.Whip, IsReplenishable = true },
-                new Rule.SorcererStartCardsModifiedRule.Card() { Name = AbilityKey.Freeze, IsReplenishable = false },
-            };
-            var sampleRules = new HashSet<RulesAPI.Rule> { new Rule.SorcererStartCardsModifiedRule(cards) };
-
+            var sampleRules = new HashSet<RulesAPI.Rule> { new Rule.SampleRule() };
             var sampleRuleset = RulesAPI.Ruleset.NewInstance("SampleRuleset", "Just a sample ruleset.", sampleRules);
             var registrar = RulesAPI.Registrar.Instance();
             registrar.Register(sampleRuleset);
