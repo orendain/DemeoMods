@@ -48,6 +48,7 @@
     <Compile Include="Rule\RatNestsSpawnGoldRule.cs" />
     <Compile Include="Rule\SampleRule.cs" />
     <Compile Include="Rule\PieceConfigAdjustedRule.cs" />
+    <Compile Include="Rule\StartCardsModifiedRule.cs" />
     <Compile Include="Rule\StartHealthAdjustedRule.cs" />
     <Compile Include="Rule\ZapStartingInventoryAdjustedRule.cs" />
   </ItemGroup>

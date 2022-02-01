@@ -1,4 +1,8 @@
-﻿namespace Rules
+﻿using System;
+using System.Linq;
+using Rules.Rule;
+
+namespace Rules
 {
     using System.Collections.Generic;
     using MelonLoader;
@@ -30,13 +34,38 @@
             registrar.Register(typeof(Rule.GoldPickedUpMultipliedRule));
             registrar.Register(typeof(Rule.PieceConfigAdjustedRule));
             registrar.Register(typeof(Rule.RatNestsSpawnGoldRule));
+            registrar.Register(typeof(Rule.StartCardsModifiedRule));
             registrar.Register(typeof(Rule.StartHealthAdjustedRule));
             registrar.Register(typeof(Rule.ZapStartingInventoryAdjustedRule));
         }
 
         private static void RegisterNewRulesets()
         {
-            var sampleRules = new HashSet<RulesAPI.Rule> { new Rule.SampleRule() };
+            var sorcererCards = new List<(string, bool)>()
+                          {
+                              ("SongOfRecovery", true),
+                              ( "Freeze", false ),
+                              ( "Fireball", true ),
+                              ( "Zap", false ),
+                              ( "Zap", false )
+                          };
+
+            var guardianCards = new List<(string, bool)>()
+            {
+                ( "Blink", false ),
+                ( "Javelin", true ),
+                ( "Whirlwind", true ),
+            };
+
+            var heroesCards = new Dictionary<string, List<(string, bool)>>()
+            {
+                {"HeroSorcerer", sorcererCards},
+                {"HeroGuardian", guardianCards}
+            };
+
+
+
+            var sampleRules = new HashSet<RulesAPI.Rule> { new StartCardsModifiedRule(heroesCards) };
             var sampleRuleset = RulesAPI.Ruleset.NewInstance("SampleRuleset", "Just a sample ruleset.", sampleRules);
 
             var registrar = RulesAPI.Registrar.Instance();
