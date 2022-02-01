@@ -11,14 +11,13 @@
     {
         public override string Description => "Sorcerer start cards are modified";
 
-        private static bool _isActivated;
-
         public struct Card
         {
             public AbilityKey Name;
             public bool IsReplenishable;
         }
 
+        private static bool _isActivated;
         private static List<Card> _cards;
 
         public SorcererStartCardsModifiedRule(List<Card> cards)

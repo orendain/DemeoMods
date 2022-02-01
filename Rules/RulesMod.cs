@@ -39,6 +39,7 @@
         {
             var sampleRules = new HashSet<RulesAPI.Rule> { new Rule.SampleRule() };
             var sampleRuleset = RulesAPI.Ruleset.NewInstance("SampleRuleset", "Just a sample ruleset.", sampleRules);
+
             var registrar = RulesAPI.Registrar.Instance();
             registrar.Register(sampleRuleset);
         }
