@@ -1,13 +1,13 @@
 ﻿namespace RulesAPI
 {
-    public interface IConfigurableRule
+    public interface IConfigWritable
     {
         /// <summary>
-        /// Gets a string that can represents the rule's configuration.
+        /// Gets a string that can represents the rule in configuration.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///     The implementation of this method must guarantee that when the returned string is passed into the
+        ///     The implementation of this method must guarantee that when the returned string is passed into a
         ///     corresponding <c>FromConfigString</c>, it will produce a rule identical to the one that
         ///     <c>ToConfigString</c> was called on.
         ///     </para>
@@ -15,12 +15,12 @@
         ///     For portability purposes, it is recommended that the configuration string keep to UTF-8 encoding.
         ///     </para>
         /// </remarks>
-        /// <returns>a string that represents the rule's configuration.</returns>
+        /// <returns>A string representing the instance of this rule.</returns>
         string ToConfigString();
 
         /// <summary>
-        /// Returns an instantiated rule initialized with the specified configuration string.
+        /// Returns a rule initialized with the specified configuration string.
         /// </summary>
-        // public static <the-rule-type> FromConfigString(string configString);
+        // public static RulesAPI.Rule FromConfigString(string configString);
     }
 }
