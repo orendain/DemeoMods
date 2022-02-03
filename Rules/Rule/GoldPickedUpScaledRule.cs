@@ -17,6 +17,11 @@
             public float Multiplier;
         }
 
+        public GoldPickedUpScaledRule(float multiplier)
+            : this(new Config { Multiplier = multiplier })
+        {
+        }
+
         public GoldPickedUpScaledRule(Config config)
         {
             _config = config;
