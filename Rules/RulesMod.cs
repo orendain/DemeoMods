@@ -29,6 +29,7 @@
             registrar.Register(typeof(Rule.EnemyHealthScaledRule));
             registrar.Register(typeof(Rule.EnemyRespawnDisabledRule));
             registrar.Register(typeof(Rule.GoldPickedUpMultipliedRule));
+            registrar.Register(typeof(Rule.GoldPickedUpScaledRule));
             registrar.Register(typeof(Rule.PieceConfigAdjustedRule));
             registrar.Register(typeof(Rule.RatNestsSpawnGoldRule));
             registrar.Register(typeof(Rule.StartHealthAdjustedRule));
