@@ -4,9 +4,10 @@
     using System.Linq;
     using Boardgame;
     using HarmonyLib;
+    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class StartHealthAdjustedRule : RulesAPI.Rule
+    public sealed class StartHealthAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
     {
         public override string Description => "Start Health is adjusted";
 
@@ -22,14 +23,25 @@
             _adjustments = adjustments;
         }
 
+        public static StartHealthAdjustedRule FromConfigString(string configString)
+        {
+            JSON.MakeInto(JSON.Load(configString), out Dictionary<string, int> conf);
+            return new StartHealthAdjustedRule(conf);
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(_adjustments, EncodeOptions.NoTypeHints);
+        }
+
         protected override void OnPostGameCreated()
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
             foreach (var item in _adjustments)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Key}"));
-                var actionPoint = Traverse.Create(pieceConfig).Property<int>("StartHealth");
-                actionPoint.Value += item.Value;
+                var property = Traverse.Create(pieceConfig).Property<int>("StartHealth");
+                property.Value += item.Value;
             }
         }
 
@@ -39,8 +51,8 @@
             foreach (var item in _adjustments)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Key}"));
-                var actionPoint = Traverse.Create(pieceConfig).Property<int>("StartHealth");
-                actionPoint.Value -= item.Value;
+                var property = Traverse.Create(pieceConfig).Property<int>("StartHealth");
+                property.Value -= item.Value;
             }
         }
     }
