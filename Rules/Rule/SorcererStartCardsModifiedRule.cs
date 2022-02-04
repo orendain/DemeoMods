@@ -7,7 +7,7 @@
     using DataKeys;
     using HarmonyLib;
 
-    public sealed class SorcererStartCardsModifiedRule : RulesAPI.Rule
+    public sealed class SorcererStartCardsModifiedRule : RulesAPI.Rule, RulesAPI.IPatchable
     {
         public override string Description => "Sorcerer start cards are modified";
 
@@ -34,7 +34,7 @@
 
         protected override void OnDeactivate() => _isActivated = false;
 
-        private static void OnPatch(Harmony harmony)
+        private static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
