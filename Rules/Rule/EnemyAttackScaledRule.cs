@@ -3,6 +3,7 @@
     using Boardgame;
     using DataKeys;
     using HarmonyLib;
+    using MelonLoader.TinyJSON;
 
     public sealed class EnemyAttackScaledRule : RulesAPI.Rule, RulesAPI.IPatchable
     {
@@ -14,6 +15,17 @@
         public EnemyAttackScaledRule(float multiplier)
         {
             _multiplier = multiplier;
+        }
+
+        public static EnemyAttackScaledRule FromConfigString(string configString)
+        {
+            JSON.MakeInto(JSON.Load(configString), out float conf);
+            return new EnemyAttackScaledRule(conf);
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(_multiplier, EncodeOptions.NoTypeHints);
         }
 
         protected override void OnActivate() => _isActivated = true;
