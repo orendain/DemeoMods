@@ -2,12 +2,23 @@
 {
     using Boardgame.AIDirector;
     using HarmonyLib;
+    using MelonLoader.TinyJSON;
 
-    public sealed class EnemyRespawnDisabledRule : RulesAPI.Rule, RulesAPI.IPatchable
+    public sealed class EnemyRespawnDisabledRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
     {
         public override string Description => "Enemy respawns are disabled";
 
         private static bool _isActivated;
+
+        public static EnemyRespawnDisabledRule FromConfigString(string configString)
+        {
+            return new EnemyRespawnDisabledRule();
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(string.Empty, EncodeOptions.NoTypeHints);
+        }
 
         protected override void OnActivate() => _isActivated = true;
 
