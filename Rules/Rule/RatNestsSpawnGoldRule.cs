@@ -3,9 +3,10 @@
     using System.Linq;
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
+    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class RatNestsSpawnGoldRule : RulesAPI.Rule
+    public sealed class RatNestsSpawnGoldRule : RulesAPI.Rule, RulesAPI.IConfigWritable
     {
         public override string Description => "Rat nests spawn gold";
 
@@ -15,6 +16,17 @@
         public RatNestsSpawnGoldRule(int maxPileCount)
         {
             _maxPileCount = maxPileCount;
+        }
+
+        public static RatNestsSpawnGoldRule FromConfigString(string configString)
+        {
+            JSON.MakeInto(JSON.Load(configString), out int conf);
+            return new RatNestsSpawnGoldRule(conf);
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(_maxPileCount, EncodeOptions.NoTypeHints);
         }
 
         protected override void OnPostGameCreated()
