@@ -64,6 +64,14 @@
                 }
             }
 
+            var hasDuplicatePatchables = ruleset.Rules.Where(r => r is IPatchable)
+                .GroupBy(r => r.GetType().Name)
+                .Any(g => g.Count() > 1);
+            if (hasDuplicatePatchables)
+            {
+                throw new ArgumentException("Ruleset must not include duplicate IPatchable rules.");
+            }
+
             Rulesets.Add(ruleset);
         }
 

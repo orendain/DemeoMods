@@ -68,7 +68,7 @@
                 configCategory.CreateEntry(ruleType.Name, default_value: string.Empty, dont_save_default: true);
             }
 
-            var rules = new HashSet<Rule>();
+            var rules = new List<Rule>();
             foreach (var entry in configCategory.Entries)
             {
                 if (string.IsNullOrEmpty(entry.GetValueAsString()))
