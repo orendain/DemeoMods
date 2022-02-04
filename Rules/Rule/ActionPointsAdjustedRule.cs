@@ -4,9 +4,10 @@
     using System.Linq;
     using Boardgame;
     using HarmonyLib;
+    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class ActionPointsAdjustedRule : RulesAPI.Rule
+    public sealed class ActionPointsAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
     {
         public override string Description => "Action points are adjusted";
 
@@ -20,6 +21,17 @@
         public ActionPointsAdjustedRule(Dictionary<string, int> adjustments)
         {
             _adjustments = adjustments;
+        }
+
+        public static ActionPointsAdjustedRule FromConfigString(string configString)
+        {
+            JSON.MakeInto(JSON.Load(configString), out Dictionary<string, int> conf);
+            return new ActionPointsAdjustedRule(conf);
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(_adjustments, EncodeOptions.NoTypeHints);
         }
 
         protected override void OnPostGameCreated()

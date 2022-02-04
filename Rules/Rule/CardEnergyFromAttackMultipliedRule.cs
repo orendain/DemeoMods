@@ -2,8 +2,9 @@
 {
     using Data.GameData;
     using HarmonyLib;
+    using MelonLoader.TinyJSON;
 
-    public sealed class CardEnergyFromAttackMultipliedRule : RulesAPI.Rule
+    public sealed class CardEnergyFromAttackMultipliedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
     {
         public override string Description => "Card energy from attack is multiplied";
 
@@ -14,6 +15,17 @@
         {
             _multiplier = multiplier;
             _originalValue = AIDirectorConfig.CardEnergy_EnergyToGetFromDealingDamage;
+        }
+
+        public static CardEnergyFromAttackMultipliedRule FromConfigString(string configString)
+        {
+            JSON.MakeInto(JSON.Load(configString), out float conf);
+            return new CardEnergyFromAttackMultipliedRule(conf);
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(_multiplier, EncodeOptions.NoTypeHints);
         }
 
         protected override void OnPostGameCreated()

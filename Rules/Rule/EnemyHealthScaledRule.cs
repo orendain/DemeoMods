@@ -3,8 +3,9 @@
     using Boardgame;
     using DataKeys;
     using HarmonyLib;
+    using MelonLoader.TinyJSON;
 
-    public sealed class EnemyHealthScaledRule : RulesAPI.Rule, RulesAPI.IPatchable
+    public sealed class EnemyHealthScaledRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
     {
         public override string Description => "Enemy health is scaled";
 
@@ -14,6 +15,17 @@
         public EnemyHealthScaledRule(float multiplier)
         {
             _multiplier = multiplier;
+        }
+
+        public static EnemyHealthScaledRule FromConfigString(string configString)
+        {
+            JSON.MakeInto(JSON.Load(configString), out float conf);
+            return new EnemyHealthScaledRule(conf);
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(_multiplier, EncodeOptions.NoTypeHints);
         }
 
         protected override void OnActivate() => _isActivated = true;
