@@ -4,7 +4,7 @@
     using DataKeys;
     using HarmonyLib;
 
-    public sealed class EnemyHealthScaledRule : RulesAPI.Rule
+    public sealed class EnemyHealthScaledRule : RulesAPI.Rule, RulesAPI.IPatchable
     {
         public override string Description => "Enemy health is scaled";
 
@@ -20,7 +20,7 @@
 
         protected override void OnDeactivate() => _isActivated = false;
 
-        private static void OnPatch(Harmony harmony)
+        private static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.PropertyGetter(typeof(PieceConfig), "StartHealth"),
