@@ -4,7 +4,7 @@
     using Boardgame.SerializableEvents;
     using HarmonyLib;
 
-    public sealed class GoldPickedUpMultipliedRule : RulesAPI.Rule
+    public sealed class GoldPickedUpMultipliedRule : RulesAPI.Rule, RulesAPI.IPatchable
     {
         public override string Description => "Gold picked up is multiplied";
 
@@ -20,7 +20,7 @@
 
         protected override void OnDeactivate() => _isActivated = false;
 
-        private static void OnPatch(Harmony harmony)
+        private static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Constructor(

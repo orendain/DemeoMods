@@ -27,7 +27,7 @@
             foreach (var item in _adjustments)
             {
                 var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                ability.costActionPoint= item.Value;
+                ability.costActionPoint = item.Value;
             }
         }
 

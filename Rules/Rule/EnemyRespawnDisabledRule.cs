@@ -3,7 +3,7 @@
     using Boardgame.AIDirector;
     using HarmonyLib;
 
-    public sealed class EnemyRespawnDisabledRule : RulesAPI.Rule
+    public sealed class EnemyRespawnDisabledRule : RulesAPI.Rule, RulesAPI.IPatchable
     {
         public override string Description => "Enemy respawns are disabled";
 
@@ -13,7 +13,7 @@
 
         protected override void OnDeactivate() => _isActivated = false;
 
-        private static void OnPatch(Harmony harmony)
+        private static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(AIDirectorController2), "DynamicSpawning"),
