@@ -47,9 +47,10 @@
     <Compile Include="Rule\EnemyRespawnDisabledRule.cs" />
     <Compile Include="Rule\GoldPickedUpMultipliedRule.cs" />
     <Compile Include="Rule\GoldPickedUpScaledRule.cs" />
+    <Compile Include="Rule\PieceConfigAdjustedRule.cs" />
     <Compile Include="Rule\RatNestsSpawnGoldRule.cs" />
     <Compile Include="Rule\SampleRule.cs" />
-    <Compile Include="Rule\PieceConfigAdjustedRule.cs" />
+    <Compile Include="Rule\SorcererStartCardsModifiedRule.cs" />
     <Compile Include="Rule\StartHealthAdjustedRule.cs" />
     <Compile Include="Rule\ZapStartingInventoryAdjustedRule.cs" />
   </ItemGroup>
