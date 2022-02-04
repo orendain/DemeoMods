@@ -9,6 +9,7 @@ RulesAPI.
 
 - **SampleRule**: A [sample rule](Rule/SampleRule.cs) documenting the anatomy
   of a RulesAPI rule.
+- **AbilityAOEAdjustedRule**: Ability AOEs are adjsuted
 - **AbilityDamageAdjustedRule**: Ability damage is adjusted
 - **AbilityActionCostAdjustedRule**: Ability Action Cost is adjusted
 - **ActionPointsAdjustedRule**: Action points are adjusted

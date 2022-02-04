@@ -47,6 +47,9 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="IPatchable.cs" />
+        <Compile Include="RulesetIO.cs" />
+        <Compile Include="IConfigWritable.cs" />
         <Compile Include="ModPatcher.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Rule.cs" />

@@ -6,7 +6,7 @@
     using DataKeys;
     using HarmonyLib;
 
-    public sealed class ZapStartingInventoryAdjustedRule : RulesAPI.Rule
+    public sealed class ZapStartingInventoryAdjustedRule : RulesAPI.Rule, RulesAPI.IPatchable
     {
         public override string Description => "Zap starting inventory is adjusted";
 
@@ -16,7 +16,7 @@
 
         protected override void OnDeactivate() => _isActivated = false;
 
-        private static void OnPatch(Harmony harmony)
+        private static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),

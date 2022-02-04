@@ -17,6 +17,7 @@
         {
             var registrar = RulesAPI.Registrar.Instance();
             registrar.Register(typeof(Rule.SampleRule));
+            registrar.Register(typeof(Rule.AbilityAOEAdjustedRule));
             registrar.Register(typeof(Rule.AbilityDamageAdjustedRule));
             registrar.Register(typeof(Rule.AbilityActionCostAdjustedRule));
             registrar.Register(typeof(Rule.ActionPointsAdjustedRule));
@@ -28,6 +29,7 @@
             registrar.Register(typeof(Rule.EnemyHealthScaledRule));
             registrar.Register(typeof(Rule.EnemyRespawnDisabledRule));
             registrar.Register(typeof(Rule.GoldPickedUpMultipliedRule));
+            registrar.Register(typeof(Rule.GoldPickedUpScaledRule));
             registrar.Register(typeof(Rule.PieceConfigAdjustedRule));
             registrar.Register(typeof(Rule.RatNestsSpawnGoldRule));
             registrar.Register(typeof(Rule.SorcererStartCardsModifiedRule));
