@@ -10,14 +10,13 @@ namespace RulesAPI
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI");
         private const float WelcomeMessageDurationSeconds = 30f;
-
         private static bool _isRulesetActive;
 
         internal static Ruleset SelectedRuleset { get; private set; }
 
         public static void SelectRuleset(string ruleset)
         {
-            if (SelectedRuleset != null && _isRulesetActive)
+            if (!string.IsNullOrEmpty(ruleset) && _isRulesetActive)
             {
                 Logger.Msg($"Deactivating current ruleset before selecting a new one.");
                 TriggerDeactivateRuleset();

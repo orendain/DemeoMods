@@ -5,9 +5,34 @@
     using HarmonyLib;
     using MelonLoader;
 
-    public static class RulesetIO
+    public class RulesetIO
     {
         private const string CategoryName = "CustomRuleset";
+
+        private readonly MelonPreferences_Category _configCategory;
+        private readonly MelonPreferences_Entry<string> _selectedRulesetEntry;
+
+        internal static RulesetIO NewInstance()
+        {
+            return new RulesetIO();
+        }
+
+        private RulesetIO()
+        {
+            _configCategory = MelonPreferences.CreateCategory("RulesAPI");
+            _selectedRulesetEntry = _configCategory.CreateEntry("ruleset", string.Empty);
+        }
+
+        public void SaveSelectedRuleset(string rulesetName)
+        {
+            _selectedRulesetEntry.Value = rulesetName;
+            _configCategory.SaveToFile();
+        }
+
+        public string LoadSelectedRuleset()
+        {
+            return _selectedRulesetEntry.Value;
+        }
 
         public static void WriteRuleset(Ruleset ruleset)
         {
