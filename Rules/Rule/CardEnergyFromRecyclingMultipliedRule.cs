@@ -3,7 +3,7 @@
     using Boardgame;
     using HarmonyLib;
 
-    public sealed class CardEnergyFromRecyclingMultipliedRule : RulesAPI.Rule, RulesAPI.IPatchable
+    public sealed class CardEnergyFromRecyclingMultipliedRule : RulesAPI.Rule
     {
         public override string Description => "Card energy from recycling is multiplied";
 
@@ -20,7 +20,7 @@
 
         protected override void OnDeactivate() => _isActivated = false;
 
-        private static void Patch(Harmony harmony)
+        private static void OnPatch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(CardPowder), "OnTrashedCard"),

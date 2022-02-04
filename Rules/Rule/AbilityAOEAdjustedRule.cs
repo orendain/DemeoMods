@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame.BoardEntities.Abilities;
-    using HarmonyLib;
     using UnityEngine;
+    using HarmonyLib;
 
     public sealed class AbilityAOEAdjustedRule : RulesAPI.Rule
     {

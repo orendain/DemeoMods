@@ -3,7 +3,7 @@
     using System.Reflection;
     using HarmonyLib;
 
-    public sealed class CardSellValueMultipliedRule : RulesAPI.Rule, RulesAPI.IPatchable
+    public sealed class CardSellValueMultipliedRule : RulesAPI.Rule
     {
         public override string Description => "Card sell values are multiplied";
 
@@ -19,7 +19,7 @@
 
         protected override void OnDeactivate() => _isActivated = false;
 
-        private static void Patch(Harmony harmony)
+        private static void OnPatch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Inner(typeof(CardShopController), "CardShopInfoProvider").GetTypeInfo()

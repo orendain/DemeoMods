@@ -13,7 +13,7 @@
     ///     For example: Use <c>BallistaActionPointsAdjustedRule</c> instead of <c>AdjustBallistaActionPoints</c>.
     ///     </para>
     /// </remarks>
-    public sealed class SampleRule : RulesAPI.Rule, RulesAPI.IPatchable
+    public sealed class SampleRule : RulesAPI.Rule
     {
         /// <summary>
         /// Gets the description of the rule.
@@ -64,13 +64,18 @@
         }
 
         /// <summary>
-        /// Patches the game with the given patcher.
+        /// Called when the game is patched with this rule.
         /// </summary>
         /// <remarks>
-        /// Rules should use a static flag (e.g., <c>_isActivated</c>) in the patched method to
-        /// ensure it makes modifications only when it is activated.
+        ///     <para>
+        ///     This method should perform any required patching using the given patcher.
+        ///     </para>
+        ///     <para>
+        ///     Rules should use a static flag (e.g., <c>_isActivated</c>) in the patched method to ensure they make
+        ///     modifications only while the rule is activated.
+        ///     </para>
         /// </remarks>
-        private static void Patch(Harmony harmony)
+        private static void OnPatch(Harmony harmony)
         {
         }
     }

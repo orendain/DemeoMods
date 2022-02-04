@@ -1,7 +1,6 @@
 ﻿namespace RulesAPI
 {
     using System;
-    using System.Linq;
     using HarmonyLib;
     using MelonLoader;
 
@@ -20,7 +19,7 @@
 
         public override void OnApplicationLateStart()
         {
-            PatchRegisteredRules();
+            LoadRegisteredRules();
             InitializeConfig();
         }
 
@@ -50,31 +49,28 @@
             }
         }
 
-        private static void PatchRegisteredRules()
+        private static void LoadRegisteredRules()
         {
-            var patchableRules = Registrar.Instance().RuleTypes.Where(typ => typeof(IPatchable).IsAssignableFrom(typ)).ToList();
+            RulesAPI.Logger.Msg($"Loading [{Registrar.Instance().RuleTypes.Count}] registered rule types.");
 
-            RulesAPI.Logger.Msg($"Found [{patchableRules.Count}] registered rules that require game patching.");
-
-            foreach (var ruleType in patchableRules)
+            foreach (var ruleType in Registrar.Instance().RuleTypes)
             {
-                RulesAPI.Logger.Msg($"Patching game with rule type: {ruleType}");
-
-                var traverse = Traverse.Create(ruleType).Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] { RulesPatcher });
-                if (!traverse.MethodExists())
+                RulesAPI.Logger.Msg($"Loading rule type: {ruleType}");
+                var patchMethod = AccessTools.Method(ruleType, "OnPatch");
+                if (patchMethod == null)
                 {
-                    RulesAPI.Logger.Warning($"Could not find expected Patch method for rule [{ruleType}]. Skipping patching for that rule.");
+                    RulesAPI.Logger.Warning($"Did not find suitable 'OnPatch' method for rule [{ruleType}]. No patching is done for that rule.");
                     continue;
                 }
 
                 try
                 {
-                    traverse.GetValue();
+                    patchMethod.Invoke(null, new object[] { RulesPatcher });
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Perm disable rules/rulesets that fail to patch/load.
-                    RulesAPI.Logger.Error($"Failed to patch game with rule type [{ruleType}]: {e}");
+                    RulesAPI.Logger.Error($"Failed to apply patch for rule [{ruleType}]: {e}");
                 }
             }
         }
