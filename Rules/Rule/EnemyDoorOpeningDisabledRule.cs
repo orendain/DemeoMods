@@ -3,7 +3,7 @@
     using Boardgame;
     using HarmonyLib;
 
-    public sealed class EnemyDoorOpeningDisabledRule : RulesAPI.Rule
+    public sealed class EnemyDoorOpeningDisabledRule : RulesAPI.Rule, RulesAPI.IPatchable
     {
         public override string Description => "Enemy door opening ability is disabled";
 
@@ -13,7 +13,7 @@
 
         protected override void OnDeactivate() => _isActivated = false;
 
-        private static void OnPatch(Harmony harmony)
+        private static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.PropertyGetter(typeof(PieceConfig), "CanOpenDoor"),

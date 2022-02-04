@@ -5,7 +5,7 @@
     using HarmonyLib;
     using MelonLoader.TinyJSON;
 
-    public sealed class GoldPickedUpScaledRule : RulesAPI.Rule, RulesAPI.IConfigWritable
+    public sealed class GoldPickedUpScaledRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
     {
         public override string Description => "Gold picked up is scaled";
 
@@ -42,7 +42,7 @@
 
         protected override void OnDeactivate() => _isActivated = false;
 
-        private static void OnPatch(Harmony harmony)
+        private static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Constructor(
