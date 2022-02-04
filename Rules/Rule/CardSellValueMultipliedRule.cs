@@ -34,8 +34,7 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(CardShopController), "CardShopInfoProvider")
+                original: AccessTools.Inner(typeof(CardShopController), "CardShopInfoProvider")
                     .GetTypeInfo()
                     .GetDeclaredMethod("GetCardSellValue"),
                 postfix: new HarmonyMethod(
