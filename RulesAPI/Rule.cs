@@ -8,23 +8,6 @@
         public abstract string Description { get; }
 
         /// <summary>
-        /// Gets a value indicating whether or not the rule is activated.
-        /// </summary>
-        public bool IsActivated { get; private set; }
-
-        internal void Activate()
-        {
-            IsActivated = true;
-            OnActivate();
-        }
-
-        internal void Deactivate()
-        {
-            IsActivated = false;
-            OnDeactivate();
-        }
-
-        /// <summary>
         /// Called when the rule is activated.
         /// </summary>
         /// <remarks>
