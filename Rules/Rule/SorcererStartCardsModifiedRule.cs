@@ -6,19 +6,20 @@
     using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
+    using MelonLoader.TinyJSON;
 
-    public sealed class SorcererStartCardsModifiedRule : RulesAPI.Rule, RulesAPI.IPatchable
+    public sealed class SorcererStartCardsModifiedRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
     {
         public override string Description => "Sorcerer start cards are modified";
+
+        private static List<Card> _cards;
+        private static bool _isActivated;
 
         public struct Card
         {
             public AbilityKey Name;
             public bool IsReplenishable;
         }
-
-        private static bool _isActivated;
-        private static List<Card> _cards;
 
         public SorcererStartCardsModifiedRule(List<Card> cards)
         {
@@ -28,6 +29,17 @@
             }
 
             _cards = cards;
+        }
+
+        public static SorcererStartCardsModifiedRule FromConfigString(string configString)
+        {
+            JSON.MakeInto(JSON.Load(configString), out List<Card> conf);
+            return new SorcererStartCardsModifiedRule(conf);
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(_cards, EncodeOptions.NoTypeHints);
         }
 
         protected override void OnActivate() => _isActivated = true;
