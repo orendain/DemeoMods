@@ -5,14 +5,14 @@
     using HarmonyLib;
     using MelonLoader.TinyJSON;
 
-    public sealed class GoldPickedUpScaledRule : RulesAPI.Rule, RulesAPI.IConfigurableRule
+    public sealed class GoldPickedUpScaledRule : RulesAPI.Rule, RulesAPI.IConfigWritable
     {
         public override string Description => "Gold picked up is scaled";
 
         private static Config _config;
         private static bool _isActivated;
 
-        public struct Config
+        private struct Config
         {
             public float Multiplier;
         }
@@ -22,7 +22,7 @@
         {
         }
 
-        public GoldPickedUpScaledRule(Config config)
+        private GoldPickedUpScaledRule(Config config)
         {
             _config = config;
         }
@@ -35,7 +35,7 @@
 
         public string ToConfigString()
         {
-            return JSON.Dump(_config, EncodeOptions.NoTypeHints | EncodeOptions.PrettyPrint);
+            return JSON.Dump(_config, EncodeOptions.NoTypeHints);
         }
 
         protected override void OnActivate() => _isActivated = true;
