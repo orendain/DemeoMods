@@ -4,7 +4,7 @@
     using HarmonyLib;
     using MelonLoader.TinyJSON;
 
-    public sealed class CardSellValueMultipliedRule : RulesAPI.Rule, RulesAPI.IPatchable
+    public sealed class CardSellValueMultipliedRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
     {
         public override string Description => "Card sell values are multiplied";
 

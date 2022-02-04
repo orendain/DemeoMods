@@ -5,7 +5,7 @@
     using HarmonyLib;
     using MelonLoader.TinyJSON;
 
-    public sealed class EnemyAttackScaledRule : RulesAPI.Rule, RulesAPI.IPatchable
+    public sealed class EnemyAttackScaledRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
     {
         public override string Description => "Enemy attack damage is scaled";
 

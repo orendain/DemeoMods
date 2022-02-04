@@ -4,7 +4,7 @@
     using HarmonyLib;
     using MelonLoader.TinyJSON;
 
-    public sealed class CardEnergyFromRecyclingMultipliedRule : RulesAPI.Rule, RulesAPI.IPatchable
+    public sealed class CardEnergyFromRecyclingMultipliedRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
     {
         public override string Description => "Card energy from recycling is multiplied";
 
