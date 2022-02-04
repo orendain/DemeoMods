@@ -8,9 +8,7 @@
     internal class RulesAPIMod : MelonMod
     {
         private static readonly Harmony RulesPatcher = new Harmony("com.orendain.demeomods.rulesapi.patcher");
-
-        private MelonPreferences_Category _configCategory;
-        private MelonPreferences_Entry<string> _rulesetConfig;
+        private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
 
         public override void OnApplicationStart()
         {
@@ -21,33 +19,27 @@
         public override void OnApplicationLateStart()
         {
             PatchRegisteredRules();
-            InitializeConfig();
-        }
 
-        public override void OnApplicationQuit()
-        {
-            _rulesetConfig.Value = RulesAPI.SelectedRuleset != null ? RulesAPI.SelectedRuleset.Name : string.Empty;
-            _configCategory.SaveToFile();
-        }
-
-        private void InitializeConfig()
-        {
-            _configCategory = MelonPreferences.CreateCategory("RulesAPI");
-            _rulesetConfig = _configCategory.CreateEntry("ruleset", string.Empty);
-
-            if (string.IsNullOrEmpty(_rulesetConfig.Value))
+            var configSelectedRuleset = ConfigManager.LoadSelectedRuleset();
+            if (string.IsNullOrEmpty(configSelectedRuleset))
             {
                 return;
             }
 
             try
             {
-                RulesAPI.SelectRuleset(_rulesetConfig.Value);
+                RulesAPI.SelectRuleset(configSelectedRuleset);
             }
             catch (ArgumentException e)
             {
-                RulesAPI.Logger.Warning($"Failed to select ruleset [{_rulesetConfig.Value}] from config: {e}");
+                RulesAPI.Logger.Warning($"Failed to select ruleset [{configSelectedRuleset}]: {e}");
             }
+        }
+
+        public override void OnApplicationQuit()
+        {
+            var rulesetName = RulesAPI.SelectedRuleset != null ? RulesAPI.SelectedRuleset.Name : string.Empty;
+            ConfigManager.SaveSelectedRuleset(rulesetName);
         }
 
         private static void PatchRegisteredRules()
