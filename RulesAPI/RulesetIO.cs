@@ -7,8 +7,6 @@
 
     public class RulesetIO
     {
-        private const string CategoryName = "CustomRuleset";
-
         private readonly MelonPreferences_Category _configCategory;
         private readonly MelonPreferences_Entry<string> _selectedRulesetEntry;
 
@@ -34,10 +32,14 @@
             return _selectedRulesetEntry.Value;
         }
 
-        public static void WriteRuleset(Ruleset ruleset)
+        /// <summary>
+        /// Writes the specified ruleset to the configuration file.
+        /// </summary>
+        /// <param name="configName">A name under which to write the ruleset.</param>
+        /// <param name="ruleset">The ruleset to write.</param>
+        public static void WriteRuleset(string configName, Ruleset ruleset)
         {
-            var configCategory = MelonPreferences.CreateCategory(CategoryName);
-
+            var configCategory = MelonPreferences.CreateCategory(configName);
             foreach (var rule in ruleset.Rules)
             {
                 if (!(rule is IConfigWritable writableRule))
@@ -48,11 +50,18 @@
 
                 configCategory.CreateEntry(writableRule.GetType().Name, writableRule.ToConfigString());
             }
+
+            configCategory.SaveToFile();
         }
 
-        public static Ruleset ReadRuleset()
+        /// <summary>
+        /// Reads a ruleset from the configuration file.
+        /// </summary>
+        /// <param name="configName">The name under which the desired ruleset is written.</param>
+        /// <returns>The ruleset read the configuration.</returns>
+        public static Ruleset ReadRuleset(string configName)
         {
-            var configCategory = MelonPreferences.CreateCategory(CategoryName);
+            var configCategory = MelonPreferences.CreateCategory(configName);
 
             foreach (var ruleType in Registrar.Instance().RuleTypes)
             {
@@ -78,7 +87,7 @@
                 }
             }
 
-            return Ruleset.NewInstance("CustomRuleset", "A custom configured ruleset.", rules);
+            return Ruleset.NewInstance(configName, "A custom ruleset.", rules);
         }
 
         /// <summary>
