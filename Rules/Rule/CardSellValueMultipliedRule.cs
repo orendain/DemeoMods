@@ -10,7 +10,6 @@
         private static float _multiplier;
         private static bool _isActivated;
 
-
         public CardSellValueMultipliedRule(float multiplier)
         {
             _multiplier = multiplier;
