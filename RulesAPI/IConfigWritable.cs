@@ -1,26 +1,25 @@
 ﻿namespace RulesAPI
 {
-    public interface IConfigWritable
+    /// <summary>
+    /// Represents a rule whose configuration can be written.
+    /// </summary>
+    /// <remarks>
+    /// If the implementing class defines a constructor whose exactly one parameter is of the type
+    /// of this interface's argument type, that constructor may be used to instantiate a rule from configuration.
+    /// </remarks>
+    /// <returns>The type of this rule's configuration.</returns>
+    public interface IConfigWritable<T>
     {
         /// <summary>
-        /// Gets a string that can represents the rule in configuration.
+        /// Gets the object that represents the rule's configuration.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///     The implementation of this method must guarantee that when the returned string is passed into a
-        ///     corresponding <c>FromConfigString</c>, it will produce a rule identical to the one that
-        ///     <c>ToConfigString</c> was called on.
-        ///     </para>
-        ///     <para>
-        ///     For portability purposes, it is recommended that the configuration string keep to UTF-8 encoding.
+        ///     To maximum compatibility, the object must be either a primitive, string or enum,
+        ///     or a struct, list, dictionary or array with primitive, string or enum types.
         ///     </para>
         /// </remarks>
-        /// <returns>A string representing the instance of this rule.</returns>
-        string ToConfigString();
-
-        /// <summary>
-        /// Returns a rule initialized with the specified configuration string.
-        /// </summary>
-        // public static RulesAPI.Rule FromConfigString(string configString);
+        /// <returns>An object representing this rule's configuration.</returns>
+        T GetConfigObject();
     }
 }
