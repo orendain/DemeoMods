@@ -33,6 +33,7 @@
             registrar.Register(typeof(Rules.PieceConfigAdjustedRule));
             registrar.Register(typeof(Rules.RatNestsSpawnGoldRule));
             registrar.Register(typeof(Rules.SorcererStartCardsModifiedRule));
+            registrar.Register(typeof(Rules.StartCardsModifiedRule));
             registrar.Register(typeof(Rules.StartHealthAdjustedRule));
             registrar.Register(typeof(Rules.ZapStartingInventoryAdjustedRule));
         }

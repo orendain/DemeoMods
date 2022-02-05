@@ -25,6 +25,7 @@ RulesAPI.
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
 - **RatNestsSpawnGoldRule**: Rat nests spawn gold
 - **SorcererStartCardsModifiedRule**: Sorcerer start cards are modified
+- **StartCardsModifiedRule**: Hero start cards are modified
 - **StartHealthAdjustedRule**: Starting Health is adjusted
 - **ZapStartingInventoryAdjustedRule**: Zap starting inventory is adjusted
 
