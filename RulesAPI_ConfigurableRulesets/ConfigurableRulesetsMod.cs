@@ -11,7 +11,7 @@
 
         public override void OnApplicationStart()
         {
-            DemoWriteRuleset();
+            // DemoWriteRuleset();
             // DemoReadRuleset();
         }
 
