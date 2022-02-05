@@ -42,4 +42,3 @@ using RulesAPI.ConfigurableRulesets;
 [assembly: MelonID("576572")]
 [assembly: VerifyLoaderVersion("0.5.3", true)]
 [assembly: MelonAdditionalDependencies("RulesAPI")]
-// [assembly: MelonOptionalDependencies("System.Text.Json")]

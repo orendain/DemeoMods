@@ -7,11 +7,11 @@
 
     internal class ConfigurableRulesetsMod : MelonMod
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI:ConfigurableRulesets");
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI: Configurable Rulesets");
 
-        public override void OnApplicationStart()
+        public override void OnApplicationLateStart()
         {
-            // DemoWriteRuleset();
+            DemoWriteRuleset();
             // DemoReadRuleset();
         }
 
@@ -43,9 +43,9 @@
             var cefrm = new CardEnergyFromRecyclingMultipliedRule(5f);
             var csvm = new CardSellValueMultipliedRule(2f);
             var eas = new EnemyAttackScaledRule(0.5f);
-            var edod = new EnemyDoorOpeningDisabledRule(default);
+            var edod = new EnemyDoorOpeningDisabledRule(true);
             var ehs = new EnemyHealthScaledRule(2);
-            var erd = new EnemyRespawnDisabledRule(default);
+            var erd = new EnemyRespawnDisabledRule(true);
             var gpus = new GoldPickedUpScaledRule(2f);
             var pca = new PieceConfigAdjustedRule(new List<List<string>>
             {
