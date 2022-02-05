@@ -48,7 +48,6 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="IPatchable.cs" />
-        <Compile Include="ConfigManager.cs" />
         <Compile Include="IConfigWritable.cs" />
         <Compile Include="ModPatcher.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

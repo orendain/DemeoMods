@@ -1,5 +1,6 @@
 ﻿namespace RulesAPI.Configuration
 {
+    using System;
     using System.Collections.Generic;
     using DataKeys;
     using MelonLoader;
@@ -7,11 +8,33 @@
     internal class ConfigurationMod : MelonMod
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI: Configuration");
+        private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
 
         public override void OnApplicationLateStart()
         {
             DemoWriteRuleset();
             // DemoReadRuleset();
+
+            var configSelectedRuleset = ConfigManager.LoadSelectedRuleset();
+            if (string.IsNullOrEmpty(configSelectedRuleset))
+            {
+                return;
+            }
+
+            try
+            {
+                RulesAPI.SelectRuleset(configSelectedRuleset);
+            }
+            catch (ArgumentException e)
+            {
+                Logger.Warning($"Failed to select ruleset [{configSelectedRuleset}]: {e}");
+            }
+        }
+
+        public override void OnApplicationQuit()
+        {
+            var rulesetName = RulesAPI.SelectedRuleset != null ? RulesAPI.SelectedRuleset.Name : string.Empty;
+            ConfigManager.SaveSelectedRuleset(rulesetName);
         }
 
         private static void DemoWriteRuleset()

@@ -12,7 +12,7 @@ namespace RulesAPI
         private const float WelcomeMessageDurationSeconds = 30f;
         private static bool _isRulesetActive;
 
-        internal static Ruleset SelectedRuleset { get; private set; }
+        public static Ruleset SelectedRuleset { get; private set; }
 
         public static void SelectRuleset(string ruleset)
         {
