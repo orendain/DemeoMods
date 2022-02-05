@@ -6,9 +6,34 @@
     using HarmonyLib;
     using MelonLoader;
 
-    public static class ConfigManager
+    public class ConfigManager
     {
         private static readonly JsonSerializerOptions SerializerOptions = new JsonSerializerOptions { IncludeFields = true, WriteIndented = true };
+
+        private readonly MelonPreferences_Category _configCategory;
+        private readonly MelonPreferences_Entry<string> _selectedRulesetEntry;
+
+        internal static ConfigManager NewInstance()
+        {
+            return new ConfigManager();
+        }
+
+        private ConfigManager()
+        {
+            _configCategory = MelonPreferences.CreateCategory("RulesAPI");
+            _selectedRulesetEntry = _configCategory.CreateEntry("ruleset", string.Empty);
+        }
+
+        internal void SaveSelectedRuleset(string rulesetName)
+        {
+            _selectedRulesetEntry.Value = rulesetName;
+            _configCategory.SaveToFile();
+        }
+
+        internal string LoadSelectedRuleset()
+        {
+            return _selectedRulesetEntry.Value;
+        }
 
         /// <summary>
         /// Writes the specified ruleset to the configuration file.
