@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{B412463F-A4F7-46CE-AC4E-37448762B45B}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>RulesAPI</RootNamespace>
+        <AssemblyName>RulesAPI_Core</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="MelonLoader">
+            <HintPath>$(SteamDemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="PhotonUnityNetworking">
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="IPatchable.cs" />
+        <Compile Include="ConfigManager.cs" />
+        <Compile Include="IConfigWritable.cs" />
+        <Compile Include="ModPatcher.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Rule.cs" />
+        <Compile Include="RulesAPI.cs" />
+        <Compile Include="Ruleset.cs" />
+        <Compile Include="RulesAPIMod.cs" />
+        <Compile Include="Registrar.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="README.md" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <Target Name="CopyToModsDir" AfterTargets="Build">
+        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(SteamDemeoDir)\Mods" />
+        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(OculusDemeoDir)\Mods" />
+    </Target>
+</Project>
