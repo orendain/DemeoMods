@@ -4,9 +4,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomFinder", "RoomFinder\RoomFinder.csproj", "{5D106A6F-2A66-4731-877A-3C315F0CB18C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesAPI", "RulesAPI\RulesAPI.csproj", "{B412463F-A4F7-46CE-AC4E-37448762B45B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesAPI_Core", "RulesAPI_Core\RulesAPI_Core.csproj", "{B412463F-A4F7-46CE-AC4E-37448762B45B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rules", "Rules\Rules.csproj", "{8FC09405-8E06-4090-BB68-94882F0A52D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesAPI_Essentials", "RulesAPI_Essentials\RulesAPI_Essentials.csproj", "{8FC09405-8E06-4090-BB68-94882F0A52D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkipIntro", "SkipIntro\SkipIntro.csproj", "{E986568C-684F-4DD3-980C-8D8443982EC6}"
 EndProject
@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5
 		docs\PieceConfig.md = docs\PieceConfig.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesAPI_ConfigurableRulesets", "RulesAPI_ConfigurableRulesets\RulesAPI_ConfigurableRulesets.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesAPI_Configuration", "RulesAPI_Configuration\RulesAPI_Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
