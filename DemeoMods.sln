@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5
 		docs\PieceConfig.md = docs\PieceConfig.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesAPI_ConfigurableRulesets", "RulesAPI_ConfigurableRulesets\RulesAPI_ConfigurableRulesets.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{E986568C-684F-4DD3-980C-8D8443982EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED5D884D-FC02-4095-886E-C18369F4051D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED5D884D-FC02-4095-886E-C18369F4051D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
