@@ -4,44 +4,35 @@
     using System.Linq;
     using Boardgame.BoardEntities.Abilities;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class AbilityAOEAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
+    public sealed class AbilityAoeAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable<Dictionary<string, int>>
     {
         public override string Description => "Ability AOE Ranges are adjusted";
 
         private readonly Dictionary<string, int> _adjustments;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AbilityAOEAdjustedRule"/> class.
+        /// Initializes a new instance of the <see cref="AbilityAoeAdjustedRule"/> class.
         /// </summary>
         /// <param name="adjustments">Key-value pairs mapping the name of an ability and the AOE range
         /// added to their base. Adding '1' to a 3x3 spell will make a 5x5. Negative values will reduce AOE.</param>
-        public static ActionPointsAdjustedRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out Dictionary<string, int> conf);
-            return new ActionPointsAdjustedRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_adjustments, EncodeOptions.NoTypeHints);
-        }
-        public AbilityAOEAdjustedRule(Dictionary<string, int> adjustments)
+        public AbilityAoeAdjustedRule(Dictionary<string, int> adjustments)
         {
             _adjustments = adjustments;
         }
+
+        public Dictionary<string, int> GetConfigObject() => _adjustments;
 
         protected override void OnPostGameCreated()
         {
             var abilities = Resources.FindObjectsOfTypeAll<Ability>();
             foreach (var item in _adjustments)
             {
-                var myAbility = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                var myAOE = Traverse.Create(myAbility).Field<AreaOfEffect>("areaOfEffect").Value;
-                Traverse.Create(myAOE).Field<int>("range").Value += item.Value; // Adjust the yellow AOE outline when casting.
-                myAbility.areaOfEffectRange += item.Value; // Adjust value displayed on the card.
+                var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
+                var aoe = Traverse.Create(ability).Field<AreaOfEffect>("areaOfEffect").Value;
+                Traverse.Create(aoe).Field<int>("range").Value += item.Value; // Adjust the yellow AOE outline when casting.
+                ability.areaOfEffectRange += item.Value; // Adjust value displayed on the card.
             }
         }
 
@@ -50,10 +41,10 @@
             var abilities = Resources.FindObjectsOfTypeAll<Ability>();
             foreach (var item in _adjustments)
             {
-                var myAbility = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                var myAOE = Traverse.Create(myAbility).Field<AreaOfEffect>("areaofEffect").Value;
-                Traverse.Create(myAOE).Field<int>("range").Value -= item.Value; // Adjust the yellow AOE outline when casting.
-                myAbility.areaOfEffectRange -= item.Value; // Adjust value displayed on the card.
+                var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
+                var aoe = Traverse.Create(ability).Field<AreaOfEffect>("areaofEffect").Value;
+                Traverse.Create(aoe).Field<int>("range").Value -= item.Value; // Adjust the yellow AOE outline when casting.
+                ability.areaOfEffectRange -= item.Value; // Adjust value displayed on the card.
             }
         }
     }

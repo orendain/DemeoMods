@@ -4,10 +4,9 @@
     using System.Linq;
     using Boardgame;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class PieceConfigAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
+    public sealed class PieceConfigAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable<List<List<string>>>
     {
         public override string Description => "Piece configuration is adjusted";
 
@@ -18,21 +17,12 @@
         /// </summary>
         /// <param name="adjustments">Lists of PieceNames, PropertyNames and Values
         /// added to their base. Negative numbers are allowed.</param>
-        public static ActionPointsAdjustedRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out Dictionary<string, int> conf);
-            return new ActionPointsAdjustedRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_adjustments, EncodeOptions.NoTypeHints);
-        }
-
         public PieceConfigAdjustedRule(List<List<string>> adjustments)
         {
             _adjustments = adjustments;
         }
+
+        public List<List<string>> GetConfigObject() => _adjustments;
 
         protected override void OnPostGameCreated()
         {

@@ -4,10 +4,9 @@
     using System.Linq;
     using Boardgame;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class ActionPointsAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
+    public sealed class ActionPointsAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable<Dictionary<string, int>>
     {
         public override string Description => "Action points are adjusted";
 
@@ -23,16 +22,7 @@
             _adjustments = adjustments;
         }
 
-        public static ActionPointsAdjustedRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out Dictionary<string, int> conf);
-            return new ActionPointsAdjustedRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_adjustments, EncodeOptions.NoTypeHints);
-        }
+        public Dictionary<string, int> GetConfigObject() => _adjustments;
 
         protected override void OnPostGameCreated()
         {
@@ -40,8 +30,8 @@
             foreach (var item in _adjustments)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Key}"));
-                var actionPoint = Traverse.Create(pieceConfig).Property<int>("ActionPoint");
-                actionPoint.Value += item.Value;
+                var property = Traverse.Create(pieceConfig).Property<int>("ActionPoint");
+                property.Value += item.Value;
             }
         }
 
@@ -51,8 +41,8 @@
             foreach (var item in _adjustments)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Key}"));
-                var actionPoint = Traverse.Create(pieceConfig).Property<int>("ActionPoint");
-                actionPoint.Value -= item.Value;
+                var property = Traverse.Create(pieceConfig).Property<int>("ActionPoint");
+                property.Value -= item.Value;
             }
         }
     }

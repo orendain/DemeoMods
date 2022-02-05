@@ -3,31 +3,21 @@
     using System.Linq;
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
-    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class RatNestsSpawnGoldRule : RulesAPI.Rule, RulesAPI.IConfigWritable
+    public sealed class RatNestsSpawnGoldRule : RulesAPI.Rule, RulesAPI.IConfigWritable<int>
     {
         public override string Description => "Rat nests spawn gold";
 
-        private readonly int _maxPileCount;
+        private readonly int _pileCount;
         private int _originalSpawnAmount;
 
-        public RatNestsSpawnGoldRule(int maxPileCount)
+        public RatNestsSpawnGoldRule(int pileCount)
         {
-            _maxPileCount = maxPileCount;
+            _pileCount = pileCount;
         }
 
-        public static RatNestsSpawnGoldRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out int conf);
-            return new RatNestsSpawnGoldRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_maxPileCount, EncodeOptions.NoTypeHints);
-        }
+        public int GetConfigObject() => _pileCount;
 
         protected override void OnPostGameCreated()
         {
@@ -35,7 +25,7 @@
             var ability = abilities.First(c => c.name.Equals("SpawnRat(Clone)"));
             ability.pieceToSpawn = BoardPieceId.GoldPile;
             _originalSpawnAmount = ability.spawnMaxAmount;
-            ability.spawnMaxAmount = _maxPileCount;
+            ability.spawnMaxAmount = _pileCount;
         }
 
         protected override void OnDeactivate()

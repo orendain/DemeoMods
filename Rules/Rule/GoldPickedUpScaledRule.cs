@@ -3,40 +3,20 @@
     using Boardgame.Data;
     using Boardgame.SerializableEvents;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
 
-    public sealed class GoldPickedUpScaledRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
+    public sealed class GoldPickedUpScaledRule : RulesAPI.Rule, RulesAPI.IConfigWritable<float>, RulesAPI.IPatchable
     {
         public override string Description => "Gold picked up is scaled";
 
-        private static Config _config;
+        private static float _multiplier;
         private static bool _isActivated;
 
-        private struct Config
-        {
-            public float Multiplier;
-        }
-
         public GoldPickedUpScaledRule(float multiplier)
-            : this(new Config { Multiplier = multiplier })
         {
+            _multiplier = multiplier;
         }
 
-        private GoldPickedUpScaledRule(Config config)
-        {
-            _config = config;
-        }
-
-        public static GoldPickedUpScaledRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out Config conf);
-            return new GoldPickedUpScaledRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_config, EncodeOptions.NoTypeHints);
-        }
+        public float GetConfigObject() => _multiplier;
 
         protected override void OnActivate() => _isActivated = true;
 
@@ -58,7 +38,7 @@
                 return;
             }
 
-            __instance.goldAmount = (int)(__instance.goldAmount * _config.Multiplier);
+            __instance.goldAmount = (int)(__instance.goldAmount * _multiplier);
         }
     }
 }

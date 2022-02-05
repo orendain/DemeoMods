@@ -3,9 +3,8 @@
     using Boardgame;
     using DataKeys;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
 
-    public sealed class EnemyAttackScaledRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
+    public sealed class EnemyAttackScaledRule : RulesAPI.Rule, RulesAPI.IConfigWritable<float>, RulesAPI.IPatchable
     {
         public override string Description => "Enemy attack damage is scaled";
 
@@ -17,16 +16,7 @@
             _multiplier = multiplier;
         }
 
-        public static EnemyAttackScaledRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out float conf);
-            return new EnemyAttackScaledRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_multiplier, EncodeOptions.NoTypeHints);
-        }
+        public float GetConfigObject() => _multiplier;
 
         protected override void OnActivate() => _isActivated = true;
 

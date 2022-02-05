@@ -2,31 +2,20 @@
 {
     using Boardgame;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
 
-    public sealed class CardEnergyFromRecyclingMultipliedRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
+    public sealed class CardEnergyFromRecyclingMultipliedRule : RulesAPI.Rule, RulesAPI.IConfigWritable<float>, RulesAPI.IPatchable
     {
-        public override string Description => "Card energy from recycling is multiplied";
-
-        private static bool _isActivated;
+        public override string Description => "CardConfig energy from recycling is multiplied";
 
         private static float _multiplier;
+        private static bool _isActivated;
 
         public CardEnergyFromRecyclingMultipliedRule(float multiplier)
         {
             _multiplier = multiplier;
         }
 
-        public static CardEnergyFromRecyclingMultipliedRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out float conf);
-            return new CardEnergyFromRecyclingMultipliedRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_multiplier, EncodeOptions.NoTypeHints);
-        }
+        public float GetConfigObject() => _multiplier;
 
         protected override void OnActivate() => _isActivated = true;
 

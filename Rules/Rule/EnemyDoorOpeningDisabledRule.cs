@@ -2,23 +2,18 @@
 {
     using Boardgame;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
 
-    public sealed class EnemyDoorOpeningDisabledRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
+    public sealed class EnemyDoorOpeningDisabledRule : RulesAPI.Rule, RulesAPI.IConfigWritable<bool>, RulesAPI.IPatchable
     {
         public override string Description => "Enemy door opening ability is disabled";
 
         private static bool _isActivated;
 
-        public static EnemyDoorOpeningDisabledRule FromConfigString(string configString)
+        public EnemyDoorOpeningDisabledRule(bool value)
         {
-            return new EnemyDoorOpeningDisabledRule();
         }
 
-        public string ToConfigString()
-        {
-            return JSON.Dump(string.Empty, EncodeOptions.NoTypeHints);
-        }
+        public bool GetConfigObject() => true;
 
         protected override void OnActivate() => _isActivated = true;
 
