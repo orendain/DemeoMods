@@ -8,7 +8,7 @@ namespace RulesAPI
 
     public static class RulesAPI
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI: Core");
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI:Core");
         private const float WelcomeMessageDurationSeconds = 30f;
         private static bool _isRulesetActive;
 

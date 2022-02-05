@@ -7,7 +7,7 @@
 
     internal class ConfigurationMod : MelonMod
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI: Configuration");
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI:Configuration");
         private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
 
         public override void OnApplicationLateStart()

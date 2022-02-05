@@ -5,7 +5,7 @@
 
     internal class EssentialsMod : MelonMod
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI: Essentials");
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI:Essentials");
 
         public override void OnApplicationStart()
         {
