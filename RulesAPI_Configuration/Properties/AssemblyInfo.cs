@@ -21,7 +21,7 @@ using RulesAPI.Configuration;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("61BB4173-6D1C-44A5-9DA6-5ECF026CE7B4")]
+[assembly: Guid("ED5D884D-FC02-4095-886E-C18369F4051D")]
 
 // Version information for an assembly consists of the following four values:
 //
