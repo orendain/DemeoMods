@@ -3,9 +3,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame.BoardEntities.Abilities;
+    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class AbilityDamageAdjustedRule : RulesAPI.Rule
+    public sealed class AbilityDamageAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
     {
         public override string Description => "Ability damage is adjusted";
 
@@ -16,6 +17,16 @@
         /// </summary>
         /// <param name="adjustments">Key-value pairs mapping the name of an entity to the number of action points
         /// added to their base. Negative numbers are allowed.</param>
+        public static ActionPointsAdjustedRule FromConfigString(string configString)
+        {
+            JSON.MakeInto(JSON.Load(configString), out Dictionary<string, int> conf);
+            return new ActionPointsAdjustedRule(conf);
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(_adjustments, EncodeOptions.NoTypeHints);
+        }
         public AbilityDamageAdjustedRule(Dictionary<string, int> adjustments)
         {
             _adjustments = adjustments;

@@ -4,9 +4,10 @@
     using System.Linq;
     using Boardgame.BoardEntities.Abilities;
     using HarmonyLib;
+    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class AbilityAOEAdjustedRule : RulesAPI.Rule
+    public sealed class AbilityAOEAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
     {
         public override string Description => "Ability AOE Ranges are adjusted";
 
@@ -17,6 +18,16 @@
         /// </summary>
         /// <param name="adjustments">Key-value pairs mapping the name of an ability and the AOE range
         /// added to their base. Adding '1' to a 3x3 spell will make a 5x5. Negative values will reduce AOE.</param>
+        public static ActionPointsAdjustedRule FromConfigString(string configString)
+        {
+            JSON.MakeInto(JSON.Load(configString), out Dictionary<string, int> conf);
+            return new ActionPointsAdjustedRule(conf);
+        }
+
+        public string ToConfigString()
+        {
+            return JSON.Dump(_adjustments, EncodeOptions.NoTypeHints);
+        }
         public AbilityAOEAdjustedRule(Dictionary<string, int> adjustments)
         {
             _adjustments = adjustments;
