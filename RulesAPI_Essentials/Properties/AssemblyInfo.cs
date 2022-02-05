@@ -41,4 +41,4 @@ using RulesAPI.Essentials;
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonID("574514")]
 [assembly: VerifyLoaderVersion("0.5.3", true)]
-[assembly: MelonAdditionalDependencies("RulesAPI: Core")]
+[assembly: MelonAdditionalDependencies("RulesAPI_Core")]
