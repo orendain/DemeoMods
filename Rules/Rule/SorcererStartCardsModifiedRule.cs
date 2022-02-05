@@ -6,41 +6,31 @@
     using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
 
-    public sealed class SorcererStartCardsModifiedRule : RulesAPI.Rule, RulesAPI.IConfigWritable, RulesAPI.IPatchable
+    public sealed class SorcererStartCardsModifiedRule : RulesAPI.Rule, RulesAPI.IConfigWritable<List<SorcererStartCardsModifiedRule.CardConfig>>, RulesAPI.IPatchable
     {
         public override string Description => "Sorcerer start cards are modified";
 
-        private static List<Card> _cards;
+        private static List<CardConfig> _cards;
         private static bool _isActivated;
 
-        public struct Card
+        public struct CardConfig
         {
-            public AbilityKey Name;
+            public AbilityKey Card;
             public bool IsReplenishable;
         }
 
-        public SorcererStartCardsModifiedRule(List<Card> cards)
+        public SorcererStartCardsModifiedRule(List<CardConfig> cards)
         {
-            if (cards.Count(c => c.IsReplenishable) > 2)
+            _cards = cards;
+
+            if (_cards.Count(c => c.IsReplenishable) > 2)
             {
                 throw new ArgumentException("Only 2 replenishable cards allowed.");
             }
-
-            _cards = cards;
         }
 
-        public static SorcererStartCardsModifiedRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out List<Card> conf);
-            return new SorcererStartCardsModifiedRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_cards, EncodeOptions.NoTypeHints);
-        }
+        public List<CardConfig> GetConfigObject() => _cards;
 
         protected override void OnActivate() => _isActivated = true;
 
@@ -50,7 +40,9 @@
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
-                postfix: new HarmonyMethod(typeof(SorcererStartCardsModifiedRule), nameof(Piece_CreatePiece_Postfix)));
+                postfix: new HarmonyMethod(
+                    typeof(SorcererStartCardsModifiedRule),
+                    nameof(Piece_CreatePiece_Postfix)));
         }
 
         private static void Piece_CreatePiece_Postfix(ref Piece __result)
@@ -75,7 +67,7 @@
 
             foreach (var card in _cards)
             {
-                piece.TryAddAbilityToInventory(card.Name, isReplenishable: card.IsReplenishable);
+                piece.TryAddAbilityToInventory(card.Card, isReplenishable: card.IsReplenishable);
             }
         }
     }

@@ -4,10 +4,9 @@
     using System.Linq;
     using Boardgame;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
     using UnityEngine;
 
-    public sealed class StartHealthAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
+    public sealed class StartHealthAdjustedRule : RulesAPI.Rule, RulesAPI.IConfigWritable<Dictionary<string, int>>
     {
         public override string Description => "Start Health is adjusted";
 
@@ -23,16 +22,7 @@
             _adjustments = adjustments;
         }
 
-        public static StartHealthAdjustedRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out Dictionary<string, int> conf);
-            return new StartHealthAdjustedRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_adjustments, EncodeOptions.NoTypeHints);
-        }
+        public Dictionary<string, int> GetConfigObject() => _adjustments;
 
         protected override void OnPostGameCreated()
         {

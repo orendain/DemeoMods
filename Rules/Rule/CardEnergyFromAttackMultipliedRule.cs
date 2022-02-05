@@ -2,34 +2,24 @@
 {
     using Data.GameData;
     using HarmonyLib;
-    using MelonLoader.TinyJSON;
 
-    public sealed class CardEnergyFromAttackMultipliedRule : RulesAPI.Rule, RulesAPI.IConfigWritable
+    public sealed class CardEnergyFromAttackMultipliedRule : RulesAPI.Rule, RulesAPI.IConfigWritable<float>
     {
-        public override string Description => "Card energy from attack is multiplied";
+        public override string Description => "CardConfig energy from attack is multiplied";
 
         private readonly float _multiplier;
-        private readonly float _originalValue;
+        private float _originalValue;
 
         public CardEnergyFromAttackMultipliedRule(float multiplier)
         {
             _multiplier = multiplier;
-            _originalValue = AIDirectorConfig.CardEnergy_EnergyToGetFromDealingDamage;
         }
 
-        public static CardEnergyFromAttackMultipliedRule FromConfigString(string configString)
-        {
-            JSON.MakeInto(JSON.Load(configString), out float conf);
-            return new CardEnergyFromAttackMultipliedRule(conf);
-        }
-
-        public string ToConfigString()
-        {
-            return JSON.Dump(_multiplier, EncodeOptions.NoTypeHints);
-        }
+        public float GetConfigObject() => _multiplier;
 
         protected override void OnPostGameCreated()
         {
+            _originalValue = AIDirectorConfig.CardEnergy_EnergyToGetFromDealingDamage;
             Traverse.Create(typeof(AIDirectorConfig))
                 .Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = _originalValue * _multiplier;
         }
@@ -37,7 +27,7 @@
         protected override void OnDeactivate()
         {
             Traverse.Create(typeof(AIDirectorConfig))
-                    .Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = _originalValue;
+                .Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = _originalValue;
         }
     }
 }
