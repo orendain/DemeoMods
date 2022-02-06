@@ -1,5 +1,6 @@
 ﻿namespace RulesAPI.Essentials.Rules
 {
+    using Boardgame;
     using Data.GameData;
     using HarmonyLib;
 
@@ -17,14 +18,14 @@
 
         public float GetConfigObject() => _multiplier;
 
-        protected override void OnPostGameCreated()
+        protected override void OnPostGameCreated(GameContext gameContext)
         {
             _originalValue = AIDirectorConfig.CardEnergy_EnergyToGetFromDealingDamage;
             Traverse.Create(typeof(AIDirectorConfig))
                 .Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = _originalValue * _multiplier;
         }
 
-        protected override void OnDeactivate()
+        protected override void OnDeactivate(GameContext gameContext)
         {
             Traverse.Create(typeof(AIDirectorConfig))
                 .Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = _originalValue;

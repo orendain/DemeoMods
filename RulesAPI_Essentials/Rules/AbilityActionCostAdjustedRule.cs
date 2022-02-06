@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Boardgame;
     using Boardgame.BoardEntities.Abilities;
     using UnityEngine;
 
@@ -23,7 +24,7 @@
 
         public Dictionary<string, bool> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated()
+        protected override void OnPostGameCreated(GameContext gameContext)
         {
             var abilities = Resources.FindObjectsOfTypeAll<Ability>();
             foreach (var item in _adjustments)
@@ -33,7 +34,7 @@
             }
         }
 
-        protected override void OnDeactivate()
+        protected override void OnDeactivate(GameContext gameContext)
         {
             var abilities = Resources.FindObjectsOfTypeAll<Ability>();
             foreach (var item in _adjustments)

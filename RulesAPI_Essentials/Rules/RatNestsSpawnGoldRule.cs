@@ -1,6 +1,7 @@
 ﻿namespace RulesAPI.Essentials.Rules
 {
     using System.Linq;
+    using Boardgame;
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using UnityEngine;
@@ -19,7 +20,7 @@
 
         public int GetConfigObject() => _pileCount;
 
-        protected override void OnPostGameCreated()
+        protected override void OnPostGameCreated(GameContext gameContext)
         {
             var abilities = Resources.FindObjectsOfTypeAll<Ability>();
             var ability = abilities.First(c => c.name.Equals("SpawnRat(Clone)"));
@@ -28,7 +29,7 @@
             ability.spawnMaxAmount = _pileCount;
         }
 
-        protected override void OnDeactivate()
+        protected override void OnDeactivate(GameContext gameContext)
         {
             var abilities = Resources.FindObjectsOfTypeAll<Ability>();
             var ability = abilities.First(c => c.name.Equals("SpawnRat(Clone)"));

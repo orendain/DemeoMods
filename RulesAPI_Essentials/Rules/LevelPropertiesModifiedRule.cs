@@ -22,7 +22,7 @@
 
         public Dictionary<string, int> GetConfigObject() => _levelProperties;
 
-        protected override void OnDeactivate()
+        protected override void OnDeactivate(GameContext gameContext)
         {
             var allLevelProperties = Traverse.Create<GameDataAPI>()
                 .Field<Dictionary<GameConfigType, List<DreadLevelsDTO>>>("DreadLevelsDTOlist").Value.Values;
@@ -34,7 +34,7 @@
             }
         }
 
-        protected override void OnPreGameCreated()
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
             var allLevelProperties = Traverse.Create<GameDataAPI>()
                 .Field<Dictionary<GameConfigType, List<DreadLevelsDTO>>>("DreadLevelsDTOlist").Value.Values;
