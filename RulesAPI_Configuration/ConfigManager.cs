@@ -15,7 +15,8 @@
         };
 
         private readonly MelonPreferences_Category _configCategory;
-        private readonly MelonPreferences_Entry<string> _selectedRulesetEntry;
+        private readonly MelonPreferences_Entry<string> _rulesetEntry;
+        private readonly MelonPreferences_Entry<bool> _loadFromConfigEntry;
 
         internal static ConfigManager NewInstance()
         {
@@ -25,18 +26,33 @@
         private ConfigManager()
         {
             _configCategory = MelonPreferences.CreateCategory("RulesAPI");
-            _selectedRulesetEntry = _configCategory.CreateEntry("ruleset", string.Empty);
+            _rulesetEntry = _configCategory.CreateEntry("ruleset", string.Empty);
+            _loadFromConfigEntry = _configCategory.CreateEntry("loadFromConfig", false);
         }
 
-        internal void SaveSelectedRuleset(string rulesetName)
+        internal void SetRuleset(string rulesetName)
         {
-            _selectedRulesetEntry.Value = rulesetName;
+            _rulesetEntry.Value = rulesetName;
+        }
+
+        internal void SetLoadFromConfig(bool loadFromConfig)
+        {
+            _loadFromConfigEntry.Value = loadFromConfig;
+        }
+
+        internal string GetRuleset()
+        {
+            return _rulesetEntry.Value;
+        }
+
+        internal bool GetLoadFromConfig()
+        {
+            return _loadFromConfigEntry.Value;
+        }
+
+        internal void Save()
+        {
             _configCategory.SaveToFile();
-        }
-
-        internal string LoadSelectedRuleset()
-        {
-            return _selectedRulesetEntry.Value;
         }
 
         /// <summary>

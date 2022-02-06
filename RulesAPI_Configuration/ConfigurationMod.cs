@@ -15,7 +15,7 @@
             DemoWriteRuleset();
             // DemoReadRuleset();
 
-            var configSelectedRuleset = ConfigManager.LoadSelectedRuleset();
+            var configSelectedRuleset = ConfigManager.GetRuleset();
             if (string.IsNullOrEmpty(configSelectedRuleset))
             {
                 return;
@@ -34,7 +34,7 @@
         public override void OnApplicationQuit()
         {
             var rulesetName = RulesAPI.SelectedRuleset != null ? RulesAPI.SelectedRuleset.Name : string.Empty;
-            ConfigManager.SaveSelectedRuleset(rulesetName);
+            ConfigManager.SetRuleset(rulesetName);
         }
 
         private static void DemoWriteRuleset()
