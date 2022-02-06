@@ -21,6 +21,7 @@ RulesAPI.
 - **EnemyHealthScaledRule**: Enemy health is scaled
 - **EnemyRespawnDisabledRule**: Enemy respawns are disabled
 - **GoldPickedUpMultipliedRule**: Gold picked up is multiplied
+- **LevelPropertiesModifiedRule**: Level properties are modified
 - **PieceConfigAdjustedRule**: Piece configuration is adjusted
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
 - **RatNestsSpawnGoldRule**: Rat nests spawn gold
