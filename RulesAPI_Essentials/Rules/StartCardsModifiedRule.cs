@@ -38,7 +38,7 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
                 postfix: new HarmonyMethod(
-                    typeof(SorcererStartCardsModifiedRule),
+                    typeof(StartCardsModifiedRule),
                     nameof(Piece_CreatePiece_Postfix)));
         }
 
