@@ -40,17 +40,7 @@
 
         private static void RegisterNewRulesets()
         {
-            var dictionary = new Dictionary<string, int>();
-            dictionary.Add("BigGoldPileChance", 100);
-            dictionary.Add("FloorOneHealingFountains", 9);
-            dictionary.Add("FloorOneLootChests", 9);
-            dictionary.Add("FloorTwoHealingFountains", 9);
-            dictionary.Add("FloorTwoLootChests", 9);
-            dictionary.Add("FloorThreeHealingFountains", 9);
-            dictionary.Add("FloorThreeLootChests", 9);
-            var levelPropertiesModifiedRule = new Rules.LevelPropertiesModifiedRule(dictionary);
-
-            var sampleRules = new List<Rule> { levelPropertiesModifiedRule };
+            var sampleRules = new List<Rule> { new Rules.SampleRule() };
             var sampleRuleset = Ruleset.NewInstance("SampleRuleset", "Just a sample ruleset.", sampleRules);
 
             var registrar = Registrar.Instance();
