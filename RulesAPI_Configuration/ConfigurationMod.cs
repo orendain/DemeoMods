@@ -10,31 +10,6 @@
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI:Configuration");
         private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
 
-        public override void OnApplicationStart()
-        {
-            if (!ConfigManager.GetLoadFromConfig())
-            {
-                return;
-            }
-
-            var rulesetName = ConfigManager.GetRuleset();
-            if (string.IsNullOrEmpty(rulesetName))
-            {
-                return;
-            }
-
-            try
-            {
-                var ruleset = ConfigManager.ReadRuleset(rulesetName);
-                Registrar.Instance().Register(ruleset);
-                Logger.Msg($"Loaded and registered ruleset from config: {rulesetName}");
-            }
-            catch (Exception e)
-            {
-                Logger.Warning($"Failed to load and register ruleset [{rulesetName}] from config: {e}");
-            }
-        }
-
         public override void OnApplicationLateStart()
         {
             // TODO(orendain): Remove when this demo code is no longer necessary.
@@ -44,6 +19,21 @@
             if (string.IsNullOrEmpty(rulesetName))
             {
                 return;
+            }
+
+            var loadFromConfig = ConfigManager.GetLoadFromConfig();
+            if (loadFromConfig)
+            {
+                try
+                {
+                    var ruleset = ConfigManager.ReadRuleset(rulesetName);
+                    Registrar.Instance().Register(ruleset);
+                    Logger.Msg($"Loaded and registered ruleset from config: {rulesetName}");
+                }
+                catch (Exception e)
+                {
+                    Logger.Warning($"Failed to load and register ruleset [{rulesetName}] from config: {e}");
+                }
             }
 
             try
