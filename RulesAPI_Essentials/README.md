@@ -15,7 +15,7 @@ RulesAPI.
 - **ActionPointsAdjustedRule**: Action points are adjusted
 - **CardEnergyFromAttackMultipliedRule**: Card energy from attack is multiplied
 - **CardEnergyFromRecyclingMultipliedRule**: Card energy from recycling is multiplied
-- **CardLimitAdjustedRule**: Card limit is modified
+- **CardLimitModifiedRule**: Card limit is modified
 - **CardSellValueMultipliedRule**: Card sell values are multiplied
 - **EnemyAttackScaledRule**: Enemy attack damage is scaled
 - **EnemyDoorOpeningDisabledRule**: Enemy door opening ability disabled
