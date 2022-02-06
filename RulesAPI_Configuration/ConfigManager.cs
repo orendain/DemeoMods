@@ -42,11 +42,18 @@
         /// <summary>
         /// Writes the specified ruleset to the configuration file.
         /// </summary>
-        /// <param name="configName">A name under which to write the ruleset.</param>
         /// <param name="ruleset">The ruleset to write.</param>
-        public static void WriteRuleset(string configName, Ruleset ruleset)
+        /// <remarks>
+        /// The ruleset is saved under a category with the same name as the ruleset.
+        /// </remarks>
+        public static void WriteRuleset(Ruleset ruleset)
         {
-            var configCategory = MelonPreferences.CreateCategory(configName);
+            if (string.IsNullOrEmpty(ruleset.Name))
+            {
+                throw new ArgumentException("Ruleset name must not be empty.");
+            }
+
+            var configCategory = MelonPreferences.CreateCategory(ruleset.Name);
 
             var ruleEntries = new List<RuleConfigEntry>();
             foreach (var rule in ruleset.Rules)
@@ -78,7 +85,7 @@
         /// Reads a ruleset from the configuration file.
         /// </summary>
         /// <param name="configName">The name under which the desired ruleset is written.</param>
-        /// <returns>The ruleset read the configuration.</returns>
+        /// <returns>The ruleset read from configuration.</returns>
         public static Ruleset ReadRuleset(string configName)
         {
             var configCategory = MelonPreferences.CreateCategory(configName);

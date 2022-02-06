@@ -107,7 +107,7 @@
                 aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha,
             });
 
-            ConfigManager.WriteRuleset("SavedRuleset1", customRuleset);
+            ConfigManager.WriteRuleset(customRuleset);
         }
 
         private static void DemoReadRuleset()
