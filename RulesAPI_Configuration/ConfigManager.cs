@@ -179,7 +179,7 @@
             }
         }
 
-        public struct RuleConfigEntry
+        private struct RuleConfigEntry
         {
             public string Rule;
             public JsonElement Config;

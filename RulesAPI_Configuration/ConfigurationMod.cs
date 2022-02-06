@@ -10,24 +10,49 @@
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI:Configuration");
         private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
 
-        public override void OnApplicationLateStart()
+        public override void OnApplicationStart()
         {
-            DemoWriteRuleset();
-            // DemoReadRuleset();
+            if (!ConfigManager.GetLoadFromConfig())
+            {
+                return;
+            }
 
-            var configSelectedRuleset = ConfigManager.GetRuleset();
-            if (string.IsNullOrEmpty(configSelectedRuleset))
+            var rulesetName = ConfigManager.GetRuleset();
+            if (string.IsNullOrEmpty(rulesetName))
             {
                 return;
             }
 
             try
             {
-                RulesAPI.SelectRuleset(configSelectedRuleset);
+                var ruleset = ConfigManager.ReadRuleset(rulesetName);
+                Registrar.Instance().Register(ruleset);
+                Logger.Msg($"Loaded and registered ruleset from config: {rulesetName}");
+            }
+            catch (Exception e)
+            {
+                Logger.Warning($"Failed to load and register ruleset [{rulesetName}] from config: {e}");
+            }
+        }
+
+        public override void OnApplicationLateStart()
+        {
+            // TODO(orendain): Remove when this demo code is no longer necessary.
+            // DemoWriteRuleset();
+
+            var rulesetName = ConfigManager.GetRuleset();
+            if (string.IsNullOrEmpty(rulesetName))
+            {
+                return;
+            }
+
+            try
+            {
+                RulesAPI.SelectRuleset(rulesetName);
             }
             catch (ArgumentException e)
             {
-                Logger.Warning($"Failed to select ruleset [{configSelectedRuleset}]: {e}");
+                Logger.Warning($"Failed to select ruleset [{rulesetName}]: {e}");
             }
         }
 
@@ -35,9 +60,11 @@
         {
             var rulesetName = RulesAPI.SelectedRuleset != null ? RulesAPI.SelectedRuleset.Name : string.Empty;
             ConfigManager.SetRuleset(rulesetName);
+            ConfigManager.Save();
         }
 
-        private static void DemoWriteRuleset()
+        // TODO(orendain): Remove when this demo code is no longer necessary.
+        public static void DemoWriteRuleset()
         {
             var aaca = new Essentials.Rules.AbilityActionCostAdjustedRule(new Dictionary<string, bool>
             {
@@ -108,13 +135,6 @@
             });
 
             ConfigManager.WriteRuleset(customRuleset);
-        }
-
-        private static void DemoReadRuleset()
-        {
-            var readRuleset = ConfigManager.ReadRuleset("SavedRuleset1");
-            Registrar.Instance().Register(readRuleset);
-            RulesAPI.SelectRuleset(readRuleset.Name);
         }
     }
 }
