@@ -1,20 +1,70 @@
 ﻿namespace RulesAPI.Configuration
 {
+    using System;
     using System.Collections.Generic;
     using DataKeys;
     using MelonLoader;
 
     internal class ConfigurationMod : MelonMod
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI: Configuration");
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RulesAPI:Configuration");
+        private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
+
+        public override void OnApplicationStart()
+        {
+            if (!ConfigManager.GetLoadFromConfig())
+            {
+                return;
+            }
+
+            var rulesetName = ConfigManager.GetRuleset();
+            if (string.IsNullOrEmpty(rulesetName))
+            {
+                return;
+            }
+
+            try
+            {
+                var ruleset = ConfigManager.ReadRuleset(rulesetName);
+                Registrar.Instance().Register(ruleset);
+                Logger.Msg($"Loaded and registered ruleset from config: {rulesetName}");
+            }
+            catch (Exception e)
+            {
+                Logger.Warning($"Failed to load and register ruleset [{rulesetName}] from config: {e}");
+            }
+        }
 
         public override void OnApplicationLateStart()
         {
-            DemoWriteRuleset();
-            // DemoReadRuleset();
+            // TODO(orendain): Remove when this demo code is no longer necessary.
+            // DemoWriteRuleset();
+
+            var rulesetName = ConfigManager.GetRuleset();
+            if (string.IsNullOrEmpty(rulesetName))
+            {
+                return;
+            }
+
+            try
+            {
+                RulesAPI.SelectRuleset(rulesetName);
+            }
+            catch (ArgumentException e)
+            {
+                Logger.Warning($"Failed to select ruleset [{rulesetName}]: {e}");
+            }
         }
 
-        private static void DemoWriteRuleset()
+        public override void OnApplicationQuit()
+        {
+            var rulesetName = RulesAPI.SelectedRuleset != null ? RulesAPI.SelectedRuleset.Name : string.Empty;
+            ConfigManager.SetRuleset(rulesetName);
+            ConfigManager.Save();
+        }
+
+        // TODO(orendain): Remove when this demo code is no longer necessary.
+        public static void DemoWriteRuleset()
         {
             var aaca = new Essentials.Rules.AbilityActionCostAdjustedRule(new Dictionary<string, bool>
             {
@@ -84,14 +134,7 @@
                 aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha,
             });
 
-            ConfigManager.WriteRuleset("SavedRuleset1", customRuleset);
-        }
-
-        private static void DemoReadRuleset()
-        {
-            var readRuleset = ConfigManager.ReadRuleset("SavedRuleset1");
-            Registrar.Instance().Register(readRuleset);
-            RulesAPI.SelectRuleset(readRuleset.Name);
+            ConfigManager.WriteRuleset(customRuleset);
         }
     }
 }

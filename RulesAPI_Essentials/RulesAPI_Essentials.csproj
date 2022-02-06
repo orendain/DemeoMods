@@ -47,6 +47,7 @@
     <Compile Include="Rules\EnemyRespawnDisabledRule.cs" />
     <Compile Include="Rules\GoldPickedUpMultipliedRule.cs" />
     <Compile Include="Rules\GoldPickedUpScaledRule.cs" />
+    <Compile Include="Rules\LevelPropertiesModifiedRule.cs" />
     <Compile Include="Rules\PieceConfigAdjustedRule.cs" />
     <Compile Include="Rules\RatNestsSpawnGoldRule.cs" />
     <Compile Include="Rules\SampleRule.cs" />

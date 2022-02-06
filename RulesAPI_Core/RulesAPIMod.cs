@@ -8,7 +8,6 @@
     internal class RulesAPIMod : MelonMod
     {
         private static readonly Harmony RulesPatcher = new Harmony("com.orendain.demeomods.rulesapi.patcher");
-        private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
 
         public override void OnApplicationStart()
         {
@@ -19,27 +18,6 @@
         public override void OnApplicationLateStart()
         {
             PatchRegisteredRules();
-
-            var configSelectedRuleset = ConfigManager.LoadSelectedRuleset();
-            if (string.IsNullOrEmpty(configSelectedRuleset))
-            {
-                return;
-            }
-
-            try
-            {
-                RulesAPI.SelectRuleset(configSelectedRuleset);
-            }
-            catch (ArgumentException e)
-            {
-                RulesAPI.Logger.Warning($"Failed to select ruleset [{configSelectedRuleset}]: {e}");
-            }
-        }
-
-        public override void OnApplicationQuit()
-        {
-            var rulesetName = RulesAPI.SelectedRuleset != null ? RulesAPI.SelectedRuleset.Name : string.Empty;
-            ConfigManager.SaveSelectedRuleset(rulesetName);
         }
 
         private static void PatchRegisteredRules()
