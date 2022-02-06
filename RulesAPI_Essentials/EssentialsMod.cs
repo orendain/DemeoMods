@@ -30,6 +30,7 @@
             registrar.Register(typeof(Rules.EnemyRespawnDisabledRule));
             registrar.Register(typeof(Rules.GoldPickedUpMultipliedRule));
             registrar.Register(typeof(Rules.GoldPickedUpScaledRule));
+            registrar.Register(typeof(Rules.LevelPropertiesModifiedRule));
             registrar.Register(typeof(Rules.PieceConfigAdjustedRule));
             registrar.Register(typeof(Rules.RatNestsSpawnGoldRule));
             registrar.Register(typeof(Rules.SorcererStartCardsModifiedRule));
