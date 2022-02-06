@@ -96,8 +96,8 @@
                 new List<string> { "HeroHunter", "StartHealth", "10" },
                 new List<string> { "HeroBard", "MoveRange", "1" },
                 new List<string> { "HeroBard", "StartHealth", "10" },
-                new List<string> { "HeroRogue", "MoveRange", "1" },
-                new List<string> { "HeroRogue", "StartHealth", "10" },
+                new List<string> { "HeroRouge", "MoveRange", "1" },
+                new List<string> { "HeroRouge", "StartHealth", "10" },
                 new List<string> { "WolfCompanion", "StartHealth", "20" }, // Wolf wastes this many HP wandering through gas
                 new List<string> { "SwordOfAvalon", "StartHealth", "10" },
                 new List<string> { "BeaconOfSmite", "StartHealth", "10" },
