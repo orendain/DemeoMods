@@ -16,10 +16,9 @@ namespace RulesAPI
 
         public static void SelectRuleset(string ruleset)
         {
-            if (!string.IsNullOrEmpty(ruleset) && _isRulesetActive)
+            if (_isRulesetActive)
             {
-                Logger.Msg($"Deactivating current ruleset before selecting a new one.");
-                TriggerDeactivateRuleset();
+                throw new InvalidOperationException("May not select a new ruleset while one is currently active.");
             }
 
             try
