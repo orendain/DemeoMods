@@ -62,10 +62,10 @@
                 return;
             }
 
-            RulesAPI.TriggerActivateRuleset();
+            RulesAPI.TriggerActivateRuleset(_gameContext);
 
             _isStartingGame = true;
-            RulesAPI.TriggerPreGameCreated();
+            RulesAPI.TriggerPreGameCreated(_gameContext);
         }
 
         private static void GameStateMachine_GoToPlayingState_Postfix()
@@ -76,25 +76,25 @@
             }
 
             _isStartingGame = false;
-            RulesAPI.TriggerPostGameCreated();
+            RulesAPI.TriggerPostGameCreated(_gameContext);
             RulesAPI.TriggerWelcomeMessage();
         }
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
-            RulesAPI.TriggerActivateRuleset();
+            RulesAPI.TriggerActivateRuleset(_gameContext);
             _isStartingGame = true;
-            RulesAPI.TriggerPreGameCreated();
+            RulesAPI.TriggerPreGameCreated(_gameContext);
         }
 
         private static void GameStateMachine_EndGame_Prefix()
         {
-            RulesAPI.TriggerDeactivateRuleset();
+            RulesAPI.TriggerDeactivateRuleset(_gameContext);
         }
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
-            RulesAPI.TriggerDeactivateRuleset();
+            RulesAPI.TriggerDeactivateRuleset(_gameContext);
         }
     }
 }

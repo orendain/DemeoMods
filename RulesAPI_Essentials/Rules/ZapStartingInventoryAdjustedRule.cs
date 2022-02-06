@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Reflection.Emit;
+    using Boardgame;
     using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
@@ -12,9 +13,9 @@
 
         private static bool _isActivated;
 
-        protected override void OnActivate() => _isActivated = true;
+        protected override void OnActivate(GameContext gameContext) => _isActivated = true;
 
-        protected override void OnDeactivate() => _isActivated = false;
+        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
         private static void Patch(Harmony harmony)
         {

@@ -24,7 +24,7 @@
 
         public List<List<string>> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated()
+        protected override void OnPostGameCreated(GameContext gameContext)
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
             foreach (var item in _adjustments)
@@ -35,7 +35,7 @@
             }
         }
 
-        protected override void OnDeactivate()
+        protected override void OnDeactivate(GameContext gameContext)
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
             foreach (var item in _adjustments)

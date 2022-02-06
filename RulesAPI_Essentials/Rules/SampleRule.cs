@@ -1,5 +1,7 @@
 ﻿namespace RulesAPI.Essentials.Rules
 {
+    using Boardgame;
+
     /// <summary>
     /// Represents a modular gameplay modification.
     /// </summary>
@@ -30,7 +32,7 @@
         ///     to be created.
         ///     </para>
         /// </remarks>
-        protected override void OnActivate()
+        protected override void OnActivate(GameContext gameContext)
         {
         }
 
@@ -40,14 +42,14 @@
         /// <remarks>
         /// This method should undo any persisting changes made by the rule up until this point.
         /// </remarks>
-        protected override void OnDeactivate()
+        protected override void OnDeactivate(GameContext gameContext)
         {
         }
 
         /// <summary>
         /// Called before a game is created.
         /// </summary>
-        protected override void OnPreGameCreated()
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
         }
 
@@ -57,7 +59,7 @@
         /// <remarks>
         /// Note that even though the game is created, the level/POIs/enemies may not yet fully be loaded/spawned.
         /// </remarks>
-        protected override void OnPostGameCreated()
+        protected override void OnPostGameCreated(GameContext gameContext)
         {
         }
 

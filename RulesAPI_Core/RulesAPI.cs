@@ -35,7 +35,7 @@ namespace RulesAPI
             Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
         }
 
-        internal static void TriggerActivateRuleset()
+        internal static void TriggerActivateRuleset(GameContext gameContext)
         {
             if (_isRulesetActive)
             {
@@ -56,7 +56,7 @@ namespace RulesAPI
                 try
                 {
                     Logger.Msg($"Activating rule type: {rule.GetType()}");
-                    rule.OnActivate();
+                    rule.OnActivate(gameContext);
                 }
                 catch (Exception e)
                 {
@@ -66,7 +66,7 @@ namespace RulesAPI
             }
         }
 
-        internal static void TriggerDeactivateRuleset()
+        internal static void TriggerDeactivateRuleset(GameContext gameContext)
         {
             if (!_isRulesetActive)
             {
@@ -81,7 +81,7 @@ namespace RulesAPI
                 try
                 {
                     Logger.Msg($"Deactivating rule type: {rule.GetType()}");
-                    rule.OnDeactivate();
+                    rule.OnDeactivate(gameContext);
                 }
                 catch (Exception e)
                 {
@@ -91,7 +91,7 @@ namespace RulesAPI
             }
         }
 
-        internal static void TriggerPreGameCreated()
+        internal static void TriggerPreGameCreated(GameContext gameContext)
         {
             if (SelectedRuleset == null)
             {
@@ -103,7 +103,7 @@ namespace RulesAPI
                 try
                 {
                     Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
-                    rule.OnPreGameCreated();
+                    rule.OnPreGameCreated(gameContext);
                 }
                 catch (Exception e)
                 {
@@ -113,7 +113,7 @@ namespace RulesAPI
             }
         }
 
-        internal static void TriggerPostGameCreated()
+        internal static void TriggerPostGameCreated(GameContext gameContext)
         {
             if (SelectedRuleset == null)
             {
@@ -125,7 +125,7 @@ namespace RulesAPI
                 try
                 {
                     Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
-                    rule.OnPostGameCreated();
+                    rule.OnPostGameCreated(gameContext);
                 }
                 catch (Exception e)
                 {

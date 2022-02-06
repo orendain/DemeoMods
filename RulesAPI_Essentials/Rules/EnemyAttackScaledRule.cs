@@ -18,9 +18,9 @@
 
         public float GetConfigObject() => _multiplier;
 
-        protected override void OnActivate() => _isActivated = true;
+        protected override void OnActivate(GameContext gameContext) => _isActivated = true;
 
-        protected override void OnDeactivate() => _isActivated = false;
+        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
         private static void Patch(Harmony harmony)
         {
