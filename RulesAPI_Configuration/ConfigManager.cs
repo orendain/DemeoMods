@@ -15,7 +15,8 @@
         };
 
         private readonly MelonPreferences_Category _configCategory;
-        private readonly MelonPreferences_Entry<string> _selectedRulesetEntry;
+        private readonly MelonPreferences_Entry<string> _rulesetEntry;
+        private readonly MelonPreferences_Entry<bool> _loadFromConfigEntry;
 
         internal static ConfigManager NewInstance()
         {
@@ -25,28 +26,50 @@
         private ConfigManager()
         {
             _configCategory = MelonPreferences.CreateCategory("RulesAPI");
-            _selectedRulesetEntry = _configCategory.CreateEntry("ruleset", string.Empty);
+            _rulesetEntry = _configCategory.CreateEntry("ruleset", string.Empty);
+            _loadFromConfigEntry = _configCategory.CreateEntry("loadFromConfig", false);
         }
 
-        internal void SaveSelectedRuleset(string rulesetName)
+        internal void SetRuleset(string rulesetName)
         {
-            _selectedRulesetEntry.Value = rulesetName;
+            _rulesetEntry.Value = rulesetName;
+        }
+
+        internal void SetLoadFromConfig(bool loadFromConfig)
+        {
+            _loadFromConfigEntry.Value = loadFromConfig;
+        }
+
+        internal string GetRuleset()
+        {
+            return _rulesetEntry.Value;
+        }
+
+        internal bool GetLoadFromConfig()
+        {
+            return _loadFromConfigEntry.Value;
+        }
+
+        internal void Save()
+        {
             _configCategory.SaveToFile();
-        }
-
-        internal string LoadSelectedRuleset()
-        {
-            return _selectedRulesetEntry.Value;
         }
 
         /// <summary>
         /// Writes the specified ruleset to the configuration file.
         /// </summary>
-        /// <param name="configName">A name under which to write the ruleset.</param>
         /// <param name="ruleset">The ruleset to write.</param>
-        public static void WriteRuleset(string configName, Ruleset ruleset)
+        /// <remarks>
+        /// The ruleset is saved under a category with the same name as the ruleset.
+        /// </remarks>
+        public static void WriteRuleset(Ruleset ruleset)
         {
-            var configCategory = MelonPreferences.CreateCategory(configName);
+            if (string.IsNullOrEmpty(ruleset.Name))
+            {
+                throw new ArgumentException("Ruleset name must not be empty.");
+            }
+
+            var configCategory = MelonPreferences.CreateCategory(ruleset.Name);
 
             var ruleEntries = new List<RuleConfigEntry>();
             foreach (var rule in ruleset.Rules)
@@ -78,7 +101,7 @@
         /// Reads a ruleset from the configuration file.
         /// </summary>
         /// <param name="configName">The name under which the desired ruleset is written.</param>
-        /// <returns>The ruleset read the configuration.</returns>
+        /// <returns>The ruleset read from configuration.</returns>
         public static Ruleset ReadRuleset(string configName)
         {
             var configCategory = MelonPreferences.CreateCategory(configName);
@@ -156,7 +179,7 @@
             }
         }
 
-        public struct RuleConfigEntry
+        private struct RuleConfigEntry
         {
             public string Rule;
             public JsonElement Config;
