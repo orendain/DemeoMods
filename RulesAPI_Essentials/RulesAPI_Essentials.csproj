@@ -39,6 +39,7 @@
     <Compile Include="Rules\ActionPointsAdjustedRule.cs" />
     <Compile Include="Rules\CardEnergyFromAttackMultipliedRule.cs" />
     <Compile Include="Rules\CardEnergyFromRecyclingMultipliedRule.cs" />
+    <Compile Include="Rules\CardLimitModifiedRule.cs" />
     <Compile Include="Rules\CardSellValueMultipliedRule.cs" />
     <Compile Include="Rules\AbilityAoeAdjustedRule.cs" />
     <Compile Include="Rules\EnemyAttackScaledRule.cs" />
