@@ -25,6 +25,10 @@
                 postfix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateMachine_GoToPlayingState_Postfix)));
 
             harmony.Patch(
+                original: AccessTools.Method(typeof(PostGameControllerBase), "OnPlayAgainClicked"),
+                postfix: new HarmonyMethod(typeof(ModPatcher), nameof(PostGameControllerBase_OnPlayAgainClicked_Postfix)));
+
+            harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "EndGame"),
                 prefix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateMachine_EndGame_Prefix)));
 
@@ -74,6 +78,13 @@
             _isStartingGame = false;
             RulesAPI.TriggerPostGameCreated();
             RulesAPI.TriggerWelcomeMessage();
+        }
+
+        private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
+        {
+            RulesAPI.TriggerActivateRuleset();
+            _isStartingGame = true;
+            RulesAPI.TriggerPreGameCreated();
         }
 
         private static void GameStateMachine_EndGame_Prefix()
