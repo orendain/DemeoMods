@@ -7,21 +7,13 @@
 
     public class Rulebook
     {
-        private static Rulebook _instance;
-
         internal HashSet<Type> RuleTypes { get; }
 
         internal HashSet<Ruleset> Rulesets { get; }
 
-        public static Rulebook Instance()
+        internal static Rulebook NewInstance()
         {
-            if (_instance != null)
-            {
-                return _instance;
-            }
-
-            _instance = new Rulebook();
-            return _instance;
+            return new Rulebook();
         }
 
         private Rulebook()

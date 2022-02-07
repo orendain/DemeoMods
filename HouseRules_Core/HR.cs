@@ -13,6 +13,8 @@ namespace HouseRules
         private const float WelcomeMessageDurationSeconds = 30f;
         private static bool _isRulesetActive;
 
+        public static Rulebook Rulebook = Rulebook.NewInstance();
+
         public static Ruleset SelectedRuleset { get; private set; }
 
         public static void SelectRuleset(string ruleset)
@@ -24,7 +26,7 @@ namespace HouseRules
 
             try
             {
-                SelectedRuleset = Rulebook.Instance().Rulesets
+                SelectedRuleset = Rulebook.Rulesets
                     .Single(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
             }
             catch (InvalidOperationException e)
