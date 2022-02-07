@@ -10,6 +10,7 @@
     {
         public override string Description => "Card limit is modified";
 
+        private const int MaxLimit = 100;
         private static int _limit;
         private static bool _isActivated;
 
@@ -48,7 +49,7 @@
             {
                 if (instruction.opcode == OpCodes.Ldc_I4_S && instruction.operand.ToString().Contains("11"))
                 {
-                    yield return new CodeInstruction(OpCodes.Ldc_I4_S, _limit);
+                    yield return new CodeInstruction(OpCodes.Ldc_I4_S, MaxLimit);
                     continue;
                 }
 
@@ -62,7 +63,7 @@
             {
                 if (instruction.opcode == OpCodes.Ldc_R4 && instruction.operand.ToString().Contains("11"))
                 {
-                    yield return new CodeInstruction(OpCodes.Ldc_R4, (float)_limit);
+                    yield return new CodeInstruction(OpCodes.Ldc_R4, (float)MaxLimit);
                     continue;
                 }
 
