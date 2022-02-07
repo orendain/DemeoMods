@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using HouseRules.Essentials.Rules;
+    using HouseRules.Essentials.Rulesets;
     using HouseRules.Types;
     using MelonLoader;
 
@@ -41,10 +42,7 @@
 
         private static void RegisterRulesets()
         {
-            var sampleRules = new List<Rule> { new SampleRule() };
-            var sampleRuleset = Ruleset.NewInstance("SampleRuleset", "Just a sample ruleset.", sampleRules);
-
-            HR.Rulebook.Register(sampleRuleset);
+            HR.Rulebook.Register(SampleRuleset.Create());
         }
     }
 }
