@@ -19,10 +19,10 @@ A framework allowing the definition of modular gameplay modifications (or
 "rules") and the ability to group them to create custom gamemodes (or
 "rulesets").
 
-See the [RulesAPI readme](RulesAPI/README.md) for information about the
+See the [RulesAPI readme](RulesAPI_Core/README.md) for information about the
 RulesAPI framework.
 
-See the [Rules readme](Rules/README.md) for a list of all predefined RulesAPI
+See the [Rules readme](RulesAPI_Essentials/README.md) for a list of all predefined RulesAPI
 rules and rulesets.
 
 ### RoomFinder
