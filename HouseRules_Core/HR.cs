@@ -6,7 +6,7 @@ namespace HouseRules
     using Boardgame;
     using MelonLoader;
 
-    public static class HouseRules
+    public static class HR
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Core");
         private const float WelcomeMessageDurationSeconds = 30f;

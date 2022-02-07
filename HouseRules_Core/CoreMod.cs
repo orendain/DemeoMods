@@ -24,16 +24,16 @@
         {
             var patchableRules = Registrar.Instance().RuleTypes.Where(typ => typeof(IPatchable).IsAssignableFrom(typ)).ToList();
 
-            HouseRules.Logger.Msg($"Found [{patchableRules.Count}] registered rules that require game patching.");
+            HR.Logger.Msg($"Found [{patchableRules.Count}] registered rules that require game patching.");
 
             foreach (var ruleType in patchableRules)
             {
-                HouseRules.Logger.Msg($"Patching game with rule type: {ruleType}");
+                HR.Logger.Msg($"Patching game with rule type: {ruleType}");
 
                 var traverse = Traverse.Create(ruleType).Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] { RulesPatcher });
                 if (!traverse.MethodExists())
                 {
-                    HouseRules.Logger.Warning($"Could not find expected Patch method for rule [{ruleType}]. Skipping patching for that rule.");
+                    HR.Logger.Warning($"Could not find expected Patch method for rule [{ruleType}]. Skipping patching for that rule.");
                     continue;
                 }
 
@@ -44,7 +44,7 @@
                 catch (Exception e)
                 {
                     // TODO(orendain): Perm disable rules/rulesets that fail to patch/load.
-                    HouseRules.Logger.Error($"Failed to patch game with rule type [{ruleType}]: {e}");
+                    HR.Logger.Error($"Failed to patch game with rule type [{ruleType}]: {e}");
                 }
             }
         }

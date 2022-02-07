@@ -62,10 +62,9 @@
                 return;
             }
 
-            HouseRules.TriggerActivateRuleset(_gameContext);
-
+            HR.TriggerActivateRuleset(_gameContext);
             _isStartingGame = true;
-            HouseRules.TriggerPreGameCreated(_gameContext);
+            HR.TriggerPreGameCreated(_gameContext);
         }
 
         private static void GameStateMachine_GoToPlayingState_Postfix()
@@ -76,25 +75,25 @@
             }
 
             _isStartingGame = false;
-            HouseRules.TriggerPostGameCreated(_gameContext);
-            HouseRules.TriggerWelcomeMessage();
+            HR.TriggerPostGameCreated(_gameContext);
+            HR.TriggerWelcomeMessage();
         }
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
-            HouseRules.TriggerActivateRuleset(_gameContext);
+            HR.TriggerActivateRuleset(_gameContext);
             _isStartingGame = true;
-            HouseRules.TriggerPreGameCreated(_gameContext);
+            HR.TriggerPreGameCreated(_gameContext);
         }
 
         private static void GameStateMachine_EndGame_Prefix()
         {
-            HouseRules.TriggerDeactivateRuleset(_gameContext);
+            HR.TriggerDeactivateRuleset(_gameContext);
         }
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
-            HouseRules.TriggerDeactivateRuleset(_gameContext);
+            HR.TriggerDeactivateRuleset(_gameContext);
         }
     }
 }

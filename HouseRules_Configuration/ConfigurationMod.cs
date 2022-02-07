@@ -38,7 +38,7 @@
 
             try
             {
-                HouseRules.SelectRuleset(rulesetName);
+                HR.SelectRuleset(rulesetName);
             }
             catch (ArgumentException e)
             {
@@ -48,7 +48,7 @@
 
         public override void OnApplicationQuit()
         {
-            var rulesetName = HouseRules.SelectedRuleset != null ? HouseRules.SelectedRuleset.Name : string.Empty;
+            var rulesetName = HR.SelectedRuleset != null ? HR.SelectedRuleset.Name : string.Empty;
             ConfigManager.SetRuleset(rulesetName);
             ConfigManager.Save();
         }
