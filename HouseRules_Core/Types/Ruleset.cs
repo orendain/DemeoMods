@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Types
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     public class Ruleset
     {
@@ -18,6 +19,11 @@
         /// Gets the rules of the ruleset.
         /// </summary>
         public List<Rule> Rules { get; }
+
+        public static Ruleset NewInstance(string name, string description, params Rule[] rules)
+        {
+            return new Ruleset(name, description, rules.ToList());
+        }
 
         public static Ruleset NewInstance(string name, string description, List<Rule> rules)
         {
