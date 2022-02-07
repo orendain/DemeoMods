@@ -45,7 +45,8 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="System.Text.Json" Version="6.0.1" />
+        <!-- Manually download this specific variant during runtime: https://cloudsmith.io/~jillejr/repos/newtonsoft-json-for-unity/packages/detail/npm/jillejr.newtonsoft.json-for-unity/13.0.102 -->
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\RulesAPI_Core\RulesAPI_Core.csproj">

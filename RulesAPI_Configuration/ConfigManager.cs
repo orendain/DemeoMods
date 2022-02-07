@@ -2,18 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text.Json;
-    using System.Text.Json.Serialization;
     using HarmonyLib;
     using MelonLoader;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 
     public class ConfigManager
     {
-        private static readonly JsonSerializerOptions SerializerOptions = new JsonSerializerOptions
-        {
-            IncludeFields = true, WriteIndented = true, Converters = { new JsonStringEnumConverter() },
-        };
-
         private readonly MelonPreferences_Category _configCategory;
         private readonly MelonPreferences_Entry<string> _rulesetEntry;
         private readonly MelonPreferences_Entry<bool> _loadFromConfigEntry;
@@ -64,6 +59,8 @@
         /// </remarks>
         public static void WriteRuleset(Ruleset ruleset)
         {
+            ConfigureDefaultSerializationSettings();
+
             if (string.IsNullOrEmpty(ruleset.Name))
             {
                 throw new ArgumentException("Ruleset name must not be empty.");
@@ -78,8 +75,7 @@
                 {
                     FindRuleAndConfigType(rule.GetType().FullName);
                     var configObject = Traverse.Create(rule).Method("GetConfigObject").GetValue();
-                    var configJson = JsonSerializer.SerializeToElement(configObject, SerializerOptions);
-
+                    var configJson = JToken.FromObject(configObject);
                     var ruleEntry = new RuleConfigEntry { Rule = rule.GetType().Name, Config = configJson };
                     ruleEntries.Add(ruleEntry);
                 }
@@ -89,7 +85,7 @@
                 }
             }
 
-            var serializedRuleEntries = JsonSerializer.Serialize(ruleEntries, SerializerOptions);
+            var serializedRuleEntries = JsonConvert.SerializeObject(ruleEntries);
 
             configCategory.CreateEntry("name", string.Empty).Value = ruleset.Name;
             configCategory.CreateEntry("description", string.Empty).Value = ruleset.Description;
@@ -102,8 +98,10 @@
         /// </summary>
         /// <param name="configName">The name under which the desired ruleset is written.</param>
         /// <returns>The ruleset read from configuration.</returns>
-        public static Ruleset ReadRuleset(string configName)
+        internal static Ruleset ReadRuleset(string configName)
         {
+            ConfigureDefaultSerializationSettings();
+
             var configCategory = MelonPreferences.CreateCategory(configName);
 
             var rulesetNameEntry = configCategory.CreateEntry("name", string.Empty);
@@ -111,23 +109,18 @@
             var rulesEntry = configCategory.CreateEntry("rules", string.Empty);
 
             var rules = new List<Rule>();
-            using (var document = JsonDocument.Parse(rulesEntry.Value))
+            foreach (var ruleConfigEntry in JsonConvert.DeserializeObject<List<RuleConfigEntry>>(rulesEntry.Value))
             {
-                foreach (var ruleEntryJson in document.RootElement.EnumerateArray())
+                try
                 {
-                    try
-                    {
-                        var ruleEntry = ruleEntryJson.Deserialize<RuleConfigEntry>(SerializerOptions);
-                        var (ruleType, configType) = FindRuleAndConfigType(ruleEntry.Rule);
-                        var configObject = JsonSerializer.Deserialize(ruleEntry.Config, configType, SerializerOptions);
-
-                        var instantiateRuleNew = InstantiateRule(ruleType, configType, configObject);
-                        rules.Add(instantiateRuleNew);
-                    }
-                    catch (Exception e)
-                    {
-                        ConfigurationMod.Logger.Warning($"Failed to read rule entry from config. Skipping that rule: {e}");
-                    }
+                    var (ruleType, configType) = FindRuleAndConfigType(ruleConfigEntry.Rule);
+                    var configObject = ruleConfigEntry.Config.ToObject(configType);
+                    var instantiateRuleNew = InstantiateRule(ruleType, configType, configObject);
+                    rules.Add(instantiateRuleNew);
+                }
+                catch (Exception e)
+                {
+                    ConfigurationMod.Logger.Warning($"Failed to read rule entry from config. Skipping that rule: {e}");
                 }
             }
 
@@ -179,10 +172,19 @@
             }
         }
 
+        private static void ConfigureDefaultSerializationSettings()
+        {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                Converters = { new Newtonsoft.Json.Converters.StringEnumConverter() },
+            };
+        }
+
         private struct RuleConfigEntry
         {
             public string Rule;
-            public JsonElement Config;
+            public JToken Config;
         }
     }
 }
