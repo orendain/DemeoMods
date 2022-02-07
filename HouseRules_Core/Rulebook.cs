@@ -68,12 +68,12 @@
             Rulesets.Add(ruleset);
         }
 
-        private bool IsRuleRegistered(Type ruleType)
+        public bool IsRuleRegistered(Type ruleType)
         {
             return RuleTypes.Contains(ruleType);
         }
 
-        private bool IsRulesetRegistered(string ruleset)
+        public bool IsRulesetRegistered(string ruleset)
         {
             return Rulesets.Any(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
         }
