@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using HouseRules.Types;
 
     public class Registrar
     {
@@ -32,7 +33,7 @@
         // TODO(orendain): Disallow registration after a certain point in init process.
         public void Register(Type ruleType)
         {
-            HouseRules.Logger.Msg($"Registering rule type: {ruleType}");
+            HR.Logger.Msg($"Registering rule type: {ruleType}");
 
             if (RuleTypes.Contains(ruleType))
             {
@@ -49,7 +50,7 @@
 
         public void Register(Ruleset ruleset)
         {
-            HouseRules.Logger.Msg($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
+            HR.Logger.Msg($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
 
             if (IsRulesetRegistered(ruleset.Name))
             {

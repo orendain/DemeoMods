@@ -4,6 +4,7 @@
     using Boardgame;
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
+    using HouseRules.Types;
     using UnityEngine;
 
     public sealed class RatNestsSpawnGoldRule : Rule, IConfigWritable<int>

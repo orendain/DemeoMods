@@ -4,6 +4,7 @@
     using Boardgame.Data;
     using Boardgame.SerializableEvents;
     using HarmonyLib;
+    using HouseRules.Types;
 
     public sealed class GoldPickedUpMultipliedRule : Rule, IPatchable
     {

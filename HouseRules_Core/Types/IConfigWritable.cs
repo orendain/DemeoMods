@@ -1,4 +1,4 @@
-﻿namespace HouseRules
+﻿namespace HouseRules.Types
 {
     /// <summary>
     /// Represents a rule whose configuration can be written.

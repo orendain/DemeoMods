@@ -5,6 +5,7 @@
     using Boardgame;
     using Boardgame.BoardEntities.Abilities;
     using HarmonyLib;
+    using HouseRules.Types;
     using UnityEngine;
 
     public sealed class AbilityAoeAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>

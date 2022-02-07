@@ -7,6 +7,7 @@
     using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
+    using HouseRules.Types;
 
     public sealed class StartCardsModifiedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>>, IPatchable
     {

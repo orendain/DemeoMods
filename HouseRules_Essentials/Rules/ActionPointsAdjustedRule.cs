@@ -4,6 +4,7 @@
     using System.Linq;
     using Boardgame;
     using HarmonyLib;
+    using HouseRules.Types;
     using UnityEngine;
 
     public sealed class ActionPointsAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>

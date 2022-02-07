@@ -4,6 +4,7 @@
     using System.Linq;
     using Boardgame;
     using Boardgame.BoardEntities.Abilities;
+    using HouseRules.Types;
     using UnityEngine;
 
     public sealed class AbilityDamageAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>

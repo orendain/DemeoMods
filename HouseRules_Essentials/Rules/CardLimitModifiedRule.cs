@@ -5,6 +5,7 @@
     using Boardgame;
     using Boardgame.BoardEntities;
     using HarmonyLib;
+    using HouseRules.Types;
 
     public sealed class CardLimitModifiedRule : Rule, IConfigWritable<int>, IPatchable
     {
