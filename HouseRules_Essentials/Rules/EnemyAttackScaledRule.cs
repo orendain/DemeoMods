@@ -22,7 +22,7 @@
 
         protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
-        private static void Patch(HarmonyLib.Harmony harmony)
+        private static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.PropertyGetter(typeof(PieceConfig), "AttackDamage"),
