@@ -27,7 +27,7 @@
             {
                 try
                 {
-                    var ruleset = ConfigManager.ReadRuleset(rulesetName);
+                    var ruleset = ConfigManager.ImportRuleset(rulesetName);
                     HR.Rulebook.Register(ruleset);
                     Logger.Msg($"Loaded and registered ruleset from config: {rulesetName}");
                 }
@@ -127,7 +127,7 @@
                 aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha,
             });
 
-            ConfigManager.WriteRuleset(customRuleset);
+            ConfigManager.ExportRuleset(customRuleset);
         }
     }
 }
