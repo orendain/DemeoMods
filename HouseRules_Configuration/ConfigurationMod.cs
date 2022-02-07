@@ -105,13 +105,15 @@
                 new List<string> { "MonsterBait", "StartHealth", "20" }, // Lure needs to last a little longer
             });
             var rnsg = new Essentials.Rules.RatNestsSpawnGoldRule(8);
-            var sscm = new Essentials.Rules.SorcererStartCardsModifiedRule(new List<Essentials.Rules.SorcererStartCardsModifiedRule.CardConfig>
+            var cards = new List<Essentials.Rules.StartCardsModifiedRule.CardConfig>
             {
-                new Essentials.Rules.SorcererStartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, IsReplenishable = false },
-                new Essentials.Rules.SorcererStartCardsModifiedRule.CardConfig { Card = AbilityKey.Whirlwind, IsReplenishable = false },
-                new Essentials.Rules.SorcererStartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, IsReplenishable = false },
-                new Essentials.Rules.SorcererStartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, IsReplenishable = false },
-            });
+                new Essentials.Rules.StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, IsReplenishable = false },
+                new Essentials.Rules.StartCardsModifiedRule.CardConfig { Card = AbilityKey.Whirlwind, IsReplenishable = false },
+                new Essentials.Rules.StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, IsReplenishable = false },
+                new Essentials.Rules.StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, IsReplenishable = false },
+            };
+            var sorcCards = new Dictionary<BoardPieceId, List<Essentials.Rules.StartCardsModifiedRule.CardConfig>> { { BoardPieceId.HeroSorcerer, cards } };
+            var sscm = new Essentials.Rules.StartCardsModifiedRule(sorcCards);
             var sha = new Essentials.Rules.StartHealthAdjustedRule(new Dictionary<string, int>
             {
                 { "HeroSorcerer", 50 },
