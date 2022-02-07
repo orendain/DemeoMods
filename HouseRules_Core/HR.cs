@@ -4,6 +4,7 @@ namespace HouseRules
     using System.Linq;
     using System.Text;
     using Boardgame;
+    using HouseRules.Types;
     using MelonLoader;
 
     public static class HR

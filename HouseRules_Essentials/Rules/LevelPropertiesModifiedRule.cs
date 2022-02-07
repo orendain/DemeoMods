@@ -5,6 +5,7 @@
     using Boardgame.PlayerData;
     using Data.GameData;
     using HarmonyLib;
+    using HouseRules.Types;
 
     public sealed class LevelPropertiesModifiedRule : Rule, IConfigWritable<Dictionary<string, int>>
     {

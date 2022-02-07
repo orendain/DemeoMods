@@ -3,6 +3,7 @@
     using Boardgame;
     using Data.GameData;
     using HarmonyLib;
+    using HouseRules.Types;
 
     public sealed class CardEnergyFromAttackMultipliedRule : Rule, IConfigWritable<float>
     {

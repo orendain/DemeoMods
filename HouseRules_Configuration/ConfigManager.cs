@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using HarmonyLib;
+    using HouseRules.Types;
     using MelonLoader;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

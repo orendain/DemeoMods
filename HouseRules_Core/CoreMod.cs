@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using HarmonyLib;
+    using HouseRules.Types;
     using MelonLoader;
 
     internal class CoreMod : MelonMod

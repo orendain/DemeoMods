@@ -3,6 +3,7 @@
     using System.Reflection;
     using Boardgame;
     using HarmonyLib;
+    using HouseRules.Types;
 
     public sealed class CardSellValueMultipliedRule : Rule, IConfigWritable<float>, IPatchable
     {

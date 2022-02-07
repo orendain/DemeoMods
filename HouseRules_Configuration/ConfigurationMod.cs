@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using DataKeys;
+    using HouseRules.Types;
     using MelonLoader;
 
     internal class ConfigurationMod : MelonMod

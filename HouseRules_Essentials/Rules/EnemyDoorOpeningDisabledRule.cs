@@ -2,6 +2,7 @@
 {
     using Boardgame;
     using HarmonyLib;
+    using HouseRules.Types;
 
     public sealed class EnemyDoorOpeningDisabledRule : Rule, IConfigWritable<bool>, IPatchable
     {

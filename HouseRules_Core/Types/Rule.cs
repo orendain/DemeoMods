@@ -1,4 +1,4 @@
-﻿namespace HouseRules
+﻿namespace HouseRules.Types
 {
     using Boardgame;
 

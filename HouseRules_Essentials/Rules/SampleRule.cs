@@ -1,6 +1,8 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using Boardgame;
+    using HarmonyLib;
+    using HouseRules.Types;
 
     /// <summary>
     /// Represents a modular gameplay modification.
@@ -70,7 +72,7 @@
         /// Rules should use a static flag (e.g., <c>_isActivated</c>) in the patched method to
         /// ensure it makes modifications only when it is activated.
         /// </remarks>
-        private static void Patch(HarmonyLib.Harmony harmony)
+        private static void Patch(Harmony harmony)
         {
         }
     }

@@ -4,6 +4,7 @@
     using System.Linq;
     using Boardgame;
     using HarmonyLib;
+    using HouseRules.Types;
     using UnityEngine;
 
     public sealed class PieceConfigAdjustedRule : Rule, IConfigWritable<List<List<string>>>

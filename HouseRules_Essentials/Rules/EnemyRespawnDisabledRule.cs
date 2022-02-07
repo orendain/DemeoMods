@@ -3,6 +3,7 @@
     using Boardgame;
     using Boardgame.AIDirector;
     using HarmonyLib;
+    using HouseRules.Types;
 
     public sealed class EnemyRespawnDisabledRule : Rule, IConfigWritable<bool>, IPatchable
     {

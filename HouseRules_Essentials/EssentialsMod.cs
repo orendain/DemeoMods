@@ -1,6 +1,8 @@
 ﻿namespace HouseRules.Essentials
 {
     using System.Collections.Generic;
+    using HouseRules.Essentials.Rules;
+    using HouseRules.Types;
     using MelonLoader;
 
     internal class EssentialsMod : MelonMod
@@ -16,31 +18,31 @@
         private static void RegisterNewRuleTypes()
         {
             var registrar = Registrar.Instance();
-            registrar.Register(typeof(Rules.SampleRule));
-            registrar.Register(typeof(Rules.AbilityAoeAdjustedRule));
-            registrar.Register(typeof(Rules.AbilityDamageAdjustedRule));
-            registrar.Register(typeof(Rules.AbilityActionCostAdjustedRule));
-            registrar.Register(typeof(Rules.ActionPointsAdjustedRule));
-            registrar.Register(typeof(Rules.CardEnergyFromAttackMultipliedRule));
-            registrar.Register(typeof(Rules.CardEnergyFromRecyclingMultipliedRule));
-            registrar.Register(typeof(Rules.CardLimitModifiedRule));
-            registrar.Register(typeof(Rules.CardSellValueMultipliedRule));
-            registrar.Register(typeof(Rules.EnemyAttackScaledRule));
-            registrar.Register(typeof(Rules.EnemyDoorOpeningDisabledRule));
-            registrar.Register(typeof(Rules.EnemyHealthScaledRule));
-            registrar.Register(typeof(Rules.EnemyRespawnDisabledRule));
-            registrar.Register(typeof(Rules.GoldPickedUpMultipliedRule));
-            registrar.Register(typeof(Rules.GoldPickedUpScaledRule));
-            registrar.Register(typeof(Rules.LevelPropertiesModifiedRule));
-            registrar.Register(typeof(Rules.PieceConfigAdjustedRule));
-            registrar.Register(typeof(Rules.RatNestsSpawnGoldRule));
-            registrar.Register(typeof(Rules.StartCardsModifiedRule));
-            registrar.Register(typeof(Rules.StartHealthAdjustedRule));
+            registrar.Register(typeof(SampleRule));
+            registrar.Register(typeof(AbilityAoeAdjustedRule));
+            registrar.Register(typeof(AbilityDamageAdjustedRule));
+            registrar.Register(typeof(AbilityActionCostAdjustedRule));
+            registrar.Register(typeof(ActionPointsAdjustedRule));
+            registrar.Register(typeof(CardEnergyFromAttackMultipliedRule));
+            registrar.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
+            registrar.Register(typeof(CardLimitModifiedRule));
+            registrar.Register(typeof(CardSellValueMultipliedRule));
+            registrar.Register(typeof(EnemyAttackScaledRule));
+            registrar.Register(typeof(EnemyDoorOpeningDisabledRule));
+            registrar.Register(typeof(EnemyHealthScaledRule));
+            registrar.Register(typeof(EnemyRespawnDisabledRule));
+            registrar.Register(typeof(GoldPickedUpMultipliedRule));
+            registrar.Register(typeof(GoldPickedUpScaledRule));
+            registrar.Register(typeof(LevelPropertiesModifiedRule));
+            registrar.Register(typeof(PieceConfigAdjustedRule));
+            registrar.Register(typeof(RatNestsSpawnGoldRule));
+            registrar.Register(typeof(StartCardsModifiedRule));
+            registrar.Register(typeof(StartHealthAdjustedRule));
         }
 
         private static void RegisterNewRulesets()
         {
-            var sampleRules = new List<Rule> { new Rules.SampleRule() };
+            var sampleRules = new List<Rule> { new SampleRule() };
             var sampleRuleset = Ruleset.NewInstance("SampleRuleset", "Just a sample ruleset.", sampleRules);
 
             var registrar = Registrar.Instance();
