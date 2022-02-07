@@ -5,26 +5,18 @@
     using System.Linq;
     using HouseRules.Types;
 
-    public class Registrar
+    public class Rulebook
     {
-        private static Registrar _instance;
-
         internal HashSet<Type> RuleTypes { get; }
 
         internal HashSet<Ruleset> Rulesets { get; }
 
-        public static Registrar Instance()
+        internal static Rulebook NewInstance()
         {
-            if (_instance != null)
-            {
-                return _instance;
-            }
-
-            _instance = new Registrar();
-            return _instance;
+            return new Rulebook();
         }
 
-        private Registrar()
+        private Rulebook()
         {
             RuleTypes = new HashSet<Type>();
             Rulesets = new HashSet<Ruleset>();
@@ -76,12 +68,12 @@
             Rulesets.Add(ruleset);
         }
 
-        private bool IsRuleRegistered(Type ruleType)
+        public bool IsRuleRegistered(Type ruleType)
         {
             return RuleTypes.Contains(ruleType);
         }
 
-        private bool IsRulesetRegistered(string ruleset)
+        public bool IsRulesetRegistered(string ruleset)
         {
             return Rulesets.Any(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
         }

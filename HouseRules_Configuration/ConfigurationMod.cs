@@ -28,7 +28,7 @@
                 try
                 {
                     var ruleset = ConfigManager.ReadRuleset(rulesetName);
-                    Registrar.Instance().Register(ruleset);
+                    HR.Rulebook.Register(ruleset);
                     Logger.Msg($"Loaded and registered ruleset from config: {rulesetName}");
                 }
                 catch (Exception e)

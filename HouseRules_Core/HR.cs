@@ -13,6 +13,8 @@ namespace HouseRules
         private const float WelcomeMessageDurationSeconds = 30f;
         private static bool _isRulesetActive;
 
+        public static readonly Rulebook Rulebook = Rulebook.NewInstance();
+
         public static Ruleset SelectedRuleset { get; private set; }
 
         public static void SelectRuleset(string ruleset)
@@ -22,15 +24,12 @@ namespace HouseRules
                 throw new InvalidOperationException("May not select a new ruleset while one is currently active.");
             }
 
-            try
+            if (!Rulebook.IsRulesetRegistered(ruleset))
             {
-                SelectedRuleset = Registrar.Instance().Rulesets
-                    .Single(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
+                throw new ArgumentException("Ruleset must first be registered.");
             }
-            catch (InvalidOperationException e)
-            {
-                throw new ArgumentException("Ruleset must first be registered.", e);
-            }
+
+            SelectedRuleset = Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
 
             Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
         }
