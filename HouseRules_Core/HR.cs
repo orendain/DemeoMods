@@ -24,7 +24,7 @@ namespace HouseRules
 
             try
             {
-                SelectedRuleset = Registrar.Instance().Rulesets
+                SelectedRuleset = Rulebook.Instance().Rulesets
                     .Single(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
             }
             catch (InvalidOperationException e)

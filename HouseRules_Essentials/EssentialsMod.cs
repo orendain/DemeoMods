@@ -17,7 +17,7 @@
 
         private static void RegisterNewRuleTypes()
         {
-            var registrar = Registrar.Instance();
+            var registrar = Rulebook.Instance();
             registrar.Register(typeof(SampleRule));
             registrar.Register(typeof(AbilityAoeAdjustedRule));
             registrar.Register(typeof(AbilityDamageAdjustedRule));
@@ -45,7 +45,7 @@
             var sampleRules = new List<Rule> { new SampleRule() };
             var sampleRuleset = Ruleset.NewInstance("SampleRuleset", "Just a sample ruleset.", sampleRules);
 
-            var registrar = Registrar.Instance();
+            var registrar = Rulebook.Instance();
             registrar.Register(sampleRuleset);
         }
     }

@@ -23,7 +23,7 @@
 
         private static void PatchRegisteredRules()
         {
-            var patchableRules = Registrar.Instance().RuleTypes.Where(typ => typeof(IPatchable).IsAssignableFrom(typ)).ToList();
+            var patchableRules = Rulebook.Instance().RuleTypes.Where(typ => typeof(IPatchable).IsAssignableFrom(typ)).ToList();
 
             HR.Logger.Msg($"Found [{patchableRules.Count}] registered rules that require game patching.");
 

@@ -5,26 +5,26 @@
     using System.Linq;
     using HouseRules.Types;
 
-    public class Registrar
+    public class Rulebook
     {
-        private static Registrar _instance;
+        private static Rulebook _instance;
 
         internal HashSet<Type> RuleTypes { get; }
 
         internal HashSet<Ruleset> Rulesets { get; }
 
-        public static Registrar Instance()
+        public static Rulebook Instance()
         {
             if (_instance != null)
             {
                 return _instance;
             }
 
-            _instance = new Registrar();
+            _instance = new Rulebook();
             return _instance;
         }
 
-        private Registrar()
+        private Rulebook()
         {
             RuleTypes = new HashSet<Type>();
             Rulesets = new HashSet<Ruleset>();
