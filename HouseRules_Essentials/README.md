@@ -16,8 +16,7 @@ The game is is played using a board, a number of __Pieces__ and a number of __Ab
 
 ### JSON Rulesets
 
-Rulesets may also be defined in JSON within the MelonLoader config file. An [example JSON ruleset](examples/sample-json-ruleset.txt) is provided to 
-
+Rulesets may also be defined in JSON within the MelonLoader config file. A sample [MelonLoader config with JSON ruleset](sample-json-ruleset.txt) is provided to help you get started. 
 
 
 ## Rules
@@ -161,7 +160,7 @@ Rulesets may also be defined in JSON within the MelonLoader config file. An [exa
     - Config accepts Dictionary e.g. `{ "ParamName1", int, "ParamName2", int }`   
     ###### _Example JSON config for this rule_
     ```json
-  {
+    {
     "Rule": "LevelPropertiesModifiedRule",
     "Config": {
       "BigGoldPileChance": 100,
@@ -197,10 +196,10 @@ Rulesets may also be defined in JSON within the MelonLoader config file. An [exa
     - Config accepts bool e.g `true`  
     ###### _Example JSON config for this rule_
     ```json
-  {
-    "Rule": "RatNestsSpawnGoldRule",
-    "Config": true
-  },
+    {
+      "Rule": "RatNestsSpawnGoldRule",
+      "Config": true
+    },
     ```
 - **StartCardsModifiedRule**: Hero start cards are modified
     - Removes all default cards from Player's hand and replaces them with custom ones.

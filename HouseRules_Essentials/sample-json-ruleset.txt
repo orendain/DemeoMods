@@ -1,0 +1,132 @@
+[TestingRuleSet]
+name = "TestingRuleSet"
+description = "Test ruleset for rapid gameplay"
+rules = '''
+[
+  {
+    "Rule": "AbilityDamageAdjustedRule",
+    "Config": { "Zap": 1 }
+  },
+  {
+    "Rule": "StartCardsModifiedRule",
+    "Config": {
+      "HeroGuardian": [
+        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "ReplenishArmor", "IsReplenishable": true },
+        { "Card": "Whirlwind", "IsReplenishable": true },
+        { "Card": "PiercingSpear", "IsReplenishable": false },
+        { "Card": "CoinFlip", "IsReplenishable": false },
+        { "Card": "BeaconOfSmite", "IsReplenishable": false },
+        { "Card": "SwordOfAvalon", "IsReplenishable": false }
+      ],
+      "HeroHunter": [
+        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "HunterArrow", "IsReplenishable": true },
+        { "Card": "HunterArrow", "IsReplenishable": true },
+        { "Card": "Exterminate", "IsReplenishable": false },
+        { "Card": "PiercingSpear", "IsReplenishable": false },
+        { "Card": "Bone", "IsReplenishable": false },
+        { "Card": "CallCompanion", "IsReplenishable": false },
+        { "Card": "CoinFlip", "IsReplenishable": false },
+        { "Card": "DropChest", "IsReplenishable": false }
+      ],
+      "HeroSorcerer": [
+        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "Zap", "IsReplenishable": true },
+        { "Card": "Whirlwind", "IsReplenishable": true },
+        { "Card": "Freeze", "IsReplenishable": false },
+        { "Card": "Fireball", "IsReplenishable": false },
+        { "Card": "Fireball", "IsReplenishable": false },
+        { "Card": "CoinFlip", "IsReplenishable": false },
+        { "Card": "CallCompanion", "IsReplenishable": false }
+      ],
+      "HeroRouge": [
+        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "Stealth", "IsReplenishable": true },
+        { "Card": "Blink", "IsReplenishable": false },
+        { "Card": "Whirlwind", "IsReplenishable": false },
+        { "Card": "GodsFury", "IsReplenishable": false },
+        { "Card": "PoisonGasGrenade", "IsReplenishable": false },
+        { "Card": "RevealPath", "IsReplenishable": false },
+        { "Card": "BeaconOfSmite", "IsReplenishable": false },
+        { "Card": "SwordOfAvalon", "IsReplenishable": false }
+      ],
+      "HeroBard": [
+        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "StrengthenCourage", "IsReplenishable": true },
+        { "Card": "ShatteringVoice", "IsReplenishable": false },
+        { "Card": "CallCompanion", "IsReplenishable": false },
+        { "Card": "CoinFlip", "IsReplenishable": false },
+        { "Card": "Rejuvenation", "IsReplenishable": false },
+        { "Card": "Banish", "IsReplenishable": false },
+        { "Card": "Fireball", "IsReplenishable": false },
+        { "Card": "SongOfRecovery", "IsReplenishable": false },
+        { "Card": "SongOfResilience", "IsReplenishable": false },
+        { "Card": "NotesOfConfusion", "IsReplenishable": false },
+        { "Card": "SodiumHydroxide", "IsReplenishable": false }
+      ]
+    }
+  },
+  {
+    "Rule": "AbilityAoeAdjustedRule",
+    "Config": {
+      "Fireball": 1,
+      "StrengthenCourage": 1,
+      "Strength": 1,
+      "Speed": 1,
+      "Antidote": 1,
+      "Invulnerability": 1,
+      "Heal": 1
+    }
+  },
+  {
+    "Rule": "PieceConfigAdjustedRule",
+    "Config": [
+      [ "HeroSorcerer", "StartHealth", "10" ],
+      [ "HeroSorcerer", "MoveRange", "1" ],
+      [ "HeroSorcerer", "ActionPoint", "1" ],
+      [ "HeroGuardian", "MoveRange", "1" ],
+      [ "HeroGuardian", "StartHealth", "10" ],
+      [ "HeroGuardian", "ActionPoint", "1" ],
+      [ "HeroHunter", "MoveRange", "1" ],
+      [ "HeroHunter", "StartHealth", "10" ],
+      [ "HeroHunter", "ActionPoint", "1"],
+      [ "HeroBard", "MoveRange", "1" ],
+      [ "HeroBard", "StartHealth", "10" ],
+      [ "HeroBard", "ActionPoint", "1" ],
+      [ "HeroRouge", "MoveRange", "1" ],
+      [ "HeroRouge", "StartHealth", "10" ],
+      [ "HeroRouge", "ActionPoint", "1" ],
+      [ "WolfCompanion", "StartHealth", "20" ],
+      [ "SwordOfAvalon", "StartHealth", "10" ],
+      [ "BeaconOfSmite", "StartHealth", "10" ],
+      [ "BeaconOfSmite", "ActionPoint", "1" ],
+      [ "MonsterBait", "StartHealth", "20" ]
+    ]
+  },
+  {
+    "Rule": "AbilityActionCostAdjustedRule",
+    "Config": {
+      "Zap": false,
+      "StrengthenCourage": false
+    }
+  },
+  {
+    "Rule": "CardEnergyFromAttackMultipliedRule",
+    "Config": 2.0
+  },
+  {
+    "Rule": "CardEnergyFromRecyclingMultipliedRule",
+    "Config": 2.0
+  },
+  {
+    "Rule": "CardLimitModifiedRule",
+    "Config": 20
+  }
+]'''
+
+
+[HouseRules]
+ruleset = "TestingRuleSet"
+loadFromConfig = true
+
