@@ -49,7 +49,7 @@ loadFromConfig = false
 ```
 
 A list of out-of-the-box Ruleset names can be found in the
-[Rules readme](../HouseRules_Essentials/README.md).
+[HouseRules_Essentials readme](../HouseRules_Essentials/README.md).
 
 To use a built-in ruleset, ensure `loadFromConfig` is set to `false` and select the built-in ruleset to use by typing its name within the quotes.
 Alternatively, use empty quotes `""` to specify no ruleset should be used.
@@ -85,10 +85,8 @@ ruleset = "SuperZap"
 loadFromConfig = true
 ```
 
-
-
 Example JSON samples for each rule type can be found in the 
-[Rules readme](../HouseRules_Essentials/README.md).
+[HouseRules_Essentials readme](../HouseRules_Essentials/README.md).
 
 ## Rules vs Mods
 
