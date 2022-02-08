@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Security.AccessControl;
     using HarmonyLib;
     using HouseRules.Types;
     using MelonLoader;
