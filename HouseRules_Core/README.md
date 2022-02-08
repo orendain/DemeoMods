@@ -54,34 +54,38 @@ A list of out-of-the-box Ruleset names can be found in the
 To use a built-in ruleset, ensure `loadFromConfig` is set to `false` and select the built-in ruleset to use by typing its name within the quotes.
 Alternatively, use empty quotes `""` to specify no ruleset should be used.
 
-Rulesets may also be defined in JSON within `UserData/MelonPreferences.cfg`. Here's a ruleset for beefing up the Sorcerer's Zap ability.
+Rulesets may also be defined as JSON files  `UserData/HouseRules/<ruleset_name>.json`. Here's a sample ruleset for beefing up the Sorcerer's Zap ability. 
+
+```json
+{
+  "Name": "SuperZap",
+  "Description": "Zap has no action cost and does 1 extra damage.",
+  "Rules": [
+    {
+      "Rule": "AbilityActionCostAdjustedRule",
+      "Config": {
+        "Zap": false,
+        "StrengthenCourage": false
+    },
+    {
+      "Rule": "AbilityDamageAdjustedRule",
+      "Config": { "Zap": 1 }
+    },
+  ]
+}
+
+```
+
+The above `UserData/HouseRules/SuperZap.json` file can be loaded by selecting it as the ruleset within `UserData/MelonPreferences.cfg`. 
+When using JSON-defined rulesets, ensure `loadFromConfig` is set to `true`.
 
 ```toml
 [HouseRules]
 ruleset = "SuperZap"
 loadFromConfig = true
-
-[SuperZap]
-name = "SuperZap"
-description = "Zap has no action cost and does 1 extra damage."
-rules = '''
-[
-  {
-    "Rule": "AbilityActionCostAdjustedRule",
-    "Config": {
-      "Zap": false,
-      "StrengthenCourage": false
-  },
-  {
-    "Rule": "AbilityDamageAdjustedRule",
-    "Config": { "Zap": 1 }
-  },
-]
-
-'''
 ```
 
-To use a JSON-defined ruleset, ensure `loadFromConfig` is set to `true`, set the `ruleset=` to the name of your ruleset.
+
 
 Example JSON samples for each rule type can be found in the 
 [Rules readme](../HouseRules_Essentials/README.md).
