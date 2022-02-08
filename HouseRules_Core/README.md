@@ -63,14 +63,14 @@ Rulesets may also be defined as JSON files  `UserData/HouseRules/<ruleset_name>.
   "Rules": [
     {
       "Rule": "AbilityActionCostAdjustedRule",
-      "Config": {
-        "Zap": false,
-        "StrengthenCourage": false
+      "Config": { "Zap": false, 
+                  "StrengthenCourage": false
+                },
     },
     {
       "Rule": "AbilityDamageAdjustedRule",
       "Config": { "Zap": 1 }
-    },
+    }
   ]
 }
 
