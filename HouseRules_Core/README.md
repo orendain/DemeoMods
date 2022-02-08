@@ -1,6 +1,5 @@
 # HouseRules Core
 
-
 Set your own challenges and be the Dungeon Master of your own game. Make your own rules and challenge your friends.
 
 A framework allowing the definition of modular gameplay modifications (or
@@ -16,6 +15,7 @@ The idea behind HouseRules is:
 
 There can be any number of custom "rules" available, where each rule introduces
 some gameplay modification. E.g.:
+
 - Ballistas shoot 2 additional times.
 - Players have an extra +1 movement range.
 - Players start with +1 strength.
@@ -58,11 +58,11 @@ Rulesets may also be defined in JSON within `UserData/MelonPreferences.cfg`. Her
 
 ```toml
 [HouseRules]
-ruleset = "SuperZapRuleset"
+ruleset = "SuperZap"
 loadFromConfig = true
 
-[SuperZapRuleset]
-name = "SuperZapRuleset"
+[SuperZap]
+name = "SuperZap"
 description = "Zap has no action cost and does 1 extra damage."
 rules = '''
 [
@@ -80,18 +80,20 @@ rules = '''
 
 '''
 ```
-To use a JSON-defined ruleset, ensure `loadFromConfig` is set to `true`, set the `ruleset=` to the name of your ruleset. 
+
+To use a JSON-defined ruleset, ensure `loadFromConfig` is set to `true`, set the `ruleset=` to the name of your ruleset.
 
 Example JSON samples for each rule type can be found in the 
 [Rules readme](../HouseRules_Essentials/README.md).
 
 ## Rules vs Mods
 
-A HoiuseRules rule can be written with as few as a couple dozen lines of code,
+A HouseRules rule can be written with as few as a couple dozen lines of code,
 and allows it to be loaded selectively by users, or other mods, at playtime.
 
 There are several considerations to make when deciding between writing a
 HouseRules rule or a full-blown mod:
+
 - **Gameplay Only**: Rules are activated only during gameplay and not, for
   example, in the main menu.
 - **Runs on Host**: Rules are applied only host-side, where the majority of
