@@ -16,7 +16,8 @@ The game is is played using a board, a number of __Pieces__ and a number of __Ab
 
 ### JSON Rulesets
 
-Rulesets may also be defined in JSON within the MelonLoader config file. A sample [MelonLoader config with JSON ruleset](sample-json-ruleset.txt) is provided to help you get started. 
+Rulesets may also be configured as JSON files and stored within the game directory `<GAME_DIR>/UserData/HouseRules/<rulesetname>.json`
+An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to help you get started. 
 
 ## Rules
 
