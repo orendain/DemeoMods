@@ -19,6 +19,8 @@ Set your own challenges and be the Dungeon Master of your own game. Make your ow
 
 HouseRules applies customisations to many settings, values and toggles used within the Demeo code.
 
+![RoomFinder Screenshot](docs/HouseRules.png)
+
 - Adjust HP, AttackDamage, ActionPoints etc on a per-character basis
 - Scale gold/mana/chests up/down
 - Change starting cards dealt and max-cards allowed
