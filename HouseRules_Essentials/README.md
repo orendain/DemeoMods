@@ -285,4 +285,4 @@ Rulesets may also be defined in JSON within the MelonLoader config file. A sampl
    ```
 
 - ___StartHealthAdjustedRule__: Starting Health is adjusted_
-  - Same settigs handled by piececonfig. Rule not needed anymore?
+  - Same settings handled by piececonfig. Rule not needed anymore?
