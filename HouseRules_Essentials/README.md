@@ -5,8 +5,6 @@ A collection of predefined rules and rulesets for HouseRules_Core
 See the [HouseRules_Core readme](../HouseRules_Core/README.md) for more information about
 RulesAPI.
 
-The game is is played using a board, a number of __Pieces__ and a number of __Abilities__
-
 ## Rulesets
 
 ### Built-in Rulesets
