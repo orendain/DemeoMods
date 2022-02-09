@@ -54,6 +54,7 @@
         <Compile Include="Rulebook.cs" />
         <Compile Include="Types\IConfigWritable.cs" />
         <Compile Include="Types\IPatchable.cs" />
+        <Compile Include="Types\ISingular.cs" />
         <Compile Include="Types\Rule.cs" />
         <Compile Include="Types\Ruleset.cs" />
     </ItemGroup>
