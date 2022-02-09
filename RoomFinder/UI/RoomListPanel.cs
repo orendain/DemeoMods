@@ -192,7 +192,8 @@
             return () =>
             {
                 RoomFinderMod.Logger.Msg($"Joining room [{roomCode}].");
-                Traverse.Create(RoomFinderMod.GameContextState.LobbyMenuController).Method("JoinGame", roomCode, true)
+                Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
+                    .Method("JoinGame", roomCode, true)
                     .GetValue();
             };
         }
