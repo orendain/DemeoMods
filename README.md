@@ -13,16 +13,32 @@ mods, or are interested in learning to build your own.
 
 Skips the intro loading scene.
 
-### RulesAPI + Rules
+### HouseRules
 
-A framework allowing the definition of modular gameplay modifications (or
+Set your own challenges and be the Dungeon Master of your own game. Make your own rules and challenge your friends.
+
+HouseRules applies customisations to many settings, values and toggles used within the Demeo code.
+
+![RoomFinder Screenshot](docs/HouseRules.png)
+
+- Adjust HP, AttackDamage, ActionPoints etc on a per-character basis
+- Scale gold/mana/chests up/down
+- Change starting cards dealt and max-cards allowed
+- Add/Adjust AOE effects for abilities.
+- Remove/add casting cost for cards
+- .. and many more
+
+This framework allows the definition of modular gameplay modifications (or
 "rules") and the ability to group them to create custom gamemodes (or
 "rulesets").
 
-See the [RulesAPI readme](RulesAPI_Core/README.md) for information about the
-RulesAPI framework.
+Rulesets can be configured as JSON files stored within the game's directoy.
+It is currently necessary to select the ruleset by editing the `MelonloaderPreferences.cfg` file before starting the game.
 
-See the [Rules readme](RulesAPI_Essentials/README.md) for a list of all predefined RulesAPI
+See the [HouseRules_Core readme](HouseRules_Core/README.md) for information about the
+HouseRules framework.
+
+See the [HouseRules_Essentials readme](HouseRules_Essentials/README.md) for a list of all predefined RulesAPI
 rules and rulesets.
 
 ### RoomFinder
