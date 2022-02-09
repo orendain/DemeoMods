@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5
 	ProjectSection(SolutionItems) = preProject
 		docs\roomfinder_screenshot.jpg = docs\roomfinder_screenshot.jpg
 		docs\PieceConfig.md = docs\PieceConfig.md
+		docs\houserules_screenshot.jpg = docs\houserules_screenshot.jpg
+		docs\TestingRuleSet.json = docs\TestingRuleSet.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules_Configuration", "HouseRules_Configuration\HouseRules_Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
