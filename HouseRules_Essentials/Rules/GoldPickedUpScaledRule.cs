@@ -10,8 +10,10 @@
     {
         public override string Description => "Gold picked up is scaled";
 
-        private static float _multiplier;
+        private static float _globalMultiplier;
         private static bool _isActivated;
+
+        private readonly float _multiplier;
 
         public GoldPickedUpScaledRule(float multiplier)
         {
@@ -20,7 +22,11 @@
 
         public float GetConfigObject() => _multiplier;
 
-        protected override void OnActivate(GameContext gameContext) => _isActivated = true;
+        protected override void OnActivate(GameContext gameContext)
+        {
+            _globalMultiplier = _multiplier;
+            _isActivated = true;
+        }
 
         protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
@@ -40,7 +46,7 @@
                 return;
             }
 
-            __instance.goldAmount = (int)(__instance.goldAmount * _multiplier);
+            __instance.goldAmount = (int)(__instance.goldAmount * _globalMultiplier);
         }
     }
 }

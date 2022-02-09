@@ -13,8 +13,10 @@
     {
         public override string Description => "Hero start cards are modified";
 
-        private static Dictionary<BoardPieceId, List<CardConfig>> _heroStartCards;
+        private static Dictionary<BoardPieceId, List<CardConfig>> _globalHeroStartCards;
         private static bool _isActivated;
+
+        private readonly Dictionary<BoardPieceId, List<CardConfig>> _heroStartCards;
 
         public struct CardConfig
         {
@@ -30,7 +32,11 @@
 
         public Dictionary<BoardPieceId, List<CardConfig>> GetConfigObject() => _heroStartCards;
 
-        protected override void OnActivate(GameContext gameContext) => _isActivated = true;
+        protected override void OnActivate(GameContext gameContext)
+        {
+            _globalHeroStartCards = _heroStartCards;
+            _isActivated = true;
+        }
 
         protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
@@ -67,7 +73,7 @@
             piece.inventory.Items.Clear();
             Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value = 0;
 
-            foreach (var card in _heroStartCards[piece.boardPieceId])
+            foreach (var card in _globalHeroStartCards[piece.boardPieceId])
             {
                 piece.TryAddAbilityToInventory(card.Card, isReplenishable: card.IsReplenishable);
             }

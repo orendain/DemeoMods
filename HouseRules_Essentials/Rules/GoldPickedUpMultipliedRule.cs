@@ -10,15 +10,21 @@
     {
         public override string Description => "Gold picked up is multiplied";
 
-        private static double _multiplier;
+        private static double _globalMultiplier;
         private static bool _isActivated;
+
+        private readonly double _multiplier;
 
         public GoldPickedUpMultipliedRule(double multiplier)
         {
             _multiplier = multiplier;
         }
 
-        protected override void OnActivate(GameContext gameContext) => _isActivated = true;
+        protected override void OnActivate(GameContext gameContext)
+        {
+            _globalMultiplier = _multiplier;
+            _isActivated = true;
+        }
 
         protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
@@ -38,7 +44,7 @@
                 return;
             }
 
-            __instance.goldAmount = (int)(__instance.goldAmount * _multiplier);
+            __instance.goldAmount = (int)(__instance.goldAmount * _globalMultiplier);
         }
     }
 }
