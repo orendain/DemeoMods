@@ -1,6 +1,6 @@
 ﻿namespace HouseRules.Types
 {
-    public interface IPatchable
+    public interface IPatchable : ISingular
     {
         /// <summary>
         /// Patches the game with the given patcher.

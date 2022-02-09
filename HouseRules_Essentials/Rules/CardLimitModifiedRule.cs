@@ -12,8 +12,10 @@
         public override string Description => "Card limit is modified";
 
         private const int MaxLimit = 100;
-        private static int _limit;
+        private static int _globalLimit;
         private static bool _isActivated;
+
+        private readonly int _limit;
 
         public CardLimitModifiedRule(int limit)
         {
@@ -22,7 +24,11 @@
 
         public int GetConfigObject() => _limit;
 
-        protected override void OnActivate(GameContext gameContext) => _isActivated = true;
+        protected override void OnActivate(GameContext gameContext)
+        {
+            _globalLimit = _limit;
+            _isActivated = true;
+        }
 
         protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
@@ -79,7 +85,7 @@
                 return;
             }
 
-            __result = _limit;
+            __result = _globalLimit;
         }
     }
 }
