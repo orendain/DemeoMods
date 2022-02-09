@@ -4,7 +4,7 @@
 
     internal class ModState
     {
-        public GameContext GameContext { get; set; }
+        internal GameContext GameContext { get; set; }
 
         internal bool IsRefreshingRoomList { get; set; }
 
