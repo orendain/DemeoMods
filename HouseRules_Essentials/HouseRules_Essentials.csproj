@@ -36,6 +36,7 @@
     <Compile Include="EssentialsMod.cs" />
     <Compile Include="Rulesets\SampleRuleset.cs" />
     <Compile Include="Rules\AbilityActionCostAdjustedRule.cs" />
+    <Compile Include="Rules\AbilityRandomPieceListRule.cs" />
     <Compile Include="Rules\AbilityDamageAdjustedRule.cs" />
     <Compile Include="Rules\ActionPointsAdjustedRule.cs" />
     <Compile Include="Rules\CardEnergyFromAttackMultipliedRule.cs" />

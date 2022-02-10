@@ -22,6 +22,7 @@
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityDamageAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
+            HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
             HR.Rulebook.Register(typeof(ActionPointsAdjustedRule));
             HR.Rulebook.Register(typeof(CardEnergyFromAttackMultipliedRule));
             HR.Rulebook.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
