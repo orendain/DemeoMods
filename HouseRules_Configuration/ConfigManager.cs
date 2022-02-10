@@ -74,7 +74,11 @@
                     FindRuleAndConfigType(rule.GetType().FullName);
                     var configObject = Traverse.Create(rule).Method("GetConfigObject").GetValue();
                     var configJson = JToken.FromObject(configObject);
-                    var ruleEntry = new RuleConfigEntry { Rule = rule.GetType().Name, Config = configJson };
+                    var ruleEntry = new RuleConfigEntry
+                    {
+                        Rule = ShortenRuleName(rule.GetType().Name),
+                        Config = configJson,
+                    };
                     ruleEntries.Add(ruleEntry);
                 }
                 catch (Exception e)
@@ -136,10 +140,16 @@
 
         private static (Type RuleType, Type ConfigType) FindRuleAndConfigType(string ruleName)
         {
-            var ruleType = AccessTools.TypeByName(ruleName);
-            if (ruleType == null || !typeof(Rule).IsAssignableFrom(ruleType))
+            var ruleType = AccessTools.TypeByName(ruleName) ?? AccessTools.TypeByName(ExpandRuleName(ruleName));
+
+            if (ruleType == null)
             {
-                throw new ArgumentException($"Could not find a rule type corresponding to name: {ruleName}");
+                throw new ArgumentException($"Could not find a rule type represented by the name: {ruleName}");
+            }
+
+            if (!typeof(Rule).IsAssignableFrom(ruleType))
+            {
+                throw new ArgumentException($"Failed to recognize the type found as representing a rule: {ruleType.FullName}");
             }
 
             foreach (var i in ruleType.GetInterfaces())
@@ -186,6 +196,24 @@
                 Formatting = Formatting.Indented,
                 Converters = { new Newtonsoft.Json.Converters.StringEnumConverter() },
             };
+        }
+
+        /// <summary>
+        /// Shorts the specified rule name by removing any rule type suffix.
+        /// </summary>
+        private static string ShortenRuleName(string ruleName)
+        {
+            return ruleName.EndsWith("Rule", StringComparison.OrdinalIgnoreCase)
+                ? ruleName.Substring(0, ruleName.Length - 4)
+                : ruleName;
+        }
+
+        /// <summary>
+        /// Expands the specified rule name by adding a rule suffix.
+        /// </summary>
+        private static string ExpandRuleName(string ruleName)
+        {
+            return $"{ruleName}Rule";
         }
 
         private struct RulesetConfig
