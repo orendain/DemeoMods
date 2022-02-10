@@ -90,7 +90,7 @@
         private static void RefreshRoomList()
         {
             RoomFinderMod.ModState.IsRefreshingRoomList = true;
-            Traverse.Create(RoomFinderMod.GameContextState.LobbyMenuController)
+            Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
                 .Method("QuickPlay", LevelSequence.GameType.Invalid, true)
                 .GetValue();
         }
@@ -98,7 +98,7 @@
         private void PopulateRoomList()
         {
             var cachedRooms =
-                Traverse.Create(RoomFinderMod.GameContextState.GameContext.gameStateMachine)
+                Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine)
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
             RoomFinderMod.Logger.Msg($"[RoomListUI] Retrieved {cachedRooms.Count} rooms.");
 

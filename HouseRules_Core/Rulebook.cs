@@ -57,12 +57,12 @@
                 }
             }
 
-            var hasDuplicatePatchable = ruleset.Rules.Where(r => r is IPatchable)
+            var hasDuplicateSingular = ruleset.Rules.Where(r => r is ISingular)
                 .GroupBy(r => r.GetType().Name)
                 .Any(g => g.Count() > 1);
-            if (hasDuplicatePatchable)
+            if (hasDuplicateSingular)
             {
-                throw new ArgumentException("Ruleset must not include duplicate IPatchable rules.");
+                throw new ArgumentException("Ruleset must not include duplicate singular rules.");
             }
 
             Rulesets.Add(ruleset);

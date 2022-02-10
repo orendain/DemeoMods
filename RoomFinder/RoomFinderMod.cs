@@ -1,7 +1,6 @@
 ﻿namespace RoomFinder
 {
-    using Common;
-    using Common.States;
+    using HarmonyLib;
     using MelonLoader;
     using RoomFinder.UI;
     using UnityEngine;
@@ -9,7 +8,6 @@
     internal class RoomFinderMod : MelonMod
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
-        internal static readonly GameContextState GameContextState = CommonModule.GameContextState;
         internal static readonly ModState ModState = ModState.NewInstance();
 
         private const int LobbySceneIndex = 1;
@@ -18,7 +16,7 @@
 
         public override void OnApplicationStart()
         {
-            var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.roomfinder");
+            var harmony = new Harmony("com.orendain.demeomods.roomfinder");
             ModPatcher.Patch(harmony);
         }
 

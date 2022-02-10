@@ -44,7 +44,7 @@
             foreach (var item in _adjustments)
             {
                 var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                var aoe = Traverse.Create(ability).Field<AreaOfEffect>("areaofEffect").Value;
+                var aoe = Traverse.Create(ability).Field<AreaOfEffect>("areaOfEffect").Value;
                 Traverse.Create(aoe).Field<int>("range").Value -= item.Value; // Adjust the yellow AOE outline when casting.
                 ability.areaOfEffectRange -= item.Value; // Adjust value displayed on the card.
             }

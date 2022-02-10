@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using HarmonyLib;
     using HouseRules.Types;
     using MelonLoader;
@@ -52,13 +53,11 @@
         }
 
         /// <summary>
-        /// Writes the specified ruleset to the configuration file.
+        /// Exports the specified ruleset by writing it to a file.
         /// </summary>
-        /// <param name="ruleset">The ruleset to write.</param>
-        /// <remarks>
-        /// The ruleset is saved under a category with the same name as the ruleset.
-        /// </remarks>
-        public static void WriteRuleset(Ruleset ruleset)
+        /// <param name="ruleset">The ruleset to export.</param>
+        /// <returns>The path of the file that the ruleset was written to.</returns>
+        public static string ExportRuleset(Ruleset ruleset)
         {
             ConfigureDefaultSerializationSettings();
 
@@ -66,8 +65,6 @@
             {
                 throw new ArgumentException("Ruleset name must not be empty.");
             }
-
-            var configCategory = MelonPreferences.CreateCategory(ruleset.Name);
 
             var ruleEntries = new List<RuleConfigEntry>();
             foreach (var rule in ruleset.Rules)
@@ -77,7 +74,11 @@
                     FindRuleAndConfigType(rule.GetType().FullName);
                     var configObject = Traverse.Create(rule).Method("GetConfigObject").GetValue();
                     var configJson = JToken.FromObject(configObject);
-                    var ruleEntry = new RuleConfigEntry { Rule = rule.GetType().Name, Config = configJson };
+                    var ruleEntry = new RuleConfigEntry
+                    {
+                        Rule = ShortenRuleName(rule.GetType().Name),
+                        Config = configJson,
+                    };
                     ruleEntries.Add(ruleEntry);
                 }
                 catch (Exception e)
@@ -86,31 +87,39 @@
                 }
             }
 
-            var serializedRuleEntries = JsonConvert.SerializeObject(ruleEntries);
+            var rulesetConfig = new RulesetConfig
+            {
+                Name = ruleset.Name,
+                Description = ruleset.Description,
+                Rules = ruleEntries,
+            };
+            var serializedRuleset = JsonConvert.SerializeObject(rulesetConfig);
 
-            configCategory.CreateEntry("name", string.Empty).Value = ruleset.Name;
-            configCategory.CreateEntry("description", string.Empty).Value = ruleset.Description;
-            configCategory.CreateEntry("rules", string.Empty).Value = serializedRuleEntries;
-            configCategory.SaveToFile();
+            var houseRulesDataDir = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules");
+            var rulesetFilePath = Path.Combine(houseRulesDataDir, $"{ruleset.Name}.json");
+            Directory.CreateDirectory(houseRulesDataDir);
+            File.WriteAllText(rulesetFilePath, serializedRuleset);
+
+            ConfigurationMod.Logger.Msg($"Successfully exported ruleset to: {rulesetFilePath}");
+
+            return rulesetFilePath;
         }
 
         /// <summary>
-        /// Reads a ruleset from the configuration file.
+        /// Imports a ruleset by name.
         /// </summary>
-        /// <param name="configName">The name under which the desired ruleset is written.</param>
-        /// <returns>The ruleset read from configuration.</returns>
-        internal static Ruleset ReadRuleset(string configName)
+        /// <param name="rulesetName">The name of the ruleset to import, saved as a JSON file at an internally-resolved location.</param>
+        /// <returns>The imported ruleset.</returns>
+        internal static Ruleset ImportRuleset(string rulesetName)
         {
             ConfigureDefaultSerializationSettings();
 
-            var configCategory = MelonPreferences.CreateCategory(configName);
-
-            var rulesetNameEntry = configCategory.CreateEntry("name", string.Empty);
-            var descriptionEntry = configCategory.CreateEntry("description", string.Empty);
-            var rulesEntry = configCategory.CreateEntry("rules", string.Empty);
+            var rulesetFilePath = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules", $"{rulesetName}.json");
+            var rulesetJson = File.ReadAllText(rulesetFilePath);
+            var rulesetConfig = JsonConvert.DeserializeObject<RulesetConfig>(rulesetJson);
 
             var rules = new List<Rule>();
-            foreach (var ruleConfigEntry in JsonConvert.DeserializeObject<List<RuleConfigEntry>>(rulesEntry.Value))
+            foreach (var ruleConfigEntry in rulesetConfig.Rules)
             {
                 try
                 {
@@ -125,15 +134,22 @@
                 }
             }
 
-            return Ruleset.NewInstance(rulesetNameEntry.Value, descriptionEntry.Value, rules);
+            ConfigurationMod.Logger.Msg($"Successfully imported ruleset from: {rulesetFilePath}");
+            return Ruleset.NewInstance(rulesetConfig.Name, rulesetConfig.Description, rules);
         }
 
         private static (Type RuleType, Type ConfigType) FindRuleAndConfigType(string ruleName)
         {
-            var ruleType = AccessTools.TypeByName(ruleName);
-            if (ruleType == null || !typeof(Rule).IsAssignableFrom(ruleType))
+            var ruleType = AccessTools.TypeByName(ruleName) ?? AccessTools.TypeByName(ExpandRuleName(ruleName));
+
+            if (ruleType == null)
             {
-                throw new ArgumentException($"Could not find a rule type corresponding to name: {ruleName}");
+                throw new ArgumentException($"Could not find a rule type represented by the name: {ruleName}");
+            }
+
+            if (!typeof(Rule).IsAssignableFrom(ruleType))
+            {
+                throw new ArgumentException($"Failed to recognize the type found as representing a rule: {ruleType.FullName}");
             }
 
             foreach (var i in ruleType.GetInterfaces())
@@ -180,6 +196,31 @@
                 Formatting = Formatting.Indented,
                 Converters = { new Newtonsoft.Json.Converters.StringEnumConverter() },
             };
+        }
+
+        /// <summary>
+        /// Shorts the specified rule name by removing any rule type suffix.
+        /// </summary>
+        private static string ShortenRuleName(string ruleName)
+        {
+            return ruleName.EndsWith("Rule", StringComparison.OrdinalIgnoreCase)
+                ? ruleName.Substring(0, ruleName.Length - 4)
+                : ruleName;
+        }
+
+        /// <summary>
+        /// Expands the specified rule name by adding a rule suffix.
+        /// </summary>
+        private static string ExpandRuleName(string ruleName)
+        {
+            return $"{ruleName}Rule";
+        }
+
+        private struct RulesetConfig
+        {
+            public string Name;
+            public string Description;
+            public List<RuleConfigEntry> Rules;
         }
 
         private struct RuleConfigEntry

@@ -8,8 +8,10 @@
     {
         public override string Description => "CardConfig energy from recycling is multiplied";
 
-        private static float _multiplier;
+        private static float _globalMultiplier;
         private static bool _isActivated;
+
+        private readonly float _multiplier;
 
         public CardEnergyFromRecyclingMultipliedRule(float multiplier)
         {
@@ -18,7 +20,11 @@
 
         public float GetConfigObject() => _multiplier;
 
-        protected override void OnActivate(GameContext gameContext) => _isActivated = true;
+        protected override void OnActivate(GameContext gameContext)
+        {
+            _globalMultiplier = _multiplier;
+            _isActivated = true;
+        }
 
         protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
@@ -38,7 +44,7 @@
                 return;
             }
 
-            cardEnergy *= _multiplier;
+            cardEnergy *= _globalMultiplier;
         }
     }
 }
