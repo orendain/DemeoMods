@@ -142,7 +142,7 @@ namespace HouseRules
             }
 
             var sb = new StringBuilder();
-            sb.AppendLine("Welcome to a game using a custom ruleset!");
+            sb.AppendLine("Welcome to a game using House Rules!");
             sb.AppendLine();
             sb.AppendFormat("{0}: {1}\n", SelectedRuleset.Name, SelectedRuleset.Description);
             sb.AppendLine();
