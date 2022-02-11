@@ -56,11 +56,7 @@
                 return;
             }
 
-            if (__result.boardPieceId != BoardPieceId.HeroBard &&
-                __result.boardPieceId != BoardPieceId.HeroGuardian &&
-                __result.boardPieceId != BoardPieceId.HeroHunter &&
-                __result.boardPieceId != BoardPieceId.HeroRouge &&
-                __result.boardPieceId != BoardPieceId.HeroSorcerer)
+            if (!_globalHeroStartCards.ContainsKey(__result.boardPieceId))
             {
                 return;
             }
