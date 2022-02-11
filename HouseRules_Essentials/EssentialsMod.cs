@@ -43,6 +43,7 @@
         private static void RegisterRulesets()
         {
             HR.Rulebook.Register(SampleRuleset.Create());
+            HR.Rulebook.Register(NoSurprisesRuleset.Create());
         }
     }
 }

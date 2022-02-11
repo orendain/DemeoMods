@@ -35,6 +35,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EssentialsMod.cs" />
     <Compile Include="Rulesets\SampleRuleset.cs" />
+    <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rules\AbilityActionCostAdjustedRule.cs" />
     <Compile Include="Rules\AbilityDamageAdjustedRule.cs" />
     <Compile Include="Rules\ActionPointsAdjustedRule.cs" />
