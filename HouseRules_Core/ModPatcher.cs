@@ -62,7 +62,7 @@
                 return;
             }
 
-            HR.TriggerActivateRuleset(_gameContext);
+            HR.TriggerActivateRuleset(_gameContext, GameHub.GetGameMode);
             _isStartingGame = true;
             HR.TriggerPreGameCreated(_gameContext);
         }
@@ -81,7 +81,7 @@
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
-            HR.TriggerActivateRuleset(_gameContext);
+            HR.TriggerActivateRuleset(_gameContext, GameHub.GetGameMode);
             _isStartingGame = true;
             HR.TriggerPreGameCreated(_gameContext);
         }
