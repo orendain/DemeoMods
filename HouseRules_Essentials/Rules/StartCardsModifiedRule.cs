@@ -9,7 +9,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class StartCardsModifiedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>>, IPatchable
+    public sealed class StartCardsModifiedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Hero start cards are modified";
 
