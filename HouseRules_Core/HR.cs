@@ -103,6 +103,11 @@ namespace HouseRules
                 return;
             }
 
+            if (!_isRulesetActive)
+            {
+                return;
+            }
+
             foreach (var rule in SelectedRuleset.Rules)
             {
                 try
@@ -121,6 +126,11 @@ namespace HouseRules
         internal static void TriggerPostGameCreated(GameContext gameContext)
         {
             if (SelectedRuleset == null)
+            {
+                return;
+            }
+
+            if (!_isRulesetActive)
             {
                 return;
             }
