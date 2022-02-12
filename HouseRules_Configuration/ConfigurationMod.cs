@@ -49,8 +49,12 @@
 
         public override void OnApplicationQuit()
         {
-            var rulesetName = HR.SelectedRuleset != null ? HR.SelectedRuleset.Name : string.Empty;
-            ConfigManager.SetRuleset(rulesetName);
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
+            ConfigManager.SetRuleset(HR.SelectedRuleset.Name);
             ConfigManager.Save();
         }
 
