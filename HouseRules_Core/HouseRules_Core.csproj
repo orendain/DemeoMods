@@ -53,6 +53,7 @@
         <Compile Include="CoreMod.cs" />
         <Compile Include="Rulebook.cs" />
         <Compile Include="Types\IConfigWritable.cs" />
+        <Compile Include="Types\IMultiplayerSafe.cs" />
         <Compile Include="Types\IPatchable.cs" />
         <Compile Include="Types\ISingular.cs" />
         <Compile Include="Types\Rule.cs" />
