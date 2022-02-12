@@ -11,15 +11,16 @@ namespace HouseRules
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Core");
         private const float WelcomeMessageDurationSeconds = 30f;
-        private static bool _isRulesetActive;
 
         public static readonly Rulebook Rulebook = Rulebook.NewInstance();
 
         public static Ruleset SelectedRuleset { get; private set; }
 
+        internal static bool IsRulesetActive { get; private set; }
+
         public static void SelectRuleset(string ruleset)
         {
-            if (_isRulesetActive)
+            if (IsRulesetActive)
             {
                 throw new InvalidOperationException("May not select a new ruleset while one is currently active.");
             }
@@ -36,7 +37,7 @@ namespace HouseRules
 
         internal static void TriggerActivateRuleset(GameContext gameContext, GameHub.GameMode gameMode)
         {
-            if (_isRulesetActive)
+            if (IsRulesetActive)
             {
                 Logger.Warning("Ruleset activation was triggered whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
                 return;
@@ -53,7 +54,7 @@ namespace HouseRules
                 return;
             }
 
-            _isRulesetActive = true;
+            IsRulesetActive = true;
 
             Logger.Msg($"Activating ruleset: {SelectedRuleset.Name} (with {SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in SelectedRuleset.Rules)
@@ -73,12 +74,12 @@ namespace HouseRules
 
         internal static void TriggerDeactivateRuleset(GameContext gameContext)
         {
-            if (!_isRulesetActive)
+            if (!IsRulesetActive)
             {
                 return;
             }
 
-            _isRulesetActive = false;
+            IsRulesetActive = false;
 
             Logger.Msg($"Deactivating ruleset: {SelectedRuleset.Name} (with {SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in SelectedRuleset.Rules)
@@ -103,7 +104,7 @@ namespace HouseRules
                 return;
             }
 
-            if (!_isRulesetActive)
+            if (!IsRulesetActive)
             {
                 return;
             }
@@ -130,7 +131,7 @@ namespace HouseRules
                 return;
             }
 
-            if (!_isRulesetActive)
+            if (!IsRulesetActive)
             {
                 return;
             }
@@ -157,7 +158,7 @@ namespace HouseRules
                 return;
             }
 
-            if (!_isRulesetActive)
+            if (!IsRulesetActive)
             {
                 GameUI.ShowCameraMessage(BuildNotSafeForMultiplayerMessage(), WelcomeMessageDurationSeconds);
                 return;
