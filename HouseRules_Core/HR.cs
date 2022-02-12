@@ -28,6 +28,8 @@ namespace HouseRules
             if (Ruleset.None.Name.Equals(ruleset, StringComparison.OrdinalIgnoreCase))
             {
                 SelectedRuleset = Ruleset.None;
+                Logger.Msg("Cleared selected ruleset.");
+                return;
             }
 
             if (!Rulebook.IsRulesetRegistered(ruleset))

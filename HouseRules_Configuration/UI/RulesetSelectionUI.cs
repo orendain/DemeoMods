@@ -35,7 +35,7 @@
         private void Initialize()
         {
             this.transform.SetParent(_uiHelper.DemeoResource.LobbyAnchor.transform, worldPositionStays: true);
-            this.transform.position = new Vector3(33, 30, 0);
+            this.transform.position = new Vector3(32, 29.75f, -11);
             this.transform.rotation = Quaternion.Euler(0, 70, 0);
 
             _background = new GameObject("RulesetSelectionUIBackground");
