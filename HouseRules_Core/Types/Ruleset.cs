@@ -20,21 +20,28 @@
         /// </summary>
         public List<Rule> Rules { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether this ruleset is safe to use in multiplayer environments.
+        /// </summary>
+        public bool IsSafeForMultiplayer { get; }
+
         public static Ruleset NewInstance(string name, string description, params Rule[] rules)
         {
-            return new Ruleset(name, description, rules.ToList());
+            return NewInstance(name, description, rules.ToList());
         }
 
         public static Ruleset NewInstance(string name, string description, List<Rule> rules)
         {
-            return new Ruleset(name, description, rules);
+            var safeForMultiplayer = rules.All(r => r is IMultiplayerSafe);
+            return new Ruleset(name, description, rules, safeForMultiplayer);
         }
 
-        private Ruleset(string name, string description, List<Rule> rules)
+        private Ruleset(string name, string description, List<Rule> rules, bool isSafeForMultiplayer)
         {
             Name = name;
             Description = description;
             Rules = rules;
+            IsSafeForMultiplayer = isSafeForMultiplayer;
         }
     }
 }
