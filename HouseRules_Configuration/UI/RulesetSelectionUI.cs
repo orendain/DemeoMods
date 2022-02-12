@@ -43,7 +43,6 @@
             _background.AddComponent<MeshRenderer>().material = _uiHelper.DemeoResource.MenuBoxMaterial;
 
             _background.transform.SetParent(this.transform, worldPositionStays: false);
-            //
             _background.transform.localPosition = new Vector3(0, -3.25f, 0);
             _background.transform.localRotation =
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
