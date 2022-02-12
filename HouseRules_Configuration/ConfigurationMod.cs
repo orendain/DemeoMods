@@ -5,11 +5,15 @@
     using DataKeys;
     using HouseRules.Types;
     using MelonLoader;
+    using UnityEngine;
 
     internal class ConfigurationMod : MelonMod
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
+        private const int LobbySceneIndex = 1;
+
+        private GameObject _rulesetSelectionUI;
 
         public override void OnApplicationLateStart()
         {
@@ -44,6 +48,14 @@
             catch (ArgumentException e)
             {
                 Logger.Warning($"Failed to select ruleset [{rulesetName}]: {e}");
+            }
+        }
+
+        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+        {
+            if (buildIndex == LobbySceneIndex)
+            {
+                _rulesetSelectionUI = new GameObject("RulesetSelectionUI", typeof(UI.RulesetSelectionUI));
             }
         }
 

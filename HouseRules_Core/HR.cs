@@ -25,6 +25,13 @@ namespace HouseRules
                 throw new InvalidOperationException("May not select a new ruleset while one is currently active.");
             }
 
+            if (Ruleset.None.Name.Equals(ruleset, StringComparison.OrdinalIgnoreCase))
+            {
+                SelectedRuleset = Ruleset.None;
+                Logger.Msg("Cleared selected ruleset.");
+                return;
+            }
+
             if (!Rulebook.IsRulesetRegistered(ruleset))
             {
                 throw new ArgumentException("Ruleset must first be registered.");
