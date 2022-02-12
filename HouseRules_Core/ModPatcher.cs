@@ -142,12 +142,12 @@
 
             if (serializableEvent.type == SerializableEvent.Type.OnAbilityUsed)
             {
-                return DoesAbilityEventRepresentNewSpawn((SerializableEventOnAbilityUsed) serializableEvent);
+                return DoesAbilityEventRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
             }
 
             if (serializableEvent.type == SerializableEvent.Type.PieceDied)
             {
-                return DoesPieceDiedEventRepresentNewSpawn((SerializableEventPieceDied) serializableEvent);
+                return DoesPieceDiedEventRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
             }
 
             return false;
