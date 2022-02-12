@@ -34,16 +34,22 @@ namespace HouseRules
             Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
         }
 
-        internal static void TriggerActivateRuleset(GameContext gameContext)
+        internal static void TriggerActivateRuleset(GameContext gameContext, GameHub.GameMode gameMode)
         {
             if (_isRulesetActive)
             {
-                Logger.Warning("Ruleset activation was triggered while ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
+                Logger.Warning("Ruleset activation was triggered whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
                 return;
             }
 
             if (SelectedRuleset == null)
             {
+                return;
+            }
+
+            if (gameMode == GameHub.GameMode.Multiplayer && !SelectedRuleset.IsSafeForMultiplayer)
+            {
+                Logger.Warning($"Selected ruleset [{SelectedRuleset.Name}] is not safe for multiplayer games. Skipping ruleset activation.");
                 return;
             }
 
