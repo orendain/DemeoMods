@@ -177,14 +177,17 @@ namespace HouseRules
         private static string BuildRulesetActiveMessage()
         {
             var sb = new StringBuilder();
-            sb.AppendLine("Welcome to a game using House Rules!");
+            sb.AppendLine("Welcome to a game using HouseRules!");
             sb.AppendLine();
-            sb.AppendFormat("{0}: {1}\n", SelectedRuleset.Name, SelectedRuleset.Description);
+            sb.AppendLine($"{SelectedRuleset.Name}:");
+            sb.AppendLine(SelectedRuleset.Description);
             sb.AppendLine();
             sb.AppendLine("Rules:");
-            foreach (var rule in SelectedRuleset.Rules)
+
+            for (var i = 0; i < SelectedRuleset.Rules.Count; i++)
             {
-                sb.AppendLine(rule.Description);
+                var description = SelectedRuleset.Rules[i].Description;
+                sb.AppendLine($"{i}. {description}");
             }
 
             return sb.ToString();
