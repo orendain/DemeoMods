@@ -7,7 +7,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class LevelPropertiesModifiedRule : Rule, IConfigWritable<Dictionary<string, int>>, IMultiplayerSafe
+    public sealed class LevelPropertiesModifiedRule : Rule, IConfigWritable<Dictionary<string, int>>
     {
         public override string Description => "Level properties are modified";
 

@@ -5,7 +5,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class EnemyRespawnDisabledRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class EnemyRespawnDisabledRule : Rule, IConfigWritable<bool>, IPatchable
     {
         public override string Description => "Enemy respawns are disabled";
 

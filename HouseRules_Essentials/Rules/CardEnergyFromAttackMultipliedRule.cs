@@ -5,7 +5,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class CardEnergyFromAttackMultipliedRule : Rule, IConfigWritable<float>, IMultiplayerSafe
+    public sealed class CardEnergyFromAttackMultipliedRule : Rule, IConfigWritable<float>
     {
         public override string Description => "CardConfig energy from attack is multiplied";
 

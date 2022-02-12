@@ -4,7 +4,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class EnemyDoorOpeningDisabledRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class EnemyDoorOpeningDisabledRule : Rule, IConfigWritable<bool>, IPatchable
     {
         public override string Description => "Enemy door opening ability is disabled";
 
