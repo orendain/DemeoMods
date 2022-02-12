@@ -8,7 +8,7 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class AbilityAoeAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>
+    public sealed class AbilityAoeAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>, IMultiplayerSafe
     {
         public override string Description => "Ability AOE Ranges are adjusted";
 

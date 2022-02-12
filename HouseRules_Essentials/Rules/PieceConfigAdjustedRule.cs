@@ -7,7 +7,7 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class PieceConfigAdjustedRule : Rule, IConfigWritable<List<List<string>>>
+    public sealed class PieceConfigAdjustedRule : Rule, IConfigWritable<List<List<string>>>, IMultiplayerSafe
     {
         public override string Description => "Piece configuration is adjusted";
 
