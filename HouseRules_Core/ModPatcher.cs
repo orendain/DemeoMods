@@ -20,7 +20,9 @@
                 postfix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStartup_InitializeGame_Postfix)));
 
             harmony.Patch(
-                original: AccessTools.Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo().GetDeclaredMethod("OnJoinedRoom"),
+                original: AccessTools
+                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
+                    .GetDeclaredMethod("OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(ModPatcher), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
 
             harmony.Patch(
@@ -29,7 +31,9 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(PostGameControllerBase), "OnPlayAgainClicked"),
-                postfix: new HarmonyMethod(typeof(ModPatcher), nameof(PostGameControllerBase_OnPlayAgainClicked_Postfix)));
+                postfix: new HarmonyMethod(
+                    typeof(ModPatcher),
+                    nameof(PostGameControllerBase_OnPlayAgainClicked_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "EndGame"),
@@ -37,7 +41,9 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(SerializableEventQueue), "DisconnectLocalPlayer"),
-                prefix: new HarmonyMethod(typeof(ModPatcher), nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
+                prefix: new HarmonyMethod(
+                    typeof(ModPatcher),
+                    nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(SerializableEventQueue), "SendResponseEvent"),
@@ -59,13 +65,15 @@
                 return;
             }
 
-            var createdGameFromSave = Traverse.Create(_gameContext.gameStateMachine).Field<bool>("createdGameFromSave").Value;
+            var createdGameFromSave =
+                Traverse.Create(_gameContext.gameStateMachine).Field<bool>("createdGameFromSave").Value;
             if (createdGameFromSave)
             {
                 return;
             }
 
-            var createGameMode = Traverse.Create(_gameContext.gameStateMachine).Field<CreateGameMode>("createGameMode").Value;
+            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+                .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
@@ -134,12 +142,12 @@
 
             if (serializableEvent.type == SerializableEvent.Type.OnAbilityUsed)
             {
-                return DoesAbilityEventRepresentNewSpawn((SerializableEventOnAbilityUsed) serializableEvent);
+                return DoesAbilityEventRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
             }
 
             if (serializableEvent.type == SerializableEvent.Type.PieceDied)
             {
-                return DoesPieceDiedEventRepresentNewSpawn((SerializableEventPieceDied) serializableEvent);
+                return DoesPieceDiedEventRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
             }
 
             return false;

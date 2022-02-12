@@ -25,6 +25,11 @@
         /// </summary>
         public bool IsSafeForMultiplayer { get; }
 
+        /// <summary>
+        /// Represents the default/empty/null ruleset.
+        /// </summary>
+        public static readonly Ruleset None = NewInstance("None", "No ruleset.");
+
         public static Ruleset NewInstance(string name, string description, params Rule[] rules)
         {
             return NewInstance(name, description, rules.ToList());

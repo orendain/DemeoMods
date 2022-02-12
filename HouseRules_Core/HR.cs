@@ -14,7 +14,7 @@ namespace HouseRules
 
         public static readonly Rulebook Rulebook = Rulebook.NewInstance();
 
-        public static Ruleset SelectedRuleset { get; private set; }
+        public static Ruleset SelectedRuleset { get; private set; } = Ruleset.None;
 
         internal static bool IsRulesetActive { get; private set; }
 
@@ -43,7 +43,7 @@ namespace HouseRules
                 return;
             }
 
-            if (SelectedRuleset == null)
+            if (SelectedRuleset == Ruleset.None)
             {
                 return;
             }
@@ -99,7 +99,7 @@ namespace HouseRules
 
         internal static void TriggerPreGameCreated(GameContext gameContext)
         {
-            if (SelectedRuleset == null)
+            if (SelectedRuleset == Ruleset.None)
             {
                 return;
             }
@@ -126,7 +126,7 @@ namespace HouseRules
 
         internal static void TriggerPostGameCreated(GameContext gameContext)
         {
-            if (SelectedRuleset == null)
+            if (SelectedRuleset == Ruleset.None)
             {
                 return;
             }
@@ -153,7 +153,7 @@ namespace HouseRules
 
         internal static void TriggerWelcomeMessage()
         {
-            if (SelectedRuleset == null)
+            if (SelectedRuleset == Ruleset.None)
             {
                 return;
             }
