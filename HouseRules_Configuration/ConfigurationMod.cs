@@ -18,7 +18,7 @@
         public override void OnApplicationLateStart()
         {
             // TODO(orendain): Remove when this demo code is no longer necessary.
-            DemoWriteRuleset();
+            // DemoWriteRuleset();
 
             var rulesetName = ConfigManager.GetRuleset();
             if (string.IsNullOrEmpty(rulesetName))

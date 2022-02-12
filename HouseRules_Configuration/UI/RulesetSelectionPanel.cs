@@ -35,12 +35,16 @@
 
             var rulesetsContainer = new GameObject("Rulesets");
             rulesetsContainer.transform.SetParent(GameObject.transform, worldPositionStays: false);
-            rulesetsContainer.transform.localPosition = new Vector3(0, -1f, 0);
+            rulesetsContainer.transform.localPosition = new Vector3(0, -2f, 0);
+
+            var rulesetRow = CreateRulesetRow(Ruleset.None);
+            rulesetRow.transform.SetParent(rulesetsContainer.transform, worldPositionStays: false);
+            rulesetRow.transform.localPosition = new Vector3(0, 0, 0);
 
             for (var i = 0; i < _rulebook.Rulesets.Count; i++)
             {
-                var yOffset = i * -3f;
-                var rulesetRow = CreateRulesetRow(_rulebook.Rulesets.ElementAt(i));
+                var yOffset = (i + 1) * -3f;
+                rulesetRow = CreateRulesetRow(_rulebook.Rulesets.ElementAt(i));
                 rulesetRow.transform.SetParent(rulesetsContainer.transform, worldPositionStays: false);
                 rulesetRow.transform.localPosition = new Vector3(0, yOffset, 0);
             }
@@ -50,10 +54,9 @@
         {
             var headerContainer = new GameObject("RulesetSelectionHeader");
 
-            var infoText =
-                _uiHelper.CreateLabelText("Select a ruleset for your next private multiplayer game or skirmish.");
+            var infoText = _uiHelper.CreateLabelText($"Select a ruleset for your next\nprivate multiplayer game or skirmish.");
             infoText.transform.SetParent(headerContainer.transform, worldPositionStays: false);
-            infoText.transform.localPosition = new Vector3(-1.5f, 0.3f, 0);
+            infoText.transform.localPosition = new Vector3(0f, 1f, 0);
 
             return headerContainer;
         }
@@ -64,16 +67,14 @@
 
             var button = _uiHelper.CreateButton(SelectRulesetAction(ruleset.Name));
             button.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
-            button.transform.localScale = new Vector3(1, 1, 1);
+            button.transform.localScale = new Vector3(2f, 2f, 1);
             button.transform.localPosition = new Vector3(0, 0, 0);
 
-            var buttonText = _uiHelper.CreateText(ruleset.Name, Color.white, UiHelper.DefaultLabelFontSize);
+            var buttonTextString = $"{ruleset.Name}\n{ruleset.Description}";
+
+            var buttonText = _uiHelper.CreateText(buttonTextString, Color.white, UiHelper.DefaultLabelFontSize);
             buttonText.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             buttonText.transform.localPosition = new Vector3(0, 0, 0);
-
-            var descriptionLabel = _uiHelper.CreateLabelText(ruleset.Description);
-            descriptionLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
-            descriptionLabel.transform.localPosition = new Vector3(0, -1.2f, 0);
 
             return roomRowContainer;
         }

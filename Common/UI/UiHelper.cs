@@ -93,7 +93,7 @@
             textMeshPro.fontSize = fontSize;
             textMeshPro.fontSizeMax = fontSize;
             textMeshPro.fontSizeMin = 1;
-            textMeshPro.enableAutoSizing = true;
+            textMeshPro.enableAutoSizing = false;
             textMeshPro.transform.localPosition = new Vector3(0, 0, -0.2f);
 
             return WrapObject(textObject);
