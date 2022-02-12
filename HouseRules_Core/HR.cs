@@ -49,7 +49,7 @@ namespace HouseRules
 
             if (gameMode == GameHub.GameMode.Multiplayer && !SelectedRuleset.IsSafeForMultiplayer)
             {
-                Logger.Warning($"Selected ruleset [{SelectedRuleset.Name}] is not safe for multiplayer games. Skipping ruleset activation.");
+                Logger.Warning($"The selected ruleset [{SelectedRuleset.Name}] is not safe for multiplayer games. Skipping activation.");
                 return;
             }
 
@@ -160,6 +160,7 @@ namespace HouseRules
             if (!_isRulesetActive)
             {
                 GameUI.ShowCameraMessage(BuildNotSafeForMultiplayerMessage(), WelcomeMessageDurationSeconds);
+                return;
             }
 
             GameUI.ShowCameraMessage(BuildRulesetActiveMessage(), WelcomeMessageDurationSeconds);
@@ -167,7 +168,8 @@ namespace HouseRules
 
         private static string BuildNotSafeForMultiplayerMessage()
         {
-            return new StringBuilder("Notice:")
+            return new StringBuilder()
+                .AppendLine("Attention:")
                 .AppendLine("The HouseRules ruleset you selected is not safe for multiplayer games, and was not activated.")
                 .ToString();
         }
@@ -175,7 +177,7 @@ namespace HouseRules
         private static string BuildRulesetActiveMessage()
         {
             var sb = new StringBuilder();
-            sb.AppendLine("Welcome to a game using HouseRules!");
+            sb.AppendLine("Welcome to a game using House Rules!");
             sb.AppendLine();
             sb.AppendFormat("{0}: {1}\n", SelectedRuleset.Name, SelectedRuleset.Description);
             sb.AppendLine();
