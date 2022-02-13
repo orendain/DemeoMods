@@ -76,7 +76,7 @@
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             _background.transform.localScale = new Vector3(2, 1, 2.5f);
 
-            var menuTitle = _uiHelper.CreateMenuHeaderText("Public Rooms");
+            var menuTitle = _uiHelper.CreateMenuHeaderText("RoomFinder");
             menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
             menuTitle.transform.localPosition = new Vector3(0, 2.375f, 0);
 
