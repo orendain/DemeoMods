@@ -15,7 +15,7 @@ namespace HouseRules.Essentials.Rulesets
                 description,
                 new CardEnergyFromAttackMultipliedRule(1.5f),
                 new CardEnergyFromRecyclingMultipliedRule(1.5f),
-                new CardLimitModifiedRule(7);
+                new CardLimitModifiedRule(7));
         }
     }
 }
