@@ -6,7 +6,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class GoldPickedUpScaledRule : Rule, IConfigWritable<float>, IPatchable
+    public sealed class GoldPickedUpScaledRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Gold picked up is scaled";
 
