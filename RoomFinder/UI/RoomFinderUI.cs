@@ -9,7 +9,7 @@
     using Photon.Realtime;
     using UnityEngine;
 
-    internal class RoomListUI : MonoBehaviour
+    internal class RoomFinderUI : MonoBehaviour
     {
         private bool _isInitialized;
         private UiHelper _uiHelper;
@@ -45,12 +45,19 @@
                 return;
             }
 
-            if (RoomFinderMod.ModState.IsRefreshingRoomList && RoomFinderMod.ModState.HasRoomListUpdated)
+            if (!RoomFinderMod.ModState.IsRefreshingRoomList)
             {
-                RoomFinderMod.ModState.IsRefreshingRoomList = false;
-                RoomFinderMod.ModState.HasRoomListUpdated = false;
-                PopulateRoomList();
+                return;
             }
+
+            if (!RoomFinderMod.ModState.HasRoomListUpdated)
+            {
+                return;
+            }
+
+            RoomFinderMod.ModState.IsRefreshingRoomList = false;
+            RoomFinderMod.ModState.HasRoomListUpdated = false;
+            PopulateRoomList();
         }
 
         private void Initialize()
@@ -59,7 +66,7 @@
             this.transform.position = new Vector3(25, 30, 0);
             this.transform.rotation = Quaternion.Euler(0, 40, 0);
 
-            _background = new GameObject("RoomListUIBackground");
+            _background = new GameObject("RoomFinderUIBackground");
             _background.AddComponent<MeshFilter>().mesh = _uiHelper.DemeoResource.MenuBoxMesh;
             _background.AddComponent<MeshRenderer>().material = _uiHelper.DemeoResource.MenuBoxMaterial;
 
@@ -100,7 +107,7 @@
             var cachedRooms =
                 Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine)
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
-            RoomFinderMod.Logger.Msg($"[RoomListUI] Retrieved {cachedRooms.Count} rooms.");
+            RoomFinderMod.Logger.Msg($"Captured {cachedRooms.Count} rooms.");
 
             _roomListPanel.SetRooms(cachedRooms.Values.ToList());
             _roomListPanel.GameObject.transform.SetParent(this.transform, worldPositionStays: false);
