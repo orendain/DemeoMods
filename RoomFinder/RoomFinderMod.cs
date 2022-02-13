@@ -22,11 +22,12 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (buildIndex == LobbySceneIndex)
+            if (buildIndex != LobbySceneIndex)
             {
-                Logger.Msg($"Initializing RoomFinder in scene [{sceneName}] with scene index [{buildIndex}].");
-                _roomListUI = new GameObject("RoomListUI", typeof(RoomListUI));
+                return;
             }
+
+            _roomListUI = new GameObject("RoomListUI", typeof(RoomListUI));
         }
     }
 }
