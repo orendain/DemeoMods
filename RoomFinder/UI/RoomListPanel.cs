@@ -15,7 +15,6 @@
         private readonly UiHelper _uiHelper;
         private Func<RoomListEntry, object> _sortOrder;
         private bool _isDescendingOrder;
-        private List<RoomListEntry> _originalRooms;
         private List<RoomListEntry> _rooms;
 
         internal GameObject GameObject { get; }
@@ -29,18 +28,16 @@
         {
             this._uiHelper = uiHelper;
             this.GameObject = panel;
-            this._sortOrder = r => r;
-            this._isDescendingOrder = false;
+            this._sortOrder = r => r.CurrentPlayers;
+            this._isDescendingOrder = true;
 
-            this._originalRooms = new List<RoomListEntry>();
-            this._rooms = this._originalRooms;
+            this._rooms = new List<RoomListEntry>();
         }
 
         internal void SetRooms(IEnumerable<RoomInfo> rooms)
         {
-            _originalRooms = rooms.Select(RoomListEntry.Parse).ToList();
-            _rooms = _originalRooms;
-
+            _rooms = rooms.Select(RoomListEntry.Parse).ToList();
+            SortRooms();
             Render();
         }
 
@@ -52,7 +49,6 @@
             }
 
             RenderHeader();
-
             for (var i = 0; i < _rooms.Count; i++)
             {
                 RenderRoomRow(_rooms[i], i);
@@ -68,17 +64,17 @@
             sortLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             sortLabel.transform.localPosition = new Vector3(-3f, 0, 0);
 
-            var gameButton = CreateSortButton("Game", () => SortListBy(r => r.GameType));
+            var gameButton = CreateSortButton("Game", () => SetSortOrderAndApply(r => r.GameType));
             gameButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             gameButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             gameButton.transform.localPosition = new Vector3(-0.5f, 0, 0);
 
-            var floorButton = CreateSortButton("Floor", () => SortListBy(r => r.Floor));
+            var floorButton = CreateSortButton("Floor", () => SetSortOrderAndApply(r => r.Floor));
             floorButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             floorButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             floorButton.transform.localPosition = new Vector3(1.5f, 0, 0);
 
-            var playersButton = CreateSortButton("Players", () => SortListBy(r => r.CurrentPlayers));
+            var playersButton = CreateSortButton("Players", () => SetSortOrderAndApply(r => r.CurrentPlayers));
             playersButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             playersButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             playersButton.transform.localPosition = new Vector3(3.5f, 0, 0);
@@ -99,7 +95,7 @@
             return container;
         }
 
-        private void SortListBy(Func<RoomListEntry, object> sortOrder)
+        private void SetSortOrderAndApply(Func<RoomListEntry, object> sortOrder)
         {
             if (_sortOrder == sortOrder)
             {
@@ -107,16 +103,15 @@
             }
 
             _sortOrder = sortOrder;
-            ResortRooms();
+            SortRooms();
+            Render();
         }
 
-        private void ResortRooms()
+        private void SortRooms()
         {
             _rooms = _isDescendingOrder
                 ? _rooms.OrderByDescending(_sortOrder).ToList()
                 : _rooms.OrderBy(_sortOrder).ToList();
-
-            Render();
         }
 
         private void RenderRoomRow(RoomListEntry room, int row)
