@@ -38,6 +38,7 @@
         {
             _rooms = rooms.Select(RoomListEntry.Parse).ToList();
             SortRooms();
+            Render();
         }
 
         private void Render()
@@ -64,17 +65,17 @@
             sortLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             sortLabel.transform.localPosition = new Vector3(-3f, 0, 0);
 
-            var gameButton = CreateSortButton("Game", () => SortListBy(r => r.GameType));
+            var gameButton = CreateSortButton("Game", () => SetSortOrderAndApply(r => r.GameType));
             gameButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             gameButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             gameButton.transform.localPosition = new Vector3(-0.5f, 0, 0);
 
-            var floorButton = CreateSortButton("Floor", () => SortListBy(r => r.Floor));
+            var floorButton = CreateSortButton("Floor", () => SetSortOrderAndApply(r => r.Floor));
             floorButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             floorButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             floorButton.transform.localPosition = new Vector3(1.5f, 0, 0);
 
-            var playersButton = CreateSortButton("Players", () => SortListBy(r => r.CurrentPlayers));
+            var playersButton = CreateSortButton("Players", () => SetSortOrderAndApply(r => r.CurrentPlayers));
             playersButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             playersButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             playersButton.transform.localPosition = new Vector3(3.5f, 0, 0);
@@ -95,7 +96,7 @@
             return container;
         }
 
-        private void SortListBy(Func<RoomListEntry, object> sortOrder)
+        private void SetSortOrderAndApply(Func<RoomListEntry, object> sortOrder)
         {
             if (_sortOrder == sortOrder)
             {
@@ -104,6 +105,7 @@
 
             _sortOrder = sortOrder;
             SortRooms();
+            Render();
         }
 
         private void SortRooms()
@@ -111,8 +113,6 @@
             _rooms = _isDescendingOrder
                 ? _rooms.OrderByDescending(_sortOrder).ToList()
                 : _rooms.OrderBy(_sortOrder).ToList();
-
-            Render();
         }
 
         private void RenderRoomRow(RoomListEntry room, int row)
