@@ -16,7 +16,6 @@
 
         private static void RegisterRuleTypes()
         {
-            HR.Rulebook.Register(typeof(SampleRule));
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityDamageAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
@@ -31,7 +30,6 @@
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
-            HR.Rulebook.Register(typeof(GoldPickedUpScaledRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
@@ -42,7 +40,6 @@
 
         private static void RegisterRulesets()
         {
-            HR.Rulebook.Register(SampleRuleset.Create());
             HR.Rulebook.Register(BeatTheClockRuleset.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());

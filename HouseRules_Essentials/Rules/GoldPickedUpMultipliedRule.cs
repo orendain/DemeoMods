@@ -6,19 +6,21 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class GoldPickedUpMultipliedRule : Rule, IPatchable
+    public sealed class GoldPickedUpMultipliedRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Gold picked up is multiplied";
 
-        private static double _globalMultiplier;
+        private static float _globalMultiplier;
         private static bool _isActivated;
 
-        private readonly double _multiplier;
+        private readonly float _multiplier;
 
-        public GoldPickedUpMultipliedRule(double multiplier)
+        public GoldPickedUpMultipliedRule(float multiplier)
         {
             _multiplier = multiplier;
         }
+
+        public float GetConfigObject() => _multiplier;
 
         protected override void OnActivate(GameContext gameContext)
         {

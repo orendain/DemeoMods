@@ -102,7 +102,7 @@
             var edod = new Essentials.Rules.EnemyDoorOpeningDisabledRule(true);
             var ehs = new Essentials.Rules.EnemyHealthScaledRule(2);
             var erd = new Essentials.Rules.EnemyRespawnDisabledRule(true);
-            var gpus = new Essentials.Rules.GoldPickedUpScaledRule(2f);
+            var gpus = new Essentials.Rules.GoldPickedUpMultipliedRule(2f);
             var pca = new Essentials.Rules.PieceConfigAdjustedRule(new List<List<string>>
             {
                 new List<string> { "HeroSorcerer", "MoveRange", "1" }, // 1 more movement range
