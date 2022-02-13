@@ -16,7 +16,6 @@
 
         private static void RegisterRuleTypes()
         {
-            HR.Rulebook.Register(typeof(SampleRule));
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityDamageAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
@@ -42,7 +41,6 @@
 
         private static void RegisterRulesets()
         {
-            HR.Rulebook.Register(SampleRuleset.Create());
             HR.Rulebook.Register(BeatTheClockRuleset.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
