@@ -15,7 +15,6 @@
         private readonly UiHelper _uiHelper;
         private Func<RoomListEntry, object> _sortOrder;
         private bool _isDescendingOrder;
-        private List<RoomListEntry> _originalRooms;
         private List<RoomListEntry> _rooms;
 
         internal GameObject GameObject { get; }
@@ -32,16 +31,13 @@
             this._sortOrder = r => r;
             this._isDescendingOrder = false;
 
-            this._originalRooms = new List<RoomListEntry>();
-            this._rooms = this._originalRooms;
+            this._rooms = new List<RoomListEntry>();
         }
 
         internal void SetRooms(IEnumerable<RoomInfo> rooms)
         {
-            _originalRooms = rooms.Select(RoomListEntry.Parse).ToList();
-            _rooms = _originalRooms;
-
-            Render();
+            _rooms = rooms.Select(RoomListEntry.Parse).ToList();
+            SortRooms();
         }
 
         private void Render()
@@ -107,10 +103,10 @@
             }
 
             _sortOrder = sortOrder;
-            ResortRooms();
+            SortRooms();
         }
 
-        private void ResortRooms()
+        private void SortRooms()
         {
             _rooms = _isDescendingOrder
                 ? _rooms.OrderByDescending(_sortOrder).ToList()
