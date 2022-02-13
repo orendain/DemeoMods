@@ -38,6 +38,7 @@
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
     <Compile Include="Rulesets\SampleRuleset.cs" />
+    <Compile Include="Rulesets\BeatTheClockRuleset.cs" />
     <Compile Include="Rules\AbilityActionCostAdjustedRule.cs" />
     <Compile Include="Rules\AbilityDamageAdjustedRule.cs" />
     <Compile Include="Rules\ActionPointsAdjustedRule.cs" />
