@@ -6,16 +6,16 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class GoldPickedUpScaledRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
+    public sealed class GoldPickedUpMultipliedRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Gold picked up is scaled";
+        public override string Description => "Gold picked up is multiplied";
 
         private static float _globalMultiplier;
         private static bool _isActivated;
 
         private readonly float _multiplier;
 
-        public GoldPickedUpScaledRule(float multiplier)
+        public GoldPickedUpMultipliedRule(float multiplier)
         {
             _multiplier = multiplier;
         }
@@ -36,7 +36,7 @@
                 original: AccessTools.Constructor(
                     typeof(SerializableEventPickup),
                     new[] { typeof(int), typeof(IntPoint2D), typeof(bool) }),
-                postfix: new HarmonyMethod(typeof(GoldPickedUpScaledRule), nameof(SerializableEventPickup_Constructor_Postfix)));
+                postfix: new HarmonyMethod(typeof(GoldPickedUpMultipliedRule), nameof(SerializableEventPickup_Constructor_Postfix)));
         }
 
         private static void SerializableEventPickup_Constructor_Postfix(ref SerializableEventPickup __instance)
