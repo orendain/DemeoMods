@@ -53,6 +53,7 @@
     <Compile Include="Rules\LevelPropertiesModifiedRule.cs" />
     <Compile Include="Rules\PieceConfigAdjustedRule.cs" />
     <Compile Include="Rules\RatNestsSpawnGoldRule.cs" />
+    <Compile Include="Rules\RoundCountLimitedRule.cs" />
     <Compile Include="Rules\SampleRule.cs" />
     <Compile Include="Rules\StartCardsModifiedRule.cs" />
     <Compile Include="Rules\StartHealthAdjustedRule.cs" />
