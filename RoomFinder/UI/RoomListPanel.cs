@@ -14,7 +14,6 @@
     {
         private readonly UiHelper _uiHelper;
         private Func<RoomListEntry, object> _sortOrder;
-        private bool _shouldHideFullRooms;
         private bool _isDescendingOrder;
         private List<RoomListEntry> _originalRooms;
         private List<RoomListEntry> _rooms;
@@ -31,7 +30,6 @@
             this._uiHelper = uiHelper;
             this.GameObject = panel;
             this._sortOrder = r => r;
-            this._shouldHideFullRooms = false;
             this._isDescendingOrder = false;
 
             this._originalRooms = new List<RoomListEntry>();
@@ -66,11 +64,6 @@
             var headerContainer = new GameObject("Header");
             headerContainer.transform.SetParent(GameObject.transform, worldPositionStays: false);
 
-            var toggleHideFull = CreateHideButton("Hide Full?", ToggleHideFull);
-            toggleHideFull.transform.SetParent(headerContainer.transform, worldPositionStays: false);
-            toggleHideFull.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            toggleHideFull.transform.localPosition = new Vector3(2.5f, 1, 0);
-
             var sortLabel = _uiHelper.CreateLabelText("Sort by:");
             sortLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             sortLabel.transform.localPosition = new Vector3(-3f, 0, 0);
@@ -89,21 +82,6 @@
             playersButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
             playersButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             playersButton.transform.localPosition = new Vector3(3.5f, 0, 0);
-        }
-
-        private GameObject CreateHideButton(string text, Action action)
-        {
-            var container = new GameObject(text);
-
-            var button = _uiHelper.CreateButton(action);
-            button.transform.SetParent(container.transform, worldPositionStays: false);
-            button.transform.localScale = new Vector3(1.2f, 1, 1);
-
-            var buttonText = _uiHelper.CreateText(text, Color.white, UiHelper.DefaultButtonFontSize);
-            buttonText.transform.SetParent(container.transform, worldPositionStays: false);
-            buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-
-            return container;
         }
 
         private GameObject CreateSortButton(string text, Action action)
@@ -132,18 +110,8 @@
             ResortRooms();
         }
 
-        private void ToggleHideFull()
-        {
-            _shouldHideFullRooms = !_shouldHideFullRooms;
-            ResortRooms();
-        }
-
         private void ResortRooms()
         {
-            _rooms = _shouldHideFullRooms
-                ? _originalRooms.Where(r => r.CurrentPlayers != r.MaxPlayers).ToList()
-                : _originalRooms;
-
             _rooms = _isDescendingOrder
                 ? _rooms.OrderByDescending(_sortOrder).ToList()
                 : _rooms.OrderBy(_sortOrder).ToList();
