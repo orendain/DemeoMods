@@ -14,6 +14,7 @@
                 name,
                 description,
                 new CardEnergyFromAttackMultipliedRule(0.6f),
+                new CardEnergyFromRecyclingMultipliedRule(0.6f),
                 new EnemyHealthScaledRule(1.4f),
                 new EnemyAttackScaledRule(1.4f));
         }
