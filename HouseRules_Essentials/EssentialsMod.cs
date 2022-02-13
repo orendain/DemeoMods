@@ -1,9 +1,7 @@
 ﻿namespace HouseRules.Essentials
 {
-    using System.Collections.Generic;
     using HouseRules.Essentials.Rules;
     using HouseRules.Essentials.Rulesets;
-    using HouseRules.Types;
     using MelonLoader;
 
     internal class EssentialsMod : MelonMod
@@ -37,6 +35,7 @@
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
+            HR.Rulebook.Register(typeof(RoundCountLimitedRule));
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
             HR.Rulebook.Register(typeof(StartHealthAdjustedRule));
         }
@@ -44,6 +43,10 @@
         private static void RegisterRulesets()
         {
             HR.Rulebook.Register(SampleRuleset.Create());
+            HR.Rulebook.Register(BeatTheClockRuleset.Create());
+            HR.Rulebook.Register(DifficultyEasyRuleset.Create());
+            HR.Rulebook.Register(DifficultyHardRuleset.Create());
+            HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());
         }
     }
 }
