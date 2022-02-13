@@ -28,8 +28,8 @@
         {
             this._uiHelper = uiHelper;
             this.GameObject = panel;
-            this._sortOrder = r => r;
-            this._isDescendingOrder = false;
+            this._sortOrder = r => r.CurrentPlayers;
+            this._isDescendingOrder = true;
 
             this._rooms = new List<RoomListEntry>();
         }
@@ -49,7 +49,6 @@
             }
 
             RenderHeader();
-
             for (var i = 0; i < _rooms.Count; i++)
             {
                 RenderRoomRow(_rooms[i], i);
