@@ -8,7 +8,7 @@
     {
         internal static Ruleset Create()
         {
-            const string name = "Beat the clock!";
+            const string name = "Beat The Clock!";
             const string description = "Godmode. Ultra recycling. 40 rounds to beat the game.";
 
             var healthRule = new StartHealthAdjustedRule(new Dictionary<string, int>
