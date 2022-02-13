@@ -158,7 +158,12 @@
             roomRowContainer.transform.SetParent(GameObject.transform, worldPositionStays: false);
             roomRowContainer.transform.localPosition = new Vector3(0, yOffset, 0);
 
-            if (room.GameType == LevelSequence.GameType.Invalid || room.Floor < 0)
+            if (room.GameType == LevelSequence.GameType.Invalid)
+            {
+                return;
+            }
+
+            if (room.Floor < 0)
             {
                 return;
             }

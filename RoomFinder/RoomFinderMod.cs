@@ -12,7 +12,7 @@
 
         private const int LobbySceneIndex = 1;
 
-        private GameObject _roomListUI;
+        private GameObject _roomFinderUi;
 
         public override void OnApplicationStart()
         {
@@ -27,7 +27,7 @@
                 return;
             }
 
-            _roomListUI = new GameObject("RoomListUI", typeof(RoomListUI));
+            _roomFinderUi = new GameObject("RoomFinderUI", typeof(RoomFinderUI));
         }
     }
 }
