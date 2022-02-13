@@ -52,7 +52,6 @@
     <Compile Include="Rules\EnemyDoorOpeningDisabledRule.cs" />
     <Compile Include="Rules\EnemyHealthScaledRule.cs" />
     <Compile Include="Rules\EnemyRespawnDisabledRule.cs" />
-    <Compile Include="Rules\GoldPickedUpMultipliedRule.cs" />
     <Compile Include="Rules\GoldPickedUpScaledRule.cs" />
     <Compile Include="Rules\LevelPropertiesModifiedRule.cs" />
     <Compile Include="Rules\PieceConfigAdjustedRule.cs" />
