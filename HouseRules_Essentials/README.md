@@ -75,6 +75,25 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
   },
   ```
 
+- __AbilityRandomPieceListRule__: The randomPieceList for Abilities is adjusted
+  - Some abilities (NaturesCall, SpawnCultists) have a list which is used to spawn random pieces.
+  - This rule allows the list to be replaced with a different one.
+  - Config accepts Dictionary e.g. `{ "AbilityName", BoardpieceId[], "AbilityName2", BoardpieceId[] }`  
+
+  ###### _Example JSON config for AbilityRandomPieceListRule_
+
+  ```json
+  {
+    "Rule": "AbilityRandomPieceList",
+    "Config": {
+      "NaturesCall": [
+        "ChestGoblin",
+        "Slime"
+      ]
+    }
+  },
+  ```
+
 - ___ActionPointsAdjustedRule__: Action points are adjusted_
   - No longer needed? PieceConfig can do this too.
 - __CardEnergyFromAttackMultipliedRule__: Card energy from attack is multiplied

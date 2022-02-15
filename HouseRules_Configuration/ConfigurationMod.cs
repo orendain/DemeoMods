@@ -138,9 +138,15 @@
                 { "Rat", 100 },
             });
 
+            BoardPieceId[] bps = { BoardPieceId.ChestGoblin, BoardPieceId.Slime };
+            var arpl = new Essentials.Rules.AbilityRandomPieceListRule(new Dictionary<string, BoardPieceId[]>
+            {
+                { "NaturesCall", bps },
+            });
+
             var customRuleset = Ruleset.NewInstance("DemoConfigurableRuleset", "Just a random description.", new List<Rule>
             {
-                aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha,
+                aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha, arpl,
             });
 
             ConfigManager.ExportRuleset(customRuleset);
