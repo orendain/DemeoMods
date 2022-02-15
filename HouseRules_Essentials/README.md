@@ -249,6 +249,22 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
     ]
   },
   ```
+  
+- __PieceImmunityListAdjustedRule__: Piece ImmuneToStatusEffects list is adjusted
+  - Allows customization of many the list of immunities for each game Piece. Diseased, Stunned, Weakened, Frozen, Tangled, Petrified , etc
+  - Config accepts Dictionary e.g. `{ "HeroSorcerer", EventState[], "RatKing", EventState[], ... }`  
+
+  ###### _Example JSON config for PieceImmunityListAdjustedRule_
+
+  ```json
+  {
+    "Rule": "PieceImmunityListAdjusted",
+    "Config": {
+      "HeroSorcerer": [ "Diseased", "MarkOfAvalon", "Weaken", "Frozen", "Tangled", "Petrified" ],
+      "HeroGuardian": [ "Frozen" ]
+    }
+  },
+  ```
 
 - __RatNestsSpawnGoldRule__: Rat nests spawn gold
   - Config accepts bool e.g `true`  
