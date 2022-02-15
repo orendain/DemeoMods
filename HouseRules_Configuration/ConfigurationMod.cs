@@ -144,9 +144,12 @@
                 { "NaturesCall", bps },
             });
 
+            EffectStateType[] effs = { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.MarkOfAvalon, EffectStateType.Weaken, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
+            var pila = new Essentials.Rules.PieceImmunityListAdjustedRule(new Dictionary<string, EffectStateType[]> { { "Sorcerer", effs } } );
+
             var customRuleset = Ruleset.NewInstance("DemoConfigurableRuleset", "Just a random description.", new List<Rule>
             {
-                aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha, arpl,
+                aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha, arpl, pila,
             });
 
             ConfigManager.ExportRuleset(customRuleset);
