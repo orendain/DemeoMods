@@ -40,6 +40,7 @@
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
     <Compile Include="Rulesets\SampleRuleset.cs" />
+    <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rules\AbilityActionCostAdjustedRule.cs" />
     <Compile Include="Rules\AbilityRandomPieceListRule.cs" />
     <Compile Include="Rules\AbilityDamageAdjustedRule.cs" />

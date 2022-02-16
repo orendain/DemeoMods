@@ -43,6 +43,8 @@
 
         private static void RegisterRulesets()
         {
+            HR.Rulebook.Register(SampleRuleset.Create());
+            HR.Rulebook.Register(NoSurprisesRuleset.Create());
             HR.Rulebook.Register(BeatTheClockRuleset.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
