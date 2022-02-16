@@ -9,7 +9,7 @@
     {
         internal HashSet<Type> RuleTypes { get; }
 
-        internal HashSet<Ruleset> Rulesets { get; }
+        public HashSet<Ruleset> Rulesets { get; }
 
         internal static Rulebook NewInstance()
         {

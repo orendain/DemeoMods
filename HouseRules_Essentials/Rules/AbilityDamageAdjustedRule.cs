@@ -7,7 +7,7 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class AbilityDamageAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>
+    public sealed class AbilityDamageAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>, IMultiplayerSafe
     {
         public override string Description => "Ability damage is adjusted";
 

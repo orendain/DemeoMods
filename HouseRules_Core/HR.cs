@@ -11,17 +11,25 @@ namespace HouseRules
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Core");
         private const float WelcomeMessageDurationSeconds = 30f;
-        private static bool _isRulesetActive;
 
         public static readonly Rulebook Rulebook = Rulebook.NewInstance();
 
-        public static Ruleset SelectedRuleset { get; private set; }
+        public static Ruleset SelectedRuleset { get; private set; } = Ruleset.None;
+
+        internal static bool IsRulesetActive { get; private set; }
 
         public static void SelectRuleset(string ruleset)
         {
-            if (_isRulesetActive)
+            if (IsRulesetActive)
             {
                 throw new InvalidOperationException("May not select a new ruleset while one is currently active.");
+            }
+
+            if (Ruleset.None.Name.Equals(ruleset, StringComparison.OrdinalIgnoreCase))
+            {
+                SelectedRuleset = Ruleset.None;
+                Logger.Msg("Cleared selected ruleset.");
+                return;
             }
 
             if (!Rulebook.IsRulesetRegistered(ruleset))
@@ -34,20 +42,26 @@ namespace HouseRules
             Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
         }
 
-        internal static void TriggerActivateRuleset(GameContext gameContext)
+        internal static void TriggerActivateRuleset(GameContext gameContext, GameHub.GameMode gameMode)
         {
-            if (_isRulesetActive)
+            if (IsRulesetActive)
             {
-                Logger.Warning("Ruleset activation was triggered while ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
+                Logger.Warning("Ruleset activation was triggered whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
                 return;
             }
 
-            if (SelectedRuleset == null)
+            if (SelectedRuleset == Ruleset.None)
             {
                 return;
             }
 
-            _isRulesetActive = true;
+            if (gameMode == GameHub.GameMode.Multiplayer && !SelectedRuleset.IsSafeForMultiplayer)
+            {
+                Logger.Warning($"The selected ruleset [{SelectedRuleset.Name}] is not safe for multiplayer games. Skipping activation.");
+                return;
+            }
+
+            IsRulesetActive = true;
 
             Logger.Msg($"Activating ruleset: {SelectedRuleset.Name} (with {SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in SelectedRuleset.Rules)
@@ -67,12 +81,12 @@ namespace HouseRules
 
         internal static void TriggerDeactivateRuleset(GameContext gameContext)
         {
-            if (!_isRulesetActive)
+            if (!IsRulesetActive)
             {
                 return;
             }
 
-            _isRulesetActive = false;
+            IsRulesetActive = false;
 
             Logger.Msg($"Deactivating ruleset: {SelectedRuleset.Name} (with {SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in SelectedRuleset.Rules)
@@ -92,7 +106,12 @@ namespace HouseRules
 
         internal static void TriggerPreGameCreated(GameContext gameContext)
         {
-            if (SelectedRuleset == null)
+            if (SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
+            if (!IsRulesetActive)
             {
                 return;
             }
@@ -114,7 +133,12 @@ namespace HouseRules
 
         internal static void TriggerPostGameCreated(GameContext gameContext)
         {
-            if (SelectedRuleset == null)
+            if (SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
+            if (!IsRulesetActive)
             {
                 return;
             }
@@ -136,23 +160,45 @@ namespace HouseRules
 
         internal static void TriggerWelcomeMessage()
         {
-            if (!_isRulesetActive)
+            if (SelectedRuleset == Ruleset.None)
             {
                 return;
             }
 
-            var sb = new StringBuilder();
-            sb.AppendLine("Welcome to a game using a custom ruleset!");
-            sb.AppendLine();
-            sb.AppendFormat("{0}: {1}\n", SelectedRuleset.Name, SelectedRuleset.Description);
-            sb.AppendLine();
-            sb.AppendLine("Rules:");
-            foreach (var rule in SelectedRuleset.Rules)
+            if (!IsRulesetActive)
             {
-                sb.AppendLine(rule.Description);
+                GameUI.ShowCameraMessage(BuildNotSafeForMultiplayerMessage(), WelcomeMessageDurationSeconds);
+                return;
             }
 
-            GameUI.ShowCameraMessage(sb.ToString(), WelcomeMessageDurationSeconds);
+            GameUI.ShowCameraMessage(BuildRulesetActiveMessage(), WelcomeMessageDurationSeconds);
+        }
+
+        private static string BuildNotSafeForMultiplayerMessage()
+        {
+            return new StringBuilder()
+                .AppendLine("Attention:")
+                .AppendLine("The HouseRules ruleset you selected is not safe for multiplayer games, and was not activated.")
+                .ToString();
+        }
+
+        private static string BuildRulesetActiveMessage()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Welcome to a game using HouseRules!");
+            sb.AppendLine();
+            sb.AppendLine($"{SelectedRuleset.Name}:");
+            sb.AppendLine(SelectedRuleset.Description);
+            sb.AppendLine();
+            sb.AppendLine("Rules:");
+
+            for (var i = 0; i < SelectedRuleset.Rules.Count; i++)
+            {
+                var description = SelectedRuleset.Rules[i].Description;
+                sb.AppendLine($"{i}. {description}");
+            }
+
+            return sb.ToString();
         }
     }
 }

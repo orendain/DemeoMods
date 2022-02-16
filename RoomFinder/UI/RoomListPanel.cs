@@ -14,9 +14,7 @@
     {
         private readonly UiHelper _uiHelper;
         private Func<RoomListEntry, object> _sortOrder;
-        private bool _shouldHideFullRooms;
         private bool _isDescendingOrder;
-        private List<RoomListEntry> _originalRooms;
         private List<RoomListEntry> _rooms;
 
         internal GameObject GameObject { get; }
@@ -30,19 +28,16 @@
         {
             this._uiHelper = uiHelper;
             this.GameObject = panel;
-            this._sortOrder = r => r;
-            this._shouldHideFullRooms = false;
-            this._isDescendingOrder = false;
+            this._sortOrder = r => r.CurrentPlayers;
+            this._isDescendingOrder = true;
 
-            this._originalRooms = new List<RoomListEntry>();
-            this._rooms = this._originalRooms;
+            this._rooms = new List<RoomListEntry>();
         }
 
         internal void SetRooms(IEnumerable<RoomInfo> rooms)
         {
-            _originalRooms = rooms.Select(RoomListEntry.Parse).ToList();
-            _rooms = _originalRooms;
-
+            _rooms = rooms.Select(RoomListEntry.Parse).ToList();
+            SortRooms();
             Render();
         }
 
@@ -53,55 +48,54 @@
                 Object.Destroy(child.gameObject);
             }
 
-            RenderHeader();
+            var header = CreateHeader();
+            header.transform.SetParent(GameObject.transform, worldPositionStays: false);
 
-            for (var i = 0; i < _rooms.Count; i++)
+            var rooms = new GameObject("Rooms");
+            rooms.transform.SetParent(GameObject.transform, worldPositionStays: false);
+
+            var roomIndex = 0;
+            foreach (var room in _rooms)
             {
-                RenderRoomRow(_rooms[i], i);
+                if (room.GameType == LevelSequence.GameType.Invalid)
+                {
+                    continue;
+                }
+
+                if (room.Floor < 0)
+                {
+                    continue;
+                }
+
+                var yOffset = (1 + roomIndex++) * -1f;
+                var roomRow = CreateRoomRow(room);
+                roomRow.transform.SetParent(rooms.transform, worldPositionStays: false);
+                roomRow.transform.localPosition = new Vector3(0, yOffset, 0);
             }
         }
 
-        private void RenderHeader()
+        private GameObject CreateHeader()
         {
-            var headerContainer = new GameObject("Header");
-            headerContainer.transform.SetParent(GameObject.transform, worldPositionStays: false);
-
-            var toggleHideFull = CreateHideButton("Hide Full?", ToggleHideFull);
-            toggleHideFull.transform.SetParent(headerContainer.transform, worldPositionStays: false);
-            toggleHideFull.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            toggleHideFull.transform.localPosition = new Vector3(2.5f, 1, 0);
+            var container = new GameObject("Header");
 
             var sortLabel = _uiHelper.CreateLabelText("Sort by:");
-            sortLabel.transform.SetParent(headerContainer.transform, worldPositionStays: false);
-            sortLabel.transform.localPosition = new Vector3(-3f, 0, 0);
+            sortLabel.transform.SetParent(container.transform, worldPositionStays: false);
+            sortLabel.transform.localPosition = new Vector3(-3f, 0, UiHelper.DefaultTextZShift);
 
-            var gameButton = CreateSortButton("Game", () => SortListBy(r => r.GameType));
-            gameButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
+            var gameButton = CreateSortButton("Game", () => SetSortOrderAndApply(r => r.GameType));
+            gameButton.transform.SetParent(container.transform, worldPositionStays: false);
             gameButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             gameButton.transform.localPosition = new Vector3(-0.5f, 0, 0);
 
-            var floorButton = CreateSortButton("Floor", () => SortListBy(r => r.Floor));
-            floorButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
+            var floorButton = CreateSortButton("Floor", () => SetSortOrderAndApply(r => r.Floor));
+            floorButton.transform.SetParent(container.transform, worldPositionStays: false);
             floorButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             floorButton.transform.localPosition = new Vector3(1.5f, 0, 0);
 
-            var playersButton = CreateSortButton("Players", () => SortListBy(r => r.CurrentPlayers));
-            playersButton.transform.SetParent(headerContainer.transform, worldPositionStays: false);
+            var playersButton = CreateSortButton("Players", () => SetSortOrderAndApply(r => r.CurrentPlayers));
+            playersButton.transform.SetParent(container.transform, worldPositionStays: false);
             playersButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             playersButton.transform.localPosition = new Vector3(3.5f, 0, 0);
-        }
-
-        private GameObject CreateHideButton(string text, Action action)
-        {
-            var container = new GameObject(text);
-
-            var button = _uiHelper.CreateButton(action);
-            button.transform.SetParent(container.transform, worldPositionStays: false);
-            button.transform.localScale = new Vector3(1.2f, 1, 1);
-
-            var buttonText = _uiHelper.CreateText(text, Color.white, UiHelper.DefaultButtonFontSize);
-            buttonText.transform.SetParent(container.transform, worldPositionStays: false);
-            buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 
             return container;
         }
@@ -117,11 +111,12 @@
             var buttonText = _uiHelper.CreateText(text, Color.white, UiHelper.DefaultButtonFontSize);
             buttonText.transform.SetParent(container.transform, worldPositionStays: false);
             buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            buttonText.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultTextZShift);
 
             return container;
         }
 
-        private void SortListBy(Func<RoomListEntry, object> sortOrder)
+        private void SetSortOrderAndApply(Func<RoomListEntry, object> sortOrder)
         {
             if (_sortOrder == sortOrder)
             {
@@ -129,62 +124,43 @@
             }
 
             _sortOrder = sortOrder;
-            ResortRooms();
-        }
-
-        private void ToggleHideFull()
-        {
-            _shouldHideFullRooms = !_shouldHideFullRooms;
-            ResortRooms();
-        }
-
-        private void ResortRooms()
-        {
-            _rooms = _shouldHideFullRooms
-                ? _originalRooms.Where(r => r.CurrentPlayers != r.MaxPlayers).ToList()
-                : _originalRooms;
-
-            _rooms = _isDescendingOrder
-                ? _rooms.OrderByDescending(_sortOrder).ToList()
-                : _rooms.OrderBy(_sortOrder).ToList();
-
+            SortRooms();
             Render();
         }
 
-        private void RenderRoomRow(RoomListEntry room, int row)
+        private void SortRooms()
         {
-            var yOffset = (1 + row) * -1f;
-            var roomRowContainer = new GameObject($"Row{row}");
-            roomRowContainer.transform.SetParent(GameObject.transform, worldPositionStays: false);
-            roomRowContainer.transform.localPosition = new Vector3(0, yOffset, 0);
+            _rooms = _isDescendingOrder
+                ? _rooms.OrderByDescending(_sortOrder).ToList()
+                : _rooms.OrderBy(_sortOrder).ToList();
+        }
 
-            if (room.GameType == LevelSequence.GameType.Invalid || room.Floor < 0)
-            {
-                return;
-            }
+        private GameObject CreateRoomRow(RoomListEntry room)
+        {
+            var container = new GameObject(room.Name);
 
             var joinButton = _uiHelper.CreateButton(JoinRoomAction(room.Name));
-            joinButton.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
+            joinButton.transform.SetParent(container.transform, worldPositionStays: false);
             joinButton.transform.localScale = new Vector3(0.4f, 0.7f, 0.7f);
             joinButton.transform.localPosition = new Vector3(-3f, 0, 0);
 
             var joinText = _uiHelper.CreateText(room.Name, Color.white, UiHelper.DefaultLabelFontSize);
-            joinText.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
-            joinText.transform.localPosition = new Vector3(-3f, 0, 0);
+            joinText.transform.SetParent(container.transform, worldPositionStays: false);
+            joinText.transform.localPosition = new Vector3(-3f, 0, UiHelper.DefaultTextZShift);
 
-            var gameName = room.GameType.ToString();
-            var gameLabel = _uiHelper.CreateLabelText(gameName);
-            gameLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
-            gameLabel.transform.localPosition = new Vector3(-0.4f, 0, 0);
+            var gameLabel = _uiHelper.CreateLabelText(room.GameType.ToString());
+            gameLabel.transform.SetParent(container.transform, worldPositionStays: false);
+            gameLabel.transform.localPosition = new Vector3(-0.4f, 0, UiHelper.DefaultTextZShift);
 
             var floorLabel = _uiHelper.CreateLabelText(room.Floor.ToString());
-            floorLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
-            floorLabel.transform.localPosition = new Vector3(1.75f, 0, 0);
+            floorLabel.transform.SetParent(container.transform, worldPositionStays: false);
+            floorLabel.transform.localPosition = new Vector3(1.75f, 0, UiHelper.DefaultTextZShift);
 
-            var playersText = $"{room.CurrentPlayers}/{room.MaxPlayers}";
-            var playersLabel = _uiHelper.CreateLabelText(playersText);
-            playersLabel.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
-            playersLabel.transform.localPosition = new Vector3(3.25f, 0, 0);
+            var playersLabel = _uiHelper.CreateLabelText($"{room.CurrentPlayers}/{room.MaxPlayers}");
+            playersLabel.transform.SetParent(container.transform, worldPositionStays: false);
+            playersLabel.transform.localPosition = new Vector3(3.25f, 0, UiHelper.DefaultTextZShift);
+
+            return container;
         }
 
         private static Action JoinRoomAction(string roomCode)

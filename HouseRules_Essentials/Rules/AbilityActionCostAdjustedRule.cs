@@ -7,7 +7,7 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class AbilityActionCostAdjustedRule : Rule, IConfigWritable<Dictionary<string, bool>>
+    public sealed class AbilityActionCostAdjustedRule : Rule, IConfigWritable<Dictionary<string, bool>>, IMultiplayerSafe
     {
         public override string Description => "Ability AP costs are adjusted";
 

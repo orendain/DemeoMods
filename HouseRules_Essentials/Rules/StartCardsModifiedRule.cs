@@ -9,7 +9,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class StartCardsModifiedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>>, IPatchable
+    public sealed class StartCardsModifiedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Hero start cards are modified";
 
@@ -56,11 +56,7 @@
                 return;
             }
 
-            if (__result.boardPieceId != BoardPieceId.HeroBard &&
-                __result.boardPieceId != BoardPieceId.HeroGuardian &&
-                __result.boardPieceId != BoardPieceId.HeroHunter &&
-                __result.boardPieceId != BoardPieceId.HeroRouge &&
-                __result.boardPieceId != BoardPieceId.HeroSorcerer)
+            if (!_globalHeroStartCards.ContainsKey(__result.boardPieceId))
             {
                 return;
             }

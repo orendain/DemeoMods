@@ -1,9 +1,7 @@
 ﻿namespace HouseRules.Essentials
 {
-    using System.Collections.Generic;
     using HouseRules.Essentials.Rules;
     using HouseRules.Essentials.Rulesets;
-    using HouseRules.Types;
     using MelonLoader;
 
     internal class EssentialsMod : MelonMod
@@ -18,11 +16,12 @@
 
         private static void RegisterRuleTypes()
         {
-            HR.Rulebook.Register(typeof(SampleRule));
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityDamageAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
+            HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
             HR.Rulebook.Register(typeof(ActionPointsAdjustedRule));
+            HR.Rulebook.Register(typeof(CardAdditionOverriddenRule));
             HR.Rulebook.Register(typeof(CardEnergyFromAttackMultipliedRule));
             HR.Rulebook.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
@@ -32,18 +31,25 @@
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
-            HR.Rulebook.Register(typeof(GoldPickedUpScaledRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
+            HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
+            HR.Rulebook.Register(typeof(RoundCountLimitedRule));
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
             HR.Rulebook.Register(typeof(StartHealthAdjustedRule));
+            HR.Rulebook.Register(typeof(StatusEffectConfigRule));
         }
 
         private static void RegisterRulesets()
         {
             HR.Rulebook.Register(SampleRuleset.Create());
             HR.Rulebook.Register(NoSurprisesRuleset.Create());
+            HR.Rulebook.Register(BeatTheClockRuleset.Create());
+            HR.Rulebook.Register(DifficultyEasyRuleset.Create());
+            HR.Rulebook.Register(DifficultyHardRuleset.Create());
+            HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());
+            HR.Rulebook.Register(QuickandDeadRuleset.Create());
         }
     }
 }

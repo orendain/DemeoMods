@@ -67,7 +67,7 @@
         <Compile Include="ModState.cs" />
         <Compile Include="UI\RoomListEntry.cs" />
         <Compile Include="UI\RoomListPanel.cs" />
-        <Compile Include="UI\RoomListUI.cs" />
+        <Compile Include="UI\RoomFinderUI.cs" />
         <Compile Include="..\Common\**\*.cs" Exclude="..\Common\Properties\AssemblyInfo.cs;..\Common\bin\**\*.*;..\Common\obj\**\*.*;..\Common\**\*.csproj;..\Common\**\*.user;..\Common\**\*.vstemplate">
             <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Compile>

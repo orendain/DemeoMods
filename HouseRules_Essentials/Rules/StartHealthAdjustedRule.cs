@@ -7,7 +7,7 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class StartHealthAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>
+    public sealed class StartHealthAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>, IMultiplayerSafe
     {
         public override string Description => "Start Health is adjusted";
 

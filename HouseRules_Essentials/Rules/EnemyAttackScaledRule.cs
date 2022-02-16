@@ -5,7 +5,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class EnemyAttackScaledRule : Rule, IConfigWritable<float>, IPatchable
+    public sealed class EnemyAttackScaledRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Enemy attack damage is scaled";
 

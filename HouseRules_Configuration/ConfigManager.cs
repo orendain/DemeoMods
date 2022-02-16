@@ -130,7 +130,7 @@
                 }
                 catch (Exception e)
                 {
-                    ConfigurationMod.Logger.Warning($"Failed to read rule entry from config. Skipping that rule: {e}");
+                    ConfigurationMod.Logger.Warning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Skipping that rule: {e}");
                 }
             }
 

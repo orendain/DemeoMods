@@ -75,6 +75,25 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
   },
   ```
 
+- __AbilityRandomPieceListRule__: The randomPieceList for Abilities is adjusted
+  - Some abilities (NaturesCall, SpawnCultists) have a list which is used to spawn random pieces.
+  - This rule allows the list to be replaced with a different one.
+  - Config accepts Dictionary e.g. `{ "AbilityName", BoardpieceId[], "AbilityName2", BoardpieceId[] }`  
+
+  ###### _Example JSON config for AbilityRandomPieceListRule_
+
+  ```json
+  {
+    "Rule": "AbilityRandomPieceList",
+    "Config": {
+      "NaturesCall": [
+        "ChestGoblin",
+        "Slime"
+      ]
+    }
+  },
+  ```
+
 - ___ActionPointsAdjustedRule__: Action points are adjusted_
   - No longer needed? PieceConfig can do this too.
 - __CardEnergyFromAttackMultipliedRule__: Card energy from attack is multiplied
@@ -230,6 +249,22 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
     ]
   },
   ```
+  
+- __PieceImmunityListAdjustedRule__: Piece ImmuneToStatusEffects list is adjusted
+  - Allows customization of many the list of immunities for each game Piece. Diseased, Stunned, Weakened, Frozen, Tangled, Petrified , etc
+  - Config accepts Dictionary e.g. `{ "HeroSorcerer", EventState[], "RatKing", EventState[], ... }`  
+
+  ###### _Example JSON config for PieceImmunityListAdjustedRule_
+
+  ```json
+  {
+    "Rule": "PieceImmunityListAdjusted",
+    "Config": {
+      "HeroSorcerer": [ "Diseased", "MarkOfAvalon", "Weaken", "Frozen", "Tangled", "Petrified" ],
+      "HeroGuardian": [ "Frozen" ]
+    }
+  },
+  ```
 
 - __RatNestsSpawnGoldRule__: Rat nests spawn gold
   - Config accepts bool e.g `true`  
@@ -280,6 +315,41 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
          { "Card": "CallCompanion", "IsReplenishable": false }
        ],
      }
+   },
+   ```
+- __StatusEffectConfigRule__: The parameters of different StatusEffects (Torch, Poison, Frozen) can be overridden
+  - Accepts a list of overrides which take the place of the default config. 
+  - If no override is specified, the default is used instead.
+  - Default values can be found in `StatusEffectsConfig.effectsConfig` 
+  - Config accepts list of dicts e.g. `[ {}, {}, ]`
+
+  ###### _Example JSON config for StatusEffectConfigRule_
+
+  ```json
+    {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "TorchPlayer",
+          "durationTurns": 15,
+          "tickWhen": "StartTurn",
+          "stacks": true,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "HealingSong",
+          "durationTurns": 4,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 3
+        }
+      ]
    },
    ```
 
