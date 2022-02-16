@@ -6,6 +6,7 @@
     using HouseRules.Types;
     using MelonLoader;
     using UnityEngine;
+    using StatusEffectData = global::Types.StatusEffectData;
 
     internal class ConfigurationMod : MelonMod
     {
@@ -147,9 +148,9 @@
             EffectStateType[] effs = { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.MarkOfAvalon, EffectStateType.Weaken, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
             var pila = new Essentials.Rules.PieceImmunityListAdjustedRule(new Dictionary<string, EffectStateType[]> { { "Sorcerer", effs } } );
 
-            var sec = new global::Types.StatusEffectData[]
+            var sec = new List<StatusEffectData>
             {
-                new global::Types.StatusEffectData {
+                new StatusEffectData {
                     effectStateType = EffectStateType.TorchPlayer,
                     durationTurns = 15,
                     damagePerTurn = 0,
@@ -157,7 +158,7 @@
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
-                new global::Types.StatusEffectData {
+                new StatusEffectData {
                     effectStateType = EffectStateType.HealingSong,
                     durationTurns = 4,
                     healPerTurn = 3,
