@@ -11,6 +11,7 @@
         public const int DefaultButtonFontSize = 7;
         public const int DefaultLabelFontSize = 5;
         public const int DefaultMenuHeaderFontSize = 10;
+        public const float DefaultTextZShift = -0.2f;
 
         private static UiHelper _instance;
 
@@ -59,7 +60,7 @@
 
         public GameObject CreateButton(Action callback)
         {
-            var buttonObject = new GameObject($"Button");
+            var buttonObject = new GameObject("Button");
             buttonObject.transform.localRotation = Quaternion.Euler(0, 180, 0); // Un-reverse button from its default.
             buttonObject.layer = 5; // UI layer.
 
@@ -76,12 +77,25 @@
             // Added last to allow ray to hit full object.
             buttonObject.AddComponent<BoxCollider>();
 
-            return WrapObject(buttonObject);
+            return buttonObject;
         }
 
+        /// <summary>
+        /// Creates a text object.
+        /// </summary>
+        /// <remarks>
+        ///     <para>
+        ///     The text is pre-shifted <c>-0.2</c> along the Z-axis, so as to appear slightly in front of non-text
+        ///     objects by default.
+        ///     </para>
+        ///     <para>
+        ///     The <c>transform</c> of the returned object may be casted as a <see cref="RectTransform"/>.
+        ///     </para>
+        /// </remarks>
+        /// <returns>The GameObject containing the text component.</returns>
         public GameObject CreateText(string text, Color color, int fontSize)
         {
-            var textObject = new GameObject($"Text");
+            var textObject = new GameObject("Text");
 
             var textMeshPro = textObject.AddComponent<TextMeshPro>();
             textMeshPro.font = DemeoResource.Font;
@@ -94,11 +108,18 @@
             textMeshPro.fontSizeMax = fontSize;
             textMeshPro.fontSizeMin = 1;
             textMeshPro.enableAutoSizing = true;
-            textMeshPro.transform.localPosition = new Vector3(0, 0, -0.2f);
+            textMeshPro.transform.localPosition = new Vector3(0, 0, DefaultTextZShift);
 
-            return WrapObject(textObject);
+            return textObject;
         }
 
+        /// <summary>
+        /// Wraps the specified GameObject inside a new <see cref="GameObject"/>.
+        /// </summary>
+        /// <remarks>
+        /// Useful for preserving the composition and layout of the original GameObject.
+        /// </remarks>
+        /// <returns>The GameObject whose child is the specified GameObject.</returns>
         public static GameObject WrapObject(GameObject child)
         {
             var container = new GameObject($"{child.name}Wrapper");
