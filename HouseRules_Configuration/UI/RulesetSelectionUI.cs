@@ -49,7 +49,7 @@
 
             var menuTitle = _uiHelper.CreateMenuHeaderText("HouseRules");
             menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 5.95f, 0);
+            menuTitle.transform.localPosition = new Vector3(0, 5.95f, UiHelper.DefaultTextZShift);
 
             var selectionPanel = _rulesetSelectionPanel.GameObject;
             selectionPanel.transform.SetParent(this.transform, worldPositionStays: false);
