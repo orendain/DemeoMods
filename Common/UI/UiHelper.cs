@@ -77,7 +77,7 @@
             // Added last to allow ray to hit full object.
             buttonObject.AddComponent<BoxCollider>();
 
-            return buttonObject;
+            return WrapObject(buttonObject);
         }
 
         /// <summary>
