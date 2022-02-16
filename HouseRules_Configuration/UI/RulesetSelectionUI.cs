@@ -35,26 +35,25 @@
         private void Initialize()
         {
             this.transform.SetParent(_uiHelper.DemeoResource.LobbyAnchor.transform, worldPositionStays: true);
-            this.transform.position = new Vector3(32, 29.75f, -11);
+            this.transform.position = new Vector3(32.6f, 26.4f, -12.8f);
             this.transform.rotation = Quaternion.Euler(0, 70, 0);
 
             _background = new GameObject("RulesetSelectionUIBackground");
             _background.AddComponent<MeshFilter>().mesh = _uiHelper.DemeoResource.MenuBoxMesh;
             _background.AddComponent<MeshRenderer>().material = _uiHelper.DemeoResource.MenuBoxMaterial;
-
             _background.transform.SetParent(this.transform, worldPositionStays: false);
-            _background.transform.localPosition = new Vector3(0, -3.25f, 0);
+            _background.transform.localPosition = new Vector3(0, 0, 0);
             _background.transform.localRotation =
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
-            _background.transform.localScale = new Vector3(2.5f, 1, 2.5f);
+            _background.transform.localScale = new Vector3(3.75f, 1, 2.5f);
 
             var menuTitle = _uiHelper.CreateMenuHeaderText("HouseRules");
             menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 2.725f, 0);
+            menuTitle.transform.localPosition = new Vector3(0, 5.95f, UiHelper.DefaultTextZShift);
 
             var selectionPanel = _rulesetSelectionPanel.GameObject;
             selectionPanel.transform.SetParent(this.transform, worldPositionStays: false);
-            selectionPanel.transform.localPosition = new Vector3(-0, -1f, 0);
+            selectionPanel.transform.localPosition = new Vector3(0, 2.5f, 0);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             this.gameObject.AddComponent<BoxCollider>();
