@@ -16,6 +16,7 @@
                 new EnemyDoorOpeningDisabledRule(true),
                 new EnemyRespawnDisabledRule(true),
                 new CardEnergyFromAttackMultipliedRule(1.5f),
+                new CardEnergyFromRecyclingMultipliedRule(1.5f),
                 new EnemyHealthScaledRule(0.8f),
                 new EnemyAttackScaledRule(0.6f));
         }
