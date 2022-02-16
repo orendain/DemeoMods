@@ -78,7 +78,7 @@
 
             var menuTitle = _uiHelper.CreateMenuHeaderText("RoomFinder");
             menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 2.375f, 0);
+            menuTitle.transform.localPosition = new Vector3(0, 2.375f, UiHelper.DefaultTextZShift);
 
             var refreshButton = _uiHelper.CreateButton(RefreshRoomList);
             refreshButton.transform.SetParent(this.transform, worldPositionStays: false);
@@ -86,7 +86,7 @@
 
             var refreshText = _uiHelper.CreateButtonText("Refresh");
             refreshText.transform.SetParent(this.transform, worldPositionStays: false);
-            refreshText.transform.localPosition = new Vector3(0, 0.3f, 0);
+            refreshText.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultTextZShift);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             this.gameObject.AddComponent<BoxCollider>();

@@ -68,8 +68,7 @@
         {
             var roomRowContainer = new GameObject(ruleset.Name);
 
-            var rawButton = _uiHelper.CreateButton(SelectRulesetAction(ruleset.Name));
-            var button = UiHelper.WrapObject(rawButton);
+            var button = _uiHelper.CreateButton(SelectRulesetAction(ruleset.Name));
             button.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             button.transform.localScale = new Vector3(1.5f, 1f, 1);
             button.transform.localPosition = new Vector3(-4.5f, 0, 0);
