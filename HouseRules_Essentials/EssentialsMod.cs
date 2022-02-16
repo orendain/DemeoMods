@@ -38,6 +38,7 @@
             HR.Rulebook.Register(typeof(RoundCountLimitedRule));
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
             HR.Rulebook.Register(typeof(StartHealthAdjustedRule));
+            HR.Rulebook.Register(typeof(StatusEffectConfigRule));
         }
 
         private static void RegisterRulesets()

@@ -6,6 +6,7 @@
     using HouseRules.Types;
     using MelonLoader;
     using UnityEngine;
+    using StatusEffectData = global::Types.StatusEffectData;
 
     internal class ConfigurationMod : MelonMod
     {
@@ -147,9 +148,28 @@
             EffectStateType[] effs = { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.MarkOfAvalon, EffectStateType.Weaken, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
             var pila = new Essentials.Rules.PieceImmunityListAdjustedRule(new Dictionary<string, EffectStateType[]> { { "Sorcerer", effs } } );
 
+            var sec = new List<StatusEffectData>
+            {
+                new StatusEffectData {
+                    effectStateType = EffectStateType.TorchPlayer,
+                    durationTurns = 15,
+                    damagePerTurn = 0,
+                    stacks = true,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
+                new StatusEffectData {
+                    effectStateType = EffectStateType.HealingSong,
+                    durationTurns = 4,
+                    healPerTurn = 3,
+                    stacks = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
+            };
+            var seca = new Essentials.Rules.StatusEffectConfigRule(sec);
             var customRuleset = Ruleset.NewInstance("DemoConfigurableRuleset", "Just a random description.", new List<Rule>
             {
-                aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha, arpl, pila,
+                aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha, arpl, pila, seca,
             });
 
             ConfigManager.ExportRuleset(customRuleset);

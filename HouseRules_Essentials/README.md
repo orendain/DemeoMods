@@ -317,6 +317,41 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
      }
    },
    ```
+- __StatusEffectConfigRule__: The parameters of different StatusEffects (Torch, Poison, Frozen) can be overridden
+  - Accepts a list of overrides which take the place of the default config. 
+  - If no override is specified, the default is used instead.
+  - Default values can be found in `StatusEffectsConfig.effectsConfig` 
+  - Config accepts list of dicts e.g. `[ {}, {}, ]`
+
+  ###### _Example JSON config for StatusEffectConfigRule_
+
+  ```json
+    {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "TorchPlayer",
+          "durationTurns": 15,
+          "tickWhen": "StartTurn",
+          "stacks": true,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "HealingSong",
+          "durationTurns": 4,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 3
+        }
+      ]
+   },
+   ```
 
 - ___StartHealthAdjustedRule__: Starting Health is adjusted_
   - Same settings handled by piececonfig. Rule not needed anymore?
