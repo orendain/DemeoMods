@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using HarmonyLib;
     using HouseRules.Types;
     using MelonLoader;
@@ -11,6 +12,8 @@
 
     public class ConfigManager
     {
+        private static readonly string RulesetDirectory = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules");
+
         private readonly MelonPreferences_Category _configCategory;
         private readonly MelonPreferences_Entry<string> _rulesetEntry;
         private readonly MelonPreferences_Entry<bool> _loadFromConfigEntry;
@@ -105,14 +108,23 @@
         }
 
         /// <summary>
-        /// Imports a ruleset by name.
+        /// Imports all rulesets in the default ruleset directory.
         /// </summary>
-        /// <param name="rulesetName">The name of the ruleset to import, saved as a JSON file at an internally-resolved location.</param>
-        /// <returns>The imported ruleset.</returns>
-        internal Ruleset ImportRuleset(string rulesetName)
+        /// <returns>The list of imported rulesets.</returns>
+        internal List<Ruleset> ImportRulesets()
         {
-            var rulesetFilePath = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules", $"{rulesetName}.json");
-            var rulesetJson = File.ReadAllText(rulesetFilePath);
+            var files = Directory.EnumerateFiles(RulesetDirectory, "?.json");
+            return files.Select(ImportRuleset).ToList();
+        }
+
+        /// <summary>
+        /// Imports a ruleset by full file name.
+        /// </summary>
+        /// <param name="fileName">The full file name of the JSON file to load as a ruleset.</param>
+        /// <returns>The imported ruleset.</returns>
+        internal Ruleset ImportRuleset(string fileName)
+        {
+            var rulesetJson = File.ReadAllText(fileName);
             var rulesetConfig = JsonConvert.DeserializeObject<RulesetConfig>(rulesetJson);
 
             var rules = new List<Rule>();
@@ -131,7 +143,7 @@
                 }
             }
 
-            ConfigurationMod.Logger.Msg($"Successfully imported ruleset from: {rulesetFilePath}");
+            ConfigurationMod.Logger.Msg($"Successfully imported ruleset from: {fileName}");
             return Ruleset.NewInstance(rulesetConfig.Name, rulesetConfig.Description, rules);
         }
 
