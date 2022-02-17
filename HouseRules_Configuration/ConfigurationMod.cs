@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using DataKeys;
     using HouseRules.Types;
     using MelonLoader;
@@ -30,16 +31,7 @@
             var loadFromConfig = ConfigManager.GetLoadFromConfig();
             if (loadFromConfig)
             {
-                try
-                {
-                    var ruleset = ConfigManager.ImportRuleset(rulesetName);
-                    HR.Rulebook.Register(ruleset);
-                    Logger.Msg($"Loaded and registered ruleset from config: {rulesetName}");
-                }
-                catch (Exception e)
-                {
-                    Logger.Warning($"Failed to load and register ruleset [{rulesetName}] from config: {e}");
-                }
+                RegisterRulesetsFromConfig();
             }
 
             try
@@ -69,6 +61,23 @@
 
             ConfigManager.SetRuleset(HR.SelectedRuleset.Name);
             ConfigManager.Save();
+        }
+
+        private static void RegisterRulesetsFromConfig()
+        {
+            var rulesets = ConfigManager.ImportRulesets();
+            foreach (var ruleset in rulesets)
+            {
+                try
+                {
+                    HR.Rulebook.Register(ruleset);
+                    Logger.Msg($"Loaded and registered ruleset from config: {ruleset.Name}");
+                }
+                catch (Exception e)
+                {
+                    Logger.Warning($"Failed to load and register ruleset [{ruleset.Name}] from config: {e}");
+                }
+            }
         }
 
         // TODO(orendain): Remove when this demo code is no longer necessary.
