@@ -230,7 +230,8 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
 - __PieceConfigAdjustedRule__: Piece configuration is adjusted
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
   - Allows customization of many of the properties for each game Piece. Health, ActionPoints, Movement, MeleeDamage, etc
-  - Config accepts List of Lists e.g. `[ [ "PieceName1", "ParamName1", int ], [ "PieceName1", "ParamName1", int ], ... ]`   
+  - Config accepts List of Lists e.g. `[ [ "PieceName1", "ParamName1", int ], [ "PieceName1", "ParamName1", int ], ... ]`
+  - Only works for Integer fields. The configured value replaces the default.  
 
   ###### _Example JSON config for PieceConfigAdjustedRule_
 
@@ -238,14 +239,14 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
   {
     "Rule": "PieceConfigAdjustedRule",
     "Config": [
-      [ "HeroSorcerer", "StartHealth", "10" ],
-      [ "HeroSorcerer", "MoveRange", "1" ],
-      [ "HeroSorcerer", "ActionPoint", "1" ],
-      [ "WolfCompanion", "StartHealth", "20" ],
-      [ "SwordOfAvalon", "StartHealth", "10" ],
-      [ "BeaconOfSmite", "StartHealth", "10" ],
-      [ "BeaconOfSmite", "ActionPoint", "1" ],
-      [ "MonsterBait", "StartHealth", "20" ]
+      [ "HeroSorcerer", "StartHealth", "20" ],
+      [ "HeroSorcerer", "MoveRange", "5" ],
+      [ "HeroSorcerer", "ActionPoint", "3" ],
+      [ "WolfCompanion", "StartHealth", "30" ],
+      [ "SwordOfAvalon", "StartHealth", "20" ],
+      [ "BeaconOfSmite", "StartHealth", "20" ],
+      [ "BeaconOfSmite", "ActionPoint", "2" ],
+      [ "MonsterBait", "StartHealth", "30" ]
     ]
   },
   ```
