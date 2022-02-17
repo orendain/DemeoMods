@@ -25,6 +25,7 @@
             _configCategory = MelonPreferences.CreateCategory("HouseRules");
             _rulesetEntry = _configCategory.CreateEntry("ruleset", string.Empty);
             _loadFromConfigEntry = _configCategory.CreateEntry("loadFromConfig", false);
+            SetDefaultSerializationSettings();
         }
 
         internal void SetRuleset(string rulesetName)
@@ -57,10 +58,8 @@
         /// </summary>
         /// <param name="ruleset">The ruleset to export.</param>
         /// <returns>The path of the file that the ruleset was written to.</returns>
-        public static string ExportRuleset(Ruleset ruleset)
+        public string ExportRuleset(Ruleset ruleset)
         {
-            ConfigureDefaultSerializationSettings();
-
             if (string.IsNullOrEmpty(ruleset.Name))
             {
                 throw new ArgumentException("Ruleset name must not be empty.");
@@ -110,10 +109,8 @@
         /// </summary>
         /// <param name="rulesetName">The name of the ruleset to import, saved as a JSON file at an internally-resolved location.</param>
         /// <returns>The imported ruleset.</returns>
-        internal static Ruleset ImportRuleset(string rulesetName)
+        internal Ruleset ImportRuleset(string rulesetName)
         {
-            ConfigureDefaultSerializationSettings();
-
             var rulesetFilePath = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules", $"{rulesetName}.json");
             var rulesetJson = File.ReadAllText(rulesetFilePath);
             var rulesetConfig = JsonConvert.DeserializeObject<RulesetConfig>(rulesetJson);
@@ -189,7 +186,7 @@
             }
         }
 
-        private static void ConfigureDefaultSerializationSettings()
+        private static void SetDefaultSerializationSettings()
         {
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
