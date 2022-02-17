@@ -15,8 +15,8 @@
         private static readonly string RulesetDirectory = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules");
 
         private readonly MelonPreferences_Category _configCategory;
-        private readonly MelonPreferences_Entry<string> _rulesetEntry;
-        private readonly MelonPreferences_Entry<bool> _loadFromConfigEntry;
+        private readonly MelonPreferences_Entry<string> _defaultRulesetEntry;
+        private readonly MelonPreferences_Entry<bool> _loadRulesetsFromConfigEntry;
 
         internal static ConfigManager NewInstance()
         {
@@ -26,29 +26,29 @@
         private ConfigManager()
         {
             _configCategory = MelonPreferences.CreateCategory("HouseRules");
-            _rulesetEntry = _configCategory.CreateEntry("ruleset", string.Empty);
-            _loadFromConfigEntry = _configCategory.CreateEntry("loadFromConfig", false);
+            _defaultRulesetEntry = _configCategory.CreateEntry("defaultRuleset", string.Empty);
+            _loadRulesetsFromConfigEntry = _configCategory.CreateEntry("loadRulesetsFromConfig", false);
             SetDefaultSerializationSettings();
         }
 
-        internal void SetRuleset(string rulesetName)
+        internal void SetDefaultRuleset(string rulesetName)
         {
-            _rulesetEntry.Value = rulesetName;
+            _defaultRulesetEntry.Value = rulesetName;
         }
 
-        internal void SetLoadFromConfig(bool loadFromConfig)
+        internal void SetLoadRulesetsFromConfig(bool loadFromConfig)
         {
-            _loadFromConfigEntry.Value = loadFromConfig;
+            _loadRulesetsFromConfigEntry.Value = loadFromConfig;
         }
 
-        internal string GetRuleset()
+        internal string GetDefaultRuleset()
         {
-            return _rulesetEntry.Value;
+            return _defaultRulesetEntry.Value;
         }
 
-        internal bool GetLoadFromConfig()
+        internal bool GetLoadRulesetsFromConfig()
         {
-            return _loadFromConfigEntry.Value;
+            return _loadRulesetsFromConfigEntry.Value;
         }
 
         internal void Save()

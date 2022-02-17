@@ -22,16 +22,16 @@
             // TODO(orendain): Remove when this demo code is no longer necessary.
             // DemoWriteRuleset();
 
-            var rulesetName = ConfigManager.GetRuleset();
+            var loadRulesetsFromConfig = ConfigManager.GetLoadRulesetsFromConfig();
+            if (loadRulesetsFromConfig)
+            {
+                LoadRulesetsFromConfig();
+            }
+
+            var rulesetName = ConfigManager.GetDefaultRuleset();
             if (string.IsNullOrEmpty(rulesetName))
             {
                 return;
-            }
-
-            var loadFromConfig = ConfigManager.GetLoadFromConfig();
-            if (loadFromConfig)
-            {
-                RegisterRulesetsFromConfig();
             }
 
             try
@@ -40,7 +40,7 @@
             }
             catch (ArgumentException e)
             {
-                Logger.Warning($"Failed to select ruleset [{rulesetName}]: {e}");
+                Logger.Warning($"Failed to select default ruleset [{rulesetName}] specified in config: {e}");
             }
         }
 
@@ -59,11 +59,11 @@
                 return;
             }
 
-            ConfigManager.SetRuleset(HR.SelectedRuleset.Name);
+            ConfigManager.SetDefaultRuleset(HR.SelectedRuleset.Name);
             ConfigManager.Save();
         }
 
-        private static void RegisterRulesetsFromConfig()
+        private static void LoadRulesetsFromConfig()
         {
             var rulesets = ConfigManager.ImportRulesets();
             foreach (var ruleset in rulesets)
