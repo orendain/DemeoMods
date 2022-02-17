@@ -146,7 +146,7 @@
             });
 
             EffectStateType[] effs = { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.MarkOfAvalon, EffectStateType.Weaken, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
-            var pila = new Essentials.Rules.PieceImmunityListAdjustedRule(new Dictionary<string, EffectStateType[]> { { "Sorcerer", effs } } );
+            var pila = new Essentials.Rules.PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, EffectStateType[]> { { BoardPieceId.HeroSorcerer, effs } } );
 
             var sec = new List<StatusEffectData>
             {
