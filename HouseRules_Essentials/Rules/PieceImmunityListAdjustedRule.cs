@@ -45,7 +45,7 @@
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
             foreach (var item in _originals)
             {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item}"));
+                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Key}"));
                 var property = Traverse.Create(pieceConfig).Property<EffectStateType[]>("ImmuneToStatusEffects");
                 property.Value = item.Value;
             }
