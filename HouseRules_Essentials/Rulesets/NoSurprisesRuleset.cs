@@ -14,7 +14,7 @@ namespace HouseRules.Essentials.Rulesets
                 name,
                 description,
                 new EnemyDoorOpeningDisabledRule(true),
-                new EnemyRespawnDisabledRule(true),
+                new EnemyRespawnDisabledRule(true));
         }
     }
 }
