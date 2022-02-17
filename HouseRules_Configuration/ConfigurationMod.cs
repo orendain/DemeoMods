@@ -52,17 +52,6 @@
             }
         }
 
-        public override void OnApplicationQuit()
-        {
-            if (HR.SelectedRuleset == Ruleset.None)
-            {
-                return;
-            }
-
-            ConfigManager.SetDefaultRuleset(HR.SelectedRuleset.Name);
-            ConfigManager.Save();
-        }
-
         private static void LoadRulesetsFromConfig()
         {
             var rulesets = ConfigManager.ImportRulesets();
