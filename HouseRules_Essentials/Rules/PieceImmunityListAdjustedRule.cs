@@ -8,25 +8,25 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class PieceImmunityListAdjustedRule : Rule, IConfigWritable<Dictionary<string, EffectStateType[]>>, IMultiplayerSafe
+    public sealed class PieceImmunityListAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, EffectStateType[]>>, IMultiplayerSafe
     {
         public override string Description => "Piece immunities are adjusted";
 
-        private readonly Dictionary<string, EffectStateType[]> _adjustments;
-        private readonly Dictionary<string, EffectStateType[]> _originals;
+        private readonly Dictionary<BoardPieceId, EffectStateType[]> _adjustments;
+        private readonly Dictionary<BoardPieceId, EffectStateType[]> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PieceImmunityListAdjustedRule"/> class.
         /// </summary>
         /// <param name="adjustments">Dict of piece name and EffectStateType[]
         /// Replaces original settings with new list.</param>
-        public PieceImmunityListAdjustedRule(Dictionary<string, EffectStateType[]> adjustments)
+        public PieceImmunityListAdjustedRule(Dictionary<BoardPieceId, EffectStateType[]> adjustments)
         {
             _adjustments = adjustments;
-            _originals = new Dictionary<string, EffectStateType[]>();
+            _originals = new Dictionary<BoardPieceId, EffectStateType[]>();
         }
 
-        public Dictionary<string, EffectStateType[]> GetConfigObject() => _adjustments;
+        public Dictionary<BoardPieceId, EffectStateType[]> GetConfigObject() => _adjustments;
 
         protected override void OnPostGameCreated(GameContext gameContext)
         {
