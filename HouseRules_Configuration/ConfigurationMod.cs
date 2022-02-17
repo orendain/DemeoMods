@@ -106,7 +106,7 @@
             var gpus = new Essentials.Rules.GoldPickedUpMultipliedRule(2f);
             var pca = new Essentials.Rules.PieceConfigAdjustedRule(new List<List<string>>
             {
-                new List<string> { "HeroSorcerer", "MoveRange", "6" }, // 1 more movement range
+                new List<string> { "HeroSorcerer", "MoveRange", "6" }, // Increased from the default of 4
                 new List<string> { "HeroSorcerer", "StartHealth", "20" }, // 10 extra HP
                 new List<string> { "HeroGuardian", "MoveRange", "5" },
                 new List<string> { "HeroGuardian", "StartHealth", "15" },
@@ -116,7 +116,7 @@
                 new List<string> { "HeroBard", "StartHealth", "12" },
                 new List<string> { "HeroRouge", "MoveRange", "5" },
                 new List<string> { "HeroRouge", "StartHealth", "20" },
-                new List<string> { "WolfCompanion", "StartHealth", "20" }, // Wolf wastes this many HP wandering through gas
+                new List<string> { "WolfCompanion", "StartHealth", "20" }, // Wolf lots of HP wandering through gas
                 new List<string> { "SwordOfAvalon", "StartHealth", "20" },
                 new List<string> { "BeaconOfSmite", "StartHealth", "25" },
                 new List<string> { "BeaconOfSmite", "ActionPoint", "2" }, // Behemoth gets to fire two rounds
