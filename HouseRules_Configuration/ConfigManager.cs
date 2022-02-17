@@ -110,7 +110,8 @@
         /// <returns>The list of imported rulesets.</returns>
         internal List<Ruleset> ImportRulesets()
         {
-            var files = Directory.EnumerateFiles(RulesetDirectory, "?.json");
+            var files = Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
+            ConfigurationMod.Logger.Msg($"Found [{files.Count}] rulesets in directory [{RulesetDirectory}]");
             return files.Select(ImportRuleset).ToList();
         }
 
