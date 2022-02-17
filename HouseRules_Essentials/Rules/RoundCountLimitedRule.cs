@@ -88,7 +88,7 @@
         private static void ShowRoundsLeft()
         {
             var roundsLeft = _globalRoundLimit - _globalRoundsPlayed;
-            GameUI.ShowCameraMessage($"You have {roundsLeft} left to escape...", RoundsLeftMessageDurationSeconds);
+            GameUI.ShowCameraMessage($"You have {roundsLeft} rounds left to escape...", RoundsLeftMessageDurationSeconds);
         }
 
         private static void DownAllPlayers(PieceAndTurnController pieceAndTurnController)

@@ -9,25 +9,31 @@
         internal static Ruleset Create()
         {
             const string name = "Beat The Clock!";
-            const string description = "Godmode. Ultra recycling. 40 rounds to beat the game.";
+            const string description = "Ultra health. Ultra card recycling. Only 15 rounds to escape...";
 
             var healthRule = new StartHealthAdjustedRule(new Dictionary<string, int>
             {
-                { "HeroGuardian", 990 },
-                { "HeroSorcerer", 990 },
-                { "HeroRouge", 990 },
-                { "HeroHunter", 990 },
-                { "HeroBard", 990 },
+                { "HeroGuardian", 190 },
+                { "HeroSorcerer", 190 },
+                { "HeroRouge", 190 },
+                { "HeroHunter", 190 },
+                { "HeroBard", 190 },
             });
-            var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(6);
-            var roundLimitRule = new RoundCountLimitedRule(40);
+            var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(5);
+            var roundLimitRule = new RoundCountLimitedRule(15);
+            var levelRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            {
+                { "FloorOneLootChests", 15 },
+                { "FloorTwoLootChests", 15 },
+            });
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 healthRule,
                 recyclingRule,
-                roundLimitRule);
+                roundLimitRule,
+                levelRule);
         }
     }
 }
