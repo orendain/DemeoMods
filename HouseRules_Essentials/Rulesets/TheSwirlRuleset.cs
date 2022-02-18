@@ -46,12 +46,12 @@
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
-                { "FloorOneHealingFountains", 9 },
-                { "FloorOneLootChests", 9 },
-                { "FloorTwoHealingFountains", 9 },
-                { "FloorTwoLootChests", 9 },
-                { "FloorThreeHealingFountains", 9 },
-                { "FloorThreeLootChests", 9 },
+                { "FloorOneHealingFountains", 2 },
+                { "FloorOneLootChests", 8 },
+                { "FloorTwoHealingFountains", 4 },
+                { "FloorTwoLootChests", 12 },
+                { "FloorThreeHealingFountains", 4 },
+                { "FloorThreeLootChests", 12 },
             });
 
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);
