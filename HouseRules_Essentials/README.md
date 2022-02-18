@@ -94,8 +94,6 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
   },
   ```
 
-- ___ActionPointsAdjustedRule__: Action points are adjusted_
-  - No longer needed? PieceConfig can do this too.
 - __CardEnergyFromAttackMultipliedRule__: Card energy from attack is multiplied
   - Multiply how quickly the mana bar fills up when you attack enemies.
   - Config accepts float e.g. `1.3`  
@@ -353,6 +351,3 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
       ]
    },
    ```
-
-- ___StartHealthAdjustedRule__: Starting Health is adjusted_
-  - Same settings handled by piececonfig. Rule not needed anymore?

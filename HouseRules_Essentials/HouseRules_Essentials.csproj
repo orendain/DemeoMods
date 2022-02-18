@@ -44,7 +44,6 @@
     <Compile Include="Rules\AbilityActionCostAdjustedRule.cs" />
     <Compile Include="Rules\AbilityRandomPieceListRule.cs" />
     <Compile Include="Rules\AbilityDamageAdjustedRule.cs" />
-    <Compile Include="Rules\ActionPointsAdjustedRule.cs" />
     <Compile Include="Rules\CardAdditionOverriddenRule.cs" />
     <Compile Include="Rules\CardEnergyFromAttackMultipliedRule.cs" />
     <Compile Include="Rules\StatusEffectConfigRule.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="Rules\RoundCountLimitedRule.cs" />
     <Compile Include="Rules\SampleRule.cs" />
     <Compile Include="Rules\StartCardsModifiedRule.cs" />
-    <Compile Include="Rules\StartHealthAdjustedRule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

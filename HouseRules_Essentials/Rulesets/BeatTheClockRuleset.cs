@@ -11,13 +11,13 @@
             const string name = "Beat The Clock!";
             const string description = "Ultra health. Ultra card recycling. Only 15 rounds to escape...";
 
-            var healthRule = new StartHealthAdjustedRule(new Dictionary<string, int>
+            var healthRule = new Essentials.Rules.PieceConfigAdjustedRule(new List<List<string>>
             {
-                { "HeroGuardian", 190 },
-                { "HeroSorcerer", 190 },
-                { "HeroRouge", 190 },
-                { "HeroHunter", 190 },
-                { "HeroBard", 190 },
+                new List<string> { "HeroGuardian", "StartHealth", "200" },
+                new List<string> { "HeroSorcerer", "StartHealth", "200" },
+                new List<string> { "HeroRouge", "StartHealth", "200" },
+                new List<string> { "HeroHunter", "StartHealth", "200" },
+                new List<string> { "HeroBard", "StartHealth", "200" },
             });
             var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(5);
             var roundLimitRule = new RoundCountLimitedRule(15);
