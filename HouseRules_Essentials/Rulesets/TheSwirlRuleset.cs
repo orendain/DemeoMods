@@ -12,18 +12,38 @@
             const string name = "The Swirl";
             const string description = "Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.";
 
-            var startingCards = new List<StartCardsModifiedRule.CardConfig>
+            var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.StrengthenCourage, IsReplenishable = true },
+            };
+            var guardianCards = new List<StartCardsModifiedRule.CardConfig>
+            {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, IsReplenishable = true },
+            };
+            var hunterCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HunterArrow, IsReplenishable = true },
+            };
+            var assassinCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, IsReplenishable = true },
+            };
+            var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, IsReplenishable = true },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
-                { BoardPieceId.HeroBard, startingCards },
-                { BoardPieceId.HeroGuardian, startingCards },
-                { BoardPieceId.HeroHunter, startingCards },
-                { BoardPieceId.HeroRouge, startingCards },
-                { BoardPieceId.HeroSorcerer, startingCards },
+                { BoardPieceId.HeroBard, bardCards },
+                { BoardPieceId.HeroGuardian, guardianCards },
+                { BoardPieceId.HeroHunter, hunterCards },
+                { BoardPieceId.HeroRouge, assassinCards },
+                { BoardPieceId.HeroSorcerer, sorcererCards },
             });
 
             var allowedCards = new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball };
