@@ -48,6 +48,11 @@
                 return;
             }
 
+            if (__instance.IsBossLevel())
+            {
+                return;
+            }
+
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
             __result = OverrideEnumerator(__result, gameContext);
         }
@@ -64,8 +69,7 @@
 
         private static void RemoveKeyFromEnemies(GameContext gameContext)
         {
-            var keyHolder =
-                gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasEffectState(EffectStateType.Key));
+            var keyHolder = gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasEffectState(EffectStateType.Key));
             if (keyHolder == null)
             {
                 EssentialsMod.Logger.Warning("[LevelExitLockedUntilAllEnemiesDefeated] Could not find key holder on this level. Skipping.");
@@ -87,12 +91,16 @@
                 return;
             }
 
+            if (context.levelManager.IsBossLevel())
+            {
+                return;
+            }
+
             GameUI.ShowCameraMessage("All enemies have been defeated! You may advance.", 5);
 
             var levelExit = context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
             if (levelExit == null)
             {
-                EssentialsMod.Logger.Warning("[LevelExitLockedUntilAllEnemiesDefeated] Last enemy defeated but no exit to unlock.");
                 return;
             }
 
