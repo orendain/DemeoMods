@@ -2,8 +2,10 @@
 
 A collection of predefined rules and rulesets for HouseRules_Core
 
+![HouseRules Logo](../docs/house-rules-logo1.png)
+
 See the [HouseRules_Core readme](../HouseRules_Core/README.md) for more information about
-RulesAPI.
+HouseRules API.
 
 ## Rulesets
 
@@ -11,13 +13,21 @@ RulesAPI.
 
 - __SampleRuleset__: A [sample ruleset](https://github.com/orendain/DemeoMods/blob/045aec568fdddb95b63a1ed34abcb64065e4ca99/Rules/RulesMod.cs#L27-L28)
   for the purposes of documenting how to create a ruleset (and for testing during development).
+- __No Surprises__ :  Prevents any surprises in the dark or coming through doors.
+- __Beat The Clock__ : Ultra health. Ultra card recycling. Only 15 rounds to escape...
+- __Difficulty Easy__ : This mode decreases the default game difficulty for a more casual playstyle.
+- __Difficulty Hard__ : This mode increases the default game difficulty for a greater challenge.
+- __Difficulty Legendary__ : This mode increases the default game difficulty for those who want to be a legend.
+- __The Swirl__ : Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.
+- __Quick and the Dead__ : A mode with a small hand but fast turn around time on cards means you need to not hesitate.
+
 
 ### JSON Rulesets
 
 Rulesets may also be configured as JSON files and stored within the game directory `<GAME_DIR>/UserData/HouseRules/<rulesetname>.json`
-An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to help you get started.
+An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt rules for rapid gameplay is provided as a guide to help you get started.
 
-## Rules
+## Rules and Configurations
 
 - __AbilityActionCostAdjustedRule__: Adjusts the casting costs for player abilitites.
   - Overrides the Ability.CostAP setting for player abilities.

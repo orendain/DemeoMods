@@ -27,7 +27,7 @@
         {
             _configCategory = MelonPreferences.CreateCategory("HouseRules");
             _defaultRulesetEntry = _configCategory.CreateEntry("defaultRuleset", string.Empty);
-            _loadRulesetsFromConfigEntry = _configCategory.CreateEntry("loadRulesetsFromConfig", false);
+            _loadRulesetsFromConfigEntry = _configCategory.CreateEntry("loadRulesetsFromConfig", true);
             Directory.CreateDirectory(RulesetDirectory);
             SetDefaultSerializationSettings();
         }

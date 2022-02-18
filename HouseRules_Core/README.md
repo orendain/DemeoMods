@@ -1,6 +1,4 @@
-[HouseRules]
-defaultRuleset = ""
-loadRulesetsFromConfig = true# HouseRules Core
+# HouseRules
 
 Set your own challenges and be the Dungeon Master of your own game. Make your own rules and challenge your friends.
 
@@ -23,7 +21,10 @@ some gameplay modification. E.g.:
 - Players start with +1 strength.
 - Speed Potions have an Area Of Effect range
 - Zap ability has no action cost
-- ...
+- Players must complete dungeon within 40 rounds.
+- Enemies do not respawn.
+- Players have different starting cards
+- etc
 
 Rules can be grouped into predefined sets.  Users (or other mods) can specify
 which ruleset to load at the start of a game.  Thus, rulesets can also be
@@ -33,12 +34,19 @@ HouseRules provides the framework for defining custom rules and rulesets, and th
 mechanisms by which they are patched into the game and activated/deactivated
 during gameplay.
 
+🚨🛑 __IMPORTANT__ - During gameplay client machines update their own board state internally and are periodically sent
+updates from the host to resynchronise board states. Some rules may cause temporary inconsistencies with clients
+seeing a different board view to the host. These inconsistencies are generally short lived and do not adversly affect gameplay.🛑🚨
+
 ## Choosing a Ruleset
 
-Rulesets can be selected from the in-game user-interface.
+Rulesets can be selected dynamically from the in-game menu and default ruleset may be configured via MelonLoader Preferences file.
+* A selection of rulesets are built-in, but you can also define your own in JSON.
+* Both built-in and JSON rulesets are displayed on the menu.
 
-There are also settings which can be configured via the MelonLoader preferences.
-This allows for the use of user-defined rulesets defined in JSON, or to specify a default ruleset to use.
+![HouseRules_Menu_ Screenshot](../docs/houserules_menu_screenshot.jpg)
+
+## MelonLoader Preferences
 
 If installation instructions were followed (i.e., MelonLoader was installed),
 the following file will appear in the Demeo game directory:
@@ -58,10 +66,12 @@ loadRulesetsFromConfig = true
 A list of out-of-the-box Ruleset names can be found in the
 [HouseRules_Essentials readme](../HouseRules_Essentials/README.md).
 
-To use a built-in ruleset, ensure `loadFromConfig` is set to `false` and select the built-in ruleset to use by typing its name within the quotes.
-Alternatively, use empty quotes `""` to specify no ruleset should be used.
+The name of a default ruleset can be set in `defaultRuleset` - alternatively, use empty quotes `""` to specify no ruleset should be used.
+The `loadRulesetsFromConfig` flag can be set to `false` to prevent loading of JSON rulesets.
 
-Rulesets may also be defined as JSON files  `UserData/HouseRules/<ruleset_name>.json`. Here's a sample ruleset for beefing up the Sorcerer's Zap ability. 
+## User-Defined JSON Rulesets
+
+JSON rulesets can be defined within the Demeo game directory and saved in  `UserData/HouseRules/` as files named `<ruleset_name>.json`. Below is a sample ruleset for improving the life of the Sorcerer. It removes the casting cost on his Zap ability and gives it an extra point of damage.
 
 ```json
 {
@@ -70,9 +80,7 @@ Rulesets may also be defined as JSON files  `UserData/HouseRules/<ruleset_name>.
   "Rules": [
     {
       "Rule": "AbilityActionCostAdjustedRule",
-      "Config": { "Zap": false, 
-                  "StrengthenCourage": false
-                },
+      "Config": { "Zap": false, },
     },
     {
       "Rule": "AbilityDamageAdjustedRule",
@@ -83,16 +91,11 @@ Rulesets may also be defined as JSON files  `UserData/HouseRules/<ruleset_name>.
 
 ```
 
-The above `UserData/HouseRules/SuperZap.json` file can be loaded by selecting it as the ruleset within `UserData/MelonPreferences.cfg`. 
-When using JSON-defined rulesets, ensure `loadRulesetsFromConfig` is set to `true`.
+Saving the above contents as `UserData/HouseRules/SuperZap.json` will allow this ruleset to appear automatically in the in-game HouseRules menu.
 
-```toml
-[HouseRules]
-ruleset = "SuperZap"
-loadRulesetsFromConfig = true
-```
+A further complete [LuckyDip Ruleset](../docs/LuckyDip.json) ruleset is also provided as a reference.
 
-Example JSON samples for each rule type can be found in the 
+Example JSON samples for each rule type can be found in the
 [HouseRules_Essentials readme](../HouseRules_Essentials/README.md).
 
 ## Rules vs Mods
