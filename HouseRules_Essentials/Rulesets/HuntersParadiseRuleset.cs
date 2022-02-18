@@ -34,7 +34,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.MarkOfAvalon,
-                    durationTurns = 1,
+                    durationTurns = 2,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = true,
