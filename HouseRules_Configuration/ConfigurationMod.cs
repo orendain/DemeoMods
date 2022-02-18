@@ -21,25 +21,16 @@
             // TODO(orendain): Remove when this demo code is no longer necessary.
             // DemoWriteRuleset();
 
-            var rulesetName = ConfigManager.GetRuleset();
+            var loadRulesetsFromConfig = ConfigManager.GetLoadRulesetsFromConfig();
+            if (loadRulesetsFromConfig)
+            {
+                LoadRulesetsFromConfig();
+            }
+
+            var rulesetName = ConfigManager.GetDefaultRuleset();
             if (string.IsNullOrEmpty(rulesetName))
             {
                 return;
-            }
-
-            var loadFromConfig = ConfigManager.GetLoadFromConfig();
-            if (loadFromConfig)
-            {
-                try
-                {
-                    var ruleset = ConfigManager.ImportRuleset(rulesetName);
-                    HR.Rulebook.Register(ruleset);
-                    Logger.Msg($"Loaded and registered ruleset from config: {rulesetName}");
-                }
-                catch (Exception e)
-                {
-                    Logger.Warning($"Failed to load and register ruleset [{rulesetName}] from config: {e}");
-                }
             }
 
             try
@@ -48,7 +39,7 @@
             }
             catch (ArgumentException e)
             {
-                Logger.Warning($"Failed to select ruleset [{rulesetName}]: {e}");
+                Logger.Warning($"Failed to select default ruleset [{rulesetName}] specified in config: {e}");
             }
         }
 
@@ -60,15 +51,21 @@
             }
         }
 
-        public override void OnApplicationQuit()
+        private static void LoadRulesetsFromConfig()
         {
-            if (HR.SelectedRuleset == Ruleset.None)
+            var rulesets = ConfigManager.ImportRulesets();
+            foreach (var ruleset in rulesets)
             {
-                return;
+                try
+                {
+                    HR.Rulebook.Register(ruleset);
+                    Logger.Msg($"Loaded and registered ruleset from config: {ruleset.Name}");
+                }
+                catch (Exception e)
+                {
+                    Logger.Warning($"Failed to load and register ruleset [{ruleset.Name}] from config: {e}");
+                }
             }
-
-            ConfigManager.SetRuleset(HR.SelectedRuleset.Name);
-            ConfigManager.Save();
         }
 
         // TODO(orendain): Remove when this demo code is no longer necessary.
@@ -88,11 +85,6 @@
                 { "Speed", 1 }, // Everyone nearby should share the speed potion
             });
             var ada = new Essentials.Rules.AbilityDamageAdjustedRule(new Dictionary<string, int> { { "Zap", 1 } });
-            var apa = new Essentials.Rules.ActionPointsAdjustedRule(new Dictionary<string, int>
-            {
-                { "HeroSorcerer", 13 },
-                { "HeroGuardian", 2 },
-            });
             var cefam1 = new Essentials.Rules.CardEnergyFromAttackMultipliedRule(2f);
             var cefam2 = new Essentials.Rules.CardEnergyFromAttackMultipliedRule(2f);
             var cefam3 = new Essentials.Rules.CardEnergyFromAttackMultipliedRule(2f);
@@ -132,12 +124,6 @@
             };
             var sorcCards = new Dictionary<BoardPieceId, List<Essentials.Rules.StartCardsModifiedRule.CardConfig>> { { BoardPieceId.HeroSorcerer, cards } };
             var sscm = new Essentials.Rules.StartCardsModifiedRule(sorcCards);
-            var sha = new Essentials.Rules.StartHealthAdjustedRule(new Dictionary<string, int>
-            {
-                { "HeroSorcerer", 50 },
-                { "HeroGuardian", 20 },
-                { "Rat", 100 },
-            });
 
             BoardPieceId[] bps = { BoardPieceId.ChestGoblin, BoardPieceId.Slime };
             var arpl = new Essentials.Rules.AbilityRandomPieceListRule(new Dictionary<string, BoardPieceId[]>
@@ -169,7 +155,7 @@
             var seca = new Essentials.Rules.StatusEffectConfigRule(sec);
             var customRuleset = Ruleset.NewInstance("DemoConfigurableRuleset", "Just a random description.", new List<Rule>
             {
-                aaca, aaa, ada, apa, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, sha, arpl, pila, seca,
+                aaca, aaa, ada, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, arpl, pila, seca,
             });
 
             ConfigManager.ExportRuleset(customRuleset);

@@ -25,7 +25,6 @@
         protected override void OnActivate(GameContext gameContext)
         {
             _isActivated = true;
-
         }
 
         protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
