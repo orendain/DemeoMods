@@ -32,6 +32,7 @@
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
+            HR.Rulebook.Register(typeof(PetsFocusHunterMarkRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
