@@ -15,12 +15,28 @@ RulesAPI.
 ### JSON Rulesets
 
 Rulesets may also be configured as JSON files and stored within the game directory `<GAME_DIR>/UserData/HouseRules/<rulesetname>.json`
-An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to help you get started. 
+An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to help you get started.
 
 ## Rules
 
-- __SampleRule__: A [sample rule](Rules/SampleRule.cs) documenting the anatomy
-  of a HouseRule rule.
+- __AbilityActionCostAdjustedRule__: Adjusts the casting costs for player abilitites.
+  - Overrides the Ability.CostAP setting for player abilities.
+  - `true` means the ability has a cost to cast, `false` means that it doesn't.
+  - Config accepts Dictionary e.g. `{ "AbilityName1": bool, "AbilityName2": bool, }`
+  
+  ###### _Example JSON config for AbilityActionCostAdjustedRule_
+
+  ```json
+  {
+    "Rule": "AbilityActionCostAdjusted",
+    "Config": {
+      "Zap": false,
+      "StrengthenCourage": false,
+      "Heal": true,
+    }
+  },
+  ```
+
 - __AbilityAoeAdjustedRule__: Adjusts the Area of Effect range(s) for abilities.
   - Does not work with all abilities.
   - Positive integers increase range, negative decrease. e.g. `"Fireball": 1` will increases the Fireball AOE from a 3x3 to 5x5
@@ -35,7 +51,7 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
       "StrengthenCourage": 1,
       "Strength": 1,
       "Speed": 1,
-      "Heal": 1
+      "Heal": 1,
     }
   },
   ```
@@ -53,30 +69,14 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
       "Rule": "AbilityDamageAdjustedRule",
       "Config": { 
         "Zap": 1,
-        "Whirlwind": 1
+        "Whirlwind": 1,
       }
   },
   ```
 
-- __AbilityActionCostAdjustedRule__: Ability Action Cost is adjusted
-  - Set whether abilities cost AP to cast or not.
-  - `true` means the ability has a cost to cast, `false` means that it doesn't.
-  - Config accepts Dictionary e.g. `{ "AbilityName1", bool, "AbilityName2", bool }`  
-
-  ###### _Example JSON config for AbilityActionCostAdjustedRule_
-
-  ```json
-  {
-    "Rule": "AbilityActionCostAdjustedRule",
-    "Config": {
-      "Zap": false,
-      "StrengthenCourage": false
-    }
-  },
-  ```
-
 - __AbilityRandomPieceListRule__: The randomPieceList for Abilities is adjusted
-  - Some abilities (NaturesCall, SpawnCultists) have a list which is used to spawn random pieces.
+  - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
+  - Some abilities (NaturesCall, RatBomb) have lists which are used to spawn random pieces.
   - This rule allows the list to be replaced with a different one.
   - Config accepts Dictionary e.g. `{ "AbilityName", BoardpieceId[], "AbilityName2", BoardpieceId[] }`  
 
@@ -87,10 +87,26 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
     "Rule": "AbilityRandomPieceList",
     "Config": {
       "NaturesCall": [
-        "ChestGoblin",
-        "Slime"
+        "GoblinRanger",
+        "Slime",
       ]
     }
+  },
+  ```
+
+- __CardAdditionOverriddenRule__: Overrides the lists of cards which players receive from chests & karma
+  - The default card allocation mechanism is intercepted changed to use a user-defined list of cards.
+  - Config accepts Dictionary of PieceNames and lists of ability strings.. `{ "PieceName1": ["Ability1", "Ability2"], "PieceName2": ["Ability3", "Ability4"] }`  
+
+  ###### _Example JSON config for CardAdditionOverridden_
+
+  ```json
+  {
+    "Rule": "CardAdditionOverridden",
+    "Config": {
+        "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodsFury", "RevealPath"],
+        "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "Heal"],
+        }
   },
   ```
 
@@ -145,7 +161,7 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
   },
   ```
 
-- __EnemyAttackScaledRule__: Enemy attack damage is scaled
+- __EnemyAttackScaledRule__: Enemy ⚔️attack⚔️ damage is scaled
   - Config accepts float e.g `0.85`  
 
   ###### _Example JSON config for EnemyAttackScaledRule_
@@ -157,7 +173,7 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
   },
   ```
 
-- __EnemyDoorOpeningDisabledRule__: Enemy door opening ability disabled
+- __EnemyDoorOpeningDisabledRule__: Enemy 🚪door🚪 opening ability disabled
   - Config accepts bool e.g `true`  
 
   ###### _Example JSON config for EnemyDoorOpeningDisabledRule_
@@ -193,7 +209,7 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
   },
   ```
 
-- __GoldPickedUpMultipliedRule__: Gold picked up is multiplied
+- __GoldPickedUpMultipliedRule__: 💰Gold💰 picked up is multiplied
   - Config accepts float e.g `1.25`  
 
   ###### _Example JSON config for GoldPickedUpMultipliedRule_
@@ -202,6 +218,18 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
   {
     "Rule": "GoldPickedUpMultipliedRule",
     "Config": 1.25
+  },
+  ```
+
+- __LevelExitLockedUntilAllEnemiesDefeatedRule__: The 🔒exit🔑 from each level will not open if any enemies remain.
+  - This rule needs to be used in combination with other rules or it will not be possible to complete a level. (e.g. EnemyRespawnDisabledRule)
+
+  ###### _Example JSON config for LevelExitLockedUntilAllEnemiesDefeatedRule_
+
+  ```json
+  {
+    "Rule": "LevelExitLockedUntilAllEnemiesDefeatedRule",
+    "Config": true
   },
   ```
 
@@ -221,13 +249,14 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
     "FloorTwoHealingFountains": 9,
     "FloorTwoLootChests": 9,
     "FloorThreeHealingFountains": 9,
-    "FloorThreeLootChests": 9
+    "FloorThreeLootChests": 9,
+    }
   },
   ```
 
 - __PieceConfigAdjustedRule__: Piece configuration is adjusted
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
-  - Allows customization of many of the properties for each game Piece. Health, ActionPoints, Movement, MeleeDamage, etc
+  - Allows customization of many of the properties for each game Piece. 🩺Health, 🎲ActionPoints, 🏃Movement, ⚔️MeleeDamage, etc
   - Config accepts List of Lists e.g. `[ [ "PieceName1", "ParamName1", int ], [ "PieceName1", "ParamName1", int ], ... ]`
   - Only works for Integer fields. The configured value replaces the default.  
 
@@ -244,13 +273,13 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
       [ "SwordOfAvalon", "StartHealth", "20" ],
       [ "BeaconOfSmite", "StartHealth", "20" ],
       [ "BeaconOfSmite", "ActionPoint", "2" ],
-      [ "MonsterBait", "StartHealth", "30" ]
+      [ "MonsterBait", "StartHealth", "30" ],
     ]
   },
   ```
   
 - __PieceImmunityListAdjustedRule__: Piece ImmuneToStatusEffects list is adjusted
-  - Allows customization of many the list of immunities for each game Piece. Diseased, Stunned, Weakened, Frozen, Tangled, Petrified , etc
+  - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weakened, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
   - Config accepts Dictionary e.g. `{ "HeroSorcerer", EventState[], "RatKing", EventState[], ... }`  
 
   ###### _Example JSON config for PieceImmunityListAdjustedRule_
@@ -260,12 +289,13 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
     "Rule": "PieceImmunityListAdjusted",
     "Config": {
       "HeroSorcerer": [ "Diseased", "MarkOfAvalon", "Weaken", "Frozen", "Tangled", "Petrified" ],
-      "HeroGuardian": [ "Frozen" ]
+      "HeroGuardian": [ "Frozen" ],
     }
   },
   ```
 
-- __RatNestsSpawnGoldRule__: Rat nests spawn gold
+- __RatNestsSpawnGoldRule__: Rat nests spawn 💰gold💰
+  - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - Config accepts bool e.g `true`  
 
   ###### _Example JSON config for RatNestsSpawnGoldRule_
@@ -277,7 +307,23 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
   },
   ```
 
-- __StartCardsModifiedRule__: Hero start cards are modified
+- __RoundCountLimitedRule__:  Sets a limit for the maximum number of rounds a game may take.
+  - For ⏳ beat-the-clock ⏳ type gameplay.
+  - Config accepts integer of number of rounds e.g 50  
+
+  ###### _Example JSON config for RoundCountLimitedRule_
+
+  ```json
+  {
+    "Rule": "RoundCountLimitedRule",
+    "Config": 40
+  },
+  ```
+
+- __SampleRule__: A [sample rule](Rules/SampleRule.cs) documenting the anatomy
+  of a HouseRule rule.
+
+- __StartCardsModifiedRule__: Player 🎴 starting cards 🎴 are modified
   - Removes all default cards from Player's hand and replaces them with custom ones.
   - Replenishable cards do not leave a players hand once cast (e.g. RepairArmor, HunterArrow or Zap)
   - Max of two replenishable cards per player.
@@ -296,14 +342,14 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
          { "Card": "PiercingSpear", "IsReplenishable": false },
          { "Card": "CoinFlip", "IsReplenishable": false },
          { "Card": "BeaconOfSmite", "IsReplenishable": false },
-         { "Card": "SwordOfAvalon", "IsReplenishable": false }
+         { "Card": "SwordOfAvalon", "IsReplenishable": false },
        ],
        "HeroHunter": [
          { "Card": "Heal", "IsReplenishable": false },
          { "Card": "HunterArrow", "IsReplenishable": true },
          { "Card": "HunterArrow", "IsReplenishable": true },
          { "Card": "CoinFlip", "IsReplenishable": false },
-         { "Card": "DropChest", "IsReplenishable": false }
+         { "Card": "DropChest", "IsReplenishable": false },
        ],
        "HeroSorcerer": [
          { "Card": "Heal", "IsReplenishable": false },
@@ -311,13 +357,13 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
          { "Card": "Whirlwind", "IsReplenishable": true },
          { "Card": "Freeze", "IsReplenishable": false },
          { "Card": "Fireball", "IsReplenishable": false },
-         { "Card": "CallCompanion", "IsReplenishable": false }
+         { "Card": "CallCompanion", "IsReplenishable": false },
        ],
      }
    },
    ```
-- __StatusEffectConfigRule__: The parameters of different StatusEffects (Torch, Poison, Frozen) can be overridden
-  - Accepts a list of overrides which take the place of the default config. 
+- __StatusEffectConfigRule__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
+- Accepts a list of overrides which take the place of the default config. 
   - If no override is specified, the default is used instead.
   - Default values can be found in `StatusEffectsConfig.effectsConfig` 
   - Config accepts list of dicts e.g. `[ {}, {}, ]`
@@ -347,7 +393,7 @@ An example [Ruleset for rapid play](../docs/TestingRuleSet.json) is provided to 
           "clearOnNewLevel": false,
           "damageTags": null,
           "healPerTurn": 3
-        }
+        },
       ]
    },
    ```
