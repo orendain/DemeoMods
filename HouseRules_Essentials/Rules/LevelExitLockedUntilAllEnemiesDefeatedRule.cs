@@ -8,13 +8,13 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class LevelExitLockedUntilAllEnemiesDeadRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class LevelExitLockedUntilAllEnemiesDefeatedRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Level exit stays locked until all enemies are dead.";
+        public override string Description => "Level exit stays locked until all enemies are defeated.";
 
         private static bool _isActivated;
 
-        public LevelExitLockedUntilAllEnemiesDeadRule(bool enabled)
+        public LevelExitLockedUntilAllEnemiesDefeatedRule(bool enabled)
         {
         }
 
@@ -29,15 +29,15 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(LevelManager), "LoadAndSetupLevel"),
                 postfix: new HarmonyMethod(
-                    typeof(LevelExitLockedUntilAllEnemiesDeadRule),
+                    typeof(LevelExitLockedUntilAllEnemiesDefeatedRule),
                     nameof(LevelManager_LoadAndSetupLevel_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Constructor(
                     typeof(BoardgameActionPieceDied),
-                    new[] { typeof(GameContext), typeof(int[]), typeof(int) }),
+                    new[] {typeof(GameContext), typeof(int[]), typeof(int)}),
                 postfix: new HarmonyMethod(
-                    typeof(LevelExitLockedUntilAllEnemiesDeadRule),
+                    typeof(LevelExitLockedUntilAllEnemiesDefeatedRule),
                     nameof(BoardgameActionPieceDied_Constructor_Postfix)));
         }
 
@@ -64,10 +64,12 @@
 
         private static void RemoveKeyFromEnemies(GameContext gameContext)
         {
-            var keyHolder = gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasEffectState(EffectStateType.Key));
+            var keyHolder =
+                gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasEffectState(EffectStateType.Key));
             if (keyHolder == null)
             {
-                EssentialsMod.Logger.Warning("[LevelExitLockedUntilAllEnemiesDeadRule] Could not find key holder on this level. Skipping.");
+                EssentialsMod.Logger.Warning(
+                    "[LevelExitLockedUntilAllEnemiesDefeated] Could not find key holder on this level. Skipping.");
                 return;
             }
 
@@ -86,8 +88,9 @@
                 return;
             }
 
-            context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit))?.DisableEffectState(EffectStateType.Locked);
-            GameUI.ShowCameraMessage("Last enemy has been killed. Exit unlocked.", 5);
+            context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit))
+                ?.DisableEffectState(EffectStateType.Locked);
+            GameUI.ShowCameraMessage("Last enemy has been defeated. Exit unlocked.", 5);
         }
     }
 }
