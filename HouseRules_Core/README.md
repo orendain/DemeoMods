@@ -1,4 +1,6 @@
-# HouseRules Core
+[HouseRules]
+defaultRuleset = ""
+loadRulesetsFromConfig = true# HouseRules Core
 
 Set your own challenges and be the Dungeon Master of your own game. Make your own rules and challenge your friends.
 
@@ -33,6 +35,11 @@ during gameplay.
 
 ## Choosing a Ruleset
 
+Rulesets can be selected from the in-game user-interface.
+
+There are also settings which can be configured via the MelonLoader preferences.
+This allows for the use of user-defined rulesets defined in JSON, or to specify a default ruleset to use.
+
 If installation instructions were followed (i.e., MelonLoader was installed),
 the following file will appear in the Demeo game directory:
 `UserData/MelonPreferences.cfg`.
@@ -44,8 +51,8 @@ appear somewhere in that configuration file:
 
 ```toml
 [HouseRules]
-ruleset = ""
-loadFromConfig = false
+defaultRuleset = ""
+loadRulesetsFromConfig = true
 ```
 
 A list of out-of-the-box Ruleset names can be found in the
@@ -77,12 +84,12 @@ Rulesets may also be defined as JSON files  `UserData/HouseRules/<ruleset_name>.
 ```
 
 The above `UserData/HouseRules/SuperZap.json` file can be loaded by selecting it as the ruleset within `UserData/MelonPreferences.cfg`. 
-When using JSON-defined rulesets, ensure `loadFromConfig` is set to `true`.
+When using JSON-defined rulesets, ensure `loadRulesetsFromConfig` is set to `true`.
 
 ```toml
 [HouseRules]
 ruleset = "SuperZap"
-loadFromConfig = true
+loadRulesetsFromConfig = true
 ```
 
 Example JSON samples for each rule type can be found in the 
