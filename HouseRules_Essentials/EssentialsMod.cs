@@ -31,6 +31,7 @@
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
+            HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDeadRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
