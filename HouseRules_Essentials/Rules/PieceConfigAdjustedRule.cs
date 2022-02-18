@@ -35,7 +35,7 @@
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item[0]}"));
                 var property = Traverse.Create(pieceConfig).Property<int>(item[1]);
-                _originals.Add (new List<string> { item[0], item[1], property.Value.ToString() });
+                _originals.Add(new List<string> { item[0], item[1], property.Value.ToString() });
                 property.Value = int.Parse(item[2]);
             }
         }

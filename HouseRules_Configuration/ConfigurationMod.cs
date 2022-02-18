@@ -21,25 +21,16 @@
             // TODO(orendain): Remove when this demo code is no longer necessary.
             // DemoWriteRuleset();
 
-            var rulesetName = ConfigManager.GetRuleset();
+            var loadRulesetsFromConfig = ConfigManager.GetLoadRulesetsFromConfig();
+            if (loadRulesetsFromConfig)
+            {
+                LoadRulesetsFromConfig();
+            }
+
+            var rulesetName = ConfigManager.GetDefaultRuleset();
             if (string.IsNullOrEmpty(rulesetName))
             {
                 return;
-            }
-
-            var loadFromConfig = ConfigManager.GetLoadFromConfig();
-            if (loadFromConfig)
-            {
-                try
-                {
-                    var ruleset = ConfigManager.ImportRuleset(rulesetName);
-                    HR.Rulebook.Register(ruleset);
-                    Logger.Msg($"Loaded and registered ruleset from config: {rulesetName}");
-                }
-                catch (Exception e)
-                {
-                    Logger.Warning($"Failed to load and register ruleset [{rulesetName}] from config: {e}");
-                }
             }
 
             try
@@ -48,7 +39,7 @@
             }
             catch (ArgumentException e)
             {
-                Logger.Warning($"Failed to select ruleset [{rulesetName}]: {e}");
+                Logger.Warning($"Failed to select default ruleset [{rulesetName}] specified in config: {e}");
             }
         }
 
@@ -60,15 +51,21 @@
             }
         }
 
-        public override void OnApplicationQuit()
+        private static void LoadRulesetsFromConfig()
         {
-            if (HR.SelectedRuleset == Ruleset.None)
+            var rulesets = ConfigManager.ImportRulesets();
+            foreach (var ruleset in rulesets)
             {
-                return;
+                try
+                {
+                    HR.Rulebook.Register(ruleset);
+                    Logger.Msg($"Loaded and registered ruleset from config: {ruleset.Name}");
+                }
+                catch (Exception e)
+                {
+                    Logger.Warning($"Failed to load and register ruleset [{ruleset.Name}] from config: {e}");
+                }
             }
-
-            ConfigManager.SetRuleset(HR.SelectedRuleset.Name);
-            ConfigManager.Save();
         }
 
         // TODO(orendain): Remove when this demo code is no longer necessary.
