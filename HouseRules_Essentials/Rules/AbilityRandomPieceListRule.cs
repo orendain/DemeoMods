@@ -9,7 +9,7 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class AbilityRandomPieceListRule : Rule, IConfigWritable<Dictionary<string, BoardPieceId[]>>
+    public sealed class AbilityRandomPieceListRule : Rule, IConfigWritable<Dictionary<string, BoardPieceId[]>>, IMultiplayerSafe
     {
         public override string Description => "Ability randomPieceLists are replaced";
 
