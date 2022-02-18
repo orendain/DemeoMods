@@ -46,6 +46,7 @@
     <Compile Include="Rules\AbilityDamageAdjustedRule.cs" />
     <Compile Include="Rules\CardAdditionOverriddenRule.cs" />
     <Compile Include="Rules\CardEnergyFromAttackMultipliedRule.cs" />
+    <Compile Include="Rules\LevelExitLockedUntilAllEnemiesDefeatedRule.cs" />
     <Compile Include="Rules\StatusEffectConfigRule.cs" />
     <Compile Include="Rules\CardEnergyFromRecyclingMultipliedRule.cs" />
     <Compile Include="Rules\CardLimitModifiedRule.cs" />
