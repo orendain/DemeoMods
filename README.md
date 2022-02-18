@@ -15,18 +15,26 @@ Skips the intro loading scene.
 
 ### HouseRules
 
+![HouseRules Logo](docs/house-rules-logo2.png)
+
 Set your own challenges and be the Dungeon Master of your own game. Make your own rules and challenge your friends.
 
 HouseRules applies customisations to many settings, values and toggles used within the Demeo code.
 
 ![HouseRules Screenshot](docs/houserules_screenshot.jpg)
 
+- Change the size of your card hand (Skirmish Mode Only)
 - Adjust HP, AttackDamage, ActionPoints etc on a per-character basis
 - Scale gold/mana/chests up/down
 - Change starting cards dealt and max-cards allowed
 - Add/Adjust AOE effects for abilities.
 - Remove/add casting cost for cards
-- .. and many more
+- Beat-the-clock Game Timer modes
+- Specify cards distributed to players
+- Change immunities for different pieces
+- Prevent enemies respawing
+- Keep the exit locked until all of the enemies are dead
+- ... and many more.
 
 This framework allows the definition of modular gameplay modifications (or
 "rules") and the ability to group them to create custom gamemodes (or
