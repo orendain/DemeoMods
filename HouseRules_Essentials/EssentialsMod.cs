@@ -47,6 +47,7 @@
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
             HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());
+            HR.Rulebook.Register(TheSwirlRuleset.Create());
             HR.Rulebook.Register(QuickandDeadRuleset.Create());
         }
     }
