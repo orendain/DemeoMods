@@ -68,8 +68,7 @@
                 gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasEffectState(EffectStateType.Key));
             if (keyHolder == null)
             {
-                EssentialsMod.Logger.Warning(
-                    "[LevelExitLockedUntilAllEnemiesDefeated] Could not find key holder on this level. Skipping.");
+                EssentialsMod.Logger.Warning("[LevelExitLockedUntilAllEnemiesDefeated] Could not find key holder on this level. Skipping.");
                 return;
             }
 
@@ -88,9 +87,16 @@
                 return;
             }
 
-            context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit))
-                ?.DisableEffectState(EffectStateType.Locked);
-            GameUI.ShowCameraMessage("Last enemy has been defeated. Exit unlocked.", 5);
+            GameUI.ShowCameraMessage("All enemies have been defeated! You may advance.", 5);
+
+            var levelExit = context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
+            if (levelExit == null)
+            {
+                EssentialsMod.Logger.Warning("[LevelExitLockedUntilAllEnemiesDefeated] Last enemy defeated but no exit to unlock.");
+                return;
+            }
+
+            levelExit.DisableEffectState(EffectStateType.Locked);
         }
     }
 }
