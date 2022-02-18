@@ -1,5 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
+    using System;
     using System.Linq;
     using Boardgame;
     using Boardgame.Board;
@@ -30,7 +31,19 @@
                 original: AccessTools.Method(typeof(BoardQuery), "UpdateCachedAttackTarget"),
                 prefix: new HarmonyMethod(
                     typeof(PetsFocusHunterMarkRule),
-                    nameof(BoardQuery_UpdateCachedAttackTarget_Prefix)));
+                    nameof(BoardQuery_UpdateCachedAttackTarget_Prefix_Wrapper)));
+        }
+
+        private static void BoardQuery_UpdateCachedAttackTarget_Prefix_Wrapper(BoardQuery __instance)
+        {
+            try
+            {
+                BoardQuery_UpdateCachedAttackTarget_Prefix(__instance);
+            }
+            catch (Exception e)
+            {
+                EssentialsMod.Logger.Warning($"This should not have happened. Please submit this log to HouseRules developers: {e}");
+            }
         }
 
         private static void BoardQuery_UpdateCachedAttackTarget_Prefix(BoardQuery __instance)
@@ -43,7 +56,6 @@
             var attackTargetType = Traverse.Create(__instance)
                 .Method("GetAttackTargetType", __instance.piece)
                 .GetValue<PieceType>();
-
             if (attackTargetType != PieceType.Enemy)
             {
                 return;
@@ -57,16 +69,24 @@
             }
 
             var levelHeatMaps = Traverse.Create(__instance).Field<LevelHeatMaps>("levelHeatMaps").Value;
-            var closestTarget = markedEnemies.OrderByDescending(p =>
-                levelHeatMaps.GetPieceMoveMap(__instance.piece, 30).GetSteps(p.gridPos.min.x, p.gridPos.min.y)).First();
+            var closestTarget = markedEnemies.OrderBy(p =>
+                    levelHeatMaps.GetPieceMoveMap(__instance.piece, 30)
+                        .GetSteps(p.gridPos.min.x, p.gridPos.min.y))
+                .First();
+
+            var isInMeleeRange = Traverse.Create(__instance)
+                .Method("GetIsInMeleeRange", __instance.piece, closestTarget.gridPos.min.x, closestTarget.gridPos.min.y)
+                .GetValue<bool>();
+            if (!isInMeleeRange)
+            {
+                return;
+            }
 
             var cachedAttackTarget = default(AttackTarget);
             cachedAttackTarget.piece = closestTarget;
             cachedAttackTarget.tile = closestTarget.gridPos.min;
             cachedAttackTarget.pieceVisible = __instance.IsVisible(closestTarget.gridPos);
-            cachedAttackTarget.inMeleeAttackRange = Traverse.Create(__instance)
-                .Method("GetIsInMeleeRange", __instance.piece, closestTarget.gridPos.min.x, closestTarget.gridPos.min.y)
-                .GetValue<bool>();
+            cachedAttackTarget.inMeleeAttackRange = isInMeleeRange;
 
             Traverse.Create(__instance).Field<AttackTarget>("cachedAttackTarget").Value = cachedAttackTarget;
             Traverse.Create(__instance).Field<bool>("hasCachedAttackTarget").Value = true;
