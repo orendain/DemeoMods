@@ -264,6 +264,18 @@ An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt ru
   },
   ```
 
+- __PetsFocusHunterMarkRule__: Pets focus on hunter marked enemies
+  - Config accepts bool e.g `true`
+
+  ###### _Example JSON config for PetsFocusHunterMarkRule_
+
+  ```json
+  {
+    "Rule": "PetsFocusHunterMarkRule",
+    "Config": true
+  },
+  ```
+
 - __PieceConfigAdjustedRule__: Piece configuration is adjusted
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
   - Allows customization of many of the properties for each game Piece. 🩺Health, 🎲ActionPoints, 🏃Movement, ⚔️MeleeDamage, etc
