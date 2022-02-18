@@ -10,7 +10,7 @@
         internal static Ruleset Create()
         {
             const string name = "The Swirl";
-            const string description = "Ultra health. Ultra card recycling. Only 15 rounds to escape...";
+            const string description = "Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.";
 
             var startingCards = new List<StartCardsModifiedRule.CardConfig>
             {
