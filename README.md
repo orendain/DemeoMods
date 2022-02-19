@@ -52,8 +52,7 @@ It is currently necessary to select the ruleset by editing the `MelonloaderPrefe
 See the [HouseRules_Core readme](HouseRules_Core/README.md) for information about the
 HouseRules framework.
 
-See the [HouseRules_Essentials readme](HouseRules_Essentials/README.md) for a list of all predefined RulesAPI
-rules and rulesets.
+See the [HouseRules_Essentials readme](HouseRules_Essentials/README.md) for a list of all predefined rules and rulesets.
 
 #### How it works
 
