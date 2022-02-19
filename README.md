@@ -7,11 +7,17 @@ mods, or are interested in learning to build your own.
 
 [![Discord](https://img.shields.io/discord/841011788195823626?logo=discord&logoColor=fff&style=for-the-badge)](https://discord.gg/4BNSwmr784)
 
+## Contents
+- [Mods](#mods)
+  - [HouseRules](#houserules)
+  - [SkipIntro](#skipintro)
+  - [RoomFinder](#roomfinder)
+  - [RoomCode](#roomcode)
+- [Installation](#installation)
+- [For Developers](#for-developers)
+- [Shoutouts](#shoutouts)
+
 ## Mods
-
-### SkipIntro
-
-Skips the intro loading scene.
 
 ### HouseRules
 
@@ -49,6 +55,10 @@ HouseRules framework.
 See the [HouseRules_Essentials readme](HouseRules_Essentials/README.md) for a list of all predefined RulesAPI
 rules and rulesets.
 
+### SkipIntro
+
+Skips the intro loading scene.
+
 ### RoomFinder
 
 Tired of Demeo's "Quickjoin" endlessly placing you into random games? This mod
@@ -57,16 +67,12 @@ to join.
 
 ![RoomFinder Screenshot](docs/roomfinder_screenshot.jpg)
 
-### Hmm ...
+### RoomCode
 
-A handful of other mods are in use/development privately, but it is unknown if
-any will be cleaned up enough to see the light of OSS.
+Set your own room code, skipping Demeo's random room code generation.
 
-- PlayerBerserk, allows players to become berserk/enraged.
-- RoomCode, allows players to set their own room code instead of one being
-  randomly generated.
-- Highlighter, ...
-- DungeonMasterView, ...
+See the [RoomCode readme](RoomCode/README.md) for more information and configuration
+options.
 
 ## Installation
 
@@ -85,14 +91,11 @@ any will be cleaned up enough to see the light of OSS.
 
 ### `/Common`
 
-A library of entities shared by more than one mod.
-
-This is compiled as part of each dependent mod, so as to not generate a
-common/util mod that needs to be included separately by each user.
+A library shared by more than one mod. This is compiled as part of each mod.
 
 Should there be any interest by other developers to reuse this library, the
 author of this project can extract it into a common/util mod or
-a [NuGet](https://www.nuget.org/).
+a NuGet.
 
 Please file an issue if interested.
 
