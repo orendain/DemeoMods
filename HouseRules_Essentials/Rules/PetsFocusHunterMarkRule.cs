@@ -78,7 +78,6 @@
                 .GetValue<bool>();
             if (!isInMeleeRange)
             {
-                EssentialsMod.Logger.Warning($"[{__instance.piece.boardPieceId}] too far from [{closestTarget.boardPieceId}]. Ignoring.");
                 return;
             }
 
@@ -90,18 +89,13 @@
 
             Traverse.Create(__instance).Field<AttackTarget>("cachedAttackTarget").Value = cachedAttackTarget;
             Traverse.Create(__instance).Field<bool>("hasCachedAttackTarget").Value = true;
-
-            EssentialsMod.Logger.Warning($"[{__instance.piece.boardPieceId}] is now targeting [{closestTarget.boardPieceId}]");
         }
 
         private static int FindDistanceBetween(Piece piece, Piece otherPiece, LevelHeatMaps levelHeatMaps)
         {
-            var distance = levelHeatMaps
+            return levelHeatMaps
                 .GetPieceMoveMap(piece, 30)
                 .GetSteps(otherPiece.gridPos.min.x, otherPiece.gridPos.min.y);
-
-            EssentialsMod.Logger.Warning($"Distance between [{piece.boardPieceId}] and [{otherPiece.boardPieceId}]: {distance}");
-            return distance;
         }
     }
 }

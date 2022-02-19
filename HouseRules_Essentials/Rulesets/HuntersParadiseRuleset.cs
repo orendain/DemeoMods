@@ -11,7 +11,7 @@
         internal static Ruleset Create()
         {
             const string name = "Hunter's Paradise";
-            const string description = "<Fill in description before merging...>";
+            const string description = "Pets, pets, pets! And hunter's mark.";
 
             var startCards = new List<StartCardsModifiedRule.CardConfig>
             {
