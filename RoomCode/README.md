@@ -15,6 +15,7 @@ codes = [ ]
 ```
 
 `enabled`: Set to `true` to enable the mod, or `false` to disable it.
+
 `codes`: List all room codes you'd like to use, in order of preference.
 
 If none of the room codes are available, the mod will fall back to Demeo's
