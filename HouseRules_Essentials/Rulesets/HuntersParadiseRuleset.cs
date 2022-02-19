@@ -29,6 +29,11 @@
                     { BoardPieceId.HeroSorcerer, startCards },
                 });
 
+            var noGuardianArmorRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
+            {
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartArmor", Value = 0 },
+            });
+
             var statusEffects = new List<StatusEffectData>
             {
                 new StatusEffectData
@@ -79,6 +84,7 @@
                 description,
                 startingCardsRule,
                 statusEffectsRule,
+                noGuardianArmorRule,
                 hunterMarkRule,
                 allowedCardsRule,
                 levelPropertiesRule);
