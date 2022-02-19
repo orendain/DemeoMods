@@ -63,11 +63,11 @@ HouseRules creates multiplayer games which are playable by ALL Demeo players (bo
 
 #### Get in Touch
 
-We have a dedicated [HouseRules Discord Channel ![Discord](https://img.shields.io/discord/841011788195823626.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.com/channels/841011788195823626/943995355161325578) to chat about gameplay, new rule ideas, report bugs or maybe get involved with writing some new rules. Come over and say 👋 'Hi' 👋
+We have a dedicated [HouseRules Discord Channel ![Discord](https://img.shields.io/discord/841011788195823626.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/N9DZB5ebmj) to chat about gameplay, new rule ideas, report bugs or maybe get involved with writing some new rules. Come over and say 👋 'Hi' 👋
 
 ### SkipIntro
 
-The Elven Acropolis is a very welcoming place... some might say it's too welcoming.
+The Elven Necropolis is a very welcoming place... some might say it's too welcoming.
 
 The SkipIntro mod skips the intro loading scene and takes you straight into the main menu.
 
