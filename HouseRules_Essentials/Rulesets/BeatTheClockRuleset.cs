@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rulesets
 {
     using System.Collections.Generic;
+    using DataKeys;
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
 
@@ -11,13 +12,13 @@
             const string name = "Beat The Clock!";
             const string description = "Ultra health. Ultra card recycling. Only 15 rounds to escape...";
 
-            var healthRule = new Essentials.Rules.PieceConfigAdjustedRule(new List<List<string>>
+            var healthRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
-                new List<string> { "HeroGuardian", "StartHealth", "200" },
-                new List<string> { "HeroSorcerer", "StartHealth", "200" },
-                new List<string> { "HeroRouge", "StartHealth", "200" },
-                new List<string> { "HeroHunter", "StartHealth", "200" },
-                new List<string> { "HeroBard", "StartHealth", "200" },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 200 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 200 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 200 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRouge, Property = "StartHealth", Value = 200 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 200 },
             });
             var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(5);
             var roundLimitRule = new RoundCountLimitedRule(15);

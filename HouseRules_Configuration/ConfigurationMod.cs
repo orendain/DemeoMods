@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using DataKeys;
+    using HouseRules.Essentials.Rules;
     using HouseRules.Types;
     using MelonLoader;
     using UnityEngine;
@@ -96,23 +97,23 @@
             var ehs = new Essentials.Rules.EnemyHealthScaledRule(2);
             var erd = new Essentials.Rules.EnemyRespawnDisabledRule(true);
             var gpus = new Essentials.Rules.GoldPickedUpMultipliedRule(2f);
-            var pca = new Essentials.Rules.PieceConfigAdjustedRule(new List<List<string>>
+            var pca = new Essentials.Rules.PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
-                new List<string> { "HeroSorcerer", "MoveRange", "6" }, // Increased from the default of 4
-                new List<string> { "HeroSorcerer", "StartHealth", "20" }, // 10 extra HP
-                new List<string> { "HeroGuardian", "MoveRange", "5" },
-                new List<string> { "HeroGuardian", "StartHealth", "15" },
-                new List<string> { "HeroHunter", "MoveRange", "6" },
-                new List<string> { "HeroHunter", "StartHealth", "18" },
-                new List<string> { "HeroBard", "MoveRange", "8" },
-                new List<string> { "HeroBard", "StartHealth", "12" },
-                new List<string> { "HeroRouge", "MoveRange", "5" },
-                new List<string> { "HeroRouge", "StartHealth", "20" },
-                new List<string> { "WolfCompanion", "StartHealth", "20" }, // Wolf lots of HP wandering through gas
-                new List<string> { "SwordOfAvalon", "StartHealth", "20" },
-                new List<string> { "BeaconOfSmite", "StartHealth", "25" },
-                new List<string> { "BeaconOfSmite", "ActionPoint", "2" }, // Behemoth gets to fire two rounds
-                new List<string> { "MonsterBait", "StartHealth", "25" }, // Lure needs to last a little longer
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "MoveRange", Value = 6 }, // Increased from the default of 4
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 20 }, // 10 extra HP
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "MoveRange", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 6 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 18 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "MoveRange", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 12 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRouge, Property = "MoveRange", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRouge, Property = "StartHealth", Value = 20 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WolfCompanion, Property = "StartHealth", Value = 20 }, // Wolf lots of HP wandering through gas
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SwordOfAvalon, Property = "StartHealth", Value = 20 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BeaconOfSmite, Property = "StartHealth", Value = 25 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BeaconOfSmite, Property = "ActionPoint", Value = 2 }, // Behemoth gets to fire two rounds
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MonsterBait, Property = "StartHealth", Value = 25 }, // Lure needs to last a little longer
             });
             var rnsg = new Essentials.Rules.RatNestsSpawnGoldRule(8);
             var cards = new List<Essentials.Rules.StartCardsModifiedRule.CardConfig>
