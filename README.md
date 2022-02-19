@@ -55,9 +55,23 @@ HouseRules framework.
 See the [HouseRules_Essentials readme](HouseRules_Essentials/README.md) for a list of all predefined RulesAPI
 rules and rulesets.
 
+#### How it works
+
+HouseRules creates multiplayer games which are playable by ALL Demeo players (both Quest and PC), but the mod itself currently runs only on PC. In order to play with a modified ruleset, the player hosting the game must be on a PC running this mod. Unmodded clients are able to join the modded game as normal and play with new game rules.
+
+🚨🛑 __IMPORTANT__ - During gameplay client machines will update their board state internally - They are sent frequent updates from the host to resynchronise board states. Some rules may cause temporary inconsistencies with clients seeing a different board view to the host. These inconsistencies are generally short lived and do not adversly affect gameplay.🛑🚨
+
+#### Get in Touch
+
+We have a dedicated [HouseRules Discord Channel ![Discord](https://img.shields.io/discord/841011788195823626.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/N9DZB5ebmj) to chat about gameplay, new rule ideas, report bugs or maybe get involved with writing some new rules. Come over and say 👋 'Hi' 👋
+
 ### SkipIntro
 
-Skips the intro loading scene.
+The Elven Necropolis is a very welcoming place... some might say it's too welcoming.
+
+The SkipIntro mod skips the intro loading scene and takes you straight into the main menu.
+
+You will never again need to ![SkipIntro Icon](docs/skipintro_icon.jpg)
 
 ### RoomFinder
 
