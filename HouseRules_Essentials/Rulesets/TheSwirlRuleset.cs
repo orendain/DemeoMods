@@ -56,13 +56,13 @@
                 { BoardPieceId.HeroSorcerer, allowedCards },
             });
 
-            var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<List<string>>
+            var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
-                new List<string> { "HeroBard", "StartHealth", "50" },
-                new List<string> { "HeroGuardian", "StartHealth", "50" },
-                new List<string> { "HeroHunter", "StartHealth", "50" },
-                new List<string> { "HeroRouge", "StartHealth", "50" },
-                new List<string> { "HeroSorcerer", "StartHealth", "50" },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 50 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 50 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 50 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRouge, Property = "StartHealth", Value = 50 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 50 },
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
