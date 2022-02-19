@@ -279,8 +279,8 @@ An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt ru
 - __PieceConfigAdjustedRule__: Piece configuration is adjusted
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
   - Allows customization of many of the properties for each game Piece. 🩺Health, 🎲ActionPoints, 🏃Movement, ⚔️MeleeDamage, etc
-  - Config accepts List of Lists e.g. `[ [ "PieceName1", "ParamName1", int ], [ "PieceName1", "ParamName1", int ], ... ]`
-  - Only works for Integer fields. The configured value replaces the default.  
+  - Config accepts List of Dicts e.g. `[ {}, {}, ]`
+  - Only works for integer and float fields. The configured value replaces the default.
 
   ###### _Example JSON config for PieceConfigAdjustedRule_
 
@@ -288,14 +288,12 @@ An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt ru
   {
     "Rule": "PieceConfigAdjustedRule",
     "Config": [
-      [ "HeroSorcerer", "StartHealth", "20" ],
-      [ "HeroSorcerer", "MoveRange", "5" ],
-      [ "HeroSorcerer", "ActionPoint", "3" ],
-      [ "WolfCompanion", "StartHealth", "30" ],
-      [ "SwordOfAvalon", "StartHealth", "20" ],
-      [ "BeaconOfSmite", "StartHealth", "20" ],
-      [ "BeaconOfSmite", "ActionPoint", "2" ],
-      [ "MonsterBait", "StartHealth", "30" ],
+      { "Piece": "HeroSorcerer", "Property": "StartHealth", "Value": 20 },
+      { "Piece": "HeroSorcerer", "Property": "MoveRange", "Value": 5 },
+      { "Piece": "HeroSorcerer", "Property": "ActionPoint", "Value": 3 },
+      { "Piece": "MonsterBait", "Property": "StartHealth", "Value": 30 },
+      { "Piece": "BeaconOfSmite", "Property": "ActionPoint", "Value": 2 },
+      { "Piece": "HeroSorcerer", "Property": "BerserkBelowHealth", "Value": 0.8 }
     ]
   },
   ```
