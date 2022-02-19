@@ -38,6 +38,7 @@
     <Compile Include="Rulesets\DifficultyEasyRuleset.cs" />
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
+    <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
     <Compile Include="Rulesets\SampleRuleset.cs" />
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
