@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules_Configuration", "HouseRules_Configuration\HouseRules_Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomCode", "RoomCode\RoomCode.csproj", "{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{ED5D884D-FC02-4095-886E-C18369F4051D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
