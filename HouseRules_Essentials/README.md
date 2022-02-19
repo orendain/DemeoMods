@@ -382,10 +382,35 @@ An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt ru
      }
    },
    ```
-- __StatusEffectConfigRule__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
-- Accepts a list of overrides which take the place of the default config. 
+
+  - __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
+  - There are only six different StatModifiers in the game. They are used by 💪Strength, 🦶Speed, 🛡️ReplenishArmor, HuntersMark, etc
+  - Accepts a list of overrides which take the place of the default config.
   - If no override is specified, the default is used instead.
-  - Default values can be found in `StatusEffectsConfig.effectsConfig` 
+  - Config accepts list of dict of StatModifier names, integer values. `{"Statmodifier": int}, {}, }`
+
+  ###### _Example JSON config for StatModifiersOverriden_
+
+  ```json
+    {
+      "Rule": "StatModifiersOverriden",
+      "Config": {
+        "Strength": 2,
+        "Speed": 2,
+        "MarkOfAvalon": -4,
+        "ReplenishBarkArmor": 4,
+        "SongOfResilience": 6,
+        "ReplenishArmor": 4,
+        
+        
+      }
+    },
+   ```
+
+  - __StatusEffectConfigRule__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
+  - Accepts a list of overrides which take the place of the default config.
+  - If no override is specified, the default is used instead.
+  - Default values can be found in `StatusEffectsConfig.effectsConfig`
   - Config accepts list of dicts e.g. `[ {}, {}, ]`
 
   ###### _Example JSON config for StatusEffectConfigRule_
