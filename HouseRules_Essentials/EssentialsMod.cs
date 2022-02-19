@@ -37,6 +37,7 @@
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
             HR.Rulebook.Register(typeof(PieceAbilityListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceBehavioursListOverriddenRule));
+            HR.Rulebook.Register(typeof(PiecePieceTypeListOverriddenRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
             HR.Rulebook.Register(typeof(RoundCountLimitedRule));
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
