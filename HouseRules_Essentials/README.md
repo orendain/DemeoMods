@@ -76,11 +76,11 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
   ```json
   {
-      "Rule": "AbilityDamageAdjustedRule",
-      "Config": { 
-        "Zap": 1,
-        "Whirlwind": 1,
-      }
+    "Rule": "AbilityDamageAdjustedRule",
+    "Config": {
+      "Zap": 1,
+      "Whirlwind": 1,
+    }
   },
   ```
 
@@ -114,9 +114,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardAdditionOverridden",
     "Config": {
-        "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodsFury", "RevealPath"],
-        "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "Heal"],
-        }
+      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodsFury", "RevealPath"],
+      "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "Heal"],
+    }
   },
   ```
 
@@ -190,8 +190,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
   ```json
   {
-  "Rule": "EnemyDoorOpeningDisabledRule",
-  "Config": true
+    "Rule": "EnemyDoorOpeningDisabledRule",
+    "Config": true
   },
   ```
 
@@ -251,15 +251,15 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
   ```json
   {
-  "Rule": "LevelPropertiesModifiedRule",
-  "Config": {
-    "BigGoldPileChance": 100,
-    "FloorOneHealingFountains": 9,
-    "FloorOneLootChests": 9,
-    "FloorTwoHealingFountains": 9,
-    "FloorTwoLootChests": 9,
-    "FloorThreeHealingFountains": 9,
-    "FloorThreeLootChests": 9,
+    "Rule": "LevelPropertiesModifiedRule",
+    "Config": {
+      "BigGoldPileChance": 100,
+      "FloorOneHealingFountains": 9,
+      "FloorOneLootChests": 9,
+      "FloorTwoHealingFountains": 9,
+      "FloorTwoLootChests": 9,
+      "FloorThreeHealingFountains": 9,
+      "FloorThreeLootChests": 9,
     }
   },
   ```
@@ -353,35 +353,35 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
   ```json
   {
-     "Rule": "StartCardsModifiedRule",
-     "Config": {
-       "HeroGuardian": [
-         { "Card": "Heal", "IsReplenishable": false },
-         { "Card": "ReplenishArmor", "IsReplenishable": true },
-         { "Card": "Whirlwind", "IsReplenishable": true },
-         { "Card": "PiercingSpear", "IsReplenishable": false },
-         { "Card": "CoinFlip", "IsReplenishable": false },
-         { "Card": "BeaconOfSmite", "IsReplenishable": false },
-         { "Card": "SwordOfAvalon", "IsReplenishable": false },
-       ],
-       "HeroHunter": [
-         { "Card": "Heal", "IsReplenishable": false },
-         { "Card": "HunterArrow", "IsReplenishable": true },
-         { "Card": "HunterArrow", "IsReplenishable": true },
-         { "Card": "CoinFlip", "IsReplenishable": false },
-         { "Card": "DropChest", "IsReplenishable": false },
-       ],
-       "HeroSorcerer": [
-         { "Card": "Heal", "IsReplenishable": false },
-         { "Card": "Zap", "IsReplenishable": true },
-         { "Card": "Whirlwind", "IsReplenishable": true },
-         { "Card": "Freeze", "IsReplenishable": false },
-         { "Card": "Fireball", "IsReplenishable": false },
-         { "Card": "CallCompanion", "IsReplenishable": false },
-       ],
-     }
-   },
-   ```
+    "Rule": "StartCardsModifiedRule",
+    "Config": {
+      "HeroGuardian": [
+        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "ReplenishArmor", "IsReplenishable": true },
+        { "Card": "Whirlwind", "IsReplenishable": true },
+        { "Card": "PiercingSpear", "IsReplenishable": false },
+        { "Card": "CoinFlip", "IsReplenishable": false },
+        { "Card": "BeaconOfSmite", "IsReplenishable": false },
+        { "Card": "SwordOfAvalon", "IsReplenishable": false },
+      ],
+      "HeroHunter": [
+        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "HunterArrow", "IsReplenishable": true },
+        { "Card": "HunterArrow", "IsReplenishable": true },
+        { "Card": "CoinFlip", "IsReplenishable": false },
+        { "Card": "DropChest", "IsReplenishable": false },
+      ],
+      "HeroSorcerer": [
+        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "Zap", "IsReplenishable": true },
+        { "Card": "Whirlwind", "IsReplenishable": true },
+        { "Card": "Freeze", "IsReplenishable": false },
+        { "Card": "Fireball", "IsReplenishable": false },
+        { "Card": "CallCompanion", "IsReplenishable": false },
+      ],
+    }
+  },
+  ```
 
   - __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
   - There are only six different StatModifiers in the game. They are used by 💪Strength, 🦶Speed, 🛡️ReplenishArmor, HuntersMark, etc
@@ -392,20 +392,18 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ###### _Example JSON config for StatModifiersOverriden_
 
   ```json
-    {
-      "Rule": "StatModifiersOverriden",
-      "Config": {
-        "Strength": 2,
-        "Speed": 2,
-        "MarkOfAvalon": -4,
-        "ReplenishBarkArmor": 4,
-        "SongOfResilience": 6,
-        "ReplenishArmor": 4,
-        
-        
-      }
-    },
-   ```
+  {
+    "Rule": "StatModifiersOverriden",
+    "Config": {
+      "Strength": 2,
+      "Speed": 2,
+      "MarkOfAvalon": -4,
+      "ReplenishBarkArmor": 4,
+      "SongOfResilience": 6,
+      "ReplenishArmor": 4,
+    }
+  },
+  ```
 
   - __StatusEffectConfigRule__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
   - Accepts a list of overrides which take the place of the default config.
@@ -416,29 +414,29 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ###### _Example JSON config for StatusEffectConfigRule_
 
   ```json
-    {
-      "Rule": "StatusEffectConfig",
-      "Config": [
-        {
-          "effectStateType": "TorchPlayer",
-          "durationTurns": 15,
-          "tickWhen": "StartTurn",
-          "stacks": true,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0
-        },
-        {
-          "effectStateType": "HealingSong",
-          "durationTurns": 4,
-          "tickWhen": "StartTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 3
-        },
-      ]
-   },
-   ```
+  {
+    "Rule": "StatusEffectConfig",
+    "Config": [
+      {
+        "effectStateType": "TorchPlayer",
+        "durationTurns": 15,
+        "tickWhen": "StartTurn",
+        "stacks": true,
+        "damagePerTurn": 0,
+        "clearOnNewLevel": false,
+        "damageTags": null,
+        "healPerTurn": 0
+      },
+      {
+        "effectStateType": "HealingSong",
+        "durationTurns": 4,
+        "tickWhen": "StartTurn",
+        "stacks": false,
+        "damagePerTurn": 0,
+        "clearOnNewLevel": false,
+        "damageTags": null,
+        "healPerTurn": 3
+      },
+    ]
+  },
+  ```
