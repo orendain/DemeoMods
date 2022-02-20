@@ -11,8 +11,6 @@ namespace HouseRules.Configuration
 
     internal class ExampleRulesetExporter : MelonMod
     {
-        private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
-
         internal static void ExportExampleRulesetIfNeeded()
         {
             // Uncomment to export example ruleset.
@@ -110,7 +108,7 @@ namespace HouseRules.Configuration
                 aaca, aaa, ada, cefam1, cefam2, cefam3, cefam4, cefrm, csvm, eas, edod, ehs, erd, gpus, pca, rnsg, sscm, arpl, pila, seca,
             });
 
-            ConfigManager.ExportRuleset(customRuleset);
+            ConfigurationMod.ConfigManager.ExportRuleset(customRuleset);
         }
     }
 }

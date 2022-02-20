@@ -7,10 +7,8 @@
     internal class ConfigurationMod : MelonMod
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
-        private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
+        internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
         private const int LobbySceneIndex = 1;
-
-        private GameObject _rulesetSelectionUI;
 
         public override void OnApplicationLateStart()
         {
@@ -42,7 +40,7 @@
         {
             if (buildIndex == LobbySceneIndex)
             {
-                _rulesetSelectionUI = new GameObject("RulesetSelectionUI", typeof(UI.RulesetSelectionUI));
+                _ = new GameObject("RulesetSelectionUI", typeof(UI.RulesetSelectionUI));
             }
         }
 
