@@ -7,6 +7,7 @@ issues=false
 pr-wo-labels=false
 exclude-labels=type: build,type: documentation
 
+add-sections={"chore":{"prefix":"**Chores:**","labels":["type: chore"]}}
 enhancement-label=**Features/Enhancements:**
 enhancement-labels=type: feature
 bugs-label=**Fixes:**
