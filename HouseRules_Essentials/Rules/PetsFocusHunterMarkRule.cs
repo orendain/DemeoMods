@@ -5,6 +5,7 @@
     using Boardgame;
     using Boardgame.Board;
     using Boardgame.Board.HeatMaps;
+    using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -69,10 +70,8 @@
             }
 
             var levelHeatMaps = Traverse.Create(__instance).Field<LevelHeatMaps>("levelHeatMaps").Value;
-            var closestTarget = markedEnemies.OrderBy(p =>
-                    levelHeatMaps.GetPieceMoveMap(__instance.piece, 30)
-                        .GetSteps(p.gridPos.min.x, p.gridPos.min.y))
-                .First();
+            var closeTargets = markedEnemies.OrderBy(p => FindDistanceBetween(__instance.piece, p, levelHeatMaps));
+            var closestTarget = closeTargets.First();
 
             var isInMeleeRange = Traverse.Create(__instance)
                 .Method("GetIsInMeleeRange", __instance.piece, closestTarget.gridPos.min.x, closestTarget.gridPos.min.y)
@@ -90,6 +89,13 @@
 
             Traverse.Create(__instance).Field<AttackTarget>("cachedAttackTarget").Value = cachedAttackTarget;
             Traverse.Create(__instance).Field<bool>("hasCachedAttackTarget").Value = true;
+        }
+
+        private static int FindDistanceBetween(Piece piece, Piece otherPiece, LevelHeatMaps levelHeatMaps)
+        {
+            return levelHeatMaps
+                .GetPieceMoveMap(piece, 30)
+                .GetSteps(otherPiece.gridPos.min.x, otherPiece.gridPos.min.y);
         }
     }
 }
