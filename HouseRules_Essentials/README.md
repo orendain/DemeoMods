@@ -278,7 +278,45 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __PieceConfigAdjustedRule__: Piece configuration is adjusted
+- __PieceAbilityListOverriddenRule__: The list of abilities for a ♟️BoardPiece is overridden.
+  - Board pieces have abilities such as LaySpiderEgg or SpawnCultists. This rule allows the lists to be overridden
+  - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
+  - Assigning an Ability to a BoardPiece does not necessarily mean that the piece will have a Behaviour to use it.
+  - This rule works in conjunction with `PieceBehavioursListOverridden` and `PiecePieceTypesListOverridden` 
+
+  ###### _Example JSON config for PieceAbilityListOverridden_
+
+  ```json
+  {
+    "Rule": "PieceAbilityListOverridden",
+    "Config": {
+      "Spiderling": [ "SpiderWebshot", "LaySpiderEgg", "EarthShatter", "AcidSpit", "DropChest", "EnemyStealCard", "EnemyStealGold" ],
+      "Rat": [ "DiseasedBite", "SpawnRat", "EnemyStealGold", "SpawnMushrooms", "DropChest", "EnemyStealCard", "EnemyStealGold" ],
+      "GoblinFighter": [ "SpawnCultists", "EnemyStealGold", "DropChest", "EnemyStealCard", "EnemyStealGold" ],
+    }
+  },
+  ```
+
+- __PieceBehavioursListOverriddenRule__: The list of behaviours that a ♟️BoardPiece behaves is overridden.
+  - Board pieces have behaviours such as Patrol, SpawnPiece, AttackandRetreat. This rule allows the lists to be overridden.
+  - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
+  - Assigning a behaviour to a particular piece does not mean that the BoardPiece is of the correct PieceType to perform it.
+  - This rule works in conjunction with `PieceAbilityListOverridden` and `PiecePieceTypesListOverridden` 
+
+  ###### _Example JSON config forPieceBehavioursListOverriddenRule_
+
+  ```json
+  {
+    "Rule": "PieceBehavioursListOverridden",
+    "Config": {
+      "Spiderling": [ "AttackAndRetreat", "Patrol", "FleeToFOW", "HealFromFOW", "ChargeMove" ],
+      "Rat": [ "Patrol", "SpawnPiece" ],
+      "GoblinFighter": [ "FollowPlayerRangedAttacker", "RangedSpellCaster" ],
+    }
+  },
+  ```
+
+- __PieceConfigAdjustedRule__: Allows customization of any numeric field for any ♟️BoardPiece
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
   - Allows customization of many of the properties for each game Piece. 🩺Health, 🎲ActionPoints, 🏃Movement, ⚔️MeleeDamage, etc
   - Config accepts List of Dicts e.g. `[ {}, {}, ]`
@@ -300,7 +338,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
   
-- __PieceImmunityListAdjustedRule__: Piece ImmuneToStatusEffects list is adjusted
+- __PieceImmunityListAdjustedRule__: Allows the list of immunities for any ♟️BoardPiece to be overridden
   - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weakened, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
   - Config accepts Dictionary e.g. `{ "HeroSorcerer", EventState[], "RatKing", EventState[], ... }`  
 
@@ -312,6 +350,25 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": {
       "HeroSorcerer": [ "Diseased", "MarkOfAvalon", "Weaken", "Frozen", "Tangled", "Petrified" ],
       "HeroGuardian": [ "Frozen" ],
+    }
+  },
+  ```
+
+- __PiecePieceTypeListOverridden__: Allows the list of PieceTypes for a ♟️BoardPiece to be overridden.
+  - Board pieces have PieceTypes such as IgnoreWhenCharmed, Brittle, Enemy, Prop, Interactable which dictate certain behaviours.
+  - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
+  - Assigning an PieceType to a BoardPiece does not necessarily mean that the piece change its behaviour.
+  - This rule works in conjunction with `PieceAbilityListOverridden` and `PieceBehavioursListOverridden`  
+
+  ###### _Example JSON config for PieceImmunityListAdjustedRule_
+
+  ```json
+  {
+    "Rule": "PiecePieceTypeListOverridden",
+    "Config": {
+      "Spiderling": [ "Enemy", "Goblin", "Thief", "Canine" ],
+      "Rat": [ "Enemy", "Goblin", "Thief", "Canine" ],
+      "GoblinFighter": [ "Enemy", "Goblin", "Thief", "Canine" ],
     }
   },
   ```
