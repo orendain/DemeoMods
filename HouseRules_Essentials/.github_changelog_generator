@@ -1,0 +1,17 @@
+user=orendain
+project=demeomods
+
+author=false
+compare-link=true
+issues=false
+pr-wo-labels=false
+exclude-labels=type: build,type: documentation
+
+enhancement-label=**Features/Enhancements:**
+enhancement-labels=type: feature
+bugs-label=**Fixes:**
+bug-labels=type: bug
+
+include-labels=area: houserules/essentials
+exclude-tags-regex=^(?!.*houserules)
+
