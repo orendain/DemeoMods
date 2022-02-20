@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Configuration
 {
     using System;
+    using System.Collections.Generic;
     using MelonLoader;
     using UnityEngine;
 
@@ -9,6 +10,7 @@
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
         private const int LobbySceneIndex = 1;
+        private static readonly List<string> FailedRulesetFiles = new List<string>();
 
         public override void OnApplicationLateStart()
         {
@@ -38,25 +40,30 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (buildIndex == LobbySceneIndex)
+            if (buildIndex != LobbySceneIndex)
             {
-                _ = new GameObject("RulesetSelectionUI", typeof(UI.RulesetSelectionUI));
+                return;
             }
+
+            _ = new GameObject("RulesetSelectionUI", typeof(UI.RulesetSelectionUI));
         }
 
         private static void LoadRulesetsFromConfig()
         {
-            var rulesets = ConfigManager.ImportRulesets();
-            foreach (var ruleset in rulesets)
+            var rulesetFiles = ConfigManager.RulesetFiles;
+            Logger.Msg($"Found [{rulesetFiles.Count}] ruleset files in configuration.");
+
+            foreach (var file in rulesetFiles)
             {
                 try
                 {
+                    var ruleset = ConfigManager.ImportRuleset(file, tolerateFailures: false);
                     HR.Rulebook.Register(ruleset);
-                    Logger.Msg($"Loaded and registered ruleset from config: {ruleset.Name}");
                 }
                 catch (Exception e)
                 {
-                    Logger.Warning($"Failed to load and register ruleset [{ruleset.Name}] from config: {e}");
+                    FailedRulesetFiles.Add(file);
+                    Logger.Warning($"Failed to import and register ruleset from file [{file}]. Skipping that ruleset: {e}");
                 }
             }
         }

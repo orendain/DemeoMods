@@ -58,6 +58,11 @@
         }
 
         /// <summary>
+        /// Gets a list of all ruleset files founds.
+        /// </summary>
+        internal List<string> RulesetFiles => Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
+
+        /// <summary>
         /// Exports the specified ruleset by writing it to a file.
         /// </summary>
         /// <param name="ruleset">The ruleset to export.</param>
@@ -105,22 +110,16 @@
         }
 
         /// <summary>
-        /// Imports all rulesets in the default ruleset directory.
-        /// </summary>
-        /// <returns>The list of imported rulesets.</returns>
-        internal List<Ruleset> ImportRulesets()
-        {
-            var files = Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
-            ConfigurationMod.Logger.Msg($"Found [{files.Count}] rulesets in directory [{RulesetDirectory}]");
-            return files.Select(ImportRuleset).ToList();
-        }
-
-        /// <summary>
         /// Imports a ruleset by full file name.
         /// </summary>
+        /// <remarks>
+        /// Tolerating failures via <c>tolerateFailures</c> continues importing the ruleset even
+        /// when individual rules fail to import by skipping over those that are erroneous.
+        /// </remarks>
         /// <param name="fileName">The full file name of the JSON file to load as a ruleset.</param>
+        /// <param name="tolerateFailures">Whether or not to tolerate partial failures.</param>
         /// <returns>The imported ruleset.</returns>
-        private static Ruleset ImportRuleset(string fileName)
+        internal static Ruleset ImportRuleset(string fileName, bool tolerateFailures)
         {
             var rulesetJson = File.ReadAllText(fileName);
             var rulesetConfig = JsonConvert.DeserializeObject<RulesetConfig>(rulesetJson);
@@ -137,7 +136,12 @@
                 }
                 catch (Exception e)
                 {
-                    ConfigurationMod.Logger.Warning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Skipping that rule: {e}");
+                    if (!tolerateFailures)
+                    {
+                        throw new InvalidOperationException($"Failed to read rule entry [{ruleConfigEntry.Rule}] of ruleset [{rulesetConfig.Name}].", e);
+                    }
+
+                    ConfigurationMod.Logger.Warning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
                 }
             }
 
