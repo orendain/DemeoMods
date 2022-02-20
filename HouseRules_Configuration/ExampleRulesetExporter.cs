@@ -7,9 +7,8 @@ namespace HouseRules.Configuration
     using global::Types;
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
-    using MelonLoader;
 
-    internal class ExampleRulesetExporter : MelonMod
+    internal static class ExampleRulesetExporter
     {
         internal static void ExportExampleRulesetIfNeeded()
         {
