@@ -88,12 +88,11 @@ JSON rulesets can be defined within the Demeo game directory and saved in  `User
     }
   ]
 }
-
 ```
 
 Saving the above contents as `UserData/HouseRules/SuperZap.json` will allow this ruleset to appear automatically in the in-game HouseRules menu.
 
-A further complete [LuckyDip Ruleset](../docs/LuckyDip.json) ruleset is also provided as a reference.
+A further complete [LuckyDip Ruleset](../docs/LuckyDip.json) is also provided as a reference.
 
 Example JSON samples for each rule type can be found in the
 [HouseRules_Essentials readme](../HouseRules_Essentials/README.md).

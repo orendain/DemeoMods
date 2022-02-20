@@ -23,7 +23,7 @@ HouseRules API.
 ### JSON Rulesets
 
 Rulesets may also be configured as JSON files and stored within the game directory `<GAME_DIR>/UserData/HouseRules/<rulesetname>.json`
-An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt rules for rapid gameplay is provided as a guide to help you get started.
+An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many different rules for rapid gameplay is provided as a guide to help you get started.
 
 The [Settings Reference](../docs/SettingsReference.md) contains lists of all different BehaviourIDs, AbilityKeys and other data types used by the Rules.
 
