@@ -14,8 +14,7 @@
 
         public override void OnApplicationLateStart()
         {
-            // TODO(orendain): Remove when writing this example ruleset is no longer necessary.
-            // ExampleRulesetWriter.WriteExampleRuleset();
+            ExampleRulesetExporter.ExportExampleRulesetIfNeeded();
 
             var loadRulesetsFromConfig = ConfigManager.GetLoadRulesetsFromConfig();
             if (loadRulesetsFromConfig)

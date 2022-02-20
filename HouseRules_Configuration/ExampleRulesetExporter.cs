@@ -9,11 +9,17 @@ namespace HouseRules.Configuration
     using HouseRules.Types;
     using MelonLoader;
 
-    internal class ExampleRulesetWriter : MelonMod
+    internal class ExampleRulesetExporter : MelonMod
     {
         private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
 
-        public static void WriteExampleRuleset()
+        internal static void ExportExampleRulesetIfNeeded()
+        {
+            // Uncomment to export example ruleset.
+            // ExportExampleRuleset();
+        }
+
+        private static void ExportExampleRuleset()
         {
             var aaca = new AbilityActionCostAdjustedRule(new Dictionary<string, bool>
             {
