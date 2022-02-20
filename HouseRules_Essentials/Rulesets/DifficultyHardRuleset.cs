@@ -8,7 +8,7 @@
         internal static Ruleset Create()
         {
             const string name = "Difficulty: Hard";
-            const string description = "This mode increases the default game difficulty for a greater challenge.";
+            const string description = "Increased game difficulty for a greater challenge.";
 
             return Ruleset.NewInstance(
                 name,

@@ -40,10 +40,12 @@
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
     <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
-    <Compile Include="Rulesets\SampleRuleset.cs" />
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rulesets\TheSwirlRuleset.cs" />
     <Compile Include="Rules\AbilityActionCostAdjustedRule.cs" />
+    <Compile Include="Rules\PiecePieceTypeListOverriddenRule.cs" />
+    <Compile Include="Rules\PieceBehavioursListOverriddenRule.cs" />
+    <Compile Include="Rules\PieceAbilityListOverriddenRule.cs" />
     <Compile Include="Rules\StatModifiersOverridenRule.cs" />
     <Compile Include="Rules\AbilityRandomPieceListRule.cs" />
     <Compile Include="Rules\AbilityDamageAdjustedRule.cs" />

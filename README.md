@@ -58,7 +58,7 @@ See the [HouseRules_Essentials readme](HouseRules_Essentials/README.md) for a li
 
 HouseRules creates multiplayer games which are playable by ALL Demeo players (both Quest and PC), but the mod itself currently runs only on PC. In order to play with a modified ruleset, the player hosting the game must be on a PC running this mod. Unmodded clients are able to join the modded game as normal and play with new game rules.
 
-🚨🛑 __IMPORTANT__ - During gameplay client machines will update their board state internally - They are sent frequent updates from the host to resynchronise board states. Some rules may cause temporary inconsistencies with clients seeing a different board view to the host. These inconsistencies are generally short lived and do not adversly affect gameplay.🛑🚨
+🚨🛑 __IMPORTANT__ - During gameplay client machines will update their board state internally - They are sent frequent updates from the host to resynchronise board states. Some rules may cause temporary inconsistencies with clients seeing a different board view to the host. These inconsistencies are generally short lived and do not adversely affect gameplay.🛑🚨
 
 #### Get in Touch
 
