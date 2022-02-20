@@ -58,6 +58,11 @@
         }
 
         /// <summary>
+        /// Gets a list of all ruleset files founds.
+        /// </summary>
+        internal List<string> RulesetFiles => Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
+
+        /// <summary>
         /// Exports the specified ruleset by writing it to a file.
         /// </summary>
         /// <param name="ruleset">The ruleset to export.</param>
@@ -105,34 +110,6 @@
         }
 
         /// <summary>
-        /// Tries to import all rulesets in the default ruleset directory.
-        /// </summary>
-        /// <param name="rulesets">The rulesets that were successfully imported.</param>
-        /// <returns>Whether or not issues were encountered when importing rulesets.</returns>
-        internal bool TryImportRulesets(out List<Ruleset> rulesets)
-        {
-            var files = Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
-            ConfigurationMod.Logger.Msg($"Found [{files.Count}] rulesets in directory [{RulesetDirectory}]");
-
-            var hadNoErrors = true;
-            rulesets = new List<Ruleset>();
-            foreach (var file in files)
-            {
-                try
-                {
-                    rulesets.Add(ImportRuleset(file, tolerateFailures: false));
-                }
-                catch (Exception e)
-                {
-                    hadNoErrors = false;
-                    ConfigurationMod.Logger.Warning($"Failed to import ruleset from file [{file}]. Skipping that ruleset: {e}");
-                }
-            }
-
-            return hadNoErrors;
-        }
-
-        /// <summary>
         /// Imports a ruleset by full file name.
         /// </summary>
         /// <remarks>
@@ -142,7 +119,7 @@
         /// <param name="fileName">The full file name of the JSON file to load as a ruleset.</param>
         /// <param name="tolerateFailures">Whether or not to tolerate partial failures.</param>
         /// <returns>The imported ruleset.</returns>
-        private static Ruleset ImportRuleset(string fileName, bool tolerateFailures)
+        internal static Ruleset ImportRuleset(string fileName, bool tolerateFailures)
         {
             var rulesetJson = File.ReadAllText(fileName);
             var rulesetConfig = JsonConvert.DeserializeObject<RulesetConfig>(rulesetJson);

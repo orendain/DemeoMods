@@ -1,8 +1,7 @@
 ﻿namespace HouseRules.Configuration
 {
     using System;
-    using System.Text;
-    using Boardgame;
+    using System.Collections.Generic;
     using MelonLoader;
     using UnityEngine;
 
@@ -11,8 +10,7 @@
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
         private const int LobbySceneIndex = 1;
-
-        private static bool _hadNoLoadingIssues = true;
+        private static readonly List<string> FailedRulesetFiles = new List<string>();
 
         public override void OnApplicationLateStart()
         {
@@ -48,34 +46,26 @@
             }
 
             _ = new GameObject("RulesetSelectionUI", typeof(UI.RulesetSelectionUI));
-
-            if (_hadNoLoadingIssues)
-            {
-                return;
-            }
-
-            ShowStartupIssuesMessage();
         }
 
         private static void LoadRulesetsFromConfig()
         {
-            _hadNoLoadingIssues = ConfigManager.TryImportRulesets(out var rulesets);
-            foreach (var ruleset in rulesets)
-            {
-                HR.Rulebook.Register(ruleset);
-                Logger.Msg($"Loaded and registered ruleset from config: {ruleset.Name}");
-            }
-        }
+            var rulesetFiles = ConfigManager.RulesetFiles;
+            Logger.Msg($"Found [{rulesetFiles.Count}] ruleset files in configuration.");
 
-        private static void ShowStartupIssuesMessage()
-        {
-            var message = new StringBuilder()
-                .AppendLine("Attention:")
-                .AppendLine().AppendLine("HouseRules encountered issues loading at least one of your custom rulesets.")
-                .AppendLine().AppendLine("Those rulesets have been left out. You may proceed without them.")
-                .AppendLine().AppendLine("See logs for more information.")
-                .ToString();
-            GameUI.ShowCameraMessage(message, 15f);
+            foreach (var file in rulesetFiles)
+            {
+                try
+                {
+                    var ruleset = ConfigManager.ImportRuleset(file, tolerateFailures: false);
+                    HR.Rulebook.Register(ruleset);
+                }
+                catch (Exception e)
+                {
+                    FailedRulesetFiles.Add(file);
+                    Logger.Warning($"Failed to import and register ruleset from file [{file}]. Skipping that ruleset: {e}");
+                }
+            }
         }
     }
 }
