@@ -40,6 +40,7 @@
             HR.Rulebook.Register(typeof(PiecePieceTypeListOverriddenRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
             HR.Rulebook.Register(typeof(RoundCountLimitedRule));
+            HR.Rulebook.Register(typeof(SpawnCategoryOverriddenRule));
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
             HR.Rulebook.Register(typeof(StatModifiersOverridenRule));
             HR.Rulebook.Register(typeof(StatusEffectConfigRule));
