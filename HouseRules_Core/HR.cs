@@ -195,7 +195,7 @@ namespace HouseRules
             for (var i = 0; i < SelectedRuleset.Rules.Count; i++)
             {
                 var description = SelectedRuleset.Rules[i].Description;
-                sb.AppendLine($"{i}. {description}");
+                sb.AppendLine($"{i + 1}. {description}");
             }
 
             return sb.ToString();

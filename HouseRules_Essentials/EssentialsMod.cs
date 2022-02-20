@@ -47,13 +47,13 @@
 
         private static void RegisterRulesets()
         {
-            HR.Rulebook.Register(NoSurprisesRuleset.Create());
+            HR.Rulebook.Register(TheSwirlRuleset.Create());
             HR.Rulebook.Register(BeatTheClockRuleset.Create());
             HR.Rulebook.Register(HuntersParadiseRuleset.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
             HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());
-            HR.Rulebook.Register(TheSwirlRuleset.Create());
+            HR.Rulebook.Register(NoSurprisesRuleset.Create());
             HR.Rulebook.Register(QuickandDeadRuleset.Create());
         }
     }
