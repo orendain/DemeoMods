@@ -11,14 +11,14 @@ HouseRules API.
 
 ### Built-in Rulesets
 
-- __No Surprises__ :  Prevents any surprises in the dark or coming through doors.
-- __Beat The Clock__ : Ultra health. Ultra card recycling. Only 15 rounds to escape...
-- __Difficulty Easy__ : This mode decreases the default game difficulty for a more casual playstyle.
-- __Difficulty Hard__ : This mode increases the default game difficulty for a greater challenge.
-- __Difficulty Legendary__ : This mode increases the default game difficulty for those who want to be a legend.
 - __The Swirl__ : Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.
-- __Quick and the Dead__ : A mode with a small hand but fast turn around time on cards means you need to not hesitate.
-
+- __Beat The Clock__ : Ultra health. Ultra card recycling. Only 15 rounds to escape...
+- __Hunter's Paradise__ : Pets, pets, pets! And hunter's mark.
+- __Difficulty Easy__ : Decreased game difficulty for a more casual playstyle.
+- __Difficulty Hard__ : Increased game difficulty for a greater challenge.
+- __Difficulty Legendary__ : Increased game difficulty for those who want to be a legend.
+- __No Surprises__ :  No surprises in the dark or coming through doors.
+- __Quick and the Dead__ : A mode with a small hand but fast turnaround time on cards means you need to not hesitate.
 
 ### JSON Rulesets
 
