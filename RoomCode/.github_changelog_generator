@@ -5,7 +5,7 @@ author=false
 compare-link=true
 issues=false
 pr-wo-labels=false
-exclude-labels=type: build,type: chore,type: documentation
+exclude-labels=type: build,type: documentation
 
 enhancement-label=**Features/Enhancements:**
 enhancement-labels=type: feature

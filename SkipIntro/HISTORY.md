@@ -1,4 +1,4 @@
-# Historic Changelog
+# Changelog
 
 ## [v1.2.0](https://github.com/orendain/demeomods/tree/v1.2.0) (2021-12-29)
 
