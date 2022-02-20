@@ -105,22 +105,44 @@
         }
 
         /// <summary>
-        /// Imports all rulesets in the default ruleset directory.
+        /// Tries to import all rulesets in the default ruleset directory.
         /// </summary>
-        /// <returns>The list of imported rulesets.</returns>
-        internal List<Ruleset> ImportRulesets()
+        /// <param name="rulesets">The rulesets that were successfully imported.</param>
+        /// <returns>Whether or not issues were encountered when importing rulesets.</returns>
+        internal bool TryImportRulesets(out List<Ruleset> rulesets)
         {
             var files = Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
             ConfigurationMod.Logger.Msg($"Found [{files.Count}] rulesets in directory [{RulesetDirectory}]");
-            return files.Select(ImportRuleset).ToList();
+
+            var hadNoErrors = true;
+            rulesets = new List<Ruleset>();
+            foreach (var file in files)
+            {
+                try
+                {
+                    rulesets.Add(ImportRuleset(file, tolerateFailures: false));
+                }
+                catch (Exception e)
+                {
+                    hadNoErrors = false;
+                    ConfigurationMod.Logger.Warning($"Failed to import ruleset from file [{file}]. Skipping that ruleset: {e}");
+                }
+            }
+
+            return hadNoErrors;
         }
 
         /// <summary>
         /// Imports a ruleset by full file name.
         /// </summary>
+        /// <remarks>
+        /// Tolerating failures via <c>tolerateFailures</c> continues importing the ruleset even
+        /// when individual rules fail to import by skipping over those that are erroneous.
+        /// </remarks>
         /// <param name="fileName">The full file name of the JSON file to load as a ruleset.</param>
+        /// <param name="tolerateFailures">Whether or not to tolerate partial failures.</param>
         /// <returns>The imported ruleset.</returns>
-        private static Ruleset ImportRuleset(string fileName)
+        private static Ruleset ImportRuleset(string fileName, bool tolerateFailures)
         {
             var rulesetJson = File.ReadAllText(fileName);
             var rulesetConfig = JsonConvert.DeserializeObject<RulesetConfig>(rulesetJson);
@@ -137,7 +159,12 @@
                 }
                 catch (Exception e)
                 {
-                    ConfigurationMod.Logger.Warning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Skipping that rule: {e}");
+                    if (!tolerateFailures)
+                    {
+                        throw new InvalidOperationException($"Failed to read rule entry [{ruleConfigEntry.Rule}] of ruleset [{rulesetConfig.Name}].", e);
+                    }
+
+                    ConfigurationMod.Logger.Warning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
                 }
             }
 

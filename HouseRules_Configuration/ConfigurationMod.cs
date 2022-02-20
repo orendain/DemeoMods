@@ -54,18 +54,11 @@
 
         private static void LoadRulesetsFromConfig()
         {
-            var rulesets = ConfigManager.ImportRulesets();
+            var hadIssues = ConfigManager.TryImportRulesets(out var rulesets);
             foreach (var ruleset in rulesets)
             {
-                try
-                {
-                    HR.Rulebook.Register(ruleset);
-                    Logger.Msg($"Loaded and registered ruleset from config: {ruleset.Name}");
-                }
-                catch (Exception e)
-                {
-                    Logger.Warning($"Failed to load and register ruleset [{ruleset.Name}] from config: {e}");
-                }
+                HR.Rulebook.Register(ruleset);
+                Logger.Msg($"Loaded and registered ruleset from config: {ruleset.Name}");
             }
         }
 
