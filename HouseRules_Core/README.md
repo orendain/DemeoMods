@@ -36,7 +36,7 @@ during gameplay.
 
 🚨🛑 __IMPORTANT__ - During gameplay client machines update their own board state internally and are periodically sent
 updates from the host to resynchronise board states. Some rules may cause temporary inconsistencies with clients
-seeing a different board view to the host. These inconsistencies are generally short lived and do not adversly affect gameplay.🛑🚨
+seeing a different board view to the host. These inconsistencies are generally short lived and do not adversely affect gameplay.🛑🚨
 
 ## Choosing a Ruleset
 
