@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
+    using Boardgame;
     using DataKeys;
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
@@ -12,9 +14,10 @@
     internal class ConfigurationMod : MelonMod
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
-        private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
         private const int LobbySceneIndex = 1;
+        private static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
 
+        private static bool _hadNoLoadingIssues = true;
         private GameObject _rulesetSelectionUI;
 
         public override void OnApplicationLateStart()
@@ -46,20 +49,40 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (buildIndex == LobbySceneIndex)
+            if (buildIndex != LobbySceneIndex)
             {
-                _rulesetSelectionUI = new GameObject("RulesetSelectionUI", typeof(UI.RulesetSelectionUI));
+                return;
             }
+
+            _rulesetSelectionUI = new GameObject("RulesetSelectionUI", typeof(UI.RulesetSelectionUI));
+
+            if (_hadNoLoadingIssues)
+            {
+                return;
+            }
+
+            ShowStartupIssuesMessage();
         }
 
         private static void LoadRulesetsFromConfig()
         {
-            var hadIssues = ConfigManager.TryImportRulesets(out var rulesets);
+            _hadNoLoadingIssues = ConfigManager.TryImportRulesets(out var rulesets);
             foreach (var ruleset in rulesets)
             {
                 HR.Rulebook.Register(ruleset);
                 Logger.Msg($"Loaded and registered ruleset from config: {ruleset.Name}");
             }
+        }
+
+        private static void ShowStartupIssuesMessage()
+        {
+            var message = new StringBuilder()
+                .AppendLine("Attention:")
+                .AppendLine().AppendLine("HouseRules encountered issues loading at least one of your custom rulesets.")
+                .AppendLine().AppendLine("Those rulesets have been left out. You may proceed without them.")
+                .AppendLine().AppendLine("See logs for more information.")
+                .ToString();
+            GameUI.ShowCameraMessage(message, 15f);
         }
 
         // TODO(orendain): Remove when this demo code is no longer necessary.
