@@ -11,8 +11,6 @@ HouseRules API.
 
 ### Built-in Rulesets
 
-- __SampleRuleset__: A [sample ruleset](https://github.com/orendain/DemeoMods/blob/045aec568fdddb95b63a1ed34abcb64065e4ca99/Rules/RulesMod.cs#L27-L28)
-  for the purposes of documenting how to create a ruleset (and for testing during development).
 - __No Surprises__ :  Prevents any surprises in the dark or coming through doors.
 - __Beat The Clock__ : Ultra health. Ultra card recycling. Only 15 rounds to escape...
 - __Difficulty Easy__ : This mode decreases the default game difficulty for a more casual playstyle.
