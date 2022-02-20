@@ -276,7 +276,7 @@ An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt ru
   },
   ```
 
-- __PieceAbilityListOverriddenRule__: The list of abilities for a ♟️Boardpiece is overridden.
+- __PieceAbilityListOverriddenRule__: The list of abilities for a ♟️BoardPiece is overridden.
   - Board pieces have abilities such as LaySpiderEgg or SpawnCultists. This rule allows the lists to be overridden
   - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
   - Assigning an Ability to a BoardPiece does not necessarily mean that the piece will have a Behaviour to use it.
@@ -314,7 +314,7 @@ An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt ru
   },
   ```
 
-- __PieceConfigAdjustedRule__: Allows customistaion of any numeric field for any ♟️BoardPiece
+- __PieceConfigAdjustedRule__: Allows customization of any numeric field for any ♟️BoardPiece
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
   - Allows customization of many of the properties for each game Piece. 🩺Health, 🎲ActionPoints, 🏃Movement, ⚔️MeleeDamage, etc
   - Config accepts List of Dicts e.g. `[ {}, {}, ]`
@@ -353,7 +353,7 @@ An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt ru
   ```
 
 - __PiecePieceTypeListOverridden__: Allows the list of PieceTypes for a ♟️BoardPiece to be overridden.
-  - Board pieces have PieceTypes such as IgnoreWhenCharmed, Brittle, Enemy, Prop, Interactable which dicatate certain behaviours.
+  - Board pieces have PieceTypes such as IgnoreWhenCharmed, Brittle, Enemy, Prop, Interactable which dictate certain behaviours.
   - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
   - Assigning an PieceType to a BoardPiece does not necessarily mean that the piece change its behaviour.
   - This rule works in conjunction with `PieceAbilityListOverridden` and `PieceBehavioursListOverridden`  
@@ -361,14 +361,14 @@ An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many differnt ru
   ###### _Example JSON config for PieceImmunityListAdjustedRule_
 
   ```json
-    {
-      "Rule": "PiecePieceTypeListOverridden",
-      "Config": {
-        "Spiderling": [ "Enemy", "Goblin", "Thief", "Canine" ],
-        "Rat": [ "Enemy", "Goblin", "Thief", "Canine" ],
-        "GoblinFighter": [ "Enemy", "Goblin", "Thief", "Canine" ],
-      }
-    },
+  {
+    "Rule": "PiecePieceTypeListOverridden",
+    "Config": {
+      "Spiderling": [ "Enemy", "Goblin", "Thief", "Canine" ],
+      "Rat": [ "Enemy", "Goblin", "Thief", "Canine" ],
+      "GoblinFighter": [ "Enemy", "Goblin", "Thief", "Canine" ],
+    }
+  },
   ```
 
 - __RatNestsSpawnGoldRule__: Rat nests spawn 💰gold💰
