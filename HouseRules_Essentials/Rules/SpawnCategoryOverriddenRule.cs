@@ -12,7 +12,7 @@
         public override string Description => "Spawn Category definitions are Overridden";
 
         private readonly Dictionary<BoardPieceId, List<int>> _adjustments;
-        private readonly Dictionary<GameConfigType, List<SpawnCategoryDTO>> _originals;
+        private Dictionary<BoardPieceId, List<int>> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpawnCategoryOverriddenRule"/> class.
@@ -22,75 +22,77 @@
         public SpawnCategoryOverriddenRule(Dictionary<BoardPieceId, List<int>> adjustments)
         {
             _adjustments = adjustments;
+            _originals = new Dictionary<BoardPieceId, List<int>>();
         }
 
         public Dictionary<BoardPieceId, List<int>> GetConfigObject() => _adjustments;
 
         protected override void OnPostGameCreated(GameContext gameContext)
         {
-            var spawnCategories = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, List<SpawnCategoryDTO>>>("SpawnCategoryDTOlist").Value;
-            var bpis = new List<BoardPieceId>();
-            foreach (var nap in _adjustments)
-            {
-                bpis.Add(nap.Key);
-            }
-
-            foreach (var gameConfigType in spawnCategories)
-            {
-                _originals[gameConfigType.Key] = new List<SpawnCategoryDTO>(spawnCategories[gameConfigType.Key]);
-                for (int i = 0; i < spawnCategories[gameConfigType.Key].Count; i++)
-                {
-                    if (bpis.Contains(spawnCategories[gameConfigType.Key][i].BoardPieceId))
-                    {
-                        spawnCategories[gameConfigType.Key][i] = new SpawnCategoryDTO
-                        {
-                            BoardPieceId = spawnCategories[gameConfigType.Key][i].BoardPieceId,
-                            EnemyWeight = spawnCategories[gameConfigType.Key][i].EnemyWeight,
-                            IsSpawningEnabled = true,
-                            IsAllowedKeyholder = spawnCategories[gameConfigType.Key][i].IsAllowedKeyholder,
-                            IsBossSynergyUnit = spawnCategories[gameConfigType.Key][i].IsBossSynergyUnit,
-                            OverrideDefaultMaxPerDeckBehaviour = true,
-                            MaxPerDeck = _adjustments[spawnCategories[gameConfigType.Key][i].BoardPieceId][0],
-                            PreFill = _adjustments[spawnCategories[gameConfigType.Key][i].BoardPieceId][1],
-                            FirstAllowedLevelIndex = _adjustments[spawnCategories[gameConfigType.Key][i].BoardPieceId][2],
-                            IsRedrawEnabled = spawnCategories[gameConfigType.Key][i].IsRedrawEnabled,
-                            IsPriorityUnit = true,
-                        };
-                        EssentialsMod.Logger.Warning($"We have enabled {gameConfigType.Key} {spawnCategories[gameConfigType.Key][i].BoardPieceId}");
-                    }
-                    else
-                    {
-                        spawnCategories[gameConfigType.Key][i] = new SpawnCategoryDTO
-                        {
-                            BoardPieceId = spawnCategories[gameConfigType.Key][i].BoardPieceId,
-                            EnemyWeight = spawnCategories[gameConfigType.Key][i].EnemyWeight,
-                            IsSpawningEnabled = false,
-                            IsAllowedKeyholder = false,
-                            IsBossSynergyUnit = false,
-                            OverrideDefaultMaxPerDeckBehaviour = true,
-                            MaxPerDeck = 0,
-                            PreFill = 0,
-                            FirstAllowedLevelIndex = 4,
-                            IsRedrawEnabled = true,
-                            IsPriorityUnit = false,
-                        };
-                        EssentialsMod.Logger.Warning($"We disabled spawning for {gameConfigType.Key} {spawnCategories[gameConfigType.Key][i].BoardPieceId}");
-                    }
-                }
-            }
+            _originals = UpdateSpawnCategories(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            var spawnCategories = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, List<SpawnCategoryDTO>>>("SpawnCategoryDTOlist").Value;
-            foreach (var gameConfigType in spawnCategories)
+            UpdateSpawnCategories(_originals);
+        }
+
+        private static Dictionary<BoardPieceId, List<int>> UpdateSpawnCategories(Dictionary<BoardPieceId, List<int>> spawnModifications)
+        {
+            var gameConfigSpawnCategories = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, List<SpawnCategoryDTO>>>("SpawnCategoryDTOlist").Value;
+            var spawnCategories = gameConfigSpawnCategories[MotherbrainGlobalVars.CurrentConfig];
+            var previousConfigs = new Dictionary<BoardPieceId, List<int>>();
+            var bpis = new List<BoardPieceId>();
+            foreach (var nap in spawnModifications)
             {
-                spawnCategories[gameConfigType.Key] = new List<SpawnCategoryDTO>(_originals[gameConfigType.Key]);
-                EssentialsMod.Logger.Warning($"Restored Spawn configs for {gameConfigType.Key}");
+                bpis.Add(nap.Key);
             }
+
+            for (int i = 0; i < spawnCategories.Count; i++)
+            {
+                if (bpis.Contains(spawnCategories[i].BoardPieceId))
+                {
+                    previousConfigs[spawnCategories[i].BoardPieceId] = new List<int>()
+                    { spawnCategories[i].MaxPerDeck,
+                      spawnCategories[i].PreFill,
+                      spawnCategories[i].FirstAllowedLevelIndex,
+                    };
+
+                    spawnCategories[i] = new SpawnCategoryDTO
+                    {
+                        BoardPieceId = spawnCategories[i].BoardPieceId,
+                        EnemyWeight = spawnCategories[i].EnemyWeight,
+                        IsSpawningEnabled = true,
+                        IsAllowedKeyholder = spawnCategories[i].IsAllowedKeyholder,
+                        IsBossSynergyUnit = spawnCategories[i].IsBossSynergyUnit,
+                        OverrideDefaultMaxPerDeckBehaviour = true,
+                        MaxPerDeck = spawnModifications[spawnCategories[i].BoardPieceId][0],
+                        PreFill = spawnModifications[spawnCategories[i].BoardPieceId][1],
+                        FirstAllowedLevelIndex = spawnModifications[spawnCategories[i].BoardPieceId][2],
+                        IsRedrawEnabled = spawnCategories[i].IsRedrawEnabled,
+                        IsPriorityUnit = true,
+                    };
+                }
+                else
+                {
+                    spawnCategories[i] = new SpawnCategoryDTO
+                    {
+                        BoardPieceId = spawnCategories[i].BoardPieceId,
+                        EnemyWeight = spawnCategories[i].EnemyWeight,
+                        IsSpawningEnabled = false,
+                        IsAllowedKeyholder = false,
+                        IsBossSynergyUnit = false,
+                        OverrideDefaultMaxPerDeckBehaviour = true,
+                        MaxPerDeck = 0,
+                        PreFill = 0,
+                        FirstAllowedLevelIndex = 4,
+                        IsRedrawEnabled = true,
+                        IsPriorityUnit = false,
+                    };
+                }
+            }
+
+            return previousConfigs;
         }
     }
 }
-
-
-
