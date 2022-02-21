@@ -12,6 +12,7 @@
         public override string Description => "Spawn Category definitions are Overridden";
 
         private readonly Dictionary<BoardPieceId, List<int>> _adjustments;
+        private readonly Dictionary<GameConfigType, List<SpawnCategoryDTO>> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpawnCategoryOverriddenRule"/> class.
@@ -36,6 +37,7 @@
 
             foreach (var gameConfigType in spawnCategories)
             {
+                _originals[gameConfigType.Key] = new List<SpawnCategoryDTO>(spawnCategories[gameConfigType.Key]);
                 for (int i = 0; i < spawnCategories[gameConfigType.Key].Count; i++)
                 {
                     if (bpis.Contains(spawnCategories[gameConfigType.Key][i].BoardPieceId))
@@ -81,9 +83,10 @@
         protected override void OnDeactivate(GameContext gameContext)
         {
             var spawnCategories = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, List<SpawnCategoryDTO>>>("SpawnCategoryDTOlist").Value;
-            foreach (var item in spawnCategories)
+            foreach (var gameConfigType in spawnCategories)
             {
-                EssentialsMod.Logger.Warning($"We removed a thing {item.Key}");
+                spawnCategories[gameConfigType.Key] = new List<SpawnCategoryDTO>(_originals[gameConfigType.Key]);
+                EssentialsMod.Logger.Warning($"Restored Spawn configs for {gameConfigType.Key}");
             }
         }
     }
