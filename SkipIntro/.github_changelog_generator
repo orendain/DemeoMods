@@ -15,4 +15,5 @@ bug-labels=type: bug
 
 include-labels=area: skipintro
 exclude-tags-regex=^(?!.*skipintro)
+since-tag=v1.3.0-skipintro
 
