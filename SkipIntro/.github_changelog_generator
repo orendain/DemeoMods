@@ -7,6 +7,7 @@ issues=false
 pr-wo-labels=false
 exclude-labels=type: build,type: documentation
 
+add-sections={"chore":{"prefix":"**Chores:**","labels":["type: chore"]}}
 enhancement-label=**Features/Enhancements:**
 enhancement-labels=type: feature
 bugs-label=**Fixes:**
@@ -14,4 +15,5 @@ bug-labels=type: bug
 
 include-labels=area: skipintro
 exclude-tags-regex=^(?!.*skipintro)
+since-tag=v1.3.0-skipintro
 
