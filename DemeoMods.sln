@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5EF5-4AED-8B59-43EB164F7EC5}"
 	ProjectSection(SolutionItems) = preProject
+		docs\Arachnophobia.json = docs\Arachnophobia.json
 		docs\house-rules-logo1.png = docs\house-rules-logo1.png
 		docs\house-rules-logo2.png = docs\house-rules-logo2.png
 		docs\houserules_menu_screenshot.jpg = docs\houserules_menu_screenshot.jpg
