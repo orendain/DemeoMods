@@ -157,7 +157,7 @@
       }
     },
     {
-      "Rule": "CardClassRestrictionOverriddenRule",
+      "Rule": "CardClassRestrictionOverridden",
       "Config": {
         "NaturesCall": "Mushroom",
       }

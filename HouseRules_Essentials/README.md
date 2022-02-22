@@ -23,7 +23,11 @@ HouseRules API.
 ### JSON Rulesets
 
 Rulesets may also be configured as JSON files and stored within the game directory `<GAME_DIR>/UserData/HouseRules/<rulesetname>.json`
-An example [LuckyDip Ruleset](../docs/LuckyDip.json) which uses many different rules for rapid gameplay is provided as a guide to help you get started.
+
+A selection are available within this repository. These are intended to be fun to play alternative games, and as a good examples for others wanting to create their own rulesets.
+
+- __[LuckyDip Ruleset](../docs/LuckyDip.json)__ : Players each start with two 'Drop Chest' cards instead of their normal starting cards, meaning that no two games start the same. Many potions have AOE effect, because it's rude not to share. Many other changes included for faster gameplay with an aim of around 90 minutes per game.
+- __[Arachnophobia Ruleset](../docs/Arachnophobia.json)__ offers a fresh adventure to be played on the RootsofEvil Map. Chased by violent thugs from their ancestral homes in Sunderhaven, the King and Queen flee into the woods. Befriended by money spiders, they hatch a plan to rebuild their fallen empires by mugging tourists.
 
 The [Settings Reference](../docs/SettingsReference.md) contains lists of all different BehaviourIDs, AbilityKeys and other data types used by the Rules.
 
@@ -169,6 +173,24 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "CardSellValueMultipliedRule",
     "Config": 2.0
   },
+  ```
+
+- __CardClassRestrictionOverriddenRule__: Overrides Character Class assignments for cards.
+  - Cards with a character class of `None` are usable by all players.
+  - Cards may be disbled from play by assigning to a non-player Character
+  - Cards may be reassigned to other player characters  
+
+  ###### _Example JSON config for CardClassRestrictionOverriddenRule_
+
+  ```json
+    {
+      "Rule": "CardClassRestrictionOverridden",
+      "Config": {
+        "NaturesCall": "Mushroom",
+        "Stealth": "Guardian",
+        "Zap": "Hunter",
+      }
+    },
   ```
 
 - __EnemyAttackScaledRule__: Enemy ⚔️attack⚔️ damage is scaled
@@ -400,11 +422,34 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 - __SampleRule__: A [sample rule](Rules/SampleRule.cs) documenting the anatomy
   of a HouseRule rule.
 
+- __SpawnCategoryOverriddenRule__:  Overrides the Spawn Categories which control distribution of pieces in each map.
+  - Each dungeon has a list of pieces which may appear, and controlling properties.
+  - This rule replaces the list (for all dungeons) with a new one.
+  - Per-Piece properties for `MaxPerDeck`, `PreFill` and `FirstAllowedLevelIndex` must be specified.
+  - Pieces which are not listed in the config will have `IsSpawningEnabled` set to `false` to disable pieces from auto-populating a map.
+  - Does not have absolute control over what monsters will appear. Bosses bring support chars etc.
+  - Config accepts list of dicts { "BoardPieceID": [ MaxPerDeck, PreFill, FirstAllowedLevelIndex ], ... }
+
+  ###### _Example JSON config for SpawnCategoryOverriddenRule_
+
+  ```json
+    {
+      "Rule": "SpawnCategoryOverridden",
+      "Config": {
+        "Spiderling": [ 200, 50, 1 ],
+        "SpiderEgg": [ 20, 10, 1 ] ,
+        "LargeSpider": [ 30, 10, 1 ],
+        "RatKing": [ 1, 1, 1 ],
+        "DarkElfGoddessBoss": [ 1, 1, 2 ],
+      }
+    },
+  ```
+
 - __StartCardsModifiedRule__: Player 🎴 starting cards 🎴 are modified
   - Removes all default cards from Player's hand and replaces them with custom ones.
   - Replenishable cards do not leave a players hand once cast (e.g. RepairArmor, HunterArrow or Zap)
   - Max of two replenishable cards per player.
-  - Config accepts Dictionary of list of dicts e.g. `{ "<HeroName1": [ { "Card" : "<CardName>","isReplenishable": bool }, ... ], ...  }`
+  - Config accepts Dictionary of list of dicts e.g. `{ "HeroName1": [ { "Card" : "CardName","isReplenishable": bool }, ... ], ...  }`
 
   ###### _Example JSON config for StartCardsModifiedRule_
 
