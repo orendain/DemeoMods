@@ -26,8 +26,12 @@ Rulesets may also be configured as JSON files and stored within the game directo
 
 A selection are available within this repository. These are intended to be fun to play alternative games, and as a good examples for others wanting to create their own rulesets.
 
-- __[LuckyDip Ruleset](../docs/LuckyDip.json)__ : Players each start with two 'Drop Chest' cards instead of their normal starting cards, meaning that no two games start the same. Many potions have AOE effect, because it's rude not to share. Many other changes included for faster gameplay with an aim of around 90 minutes per game.
-- __[Arachnophobia Ruleset](../docs/Arachnophobia.json)__ offers a fresh adventure to be played on the RootsofEvil Map. Chased by violent thugs from their ancestral homes in Sunderhaven, the King and Queen flee into the woods. Befriended by money spiders, they hatch a plan to rebuild their fallen empires by mugging tourists.
+- __[🎲LuckyDip🎲 Ruleset](../docs/LuckyDip.json)__ : Players each start with two 'Drop Chest' cards instead of their normal
+starting cards, meaning that no two games start the same. Many potions have AOE effect, because it's rude not to share. 
+Many other changes included for faster gameplay with an aim of around 90 minutes per game.
+- __[🕷️Arachnophobia🕷️ Ruleset](../docs/Arachnophobia.json)__ offers a fresh adventure to be played on the RootsOfEvil Map.
+Chased by violent thugs from their ancestral homes in Sunderhaven, the King and Queen flee into the woods. 
+Befriended by money spiders, they hatch a plan to rebuild their fallen empires, but first they're going to need some cash.
 
 The [Settings Reference](../docs/SettingsReference.md) contains lists of all different BehaviourIDs, AbilityKeys and other data types used by the Rules.
 

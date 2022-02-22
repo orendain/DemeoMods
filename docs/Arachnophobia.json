@@ -66,9 +66,7 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
-        { "Piece": "HeroSorcerer", "Property": "StartHealth", "Value": 50 },
-        { "Piece": "HeroSorcerer", "Property": "MoveRange", "Value": 40 },
-        { "Piece": "HeroSorcerer", "Property": "ActionPoint", "Value": 20 },
+        { "Piece": "HeroSorcerer", "Property": "StartHealth", "Value": 15 },
         { "Piece": "HeroGuardian", "Property": "StartHealth", "Value": 20 },
         { "Piece": "HeroHunter", "Property": "StartHealth", "Value": 15 },
         { "Piece": "HeroBard", "Property": "StartHealth", "Value": 15 },
@@ -79,7 +77,7 @@
         { "Piece": "BeaconOfSmite", "Property": "StartHealth", "Value": 20 },
         { "Piece": "BeaconOfSmite", "Property": "ActionPoint", "Value": 2 },
         { "Piece": "WolfCompanion", "Property": "ActionPoint", "Value": 3 },
-        { "Piece": "WolfCompanion", "Property": "MoveRange", "Value": 8 },
+        { "Piece": "WolfCompanion", "Property": "MoveRange", "Value": 6 },
         { "Piece": "WolfCompanion", "Property": "VisionRange", "Value": 40 },
         { "Piece": "MonsterBait", "Property": "StartHealth", "Value": 30 },
         { "Piece": "Spiderling", "Property": "StartHealth", "Value": 1 },

@@ -35,8 +35,6 @@
 
         public List<PieceProperty> GetConfigObject() => _adjustments;
 
-
-
         protected override void OnPostGameCreated(GameContext gameContext)
         {
             _originals = ReplaceExistingProperties(_adjustments);
