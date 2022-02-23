@@ -33,8 +33,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Overrides the Ability.CostAP setting for player abilities.
   - `true` means the ability has a cost to cast, `false` means that it doesn't.
   - Config accepts Dictionary e.g. `{ "AbilityName1": bool, "AbilityName2": bool, }`
-  
-  ###### _Example JSON config for AbilityActionCostAdjustedRule_
+
+  <details>
+    <summary><i>Show example JSON config for AbilityActionCostAdjustedRule</i></summary>
 
   ```json
   {
@@ -46,13 +47,15 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
 - __AbilityAoeAdjustedRule__: Adjusts the Area of Effect range(s) for abilities.
   - Does not work with all abilities.
   - Positive integers increase range, negative decrease. e.g. `"Fireball": 1` will increases the Fireball AOE from a 3x3 to 5x5
   - Config accepts Dictionary e.g. `{ "AbilityName1", int, "AbilityName2", int }`
-  
-  ###### _Example JSON config for AbilityAoeAdjustedRule_
+
+  <details>
+    <summary><i>Show example JSON config for AbilityAoeAdjustedRule</summary>
 
   ```json
   {
@@ -65,6 +68,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
 - __AbilityDamageAdjustedRule__: Ability damage is adjusted
   - Only functions for abilities which do damage. (You can't make a Heal hurt).
@@ -72,7 +76,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Positive numbers increase damage, negative decrease.
   - Config accepts Dictionary `{ "AbilityName1", int, "AbilityName2", int }`
 
-  ###### _Example JSON config for AbilityDamageAdjustedRule_
+  <details>
+    <summary><i>Show Example JSON config for AbilityDamageAdjustedRule</i></summary>
 
   ```json
   {
@@ -83,6 +88,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
 - __AbilityRandomPieceListRule__: The randomPieceList for Abilities is adjusted
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
@@ -90,7 +96,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - This rule allows the list to be replaced with a different one.
   - Config accepts Dictionary e.g. `{ "AbilityName", BoardpieceId[], "AbilityName2", BoardpieceId[] }`  
 
-  ###### _Example JSON config for AbilityRandomPieceListRule_
+  <details>
+    <summary><i>Show example JSON config for AbilityRandomPieceListRule</i></summary>
 
   ```json
   {
@@ -103,12 +110,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
 - __CardAdditionOverriddenRule__: Overrides the lists of cards which players receive from chests & karma
   - The default card allocation mechanism is intercepted changed to use a user-defined list of cards.
   - Config accepts Dictionary of PieceNames and lists of ability strings.. `{ "PieceName1": ["Ability1", "Ability2"], "PieceName2": ["Ability3", "Ability4"] }`  
 
-  ###### _Example JSON config for CardAdditionOverridden_
+  <details>
+      <summary><i>Show example JSON config for CardAdditionOverridden</i></summary>
 
   ```json
   {
@@ -119,12 +128,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
 - __CardEnergyFromAttackMultipliedRule__: Card energy from attack is multiplied
   - Multiply how quickly the mana bar fills up when you attack enemies.
   - Config accepts float e.g. `1.3`  
 
-  ###### _Example JSON config for CardEnergyFromAttackMultipliedRule_
+  <details>
+      <summary><i>Show example JSON config for CardEnergyFromAttackMultipliedRule_</i></summary>
 
   ```json
   {
@@ -132,11 +143,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": 2.0
   },
   ```
+  </details>
 
 - __CardEnergyFromRecyclingMultipliedRule__: Card energy from recycling is multiplied
   - Config accepts float e.g `1.4`  
 
-  ###### _Example JSON config for CardEnergyFromRecyclingMultipliedRule_
+  <details>
+      <summary><i>Show example JSON config for CardEnergyFromRecyclingMultipliedRule_</i></summary>
 
   ```json
   {
@@ -144,12 +157,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": 2.0
   },
   ```
+  </details>
 
 - __CardLimitModifiedRule__: Card limit is modified
   - Change the size of the player's card hand from the default 10/11
   - Config accepts Int e.g `15`  
 
-  ###### _Example JSON config for CardLimitModifiedRule_
+  <details>
+      <summary><i>Show example JSON config for CardLimitModifiedRule</i></summary>
 
   ```json
   {
@@ -157,12 +172,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": 20
   },
   ```
+  </details>
 
 - __CardSellValueMultipliedRule__: Card sell values are multiplied
-  - Increase card sale values in the shop. 
+  - Increase card sale values in the shop.
   - Config accepts float e.g `2.5`  
 
-  ###### _Example JSON config for CardSellValueMultipliedRule_
+  <details>
+      <summary><i>Show example JSON config for CardSellValueMultipliedRule</i></summary>
 
   ```json
   {
@@ -170,11 +187,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": 2.0
   },
   ```
+  </details>
 
 - __EnemyAttackScaledRule__: Enemy ⚔️attack⚔️ damage is scaled
   - Config accepts float e.g `0.85`  
 
-  ###### _Example JSON config for EnemyAttackScaledRule_
+  <details>
+      <summary><i>Show example JSON config for EnemyAttackScaledRule</i></summary>
 
   ```json
   {
@@ -182,11 +201,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": 0.85
   },
   ```
+  </details>
 
 - __EnemyDoorOpeningDisabledRule__: Enemy 🚪door🚪 opening ability disabled
   - Config accepts bool e.g `true`  
 
-  ###### _Example JSON config for EnemyDoorOpeningDisabledRule_
+  <details>
+      <summary><i>Show eample JSON config for EnemyDoorOpeningDisabledRule</i></summary>
 
   ```json
   {
@@ -194,11 +215,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": true
   },
   ```
+  </details>
 
 - __EnemyHealthScaledRule__: Enemy health is scaled
   - Config accepts float e.g `0.85`  
 
-  ###### _Example JSON config for EnemyHealthScaledRule_
+  <details>
+      <summary><i>Show example JSON config for EnemyHealthScaledRule</i></summary>
 
   ```json
   {
@@ -206,11 +229,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": 0.85
   },
   ```
+  </details>
 
 - __EnemyRespawnDisabledRule__: Enemy respawns are disabled
   - Config accepts bool e.g `true`  
 
-  ###### _Example JSON config for EnemyRespawnDisabledRule_
+  <details>
+      <summary><i>Show example JSON config for EnemyRespawnDisabledRule</i></summary>
 
   ```json
   {
@@ -218,11 +243,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": true
   },
   ```
+  </details>
 
 - __GoldPickedUpMultipliedRule__: 💰Gold💰 picked up is multiplied
   - Config accepts float e.g `1.25`  
 
-  ###### _Example JSON config for GoldPickedUpMultipliedRule_
+  <details>
+      <summary><i>Show example JSON config for GoldPickedUpMultipliedRule</i></details>
 
   ```json
   {
@@ -230,11 +257,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": 1.25
   },
   ```
+  </details>
 
 - __LevelExitLockedUntilAllEnemiesDefeatedRule__: The 🔒exit🔑 from each level will not open if any enemies remain.
   - This rule needs to be used in combination with other rules or it will not be possible to complete a level. (e.g. EnemyRespawnDisabledRule)
 
-  ###### _Example JSON config for LevelExitLockedUntilAllEnemiesDefeatedRule_
+  <details>
+      <summary><i>Show example JSON config for LevelExitLockedUntilAllEnemiesDefeatedRule</i></summary>
 
   ```json
   {
@@ -242,13 +271,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": true
   },
   ```
+  </details>
 
 - __LevelPropertiesModifiedRule__: Level properties are modified
   - Allows customisation Loot, Chests and HealingFountains on a per-floor basis
   - Config accepts Dictionary e.g. `{ "ParamName1", int, "ParamName2", int }`
 
-  ###### _Example JSON config for LevelPropertiesModifiedRule_
-
+  <details>
+      <summary><i>Show example JSON config for LevelPropertiesModifiedRule_</i></summary>
   ```json
   {
     "Rule": "LevelPropertiesModifiedRule",
@@ -263,11 +293,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </default>
 
 - __PetsFocusHunterMarkRule__: Pets focus on hunter marked enemies
   - Config accepts bool e.g `true`
 
-  ###### _Example JSON config for PetsFocusHunterMarkRule_
+  <details>
+      <summary><i>Show example JSON config for PetsFocusHunterMarkRule</i></summary>
 
   ```json
   {
@@ -275,14 +307,16 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": true
   },
   ```
+  </details>
 
 - __PieceAbilityListOverriddenRule__: The list of abilities for a ♟️BoardPiece is overridden.
   - Board pieces have abilities such as LaySpiderEgg or SpawnCultists. This rule allows the lists to be overridden
   - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
   - Assigning an Ability to a BoardPiece does not necessarily mean that the piece will have a Behaviour to use it.
-  - This rule works in conjunction with `PieceBehavioursListOverridden` and `PiecePieceTypesListOverridden` 
+  - This rule works in conjunction with `PieceBehavioursListOverridden` and `PiecePieceTypesListOverridden`
 
-  ###### _Example JSON config for PieceAbilityListOverridden_
+  <details>
+      <summary><i>Show example JSON config for PieceAbilityListOverridden</i></summary>
 
   ```json
   {
@@ -294,14 +328,16 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
 - __PieceBehavioursListOverriddenRule__: The list of behaviours that a ♟️BoardPiece behaves is overridden.
   - Board pieces have behaviours such as Patrol, SpawnPiece, AttackandRetreat. This rule allows the lists to be overridden.
   - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
   - Assigning a behaviour to a particular piece does not mean that the BoardPiece is of the correct PieceType to perform it.
-  - This rule works in conjunction with `PieceAbilityListOverridden` and `PiecePieceTypesListOverridden` 
+  - This rule works in conjunction with `PieceAbilityListOverridden` and `PiecePieceTypesListOverridden`
 
-  ###### _Example JSON config forPieceBehavioursListOverriddenRule_
+  <details>
+      <summary><i>Show example JSON config forPieceBehavioursListOverriddenRule</i></summary>
 
   ```json
   {
@@ -313,6 +349,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
 - __PieceConfigAdjustedRule__: Allows customization of any numeric field for any ♟️BoardPiece
   - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
@@ -320,7 +357,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Config accepts List of Dicts e.g. `[ {}, {}, ]`
   - Only works for integer and float fields. The configured value replaces the default.
 
-  ###### _Example JSON config for PieceConfigAdjustedRule_
+  <details>
+      <summary><i>Show example JSON config for PieceConfigAdjustedRule</i></summary>
 
   ```json
   {
@@ -335,12 +373,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     ]
   },
   ```
-  
+  </details>
+
 - __PieceImmunityListAdjustedRule__: Allows the list of immunities for any ♟️BoardPiece to be overridden
   - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weakened, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
   - Config accepts Dictionary e.g. `{ "HeroSorcerer", EventState[], "RatKing", EventState[], ... }`  
 
-  ###### _Example JSON config for PieceImmunityListAdjustedRule_
+  <details>
+      <summary><i>Show example JSON config for PieceImmunityListAdjustedRule</i></summary>
 
   ```json
   {
@@ -351,6 +391,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
 - __PiecePieceTypeListOverridden__: Allows the list of PieceTypes for a ♟️BoardPiece to be overridden.
   - Board pieces have PieceTypes such as IgnoreWhenCharmed, Brittle, Enemy, Prop, Interactable which dictate certain behaviours.
@@ -358,7 +399,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Assigning an PieceType to a BoardPiece does not necessarily mean that the piece change its behaviour.
   - This rule works in conjunction with `PieceAbilityListOverridden` and `PieceBehavioursListOverridden`  
 
-  ###### _Example JSON config for PieceImmunityListAdjustedRule_
+  <details>
+      <summary><i>Show example JSON config for PieceImmunityListAdjustedRule</i></summary>
 
   ```json
   {
@@ -370,12 +412,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
 - __RatNestsSpawnGoldRule__: Rat nests spawn 💰gold💰
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - Config accepts bool e.g `true`  
 
-  ###### _Example JSON config for RatNestsSpawnGoldRule_
+  <details>
+      <summary><i>Show example JSON config for RatNestsSpawnGoldRule</i></summary>
 
   ```json
   {
@@ -383,12 +427,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": true
   },
   ```
+  </details>
 
 - __RoundCountLimitedRule__:  Sets a limit for the maximum number of rounds a game may take.
   - For ⏳ beat-the-clock ⏳ type gameplay.
   - Config accepts integer of number of rounds e.g 50  
 
-  ###### _Example JSON config for RoundCountLimitedRule_
+  <details>
+      <summary><i>Show example JSON config for RoundCountLimitedRule</summary>
 
   ```json
   {
@@ -396,6 +442,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": 40
   },
   ```
+  </details>
 
 - __SampleRule__: A [sample rule](Rules/SampleRule.cs) documenting the anatomy
   of a HouseRule rule.
@@ -406,7 +453,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Max of two replenishable cards per player.
   - Config accepts Dictionary of list of dicts e.g. `{ "<HeroName1": [ { "Card" : "<CardName>","isReplenishable": bool }, ... ], ...  }`
 
-  ###### _Example JSON config for StartCardsModifiedRule_
+  <details>
+      <summary><i>Show example JSON config for StartCardsModifiedRule</i></summary>
 
   ```json
   {
@@ -439,6 +487,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
   - __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
   - There are only six different StatModifiers in the game. They are used by 💪Strength, 🦶Speed, 🛡️ReplenishArmor, HuntersMark, etc
@@ -446,7 +495,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - If no override is specified, the default is used instead.
   - Config accepts list of dict of StatModifier names, integer values. `{"Statmodifier": int}, {}, }`
 
-  ###### _Example JSON config for StatModifiersOverriden_
+  <details>
+      <summary><i>Show example JSON config for StatModifiersOverriden</i></summary>
 
   ```json
   {
@@ -461,6 +511,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  </details>
 
   - __StatusEffectConfigRule__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
   - Accepts a list of overrides which take the place of the default config.
@@ -468,7 +519,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Default values can be found in `StatusEffectsConfig.effectsConfig`
   - Config accepts list of dicts e.g. `[ {}, {}, ]`
 
-  ###### _Example JSON config for StatusEffectConfigRule_
+    <details>
+        <summary><i>Show example JSON config for StatusEffectConfigRule</i></summary>
 
   ```json
   {
@@ -497,3 +549,4 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     ]
   },
   ```
+  </details>
