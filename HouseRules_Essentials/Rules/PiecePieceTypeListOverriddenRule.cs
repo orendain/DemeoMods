@@ -32,9 +32,10 @@
         protected override void OnPostGameCreated(GameContext gameContext)
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
+            string lookupstring = string.Empty;
             foreach (var item in _adjustments)
             {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Key}"));
+                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));
                 _originals[item.Key] = pieceConfig.PieceType;
                 var property = Traverse.Create(pieceConfig).Property<PieceType[]>("PieceType");
                 property.Value = item.Value;
@@ -46,7 +47,7 @@
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
             foreach (var item in _originals)
             {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Key}"));
+                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));
                 var property = Traverse.Create(pieceConfig).Property<PieceType[]>("PieceType");
                 property.Value = item.Value;
             }

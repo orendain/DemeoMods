@@ -4,6 +4,7 @@ namespace HouseRules
     using System.Linq;
     using System.Text;
     using Boardgame;
+    using DataKeys;
     using HouseRules.Types;
     using MelonLoader;
 
@@ -17,6 +18,16 @@ namespace HouseRules
         public static Ruleset SelectedRuleset { get; private set; } = Ruleset.None;
 
         internal static bool IsRulesetActive { get; private set; }
+
+        public static string FixBossNames(BoardPieceId piece)
+        {
+            if (piece == BoardPieceId.DarkElfGoddessBoss || piece == BoardPieceId.CavetrollBoss)
+            {
+                return piece.ToString().Replace("Boss", "_Boss");
+            }
+
+            return piece.ToString();
+        }
 
         public static void SelectRuleset(string ruleset)
         {

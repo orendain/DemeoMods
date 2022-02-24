@@ -53,9 +53,10 @@
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
             var previousProperties = new List<PieceProperty>();
+            string lookupstring = string.Empty;
             foreach (var item in pieceProperties)
             {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{item.Piece}"));
+                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Piece)}"));
                 var propertyTraverse = Traverse.Create(pieceConfig).Property(item.Property);
                 var castedNewValue = CastPropertyValue(item.Value, propertyTraverse.GetValueType());
 
