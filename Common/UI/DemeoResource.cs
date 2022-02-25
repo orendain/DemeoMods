@@ -13,30 +13,21 @@
 
         public Color ColorBeige { get; } = new Color(0.878f, 0.752f, 0.384f, 1);
 
-        public Component LobbyAnchor { get; } = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
-            .First(x => x.name == "MenuBox_BindPose");
+        public Component LobbyAnchor { get; private set; }
 
-        public TMP_FontAsset Font { get; } =
-            Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(x => x.name == "Demeo SDF");
+        public TMP_FontAsset Font { get; private set; }
 
-        public TMP_ColorGradient FontColorGradient { get; } = Resources
-            .FindObjectsOfTypeAll<TMP_ColorGradient>()
-            .First(x => x.name == "Demeo - Main Menu Buttons");
+        public TMP_ColorGradient FontColorGradient { get; private set; }
 
-        public Mesh ButtonMesh { get; } =
-            Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "UIMenuMainButton");
+        public Mesh ButtonMesh { get; private set; }
 
-        public Material ButtonMaterial { get; } =
-            Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuMat");
+        public Material ButtonMaterial { get; private set; }
 
-        public Material ButtonHoverMaterial { get; } =
-            Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuHover");
+        public Material ButtonHoverMaterial { get; private set; }
 
-        public Mesh MenuBoxMesh { get; } =
-            Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "MenuBox_SettingsButton");
+        public Mesh MenuBoxMesh { get; private set; }
 
-        public Material MenuBoxMaterial { get; } = Resources.FindObjectsOfTypeAll<Material>()
-            .First(x => x.name == "MainMenuMat (Instance)");
+        public Material MenuBoxMaterial { get; private set; }
 
         public static DemeoResource Instance()
         {
@@ -56,8 +47,12 @@
 
         private DemeoResource()
         {
+            Initialize();
         }
 
+        /// <summary>
+        /// Returns true when all required Demeo resources are found and accounted for.
+        /// </summary>
         public static bool IsReady()
         {
             return Resources.FindObjectsOfTypeAll<TMP_FontAsset>().Any(x => x.name == "Demeo SDF")
@@ -69,6 +64,40 @@
                    && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuMat (Instance)")
                    && Resources.FindObjectsOfTypeAll<charactersoundlistener>()
                        .Count(x => x.name == "MenuBox_BindPose") > 1;
+        }
+
+        /// <summary>
+        /// Ensures all originally captured Demeo resources still exist, reinitializing otherwise.
+        /// </summary>
+        public void EnsureResourcesExists()
+        {
+            if (LobbyAnchor == null
+                || Font == null
+                || FontColorGradient == null
+                || ButtonMesh == null
+                || ButtonMaterial == null
+                || ButtonHoverMaterial == null
+                || MenuBoxMesh == null
+                || MenuBoxMaterial == null)
+            {
+                CommonModule.Logger.Msg("Discovered a required Demeo resource was removed. Reinitializing.");
+                Initialize();
+            }
+        }
+
+        private void Initialize()
+        {
+            LobbyAnchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
+                .First(x => x.name == "MenuBox_BindPose");
+            Font = Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(x => x.name == "Demeo SDF");
+            FontColorGradient = Resources
+                .FindObjectsOfTypeAll<TMP_ColorGradient>()
+                .First(x => x.name == "Demeo - Main Menu Buttons");
+            ButtonMesh = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "UIMenuMainButton");
+            ButtonMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuMat");
+            ButtonHoverMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuHover");
+            MenuBoxMesh = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "MenuBox_SettingsButton");
+            MenuBoxMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuMat (Instance)");
         }
     }
 }
