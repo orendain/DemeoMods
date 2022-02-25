@@ -32,7 +32,6 @@
         protected override void OnPostGameCreated(GameContext gameContext)
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-            string lookupstring = string.Empty;
             foreach (var item in _adjustments)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));

@@ -53,7 +53,6 @@
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
             var previousProperties = new List<PieceProperty>();
-            string lookupstring = string.Empty;
             foreach (var item in pieceProperties)
             {
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Piece)}"));
