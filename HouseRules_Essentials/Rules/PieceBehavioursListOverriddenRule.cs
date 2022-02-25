@@ -29,14 +29,11 @@
 
         public Dictionary<BoardPieceId, Behaviour[]> GetConfigObject() => _adjustments;
 
-
         protected override void OnPostGameCreated(GameContext gameContext)
         {
             var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-            string lookupstring = string.Empty;
             foreach (var item in _adjustments)
             {
-         
                 var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));
                 _originals[item.Key] = pieceConfig.Behaviours;
                 var property = Traverse.Create(pieceConfig).Property<Behaviour[]>("Behaviours");
