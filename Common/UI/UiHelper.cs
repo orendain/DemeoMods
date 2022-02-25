@@ -21,6 +21,7 @@
         {
             if (_instance != null)
             {
+                _instance.DemeoResource.EnsureResourcesExists();
                 return _instance;
             }
 
@@ -38,6 +39,9 @@
             DemeoResource = demeoResource;
         }
 
+        /// <summary>
+        /// Returns true when the helper is fully initialized with required Demeo resources.
+        /// </summary>
         public static bool IsReady()
         {
             return DemeoResource.IsReady();
