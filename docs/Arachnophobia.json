@@ -64,6 +64,13 @@
       }
     },
     {
+      "Rule": "RegainAbilityIfMaxxedOutOverridden",
+      "Config": {
+        "Speed": false,
+        "Strength": false
+      }
+    },
+    {
       "Rule": "PieceConfigAdjusted",
       "Config": [
         { "Piece": "HeroSorcerer", "Property": "StartHealth", "Value": 15 },
