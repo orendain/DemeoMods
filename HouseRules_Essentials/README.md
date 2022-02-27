@@ -154,6 +154,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __CardLimitModifiedRule__: Card limit is modified
+  - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - Change the size of the player's card hand from the default 10/11
   - Config accepts Int e.g `15`  
 
