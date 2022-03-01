@@ -411,6 +411,23 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+- __RegainAbilityIfMaxxedOutOverriddenRule__: Controls whether you get a potion back when you cast it on someone who is already at max.
+  - This rule is to overcome a mana-farming 'feature' that occurs if you apply an AOE range onto Strength/Speed potions. By default when you cast a strength or speed potion on someone who is already maxxed out, you get it returned to your hand. If you cast a potion on a group who are maxxed, you get one-potion-per-player returned back to your hand. This is effectively free-mana whenever you want it.
+  - This rule exists to control that behaviour. By setting Abilities to `false` you can prevent the card being returned to the player's hand.
+  - Config accepts dictionary of ability name and bool.  
+
+  ###### _Example JSON config for RegainAbilityIfMaxxedOutOverriddenRule_
+
+  ```json
+    {
+      "Rule": "RegainAbilityIfMaxxedOutOverridden",
+      "Config": {
+        "Speed": false,
+        "Strength": false
+      }
+    },
+  ```
+
 - __RoundCountLimitedRule__:  Sets a limit for the maximum number of rounds a game may take.
   - For ⏳ beat-the-clock ⏳ type gameplay.
   - Config accepts integer of number of rounds e.g 50  
