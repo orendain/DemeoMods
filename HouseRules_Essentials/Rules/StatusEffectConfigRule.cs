@@ -1,60 +1,68 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
-    using System;
     using System.Collections.Generic;
     using Boardgame;
     using DataKeys;
+    using global::Types;
     using HarmonyLib;
     using HouseRules.Types;
-    using StatusEffectData = global::Types.StatusEffectData;
 
-    public sealed class StatusEffectConfigRule : Rule, IConfigWritable<List<StatusEffectData>>, IPatchable, IMultiplayerSafe
+    public sealed class StatusEffectConfigRule : Rule, IConfigWritable<List<StatusEffectData>>, IMultiplayerSafe
     {
-        public override string Description => "Status Effect Durations are modified";
+        public override string Description => "StatusEffects config is Overridden";
 
-        private static bool _isActivated;
-        private static List<StatusEffectData> _adjustments;
+        private readonly List<StatusEffectData> _adjustments;
+        private List<StatusEffectData> _originals;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StatusEffectConfigRule"/> class.
+        /// </summary>
+        /// <param name="adjustments">Accepts a List of replacement StatusEffectsData
+        /// which will replace exsting values</param>
         public StatusEffectConfigRule(List<StatusEffectData> adjustments)
         {
             _adjustments = adjustments;
+            _originals = new List<StatusEffectData>();
         }
 
         public List<StatusEffectData> GetConfigObject() => _adjustments;
 
-        protected override void OnActivate(GameContext gameContext)
+        protected override void OnPostGameCreated(GameContext gameContext)
         {
-            _isActivated = true;
+            _originals = UpdateStatusEffectConfig(_adjustments);
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
-
-        private static void Patch(Harmony harmony)
+        protected override void OnDeactivate(GameContext gameContext)
         {
-            harmony.Patch(
-                original: AccessTools.Method(typeof(StatusEffectsConfig), "GetConfigFor"),
-                prefix: new HarmonyMethod(
-                    typeof(StatusEffectConfigRule),
-                    nameof(StatusEffects_GetConfigFor_Prefix)));
+            UpdateStatusEffectConfig(_originals);
         }
 
-        private static bool StatusEffects_GetConfigFor_Prefix(ref EffectStateType type, ref StatusEffectData __result)
+        private static List<StatusEffectData> UpdateStatusEffectConfig(List<StatusEffectData> adjustments)
         {
-            if (!_isActivated)
+            var effectsConfig = Traverse.Create(typeof(StatusEffectsConfig)).Field<StatusEffectData[]>("effectsConfig").Value;
+            var previousConfigs = new List<StatusEffectData>();
+            var changedEffectStateTypes = new List<EffectStateType>();
+            foreach (var statusEffect in adjustments)
             {
-                return true;
+                changedEffectStateTypes.Add(statusEffect.effectStateType);
             }
 
-            for (int i = 0; i < _adjustments.Count; i++)
+            for (int i = 0; i < effectsConfig.Length; i++)
             {
-                if (_adjustments[i].effectStateType == type)
+                if (changedEffectStateTypes.Contains(effectsConfig[i].effectStateType))
                 {
-                    __result = _adjustments[i];
-                    return false; // We returned an user-adjusted config.
+                    previousConfigs.Add(effectsConfig[i]);
+                    for (int j = 0; j < adjustments.Count; j++)
+                    {
+                        if (adjustments[j].effectStateType == effectsConfig[i].effectStateType)
+                        {
+                            effectsConfig[i] = adjustments[j];
+                        }
+                    }
                 }
             }
 
-            return true;
+            return previousConfigs;
         }
     }
 }
