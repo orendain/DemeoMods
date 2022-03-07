@@ -112,6 +112,20 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+- __BackstabConfigOverriddenRule__: A list of Pieces may use 🔪Backstab🔪 instead of just the Assassin
+  - Replaces the hardcoded default of HeroRouge with a configurable list.
+  - Now everyone can benefit from Backstab bonus..
+  - Config accepts List of BoardPieceIDs e.g. `[ "HeroGuardian", "HeroSorcerer", ...]`  
+
+  ###### _Example JSON config for BackstabConfigOverriddenRule_
+
+  ```json
+    {
+      "Rule": "BackstabConfigOverridden",
+      "Config": [ "HeroGuardian", "HeroHunter", "HeroSorcerer", "HeroRouge", "HeroBard" ]
+    },
+  ```
+
 - __CardAdditionOverriddenRule__: Overrides the lists of cards which players receive from chests & karma
   - The default card allocation mechanism is intercepted changed to use a user-defined list of cards.
   - Config accepts Dictionary of PieceNames and lists of ability strings.. `{ "PieceName1": ["Ability1", "Ability2"], "PieceName2": ["Ability3", "Ability4"] }`  
