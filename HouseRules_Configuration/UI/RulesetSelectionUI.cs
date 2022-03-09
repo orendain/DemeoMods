@@ -34,7 +34,8 @@
 
         private void Initialize()
         {
-            this.transform.SetParent(_uiHelper.DemeoResource.LobbyAnchor.transform, worldPositionStays: true);
+            this.transform.SetParent(_uiHelper.DemeoResource.LobbyTableAnchor.transform, worldPositionStays: true);
+
             this.transform.position = new Vector3(32.6f, 26.4f, -12.8f);
             this.transform.rotation = Quaternion.Euler(0, 70, 0);
 
