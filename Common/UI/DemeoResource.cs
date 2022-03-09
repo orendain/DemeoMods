@@ -13,7 +13,7 @@
 
         public Color ColorBeige { get; } = new Color(0.878f, 0.752f, 0.384f, 1);
 
-        public Component LobbyTableAnchor { get; private set; }
+        public Component VrLobbyTableAnchor { get; private set; }
 
         public GameObject HangoutsTableAnchor { get; private set; }
 
@@ -77,33 +77,7 @@
                    || Resources.FindObjectsOfTypeAll<GameObject>().Any(x => x.name == "GroupLaunchTable");
         }
 
-        /// <summary>
-        /// Ensures all originally captured Demeo resources still exist, reinitializing otherwise.
-        /// </summary>
-        public void EnsureResourcesExists()
-        {
-            if (IsMissingAnchor()
-                || Font == null
-                || FontColorGradient == null
-                || ButtonMeshBlue == null
-                || ButtonMeshBrown == null
-                || ButtonMeshRed == null
-                || ButtonMaterial == null
-                || ButtonHoverMaterial == null
-                || MenuBoxMesh == null
-                || MenuBoxMaterial == null)
-            {
-                CommonModule.Logger.Msg("Discovered a required Demeo resource was removed. Reinitializing.");
-                Initialize();
-            }
-        }
-
-        private bool IsMissingAnchor()
-        {
-            return LobbyTableAnchor == null && HangoutsTableAnchor == null;
-        }
-
-        private void Initialize()
+        public void Initialize()
         {
             Font = Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(x => x.name == "Demeo SDF");
             FontColorGradient = Resources
@@ -122,7 +96,7 @@
 
         private void InitializeAnchors()
         {
-            LobbyTableAnchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
+            VrLobbyTableAnchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
                 .FirstOrDefault(x => x.name == "MenuBox_BindPose");
             HangoutsTableAnchor = Resources.FindObjectsOfTypeAll<GameObject>()
                 .FirstOrDefault(x => x.name == "GroupLaunchTable");

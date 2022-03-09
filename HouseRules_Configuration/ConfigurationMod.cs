@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Common;
     using MelonLoader;
     using UnityEngine;
 
@@ -11,6 +12,11 @@
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
         private const int LobbySceneIndex = 1;
         private static readonly List<string> FailedRulesetFiles = new List<string>();
+
+        public override void OnApplicationStart()
+        {
+            CommonModule.Initialize();
+        }
 
         public override void OnApplicationLateStart()
         {
