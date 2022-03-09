@@ -13,7 +13,9 @@
 
         public Color ColorBeige { get; } = new Color(0.878f, 0.752f, 0.384f, 1);
 
-        public Component LobbyAnchor { get; private set; }
+        public Component LobbyTableAnchor { get; private set; }
+
+        public GameObject HangoutsTableAnchor { get; private set; }
 
         public TMP_FontAsset Font { get; private set; }
 
@@ -62,8 +64,13 @@
                    && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuHover")
                    && Resources.FindObjectsOfTypeAll<Mesh>().Any(x => x.name == "MenuBox_SettingsButton")
                    && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuMat (Instance)")
-                   && Resources.FindObjectsOfTypeAll<charactersoundlistener>()
-                       .Count(x => x.name == "MenuBox_BindPose") > 1;
+                   && IsAnchorReady();
+        }
+
+        private static bool IsAnchorReady()
+        {
+            return Resources.FindObjectsOfTypeAll<charactersoundlistener>().Count(x => x.name == "MenuBox_BindPose") > 1
+                   || Resources.FindObjectsOfTypeAll<GameObject>().Any(x => x.name == "GroupLaunchTable");
         }
 
         /// <summary>
@@ -71,7 +78,7 @@
         /// </summary>
         public void EnsureResourcesExists()
         {
-            if (LobbyAnchor == null
+            if (!DoesAnchorExist()
                 || Font == null
                 || FontColorGradient == null
                 || ButtonMesh == null
@@ -85,10 +92,14 @@
             }
         }
 
+        private bool DoesAnchorExist()
+        {
+            return LobbyTableAnchor != null
+                   || HangoutsTableAnchor != null;
+        }
+
         private void Initialize()
         {
-            LobbyAnchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
-                .First(x => x.name == "MenuBox_BindPose");
             Font = Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(x => x.name == "Demeo SDF");
             FontColorGradient = Resources
                 .FindObjectsOfTypeAll<TMP_ColorGradient>()
@@ -98,6 +109,16 @@
             ButtonHoverMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuHover");
             MenuBoxMesh = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "MenuBox_SettingsButton");
             MenuBoxMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuMat (Instance)");
+
+            InitializeAnchors();
+        }
+
+        private void InitializeAnchors()
+        {
+            LobbyTableAnchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
+                .FirstOrDefault(x => x.name == "MenuBox_BindPose");
+            HangoutsTableAnchor = Resources.FindObjectsOfTypeAll<GameObject>()
+                .FirstOrDefault(x => x.name == "GroupLaunchTable");
         }
     }
 }
