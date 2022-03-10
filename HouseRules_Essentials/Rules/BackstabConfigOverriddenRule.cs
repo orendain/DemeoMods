@@ -14,8 +14,8 @@
 
         private static List<BoardPieceId> _globalAdjustments;
         private static bool _isActivated;
-        
-        private static List<BoardPieceId> _adjustments;
+
+        private readonly List<BoardPieceId> _adjustments;
 
         public BackstabConfigOverriddenRule(List<BoardPieceId> adjustments)
         {
@@ -49,7 +49,7 @@
             }
 
             if (_globalAdjustments.Contains(__instance.boardPieceId))
-                {
+            {
                 __result = true;
             } else
             {
