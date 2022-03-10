@@ -6,7 +6,6 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using StatusEffectData = global::Types.StatusEffectData;
 
     public sealed class BackstabConfigOverriddenRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
@@ -14,8 +13,8 @@
 
         private static List<BoardPieceId> _globalAdjustments;
         private static bool _isActivated;
-        
-        private static List<BoardPieceId> _adjustments;
+
+        private readonly List<BoardPieceId> _adjustments;
 
         public BackstabConfigOverriddenRule(List<BoardPieceId> adjustments)
         {
@@ -48,14 +47,7 @@
                 return true;
             }
 
-            if (_globalAdjustments.Contains(__instance.boardPieceId))
-                {
-                __result = true;
-            } else
-            {
-                __result = false;
-            }
-
+            __result = _globalAdjustments.Contains(__instance.boardPieceId);
             return false; // We returned an user-adjusted config.
         }
     }
