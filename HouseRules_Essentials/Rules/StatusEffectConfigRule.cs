@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using Boardgame;
-    using DataKeys;
     using global::Types;
     using HarmonyLib;
     using HouseRules.Types;
@@ -18,7 +17,7 @@
         /// Initializes a new instance of the <see cref="StatusEffectConfigRule"/> class.
         /// </summary>
         /// <param name="adjustments">Accepts a List of replacement StatusEffectsData
-        /// which will replace exsting values</param>
+        /// which will replace existing values.</param>
         public StatusEffectConfigRule(List<StatusEffectData> adjustments)
         {
             _adjustments = adjustments;
@@ -39,27 +38,18 @@
 
         private static List<StatusEffectData> UpdateStatusEffectConfig(List<StatusEffectData> adjustments)
         {
-            var effectsConfig = Traverse.Create(typeof(StatusEffectsConfig)).Field<StatusEffectData[]>("effectsConfig").Value;
+            var effectsConfigs = Traverse.Create(typeof(StatusEffectsConfig)).Field<StatusEffectData[]>("effectsConfig").Value;
             var previousConfigs = new List<StatusEffectData>();
-            var changedEffectStateTypes = new List<EffectStateType>();
-            foreach (var statusEffect in adjustments)
+            for (var i = 0; i < effectsConfigs.Length; i++)
             {
-                changedEffectStateTypes.Add(statusEffect.effectStateType);
-            }
-
-            for (int i = 0; i < effectsConfig.Length; i++)
-            {
-                if (changedEffectStateTypes.Contains(effectsConfig[i].effectStateType))
+                var matchingIndex = adjustments.FindIndex(a => a.effectStateType == effectsConfigs[i].effectStateType);
+                if (matchingIndex < 0)
                 {
-                    previousConfigs.Add(effectsConfig[i]);
-                    for (int j = 0; j < adjustments.Count; j++)
-                    {
-                        if (adjustments[j].effectStateType == effectsConfig[i].effectStateType)
-                        {
-                            effectsConfig[i] = adjustments[j];
-                        }
-                    }
+                    continue;
                 }
+
+                previousConfigs.Add(effectsConfigs[i]);
+                effectsConfigs[i] = adjustments[matchingIndex];
             }
 
             return previousConfigs;
