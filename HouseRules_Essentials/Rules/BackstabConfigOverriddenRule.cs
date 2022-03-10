@@ -6,7 +6,6 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using StatusEffectData = global::Types.StatusEffectData;
 
     public sealed class BackstabConfigOverriddenRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
