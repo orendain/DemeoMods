@@ -7,18 +7,18 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class AbilityActionCostAdjustedRule : Rule, IConfigWritable<Dictionary<string, bool>>, IMultiplayerSafe
+    public sealed class AbilityBackstabAdjustedRule : Rule, IConfigWritable<Dictionary<string, bool>>, IMultiplayerSafe
     {
         public override string Description => "Ability AP costs are adjusted";
 
         private readonly Dictionary<string, bool> _adjustments;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AbilityActionCostAdjustedRule"/> class.
+        /// Initializes a new instance of the <see cref="AbilityBackstabAdjustedRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Key-value pairs of abilitykey and bool that controls 
-        /// the costActionPoint setting.</param>
-        public AbilityActionCostAdjustedRule(Dictionary<string, bool> adjustments)
+        /// <param name="adjustments">Key-value pairs of abilitykey and bool for whether backstab bonus
+        /// is enabled or not.</param>
+        public AbilityBackstabAdjustedRule(Dictionary<string, bool> adjustments)
         {
             _adjustments = adjustments;
         }
@@ -31,7 +31,7 @@
             foreach (var item in _adjustments)
             {
                 var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                ability.costActionPoint = item.Value;
+                ability.enableBackstabBonus = item.Value;
             }
         }
 
@@ -41,7 +41,7 @@
             foreach (var item in _adjustments)
             {
                 var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                ability.costActionPoint = !item.Value;
+                ability.enableBackstabBonus = !item.Value;
             }
         }
     }

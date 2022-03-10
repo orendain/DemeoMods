@@ -74,6 +74,26 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+- __AbilityBackstabAdjustedRule__: Adjusts the enableBackstabBonus setting for abilities.
+  - Does not work with all abilities.
+  - Config accepts Dictionary e.g. `{ "AbilityName1", bool, "AbilityName2", bool }`
+  
+  ###### _Example JSON config for AbilityBackstabAdjustedRule_
+
+  ```json
+  {
+    "Rule": "AbilityBackstabAdjustedRule",
+    "Config": {
+      "Zap": true,
+      "HunterArrow": true,
+      "PiercingArrow": true,
+      "PoisonTip": true,
+      "Fireball": true,
+      "Freeze": true,
+    }
+  },
+  ```
+
 - __AbilityDamageAdjustedRule__: Ability damage is adjusted
   - Only functions for abilities which do damage. (You can't make a Heal hurt).
   - CriticalHitDamage is adjusted to double normal damage.
