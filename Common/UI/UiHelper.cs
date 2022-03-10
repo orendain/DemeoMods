@@ -11,7 +11,7 @@
         public const int DefaultButtonFontSize = 7;
         public const int DefaultLabelFontSize = 5;
         public const int DefaultMenuHeaderFontSize = 10;
-        public const float DefaultTextZShift = -0.2f;
+        public const float DefaultTextZShift = -0.3f;
 
         private static UiHelper _instance;
 
@@ -65,10 +65,10 @@
         public GameObject CreateButton(Action callback)
         {
             var buttonObject = new GameObject("Button");
-            buttonObject.transform.localRotation = Quaternion.Euler(0, 180, 0); // Un-reverse button from its default.
+            buttonObject.transform.localRotation = Quaternion.Euler(270, 0, 0); // Align object.
             buttonObject.layer = 5; // UI layer.
 
-            buttonObject.AddComponent<MeshFilter>().mesh = DemeoResource.ButtonMesh;
+            buttonObject.AddComponent<MeshFilter>().mesh = DemeoResource.ButtonMeshBlue;
             buttonObject.AddComponent<MeshRenderer>().material = DemeoResource.ButtonMaterial;
 
             var menuButtonHoverEffect = buttonObject.AddComponent<MenuButtonHoverEffect>();

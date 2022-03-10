@@ -21,7 +21,11 @@
 
         public TMP_ColorGradient FontColorGradient { get; private set; }
 
-        public Mesh ButtonMesh { get; private set; }
+        public Mesh ButtonMeshBlue { get; private set; }
+
+        public Mesh ButtonMeshBrown { get; private set; }
+
+        public Mesh ButtonMeshRed { get; private set; }
 
         public Material ButtonMaterial { get; private set; }
 
@@ -78,10 +82,12 @@
         /// </summary>
         public void EnsureResourcesExists()
         {
-            if (!DoesAnchorExist()
+            if (IsMissingAnchor()
                 || Font == null
                 || FontColorGradient == null
-                || ButtonMesh == null
+                || ButtonMeshBlue == null
+                || ButtonMeshBrown == null
+                || ButtonMeshRed == null
                 || ButtonMaterial == null
                 || ButtonHoverMaterial == null
                 || MenuBoxMesh == null
@@ -92,10 +98,9 @@
             }
         }
 
-        private bool DoesAnchorExist()
+        private bool IsMissingAnchor()
         {
-            return LobbyTableAnchor != null
-                   || HangoutsTableAnchor != null;
+            return LobbyTableAnchor == null && HangoutsTableAnchor == null;
         }
 
         private void Initialize()
@@ -104,7 +109,9 @@
             FontColorGradient = Resources
                 .FindObjectsOfTypeAll<TMP_ColorGradient>()
                 .First(x => x.name == "Demeo - Main Menu Buttons");
-            ButtonMesh = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "UIMenuMainButton");
+            ButtonMeshBlue = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "UIMainButtonBlue");
+            ButtonMeshBrown = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "UIMainButtonBrown");
+            ButtonMeshRed = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "UIMainButtonRed");
             ButtonMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuMat");
             ButtonHoverMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuHover");
             MenuBoxMesh = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "MenuBox_SettingsButton");
