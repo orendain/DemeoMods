@@ -2,7 +2,7 @@
 
 A collection of predefined rules and rulesets for HouseRules_Core
 
-![HouseRules Logo](../docs/images/house-rules-logo1.png)
+![HouseRules Logo](../docs/house-rules-logo1.png)
 
 See the [HouseRules_Core readme](../HouseRules_Core/README.md) for more information about
 HouseRules API.
