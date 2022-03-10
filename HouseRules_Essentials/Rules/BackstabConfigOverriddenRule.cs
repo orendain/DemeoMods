@@ -48,14 +48,7 @@
                 return true;
             }
 
-            if (_globalAdjustments.Contains(__instance.boardPieceId))
-            {
-                __result = true;
-            } else
-            {
-                __result = false;
-            }
-
+            __result = _globalAdjustments.Contains(__instance.boardPieceId);
             return false; // We returned an user-adjusted config.
         }
     }
