@@ -18,7 +18,7 @@
                 new CardEnergyFromAttackMultipliedRule(1.5f),
                 new CardEnergyFromRecyclingMultipliedRule(1.5f),
                 new EnemyHealthScaledRule(0.8f),
-                new EnemyAttackScaledRule(0.6f));
+                new LevelPropertiesModifiedRule("BigGoldPileChance", 100, "FloorOneHealingFountains", 2, "FloorOneLootChests", 4, "FloorTwoHealingFountains", 3, "FloorTwoLootChests", 5, "FloorThreeHealingFountains", 2, "FloorThreeLootChests", 2));
         }
     }
 }

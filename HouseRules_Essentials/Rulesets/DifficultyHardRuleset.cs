@@ -15,8 +15,9 @@
                 description,
                 new CardEnergyFromAttackMultipliedRule(0.8f),
                 new CardEnergyFromRecyclingMultipliedRule(0.8f),
-                new EnemyHealthScaledRule(1.2f),
-                new EnemyAttackScaledRule(1.2f));
+                new EnemyHealthScaledRule(1.8f),
+                new EnemyAttackScaledRule(1.5f),
+                new LevelPropertiesModifiedRule("BigGoldPileChance", 30, "FloorOneHealingFountains", 1, "FloorOneLootChests", 2, "FloorTwoHealingFountains", 1, "FloorTwoLootChests", 2, "FloorThreeHealingFountains", 1, "FloorThreeLootChests", 1));                
         }
     }
 }

@@ -13,10 +13,11 @@
             return Ruleset.NewInstance(
                 name,
                 description,
-                new CardEnergyFromAttackMultipliedRule(0.6f),
-                new CardEnergyFromRecyclingMultipliedRule(0.6f),
-                new EnemyHealthScaledRule(1.4f),
-                new EnemyAttackScaledRule(1.4f));
+                new CardEnergyFromAttackMultipliedRule(0.5f),
+                new CardEnergyFromRecyclingMultipliedRule(0.5f),
+                new EnemyHealthScaledRule(2.2f),
+                new EnemyAttackScaledRule(2.0f);
+                new LevelPropertiesModifiedRule("BigGoldPileChance", 10, "FloorOneHealingFountains", 0, "FloorOneLootChests", 1, "FloorTwoHealingFountains", 1, "FloorTwoLootChests", 1, "FloorThreeHealingFountains", 0, "FloorThreeLootChests", 1));                
         }
     }
 }
