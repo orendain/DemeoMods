@@ -10,14 +10,30 @@
             const string name = "Difficulty: Hard";
             const string description = "Increased game difficulty for a greater challenge.";
 
+            var cardEnergyAttck = new CardEnergyFromAttackMultipliedRule(0.8f);
+            var cardEnegyRecycle = new CardEnergyFromRecyclingMultipliedRule(0.8f);
+            var EnemyScaleHealth = new EnemyHealthScaledRule(1.8f);
+            var EnemyScaleAttack = new EnemyAttackScaledRule(1.5f);
+
+            var levelPropertiesModified = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            {
+              { "BigGoldPileChance", 30 },
+              { "FloorOneHealingFountains", 1 },
+              { "FloorOneLootChests", 2 },
+              { "FloorTwoHealingFountains", 1 },
+              { "FloorTwoLootChests", 2 },
+              { "FloorThreeHealingFountains", 1 },
+              { "FloorThreeLootChests", 1 },
+            });
+
             return Ruleset.NewInstance(
                 name,
                 description,
-                new CardEnergyFromAttackMultipliedRule(0.8f),
-                new CardEnergyFromRecyclingMultipliedRule(0.8f),
-                new EnemyHealthScaledRule(1.8f),
-                new EnemyAttackScaledRule(1.5f),
-                new LevelPropertiesModifiedRule("BigGoldPileChance", 30, "FloorOneHealingFountains", 1, "FloorOneLootChests", 2, "FloorTwoHealingFountains", 1, "FloorTwoLootChests", 2, "FloorThreeHealingFountains", 1, "FloorThreeLootChests", 1));                
+                cardEneryAttack,
+                cardEnergyRecycle,
+                EnemyScaleAttack,
+                EnemyScaleHealth,
+                levelPropertiesRule);
         }
     }
 }
