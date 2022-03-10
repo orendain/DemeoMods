@@ -82,11 +82,12 @@
 
             var refreshButton = _uiHelper.CreateButton(RefreshRoomList);
             refreshButton.transform.SetParent(this.transform, worldPositionStays: false);
-            refreshButton.transform.localPosition = new Vector3(0, 0.3f, 0);
+            refreshButton.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultButtonZShift);
+            refreshButton.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
 
             var refreshText = _uiHelper.CreateButtonText("Refresh");
             refreshText.transform.SetParent(this.transform, worldPositionStays: false);
-            refreshText.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultTextZShift);
+            refreshText.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             this.gameObject.AddComponent<BoxCollider>();
