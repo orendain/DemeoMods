@@ -21,13 +21,13 @@ mods, or are interested in learning to build your own.
 
 ### HouseRules
 
-![HouseRules Logo](docs/house-rules-logo2.png)
+![HouseRules Logo](docs/images/house-rules-logo2.png)
 
 Set your own challenges and be the Dungeon Master of your own game. Make your own rules and challenge your friends.
 
 HouseRules applies customisations to many settings, values and toggles used within the Demeo code.
 
-![HouseRules Screenshot](docs/houserules_screenshot.jpg)
+![HouseRules Screenshot](docs/images/houserules_screenshot.jpg)
 
 - Change the size of your card hand (Skirmish Mode Only)
 - Adjust HP, AttackDamage, ActionPoints etc on a per-character basis
@@ -70,7 +70,7 @@ The Elven Necropolis is a very welcoming place... some might say it's too welcom
 
 The SkipIntro mod skips the intro loading scene and takes you straight into the main menu.
 
-You will never again need to ![SkipIntro Icon](docs/skipintro_icon.jpg)
+You will never again need to ![SkipIntro Icon](docs/images/skipintro_icon.jpg)
 
 ### RoomFinder
 
@@ -78,7 +78,7 @@ Tired of Demeo's "Quickjoin" endlessly placing you into random games? This mod
 lists all public rooms, along with their properties, so you can pick which one
 to join.
 
-![RoomFinder Screenshot](docs/roomfinder_screenshot.jpg)
+![RoomFinder Screenshot](docs/images/roomfinder_screenshot.jpg)
 
 ### RoomCode
 

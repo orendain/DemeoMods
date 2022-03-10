@@ -44,7 +44,7 @@ Rulesets can be selected dynamically from the in-game menu and default ruleset m
 * A selection of rulesets are built-in, but you can also define your own in JSON.
 * Both built-in and JSON rulesets are displayed on the menu.
 
-![HouseRules_Menu_ Screenshot](../docs/houserules_menu_screenshot.jpg)
+![HouseRules_Menu_ Screenshot](../docs/images/houserules_menu_screenshot.jpg)
 
 ## MelonLoader Preferences
 
