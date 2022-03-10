@@ -71,7 +71,7 @@ The `loadRulesetsFromConfig` flag can be set to `false` to prevent loading of JS
 
 ## User-Defined JSON Rulesets
 
-JSON rulesets can be defined within the Demeo game directory and saved in  `UserData/HouseRules/` as files named `<ruleset_name>.json`. Below is a sample ruleset for improving the life of the Sorcerer. It removes the casting cost on his Zap ability and gives it an extra point of damage.
+JSON rulesets can be defined within the Demeo game directory and saved in `UserData/HouseRules/` as files named `<ruleset_name>.json`. Below is a sample ruleset for improving the life of the Sorcerer. It removes the casting cost on his Zap ability and gives it an extra point of damage.
 
 ```json
 {
@@ -92,7 +92,7 @@ JSON rulesets can be defined within the Demeo game directory and saved in  `User
 
 Saving the above contents as `UserData/HouseRules/SuperZap.json` will allow this ruleset to appear automatically in the in-game HouseRules menu.
 
-A further complete [LuckyDip Ruleset](../docs/LuckyDip.json) is also provided as a reference.
+A further complete [LuckyDip Ruleset](../docs/rulesets/LuckyDip.json) is also provided as a reference.
 
 Example JSON samples for each rule type can be found in the
 [HouseRules_Essentials readme](../HouseRules_Essentials/README.md).
