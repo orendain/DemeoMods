@@ -39,7 +39,7 @@
             this.transform.position = new Vector3(32.6f, 26.4f, -12.8f);
             this.transform.rotation = Quaternion.Euler(0, 70, 0);
 
-            _background = new GameObject("RulesetSelectionUIBackground");
+            _background = new GameObject("Background");
             _background.AddComponent<MeshFilter>().mesh = _uiHelper.DemeoResource.MenuBoxMesh;
             _background.AddComponent<MeshRenderer>().material = _uiHelper.DemeoResource.MenuBoxMaterial;
             _background.transform.SetParent(this.transform, worldPositionStays: false);

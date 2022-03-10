@@ -45,7 +45,7 @@
                 return;
             }
 
-            _ = new GameObject("RulesetSelectionUI", typeof(UI.RulesetSelectionUI));
+            _ = new GameObject("HouseRules_RulesetSelection", typeof(UI.RulesetSelectionUI));
         }
 
         private static void LoadRulesetsFromConfig()
