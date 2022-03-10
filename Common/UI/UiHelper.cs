@@ -11,7 +11,8 @@
         public const int DefaultButtonFontSize = 7;
         public const int DefaultLabelFontSize = 5;
         public const int DefaultMenuHeaderFontSize = 10;
-        public const float DefaultTextZShift = -0.3f;
+        public const float DefaultButtonZShift = -0.1f;
+        public const float DefaultTextZShift = -0.2f;
 
         private static UiHelper _instance;
 
