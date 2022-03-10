@@ -106,12 +106,13 @@
 
             var button = _uiHelper.CreateButton(action);
             button.transform.SetParent(container.transform, worldPositionStays: false);
-            button.transform.localScale = new Vector3(0.75f, 1, 1);
+            button.transform.localScale = new Vector3(0.55f, 0.9f, 0.9f);
+            button.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultButtonZShift);
 
             var buttonText = _uiHelper.CreateText(text, Color.white, UiHelper.DefaultButtonFontSize);
             buttonText.transform.SetParent(container.transform, worldPositionStays: false);
             buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-            buttonText.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultTextZShift);
+            buttonText.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
 
             return container;
         }
@@ -141,8 +142,8 @@
 
             var joinButton = _uiHelper.CreateButton(JoinRoomAction(room.Name));
             joinButton.transform.SetParent(container.transform, worldPositionStays: false);
-            joinButton.transform.localScale = new Vector3(0.4f, 0.7f, 0.7f);
-            joinButton.transform.localPosition = new Vector3(-3f, 0, 0);
+            joinButton.transform.localScale = new Vector3(0.32f, 0.45f, 0.45f);
+            joinButton.transform.localPosition = new Vector3(-3f, 0, UiHelper.DefaultButtonZShift);
 
             var joinText = _uiHelper.CreateText(room.Name, Color.white, UiHelper.DefaultLabelFontSize);
             joinText.transform.SetParent(container.transform, worldPositionStays: false);
