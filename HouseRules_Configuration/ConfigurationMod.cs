@@ -11,6 +11,7 @@
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
         private const int LobbySceneIndex = 1;
+        private const int HangoutsSceneIndex = 43;
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
         public override void OnApplicationStart()
@@ -46,12 +47,10 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (buildIndex != LobbySceneIndex)
+            if (buildIndex == LobbySceneIndex || buildIndex == HangoutsSceneIndex)
             {
-                return;
+                _ = new GameObject("HouseRules_RulesetSelection", typeof(UI.RulesetSelectionUI));
             }
-
-            _ = new GameObject("HouseRules_RulesetSelection", typeof(UI.RulesetSelectionUI));
         }
 
         private static void LoadRulesetsFromConfig()
