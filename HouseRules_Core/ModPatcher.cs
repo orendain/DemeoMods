@@ -12,6 +12,11 @@
         private static bool _isStartingGame;
         private static EventInterpreter _eventInterpreter;
 
+        private static void InitEventInterpreter()
+        {
+            _eventInterpreter = EventInterpreter.NewInstance(_gameContext);
+        }
+
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
@@ -55,7 +60,8 @@
         {
             var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
             _gameContext = gameContext;
-            _eventInterpreter = EventInterpreter.NewInstance(_gameContext);
+
+            InitEventInterpreter();
         }
 
         private static void CreatingGameState_OnJoinedRoom_Prefix()
