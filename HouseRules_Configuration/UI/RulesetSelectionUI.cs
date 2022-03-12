@@ -1,5 +1,6 @@
 ﻿namespace HouseRules.Configuration.UI
 {
+    using System;
     using System.Collections;
     using Common.UI;
     using UnityEngine;
@@ -34,10 +35,17 @@
 
         private void Initialize()
         {
-            this.transform.SetParent(_uiHelper.DemeoResource.LobbyTableAnchor.transform, worldPositionStays: true);
-
-            this.transform.position = new Vector3(32.6f, 26.4f, -12.8f);
-            this.transform.rotation = Quaternion.Euler(0, 70, 0);
+            switch (UiHelper.GetCurrentUiType())
+            {
+                case UiHelper.UiType.Vr:
+                    PositionInVrLobby();
+                    break;
+                case UiHelper.UiType.Hangouts:
+                    PositionInHangouts();
+                    break;
+                default:
+                    throw new InvalidOperationException("Unsupported Demeo UI.");
+            }
 
             _background = new GameObject("Background");
             _background.AddComponent<MeshFilter>().mesh = _uiHelper.DemeoResource.MenuBoxMesh;
@@ -58,6 +66,21 @@
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             this.gameObject.AddComponent<BoxCollider>();
+        }
+
+        private void PositionInVrLobby()
+        {
+            this.transform.SetParent(_uiHelper.DemeoResource.VrLobbyTableAnchor.transform, worldPositionStays: true);
+            this.transform.position = new Vector3(32.6f, 26.4f, -12.8f);
+            this.transform.rotation = Quaternion.Euler(0, 70, 0);
+        }
+
+        private void PositionInHangouts()
+        {
+            this.transform.SetParent(_uiHelper.DemeoResource.HangoutsTableAnchor.transform, worldPositionStays: true);
+            this.transform.position = new Vector3(0.88f, 2.1f, -3.8f);
+            this.transform.localScale = new Vector3(0.045f, 0.045f, 0.045f);
+            this.gameObject.AddComponent<FaceLocalPlayer>();
         }
     }
 }
