@@ -62,6 +62,7 @@
                 case AbilityKey.BeaconOfHealing:
                 case AbilityKey.RaiseRoots:
                 case AbilityKey.CallCompanion:
+                case AbilityKey.DigRatsNest:
                     return true;
             }
 
