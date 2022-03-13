@@ -48,7 +48,7 @@
                 return;
             }
 
-            TriggerBoardSync();
+            SyncBoard();
         }
 
         private static void UpdateSyncTriggers(SerializableEvent serializableEvent)
@@ -129,8 +129,6 @@
             return _isNewSpawnPossible;
         }
 
-
-
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
             if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
@@ -141,7 +139,7 @@
             return true;
         }
 
-        private static void TriggerBoardSync()
+        private static void SyncBoard()
         {
             _isNewSpawnPossible = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
