@@ -10,22 +10,6 @@
         public abstract string Description { get; }
 
         /// <summary>
-        /// The type of data that the rule makes modifications to.
-        /// </summary>
-        /// <remarks>
-        ///     <para>
-        ///     There is no need to override this field unless the rule makes changes to one of the defined
-        ///     <see cref="SpecialSyncData"/> types.
-        ///     </para>
-        ///     <para>
-        ///     Multiple types may be seperated by a vertical bar <c>|</c>.
-        ///     </para>
-        /// </remarks>
-        /// <example><code>SpecialSyncData.PieceData</code></example>
-        /// <example><code>SpecialSyncData.PieceData | SpecialSyncData.StatusEffectImmunity</code></example>
-        protected internal SpecialSyncData ModifiedData = SpecialSyncData.None;
-
-        /// <summary>
         /// Called when the rule is activated.
         /// </summary>
         /// <param name="gameContext">The game's global GameContext.</param>
@@ -71,5 +55,21 @@
         protected internal virtual void OnPostGameCreated(GameContext gameContext)
         {
         }
+
+        /// <summary>
+        /// Gets the type of data that the rule makes modifications to.
+        /// </summary>
+        /// <remarks>
+        ///     <para>
+        ///     There is no need to override this field unless the rule makes changes to one of the defined
+        ///     <see cref="SpecialSyncData"/> types.
+        ///     </para>
+        ///     <para>
+        ///     Multiple types may be seperated by a vertical bar <c>|</c>.
+        ///     </para>
+        /// </remarks>
+        /// <example><code>SpecialSyncData.PieceData</code></example>
+        /// <example><code>SpecialSyncData.PieceData | SpecialSyncData.StatusEffectImmunity</code></example>
+        protected internal virtual SpecialSyncData ModifiedData => SpecialSyncData.None;
     }
 }
