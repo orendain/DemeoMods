@@ -1,10 +1,20 @@
 ﻿namespace HouseRules
 {
+    using System;
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
+
+    [Flags]
+    public enum SpecialSyncData
+    {
+        None = 0,
+        PieceData = 1,
+        StatusEffectImmunity = 2,
+        StatusEffectData = 4,
+    }
 
     internal static class BoardSyncer
     {
@@ -121,6 +131,7 @@
                 case AbilityKey.CallCompanion:
                 case AbilityKey.DigRatsNest:
                 case AbilityKey.MiniBarricade:
+                case AbilityKey.MagicWall:
                     return true;
             }
 

@@ -10,7 +10,7 @@
 
     public sealed class PieceAbilityListOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe
     {
-        public override string Description => "Piece immunities are adjusted";
+        public override string Description => "Piece abilities are adjusted";
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _adjustments;
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _originals;
