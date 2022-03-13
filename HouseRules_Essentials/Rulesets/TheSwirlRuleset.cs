@@ -75,7 +75,6 @@
                 { "FloorThreeLootChests", 12 },
             });
 
-            var cardEnergyRule = new CardEnergyFromAttackMultipliedRule(1f);
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);
             var levelExitLockedRule = new LevelExitLockedUntilAllEnemiesDefeatedRule(true);
 
@@ -86,7 +85,6 @@
                 allowedCardsRule,
                 piecesAdjustedRule,
                 levelPropertiesRule,
-                cardEnergyRule,
                 respawnsDisabledRule,
                 levelExitLockedRule);
         }
