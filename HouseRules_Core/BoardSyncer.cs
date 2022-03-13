@@ -1,6 +1,7 @@
 ﻿namespace HouseRules
 {
     using Boardgame;
+    using Boardgame.BoardEntities;
     using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
@@ -9,6 +10,8 @@
     {
         private static GameContext _gameContext;
         private static bool _isNewSpawnPossible;
+        private static bool _isStatusImmunitiesTouched;
+        private static bool _isStatusEffectsTouched;
 
         internal static void Patch(Harmony harmony)
         {
@@ -21,6 +24,18 @@
                 postfix: new HarmonyMethod(
                     typeof(BoardSyncer),
                     nameof(SerializableEventQueue_SendResponseEvent_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(Piece), "IsImmuneToStatusEffect"),
+                postfix: new HarmonyMethod(
+                    typeof(BoardSyncer),
+                    nameof(Piece_IsImmuneToStatusEffect_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(EffectSink), "AddStatusEffect"),
+                postfix: new HarmonyMethod(
+                    typeof(BoardSyncer),
+                    nameof(EffectSink_AddStatusEffect_Postfix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -49,6 +64,16 @@
             }
 
             SyncBoard();
+        }
+
+        private static void Piece_IsImmuneToStatusEffect_Postfix()
+        {
+            _isStatusImmunitiesTouched = true;
+        }
+
+        private static void EffectSink_AddStatusEffect_Postfix()
+        {
+            _isStatusEffectsTouched = true;
         }
 
         private static void UpdateSyncTriggers(SerializableEvent serializableEvent)
@@ -126,7 +151,7 @@
 
         private static bool IsSyncNeeded()
         {
-            return _isNewSpawnPossible;
+            return _isNewSpawnPossible || _isStatusImmunitiesTouched || _isStatusEffectsTouched;
         }
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
@@ -142,6 +167,8 @@
         private static void SyncBoard()
         {
             _isNewSpawnPossible = false;
+            _isStatusImmunitiesTouched = false;
+            _isStatusEffectsTouched = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
