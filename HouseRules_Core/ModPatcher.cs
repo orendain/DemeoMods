@@ -126,12 +126,11 @@
                 return;
             }
 
-            if (!_eventInterpreter.DoesEventRepresentNewSpawn(serializableEvent))
+            if (_eventInterpreter.DoesEventRepresentNewSpawn(serializableEvent)
+                || _eventInterpreter.CanEventRepresentModifiedEffects(serializableEvent))
             {
-                return;
+                _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
             }
-
-            _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
 }

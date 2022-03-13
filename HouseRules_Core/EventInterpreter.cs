@@ -45,6 +45,25 @@
             return false;
         }
 
+        public bool CanEventRepresentModifiedEffects(SerializableEvent serializableEvent)
+        {
+            switch (serializableEvent.type)
+            {
+                case SerializableEvent.Type.AbilityBuildUp:
+                case SerializableEvent.Type.SpawnBuildUp:
+                case SerializableEvent.Type.Panic:
+                // case SerializableEvent.Type.SetStatusEffects:
+                    return true;
+            }
+
+            if (serializableEvent.type == SerializableEvent.Type.OnAbilityUsed)
+            {
+                return CanAbilityEventRepresentModifiedEffects((SerializableEventOnAbilityUsed)serializableEvent);
+            }
+
+            return false;
+        }
+
         private static bool DoesAbilityEventRepresentNewSpawn(SerializableEventOnAbilityUsed onAbilityUsedEvent)
         {
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
@@ -86,6 +105,53 @@
                 {
                     return true;
                 }
+            }
+
+            return false;
+        }
+
+        private static bool CanAbilityEventRepresentModifiedEffects(SerializableEventOnAbilityUsed onAbilityUsedEvent)
+        {
+            var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
+            switch (abilityKey)
+            {
+                case AbilityKey.DiseasedBite:
+                case AbilityKey.WarCry:
+                case AbilityKey.Stealth:
+                case AbilityKey.Invulnerability:
+                case AbilityKey.PoisonedTip:
+                case AbilityKey.MarkOfAvalon:
+                case AbilityKey.Zap:
+                case AbilityKey.Weaken:
+                case AbilityKey.PoisonGasGrenade: // recursive?
+                case AbilityKey.PoisonGas:
+                case AbilityKey.Freeze:
+                case AbilityKey.Flashbang:
+                case AbilityKey.Confuse:
+                case AbilityKey.ScarePowder:
+                case AbilityKey.DiseasedBiteKnockback:
+                case AbilityKey.SpiderWebshot:
+                case AbilityKey.IceExplosion:
+                case AbilityKey.EnemyFrostball:
+                // case AbilityKey.RevealPath:
+                case AbilityKey.Bone: // recurse?
+                case AbilityKey.SodiumHydroxide: // recur?
+                case AbilityKey.MagicShield:
+                case AbilityKey.CursedDagger:
+                case AbilityKey.EnemyInvulnerability:
+                case AbilityKey.Petrify:
+                case AbilityKey.WebBomb:
+                case AbilityKey.TorchLight:
+                case AbilityKey.VerminFrenzy:
+                // case AbilityKey.EnemyStealGold:
+                // case AbilityKey.EnemyStealCard:
+                case AbilityKey.ThornPowder:
+                case AbilityKey.ShatteringVoice:
+                case AbilityKey.SongOfRecovery:
+                case AbilityKey.NotesOfConfusion:
+                case AbilityKey.StrengthenCourage:
+                case AbilityKey.WoodBone: // recur?:
+                    return true;
             }
 
             return false;
