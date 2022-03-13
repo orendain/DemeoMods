@@ -123,7 +123,7 @@
                 case AbilityKey.MarkOfAvalon:
                 case AbilityKey.Zap:
                 case AbilityKey.Weaken:
-                case AbilityKey.PoisonGasGrenade: // recursive?
+                case AbilityKey.PoisonGasGrenade:
                 case AbilityKey.PoisonGas:
                 case AbilityKey.Freeze:
                 case AbilityKey.Flashbang:
@@ -134,8 +134,8 @@
                 case AbilityKey.IceExplosion:
                 case AbilityKey.EnemyFrostball:
                 // case AbilityKey.RevealPath:
-                case AbilityKey.Bone: // recurse?
-                case AbilityKey.SodiumHydroxide: // recur?
+                case AbilityKey.Bone:
+                case AbilityKey.SodiumHydroxide:
                 case AbilityKey.MagicShield:
                 case AbilityKey.CursedDagger:
                 case AbilityKey.EnemyInvulnerability:
@@ -150,7 +150,7 @@
                 case AbilityKey.SongOfRecovery:
                 case AbilityKey.NotesOfConfusion:
                 case AbilityKey.StrengthenCourage:
-                case AbilityKey.WoodBone: // recur?:
+                case AbilityKey.WoodBone:
                     return true;
             }
 
