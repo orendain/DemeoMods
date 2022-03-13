@@ -61,6 +61,11 @@
                 return;
             }
 
+            if (HR.SelectedRuleset.ModifiedData == SpecialSyncData.None)
+            {
+                return;
+            }
+
             UpdateSyncTriggers(serializableEvent);
 
             if (!IsSyncNeeded())
@@ -162,7 +167,25 @@
 
         private static bool IsSyncNeeded()
         {
-            return _isNewSpawnPossible || _isStatusImmunitiesTouched || _isStatusEffectsTouched;
+            var hasSyncType = (HR.SelectedRuleset.ModifiedData & SpecialSyncData.PieceData) > 0;
+            if (hasSyncType && _isNewSpawnPossible)
+            {
+                return true;
+            }
+
+            hasSyncType = (HR.SelectedRuleset.ModifiedData & SpecialSyncData.StatusEffectImmunity) > 0;
+            if (hasSyncType && _isStatusImmunitiesTouched)
+            {
+                return true;
+            }
+
+            hasSyncType = (HR.SelectedRuleset.ModifiedData & SpecialSyncData.StatusEffectData) > 0;
+            if (hasSyncType && _isStatusEffectsTouched)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)

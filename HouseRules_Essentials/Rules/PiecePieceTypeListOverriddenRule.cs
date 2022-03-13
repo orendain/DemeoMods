@@ -7,7 +7,6 @@
     using HarmonyLib;
     using HouseRules.Types;
     using UnityEngine;
-    using Behaviour = DataKeys.Behaviour;
 
     public sealed class PiecePieceTypeListOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, PieceType[]>>, IMultiplayerSafe
     {
