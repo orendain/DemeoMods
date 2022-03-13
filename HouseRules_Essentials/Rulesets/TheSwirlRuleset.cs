@@ -39,11 +39,11 @@
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
-                { BoardPieceId.HeroBard, bardCards },
-                { BoardPieceId.HeroGuardian, guardianCards },
-                { BoardPieceId.HeroHunter, hunterCards },
-                { BoardPieceId.HeroRouge, assassinCards },
-                { BoardPieceId.HeroSorcerer, sorcererCards },
+                { BoardPieceId.HeroBard, bardCards }, // tordnater
+                { BoardPieceId.HeroGuardian, guardianCards }, /// charge
+                { BoardPieceId.HeroHunter, hunterCards }, // naturescall
+                { BoardPieceId.HeroRouge, assassinCards }, //blink
+                { BoardPieceId.HeroSorcerer, sorcererCards }, // spawn elemtnal
             });
 
             var allowedCards = new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball };
@@ -68,14 +68,14 @@
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "FloorOneHealingFountains", 2 },
-                { "FloorOneLootChests", 8 },
+                { "FloorOneLootChests", 11 },
                 { "FloorTwoHealingFountains", 4 },
-                { "FloorTwoLootChests", 12 },
+                { "FloorTwoLootChests", 14 },
                 { "FloorThreeHealingFountains", 4 },
                 { "FloorThreeLootChests", 12 },
             });
 
-            var cardEnergyRule = new CardEnergyFromAttackMultipliedRule(0.8f);
+            var cardEnergyRule = new CardEnergyFromAttackMultipliedRule(1f);
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);
             var levelExitLockedRule = new LevelExitLockedUntilAllEnemiesDefeatedRule(true);
 
