@@ -39,21 +39,20 @@
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
-                { BoardPieceId.HeroBard, bardCards }, // tordnater
-                { BoardPieceId.HeroGuardian, guardianCards }, /// charge
-                { BoardPieceId.HeroHunter, hunterCards }, // naturescall
-                { BoardPieceId.HeroRouge, assassinCards }, //blink
-                { BoardPieceId.HeroSorcerer, sorcererCards }, // spawn elemtnal
+                { BoardPieceId.HeroBard, bardCards },
+                { BoardPieceId.HeroGuardian, guardianCards },
+                { BoardPieceId.HeroHunter, hunterCards },
+                { BoardPieceId.HeroRouge, assassinCards },
+                { BoardPieceId.HeroSorcerer, sorcererCards },
             });
 
-            var allowedCards = new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball };
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { BoardPieceId.HeroBard, allowedCards },
-                { BoardPieceId.HeroGuardian, allowedCards },
-                { BoardPieceId.HeroHunter, allowedCards },
-                { BoardPieceId.HeroRouge, allowedCards },
-                { BoardPieceId.HeroSorcerer, allowedCards },
+                { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Tornado } },
+                { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Charge } },
+                { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.PoisonedTip } },
+                { BoardPieceId.HeroRouge, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Blink } },
+                { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.SummonElemental } },
             });
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
