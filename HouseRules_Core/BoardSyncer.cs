@@ -67,7 +67,6 @@
                 case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
-                case SerializableEvent.Type.GoToNextLevel: // remove?  whyd i add this here?
                     return true;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanAbilityEventRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
