@@ -133,7 +133,7 @@
                 case AbilityKey.SpiderWebshot:
                 case AbilityKey.IceExplosion:
                 case AbilityKey.EnemyFrostball:
-                // case AbilityKey.RevealPath:
+                case AbilityKey.RevealPath:
                 case AbilityKey.Bone:
                 case AbilityKey.SodiumHydroxide:
                 case AbilityKey.MagicShield:
