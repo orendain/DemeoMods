@@ -36,23 +36,22 @@
                 return;
             }
 
-            UpdateTriggers(serializableEvent);
+            UpdateSyncTriggers(serializableEvent);
 
-            if (!_isNewSpawnPossible)
+            if (!IsSyncNeeded())
             {
                 return;
             }
 
-            TriggerBoardSync();
+            if (!IsSyncOpportunity(serializableEvent))
+            {
+                return;
+            }
+
+            SyncBoard();
         }
 
-        private static void TriggerBoardSync()
-        {
-            _isNewSpawnPossible = false;
-            _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
-        }
-
-        private static void UpdateTriggers(SerializableEvent serializableEvent)
+        private static void UpdateSyncTriggers(SerializableEvent serializableEvent)
         {
             if (CanEventRepresentNewSpawn(serializableEvent))
             {
@@ -68,7 +67,6 @@
                 case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
-                case SerializableEvent.Type.GoToNextLevel:
                     return true;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanAbilityEventRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
@@ -97,6 +95,8 @@
                 case AbilityKey.RaiseRoots:
                 case AbilityKey.CallCompanion:
                 case AbilityKey.DigRatsNest:
+                case AbilityKey.MiniBarricade:
+                case AbilityKey.MagicWall:
                     return true;
             }
 
@@ -123,6 +123,27 @@
             }
 
             return false;
+        }
+
+        private static bool IsSyncNeeded()
+        {
+            return _isNewSpawnPossible;
+        }
+
+        private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
+        {
+            if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
+            {
+                return serializableEvent.type == SerializableEvent.Type.EndTurn;
+            }
+
+            return true;
+        }
+
+        private static void SyncBoard()
+        {
+            _isNewSpawnPossible = false;
+            _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
 }
