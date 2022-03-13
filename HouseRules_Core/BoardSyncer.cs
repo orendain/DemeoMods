@@ -96,6 +96,7 @@
                 case AbilityKey.CallCompanion:
                 case AbilityKey.DigRatsNest:
                 case AbilityKey.MiniBarricade:
+                case AbilityKey.MagicWall:
                     return true;
             }
 
