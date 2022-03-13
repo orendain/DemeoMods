@@ -46,14 +46,13 @@
                 { BoardPieceId.HeroSorcerer, sorcererCards },
             });
 
-            var allowedCards = new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball };
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { BoardPieceId.HeroBard, allowedCards },
-                { BoardPieceId.HeroGuardian, allowedCards },
-                { BoardPieceId.HeroHunter, allowedCards },
-                { BoardPieceId.HeroRouge, allowedCards },
-                { BoardPieceId.HeroSorcerer, allowedCards },
+                { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Tornado } },
+                { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Charge } },
+                { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.PoisonedTip } },
+                { BoardPieceId.HeroRouge, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Blink } },
+                { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.SummonElemental } },
             });
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
@@ -68,14 +67,19 @@
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "FloorOneHealingFountains", 2 },
-                { "FloorOneLootChests", 8 },
+                { "FloorOneLootChests", 11 },
                 { "FloorTwoHealingFountains", 4 },
-                { "FloorTwoLootChests", 12 },
+                { "FloorTwoLootChests", 14 },
                 { "FloorThreeHealingFountains", 4 },
                 { "FloorThreeLootChests", 12 },
             });
 
-            var cardEnergyRule = new CardEnergyFromAttackMultipliedRule(0.8f);
+            var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<string, int>
+            {
+                { "Strength", 1 },
+                { "Speed", 1 },
+            });
+
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);
             var levelExitLockedRule = new LevelExitLockedUntilAllEnemiesDefeatedRule(true);
 
@@ -86,7 +90,7 @@
                 allowedCardsRule,
                 piecesAdjustedRule,
                 levelPropertiesRule,
-                cardEnergyRule,
+                aoePotions,
                 respawnsDisabledRule,
                 levelExitLockedRule);
         }
