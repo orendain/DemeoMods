@@ -11,7 +11,7 @@
 
     public sealed class PiecePieceTypeListOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, PieceType[]>>, IMultiplayerSafe
     {
-        public override string Description => "Piece behaviours are adjusted";
+        public override string Description => "Piece piece types are adjusted";
 
         private readonly Dictionary<BoardPieceId, PieceType[]> _adjustments;
         private readonly Dictionary<BoardPieceId, PieceType[]> _originals;
