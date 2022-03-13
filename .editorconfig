@@ -8,11 +8,14 @@ indent_size = 4
 # SA0001XmlCommentAnalysisDisabled.
 dotnet_diagnostic.SA0001.severity = None
 
-# SA1101PrefixLocalCallsWithThis
+# SA1101PrefixLocalCallsWithThis.
 dotnet_diagnostic.SA1101.severity = None
 
 # SA1201ElementsMustAppearInTheCorrectOrder.
 dotnet_diagnostic.SA1201.severity = None
+
+# SA1202ElementsMustBeOrderedByAccess.
+dotnet_diagnostic.SA1202.severity = None
 
 # SA1204StaticElementsMustAppearBeforeInstanceElements.
 dotnet_diagnostic.SA1204.severity = None
