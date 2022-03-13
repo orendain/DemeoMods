@@ -96,7 +96,7 @@
                 case AbilityKey.RaiseRoots:
                 case AbilityKey.CallCompanion:
                 case AbilityKey.DigRatsNest:
-                    // add minibarricade here
+                case AbilityKey.MiniBarricade:
                     return true;
             }
 
