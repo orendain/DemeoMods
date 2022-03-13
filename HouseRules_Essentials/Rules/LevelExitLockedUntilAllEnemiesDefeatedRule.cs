@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections;
+    using System.Linq;
     using Boardgame;
     using Boardgame.BoardgameActions;
     using Boardgame.LevelLoading;
@@ -79,32 +80,37 @@
             keyHolder.DisableEffectState(EffectStateType.Key);
         }
 
-        private static void BoardgameActionPieceDied_Constructor_Postfix(GameContext context)
+        private static void BoardgameActionPieceDied_Constructor_Postfix(GameContext gameContext)
         {
             if (!_isActivated)
             {
                 return;
             }
 
-            if (context.pieceAndTurnController.GetEnemyPieces().Count != 0)
+            if (IsEnemyRemaining(gameContext))
             {
                 return;
             }
 
-            if (context.levelManager.IsBossLevel())
+            if (gameContext.levelManager.IsBossLevel())
             {
                 return;
             }
 
             GameUI.ShowCameraMessage("All enemies have been defeated! You may advance.", 5);
 
-            var levelExit = context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
+            var levelExit = gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
             if (levelExit == null)
             {
                 return;
             }
 
             levelExit.DisableEffectState(EffectStateType.Locked);
+        }
+
+        private static bool IsEnemyRemaining(GameContext gameContext)
+        {
+            return gameContext.pieceAndTurnController.GetEnemyPieces().Select(p => !p.IsConfused()).Any();
         }
     }
 }
