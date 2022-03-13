@@ -14,6 +14,7 @@
         {
             var harmony = new Harmony("com.orendain.demeomods.houserules.core");
             ModPatcher.Patch(harmony);
+            BoardSyncer.Patch(harmony);
         }
 
         public override void OnApplicationLateStart()

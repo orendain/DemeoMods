@@ -3,19 +3,12 @@
     using System.Reflection;
     using Boardgame;
     using Boardgame.Networking;
-    using Boardgame.SerializableEvents;
     using HarmonyLib;
 
     internal class ModPatcher
     {
         private static GameContext _gameContext;
         private static bool _isStartingGame;
-        private static EventInterpreter _eventInterpreter;
-
-        private static void InitEventInterpreter()
-        {
-            _eventInterpreter = EventInterpreter.NewInstance(_gameContext);
-        }
 
         internal static void Patch(Harmony harmony)
         {
@@ -48,20 +41,12 @@
                 prefix: new HarmonyMethod(
                     typeof(ModPatcher),
                     nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
-
-            harmony.Patch(
-                original: AccessTools.Method(typeof(SerializableEventQueue), "SendResponseEvent"),
-                postfix: new HarmonyMethod(
-                    typeof(ModPatcher),
-                    nameof(SerializableEventQueue_SendResponseEvent_Postfix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
             var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
             _gameContext = gameContext;
-
-            InitEventInterpreter();
         }
 
         private static void CreatingGameState_OnJoinedRoom_Prefix()
@@ -117,21 +102,6 @@
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
             HR.TriggerDeactivateRuleset(_gameContext);
-        }
-
-        private static void SerializableEventQueue_SendResponseEvent_Postfix(SerializableEvent serializableEvent)
-        {
-            if (!HR.IsRulesetActive)
-            {
-                return;
-            }
-
-            if (!_eventInterpreter.DoesEventRepresentNewSpawn(serializableEvent))
-            {
-                return;
-            }
-
-            _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
 }
