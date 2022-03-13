@@ -74,6 +74,12 @@
                 { "FloorThreeLootChests", 12 },
             });
 
+            var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<string, int>
+            {
+                { "Strength", 1 },
+                { "Speed", 1 },
+            });
+
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);
             var levelExitLockedRule = new LevelExitLockedUntilAllEnemiesDefeatedRule(true);
 
@@ -84,6 +90,7 @@
                 allowedCardsRule,
                 piecesAdjustedRule,
                 levelPropertiesRule,
+                aoePotions,
                 respawnsDisabledRule,
                 levelExitLockedRule);
         }
