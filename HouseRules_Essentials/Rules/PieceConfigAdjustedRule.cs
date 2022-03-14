@@ -59,10 +59,11 @@
                 [GameConfigType.Sewers] = new List<PieceProperty>(),
                 [GameConfigType.Forest] = new List<PieceProperty>(),
             };
-            foreach (var item in pieceConfigChanges)
+
+            GameConfigType[] gct = { GameConfigType.Elven, GameConfigType.Sewers, GameConfigType.Forest };
+            foreach (var gameConfigType in gct)
             {
-                GameConfigType[] gct = { GameConfigType.Elven, GameConfigType.Sewers, GameConfigType.Forest };
-                foreach (var gameConfigType in gct)
+                foreach (var item in pieceConfigChanges)
                 {
                     var pieceConfigDto = gameConfigPieceConfigs[gameConfigType][item.Piece];
                     var propertyTraverse = Traverse.Create(pieceConfigDto).Field(item.Property);
