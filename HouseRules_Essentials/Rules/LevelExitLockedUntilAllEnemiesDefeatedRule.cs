@@ -110,7 +110,15 @@
 
         private static bool IsEnemyRemaining(GameContext gameContext)
         {
-            return gameContext.pieceAndTurnController.GetEnemyPieces().Select(p => !p.IsConfused()).Any();
+            return gameContext.pieceAndTurnController.GetEnemyPieces().Select(p =>
+            {
+                if (p.boardPieceId == BoardPieceId.SpiderEgg)
+                {
+                    return false;
+                }
+
+                return !p.IsConfused();
+            }).Any();
         }
     }
 }
