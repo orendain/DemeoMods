@@ -21,12 +21,17 @@
         public List<Rule> Rules { get; }
 
         /// <summary>
-        /// Gets a value indicating whether this ruleset is safe to use in multiplayer environments.
+        /// Gets a value indicating whether the ruleset is safe to use in multiplayer environments.
         /// </summary>
         public bool IsSafeForMultiplayer { get; }
 
         /// <summary>
-        /// Represents the default/empty/null ruleset.
+        /// Gets the type of data that the rule makes modifications to.
+        /// </summary>
+        public SpecialSyncData ModifiedData { get; }
+
+        /// <summary>
+        /// Represents the empty/missing ruleset.
         /// </summary>
         public static readonly Ruleset None = NewInstance("None", "No custom ruleset.");
 
@@ -38,15 +43,17 @@
         public static Ruleset NewInstance(string name, string description, List<Rule> rules)
         {
             var safeForMultiplayer = rules.All(r => r is IMultiplayerSafe);
-            return new Ruleset(name, description, rules, safeForMultiplayer);
+            var modifiedData = rules.Aggregate(SpecialSyncData.None, (data, rule) => data | rule.ModifiedData);
+            return new Ruleset(name, description, rules, safeForMultiplayer, modifiedData);
         }
 
-        private Ruleset(string name, string description, List<Rule> rules, bool isSafeForMultiplayer)
+        private Ruleset(string name, string description, List<Rule> rules, bool isSafeForMultiplayer, SpecialSyncData modifiedData)
         {
             Name = name;
             Description = description;
             Rules = rules;
             IsSafeForMultiplayer = isSafeForMultiplayer;
+            ModifiedData = modifiedData;
         }
     }
 }
