@@ -65,6 +65,8 @@
 
             var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
+            var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
+            MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
