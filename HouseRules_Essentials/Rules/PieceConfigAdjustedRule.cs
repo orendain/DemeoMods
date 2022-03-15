@@ -59,7 +59,6 @@
                 [MotherbrainGlobalVars.CurrentConfig] = new List<PieceProperty>(),
             };
 
-            GameConfigType[] gct = { GameConfigType.Elven, GameConfigType.Sewers, GameConfigType.Forest };
             foreach (var item in pieceConfigChanges)
             {
                 var pieceConfigDto = gameConfigPieceConfigs[gameConfigType][item.Piece];
@@ -75,6 +74,7 @@
                 ModifyPieceConfig(ref pieceConfigDto, item.Property, item.Value);
                 gameConfigPieceConfigs[gameConfigType][item.Piece] = pieceConfigDto;
             }
+
             return previousProperties;
         }
 
