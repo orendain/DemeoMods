@@ -80,26 +80,26 @@
             keyHolder.DisableEffectState(EffectStateType.Key);
         }
 
-        private static void BoardgameActionPieceDied_Constructor_Postfix(GameContext gameContext)
+        private static void BoardgameActionPieceDied_Constructor_Postfix(GameContext context)
         {
             if (!_isActivated)
             {
                 return;
             }
 
-            if (IsEnemyRemaining(gameContext))
+            if (IsEnemyRemaining(context))
             {
                 return;
             }
 
-            if (gameContext.levelManager.IsBossLevel())
+            if (context.levelManager.IsBossLevel())
             {
                 return;
             }
 
             GameUI.ShowCameraMessage("All enemies have been defeated! You may advance.", 5);
 
-            var levelExit = gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
+            var levelExit = context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
             if (levelExit == null)
             {
                 return;
