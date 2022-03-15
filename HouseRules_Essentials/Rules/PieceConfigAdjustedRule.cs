@@ -36,50 +36,45 @@
 
         protected override void OnPreGameCreated(GameContext gameContext)
         {
-            _originals = ReplaceExistingProperties(_adjustments);
+            _originals = ReplaceExistingProperties(MotherbrainGlobalVars.CurrentConfig, _adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            ReplaceExistingProperties(_originals[GameConfigType.Elven]);
-            ReplaceExistingProperties(_originals[GameConfigType.Sewers]);
-            ReplaceExistingProperties(_originals[GameConfigType.Forest]);
+            foreach (var gameConfigType in _originals)
+            {
+                ReplaceExistingProperties(gameConfigType.Key, _originals[gameConfigType.Key]);
+            }
         }
 
         /// <summary>
         /// Replaces existing PieceConfig properties with those specified.
         /// </summary>
         /// <returns>Dictionary of GameConfigYypes and lists of previous PieceConfig properties that are now replaced.</returns>
-        private static Dictionary<GameConfigType, List<PieceProperty>> ReplaceExistingProperties(List<PieceProperty> pieceConfigChanges)
+        private static Dictionary<GameConfigType, List<PieceProperty>> ReplaceExistingProperties(GameConfigType gameConfigType, List<PieceProperty> pieceConfigChanges)
         {
             var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
             var previousProperties = new Dictionary<GameConfigType, List<PieceProperty>>
             {
-                [GameConfigType.Elven] = new List<PieceProperty>(),
-                [GameConfigType.Sewers] = new List<PieceProperty>(),
-                [GameConfigType.Forest] = new List<PieceProperty>(),
+                [MotherbrainGlobalVars.CurrentConfig] = new List<PieceProperty>(),
             };
 
             GameConfigType[] gct = { GameConfigType.Elven, GameConfigType.Sewers, GameConfigType.Forest };
-            foreach (var gameConfigType in gct)
+            foreach (var item in pieceConfigChanges)
             {
-                foreach (var item in pieceConfigChanges)
+                var pieceConfigDto = gameConfigPieceConfigs[gameConfigType][item.Piece];
+                var propertyTraverse = Traverse.Create(pieceConfigDto).Field(item.Property);
+
+                previousProperties[gameConfigType].Add(new PieceProperty
                 {
-                    var pieceConfigDto = gameConfigPieceConfigs[gameConfigType][item.Piece];
-                    var propertyTraverse = Traverse.Create(pieceConfigDto).Field(item.Property);
+                    Piece = item.Piece,
+                    Property = item.Property,
+                    Value = Convert.ToSingle(propertyTraverse.GetValue()),
+                });
 
-                    previousProperties[gameConfigType].Add(new PieceProperty
-                    {
-                        Piece = item.Piece,
-                        Property = item.Property,
-                        Value = Convert.ToSingle(propertyTraverse.GetValue()),
-                    });
-
-                    ModifyPieceConfig(ref pieceConfigDto, item.Property, item.Value);
-                    gameConfigPieceConfigs[gameConfigType][item.Piece] = pieceConfigDto;
-                }
+                ModifyPieceConfig(ref pieceConfigDto, item.Property, item.Value);
+                gameConfigPieceConfigs[gameConfigType][item.Piece] = pieceConfigDto;
             }
-
             return previousProperties;
         }
 
