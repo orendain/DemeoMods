@@ -12,8 +12,10 @@
     {
         public override string Description => "Piece configuration is adjusted";
 
+        protected override SpecialSyncData ModifiedData => SpecialSyncData.PieceData;
+
         private readonly List<PieceProperty> _adjustments;
-        private Dictionary<GameConfigType, List<PieceProperty>> _originals;
+        private List<PieceProperty> _originals;
 
         public struct PieceProperty
         {
@@ -29,50 +31,43 @@
         public PieceConfigAdjustedRule(List<PieceProperty> adjustments)
         {
             _adjustments = adjustments;
-            _originals = new Dictionary<GameConfigType, List<PieceProperty>>();
+            _originals = new List<PieceProperty>();
         }
 
         public List<PieceProperty> GetConfigObject() => _adjustments;
 
         protected override void OnPreGameCreated(GameContext gameContext)
         {
-            _originals = ReplaceExistingProperties(MotherbrainGlobalVars.CurrentConfig, _adjustments);
+            _originals = ReplaceExistingProperties(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            foreach (var gameConfigType in _originals)
-            {
-                ReplaceExistingProperties(gameConfigType.Key, _originals[gameConfigType.Key]);
-            }
+                ReplaceExistingProperties(_originals);
         }
 
         /// <summary>
         /// Replaces existing PieceConfig properties with those specified.
         /// </summary>
         /// <returns>Dictionary of GameConfigYypes and lists of previous PieceConfig properties that are now replaced.</returns>
-        private static Dictionary<GameConfigType, List<PieceProperty>> ReplaceExistingProperties(GameConfigType gameConfigType, List<PieceProperty> pieceConfigChanges)
+        private static List<PieceProperty> ReplaceExistingProperties(List<PieceProperty> pieceConfigChanges)
         {
             var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
-            var previousProperties = new Dictionary<GameConfigType, List<PieceProperty>>
-            {
-                [MotherbrainGlobalVars.CurrentConfig] = new List<PieceProperty>(),
-            };
+            var previousProperties = new List<PieceProperty>();
 
             foreach (var item in pieceConfigChanges)
             {
-                var pieceConfigDto = gameConfigPieceConfigs[gameConfigType][item.Piece];
-                var propertyTraverse = Traverse.Create(pieceConfigDto).Field(item.Property);
+                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Piece];
 
-                previousProperties[gameConfigType].Add(new PieceProperty
+                previousProperties.Add(new PieceProperty
                 {
                     Piece = item.Piece,
                     Property = item.Property,
-                    Value = Convert.ToSingle(propertyTraverse.GetValue()),
+                    Value = Convert.ToSingle(Traverse.Create(pieceConfigDto).Field(item.Property).GetValue()),
                 });
 
                 ModifyPieceConfig(ref pieceConfigDto, item.Property, item.Value);
-                gameConfigPieceConfigs[gameConfigType][item.Piece] = pieceConfigDto;
+                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Piece] = pieceConfigDto;
             }
 
             return previousProperties;
