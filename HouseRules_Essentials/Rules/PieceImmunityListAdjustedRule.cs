@@ -1,56 +1,60 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Boardgame;
+    using Data.GameData;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
-    public sealed class PieceImmunityListAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, EffectStateType[]>>, IMultiplayerSafe
+    public sealed class PieceImmunityListAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<EffectStateType>>>, IMultiplayerSafe
     {
         public override string Description => "Piece immunities are adjusted";
 
         protected override SpecialSyncData ModifiedData => SpecialSyncData.StatusEffectImmunity;
 
-        private readonly Dictionary<BoardPieceId, EffectStateType[]> _adjustments;
-        private readonly Dictionary<BoardPieceId, EffectStateType[]> _originals;
+        private readonly Dictionary<BoardPieceId, List<EffectStateType>> _adjustments;
+        private Dictionary<BoardPieceId, List<EffectStateType>> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PieceImmunityListAdjustedRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Dict of piece name and EffectStateType[]
+        /// <param name="adjustments">Dict of piece name and List<EffectStateType>
         /// Replaces original settings with new list.</param>
-        public PieceImmunityListAdjustedRule(Dictionary<BoardPieceId, EffectStateType[]> adjustments)
+        public PieceImmunityListAdjustedRule(Dictionary<BoardPieceId, List<EffectStateType>> adjustments)
         {
             _adjustments = adjustments;
-            _originals = new Dictionary<BoardPieceId, EffectStateType[]>();
+            _originals = new Dictionary<BoardPieceId, List<EffectStateType>>();
         }
 
-        public Dictionary<BoardPieceId, EffectStateType[]> GetConfigObject() => _adjustments;
+        public Dictionary<BoardPieceId, List<EffectStateType>> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
-            var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-            foreach (var item in _adjustments)
-            {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));
-                _originals[item.Key] = pieceConfig.ImmuneToStatusEffects;
-                var property = Traverse.Create(pieceConfig).Property<EffectStateType[]>("ImmuneToStatusEffects");
-                property.Value = item.Value;
-            }
+            _originals = ReplaceExistingProperties(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-            foreach (var item in _originals)
+            ReplaceExistingProperties(_originals);
+        }
+
+        private static Dictionary<BoardPieceId, List<EffectStateType>> ReplaceExistingProperties(Dictionary<BoardPieceId, List<EffectStateType>> pieceConfigChanges)
+        {
+            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
+            var previousProperties = new Dictionary<BoardPieceId, List<EffectStateType>>();
+
+            foreach (var item in pieceConfigChanges)
             {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));
-                var property = Traverse.Create(pieceConfig).Property<EffectStateType[]>("ImmuneToStatusEffects");
-                property.Value = item.Value;
+                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key];
+                var property = Traverse.Create(pieceConfigDto).Property<List<EffectStateType>>("ImmuneToStatusEffects");
+
+                previousProperties[item.Key] = property.Value;
+                pieceConfigDto.ImmuneToStatusEffects = item.Value.ToArray();
+                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
+
+            return previousProperties;
         }
     }
 }

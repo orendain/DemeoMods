@@ -2,12 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Boardgame;
+    using Data.GameData;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
     public sealed class PieceConfigAdjustedRule : Rule, IConfigWritable<List<PieceConfigAdjustedRule.PieceProperty>>, IMultiplayerSafe
     {
@@ -37,56 +36,59 @@
 
         public List<PieceProperty> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
             _originals = ReplaceExistingProperties(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            ReplaceExistingProperties(_originals);
+                ReplaceExistingProperties(_originals);
         }
 
         /// <summary>
         /// Replaces existing PieceConfig properties with those specified.
         /// </summary>
-        /// <returns>The list of previous PieceConfig properties that are now replaced.</returns>
-        private static List<PieceProperty> ReplaceExistingProperties(List<PieceProperty> pieceProperties)
+        /// <returns>Dictionary of GameConfigYypes and lists of previous PieceConfig properties that are now replaced.</returns>
+        private static List<PieceProperty> ReplaceExistingProperties(List<PieceProperty> pieceConfigChanges)
         {
-            var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
+            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
             var previousProperties = new List<PieceProperty>();
-            foreach (var item in pieceProperties)
+
+            foreach (var item in pieceConfigChanges)
             {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Piece)}"));
-                var propertyTraverse = Traverse.Create(pieceConfig).Property(item.Property);
-                var castedNewValue = CastPropertyValue(item.Value, propertyTraverse.GetValueType());
+                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Piece];
 
                 previousProperties.Add(new PieceProperty
                 {
                     Piece = item.Piece,
                     Property = item.Property,
-                    Value = Convert.ToSingle(propertyTraverse.GetValue()),
+                    Value = Convert.ToSingle(Traverse.Create(pieceConfigDto).Field(item.Property).GetValue()),
                 });
 
-                propertyTraverse.SetValue(castedNewValue);
+                ModifyPieceConfig(ref pieceConfigDto, item.Property, item.Value);
+                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Piece] = pieceConfigDto;
             }
 
             return previousProperties;
         }
 
-        private static object CastPropertyValue(float value, Type propertyValueType)
+        private static void ModifyPieceConfig(ref PieceConfigDTO pieceConfigDto, string property, float value)
         {
-            if (propertyValueType == typeof(int))
+            var valueType = Traverse.Create(pieceConfigDto).Field(property).GetValueType();
+            if (valueType == typeof(int))
             {
-                return (int)value;
+                AccessTools.StructFieldRefAccess<PieceConfigDTO, int>(ref pieceConfigDto, property) = (int)value;
+                return;
             }
 
-            if (propertyValueType == typeof(float))
+            if (valueType == typeof(float))
             {
-                return value;
+                AccessTools.StructFieldRefAccess<PieceConfigDTO, float>(ref pieceConfigDto, property) = value;
+                return;
             }
 
-            throw new ArgumentException($"Can not support a piece property of type: {propertyValueType}");
+            throw new ArgumentException($"Can not support property of type: {valueType}");
         }
     }
 }

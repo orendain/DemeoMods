@@ -431,6 +431,22 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+  
+- __PieceUseWhenKilledOverriddenRule__: Allows the list of UseWhenKilled abilities for any ♟️BoardPiece to be overridden
+  - Abilities are trigged at the a piece dies. 
+  - Config accepts Dictionary of boardpieceIDs and Lists of AbilityKeys e.g. ` "BoardPieceID": [ "AbilityKey1", "AbilityKey2" ] }`  
+
+  ###### _Example JSON config for PieceUseWhenKilledOverriddenRule_
+
+  ```json
+  {
+    "Rule": "PieceUseWhenKilledOverridden",
+    "Config": {
+      "Spiderling": [ "Heal" ],
+      "CaveTroll": [ "Rejuvenation" ],
+    }
+  },
+  ```
 
 - __RatNestsSpawnGoldRule__: Rat nests spawn 💰gold💰
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧

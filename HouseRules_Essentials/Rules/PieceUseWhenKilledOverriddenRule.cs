@@ -7,9 +7,9 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class PieceAbilityListOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe
+    public sealed class PieceUseWhenKilledOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe
     {
-        public override string Description => "Piece abilities are adjusted";
+        public override string Description => "Piece UseWhenKilled lists are overridden";
 
         protected override SpecialSyncData ModifiedData => SpecialSyncData.PieceData;
 
@@ -17,11 +17,11 @@
         private Dictionary<BoardPieceId, List<AbilityKey>> _originals;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PieceAbilityListOverriddenRule"/> class.
+        /// Initializes a new instance of the <see cref="PieceUseWhenKilledOverriddenRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Dict of piece name and Lists of abilityKeys
+        /// <param name="adjustments">Dict of BoardPieceId and List<AbilityKey> to be applied to UseWhenKilled
         /// Replaces original settings with new list.</param>
-        public PieceAbilityListOverriddenRule(Dictionary<BoardPieceId, List<AbilityKey>> adjustments)
+        public PieceUseWhenKilledOverriddenRule(Dictionary<BoardPieceId, List<AbilityKey>> adjustments)
         {
             _adjustments = adjustments;
             _originals = new Dictionary<BoardPieceId, List<AbilityKey>>();
@@ -39,6 +39,10 @@
             ReplaceExistingProperties(_originals);
         }
 
+        /// <summary>
+        /// Replaces existing PieceConfig properties with those specified.
+        /// </summary>
+        /// <returns>Dictionary of lists of previous PieceConfig properties that are now replaced.</returns>
         private static Dictionary<BoardPieceId, List<AbilityKey>> ReplaceExistingProperties(Dictionary<BoardPieceId, List<AbilityKey>> pieceConfigChanges)
         {
             var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
@@ -47,14 +51,15 @@
             foreach (var item in pieceConfigChanges)
             {
                 var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key];
-                var property = Traverse.Create(pieceConfigDto).Property<List<AbilityKey>>("Abilities");
+                var property = Traverse.Create(pieceConfigDto).Property<List<AbilityKey>>("UseWhenKilled");
 
                 previousProperties[item.Key] = property.Value;
-                pieceConfigDto.Abilities = item.Value.ToArray();
+                pieceConfigDto.UseWhenKilled = item.Value.ToArray();
                 gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
 
             return previousProperties;
         }
+
     }
 }

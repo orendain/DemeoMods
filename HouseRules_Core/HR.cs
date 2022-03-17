@@ -19,16 +19,6 @@ namespace HouseRules
 
         internal static bool IsRulesetActive { get; private set; }
 
-        public static string FixBossNames(BoardPieceId piece)
-        {
-            if (piece == BoardPieceId.DarkElfGoddessBoss || piece == BoardPieceId.CavetrollBoss)
-            {
-                return piece.ToString().Replace("Boss", "_Boss");
-            }
-
-            return piece.ToString();
-        }
-
         public static void SelectRuleset(string ruleset)
         {
             if (IsRulesetActive)

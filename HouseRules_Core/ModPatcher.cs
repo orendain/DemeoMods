@@ -70,6 +70,8 @@
                 return;
             }
 
+            var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
+            MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
             HR.TriggerActivateRuleset(_gameContext, GameHub.GetGameMode);
             _isStartingGame = true;
             HR.TriggerPreGameCreated(_gameContext);
