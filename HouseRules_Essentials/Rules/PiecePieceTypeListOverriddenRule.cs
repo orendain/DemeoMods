@@ -1,54 +1,60 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Boardgame;
+    using Data.GameData;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
-    public sealed class PiecePieceTypeListOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, PieceType[]>>, IMultiplayerSafe
+    public sealed class PiecePieceTypeListOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<PieceType>>>, IMultiplayerSafe
     {
         public override string Description => "Piece piece types are adjusted";
 
-        private readonly Dictionary<BoardPieceId, PieceType[]> _adjustments;
-        private readonly Dictionary<BoardPieceId, PieceType[]> _originals;
+        protected override SpecialSyncData ModifiedData => SpecialSyncData.PieceData;
+
+        private readonly Dictionary<BoardPieceId, List<PieceType>> _adjustments;
+        private Dictionary<BoardPieceId, List<PieceType>> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PiecePieceTypeListOverriddenRule"/> class.
         /// </summary>
         /// <param name="adjustments">Dict of piece name and Lists of Behaviours
         /// Replaces original settings with new list.</param>
-        public PiecePieceTypeListOverriddenRule(Dictionary<BoardPieceId, PieceType[]> adjustments)
+        public PiecePieceTypeListOverriddenRule(Dictionary<BoardPieceId, List<PieceType>> adjustments)
         {
             _adjustments = adjustments;
-            _originals = new Dictionary<BoardPieceId, PieceType[]>();
+            _originals = new Dictionary<BoardPieceId, List<PieceType>>();
         }
 
-        public Dictionary<BoardPieceId, PieceType[]> GetConfigObject() => _adjustments;
+        public Dictionary<BoardPieceId, List<PieceType>> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
-            var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-            foreach (var item in _adjustments)
-            {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));
-                _originals[item.Key] = pieceConfig.PieceType;
-                var property = Traverse.Create(pieceConfig).Property<PieceType[]>("PieceType");
-                property.Value = item.Value;
-            }
+            _originals = ReplaceExistingProperties(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-            foreach (var item in _originals)
+            ReplaceExistingProperties(_originals);
+        }
+
+        private static Dictionary<BoardPieceId, List<PieceType>> ReplaceExistingProperties(Dictionary<BoardPieceId, List<PieceType>> pieceConfigChanges)
+        {
+            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
+            var previousProperties = new Dictionary<BoardPieceId, List<PieceType>>();
+
+            foreach (var item in pieceConfigChanges)
             {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));
-                var property = Traverse.Create(pieceConfig).Property<PieceType[]>("PieceType");
-                property.Value = item.Value;
+                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key];
+                var property = Traverse.Create(pieceConfigDto).Property<List<PieceType>>("PieceType");
+
+                previousProperties[item.Key] = property.Value;
+                pieceConfigDto.PieceType = item.Value.ToArray();
+                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
+
+            return previousProperties;
         }
     }
 }

@@ -42,7 +42,7 @@
         /// <summary>
         /// Replaces existing PieceConfig properties with those specified.
         /// </summary>
-        /// <returns>Dictionary of GameConfigYypes and lists of previous PieceConfig properties that are now replaced.</returns>
+        /// <returns>Dictionary of lists of previous PieceConfig properties that are now replaced.</returns>
         private static Dictionary<BoardPieceId, List<AbilityKey>> ReplaceExistingProperties(Dictionary<BoardPieceId, List<AbilityKey>> pieceConfigChanges)
         {
             var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;

@@ -1,19 +1,20 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Boardgame;
+    using Data.GameData;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
     public sealed class PieceAbilityListOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe
     {
         public override string Description => "Piece abilities are adjusted";
 
+        protected override SpecialSyncData ModifiedData => SpecialSyncData.PieceData;
+
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _adjustments;
-        private readonly Dictionary<BoardPieceId, List<AbilityKey>> _originals;
+        private Dictionary<BoardPieceId, List<AbilityKey>> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PieceAbilityListOverriddenRule"/> class.
@@ -28,27 +29,32 @@
 
         public Dictionary<BoardPieceId, List<AbilityKey>> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
-            var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-            foreach (var item in _adjustments)
-            {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));
-                _originals[item.Key] = pieceConfig.Abilities;
-                var property = Traverse.Create(pieceConfig).Property<List<AbilityKey>>("Abilities");
-                property.Value = item.Value;
-            }
+            _originals = ReplaceExistingProperties(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            var pieceConfigs = Resources.FindObjectsOfTypeAll<PieceConfig>();
-            foreach (var item in _originals)
+            ReplaceExistingProperties(_originals);
+        }
+
+        private static Dictionary<BoardPieceId, List<AbilityKey>> ReplaceExistingProperties(Dictionary<BoardPieceId, List<AbilityKey>> pieceConfigChanges)
+        {
+            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
+            var previousProperties = new Dictionary<BoardPieceId, List<AbilityKey>>();
+
+            foreach (var item in pieceConfigChanges)
             {
-                var pieceConfig = pieceConfigs.First(c => c.name.Equals($"PieceConfig_{HR.FixBossNames(item.Key)}"));
-                var property = Traverse.Create(pieceConfig).Property<List<AbilityKey>>("Abilities");
-                property.Value = item.Value;
+                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key];
+                var property = Traverse.Create(pieceConfigDto).Property<List<AbilityKey>>("Abilities");
+
+                previousProperties[item.Key] = property.Value;
+                pieceConfigDto.Abilities = item.Value.ToArray();
+                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
+
+            return previousProperties;
         }
     }
 }
