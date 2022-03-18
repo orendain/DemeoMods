@@ -14,27 +14,27 @@
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.StrengthenCourage, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, IsReplenishable = true },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, IsReplenishable = true },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HunterArrow, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, IsReplenishable = true },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = true },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implosion, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, IsReplenishable = true },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
@@ -42,17 +42,17 @@
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
                 { BoardPieceId.HeroHunter, hunterCards },
-                { BoardPieceId.HeroRouge, assassinCards },
+                { BoardPieceId.HeroRogue, assassinCards },
                 { BoardPieceId.HeroSorcerer, sorcererCards },
             });
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Tornado } },
-                { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Charge } },
-                { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.PoisonedTip } },
-                { BoardPieceId.HeroRouge, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Blink } },
-                { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.SummonElemental } },
+                { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.HurricaneAnthem } },
+                { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.Charge } },
+                { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.PoisonedTip } },
+                { BoardPieceId.HeroRogue, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.Blink } },
+                { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.SummonElemental } },
             });
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
@@ -60,7 +60,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 50 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 50 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 50 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRouge, Property = "StartHealth", Value = 50 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 50 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 50 },
             });
 
@@ -76,8 +76,8 @@
 
             var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<string, int>
             {
-                { "Strength", 1 },
-                { "Speed", 1 },
+                { "StrengthPotion", 1 },
+                { "SwiftnessPotion", 1 },
             });
 
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);

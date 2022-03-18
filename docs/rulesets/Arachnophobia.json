@@ -10,43 +10,43 @@
       "Rule": "StartCardsModified",
       "Config": {
         "HeroGuardian": [
-          { "Card": "Heal", "IsReplenishable": false },
+          { "Card": "HealingPotion", "IsReplenishable": false },
           { "Card": "ReplenishArmor", "IsReplenishable": true },
           { "Card": "Bone", "IsReplenishable": true },
           { "Card": "Whirlwind", "IsReplenishable": false },
-          { "Card": "PiercingSpear", "IsReplenishable": false },
-          { "Card": "Stealth", "IsReplenishable": false },
+          { "Card": "PiercingThrow", "IsReplenishable": false },
+          { "Card": "Sneak", "IsReplenishable": false },
 
         ],
         "HeroHunter": [
-          { "Card": "Heal", "IsReplenishable": false },
+          { "Card": "HealingPotion", "IsReplenishable": false },
           { "Card": "HunterArrow", "IsReplenishable": true },
           { "Card": "PoisonedTip", "IsReplenishable": true },
-          { "Card": "Exterminate", "IsReplenishable": false },
+          { "Card": "HailOfArrows", "IsReplenishable": false },
           { "Card": "CallCompanion", "IsReplenishable": false },
-          { "Card": "Stealth", "IsReplenishable": false },
+          { "Card": "Sneak", "IsReplenishable": false },
         ],
         "HeroSorcerer": [
-          { "Card": "Heal", "IsReplenishable": false },
+          { "Card": "HealingPotion", "IsReplenishable": false },
           { "Card": "Zap", "IsReplenishable": true },
           { "Card": "OilLamp", "IsReplenishable": true },
-          { "Card": "GodsFury", "IsReplenishable": false },
-          { "Card": "EyeOfAvalon", "IsReplenishable": false },
+          { "Card": "HeavensFury", "IsReplenishable": false },
+          { "Card": "DetectEnemies", "IsReplenishable": false },
         ],
-        "HeroRouge": [
-          { "Card": "Heal", "IsReplenishable": false },
-          { "Card": "Stealth", "IsReplenishable": true },
+        "HeroRogue": [
+          { "Card": "HealingPotion", "IsReplenishable": false },
+          { "Card": "Sneak", "IsReplenishable": true },
           { "Card": "ScarePowder", "IsReplenishable": true },
-          { "Card": "ProximityMine", "IsReplenishable": false },
-          { "Card": "PoisonGasGrenade", "IsReplenishable": false },
+          { "Card": "BoobyTrap", "IsReplenishable": false },
+          { "Card": "PoisonBomb", "IsReplenishable": false },
         ],
         "HeroBard": [
-          { "Card": "Heal", "IsReplenishable": false },
-          { "Card": "StrengthenCourage", "IsReplenishable": true },
+          { "Card": "HealingPotion", "IsReplenishable": false },
+          { "Card": "CourageShanty", "IsReplenishable": true },
           { "Card": "IceLamp", "IsReplenishable": true },
           { "Card": "SongOfRecovery", "IsReplenishable": false },
-          { "Card": "Stealth", "IsReplenishable": false },
-          { "Card": "Tornado", "IsReplenishable": false },
+          { "Card": "Sneak", "IsReplenishable": false },
+          { "Card": "HurricaneAnthem", "IsReplenishable": false },
           { "Card": "ShatteringVoice", "IsReplenishable": false },
         ]
       }
@@ -54,20 +54,20 @@
     {
       "Rule": "AbilityAoeAdjusted",
       "Config": {
-        "StrengthenCourage": 1,
+        "CourageShanty": 1,
         "ReplenishArmor": 1,
-        "Strength": 1,
-        "Speed": 1,
+        "StrengthPotion": 1,
+        "SwiftnessPotion": 1,
         "Antidote": 1,
         "Invulnerability": 1,
-        "Heal": 1,
+        "HealingPotion": 1,
       }
     },
     {
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
-        "Speed": false,
-        "Strength": false
+        "SwiftnessPotion": false,
+        "StrengthPotion": false
       }
     },
     {
@@ -77,16 +77,16 @@
         { "Piece": "HeroGuardian", "Property": "StartHealth", "Value": 20 },
         { "Piece": "HeroHunter", "Property": "StartHealth", "Value": 15 },
         { "Piece": "HeroBard", "Property": "StartHealth", "Value": 15 },
-        { "Piece": "HeroRouge", "Property": "StartHealth", "Value": 15 },
+        { "Piece": "HeroRogue", "Property": "StartHealth", "Value": 15 },
         { "Piece": "HeroHunter", "Property": "MoveRange", "Value": 5 },
         { "Piece": "HeroBard", "Property": "MoveRange", "Value": 5 },
         { "Piece": "SwordOfAvalon", "Property": "StartHealth", "Value": 20 },
-        { "Piece": "BeaconOfSmite", "Property": "StartHealth", "Value": 20 },
-        { "Piece": "BeaconOfSmite", "Property": "ActionPoint", "Value": 2 },
+        { "Piece": "TheBehemoth", "Property": "StartHealth", "Value": 20 },
+        { "Piece": "TheBehemoth", "Property": "ActionPoint", "Value": 2 },
         { "Piece": "WolfCompanion", "Property": "ActionPoint", "Value": 3 },
         { "Piece": "WolfCompanion", "Property": "MoveRange", "Value": 6 },
         { "Piece": "WolfCompanion", "Property": "VisionRange", "Value": 40 },
-        { "Piece": "MonsterBait", "Property": "StartHealth", "Value": 30 },
+        { "Piece": "Lure", "Property": "StartHealth", "Value": 30 },
         { "Piece": "Spiderling", "Property": "StartHealth", "Value": 1 },
         { "Piece": "Spiderling", "Property": "ActionPoint", "Value": 3 },
         { "Piece": "Spiderling", "Property": "MoveRange", "Value": 2 },
@@ -99,8 +99,8 @@
       "Rule": "AbilityActionCostAdjusted",
       "Config": {
         "Zap": false,
-        "StrengthenCourage": false,
-        "Stealth": false
+        "CourageShanty": false,
+        "Sneak": false
       }
     },
     {
@@ -125,7 +125,7 @@
         "HeroGuardian": [ "Diseased", "Frozen" ],
         "HeroBard": [ "Diseased", "Frozen" ],
         "HeroHunter": [ "Diseased", "Frozen" ],
-        "HeroRouge": [ "Diseased", "Frozen" ],
+        "HeroRogue": [ "Diseased", "Frozen" ],
         "WolfCompanion": [ "Diseased" ],
         "RatKing": ["Petrified"],
         "DarkElfGoddessBoss": ["Petrified"],
@@ -164,7 +164,7 @@
     {
       "Rule": "CardClassRestrictionOverridden",
       "Config": {
-        "NaturesCall": "Mushroom",
+        "BeastWhisperer": "Mushroom",
       }
     },
     {

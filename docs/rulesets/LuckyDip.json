@@ -10,37 +10,37 @@
           "Rule": "StartCardsModified",
           "Config": {
             "HeroGuardian": [
-              { "Card": "Heal", "IsReplenishable": false },
+              { "Card": "HealingPotion", "IsReplenishable": false },
               { "Card": "ReplenishArmor", "IsReplenishable": true },
               { "Card": "Bone", "IsReplenishable": true },
               { "Card": "DropChest", "IsReplenishable": false },
               { "Card": "DropChest", "IsReplenishable": false }
             ],
             "HeroHunter": [
-              { "Card": "Heal", "IsReplenishable": false },
+              { "Card": "HealingPotion", "IsReplenishable": false },
               { "Card": "HunterArrow", "IsReplenishable": true },
               { "Card": "PoisonedTip", "IsReplenishable": true },
-              { "Card": "Stealth", "IsReplenishable": false },
+              { "Card": "Sneak", "IsReplenishable": false },
               { "Card": "DropChest", "IsReplenishable": false },
               { "Card": "DropChest", "IsReplenishable": false }
             ],
             "HeroSorcerer": [
-              { "Card": "Heal", "IsReplenishable": false },
+              { "Card": "HealingPotion", "IsReplenishable": false },
               { "Card": "Zap", "IsReplenishable": true },
               { "Card": "TorchLight", "IsReplenishable": true },
               { "Card": "DropChest", "IsReplenishable": false },
               { "Card": "DropChest", "IsReplenishable": false }
             ],
-            "HeroRouge": [
-              { "Card": "Heal", "IsReplenishable": false },
-              { "Card": "Stealth", "IsReplenishable": true },
+            "HeroRogue": [
+              { "Card": "HealingPotion", "IsReplenishable": false },
+              { "Card": "Sneak", "IsReplenishable": true },
               { "Card": "ScarePowder", "IsReplenishable": true },
               { "Card": "DropChest", "IsReplenishable": false },
               { "Card": "DropChest", "IsReplenishable": false }
             ],
             "HeroBard": [
-              { "Card": "Heal", "IsReplenishable": false },
-              { "Card": "StrengthenCourage", "IsReplenishable": true },
+              { "Card": "HealingPotion", "IsReplenishable": false },
+              { "Card": "CourageShanty", "IsReplenishable": true },
               { "Card": "WebBomb", "IsReplenishable": true },
               { "Card": "DropChest", "IsReplenishable": false },          
               { "Card": "DropChest", "IsReplenishable": false },
@@ -51,13 +51,13 @@
         {
           "Rule": "AbilityAoeAdjusted",
           "Config": {
-            "StrengthenCourage": 1,
+            "CourageShanty": 1,
             "ReplenishArmor": 1,
-            "Strength": 1,
-            "Speed": 1,
+            "StrengthPotion": 1,
+            "SwiftnessPotion": 1,
             "Antidote": 1,
             "Invulnerability": 1,
-            "Heal": 1
+            "HealingPotion": 1
           }
         },
         {
@@ -67,25 +67,25 @@
             { "Piece": "HeroGuardian", "Property": "StartHealth", "Value": 20 },
             { "Piece": "HeroHunter", "Property": "StartHealth", "Value": 15 },
             { "Piece": "HeroBard", "Property": "StartHealth", "Value": 15 },
-            { "Piece": "HeroRouge", "Property": "StartHealth", "Value": 15 },
+            { "Piece": "HeroRogue", "Property": "StartHealth", "Value": 15 },
             { "Piece": "HeroHunter", "Property": "MoveRange", "Value": 5 },
             { "Piece": "HeroBard", "Property": "MoveRange", "Value": 5 },
             { "Piece": "WolfCompanion", "Property": "StartHealth", "Value": 20 },
             { "Piece": "SwordOfAvalon", "Property": "StartHealth", "Value": 20 },
-            { "Piece": "BeaconOfSmite", "Property": "StartHealth", "Value": 20 },
-            { "Piece": "BeaconOfSmite", "Property": "ActionPoint", "Value": 2 },
+            { "Piece": "TheBehemoth", "Property": "StartHealth", "Value": 20 },
+            { "Piece": "TheBehemoth", "Property": "ActionPoint", "Value": 2 },
             { "Piece": "WolfCompanion", "Property": "ActionPoint", "Value": 3 },
             { "Piece": "WolfCompanion", "Property": "MoveRange", "Value": 8 },
             { "Piece": "WolfCompanion", "Property": "VisionRange", "Value": 40 },
-            { "Piece": "MonsterBait", "Property": "StartHealth", "Value": 30 },
+            { "Piece": "Lure", "Property": "StartHealth", "Value": 30 },
           ]
         },
         {
           "Rule": "AbilityActionCostAdjusted",
           "Config": {
             "Zap": false,
-            "StrengthenCourage": false,
-            "Stealth": false
+            "CourageShanty": false,
+            "Sneak": false
           }
         },
         {
@@ -95,8 +95,8 @@
         {
           "Rule": "CardAdditionOverridden",
           "Config": {
-              "HeroSorcerer": [ "Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodsFury", "RevealPath" ],
-              "HeroHunter" : [ "CallCompanion", "MarkOfAvalon", "NaturesCall", "RevealPath" ],
+              "HeroSorcerer": [ "StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath" ],
+              "HeroHunter" : [ "CallCompanion", "HuntersMark", "BeastWhisperer", "RevealPath" ],
               }
         },
       {
@@ -104,9 +104,9 @@
         "Config": {
           "HeroSorcerer": [ "Diseased", "Stunned", "Frozen", "Tangled", "Petrified" ],
           "HeroGuardian": [ "Diseased", "Frozen", "Tangled", "Petrified" ],
-          "HeroBard": [ "Weaken", "MarkOfAvalon" ],
+          "HeroBard": [ "Weaken", "HuntersMark" ],
           "HeroHunter": [ "Diseased", "Frozen", "Petrified" ],
-          "HeroRouge": [ "Frozen", "Petrified" ]
+          "HeroRogue": [ "Frozen", "Petrified" ]
         }
       },
       {
