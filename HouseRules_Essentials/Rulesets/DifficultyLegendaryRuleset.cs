@@ -24,18 +24,18 @@
                 { "FloorThreeLootChests", 1 },
             });
 
-            var cardEneryAttack = new CardEnergyFromAttackMultipliedRule(0.5f);
+            var cardEnergyAttack = new CardEnergyFromAttackMultipliedRule(0.5f);
             var cardEnergyRecycle = new CardEnergyFromRecyclingMultipliedRule(0.5f);
-            var EnemyScaleHealth = new EnemyHealthScaledRule(2.2f);
-            var EnemyScaleAttack = new EnemyAttackScaledRule(2.0f);
+            var enemyScaleHealth = new EnemyHealthScaledRule(2.2f);
+            var enemyScaleAttack = new EnemyAttackScaledRule(2.0f);
 
             return Ruleset.NewInstance(
                 name,
                 description,
-                cardEneryAttack,
+                cardEnergyAttack,
                 cardEnergyRecycle,
-                EnemyScaleAttack,
-                EnemyScaleHealth,
+                enemyScaleAttack,
+                enemyScaleHealth,
                 levelProperties);
         }
     }
