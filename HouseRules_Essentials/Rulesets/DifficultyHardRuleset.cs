@@ -11,10 +11,10 @@
             const string name = "Difficulty: Hard";
             const string description = "Increased game difficulty for a greater challenge.";
 
-            var cardEnergyAttck = new CardEnergyFromAttackMultipliedRule(0.8f);
-            var cardEnegyRecycle = new CardEnergyFromRecyclingMultipliedRule(0.8f);
-            var EnemyScaleHealth = new EnemyHealthScaledRule(1.8f);
-            var EnemyScaleAttack = new EnemyAttackScaledRule(1.5f);
+            var cardEnergyAttack = new CardEnergyFromAttackMultipliedRule(0.8f);
+            var cardEnergyRecycle = new CardEnergyFromRecyclingMultipliedRule(0.8f);
+            var enemyScaleHealth = new EnemyHealthScaledRule(1.8f);
+            var enemyScaleAttack = new EnemyAttackScaledRule(1.5f);
 
             var levelPropertiesModified = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
@@ -32,11 +32,11 @@
             return Ruleset.NewInstance(
                 name,
                 description,
-                cardEneryAttack,
+                cardEnergyAttack,
                 cardEnergyRecycle,
-                EnemyScaleAttack,
-                EnemyScaleHealth,
-                levelPropertiesRule);
+                enemyScaleAttack,
+                enemyScaleHealth,
+                levelPropertiesModified);
         }
     }
 }

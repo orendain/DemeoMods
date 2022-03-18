@@ -11,11 +11,11 @@
             const string name = "Difficulty: Easy";
             const string description = "Decreased game difficulty for a more casual playstyle.";
 
-            var cardEnergyAttck = new CardEnergyFromAttackMultipliedRule(1.5f);
-            var cardEnegyRecycle = new CardEnergyFromRecyclingMultipliedRule(1.5f);
-            var EnemyScaleHealth = new EnemyHealthScaledRule(0.8f);
-            var EnemyDoorDisabled = new EnemyDoorOpeningDisabledRule(true);
-            var EnemyRespawnDisabled = new EnemyRespawnDisabledRule(true);
+            var cardEnergyAttack = new CardEnergyFromAttackMultipliedRule(1.5f);
+            var cardEnergyRecycle = new CardEnergyFromRecyclingMultipliedRule(1.5f);
+            var enemyScaleHealth = new EnemyHealthScaledRule(0.8f);
+            var enemyDoorDisabled = new EnemyDoorOpeningDisabledRule(true);
+            var enemyRespawnDisabled = new EnemyRespawnDisabledRule(true);
 
             var levelPropertiesModified = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
@@ -31,12 +31,12 @@
             return Ruleset.NewInstance(
                 name,
                 description,
-                cardEneryAttack,
+                cardEnergyAttack,
                 cardEnergyRecycle,
-                EnemyScaleHealth,
-                EnemyDoorDisabled,
-                EnemyRespawnDisabled,
-                levelPropertiesRule);
+                enemyScaleHealth,
+                enemyDoorDisabled,
+                enemyRespawnDisabled,
+                levelPropertiesModified);
 
         }
     }
