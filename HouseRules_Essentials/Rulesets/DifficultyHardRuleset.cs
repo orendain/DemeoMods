@@ -1,5 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rulesets
 {
+    using System.Collections.Generic;
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
 
