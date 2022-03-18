@@ -78,8 +78,8 @@ namespace HouseRules.Configuration
                 { "BeastWhisperer", bps },
             });
 
-            EffectStateType[] effs = { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.MarkOfAvalon, EffectStateType.Weaken, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
-            var pila = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, EffectStateType[]> { { BoardPieceId.HeroSorcerer, effs } });
+            List<EffectStateType> effs = new List<EffectStateType>() { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.MarkOfAvalon, EffectStateType.Weaken, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
+            var pila = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>> { { BoardPieceId.HeroSorcerer, effs } });
 
             var sec = new List<StatusEffectData>
             {
