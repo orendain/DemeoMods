@@ -13,14 +13,14 @@
           { "Card": "HealingPotion", "IsReplenishable": false },
           { "Card": "ReplenishArmor", "IsReplenishable": true },
           { "Card": "Bone", "IsReplenishable": true },
-          { "Card": "Whirlwind", "IsReplenishable": false },
+          { "Card": "WhirlwindAttack", "IsReplenishable": false },
           { "Card": "PiercingThrow", "IsReplenishable": false },
           { "Card": "Sneak", "IsReplenishable": false },
 
         ],
         "HeroHunter": [
           { "Card": "HealingPotion", "IsReplenishable": false },
-          { "Card": "HunterArrow", "IsReplenishable": true },
+          { "Card": "Arrow", "IsReplenishable": true },
           { "Card": "PoisonedTip", "IsReplenishable": true },
           { "Card": "HailOfArrows", "IsReplenishable": false },
           { "Card": "CallCompanion", "IsReplenishable": false },
@@ -36,7 +36,7 @@
         "HeroRogue": [
           { "Card": "HealingPotion", "IsReplenishable": false },
           { "Card": "Sneak", "IsReplenishable": true },
-          { "Card": "ScarePowder", "IsReplenishable": true },
+          { "Card": "PanicPowder", "IsReplenishable": true },
           { "Card": "BoobyTrap", "IsReplenishable": false },
           { "Card": "PoisonBomb", "IsReplenishable": false },
         ],
@@ -81,18 +81,18 @@
         { "Piece": "HeroHunter", "Property": "MoveRange", "Value": 5 },
         { "Piece": "HeroBard", "Property": "MoveRange", "Value": 5 },
         { "Piece": "SwordOfAvalon", "Property": "StartHealth", "Value": 20 },
-        { "Piece": "TheBehemoth", "Property": "StartHealth", "Value": 20 },
-        { "Piece": "TheBehemoth", "Property": "ActionPoint", "Value": 2 },
-        { "Piece": "WolfCompanion", "Property": "ActionPoint", "Value": 3 },
-        { "Piece": "WolfCompanion", "Property": "MoveRange", "Value": 6 },
-        { "Piece": "WolfCompanion", "Property": "VisionRange", "Value": 40 },
+        { "Piece": "SmiteWard", "Property": "StartHealth", "Value": 20 },
+        { "Piece": "SmiteWard", "Property": "ActionPoint", "Value": 2 },
+        { "Piece": "Verochka", "Property": "ActionPoint", "Value": 3 },
+        { "Piece": "Verochka", "Property": "MoveRange", "Value": 6 },
+        { "Piece": "Verochka", "Property": "VisionRange", "Value": 40 },
         { "Piece": "Lure", "Property": "StartHealth", "Value": 30 },
-        { "Piece": "Spiderling", "Property": "StartHealth", "Value": 1 },
-        { "Piece": "Spiderling", "Property": "ActionPoint", "Value": 3 },
-        { "Piece": "Spiderling", "Property": "MoveRange", "Value": 2 },
+        { "Piece": "Spider", "Property": "StartHealth", "Value": 1 },
+        { "Piece": "Spider", "Property": "ActionPoint", "Value": 3 },
+        { "Piece": "Spider", "Property": "MoveRange", "Value": 2 },
         { "Piece": "RatKing", "Property": "StartHealth", "Value": 45 },
         { "Piece": "RatKing", "Property": "MoveRange", "Value": 2 },
-        { "Piece": "DarkElfGoddessBoss", "Property": "StartHealth", "Value": 35 },
+        { "Piece": "ElvenQueen", "Property": "StartHealth", "Value": 35 },
       ]
     },
     {
@@ -126,45 +126,45 @@
         "HeroBard": [ "Diseased", "Frozen" ],
         "HeroHunter": [ "Diseased", "Frozen" ],
         "HeroRogue": [ "Diseased", "Frozen" ],
-        "WolfCompanion": [ "Diseased" ],
+        "Verochka": [ "Diseased" ],
         "RatKing": ["Petrified"],
-        "DarkElfGoddessBoss": ["Petrified"],
+        "ElvenQueen": ["Petrified"],
       }
     },
     {
       "Rule": "SpawnCategoryOverridden",
       "Config": {
-        "Spiderling": [ 200, 50, 1 ],
+        "Spider": [ 200, 50, 1 ],
         "SpiderEgg": [ 20, 10, 1 ] ,
-        "LargeSpider": [ 30, 10, 1 ],
+        "GiantSpider": [ 30, 10, 1 ],
         "RatKing": [ 1, 1, 1 ],
-        "DarkElfGoddessBoss": [ 1, 1, 2 ],
+        "ElvenQueen": [ 1, 1, 2 ],
       }
     },
     {
       "Rule": "PieceAbilityListOverridden",
       "Config": {
-        "Spiderling": [ "SpiderWebshot", "AcidSpit", "EnemyStealCard", "EnemyStealGold" ],
-        "DarkElfGoddessBoss": ["EnemyKnockbackMelee", "EnemyFireball", "EarthShatter"],
+        "Spider": [ "SpiderWebshot", "AcidSpit", "EnemyStealCard", "EnemyStealGold" ],
+        "ElvenQueen": ["EnemyKnockbackMelee", "EnemyFireball", "EarthShatter"],
         "RatKing": ["DigRatsNest", "DiseasedBite", "VerminFrenzy"]
      }
     },
     {
       "Rule": "PieceBehavioursListOverridden",
       "Config": {
-        "Spiderling": [ "AttackAndRetreat", "Patrol", "FleeToFOW", "ChargeMove" ],
+        "Spider": [ "AttackAndRetreat", "Patrol", "FleeToFOW", "ChargeMove" ],
       }
     },
     {
       "Rule": "PiecePieceTypeListOverridden",
       "Config": {
-        "Spiderling": [ "Enemy", "Thief", "Canine" ],
+        "Spider": [ "Enemy", "Thief", "Canine" ],
       }
     },
     {
       "Rule": "CardClassRestrictionOverridden",
       "Config": {
-        "BeastWhisperer": "Mushroom",
+        "BeastWhisperer": "SporeFungus",
       }
     },
     {

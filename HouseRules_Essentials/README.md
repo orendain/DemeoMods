@@ -107,7 +107,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "AbilityDamageAdjustedRule",
     "Config": {
       "Zap": 1,
-      "Whirlwind": 1,
+      "WhirlwindAttack": 1,
     }
   },
   ```
@@ -157,7 +157,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "CardAdditionOverridden",
     "Config": {
       "HeroSorcerer": ["StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
-      "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "HealingPotion"],
+      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"],
     }
   },
   ```
@@ -225,7 +225,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     {
       "Rule": "CardClassRestrictionOverridden",
       "Config": {
-        "BeastWhisperer": "Mushroom",
+        "BeastWhisperer": "SporeFungus",
         "Sneak": "Guardian",
         "Zap": "Hunter",
       }
@@ -510,9 +510,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "Config": {
         "Spiderling": [ 200, 50, 1 ],
         "SpiderEgg": [ 20, 10, 1 ] ,
-        "LargeSpider": [ 30, 10, 1 ],
+        "GiantSpider": [ 30, 10, 1 ],
         "RatKing": [ 1, 1, 1 ],
-        "DarkElfGoddessBoss": [ 1, 1, 2 ],
+        "ElvenQueen": [ 1, 1, 2 ],
       }
     },
   ```
@@ -532,7 +532,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "HeroGuardian": [
         { "Card": "HealingPotion", "IsReplenishable": false },
         { "Card": "ReplenishArmor", "IsReplenishable": true },
-        { "Card": "Whirlwind", "IsReplenishable": true },
+        { "Card": "WhirlwindAttack", "IsReplenishable": true },
         { "Card": "PiercingThrow", "IsReplenishable": false },
         { "Card": "CoinFlip", "IsReplenishable": false },
         { "Card": "TheBehemoth", "IsReplenishable": false },
@@ -548,7 +548,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "HeroSorcerer": [
         { "Card": "HealingPotion", "IsReplenishable": false },
         { "Card": "Zap", "IsReplenishable": true },
-        { "Card": "Whirlwind", "IsReplenishable": true },
+        { "Card": "WhirlwindAttack", "IsReplenishable": true },
         { "Card": "Freeze", "IsReplenishable": false },
         { "Card": "Fireball", "IsReplenishable": false },
         { "Card": "CallCompanion", "IsReplenishable": false },

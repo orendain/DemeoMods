@@ -18,7 +18,7 @@
             ],
             "HeroHunter": [
               { "Card": "HealingPotion", "IsReplenishable": false },
-              { "Card": "HunterArrow", "IsReplenishable": true },
+              { "Card": "Arrow", "IsReplenishable": true },
               { "Card": "PoisonedTip", "IsReplenishable": true },
               { "Card": "Sneak", "IsReplenishable": false },
               { "Card": "DropChest", "IsReplenishable": false },
@@ -27,14 +27,14 @@
             "HeroSorcerer": [
               { "Card": "HealingPotion", "IsReplenishable": false },
               { "Card": "Zap", "IsReplenishable": true },
-              { "Card": "TorchLight", "IsReplenishable": true },
+              { "Card": "Torch", "IsReplenishable": true },
               { "Card": "DropChest", "IsReplenishable": false },
               { "Card": "DropChest", "IsReplenishable": false }
             ],
             "HeroRogue": [
               { "Card": "HealingPotion", "IsReplenishable": false },
               { "Card": "Sneak", "IsReplenishable": true },
-              { "Card": "ScarePowder", "IsReplenishable": true },
+              { "Card": "PanicPowder", "IsReplenishable": true },
               { "Card": "DropChest", "IsReplenishable": false },
               { "Card": "DropChest", "IsReplenishable": false }
             ],
@@ -70,13 +70,13 @@
             { "Piece": "HeroRogue", "Property": "StartHealth", "Value": 15 },
             { "Piece": "HeroHunter", "Property": "MoveRange", "Value": 5 },
             { "Piece": "HeroBard", "Property": "MoveRange", "Value": 5 },
-            { "Piece": "WolfCompanion", "Property": "StartHealth", "Value": 20 },
+            { "Piece": "Verochka", "Property": "StartHealth", "Value": 20 },
             { "Piece": "SwordOfAvalon", "Property": "StartHealth", "Value": 20 },
-            { "Piece": "TheBehemoth", "Property": "StartHealth", "Value": 20 },
-            { "Piece": "TheBehemoth", "Property": "ActionPoint", "Value": 2 },
-            { "Piece": "WolfCompanion", "Property": "ActionPoint", "Value": 3 },
-            { "Piece": "WolfCompanion", "Property": "MoveRange", "Value": 8 },
-            { "Piece": "WolfCompanion", "Property": "VisionRange", "Value": 40 },
+            { "Piece": "SmiteWard", "Property": "StartHealth", "Value": 20 },
+            { "Piece": "SmiteWard", "Property": "ActionPoint", "Value": 2 },
+            { "Piece": "Verochka", "Property": "ActionPoint", "Value": 3 },
+            { "Piece": "Verochka", "Property": "MoveRange", "Value": 8 },
+            { "Piece": "Verochka", "Property": "VisionRange", "Value": 40 },
             { "Piece": "Lure", "Property": "StartHealth", "Value": 30 },
           ]
         },
@@ -104,7 +104,7 @@
         "Config": {
           "HeroSorcerer": [ "Diseased", "Stunned", "Frozen", "Tangled", "Petrified" ],
           "HeroGuardian": [ "Diseased", "Frozen", "Tangled", "Petrified" ],
-          "HeroBard": [ "Weaken", "HuntersMark" ],
+          "HeroBard": [ "Weaken", "MarkOfAvalon" ],
           "HeroHunter": [ "Diseased", "Frozen", "Petrified" ],
           "HeroRogue": [ "Frozen", "Petrified" ]
         }
