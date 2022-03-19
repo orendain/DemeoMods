@@ -5,20 +5,20 @@
     {
       "Rule": "AbilityAoeAdjusted",
       "Config": {
-        "StrengthenCourage": 1,
+        "CourageShanty": 1,
         "ReplenishArmor": 1,
-        "Strength": 1,
-        "Speed": 1,
-        "Antidote": 1,
-        "Invulnerability": 1,
-        "Heal": 1,
+        "StrengthPotion": 1,
+        "SwiftnessPotion": 1,
+        "Antitoxin": 1,
+        "AdamantPotion": 1,
+        "HealingPotion": 1,
       }
     },
     {
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
-        "Speed": false,
-        "Strength": false
+        "SwiftnessPotion": false,
+        "StrengthPotion": false
       }
     },
   ]
