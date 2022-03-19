@@ -18,7 +18,8 @@
         /// Initializes a new instance of the <see cref="AbilityAoeAdjustedRule"/> class.
         /// </summary>
         /// <param name="adjustments">Key-value pairs mapping the name of an ability and the AOE range
-        /// added to their base. Adding '1' to a 3x3 spell will make a 5x5. Negative values will reduce AOE.</param>
+        /// added to their base.</param>
+        /// <remarks>Adding '1' to a 3x3 spell will make a 5x5. Negative values will reduce AOE.</remarks>
         public AbilityAoeAdjustedRule(Dictionary<AbilityKey, int> adjustments)
         {
             _adjustments = adjustments;

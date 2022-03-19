@@ -20,6 +20,7 @@
         public AbilityBackstabAdjustedRule(Dictionary<AbilityKey, bool> adjustments)
         {
             _adjustments = adjustments;
+            _originals = new Dictionary<AbilityKey, bool>();
         }
 
         public Dictionary<AbilityKey, bool> GetConfigObject() => _adjustments;
