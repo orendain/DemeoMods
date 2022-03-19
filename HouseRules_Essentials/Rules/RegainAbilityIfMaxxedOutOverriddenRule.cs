@@ -28,7 +28,7 @@
 
         public Dictionary<AbilityKey, bool> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
             _originals = ReplaceStatModifiers(_adjustments);
         }
