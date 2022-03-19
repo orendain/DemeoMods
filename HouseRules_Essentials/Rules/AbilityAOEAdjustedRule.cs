@@ -29,15 +29,15 @@
 
         protected override void OnPreGameCreated(GameContext gameContext)
         {
-            _originals = ReplaceAbility(_adjustments);
+            _originals = ReplaceAbilities(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            ReplaceAbility(_originals);
+            ReplaceAbilities(_originals);
         }
 
-        private static Dictionary<AbilityKey, int> ReplaceAbility(Dictionary<AbilityKey, int> replacements)
+        private static Dictionary<AbilityKey, int> ReplaceAbilities(Dictionary<AbilityKey, int> replacements)
         {
             var originals = new Dictionary<AbilityKey, int>();
 
