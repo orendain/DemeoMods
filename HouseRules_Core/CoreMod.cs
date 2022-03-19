@@ -13,7 +13,7 @@
         public override void OnApplicationStart()
         {
             var harmony = new Harmony("com.orendain.demeomods.houserules.core");
-            ModPatcher.Patch(harmony);
+            LifecycleDirector.Patch(harmony);
             BoardSyncer.Patch(harmony);
         }
 
