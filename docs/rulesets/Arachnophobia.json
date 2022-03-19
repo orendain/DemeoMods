@@ -66,8 +66,8 @@
     {
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
-        "SwiftnessPotion": false,
-        "StrengthPotion": false
+        "Speed": false,
+        "Strength": false
       }
     },
     {
@@ -170,6 +170,12 @@
     {
       "Rule": "EnemyRespawnDisabledRule",
       "Config": true
+    },
+    {
+      "Rule": "PieceUseWhenKilledOverridden",
+      "Config": {
+        "Spider": [ "HealingPotion" ],
+      }
     },
     {
       "Rule": "StatusEffectConfig",
