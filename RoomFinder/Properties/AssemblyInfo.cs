@@ -11,7 +11,7 @@ using RoomFinder;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Orendain")]
 [assembly: AssemblyProduct("RoomFinder")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -37,5 +37,7 @@ using RoomFinder;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 // Melon Loader.
-[assembly: MelonInfo(typeof(RoomFinderMod), "RoomFinder", "1.2.0", "Orendain", "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(RoomFinderMod), "RoomFinder", "1.4.0", "Orendain", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
+[assembly: MelonID("566788")]
+[assembly: VerifyLoaderVersion("0.5.3", true)]

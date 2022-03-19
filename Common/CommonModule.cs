@@ -1,22 +1,24 @@
 ﻿namespace Common
 {
-    using Common.Patches;
-    using Common.States;
+    using Bowser.Core;
     using MelonLoader;
 
-    internal class CommonModule
+    internal static class CommonModule
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("Common");
 
-        public static GameContextState GameContextState { get; } = GameContextState.NewInstance();
+        internal static BowserButtonHandler HangoutsButtonHandler { get; set; }
 
-        // Ensure constructor is called exactly once.
-        private static CommonModule _instance = new CommonModule();
+        internal static bool IsInitialized { get; private set; }
 
-        private CommonModule()
+        /// <summary>
+        /// Initialize the module. This should be called during the dependant module's OnApplicationStart().
+        /// </summary>
+        public static void Initialize()
         {
             var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.common");
-            GameContextPatcher.Patch(harmony);
+            ModPatcher.Patch(harmony);
+            IsInitialized = true;
         }
     }
 }

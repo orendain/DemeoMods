@@ -11,7 +11,7 @@ using SkipIntro;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Orendain")]
 [assembly: AssemblyProduct("SkipIntro")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -37,5 +37,7 @@ using SkipIntro;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 // Melon Loader.
-[assembly: MelonInfo(typeof(SkipIntroMod), "SkipIntro", "1.2.0", "Orendain", "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(SkipIntroMod), "SkipIntro", "1.3.0", "Orendain", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
+[assembly: MelonID("566782")]
+[assembly: VerifyLoaderVersion("0.5.3", true)]

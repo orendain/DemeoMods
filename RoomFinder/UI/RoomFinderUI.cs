@@ -9,7 +9,7 @@
     using Photon.Realtime;
     using UnityEngine;
 
-    internal class RoomListUI : MonoBehaviour
+    internal class RoomFinderUI : MonoBehaviour
     {
         private bool _isInitialized;
         private UiHelper _uiHelper;
@@ -45,21 +45,28 @@
                 return;
             }
 
-            if (RoomFinderMod.ModState.IsRefreshingRoomList && RoomFinderMod.ModState.HasRoomListUpdated)
+            if (!RoomFinderMod.ModState.IsRefreshingRoomList)
             {
-                RoomFinderMod.ModState.IsRefreshingRoomList = false;
-                RoomFinderMod.ModState.HasRoomListUpdated = false;
-                PopulateRoomList();
+                return;
             }
+
+            if (!RoomFinderMod.ModState.HasRoomListUpdated)
+            {
+                return;
+            }
+
+            RoomFinderMod.ModState.IsRefreshingRoomList = false;
+            RoomFinderMod.ModState.HasRoomListUpdated = false;
+            PopulateRoomList();
         }
 
         private void Initialize()
         {
-            this.transform.SetParent(_uiHelper.DemeoResource.LobbyAnchor.transform, worldPositionStays: true);
+            this.transform.SetParent(_uiHelper.DemeoResource.VrLobbyTableAnchor.transform, worldPositionStays: true);
             this.transform.position = new Vector3(25, 30, 0);
             this.transform.rotation = Quaternion.Euler(0, 40, 0);
 
-            _background = new GameObject("RoomListUIBackground");
+            _background = new GameObject("RoomFinderUIBackground");
             _background.AddComponent<MeshFilter>().mesh = _uiHelper.DemeoResource.MenuBoxMesh;
             _background.AddComponent<MeshRenderer>().material = _uiHelper.DemeoResource.MenuBoxMaterial;
 
@@ -69,17 +76,18 @@
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             _background.transform.localScale = new Vector3(2, 1, 2.5f);
 
-            var menuTitle = _uiHelper.CreateMenuHeaderText("Public Rooms");
+            var menuTitle = _uiHelper.CreateMenuHeaderText("RoomFinder");
             menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 2.375f, 0);
+            menuTitle.transform.localPosition = new Vector3(0, 2.375f, UiHelper.DefaultTextZShift);
 
             var refreshButton = _uiHelper.CreateButton(RefreshRoomList);
             refreshButton.transform.SetParent(this.transform, worldPositionStays: false);
-            refreshButton.transform.localPosition = new Vector3(0, 0.3f, 0);
+            refreshButton.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultButtonZShift);
+            refreshButton.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
 
             var refreshText = _uiHelper.CreateButtonText("Refresh");
             refreshText.transform.SetParent(this.transform, worldPositionStays: false);
-            refreshText.transform.localPosition = new Vector3(0, 0.3f, 0);
+            refreshText.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             this.gameObject.AddComponent<BoxCollider>();
@@ -90,7 +98,7 @@
         private static void RefreshRoomList()
         {
             RoomFinderMod.ModState.IsRefreshingRoomList = true;
-            Traverse.Create(RoomFinderMod.GameContextState.LobbyMenuController)
+            Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
                 .Method("QuickPlay", LevelSequence.GameType.Invalid, true)
                 .GetValue();
         }
@@ -98,13 +106,13 @@
         private void PopulateRoomList()
         {
             var cachedRooms =
-                Traverse.Create(RoomFinderMod.GameContextState.GameContext.gameStateMachine)
+                Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine)
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
-            RoomFinderMod.Logger.Msg($"[RoomListUI] Retrieved {cachedRooms.Count} rooms.");
+            RoomFinderMod.Logger.Msg($"Captured {cachedRooms.Count} rooms.");
 
-            var roomListPanelContainer = _roomListPanel.Reinitialize(cachedRooms.Values.ToList());
-            roomListPanelContainer.transform.SetParent(this.transform, worldPositionStays: false);
-            roomListPanelContainer.transform.localPosition = new Vector3(0, -1, 0);
+            _roomListPanel.SetRooms(cachedRooms.Values.ToList());
+            _roomListPanel.GameObject.transform.SetParent(this.transform, worldPositionStays: false);
+            _roomListPanel.GameObject.transform.localPosition = new Vector3(0, -1, 0);
         }
     }
 }
