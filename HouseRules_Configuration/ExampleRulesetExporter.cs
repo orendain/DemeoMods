@@ -18,20 +18,20 @@ namespace HouseRules.Configuration
 
         private static void ExportExampleRuleset()
         {
-            var aaca = new AbilityActionCostAdjustedRule(new Dictionary<string, bool>
+            var aaca = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
-                { "Zap", false }, // 0 casting cost for zap
-                { "CourageShanty", false }, // 0 casting cost for Courage
+                { AbilityKey.Zap, false }, // 0 casting cost for zap
+                { AbilityKey.CourageShanty, false }, // 0 casting cost for Courage
             });
-            var aaa = new AbilityAoeAdjustedRule(new Dictionary<string, int>
+            var aaa = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
-                { "Fireball", 1 }, // 5x5 fireball
-                { "Zap", 1 }, // Just testing
-                { "CourageShanty", 1 }, // Everyone should hear the bard sing the courage song
-                { "StrengthPotion", 1 }, // Everyone nearby should share the strength potion
-                { "SwiftnessPotion", 1 }, // Everyone nearby should share the speed potion
+                { AbilityKey.Fireball, 1 }, // 5x5 fireball
+                { AbilityKey.Zap, 1 }, // Just testing
+                { AbilityKey.CourageShanty, 1 }, // Everyone should hear the bard sing the courage song
+                { AbilityKey.StrengthPotion, 1 }, // Everyone nearby should share the strength potion
+                { AbilityKey.SwiftnessPotion, 1 }, // Everyone nearby should share the speed potion
             });
-            var ada = new AbilityDamageAdjustedRule(new Dictionary<string, int> { { "Zap", 1 } });
+            var ada = new AbilityDamageAdjustedRule(new Dictionary<AbilityKey, int> { { AbilityKey.Zap, 1 } });
             var cefam1 = new CardEnergyFromAttackMultipliedRule(2f);
             var cefam2 = new CardEnergyFromAttackMultipliedRule(2f);
             var cefam3 = new CardEnergyFromAttackMultipliedRule(2f);
@@ -72,10 +72,10 @@ namespace HouseRules.Configuration
             var sorcCards = new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>> { { BoardPieceId.HeroSorcerer, cards } };
             var sscm = new StartCardsModifiedRule(sorcCards);
 
-            BoardPieceId[] bps = { BoardPieceId.ChestGoblin, BoardPieceId.Slimeling };
-            var arpl = new AbilityRandomPieceListRule(new Dictionary<string, BoardPieceId[]>
+            List<BoardPieceId> bps = new List<BoardPieceId> { BoardPieceId.ChestGoblin, BoardPieceId.Slimeling };
+            var arpl = new AbilityRandomPieceListRule(new Dictionary<AbilityKey, List<BoardPieceId>>
             {
-                { "BeastWhisperer", bps },
+                { AbilityKey.BeastWhisperer, bps },
             });
 
             List<EffectStateType> effs = new List<EffectStateType>() { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.MarkOfAvalon, EffectStateType.Weaken, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };

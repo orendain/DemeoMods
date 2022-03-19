@@ -74,10 +74,10 @@
                 { "FloorThreeLootChests", 12 },
             });
 
-            var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<string, int>
+            var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
-                { "StrengthPotion", 1 },
-                { "SwiftnessPotion", 1 },
+                { AbilityKey.StrengthPotion, 1 },
+                { AbilityKey.SwiftnessPotion, 1 },
             });
 
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);

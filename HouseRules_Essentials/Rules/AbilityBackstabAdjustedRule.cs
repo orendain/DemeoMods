@@ -1,53 +1,57 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Boardgame;
     using Boardgame.BoardEntities.Abilities;
+    using DataKeys;
     using HouseRules.Types;
-    using UnityEngine;
 
-    public sealed class AbilityBackstabAdjustedRule : Rule, IConfigWritable<Dictionary<string, bool>>, IMultiplayerSafe
+    public sealed class AbilityBackstabAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>, IMultiplayerSafe
     {
         public override string Description => "Ability backstab enablement is adjusted";
 
-        private readonly Dictionary<string, bool> _adjustments;
-        private Dictionary<string, bool> _originals;
+        private readonly Dictionary<AbilityKey, bool> _adjustments;
+        private Dictionary<AbilityKey, bool> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AbilityBackstabAdjustedRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Key-value pairs of abilitykey and bool for whether backstab bonus
-        /// is enabled or not.</param>
-        public AbilityBackstabAdjustedRule(Dictionary<string, bool> adjustments)
+        /// <param name="adjustments">Key-value pairs of abilityKey and whether backstab bonus is enabled or not.</param>
+        public AbilityBackstabAdjustedRule(Dictionary<AbilityKey, bool> adjustments)
         {
             _adjustments = adjustments;
+            _originals = new Dictionary<AbilityKey, bool>();
         }
 
-        public Dictionary<string, bool> GetConfigObject() => _adjustments;
+        public Dictionary<AbilityKey, bool> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
-            _originals = UpdateAbilities(_adjustments);
+            _originals = ReplaceAbilities(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            UpdateAbilities(_originals);
+            ReplaceAbilities(_originals);
         }
 
-        private static Dictionary<string, bool> UpdateAbilities(Dictionary<string, bool> adjustments)
+        private static Dictionary<AbilityKey, bool> ReplaceAbilities(Dictionary<AbilityKey, bool> replacements)
         {
-            var abilities = Resources.FindObjectsOfTypeAll<Ability>();
-            var previousValues = new Dictionary<string, bool>();
-            foreach (var item in adjustments)
+            var originals = new Dictionary<AbilityKey, bool>();
+
+            foreach (var replacement in replacements)
             {
-                var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                previousValues.Add(item.Key, ability.enableBackstabBonus);
-                ability.enableBackstabBonus = item.Value;
+                if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
+                {
+                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
+                }
+
+                originals[replacement.Key] = ability.enableBackstabBonus;
+                ability.enableBackstabBonus = replacement.Value;
             }
 
-            return previousValues;
+            return originals;
         }
     }
 }

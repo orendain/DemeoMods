@@ -1,389 +1,222 @@
 {
-    "Name": "Arachnophobia",
-    "Description": "Money Spiders everywhere. On the walls and in my hair.",
-    "Rules": [
-        {
-            "Rule": "AbilityDamageAdjusted",
-            "Config": { "Zap": 1 }
-        },
-        {
-            "Rule": "StartCardsModified",
-            "Config": {
-                "HeroGuardian": [
-                    {
-                        "Card": "HealingPotion",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "ReplenishArmor",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "Bone",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "WhirlwindAttack",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "PiercingThrow",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "Sneak",
-                        "IsReplenishable": false
-                    }
+  "Name": "Arachnophobia",
+  "Description": "Money Spiders everywhere. On the walls and in my hair.",
+  "Rules": [
+    {
+      "Rule": "AbilityDamageAdjusted",
+      "Config": { "Zap": 1 }
+    },
+    {
+      "Rule": "StartCardsModified",
+      "Config": {
+        "HeroGuardian": [
+          { "Card": "HealingPotion", "IsReplenishable": false },
+          { "Card": "ReplenishArmor", "IsReplenishable": true },
+          { "Card": "Bone", "IsReplenishable": true },
+          { "Card": "WhirlwindAttack", "IsReplenishable": false },
+          { "Card": "PiercingThrow", "IsReplenishable": false },
+          { "Card": "Sneak", "IsReplenishable": false },
 
-                ],
-                "HeroHunter": [
-                    {
-                        "Card": "HealingPotion",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "Arrow",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "PoisonedTip",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "HailOfArrows",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "CallCompanion",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "Sneak",
-                        "IsReplenishable": false
-                    }
-                ],
-                "HeroSorcerer": [
-                    {
-                        "Card": "HealingPotion",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "Zap",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "OilLamp",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "HeavensFury",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "DetectEnemies",
-                        "IsReplenishable": false
-                    }
-                ],
-                "HeroRogue": [
-                    {
-                        "Card": "HealingPotion",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "Sneak",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "PanicPowder",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "BoobyTrap",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "PoisonBomb",
-                        "IsReplenishable": false
-                    }
-                ],
-                "HeroBard": [
-                    {
-                        "Card": "HealingPotion",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "CourageShanty",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "IceLamp",
-                        "IsReplenishable": true
-                    },
-                    {
-                        "Card": "SongOfRecovery",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "Sneak",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "HurricaneAnthem",
-                        "IsReplenishable": false
-                    },
-                    {
-                        "Card": "ShatteringVoice",
-                        "IsReplenishable": false
-                    }
-                ]
-            }
-        },
-        {
-            "Rule": "AbilityAoeAdjusted",
-            "Config": {
-                "StrengthenCourage": 1,
-                "ReplenishArmor": 1,
-                "Strength": 1,
-                "Speed": 1,
-                "Antidote": 1,
-                "Invulnerability": 1,
-                "Heal": 1
-            }
-        },
-        {
-            "Rule": "RegainAbilityIfMaxxedOutOverridden",
-            "Config": {
-                "Speed": false,
-                "Strength": false
-            }
-        },
-        {
-            "Rule": "PieceConfigAdjusted",
-            "Config": [
-                {
-                    "Piece": "HeroSorcerer",
-                    "Property": "StartHealth",
-                    "Value": 15
-                },
-                {
-                    "Piece": "HeroGuardian",
-                    "Property": "StartHealth",
-                    "Value": 20
-                },
-                {
-                    "Piece": "HeroHunter",
-                    "Property": "StartHealth",
-                    "Value": 15
-                },
-                {
-                    "Piece": "HeroBard",
-                    "Property": "StartHealth",
-                    "Value": 15
-                },
-                {
-                    "Piece": "HeroRogue",
-                    "Property": "StartHealth",
-                    "Value": 15
-                },
-                {
-                    "Piece": "HeroHunter",
-                    "Property": "MoveRange",
-                    "Value": 5
-                },
-                {
-                    "Piece": "HeroBard",
-                    "Property": "MoveRange",
-                    "Value": 5
-                },
-                {
-                    "Piece": "SwordOfAvalon",
-                    "Property": "StartHealth",
-                    "Value": 20
-                },
-                {
-                    "Piece": "SmiteWard",
-                    "Property": "StartHealth",
-                    "Value": 20
-                },
-                {
-                    "Piece": "SmiteWard",
-                    "Property": "ActionPoint",
-                    "Value": 2
-                },
-                {
-                    "Piece": "Verochka",
-                    "Property": "ActionPoint",
-                    "Value": 3
-                },
-                {
-                    "Piece": "Verochka",
-                    "Property": "MoveRange",
-                    "Value": 6
-                },
-                {
-                    "Piece": "Verochka",
-                    "Property": "VisionRange",
-                    "Value": 40
-                },
-                {
-                    "Piece": "Lure",
-                    "Property": "StartHealth",
-                    "Value": 30
-                },
-                {
-                    "Piece": "Spider",
-                    "Property": "StartHealth",
-                    "Value": 1
-                },
-                {
-                    "Piece": "Spider",
-                    "Property": "ActionPoint",
-                    "Value": 3
-                },
-                {
-                    "Piece": "Spider",
-                    "Property": "MoveRange",
-                    "Value": 2
-                },
-                {
-                    "Piece": "RatKing",
-                    "Property": "StartHealth",
-                    "Value": 45
-                },
-                {
-                    "Piece": "RatKing",
-                    "Property": "MoveRange",
-                    "Value": 2
-                },
-                {
-                    "Piece": "ElvenQueen",
-                    "Property": "StartHealth",
-                    "Value": 35
-                }
-            ]
-        },
-        {
-            "Rule": "AbilityActionCostAdjusted",
-            "Config": {
-                "Zap": false,
-                "StrengthenCourage": false,
-                "Stealth": false
-            }
-        },
-        {
-            "Rule": "LevelPropertiesModifiedRule",
-            "Config": {
-                "FloorOneHealingFountains": 4,
-                "FloorOneLootChests": 12,
-                "FloorOneClassCardChests": 8,
-                "FloorOneGoldMaxAmount": 1500,
-                "FloorTwoHealingFountains": 4,
-                "FloorTwoLootChests": 9,
-                "FloorTwoGoldMaxAmount": 2500,
-                "FloorThreeHealingFountains": 6,
-                "FloorThreeLootChests": 0
+        ],
+        "HeroHunter": [
+          { "Card": "HealingPotion", "IsReplenishable": false },
+          { "Card": "Arrow", "IsReplenishable": true },
+          { "Card": "PoisonedTip", "IsReplenishable": true },
+          { "Card": "HailOfArrows", "IsReplenishable": false },
+          { "Card": "CallCompanion", "IsReplenishable": false },
+          { "Card": "Sneak", "IsReplenishable": false },
+        ],
+        "HeroSorcerer": [
+          { "Card": "HealingPotion", "IsReplenishable": false },
+          { "Card": "Zap", "IsReplenishable": true },
+          { "Card": "OilLamp", "IsReplenishable": true },
+          { "Card": "HeavensFury", "IsReplenishable": false },
+          { "Card": "DetectEnemies", "IsReplenishable": false },
+        ],
+        "HeroRogue": [
+          { "Card": "HealingPotion", "IsReplenishable": false },
+          { "Card": "Sneak", "IsReplenishable": true },
+          { "Card": "PanicPowder", "IsReplenishable": true },
+          { "Card": "BoobyTrap", "IsReplenishable": false },
+          { "Card": "PoisonBomb", "IsReplenishable": false },
+        ],
+        "HeroBard": [
+          { "Card": "HealingPotion", "IsReplenishable": false },
+          { "Card": "CourageShanty", "IsReplenishable": true },
+          { "Card": "IceLamp", "IsReplenishable": true },
+          { "Card": "SongOfRecovery", "IsReplenishable": false },
+          { "Card": "Sneak", "IsReplenishable": false },
+          { "Card": "HurricaneAnthem", "IsReplenishable": false },
+          { "Card": "ShatteringVoice", "IsReplenishable": false },
+        ]
+      }
+    },
+    {
+      "Rule": "AbilityAoeAdjusted",
+      "Config": {
+        "CourageShanty": 1,
+        "ReplenishArmor": 1,
+        "StrengthPotion": 1,
+        "SwiftnessPotion": 1,
+        "Antitoxin": 1,
+        "AdamantPotion": 1,
+        "HealingPotion": 1,
+      }
+    },
+    {
+      "Rule": "RegainAbilityIfMaxxedOutOverridden",
+      "Config": {
+        "SwiftnessPotion": false,
+        "StrengthPotion": false
+      }
+    },
+    {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        { "Piece": "HeroSorcerer", "Property": "StartHealth", "Value": 15 },
+        { "Piece": "HeroGuardian", "Property": "StartHealth", "Value": 20 },
+        { "Piece": "HeroHunter", "Property": "StartHealth", "Value": 15 },
+        { "Piece": "HeroBard", "Property": "StartHealth", "Value": 15 },
+        { "Piece": "HeroRogue", "Property": "StartHealth", "Value": 15 },
+        { "Piece": "HeroHunter", "Property": "MoveRange", "Value": 5 },
+        { "Piece": "HeroBard", "Property": "MoveRange", "Value": 5 },
+        { "Piece": "SwordOfAvalon", "Property": "StartHealth", "Value": 20 },
+        { "Piece": "SmiteWard", "Property": "StartHealth", "Value": 20 },
+        { "Piece": "SmiteWard", "Property": "ActionPoint", "Value": 2 },
+        { "Piece": "Verochka", "Property": "ActionPoint", "Value": 3 },
+        { "Piece": "Verochka", "Property": "MoveRange", "Value": 6 },
+        { "Piece": "Verochka", "Property": "VisionRange", "Value": 40 },
+        { "Piece": "Lure", "Property": "StartHealth", "Value": 30 },
+        { "Piece": "Spider", "Property": "StartHealth", "Value": 1 },
+        { "Piece": "Spider", "Property": "ActionPoint", "Value": 3 },
+        { "Piece": "Spider", "Property": "MoveRange", "Value": 2 },
+        { "Piece": "RatKing", "Property": "StartHealth", "Value": 45 },
+        { "Piece": "RatKing", "Property": "MoveRange", "Value": 2 },
+        { "Piece": "ElvenQueen", "Property": "StartHealth", "Value": 35 },
+      ]
+    },
+    {
+      "Rule": "AbilityActionCostAdjusted",
+      "Config": {
+        "Zap": false,
+        "CourageShanty": false,
+        "Sneak": false
+      }
+    },
+    {
+      "Rule": "LevelPropertiesModifiedRule",
+      "Config": {
+        "FloorOneHealingFountains": 4,
+        "FloorOneLootChests": 12,
+        "FloorOneClassCardChests": 8,
+        "FloorOneGoldMaxAmount": 1500,
+        "FloorTwoHealingFountains": 4,
+        "FloorTwoLootChests": 9,
+        "FloorTwoGoldMaxAmount": 2500,
+        "FloorThreeHealingFountains": 6,
+        "FloorThreeLootChests": 0,
 
-            }
+      }
+    },
+    {
+      "Rule": "PieceImmunityListAdjusted",
+      "Config": {
+        "HeroSorcerer": [ "Diseased", "Frozen" ],
+        "HeroGuardian": [ "Diseased", "Frozen" ],
+        "HeroBard": [ "Diseased", "Frozen" ],
+        "HeroHunter": [ "Diseased", "Frozen" ],
+        "HeroRogue": [ "Diseased", "Frozen" ],
+        "Verochka": [ "Diseased" ],
+        "RatKing": ["Petrified"],
+        "ElvenQueen": ["Petrified"],
+      }
+    },
+    {
+      "Rule": "SpawnCategoryOverridden",
+      "Config": {
+        "Spider": [ 200, 50, 1 ],
+        "SpiderEgg": [ 20, 10, 1 ] ,
+        "GiantSpider": [ 30, 10, 1 ],
+        "RatKing": [ 1, 1, 1 ],
+        "ElvenQueen": [ 1, 1, 2 ],
+      }
+    },
+    {
+      "Rule": "PieceAbilityListOverridden",
+      "Config": {
+        "Spider": [ "SpiderWebshot", "AcidSpit", "EnemyStealCard", "EnemyStealGold" ],
+        "ElvenQueen": ["EnemyKnockbackMelee", "EnemyFireball", "EarthShatter"],
+        "RatKing": ["DigRatsNest", "DiseasedBite", "VerminFrenzy"]
+     }
+    },
+    {
+      "Rule": "PieceBehavioursListOverridden",
+      "Config": {
+        "Spider": [ "AttackAndRetreat", "Patrol", "FleeToFOW", "ChargeMove" ],
+      }
+    },
+    {
+      "Rule": "PiecePieceTypeListOverridden",
+      "Config": {
+        "Spider": [ "Enemy", "Thief", "Canine" ],
+      }
+    },
+    {
+      "Rule": "CardClassRestrictionOverridden",
+      "Config": {
+        "BeastWhisperer": "SporeFungus",
+      }
+    },
+    {
+      "Rule": "EnemyRespawnDisabledRule",
+      "Config": true
+    },
+    {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "HealingSong",
+          "durationTurns": 5,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "healPerTurn": 3,
+          "clearOnNewLevel": false,
+          "damageTags": null
+        },       
+        {
+          "effectStateType": "Courageous",
+          "durationTurns": 2,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "clearOnNewLevel": false,
+          "damageTags": null
         },
         {
-            "Rule": "PieceImmunityListAdjusted",
-            "Config": {
-                "HeroSorcerer": [ "Diseased", "Frozen" ],
-                "HeroGuardian": [ "Diseased", "Frozen" ],
-                "HeroBard": [ "Diseased", "Frozen" ],
-                "HeroHunter": [ "Diseased", "Frozen" ],
-                "HeroRogue": [ "Diseased", "Frozen" ],
-                "Verochka": [ "Diseased" ],
-                "RatKing": [ "Petrified" ],
-                "ElvenQueen": [ "Petrified" ]
-            }
+          "effectStateType": "Heroic",
+          "durationTurns": 4,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "clearOnNewLevel": false,
+          "damageTags": null
         },
         {
-            "Rule": "SpawnCategoryOverridden",
-            "Config": {
-                "Spider": [ 200, 50, 1 ],
-                "SpiderEgg": [ 20, 10, 1 ],
-                "GiantSpider": [ 30, 10, 1 ],
-                "RatKing": [ 1, 1, 1 ],
-                "ElvenQueen": [ 1, 1, 2 ]
-            }
+          "effectStateType": "Fearless",
+          "durationTurns": 6,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "clearOnNewLevel": false,
+          "damageTags": null
         },
         {
-            "Rule": "PieceAbilityListOverridden",
-            "Config": {
-                "Spider": [ "SpiderWebshot", "AcidSpit", "EnemyStealCard", "EnemyStealGold" ],
-                "ElvenQueen": [ "EnemyKnockbackMelee", "EnemyFireball", "EarthShatter" ],
-                "RatKing": [ "DigRatsNest", "DiseasedBite", "VerminFrenzy" ]
-            }
+          "effectStateType": "Recovery",
+          "durationTurns": 5,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "healPerTurn": 3,
+          "clearOnNewLevel": false,
+          "damageTags": null
         },
-        {
-            "Rule": "PieceBehavioursListOverridden",
-            "Config": {
-                "Spider": [ "AttackAndRetreat", "Patrol", "FleeToFOW", "ChargeMove" ]
-            }
-        },
-        {
-            "Rule": "PiecePieceTypeListOverridden",
-            "Config": {
-                "Spider": [ "Enemy", "Thief", "Canine" ]
-            }
-        },
-        {
-            "Rule": "CardClassRestrictionOverridden",
-            "Config": {
-                "BeastWhisperer": "SporeFungus"
-            }
-        },
-        {
-            "Rule": "EnemyRespawnDisabledRule",
-            "Config": true
-        },
-        {
-            "Rule": "StatusEffectConfig",
-            "Config": [
-                {
-                    "effectStateType": "HealingSong",
-                    "durationTurns": 5,
-                    "tickWhen": "EndTurn",
-                    "stacks": false,
-                    "healPerTurn": 3,
-                    "clearOnNewLevel": false,
-                    "damageTags": null
-                },
-                {
-                    "effectStateType": "Courageous",
-                    "durationTurns": 2,
-                    "tickWhen": "EndTurn",
-                    "stacks": false,
-                    "clearOnNewLevel": false,
-                    "damageTags": null
-                },
-                {
-                    "effectStateType": "Heroic",
-                    "durationTurns": 4,
-                    "tickWhen": "EndTurn",
-                    "stacks": false,
-                    "clearOnNewLevel": false,
-                    "damageTags": null
-                },
-                {
-                    "effectStateType": "Fearless",
-                    "durationTurns": 6,
-                    "tickWhen": "EndTurn",
-                    "stacks": false,
-                    "clearOnNewLevel": false,
-                    "damageTags": null
-                },
-                {
-                    "effectStateType": "Recovery",
-                    "durationTurns": 5,
-                    "tickWhen": "EndTurn",
-                    "stacks": false,
-                    "healPerTurn": 3,
-                    "clearOnNewLevel": false,
-                    "damageTags": null
-                }
-            ]
-        }
-    ]
+      ]
+    }
+  ]
 }
