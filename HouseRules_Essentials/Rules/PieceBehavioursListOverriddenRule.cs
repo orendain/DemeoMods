@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Boardgame;
     using Data.GameData;
     using DataKeys;
@@ -48,9 +49,7 @@
             foreach (var item in pieceConfigChanges)
             {
                 var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key];
-                var property = Traverse.Create(pieceConfigDto).Property<List<Behaviour>>("Behaviours");
-
-                previousProperties[item.Key] = property.Value;
+                previousProperties[item.Key] = pieceConfigDto.Behaviours.ToList();
                 pieceConfigDto.Behaviours = item.Value.ToArray();
                 gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
