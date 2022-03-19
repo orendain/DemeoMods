@@ -1,33 +1,34 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Boardgame;
+    using Boardgame.BoardEntities.Abilities;
+    using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
-    public sealed class StatModifiersOverridenRule : Rule, IConfigWritable<Dictionary<string, int>>, IMultiplayerSafe
+    public sealed class StatModifiersOverridenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
     {
         public override string Description => "StatModifiersOverridenRule are overridden";
 
-        private readonly Dictionary<string, int> _adjustments;
-        private Dictionary<string, int> _originals;
+        private readonly Dictionary<AbilityKey, int> _adjustments;
+        private Dictionary<AbilityKey, int> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StatModifiersOverridenRule"/> class.
         /// </summary>
         /// <param name="adjustments">Key-value pairs mapping the name of a StatModifier and the new additiveBonus setting.
         /// Overwrites existing settings. Some StatModifiers require negative values.</param>
-        public StatModifiersOverridenRule(Dictionary<string, int> adjustments)
+        public StatModifiersOverridenRule(Dictionary<AbilityKey, int> adjustments)
         {
             _adjustments = adjustments;
-            _originals = new Dictionary<string, int>();
+            _originals = new Dictionary<AbilityKey, int>();
         }
 
-        public Dictionary<string, int> GetConfigObject() => _adjustments;
+        public Dictionary<AbilityKey, int> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
             _originals = ReplaceStatModifiers(_adjustments);
         }
@@ -37,15 +38,23 @@
             ReplaceStatModifiers(_originals);
         }
 
-        private static Dictionary<string, int> ReplaceStatModifiers(Dictionary<string, int> replacements)
+        private static Dictionary<AbilityKey, int> ReplaceStatModifiers(Dictionary<AbilityKey, int> replacements)
         {
-            var originals = new Dictionary<string, int>();
+            var originals = new Dictionary<AbilityKey, int>();
 
             var statModifierType = AccessTools.TypeByName("Boardgame.GameplayEffects.StatModifier");
-            var statModifiers = Resources.FindObjectsOfTypeAll(statModifierType);
             foreach (var replacement in replacements)
             {
-                var statModifier = statModifiers.First(c => c.name.Equals($"{replacement.Key}(Clone)"));
+                if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
+                {
+                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
+                }
+
+                if (!ability.TryGetComponent(statModifierType, out var statModifier))
+                {
+                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding StatModifier.");
+                }
+
                 originals[replacement.Key] = Traverse.Create(statModifier).Field<int>("additiveBonus").Value;
                 Traverse.Create(statModifier).Field<int>("additiveBonus").Value = replacement.Value;
             }

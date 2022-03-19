@@ -16,7 +16,6 @@
           { "Card": "WhirlwindAttack", "IsReplenishable": false },
           { "Card": "PiercingThrow", "IsReplenishable": false },
           { "Card": "Sneak", "IsReplenishable": false },
-
         ],
         "HeroHunter": [
           { "Card": "HealingPotion", "IsReplenishable": false },
@@ -66,8 +65,8 @@
     {
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
-        "Speed": false,
-        "Strength": false
+        "SwiftnessPotion": false,
+        "StrengthPotion": false
       }
     },
     {
@@ -147,7 +146,7 @@
         "Spider": [ "SpiderWebshot", "AcidSpit", "EnemyStealCard", "EnemyStealGold" ],
         "ElvenQueen": ["EnemyKnockbackMelee", "EnemyFireball", "EarthShatter"],
         "RatKing": ["DigRatsNest", "DiseasedBite", "VerminFrenzy"]
-     }
+      }
     },
     {
       "Rule": "PieceBehavioursListOverridden",
@@ -188,7 +187,7 @@
           "healPerTurn": 3,
           "clearOnNewLevel": false,
           "damageTags": null
-        },       
+        },
         {
           "effectStateType": "Courageous",
           "durationTurns": 2,
