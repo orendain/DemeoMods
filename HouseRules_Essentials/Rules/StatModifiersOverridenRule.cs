@@ -12,7 +12,7 @@
         public override string Description => "StatModifiersOverridenRule are overridden";
 
         private readonly Dictionary<string, int> _adjustments;
-        private readonly Dictionary<string, int> _originals;
+        private Dictionary<string, int> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StatModifiersOverridenRule"/> class.
@@ -29,26 +29,28 @@
 
         protected override void OnPostGameCreated(GameContext gameContext)
         {
-            var typeByName = AccessTools.TypeByName("Boardgame.GameplayEffects.StatModifier");
-            var statModifiers = Resources.FindObjectsOfTypeAll(typeByName);
-            foreach (var item in _adjustments)
-            {
-                var statModifier = statModifiers.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                _originals[item.Key] = Traverse.Create(statModifier).Field<int>("additiveBonus").Value;
-                Traverse.Create(statModifier).Field<int>("additiveBonus").Value = item.Value;
-            }
+            _originals = ReplaceStatModifiers(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            var typeByName = AccessTools.TypeByName("Boardgame.GameplayEffects.StatModifier");
-            var statModifiers = Resources.FindObjectsOfTypeAll(typeByName);
-            foreach (var item in _originals)
+            ReplaceStatModifiers(_originals);
+        }
+
+        private static Dictionary<string, int> ReplaceStatModifiers(Dictionary<string, int> replacements)
+        {
+            var originals = new Dictionary<string, int>();
+
+            var statModifierType = AccessTools.TypeByName("Boardgame.GameplayEffects.StatModifier");
+            var statModifiers = Resources.FindObjectsOfTypeAll(statModifierType);
+            foreach (var replacement in replacements)
             {
-                var statModifier = statModifiers.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                _originals[item.Key] = Traverse.Create(statModifier).Field<int>("additiveBonus").Value;
-                Traverse.Create(statModifier).Field<int>("additiveBonus").Value = item.Value;
+                var statModifier = statModifiers.First(c => c.name.Equals($"{replacement.Key}(Clone)"));
+                originals[replacement.Key] = Traverse.Create(statModifier).Field<int>("additiveBonus").Value;
+                Traverse.Create(statModifier).Field<int>("additiveBonus").Value = replacement.Value;
             }
+
+            return originals;
         }
     }
 }

@@ -12,13 +12,13 @@
         public override string Description => "RegainAbilityIfMaxxedOut settings are overridden";
 
         private readonly Dictionary<string, bool> _adjustments;
-        private readonly Dictionary<string, bool> _originals;
+        private Dictionary<string, bool> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegainAbilityIfMaxxedOutOverriddenRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Key-value pairs mapping the name of a StatModifier and the new additiveBonus setting.
-        /// Overwrites existing settings. Some StatModifiers require negative values.</param>
+        /// <param name="adjustments">Key-value pairs mapping the name of a StatModifier to whether a player gets back
+        /// a card after using it when the affected ability is already maxed.</param>
         public RegainAbilityIfMaxxedOutOverriddenRule(Dictionary<string, bool> adjustments)
         {
             _adjustments = adjustments;
@@ -29,26 +29,28 @@
 
         protected override void OnPostGameCreated(GameContext gameContext)
         {
-            var typeByName = AccessTools.TypeByName("Boardgame.GameplayEffects.StatModifier");
-            var statModifiers = Resources.FindObjectsOfTypeAll(typeByName);
-            foreach (var item in _adjustments)
-            {
-                var statModifier = statModifiers.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                _originals[item.Key] = Traverse.Create(statModifier).Field<bool>("regainAbilityIfMaxxedOut").Value;
-                Traverse.Create(statModifier).Field<bool>("regainAbilityIfMaxxedOut").Value = item.Value;
-            }
+            _originals = ReplaceStatModifiers(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            var typeByName = AccessTools.TypeByName("Boardgame.GameplayEffects.StatModifier");
-            var statModifiers = Resources.FindObjectsOfTypeAll(typeByName);
-            foreach (var item in _originals)
+            ReplaceStatModifiers(_originals);
+        }
+
+        private static Dictionary<string, bool> ReplaceStatModifiers(Dictionary<string, bool> replacements)
+        {
+            var originals = new Dictionary<string, bool>();
+
+            var statModifierType = AccessTools.TypeByName("Boardgame.GameplayEffects.StatModifier");
+            var statModifiers = Resources.FindObjectsOfTypeAll(statModifierType);
+            foreach (var replacement in replacements)
             {
-                var statModifier = statModifiers.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                _originals[item.Key] = Traverse.Create(statModifier).Field<bool>("regainAbilityIfMaxxedOut").Value;
-                Traverse.Create(statModifier).Field<bool>("regainAbilityIfMaxxedOut").Value = item.Value;
+                var statModifier = statModifiers.First(c => c.name.Equals($"{replacement.Key}(Clone)"));
+                originals[replacement.Key] = Traverse.Create(statModifier).Field<bool>("regainAbilityIfMaxxedOut").Value;
+                Traverse.Create(statModifier).Field<bool>("regainAbilityIfMaxxedOut").Value = replacement.Value;
             }
+
+            return originals;
         }
     }
 }
