@@ -1,11 +1,10 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
-    using System.Linq;
+    using System;
     using Boardgame;
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HouseRules.Types;
-    using UnityEngine;
 
     public sealed class RatNestsSpawnGoldRule : Rule, IConfigWritable<int>
     {
@@ -21,10 +20,13 @@
 
         public int GetConfigObject() => _pileCount;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
-            var abilities = Resources.FindObjectsOfTypeAll<Ability>();
-            var ability = abilities.First(c => c.name.Equals("SpawnRat(Clone)"));
+            if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
+            {
+                throw new InvalidOperationException($"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");
+            }
+
             ability.pieceToSpawn = BoardPieceId.GoldPile;
             _originalSpawnAmount = ability.spawnMaxAmount;
             ability.spawnMaxAmount = _pileCount;
@@ -32,8 +34,11 @@
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            var abilities = Resources.FindObjectsOfTypeAll<Ability>();
-            var ability = abilities.First(c => c.name.Equals("SpawnRat(Clone)"));
+            if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
+            {
+                throw new InvalidOperationException($"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");
+            }
+
             ability.pieceToSpawn = BoardPieceId.Rat;
             ability.spawnMaxAmount = _originalSpawnAmount;
         }
