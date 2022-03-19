@@ -49,8 +49,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "AbilityActionCostAdjusted",
     "Config": {
       "Zap": false,
-      "StrengthenCourage": false,
-      "Heal": true,
+      "CourageShanty": false,
+      "HealingPotion": true,
     }
   },
   ```
@@ -66,10 +66,10 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "AbilityAoeAdjustedRule",
     "Config": {
-      "StrengthenCourage": 1,
-      "Strength": 1,
-      "Speed": 1,
-      "Heal": 1,
+      "CourageShanty": 1,
+      "StrengthPotion": 1,
+      "SwiftnessPotion": 1,
+      "HealingPotion": 1,
     }
   },
   ```
@@ -95,7 +95,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __AbilityDamageAdjustedRule__: Ability damage is adjusted
-  - Only functions for abilities which do damage. (You can't make a Heal hurt).
+  - Only functions for abilities which do damage. (You can't make a HealingPotion hurt).
   - CriticalHitDamage is adjusted to double normal damage.
   - Positive numbers increase damage, negative decrease.
   - Config accepts Dictionary `{ "AbilityName1", int, "AbilityName2", int }`
@@ -107,14 +107,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "AbilityDamageAdjustedRule",
     "Config": {
       "Zap": 1,
-      "Whirlwind": 1,
+      "WhirlwindAttack": 1,
     }
   },
   ```
 
 - __AbilityRandomPieceListRule__: The randomPieceList for Abilities is adjusted
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
-  - Some abilities (NaturesCall, RatBomb) have lists which are used to spawn random pieces.
+  - Some abilities (BeastWhisperer, RatBomb) have lists which are used to spawn random pieces.
   - This rule allows the list to be replaced with a different one.
   - Config accepts Dictionary e.g. `{ "AbilityName", BoardpieceId[], "AbilityName2", BoardpieceId[] }`  
 
@@ -124,7 +124,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "AbilityRandomPieceList",
     "Config": {
-      "NaturesCall": [
+      "BeastWhisperer": [
         "GoblinRanger",
         "Slime",
       ]
@@ -133,7 +133,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __BackstabConfigOverriddenRule__: A list of Pieces may use 🔪Backstab🔪 instead of just the Assassin
-  - Replaces the hardcoded default of HeroRouge with a configurable list.
+  - Replaces the hardcoded default of HeroRogue with a configurable list.
   - Now everyone can benefit from Backstab bonus..
   - Config accepts List of BoardPieceIDs e.g. `[ "HeroGuardian", "HeroSorcerer", ...]`  
 
@@ -142,7 +142,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```json
     {
       "Rule": "BackstabConfigOverridden",
-      "Config": [ "HeroGuardian", "HeroHunter", "HeroSorcerer", "HeroRouge", "HeroBard" ]
+      "Config": [ "HeroGuardian", "HeroHunter", "HeroSorcerer", "HeroRogue", "HeroBard" ]
     },
   ```
 
@@ -156,8 +156,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodsFury", "RevealPath"],
-      "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "Heal"],
+      "HeroSorcerer": ["StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
+      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"],
     }
   },
   ```
@@ -225,8 +225,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     {
       "Rule": "CardClassRestrictionOverridden",
       "Config": {
-        "NaturesCall": "Mushroom",
-        "Stealth": "Guardian",
+        "BeastWhisperer": "SporeFungus",
+        "Sneak": "Guardian",
         "Zap": "Hunter",
       }
     },
@@ -390,8 +390,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       { "Piece": "HeroSorcerer", "Property": "StartHealth", "Value": 20 },
       { "Piece": "HeroSorcerer", "Property": "MoveRange", "Value": 5 },
       { "Piece": "HeroSorcerer", "Property": "ActionPoint", "Value": 3 },
-      { "Piece": "MonsterBait", "Property": "StartHealth", "Value": 30 },
-      { "Piece": "BeaconOfSmite", "Property": "ActionPoint", "Value": 2 },
+      { "Piece": "Lure", "Property": "StartHealth", "Value": 30 },
+      { "Piece": "TheBehemoth", "Property": "ActionPoint", "Value": 2 },
       { "Piece": "HeroSorcerer", "Property": "BerserkBelowHealth", "Value": 0.8 }
     ]
   },
@@ -407,7 +407,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "PieceImmunityListAdjusted",
     "Config": {
-      "HeroSorcerer": [ "Diseased", "MarkOfAvalon", "Weaken", "Frozen", "Tangled", "Petrified" ],
+      "HeroSorcerer": [ "Diseased", "HuntersMark", "Weaken", "Frozen", "Tangled", "Petrified" ],
       "HeroGuardian": [ "Frozen" ],
     }
   },
@@ -442,7 +442,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "PieceUseWhenKilledOverridden",
     "Config": {
-      "Spiderling": [ "Heal" ],
+      "Spiderling": [ "HealingPotion" ],
       "CaveTroll": [ "Rejuvenation" ],
     }
   },
@@ -472,8 +472,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     {
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
-        "Speed": false,
-        "Strength": false
+        "SwiftnessPotion": false,
+        "StrengthPotion": false
       }
     },
   ```
@@ -510,9 +510,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "Config": {
         "Spiderling": [ 200, 50, 1 ],
         "SpiderEgg": [ 20, 10, 1 ] ,
-        "LargeSpider": [ 30, 10, 1 ],
+        "GiantSpider": [ 30, 10, 1 ],
         "RatKing": [ 1, 1, 1 ],
-        "DarkElfGoddessBoss": [ 1, 1, 2 ],
+        "ElvenQueen": [ 1, 1, 2 ],
       }
     },
   ```
@@ -530,25 +530,25 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "StartCardsModifiedRule",
     "Config": {
       "HeroGuardian": [
-        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "HealingPotion", "IsReplenishable": false },
         { "Card": "ReplenishArmor", "IsReplenishable": true },
-        { "Card": "Whirlwind", "IsReplenishable": true },
-        { "Card": "PiercingSpear", "IsReplenishable": false },
+        { "Card": "WhirlwindAttack", "IsReplenishable": true },
+        { "Card": "PiercingThrow", "IsReplenishable": false },
         { "Card": "CoinFlip", "IsReplenishable": false },
-        { "Card": "BeaconOfSmite", "IsReplenishable": false },
+        { "Card": "TheBehemoth", "IsReplenishable": false },
         { "Card": "SwordOfAvalon", "IsReplenishable": false },
       ],
       "HeroHunter": [
-        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "HealingPotion", "IsReplenishable": false },
         { "Card": "HunterArrow", "IsReplenishable": true },
         { "Card": "HunterArrow", "IsReplenishable": true },
         { "Card": "CoinFlip", "IsReplenishable": false },
         { "Card": "DropChest", "IsReplenishable": false },
       ],
       "HeroSorcerer": [
-        { "Card": "Heal", "IsReplenishable": false },
+        { "Card": "HealingPotion", "IsReplenishable": false },
         { "Card": "Zap", "IsReplenishable": true },
-        { "Card": "Whirlwind", "IsReplenishable": true },
+        { "Card": "WhirlwindAttack", "IsReplenishable": true },
         { "Card": "Freeze", "IsReplenishable": false },
         { "Card": "Fireball", "IsReplenishable": false },
         { "Card": "CallCompanion", "IsReplenishable": false },
@@ -558,7 +558,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
   - __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
-  - There are only six different StatModifiers in the game. They are used by 💪Strength, 🦶Speed, 🛡️ReplenishArmor, HuntersMark, etc
+  - There are only six different StatModifiers in the game. They are used by 💪StrengthPotion, 🦶SwiftnessPotion, 🛡️ReplenishArmor, HuntersMark, etc
   - Accepts a list of overrides which take the place of the default config.
   - If no override is specified, the default is used instead.
   - Config accepts list of dict of StatModifier names, integer values. `{"Statmodifier": int}, {}, }`
@@ -569,9 +569,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "StatModifiersOverriden",
     "Config": {
-      "Strength": 2,
-      "Speed": 2,
-      "MarkOfAvalon": -4,
+      "StrengthPotion": 2,
+      "SwiftnessPotion": 2,
+      "HuntersMark": -4,
       "ReplenishBarkArmor": 4,
       "SongOfResilience": 6,
       "ReplenishArmor": 4,

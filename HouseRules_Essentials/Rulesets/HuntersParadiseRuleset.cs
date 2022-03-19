@@ -17,7 +17,7 @@
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CallCompanion, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SummonElemental, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MarkOfAvalon, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HuntersMark, IsReplenishable = true },
             };
             var startingCardsRule = new StartCardsModifiedRule(
                 new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
@@ -25,7 +25,7 @@
                     { BoardPieceId.HeroBard, startCards },
                     { BoardPieceId.HeroGuardian, startCards },
                     { BoardPieceId.HeroHunter, startCards },
-                    { BoardPieceId.HeroRouge, startCards },
+                    { BoardPieceId.HeroRogue, startCards },
                     { BoardPieceId.HeroSorcerer, startCards },
                 });
 
@@ -54,18 +54,18 @@
             {
                 AbilityKey.CallCompanion,
                 AbilityKey.SummonElemental,
-                AbilityKey.NaturesCall,
-                AbilityKey.Confuse,
+                AbilityKey.BeastWhisperer,
+                AbilityKey.PiercingVoice,
                 AbilityKey.Bone,
-                AbilityKey.Strength,
-                AbilityKey.Speed,
+                AbilityKey.StrengthPotion,
+                AbilityKey.SwiftnessPotion,
             };
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.HeroBard, allowedCards },
                 { BoardPieceId.HeroGuardian, allowedCards },
                 { BoardPieceId.HeroHunter, allowedCards },
-                { BoardPieceId.HeroRouge, allowedCards },
+                { BoardPieceId.HeroRogue, allowedCards },
                 { BoardPieceId.HeroSorcerer, allowedCards },
             });
 

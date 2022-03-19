@@ -124,19 +124,19 @@
             {
                 case AbilityKey.SummonElemental:
                 case AbilityKey.SummonBossMinions:
-                case AbilityKey.NaturesCall:
-                case AbilityKey.Tornado:
-                case AbilityKey.MonsterBait:
-                case AbilityKey.ProximityMine:
-                case AbilityKey.EyeOfAvalon:
-                case AbilityKey.SwordOfAvalon:
-                case AbilityKey.BeaconOfSmite:
-                case AbilityKey.BeaconOfHealing:
+                case AbilityKey.BeastWhisperer:
+                case AbilityKey.HurricaneAnthem:
+                case AbilityKey.Lure:
+                case AbilityKey.BoobyTrap:
+                case AbilityKey.DetectEnemies:
+                case AbilityKey.RepeatingBallista:
+                case AbilityKey.TheBehemoth:
+                case AbilityKey.HealingWard:
                 case AbilityKey.RaiseRoots:
                 case AbilityKey.CallCompanion:
                 case AbilityKey.DigRatsNest:
-                case AbilityKey.MiniBarricade:
-                case AbilityKey.MagicWall:
+                case AbilityKey.Barricade:
+                case AbilityKey.MagicBarrier:
                     return true;
             }
 
