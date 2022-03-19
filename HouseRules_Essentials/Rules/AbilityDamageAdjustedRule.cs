@@ -1,50 +1,58 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Boardgame;
     using Boardgame.BoardEntities.Abilities;
+    using DataKeys;
     using HouseRules.Types;
-    using UnityEngine;
 
-    public sealed class AbilityDamageAdjustedRule : Rule, IConfigWritable<Dictionary<string, int>>, IMultiplayerSafe
+    public sealed class AbilityDamageAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
     {
         public override string Description => "Ability damage is adjusted";
 
-        private readonly Dictionary<string, int> _adjustments;
+        private readonly Dictionary<AbilityKey, int> _adjustments;
+        private Dictionary<AbilityKey, int> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AbilityDamageAdjustedRule"/> class.
         /// </summary>
         /// <param name="adjustments">Key-value pairs mapping the name of an entity to the number of action points
         /// added to their base. Negative numbers are allowed.</param>
-        public AbilityDamageAdjustedRule(Dictionary<string, int> adjustments)
+        public AbilityDamageAdjustedRule(Dictionary<AbilityKey, int> adjustments)
         {
             _adjustments = adjustments;
+            _originals = new Dictionary<AbilityKey, int>();
         }
 
-        public Dictionary<string, int> GetConfigObject() => _adjustments;
+        public Dictionary<AbilityKey, int> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
-            var abilities = Resources.FindObjectsOfTypeAll<Ability>();
-            foreach (var item in _adjustments)
-            {
-                var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                ability.abilityDamage.targetDamage += item.Value;
-                ability.abilityDamage.critDamage = ability.abilityDamage.targetDamage * 2;
-            }
+            _originals = ReplaceAbilities(_adjustments);
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            var abilities = Resources.FindObjectsOfTypeAll<Ability>();
-            foreach (var item in _adjustments)
+            ReplaceAbilities(_originals);
+        }
+
+        private static Dictionary<AbilityKey, int> ReplaceAbilities(Dictionary<AbilityKey, int> replacements)
+        {
+            var originals = new Dictionary<AbilityKey, int>();
+
+            foreach (var replacement in replacements)
             {
-                var ability = abilities.First(c => c.name.Equals($"{item.Key}(Clone)"));
-                ability.abilityDamage.targetDamage -= item.Value;
+                if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
+                {
+                    EssentialsMod.Logger.Warning($"Provided AbilityKey [{replacement.Key}] does not have a corresponding ability. Skipping that ability.");
+                }
+
+                originals[replacement.Key] = ability.abilityDamage.targetDamage;
+                ability.abilityDamage.targetDamage += replacement.Value;
                 ability.abilityDamage.critDamage = ability.abilityDamage.targetDamage * 2;
             }
+
+            return originals;
         }
     }
 }
