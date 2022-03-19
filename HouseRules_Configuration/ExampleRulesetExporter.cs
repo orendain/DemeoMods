@@ -21,15 +21,15 @@ namespace HouseRules.Configuration
             var aaca = new AbilityActionCostAdjustedRule(new Dictionary<string, bool>
             {
                 { "Zap", false }, // 0 casting cost for zap
-                { "StrengthenCourage", false }, // 0 casting cost for Courage
+                { "CourageShanty", false }, // 0 casting cost for Courage
             });
             var aaa = new AbilityAoeAdjustedRule(new Dictionary<string, int>
             {
                 { "Fireball", 1 }, // 5x5 fireball
                 { "Zap", 1 }, // Just testing
-                { "StrengthenCourage", 1 }, // Everyone should hear the bard sing the courage song
-                { "Strength", 1 }, // Everyone nearby should share the strength potion
-                { "Speed", 1 }, // Everyone nearby should share the speed potion
+                { "CourageShanty", 1 }, // Everyone should hear the bard sing the courage song
+                { "StrengthPotion", 1 }, // Everyone nearby should share the strength potion
+                { "SwiftnessPotion", 1 }, // Everyone nearby should share the speed potion
             });
             var ada = new AbilityDamageAdjustedRule(new Dictionary<string, int> { { "Zap", 1 } });
             var cefam1 = new CardEnergyFromAttackMultipliedRule(2f);
@@ -53,33 +53,33 @@ namespace HouseRules.Configuration
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 18 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "MoveRange", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 12 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRouge, Property = "MoveRange", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRouge, Property = "StartHealth", Value = 20 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WolfCompanion, Property = "StartHealth", Value = 20 }, // Wolf lots of HP wandering through gas
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "MoveRange", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 20 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 20 }, // Wolf lots of HP wandering through gas
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SwordOfAvalon, Property = "StartHealth", Value = 20 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BeaconOfSmite, Property = "StartHealth", Value = 25 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BeaconOfSmite, Property = "ActionPoint", Value = 2 }, // Behemoth gets to fire two rounds
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MonsterBait, Property = "StartHealth", Value = 25 }, // Lure needs to last a little longer
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SmiteWard, Property = "StartHealth", Value = 25 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SmiteWard, Property = "ActionPoint", Value = 2 }, // Behemoth gets to fire two rounds
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 25 }, // Lure needs to last a little longer
             });
             var rnsg = new RatNestsSpawnGoldRule(8);
             var cards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Whirlwind, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WhirlwindAttack, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, IsReplenishable = false },
             };
             var sorcCards = new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>> { { BoardPieceId.HeroSorcerer, cards } };
             var sscm = new StartCardsModifiedRule(sorcCards);
 
-            BoardPieceId[] bps = { BoardPieceId.ChestGoblin, BoardPieceId.Slime };
+            BoardPieceId[] bps = { BoardPieceId.ChestGoblin, BoardPieceId.Slimeling };
             var arpl = new AbilityRandomPieceListRule(new Dictionary<string, BoardPieceId[]>
             {
-                { "NaturesCall", bps },
+                { "BeastWhisperer", bps },
             });
 
-            EffectStateType[] effs = { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.MarkOfAvalon, EffectStateType.Weaken, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
-            var pila = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, EffectStateType[]> { { BoardPieceId.HeroSorcerer, effs } });
+            List<EffectStateType> effs = new List<EffectStateType>() { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.MarkOfAvalon, EffectStateType.Weaken, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
+            var pila = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>> { { BoardPieceId.HeroSorcerer, effs } });
 
             var sec = new List<StatusEffectData>
             {

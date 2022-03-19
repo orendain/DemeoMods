@@ -4,8 +4,6 @@
     using System.Linq;
     using Boardgame;
     using Boardgame.Board;
-    using Boardgame.Board.HeatMaps;
-    using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -29,29 +27,30 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(BoardQuery), "UpdateCachedAttackTarget"),
+                original: AccessTools.Method(typeof(BoardQuery), "FindAttackTarget"),
                 prefix: new HarmonyMethod(
                     typeof(PetsFocusHunterMarkRule),
-                    nameof(BoardQuery_UpdateCachedAttackTarget_Prefix_Wrapper)));
+                    nameof(BoardQuery_FindAttackTarget_Prefix_Wrapper)));
         }
 
-        private static void BoardQuery_UpdateCachedAttackTarget_Prefix_Wrapper(BoardQuery __instance)
+        private static bool BoardQuery_FindAttackTarget_Prefix_Wrapper(BoardQuery __instance, ref AttackTarget __result)
         {
             try
             {
-                BoardQuery_UpdateCachedAttackTarget_Prefix(__instance);
+                return BoardQuery_FindAttackTarget_Prefix(__instance, ref __result);
             }
             catch (Exception e)
             {
                 EssentialsMod.Logger.Warning($"This should not have happened. Please submit this log to HouseRules developers: {e}");
+                return true;
             }
         }
 
-        private static void BoardQuery_UpdateCachedAttackTarget_Prefix(BoardQuery __instance)
+        private static bool BoardQuery_FindAttackTarget_Prefix(BoardQuery __instance, ref AttackTarget __result)
         {
             if (!_isActivated)
             {
-                return;
+                return true;
             }
 
             var attackTargetType = Traverse.Create(__instance)
@@ -59,43 +58,26 @@
                 .GetValue<PieceType>();
             if (attackTargetType != PieceType.Enemy)
             {
-                return;
+                return true;
             }
 
             var enemyPieces = __instance.pieceAndTurnController.GetEnemyPieces();
             var markedEnemies = enemyPieces.FindAll(p => p.HasEffectState(EffectStateType.MarkOfAvalon));
             if (!markedEnemies.Any())
             {
-                return;
+                return true;
             }
 
-            var levelHeatMaps = Traverse.Create(__instance).Field<LevelHeatMaps>("levelHeatMaps").Value;
-            var closeTargets = markedEnemies.OrderBy(p => FindDistanceBetween(__instance.piece, p, levelHeatMaps));
-            var closestTarget = closeTargets.First();
-
-            var isInMeleeRange = Traverse.Create(__instance)
-                .Method("GetIsInMeleeRange", __instance.piece, closestTarget.gridPos.min.x, closestTarget.gridPos.min.y)
-                .GetValue<bool>();
-            if (!isInMeleeRange)
+            var targetsInRange = markedEnemies
+                .Where(p => __instance.GetIsInMeleeRange(__instance.piece, p.gridPos))
+                .ToList();
+            if (targetsInRange.Count == 0)
             {
-                return;
+                return true;
             }
 
-            var cachedAttackTarget = default(AttackTarget);
-            cachedAttackTarget.piece = closestTarget;
-            cachedAttackTarget.tile = closestTarget.gridPos.min;
-            cachedAttackTarget.pieceVisible = __instance.IsVisible(closestTarget.gridPos);
-            cachedAttackTarget.inMeleeAttackRange = isInMeleeRange;
-
-            Traverse.Create(__instance).Field<AttackTarget>("cachedAttackTarget").Value = cachedAttackTarget;
-            Traverse.Create(__instance).Field<bool>("hasCachedAttackTarget").Value = true;
-        }
-
-        private static int FindDistanceBetween(Piece piece, Piece otherPiece, LevelHeatMaps levelHeatMaps)
-        {
-            return levelHeatMaps
-                .GetPieceMoveMap(piece, 30)
-                .GetSteps(otherPiece.gridPos.min.x, otherPiece.gridPos.min.y);
+            __result = new AttackTarget(__instance, targetsInRange.First(), __instance.piece);
+            return false;
         }
     }
 }
