@@ -188,7 +188,7 @@
           "healPerTurn": 3,
           "clearOnNewLevel": false,
           "damageTags": null
-        },       
+        },
         {
           "effectStateType": "Courageous",
           "durationTurns": 2,
