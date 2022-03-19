@@ -1,5 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
+    using System;
     using System.Collections.Generic;
     using Boardgame;
     using Boardgame.BoardEntities.Abilities;
@@ -46,7 +47,7 @@
             {
                 if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
                 {
-                    EssentialsMod.Logger.Warning($"Provided AbilityKey [{replacement.Key}] does not have a corresponding ability. Skipping that ability.");
+                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
                 }
 
                 originals[replacement.Key] = -replacement.Value * 2;
