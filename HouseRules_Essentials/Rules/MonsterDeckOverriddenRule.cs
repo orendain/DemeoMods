@@ -126,7 +126,8 @@
             EssentialsMod.Logger.Msg($"MD: Boardstate Width: {boardState.Width}");
             EssentialsMod.Logger.Msg($"MD: Boardstate Height: {boardState.Height}");
             SpawnZoneTag tag = SpawnZoneTag.Zone2;
-            object pickSpawnZoneForKeyholderResult = Traverse.Create(__instance).Method("PickSpawnZoneForKeyholder", context, rng, boardState, tag);
+            object pickSpawnZoneForKeyholderResult = Traverse.Create(__instance).Method("PickSpawnZoneForKeyholder", context, rng, boardState, tag).GetValue();
+            EssentialsMod.Logger.Msg($"MD: Methods: {Traverse.Create(__instance).Methods()}");
             var spawnZone = Traverse.Create(pickSpawnZoneForKeyholderResult).Field<SpawnZone>("spawnZone").Value;
             var keyHolderPosition = Traverse.Create(pickSpawnZoneForKeyholderResult).Field<IntPoint2D>("keyHolderPosition").Value;
             var jimpos = new IntPoint2D
