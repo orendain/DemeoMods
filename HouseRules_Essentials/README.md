@@ -154,9 +154,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
-- __CardAdditionOverridden__: Overrides the lists of cards which players receive from chests & karma
+- __CardAdditionOverridden__: Overrides the lists of cards which players receive from chests & card energy.
   - The default card allocation mechanism is intercepted and changed to use a user-defined list of cards.
-  - Config accepts Dictionary of PieceNames and lists of ability strings.. `{ "PieceName1": ["Ability1", "Ability2"], "PieceName2": ["Ability3", "Ability4"] }`
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) that should have its card pool overridden.
     - Specify a list of [AbilityKeys](../docs/SettingsReference.md#abilitykeys) for the cards that should make up the card pool.
@@ -332,7 +331,6 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __LevelPropertiesModified__: Level properties are modified
   - Allows customisation of Loot, Chests and HealingFountains on a per-floor basis
-  - Config accepts Dictionary e.g. `{ "ParamName1", int, "ParamName2", int }`
   - To configure:
     - Specify the [LevelProperty](../docs/LevelProperties.md) to modify.
     - Specify an integer or decimal number for new value for the property.
@@ -437,7 +435,6 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   
 - __PieceImmunityListAdjusted__: Allows the list of immunities for any ♟️BoardPiece to be overridden
   - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weakened, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
-  - Config accepts Dictionary e.g. `{ "HeroSorcerer", EventState[], "RatKing", EventState[], ... }`
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
     - Specify the list of [EffectStates](../docs/EffectStates.md) that the piece should be immune to.
@@ -477,8 +474,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
   
 - __PieceUseWhenKilledOverridden__: Allows the list of UseWhenKilled abilities for any ♟️BoardPiece to be overridden
-  - Abilities are triggered when a piece dies. 
-  - Config accepts Dictionary of boardpieceIDs and Lists of AbilityKeys e.g. ` "BoardPieceID": [ "AbilityKey1", "AbilityKey2" ] }`
+  - Abilities are triggered when a piece dies.
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
     - Specify a list of [AbilityKeys](../docs/SettingsReference.md#abilitykeys) for the abilities to be triggered when that piece is killed.
@@ -550,7 +546,6 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - This rule replaces the list (for all dungeons) with a new one.
   - Pieces which are not listed in the config will have `IsSpawningEnabled` set to `false` to disable pieces from auto-populating a map.
   - Does not have absolute control over what monsters will appear. Bosses bring support chars etc.
-  - Config accepts list of dicts { "BoardPieceID": [ MaxPerDeck, PreFill, FirstAllowedLevelIndex ], ... }
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to appear in each map.
     - Specify a list with values for `MaxPerDeck`, `PreFill` and `FirstAllowedLevelIndex`, respectively, for each piece.
@@ -613,7 +608,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-  - __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
+- __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
   - There are only six different StatModifiers in the game. They are used by 💪StrengthPotion, 🦶SwiftnessPotion, 🛡️ReplenishArmor, HuntersMark, etc.
   - These modifiers control the power of each corresponding ability.  E.g., by default the stat modifier for SongOfResilience is 5, as it grants 5 units of armor.  
   - To configure:
@@ -636,7 +631,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-  - __StatusEffectConfig__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
+- __StatusEffectConfig__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
   - Default values can be found in `StatusEffectsConfig.effectsConfig`.
   - To configure:
     - Specify a list of status effects that should replace existing ones of the same type.
