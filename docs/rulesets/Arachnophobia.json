@@ -103,7 +103,7 @@
       }
     },
     {
-      "Rule": "LevelPropertiesModifiedRule",
+      "Rule": "LevelPropertiesModified",
       "Config": {
         "FloorOneHealingFountains": 4,
         "FloorOneLootChests": 12,
@@ -167,7 +167,7 @@
       }
     },
     {
-      "Rule": "EnemyRespawnDisabledRule",
+      "Rule": "EnemyRespawnDisabled",
       "Config": true
     },
     {
