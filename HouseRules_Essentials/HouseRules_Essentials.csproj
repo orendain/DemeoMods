@@ -34,6 +34,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EssentialsMod.cs" />
+    <Compile Include="Rulesets\AoePotionsAndBuffsRuleset.cs" />
     <Compile Include="Rulesets\BeatTheClockRuleset.cs" />
     <Compile Include="Rulesets\DifficultyEasyRuleset.cs" />
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
