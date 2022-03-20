@@ -33,6 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5
 		docs\rulesets\Arachnophobia.json = docs\rulesets\Arachnophobia.json
 		docs\rulesets\Better Sorcerer.json = docs\rulesets\Better Sorcerer.json
 		docs\rulesets\LuckyDip.json = docs\rulesets\LuckyDip.json
+		docs\LevelProperties.md = docs\LevelProperties.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules_Configuration", "HouseRules_Configuration\HouseRules_Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"

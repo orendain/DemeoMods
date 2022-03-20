@@ -437,7 +437,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weakened, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
-    - Specify the list of [EffectStates](../docs/EffectStates.md) that the piece should be immune to.
+    - Specify the list of [EffectStates](../docs/SettingsReference.md#effectstatetypes) that the piece should be immune to.
 
   ###### _Example JSON config for PieceImmunityListAdjusted_
 
