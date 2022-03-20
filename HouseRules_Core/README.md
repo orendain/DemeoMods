@@ -79,11 +79,11 @@ JSON rulesets can be defined within the Demeo game directory and saved in `UserD
   "Description": "Zap has no action cost and does 1 extra damage.",
   "Rules": [
     {
-      "Rule": "AbilityActionCostAdjustedRule",
+      "Rule": "AbilityActionCostAdjusted",
       "Config": { "Zap": false, },
     },
     {
-      "Rule": "AbilityDamageAdjustedRule",
+      "Rule": "AbilityDamageAdjusted",
       "Config": { "Zap": 1 }
     }
   ]
