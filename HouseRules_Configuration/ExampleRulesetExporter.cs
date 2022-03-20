@@ -15,11 +15,13 @@
 
         private static void ExportRegisteredRuleset()
         {
+            Directory.CreateDirectory(ExampleRulesetDirectory);
+
             foreach (var ruleset in HR.Rulebook.Rulesets)
             {
-                var clonedNamed = $"(Custom) {ruleset.Name}";
-                var rulesetCopy = Ruleset.NewInstance(clonedNamed, ruleset.Description, ruleset.Rules);
-                ConfigurationMod.ConfigManager.ExportRuleset(rulesetCopy);
+                var newName = $"(Custom) {ruleset.Name}";
+                var rulesetCopy = Ruleset.NewInstance(newName, ruleset.Description, ruleset.Rules);
+                ConfigurationMod.ConfigManager.ExportRuleset(rulesetCopy, ExampleRulesetDirectory);
             }
         }
     }

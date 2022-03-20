@@ -113,7 +113,8 @@
                 Rules = ruleEntries,
             };
             var serializedRuleset = JsonConvert.SerializeObject(rulesetConfig);
-            var rulesetFilePath = Path.Combine(directory, $"{ruleset.Name}.json");
+            var rulesetFilename = SanitizeRulesetFilename(ruleset.Name);
+            var rulesetFilePath = Path.Combine(directory, $"{rulesetFilename}.json");
             File.WriteAllText(rulesetFilePath, serializedRuleset);
 
             ConfigurationMod.Logger.Msg($"Successfully exported ruleset to: {rulesetFilePath}");
@@ -228,6 +229,12 @@
             return ruleName.EndsWith("Rule", StringComparison.OrdinalIgnoreCase)
                 ? ruleName.Substring(0, ruleName.Length - 4)
                 : ruleName;
+        }
+
+        internal static string SanitizeRulesetFilename(string rulesetName)
+        {
+            var invalids = Path.GetInvalidFileNameChars();
+            return string.Join(string.Empty, rulesetName.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
         }
 
         /// <summary>
