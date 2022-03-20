@@ -22,15 +22,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5EF5-4AED-8B59-43EB164F7EC5}"
 	ProjectSection(SolutionItems) = preProject
-		docs\rulesets\Arachnophobia.json = docs\rulesets\Arachnophobia.json
 		docs\images\house-rules-logo1.png = docs\images\house-rules-logo1.png
 		docs\images\house-rules-logo2.png = docs\images\house-rules-logo2.png
 		docs\images\houserules_menu_screenshot.jpg = docs\images\houserules_menu_screenshot.jpg
 		docs\images\houserules_screenshot.jpg = docs\images\houserules_screenshot.jpg
-		docs\rulesets\LuckyDip.json = docs\rulesets\LuckyDip.json
-		docs\PieceConfig.md = docs\PieceConfig.md
 		docs\images\roomfinder_screenshot.jpg = docs\images\roomfinder_screenshot.jpg
 		docs\images\skipintro_icon.jpg = docs\images\skipintro_icon.jpg
+		docs\PieceConfig.md = docs\PieceConfig.md
+		docs\rulesets\3x3 Potions and Buffs.json = docs\rulesets\3x3 Potions and Buffs.json
+		docs\rulesets\Arachnophobia.json = docs\rulesets\Arachnophobia.json
+		docs\rulesets\Better Sorcerer.json = docs\rulesets\Better Sorcerer.json
+		docs\rulesets\LuckyDip.json = docs\rulesets\LuckyDip.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules_Configuration", "HouseRules_Configuration\HouseRules_Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
