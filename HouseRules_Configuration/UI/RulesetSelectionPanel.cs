@@ -112,8 +112,7 @@
 
             var buttonText = _uiHelper.CreateText(ruleset.Name, Color.white, UiHelper.DefaultLabelFontSize);
             buttonText.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
-            buttonText.transform.localPosition =
-                new Vector3(-4.5f, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
+            buttonText.transform.localPosition = new Vector3(-4.5f, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
 
             var description = _uiHelper.CreateLabelText(ruleset.Description);
             var rectTransform = (RectTransform)description.transform;
