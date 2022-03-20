@@ -39,8 +39,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __AbilityActionCostAdjusted__: Adjusts the casting costs for player abilities.
   - Overrides the Ability.CostAP setting for player abilities.
-  - `true` means the ability has a cost to cast, `false` means that it doesn't.
-  - Config accepts Dictionary e.g. `{ "AbilityName1": bool, "AbilityName2": bool, }`
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify `true` if the ability should cost AP to cast, or `false` if it should not.
   
   ###### _Example JSON config for AbilityActionCostAdjusted_
 
