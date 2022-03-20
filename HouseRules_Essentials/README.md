@@ -37,7 +37,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 ## Rules and Configurations
 
-- __AbilityActionCostAdjusted__: Adjusts the casting costs for player abilitites.
+- __AbilityActionCostAdjusted__: Adjusts the casting costs for player abilities.
   - Overrides the Ability.CostAP setting for player abilities.
   - `true` means the ability has a cost to cast, `false` means that it doesn't.
   - Config accepts Dictionary e.g. `{ "AbilityName1": bool, "AbilityName2": bool, }`
@@ -216,7 +216,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __CardClassRestrictionOverridden__: Overrides Character Class assignments for cards.
   - Cards with a character class of `None` are usable by all players.
-  - Cards may be disbled from play by assigning to a non-player Character
+  - Cards may be disabled from play by assigning to a non-player Character
   - Cards may be reassigned to other player characters  
 
   ###### _Example JSON config for CardClassRestrictionOverridden_
@@ -433,7 +433,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
   
 - __PieceUseWhenKilledOverridden__: Allows the list of UseWhenKilled abilities for any ♟️BoardPiece to be overridden
-  - Abilities are trigged at the a piece dies. 
+  - Abilities are triggered when a piece dies. 
   - Config accepts Dictionary of boardpieceIDs and Lists of AbilityKeys e.g. ` "BoardPieceID": [ "AbilityKey1", "AbilityKey2" ] }`  
 
   ###### _Example JSON config for PieceUseWhenKilledOverridden_
