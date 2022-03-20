@@ -58,8 +58,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __AbilityAoeAdjusted__: Adjusts the Area of Effect range(s) for abilities.
   - Does not work with all abilities.
-  - Positive integers increase range, negative decrease. e.g. `"Fireball": 1` will increases the Fireball AOE from a 3x3 to 5x5
-  - Config accepts Dictionary e.g. `{ "AbilityName1", int, "AbilityName2", int }`
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify a positive integer to increase range, or a negative number to decrease it. E.g.: `"Fireball": 1` will increases the Fireball AOE from a 3x3 to 5x5
   
   ###### _Example JSON config for AbilityAoeAdjusted_
 
@@ -77,7 +78,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __AbilityBackstabAdjusted__: Adjusts the enableBackstabBonus setting for abilities.
   - Does not work with all abilities.
-  - Config accepts Dictionary e.g. `{ "AbilityName1", bool, "AbilityName2", bool }`
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify `true` if the ability should give a backstab bonus, or `false` if it should not.
   
   ###### _Example JSON config for AbilityBackstabAdjusted_
 
@@ -98,8 +101,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 - __AbilityDamageAdjusted__: Ability damage is adjusted
   - Only functions for abilities which do damage. (You can't make a HealingPotion hurt).
   - CriticalHitDamage is adjusted to double normal damage.
-  - Positive numbers increase damage, negative decrease.
-  - Config accepts Dictionary `{ "AbilityName1", int, "AbilityName2", int }`
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify a positive integer to increase damage, or a negative number to decrease it. E.g.: `"Zap": 1` will increase Zap damage from 1 to 2.
 
   ###### _Example JSON config for AbilityDamageAdjusted_
 
@@ -117,7 +121,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - Some abilities (BeastWhisperer, RatBomb) have lists which are used to spawn random pieces.
   - This rule allows the list to be replaced with a different one.
-  - Config accepts Dictionary e.g. `{ "AbilityName", BoardpieceId[], "AbilityName2", BoardpieceId[] }`  
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify a list of [BoardPieceIds](../docs/SettingsReference.md#boardpieceids) for the pieces that the ability could spawn.
 
   ###### _Example JSON config for AbilityRandomPieceList_
 
@@ -135,8 +141,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __BackstabConfigOverridden__: A list of Pieces may use 🔪Backstab🔪 instead of just the Assassin
   - Replaces the hardcoded default of HeroRogue with a configurable list.
-  - Now everyone can benefit from Backstab bonus..
-  - Config accepts List of BoardPieceIDs e.g. `[ "HeroGuardian", "HeroSorcerer", ...]`  
+  - Now everyone can benefit from Backstab bonus.
+  - To configure:
+    - Specify the list of [BoardPieceIds](../docs/SettingsReference.md#boardpieceids) that should have the ability to backstab.
 
   ###### _Example JSON config for BackstabConfigOverridden_
 
@@ -148,8 +155,11 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __CardAdditionOverridden__: Overrides the lists of cards which players receive from chests & karma
-  - The default card allocation mechanism is intercepted changed to use a user-defined list of cards.
-  - Config accepts Dictionary of PieceNames and lists of ability strings.. `{ "PieceName1": ["Ability1", "Ability2"], "PieceName2": ["Ability3", "Ability4"] }`  
+  - The default card allocation mechanism is intercepted and changed to use a user-defined list of cards.
+  - Config accepts Dictionary of PieceNames and lists of ability strings.. `{ "PieceName1": ["Ability1", "Ability2"], "PieceName2": ["Ability3", "Ability4"] }`
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) that should have its card pool overridden.
+    - Specify a list of [AbilityKeys](../docs/SettingsReference.md#abilitykeys) for the cards that should make up the card pool.
 
   ###### _Example JSON config for CardAdditionOverridden_
 
@@ -165,7 +175,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __CardEnergyFromAttackMultiplied__: Card energy from attack is multiplied
   - Multiply how quickly the mana bar fills up when you attack enemies.
-  - Config accepts float e.g. `1.3`  
+  - To configure:
+    - Specify a decimal number representing how the energy is multiplied.
 
   ###### _Example JSON config for CardEnergyFromAttackMultiplied_
 
@@ -177,7 +188,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __CardEnergyFromRecyclingMultiplied__: Card energy from recycling is multiplied
-  - Config accepts float e.g `1.4`  
+  - To configure:
+    - Specify a decimal number representing how the energy is multiplied.
 
   ###### _Example JSON config for CardEnergyFromRecyclingMultiplied_
 
@@ -190,8 +202,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __CardLimitModified__: Card limit is modified
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
-  - Change the size of the player's card hand from the default 10/11
-  - Config accepts Int e.g `15`  
+  - Change the size of the player's card hand from the default 10/11.
+  - To configure:
+    - Specify an integer representing the total size of the player's hand.
 
   ###### _Example JSON config for CardLimitModified_
 
@@ -203,8 +216,10 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __CardSellValueMultiplied__: Card sell values are multiplied
-  - Increase card sale values in the shop. 
-  - Config accepts float e.g `2.5`  
+  - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
+  - Increase card sale values in the shop.
+  - To configure:
+    - Specify a decimal number representing how sell values are multiplied.
 
   ###### _Example JSON config for CardSellValueMultiplied_
 
@@ -218,7 +233,10 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 - __CardClassRestrictionOverridden__: Overrides Character Class assignments for cards.
   - Cards with a character class of `None` are usable by all players.
   - Cards may be disabled from play by assigning to a non-player Character
-  - Cards may be reassigned to other player characters  
+  - Cards may be reassigned to other player characters
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the card to modify.
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to restrict the card to.
 
   ###### _Example JSON config for CardClassRestrictionOverridden_
 
@@ -234,7 +252,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __EnemyAttackScaled__: Enemy ⚔️attack⚔️ damage is scaled
-  - Config accepts float e.g `0.85`  
+  - To configure:
+    - Specify a decimal number representing how enemy attack damage is multiplied.
 
   ###### _Example JSON config for EnemyAttackScaled_
 
@@ -246,7 +265,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __EnemyDoorOpeningDisabled__: Enemy 🚪door🚪 opening ability disabled
-  - Config accepts bool e.g `true`  
+  - To configure:
+    - Specify `true` to disable enemies opening doors.
 
   ###### _Example JSON config for EnemyDoorOpeningDisabled_
 
@@ -258,7 +278,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __EnemyHealthScaled__: Enemy health is scaled
-  - Config accepts float e.g `0.85`  
+  - To configure:
+    - Specify a decimal number representing how enemy health is multiplied.
 
   ###### _Example JSON config for EnemyHealthScaled_
 
@@ -270,7 +291,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __EnemyRespawnDisabled__: Enemy respawns are disabled
-  - Config accepts bool e.g `true`  
+  - To configure:
+    - Specify `true` to disable enemy respawns.
 
   ###### _Example JSON config for EnemyRespawnDisabled_
 
@@ -282,7 +304,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __GoldPickedUpMultiplied__: 💰Gold💰 picked up is multiplied
-  - Config accepts float e.g `1.25`  
+  - To configure:
+    - Specify a decimal number representing how gold is multiplied.
 
   ###### _Example JSON config for GoldPickedUpMultiplied_
 
@@ -295,6 +318,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __LevelExitLockedUntilAllEnemiesDefeated__: The 🔒exit🔑 from each level will not open if any enemies remain.
   - This rule needs to be used in combination with other rules or it will not be possible to complete a level. (e.g. EnemyRespawnDisabled)
+  - To configure:
+    - Specify `true` to keep the level exit locked until all enemies are defeated.
 
   ###### _Example JSON config for LevelExitLockedUntilAllEnemiesDefeated_
 
@@ -306,8 +331,11 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __LevelPropertiesModified__: Level properties are modified
-  - Allows customisation Loot, Chests and HealingFountains on a per-floor basis
+  - Allows customisation of Loot, Chests and HealingFountains on a per-floor basis
   - Config accepts Dictionary e.g. `{ "ParamName1", int, "ParamName2", int }`
+  - To configure:
+    - Specify the [LevelProperty](../docs/LevelProperties.md) to modify.
+    - Specify an integer or decimal number for new value for the property.
 
   ###### _Example JSON config for LevelPropertiesModified_
 
@@ -327,7 +355,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __PetsFocusHunterMark__: Pets focus on hunter marked enemies
-  - Config accepts bool e.g `true`
+  - To configure:
+    - Specify `true` to have pets focus on enemies that are marked.
 
   ###### _Example JSON config for PetsFocusHunterMark_
 
@@ -339,10 +368,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __PieceAbilityListOverridden__: The list of abilities for a ♟️BoardPiece is overridden.
-  - Board pieces have abilities such as LaySpiderEgg or SpawnCultists. This rule allows the lists to be overridden
-  - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
+  - Board pieces have abilities such as LaySpiderEgg or SpawnCultists. This rule allows those lists to be overridden.
+  - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold, cards, etc.
   - Assigning an Ability to a BoardPiece does not necessarily mean that the piece will have a Behaviour to use it.
-  - This rule works in conjunction with `PieceBehavioursListOverridden` and `PiecePieceTypesListOverridden` 
+  - This rule works in conjunction with `PieceBehavioursListOverridden` and `PiecePieceTypesListOverridden`
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
+    - Specify a list of [AbilityKeys](../docs/SettingsReference.md#abilitykeys) representing the abilities the piece should have. 
 
   ###### _Example JSON config for PieceAbilityListOverridden_
 
@@ -358,10 +390,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __PieceBehavioursListOverridden__: The list of behaviours that a ♟️BoardPiece behaves is overridden.
-  - Board pieces have behaviours such as Patrol, SpawnPiece, AttackandRetreat. This rule allows the lists to be overridden.
-  - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
-  - Assigning a behaviour to a particular piece does not mean that the BoardPiece is of the correct PieceType to perform it.
-  - This rule works in conjunction with `PieceAbilityListOverridden` and `PiecePieceTypesListOverridden` 
+  - Board pieces have behaviours such as Patrol, SpawnPiece, AttackandRetreat. This rule allows those lists to be overridden.
+  - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold, cards, etc.
+  - Assigning a behaviour to a particular BoardPiece does not mean that the piece is of the correct PieceType to perform it.
+  - This rule works in conjunction with `PieceAbilityListOverridden` and `PiecePieceTypesListOverridden`
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
+    - Specify the list of [Behaviours](../docs/SettingsReference.md#behaviours) that the piece should have.
 
   ###### _Example JSON config forPieceBehavioursListOverridden_
 
@@ -377,10 +412,12 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 - __PieceConfigAdjusted__: Allows customization of any numeric field for any ♟️BoardPiece
-  - See [PieceConfig.md](../docs/PieceConfig.md) for information about modifiable fields.
-  - Allows customization of many of the properties for each game Piece. 🩺Health, 🎲ActionPoints, 🏃Movement, ⚔️MeleeDamage, etc
-  - Config accepts List of Dicts e.g. `[ {}, {}, ]`
-  - Only works for integer and float fields. The configured value replaces the default.
+  - Allows customization of many of the properties for each game Piece. 🩺Health, 🎲ActionPoints, 🏃Movement, ⚔️MeleeDamage, etc.
+  - Only works for numeric fields. The configured value replaces the default.
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
+    - Specify the [PieceProperty](../docs/PieceConfig.md) to modify.
+    - Specify an integer or decimal number representing the new value for the property.
 
   ###### _Example JSON config for PieceConfigAdjusted_
 
@@ -400,7 +437,10 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   
 - __PieceImmunityListAdjusted__: Allows the list of immunities for any ♟️BoardPiece to be overridden
   - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weakened, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
-  - Config accepts Dictionary e.g. `{ "HeroSorcerer", EventState[], "RatKing", EventState[], ... }`  
+  - Config accepts Dictionary e.g. `{ "HeroSorcerer", EventState[], "RatKing", EventState[], ... }`
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
+    - Specify the list of [EffectStates](../docs/EffectStates.md) that the piece should be immune to.
 
   ###### _Example JSON config for PieceImmunityListAdjusted_
 
@@ -416,9 +456,12 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __PiecePieceTypeListOverridden__: Allows the list of PieceTypes for a ♟️BoardPiece to be overridden.
   - Board pieces have PieceTypes such as IgnoreWhenCharmed, Brittle, Enemy, Prop, Interactable which dictate certain behaviours.
-  - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold and cards etc
-  - Assigning an PieceType to a BoardPiece does not necessarily mean that the piece change its behaviour.
-  - This rule works in conjunction with `PieceAbilityListOverridden` and `PieceBehavioursListOverridden`  
+  - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold, cards, etc.
+  - Assigning an PieceType to a BoardPiece does not necessarily mean that the piece will change its behaviour.
+  - This rule works in conjunction with `PieceAbilityListOverridden` and `PieceBehavioursListOverridden`.  
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
+    - Specify the list of [PieceTypes](../docs/SettingsReference.md#piecetypes) that the piece should be.
 
   ###### _Example JSON config for PieceImmunityListAdjusted_
 
@@ -435,7 +478,10 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   
 - __PieceUseWhenKilledOverridden__: Allows the list of UseWhenKilled abilities for any ♟️BoardPiece to be overridden
   - Abilities are triggered when a piece dies. 
-  - Config accepts Dictionary of boardpieceIDs and Lists of AbilityKeys e.g. ` "BoardPieceID": [ "AbilityKey1", "AbilityKey2" ] }`  
+  - Config accepts Dictionary of boardpieceIDs and Lists of AbilityKeys e.g. ` "BoardPieceID": [ "AbilityKey1", "AbilityKey2" ] }`
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
+    - Specify a list of [AbilityKeys](../docs/SettingsReference.md#abilitykeys) for the abilities to be triggered when that piece is killed.
 
   ###### _Example JSON config for PieceUseWhenKilledOverridden_
 
@@ -451,21 +497,24 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __RatNestsSpawnGold__: Rat nests spawn 💰gold💰
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
-  - Config accepts bool e.g `true`  
+  - To configure:
+    - Specify an integer representing the maximum piles of gold that should be spawned each time.
 
   ###### _Example JSON config for RatNestsSpawnGold_
 
   ```json
   {
     "Rule": "RatNestsSpawnGold",
-    "Config": true
+    "Config": 4
   },
   ```
 
 - __RegainAbilityIfMaxxedOutOverridden__: Controls whether you get a potion back when you cast it on someone who is already at max.
-  - This rule is to overcome a mana-farming 'feature' that occurs if you apply an AOE range onto Strength/Speed potions. By default when you cast a strength or speed potion on someone who is already maxxed out, you get it returned to your hand. If you cast a potion on a group who are maxxed, you get one-potion-per-player returned back to your hand. This is effectively free-mana whenever you want it.
-  - This rule exists to control that behaviour. By setting Abilities to `false` you can prevent the card being returned to the player's hand.
-  - Config accepts dictionary of ability name and bool.  
+  - This rule is to overcome a 'feature' that occurs if you apply an AOE range onto Strength/Speed potions. By default when you cast a strength or speed potion on someone who is already maxed out, you get it returned to your hand. If you cast a potion on a group who are maxed, you get one-potion-per-player returned back to your hand.
+  - This rule exists to control that behaviour.
+  - To configure:
+    - Specify the [AbilityKeys](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify `true` is using the ability while maxed out should return the ability card to the player, or `false` to prevent the card being returned to the player's hand.
 
   ###### _Example JSON config for RegainAbilityIfMaxxedOutOverridden_
 
@@ -481,7 +530,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __RoundCountLimited__:  Sets a limit for the maximum number of rounds a game may take.
   - For ⏳ beat-the-clock ⏳ type gameplay.
-  - Config accepts integer of number of rounds e.g 50  
+  - If the game is not completed (i.e., the boss defeated) before the specified rounds are up, the game ends as a loss.
+  - To configure:
+    - Specify the maximum number of rounds allowed.
 
   ###### _Example JSON config for RoundCountLimited_
 
@@ -492,16 +543,17 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __SampleRule__: A [sample rule](Rules/SampleRule.cs) documenting the anatomy
-  of a HouseRule rule.
+- __SampleRule__: A [sample rule](Rules/SampleRule.cs) documenting the anatomy of a HouseRule rule.
 
 - __SpawnCategoryOverridden__:  Overrides the Spawn Categories which control distribution of pieces in each map.
   - Each dungeon has a list of pieces which may appear, and controlling properties.
   - This rule replaces the list (for all dungeons) with a new one.
-  - Per-Piece properties for `MaxPerDeck`, `PreFill` and `FirstAllowedLevelIndex` must be specified.
   - Pieces which are not listed in the config will have `IsSpawningEnabled` set to `false` to disable pieces from auto-populating a map.
   - Does not have absolute control over what monsters will appear. Bosses bring support chars etc.
   - Config accepts list of dicts { "BoardPieceID": [ MaxPerDeck, PreFill, FirstAllowedLevelIndex ], ... }
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to appear in each map.
+    - Specify a list with values for `MaxPerDeck`, `PreFill` and `FirstAllowedLevelIndex`, respectively, for each piece.
 
   ###### _Example JSON config for SpawnCategoryOverridden_
 
@@ -520,9 +572,12 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __StartCardsModified__: Player 🎴 starting cards 🎴 are modified
   - Removes all default cards from Player's hand and replaces them with custom ones.
-  - Replenishable cards do not leave a players hand once cast (e.g. RepairArmor, HunterArrow or Zap)
+  - Replenishable cards do not leave a players hand once cast (e.g. RepairArmor, HunterArrow or Zap).
   - Max of two replenishable cards per player.
-  - Config accepts Dictionary of list of dicts e.g. `{ "HeroName1": [ { "Card" : "CardName","isReplenishable": bool }, ... ], ...  }`
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to replace the starting card hand of.
+    - Specify the [AbilityKey](../docs/SettingsReference.md#boardpieceids) of the cards to add to the piece's hand.
+    - Specify `true` if the card should replenish, or `false` if it should not.
 
   ###### _Example JSON config for StartCardsModified_
 
@@ -559,10 +614,11 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
   - __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
-  - There are only six different StatModifiers in the game. They are used by 💪StrengthPotion, 🦶SwiftnessPotion, 🛡️ReplenishArmor, HuntersMark, etc
-  - Accepts a list of overrides which take the place of the default config.
-  - If no override is specified, the default is used instead.
-  - Config accepts list of dict of StatModifier names, integer values. `{"Statmodifier": int}, {}, }`
+  - There are only six different StatModifiers in the game. They are used by 💪StrengthPotion, 🦶SwiftnessPotion, 🛡️ReplenishArmor, HuntersMark, etc.
+  - These modifiers control the power of each corresponding ability.  E.g., by default the stat modifier for SongOfResilience is 5, as it grants 5 units of armor.  
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#boardpieceids) of the ability whose stat modifer should be replaced.
+    - Specify an integer representing the new value of the stat modifier.
 
   ###### _Example JSON config for StatModifiersOverriden_
 
@@ -581,10 +637,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
   - __StatusEffectConfig__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
-  - Accepts a list of overrides which take the place of the default config.
-  - If no override is specified, the default is used instead.
-  - Default values can be found in `StatusEffectsConfig.effectsConfig`
-  - Config accepts list of dicts e.g. `[ {}, {}, ]`
+  - Default values can be found in `StatusEffectsConfig.effectsConfig`.
+  - To configure:
+    - Specify a list of status effects that should replace existing ones of the same type.
 
   ###### _Example JSON config for StatusEffectConfig_
 
