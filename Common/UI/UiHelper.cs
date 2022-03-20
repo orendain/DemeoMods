@@ -190,6 +190,37 @@
             return buttonObject;
         }
 
+        public GameObject CreateLeftArrowButton(Action callback)
+        {
+            var buttonObject = new GameObject("LeftArrowButton");
+            buttonObject.layer = VrUiCollisionLayer;
+
+            buttonObject.AddComponent<MeshFilter>().mesh = DemeoResource.LeftArrowMesh;
+            buttonObject.AddComponent<MeshRenderer>().material = DemeoResource.LeftArrowMaterial;
+            buttonObject.AddComponent<ClickableButton>().InitButton(0, string.Empty, callback, false);
+
+            // Added last to allow ray to hit full object.
+            buttonObject.AddComponent<BoxCollider>();
+
+            return buttonObject;
+        }
+
+        public GameObject CreateRightArrowButton(Action callback)
+        {
+            var buttonObject = new GameObject("LeftArrowButton");
+            buttonObject.transform.localRotation = Quaternion.Euler(0, 0, 180); // Align object.
+            buttonObject.layer = VrUiCollisionLayer;
+
+            buttonObject.AddComponent<MeshFilter>().mesh = DemeoResource.LeftArrowMesh;
+            buttonObject.AddComponent<MeshRenderer>().material = DemeoResource.LeftArrowMaterial;
+            buttonObject.AddComponent<ClickableButton>().InitButton(0, string.Empty, callback, false);
+
+            // Added last to allow ray to hit full object.
+            buttonObject.AddComponent<BoxCollider>();
+
+            return buttonObject;
+        }
+
         /// <summary>
         /// Wraps the specified GameObject inside a new <see cref="GameObject"/>.
         /// </summary>
