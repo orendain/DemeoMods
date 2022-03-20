@@ -21,7 +21,7 @@
 
         public override void OnApplicationLateStart()
         {
-            ExampleRulesetExporter.ExportExampleRulesetIfNeeded();
+            ExampleRulesetExporter.ExportExampleRulesetsIfNeeded();
 
             var loadRulesetsFromConfig = ConfigManager.GetLoadRulesetsFromConfig();
             if (loadRulesetsFromConfig)

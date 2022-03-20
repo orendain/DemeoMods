@@ -12,7 +12,7 @@
 
     public class ConfigManager
     {
-        private static readonly string RulesetDirectory = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules");
+        internal static readonly string RulesetDirectory = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules");
 
         private readonly MelonPreferences_Category _configCategory;
         private readonly MelonPreferences_Entry<string> _defaultRulesetEntry;
@@ -63,11 +63,22 @@
         internal List<string> RulesetFiles => Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
 
         /// <summary>
-        /// Exports the specified ruleset by writing it to a file.
+        /// Exports the specified ruleset by writing it to a file in the default ruleset directory.
         /// </summary>
         /// <param name="ruleset">The ruleset to export.</param>
         /// <returns>The path of the file that the ruleset was written to.</returns>
         internal string ExportRuleset(Ruleset ruleset)
+        {
+            return ExportRuleset(ruleset, RulesetDirectory);
+        }
+
+        /// <summary>
+        /// Exports the specified ruleset by writing it to a file in the specified directory.
+        /// </summary>
+        /// <param name="ruleset">The ruleset to export.</param>
+        /// <param name="directory">The path of the directory to export to.</param>
+        /// <returns>The path of the file that the ruleset was written to.</returns>
+        internal string ExportRuleset(Ruleset ruleset, string directory)
         {
             if (string.IsNullOrEmpty(ruleset.Name))
             {
@@ -102,7 +113,7 @@
                 Rules = ruleEntries,
             };
             var serializedRuleset = JsonConvert.SerializeObject(rulesetConfig);
-            var rulesetFilePath = Path.Combine(RulesetDirectory, $"{ruleset.Name}.json");
+            var rulesetFilePath = Path.Combine(directory, $"{ruleset.Name}.json");
             File.WriteAllText(rulesetFilePath, serializedRuleset);
 
             ConfigurationMod.Logger.Msg($"Successfully exported ruleset to: {rulesetFilePath}");
