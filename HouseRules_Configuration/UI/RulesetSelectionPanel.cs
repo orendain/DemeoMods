@@ -58,15 +58,14 @@
         {
             var headerContainer = new GameObject("Header");
 
-            var infoText =
-                _uiHelper.CreateLabelText("Select a ruleset for your next private multiplayer game or skirmish.");
-            var rectTransform = (RectTransform) infoText.transform;
+            var infoText = _uiHelper.CreateLabelText("Select a ruleset for your next private multiplayer game or skirmish.");
+            var rectTransform = (RectTransform)infoText.transform;
             rectTransform.SetParent(headerContainer.transform, worldPositionStays: false);
             rectTransform.sizeDelta = new Vector2(10, 2);
             rectTransform.localPosition = new Vector3(0, 0, UiHelper.DefaultTextZShift);
 
             var selectedText = _uiHelper.CreateLabelText("Selected ruleset: ");
-            rectTransform = (RectTransform) selectedText.transform;
+            rectTransform = (RectTransform)selectedText.transform;
             rectTransform.SetParent(headerContainer.transform, worldPositionStays: false);
             rectTransform.sizeDelta = new Vector2(10, 2);
             rectTransform.localPosition = new Vector3(0, -1.5f, UiHelper.DefaultTextZShift);
@@ -80,7 +79,7 @@
         private IEnumerable<List<Ruleset>> PartitionRulesets()
         {
             return _rulebook.Rulesets
-                .Select((value, index) => new {group = index / MaxRulesetsPerPage, value})
+                .Select((value, index) => new { group = index / MaxRulesetsPerPage, value })
                 .GroupBy(pair => pair.group)
                 .Select(group => group.Select(g => g.value).ToList());
         }
@@ -117,7 +116,7 @@
                 new Vector3(-4.5f, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
 
             var description = _uiHelper.CreateLabelText(ruleset.Description);
-            var rectTransform = (RectTransform) description.transform;
+            var rectTransform = (RectTransform)description.transform;
             rectTransform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             rectTransform.pivot = Vector2.left;
             rectTransform.sizeDelta = new Vector2(9, 1);
