@@ -36,6 +36,7 @@
     <Compile Include="EssentialsMod.cs" />
     <Compile Include="Rulesets\AoePotionsAndBuffsRuleset.cs" />
     <Compile Include="Rulesets\BeatTheClockRuleset.cs" />
+    <Compile Include="Rulesets\BetterSorcererRuleset.cs" />
     <Compile Include="Rulesets\DifficultyEasyRuleset.cs" />
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
