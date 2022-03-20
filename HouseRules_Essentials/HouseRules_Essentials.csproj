@@ -41,6 +41,7 @@
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
     <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
+    <Compile Include="Rulesets\LuckyDip.cs" />
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rulesets\TheSwirlRuleset.cs" />
