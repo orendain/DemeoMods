@@ -27,6 +27,10 @@
 
         public Mesh ButtonMeshRed { get; private set; }
 
+        public Mesh LeftArrowMesh { get; private set; }
+
+        public Material LeftArrowMaterial { get; private set; }
+
         public Material ButtonMaterial { get; private set; }
 
         public Material ButtonHoverMaterial { get; private set; }
@@ -90,6 +94,9 @@
             ButtonHoverMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuHover");
             MenuBoxMesh = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "MenuBox_SettingsButton");
             MenuBoxMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuMat (Instance)");
+
+            LeftArrowMesh = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "UIMenuArrowRight");
+            LeftArrowMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "HandMenuQuest");
 
             InitializeAnchors();
         }
