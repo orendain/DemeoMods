@@ -16,10 +16,10 @@
                 { "BigGoldPileChance", 10 },
                 { "FloorOneHealingFountains", 0 },
                 { "FloorOneLootChests", 1 },
-                { "FloorOneGoldMaxAmount", 504},
+                { "FloorOneGoldMaxAmount", 504 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoLootChests", 1 },
-                { "FloorTwoGoldMaxAmount", 252},
+                { "FloorTwoGoldMaxAmount", 252 },
                 { "FloorThreeHealingFountains", 0 },
                 { "FloorThreeLootChests", 1 },
             });

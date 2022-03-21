@@ -34,11 +34,15 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EssentialsMod.cs" />
+    <Compile Include="Rulesets\AoePotionsAndBuffsRuleset.cs" />
+    <Compile Include="Rulesets\Arachnophobia.cs" />
     <Compile Include="Rulesets\BeatTheClockRuleset.cs" />
+    <Compile Include="Rulesets\BetterSorcererRuleset.cs" />
     <Compile Include="Rulesets\DifficultyEasyRuleset.cs" />
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
     <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
+    <Compile Include="Rulesets\LuckyDip.cs" />
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rulesets\TheSwirlRuleset.cs" />
