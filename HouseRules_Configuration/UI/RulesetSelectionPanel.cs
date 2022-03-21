@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Configuration.UI
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Common.UI;
     using HouseRules.Types;
@@ -9,24 +10,31 @@
 
     internal class RulesetSelectionPanel
     {
-        private readonly UiHelper _uiHelper;
+        private const int MaxRulesetsPerPage = 7;
 
         private readonly Rulebook _rulebook;
+        private readonly UiHelper _uiHelper;
+        private readonly PageStack _pageStack;
 
         private TextMeshPro _selectedText;
 
-        internal GameObject GameObject { get; }
+        internal GameObject Panel { get; }
 
         internal static RulesetSelectionPanel NewInstance(Rulebook rulebook, UiHelper uiHelper)
         {
-            return new RulesetSelectionPanel(rulebook, uiHelper, new GameObject("RulesetSelectionPanel"));
+            return new RulesetSelectionPanel(
+                rulebook,
+                uiHelper,
+                new GameObject("RulesetSelectionPanel"),
+                PageStack.NewInstance(uiHelper));
         }
 
-        private RulesetSelectionPanel(Rulebook rulebook, UiHelper uiHelper, GameObject panel)
+        private RulesetSelectionPanel(Rulebook rulebook, UiHelper uiHelper, GameObject panel, PageStack pageStack)
         {
             this._rulebook = rulebook;
             this._uiHelper = uiHelper;
-            this.GameObject = panel;
+            this._pageStack = pageStack;
+            this.Panel = panel;
 
             Render();
         }
@@ -34,24 +42,16 @@
         private void Render()
         {
             var header = CreateHeader();
-            header.transform.SetParent(GameObject.transform, worldPositionStays: false);
-            header.transform.localPosition = new Vector3(0, 1.5f, 0);
+            header.transform.SetParent(Panel.transform, worldPositionStays: false);
+            header.transform.localPosition = new Vector3(0, 1f, 0);
 
-            var rulesets = new GameObject("Rulesets");
-            rulesets.transform.SetParent(GameObject.transform, worldPositionStays: false);
-            rulesets.transform.localPosition = new Vector3(0, -1.5f, 0);
+            var rulesetPartitions = PartitionRulesets();
+            var rulesetPages = rulesetPartitions.Select(CreateRulesetPage).ToList();
+            rulesetPages.ForEach(_pageStack.AddPage);
 
-            var rulesetRow = CreateRulesetRow(Ruleset.None);
-            rulesetRow.transform.SetParent(rulesets.transform, worldPositionStays: false);
-            rulesetRow.transform.localPosition = new Vector3(0, 0, 0);
-
-            for (var i = 0; i < _rulebook.Rulesets.Count; i++)
-            {
-                var yOffset = (i + 1) * -1.5f;
-                rulesetRow = CreateRulesetRow(_rulebook.Rulesets.ElementAt(i));
-                rulesetRow.transform.SetParent(rulesets.transform, worldPositionStays: false);
-                rulesetRow.transform.localPosition = new Vector3(0, yOffset, 0);
-            }
+            var pageNavigation = _pageStack.NavigationPanel;
+            pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
+            pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
         }
 
         private GameObject CreateHeader()
@@ -74,6 +74,31 @@
             UpdateSelectedText();
 
             return headerContainer;
+        }
+
+        private IEnumerable<List<Ruleset>> PartitionRulesets()
+        {
+            return _rulebook.Rulesets
+                .Select((value, index) => new { group = index / MaxRulesetsPerPage, value })
+                .GroupBy(pair => pair.group)
+                .Select(group => group.Select(g => g.value).ToList());
+        }
+
+        private GameObject CreateRulesetPage(List<Ruleset> rulesets)
+        {
+            var container = new GameObject("Rulesets");
+            container.transform.SetParent(Panel.transform, worldPositionStays: false);
+            container.transform.localPosition = new Vector3(0, -2.5f, 0);
+
+            for (var i = 0; i < rulesets.Count; i++)
+            {
+                var yOffset = i * -2f;
+                var rulesetRow = CreateRulesetRow(rulesets.ElementAt(i));
+                rulesetRow.transform.SetParent(container.transform, worldPositionStays: false);
+                rulesetRow.transform.localPosition = new Vector3(0, yOffset, 0);
+            }
+
+            return container;
         }
 
         private GameObject CreateRulesetRow(Ruleset ruleset)

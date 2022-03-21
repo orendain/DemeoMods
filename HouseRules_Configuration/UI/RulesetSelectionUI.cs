@@ -60,7 +60,7 @@
             menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
             menuTitle.transform.localPosition = new Vector3(0, 5.95f, UiHelper.DefaultTextZShift);
 
-            var selectionPanel = _rulesetSelectionPanel.GameObject;
+            var selectionPanel = _rulesetSelectionPanel.Panel;
             selectionPanel.transform.SetParent(this.transform, worldPositionStays: false);
             selectionPanel.transform.localPosition = new Vector3(0, 2.5f, 0);
 
