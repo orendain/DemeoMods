@@ -69,20 +69,30 @@
             }
 
             EssentialsMod.Logger.Msg($"SCP: {spawnCategoryProvider}, FloorIndex: {floorIndex}, RNG: {rng}, GameType: {gameType}");
+            EssentialsMod.Logger.Msg($"globalAdjustments: {_globalAdjustments}");
+            var gameConfigSpawnCategories = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, List<SpawnCategoryDTO>>>("SpawnCategoryDTOlist").Value;
+            var spawnCategories = gameConfigSpawnCategories[MotherbrainGlobalVars.CurrentConfig];
 
-            var alice = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.IceElemental, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
-            var bob = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.ChestGoblin, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = false };
-            var chris = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.FireElemental, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
-            var dave = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.RootGolem, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
-            var edgar = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Spider, enemyWeight = EnemyWeight.Light, isRedrawEnabled = true };
-            var fran = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.RootMage, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
-            var myDeck = new List<MonsterDeck.MonsterDeckEntry>() { alice, bob, bob, bob, bob, bob, chris, dave, edgar, fran };
+
+            var iceElemental = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.IceElemental, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
+            var chestGoblin = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.ChestGoblin, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = false };
+            var fireElemental = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.FireElemental, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
+            var slimeling = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Slimeling, enemyWeight = EnemyWeight.Light, isRedrawEnabled = true };
+            var rat = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Rat, enemyWeight = EnemyWeight.Light, isRedrawEnabled = true };
+            var spider = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Spider, enemyWeight = EnemyWeight.Light, isRedrawEnabled = true };
+            var unheard = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.TheUnheard, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = true };
+            var unseen = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.TheUnspoken, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = true };
+            var unspoken = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.TheUnseen, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = true };
+            var standardDeck = new List<MonsterDeck.MonsterDeckEntry>() { iceElemental, chestGoblin, chestGoblin, chestGoblin, fireElemental, spider };
+            var spikeDeck = new List<MonsterDeck.MonsterDeckEntry>() { iceElemental, chestGoblin, chestGoblin, chestGoblin, fireElemental, rat };
+            var bossDeck = new List<MonsterDeck.MonsterDeckEntry>() { unheard, unseen, unspoken, slimeling };
+            var keyholder = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Cavetroll, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
             MonsterDeck monsterDeck = new MonsterDeck
             {
-                monsterDeckStandard = myDeck,
-                monsterDeckSpike = myDeck,
-                monsterDeckBoss = myDeck,
-                Keyholder = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Cavetroll, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false },
+                monsterDeckStandard = standardDeck,
+                monsterDeckSpike = spikeDeck,
+                monsterDeckBoss = bossDeck,
+                Keyholder = keyholder,
             };
             __result = monsterDeck;
             return false; // We returned an user-adjusted config.
