@@ -63,6 +63,7 @@
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
             HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());
+            HR.Rulebook.Register(EarthWindAndFire.Create());
             HR.Rulebook.Register(AoePotionsAndBuffsRuleset.Create());
             HR.Rulebook.Register(BetterSorcererRuleset.Create());
             HR.Rulebook.Register(NoSurprisesRuleset.Create());
