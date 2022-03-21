@@ -61,12 +61,14 @@
                     nameof(AIDirectorController2_SpawnBossAndMinions_Prefix)));
         }
 
-        private static bool AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix(ref MonsterDeck __result)
+        private static bool AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix(ref MonsterDeck __result, ISpawnCategoryProvider spawnCategoryProvider, int floorIndex, IRnd rng, LevelSequence.GameType gameType)
         {
             if (!_isActivated)
             {
                 return true;
             }
+
+            EssentialsMod.Logger.Msg($"SCP: {spawnCategoryProvider}, FloorIndex: {floorIndex}, RNG: {rng}, GameType: {gameType}");
 
             var alice = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.IceElemental, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
             var bob = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.ChestGoblin, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = false };
