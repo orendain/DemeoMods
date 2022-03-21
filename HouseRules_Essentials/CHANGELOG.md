@@ -1,5 +1,36 @@
 # Changelog
 
+## [v1.1.0-houserules](https://github.com/orendain/demeomods/tree/v1.1.0-houserules) (2022-03-21)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.0.0-houserules...v1.1.0-houserules)
+
+**Features/Enhancements:**
+
+- Codify JSON rulesets. [\#257](https://github.com/orendain/DemeoMods/pull/257)
+- Update HouseRules for Demeo v1.13. [\#246](https://github.com/orendain/DemeoMods/pull/246)
+- Modify PieceConfigDTOdict directly, and new PieceUseWhenKilled rule [\#245](https://github.com/orendain/DemeoMods/pull/245)
+- Update The Swirl ruleset. [\#241](https://github.com/orendain/DemeoMods/pull/241)
+- Adjust difficulty rulesets. [\#231](https://github.com/orendain/DemeoMods/pull/231)
+- Add rule to control the enableBackstabBonus toggle on Abilities. [\#226](https://github.com/orendain/DemeoMods/pull/226)
+- Allow backstab to be configured for multiple pieces. [\#219](https://github.com/orendain/DemeoMods/pull/219)
+- Improve StatusEffectsConfig rule. [\#218](https://github.com/orendain/DemeoMods/pull/218)
+- Control whether cards are returned to players hand when cast on someone already at max. [\#216](https://github.com/orendain/DemeoMods/pull/216)
+- Add `SpawnCategoryOverridden` and `CardClassRestrictionOverridden`  rules and the `Arachnophobia` ruleset. [\#211](https://github.com/orendain/DemeoMods/pull/211)
+
+**Fixes:**
+
+- Fix Arachnophobia ruleset after StatModifiers got renamed in error. [\#250](https://github.com/orendain/DemeoMods/pull/250)
+- Fix certain replaced values not being restored on rule deactivation. [\#247](https://github.com/orendain/DemeoMods/pull/247)
+- Revert renaming required-named parameter. [\#244](https://github.com/orendain/DemeoMods/pull/244)
+- Consider enemy friendliness in LevelExitLockedUntilAllEnemiesDefeatedRule. [\#243](https://github.com/orendain/DemeoMods/pull/243)
+
+**Chores:**
+
+- Perform a lookup against an AbilityKey to find a corresponding StatModifier to modify. [\#251](https://github.com/orendain/DemeoMods/pull/251)
+- Modify ability rules to perform abilityKey-to-ability lookups. [\#248](https://github.com/orendain/DemeoMods/pull/248)
+- Perform some maintenance on rules. [\#230](https://github.com/orendain/DemeoMods/pull/230)
+- Clean up unused 'lookupstring' var. [\#215](https://github.com/orendain/DemeoMods/pull/215)
+
 ## [v1.0.0-houserules](https://github.com/orendain/demeomods/tree/v1.0.0-houserules) (2022-02-21)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/faa2e50c1fdc985e4bf0383f16ef8980eb1580b9...v1.0.0-houserules)
