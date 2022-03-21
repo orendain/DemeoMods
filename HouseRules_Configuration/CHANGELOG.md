@@ -1,5 +1,16 @@
 # Changelog
 
+## [v1.1.0-houserules](https://github.com/orendain/demeomods/tree/v1.1.0-houserules) (2022-03-21)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.0.0-houserules...v1.1.0-houserules)
+
+**Features/Enhancements:**
+
+- Paginate HouseRules' Ruleset selection UI. [\#253](https://github.com/orendain/DemeoMods/pull/253)
+- Update HouseRules for Demeo v1.13. [\#246](https://github.com/orendain/DemeoMods/pull/246)
+- Add two new rulesets: `Better Sorcerer` and `3x3 Potions and Buffs` [\#234](https://github.com/orendain/DemeoMods/pull/234)
+- Provide visual feedback of selected ruleset on UI. [\#228](https://github.com/orendain/DemeoMods/pull/228)
+
 ## [v1.0.0-houserules](https://github.com/orendain/demeomods/tree/v1.0.0-houserules) (2022-02-21)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/faa2e50c1fdc985e4bf0383f16ef8980eb1580b9...v1.0.0-houserules)
