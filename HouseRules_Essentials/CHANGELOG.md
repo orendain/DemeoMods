@@ -10,6 +10,7 @@
 - Update HouseRules for Demeo v1.13. [\#246](https://github.com/orendain/DemeoMods/pull/246)
 - Modify PieceConfigDTOdict directly, and new PieceUseWhenKilled rule [\#245](https://github.com/orendain/DemeoMods/pull/245)
 - Update The Swirl ruleset. [\#241](https://github.com/orendain/DemeoMods/pull/241)
+- Add two new rulesets: `Better Sorcerer` and `3x3 Potions and Buffs` [\#234](https://github.com/orendain/DemeoMods/pull/234)
 - Adjust difficulty rulesets. [\#231](https://github.com/orendain/DemeoMods/pull/231)
 - Add rule to control the enableBackstabBonus toggle on Abilities. [\#226](https://github.com/orendain/DemeoMods/pull/226)
 - Allow backstab to be configured for multiple pieces. [\#219](https://github.com/orendain/DemeoMods/pull/219)
