@@ -32,6 +32,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="0Harmony">
+            <HintPath>$(SteamDemeoDir)\MelonLoader\0Harmony.dll</HintPath>
+        </Reference>
         <Reference Include="MelonLoader">
             <HintPath>$(SteamDemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>
