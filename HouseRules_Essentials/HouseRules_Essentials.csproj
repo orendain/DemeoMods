@@ -82,6 +82,9 @@
     <Compile Include="Rules\StartCardsModifiedRule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(SteamDemeoDir)\MelonLoader\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
