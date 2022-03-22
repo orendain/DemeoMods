@@ -1,5 +1,26 @@
 # Changelog
 
+## [v1.1.0-houserules](https://github.com/orendain/demeomods/tree/v1.1.0-houserules) (2022-03-21)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.0.0-houserules...v1.1.0-houserules)
+
+**Features/Enhancements:**
+
+- Update HouseRules for Demeo v1.13. [\#246](https://github.com/orendain/DemeoMods/pull/246)
+- Trigger board sync only if active ruleset requires it. [\#242](https://github.com/orendain/DemeoMods/pull/242)
+- Add an enum, representing specially synced data, that rules can declare they are modifying. [\#240](https://github.com/orendain/DemeoMods/pull/240)
+- Resync board only at specific times, rather than as soon as a syncable change occurs. [\#238](https://github.com/orendain/DemeoMods/pull/238)
+
+**Fixes:**
+
+- Resync board with clients on two new conditions: Status effects added and status effect immunities checked. [\#239](https://github.com/orendain/DemeoMods/pull/239)
+
+**Chores:**
+
+- Encapsulate processes dealing with directing the lifecycle of a ruleset. [\#249](https://github.com/orendain/DemeoMods/pull/249)
+- Move board syncing functionality to its own class. [\#237](https://github.com/orendain/DemeoMods/pull/237)
+- Move images and rulesets to sub-directories to prepare for bundling rulesets with releases. [\#232](https://github.com/orendain/DemeoMods/pull/232)
+
 ## [v1.0.0-houserules](https://github.com/orendain/demeomods/tree/v1.0.0-houserules) (2022-02-21)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/faa2e50c1fdc985e4bf0383f16ef8980eb1580b9...v1.0.0-houserules)
