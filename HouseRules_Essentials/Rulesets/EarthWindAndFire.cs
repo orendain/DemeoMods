@@ -21,7 +21,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterDive, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
@@ -31,7 +30,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterDive, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
@@ -41,7 +39,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterDive, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
@@ -51,7 +48,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterDive, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
             };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
@@ -61,7 +57,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterDive, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
@@ -82,6 +77,10 @@
                 AbilityKey.Freeze,
                 AbilityKey.StrengthPotion,
                 AbilityKey.SwiftnessPotion,
+                AbilityKey.CallCompanion,
+                AbilityKey.WhirlwindAttack,
+                AbilityKey.LetItRain,
+                AbilityKey.WaterDive,
             };
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
@@ -118,7 +117,61 @@
                 { AbilityKey.Freeze, true },
             });
 
-            var monsterDeckRule = new MonsterDeckOverriddenRule(new List<BoardPieceId> { { BoardPieceId.ChestGoblin } });
+            var entranceDeckFloor1 = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.Spider, 50 }, // Unlimited spiders.
+                { BoardPieceId.IceElemental, 2 },
+                { BoardPieceId.ChestGoblin, 3 },
+                { BoardPieceId.FireElemental, 2 },
+            };
+            var exitDeckFloor1 = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.Rat, 30 },
+                { BoardPieceId.Spider, 20 },
+                { BoardPieceId.IceElemental, 2 },
+                { BoardPieceId.ChestGoblin, 3 },
+                { BoardPieceId.FireElemental, 2 },
+                { BoardPieceId.DruidArcher, 1 },
+            };
+            var entranceDeckFloor2 = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.Spider, 10 },
+                { BoardPieceId.GoblinFighter, 0 },
+                { BoardPieceId.SporeFungus, 15 },
+                { BoardPieceId.SpiderEgg, 3 },
+                { BoardPieceId.FireElemental, 2 },
+                { BoardPieceId.ElvenArcher, 2 },
+            };
+            var exitDeckFloor2 = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.Spider, 10 },
+                { BoardPieceId.Rat, 30 },
+                { BoardPieceId.IceElemental, 2 },
+                { BoardPieceId.ChestGoblin, 3 },
+                { BoardPieceId.FireElemental, 2 },
+                { BoardPieceId.ElvenMarauder, 2 },
+            };
+            var bossDeck = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.TheUnseen, 0 },
+                { BoardPieceId.TheUnheard, 0 },
+                { BoardPieceId.TheUnspoken, 0 },
+                { BoardPieceId.Slimeling, 0 },
+                { BoardPieceId.ElvenSkirmisher, 2 },
+            };
+            var monsterDeckConfig = new MonsterDeckOverriddenRule.DeckConfig
+            {
+                EntranceDeckFloor1 = entranceDeckFloor1,
+                ExitDeckFloor1 = exitDeckFloor1,
+                EntranceDeckFloor2 = entranceDeckFloor2,
+                ExitDeckFloor2 = exitDeckFloor2,
+                BossDeck = bossDeck,
+                KeyHolderFloor1 = BoardPieceId.Cavetroll,
+                KeyHolderFloor2 = BoardPieceId.Sigataur,
+                Boss = BoardPieceId.Brookmare,
+            };
+
+            var monsterDeckRule = new MonsterDeckOverriddenRule(monsterDeckConfig);
 
             var abilityAoeRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
@@ -155,9 +208,9 @@
 
             var levelProperties = new Dictionary<string, int>
             {
-                { "FloorOneBudget", 200 },
-                { "FloorOneOuterRingZoneBudget", 190 },
-                { "FloorOneBudgetPostSpike", 300 },
+                { "FloorOneBudget", 50 },
+                { "FloorOneOuterRingZoneBudget", 30 },
+                { "FloorOneBudgetPostSpike", 80 },
                 { "FloorTwoBudget", 200 },
                 { "FloorTwoOuterRingZoneBudget", 190 },
                 { "FloorTwoBudgetPostSpike", 260 },

@@ -1,5 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
+    using System;
     using System.Collections.Generic;
     using Boardgame;
     using Boardgame.AIDirector;
@@ -13,21 +14,33 @@
     using HouseRules.Types;
     using Utils;
 
-    public sealed class MonsterDeckOverriddenRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
+    public sealed class MonsterDeckOverriddenRule : Rule, IConfigWritable<MonsterDeckOverriddenRule.DeckConfig>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "SubDeckOverriddenRule does stuff.";
 
-        private static List<BoardPieceId> _globalAdjustments;
+        private static MonsterDeckOverriddenRule.DeckConfig _globalAdjustments;
         private static bool _isActivated;
 
-        private readonly List<BoardPieceId> _adjustments;
+        private readonly MonsterDeckOverriddenRule.DeckConfig _adjustments;
 
-        public MonsterDeckOverriddenRule(List<BoardPieceId> adjustments)
+        public struct DeckConfig
+        {
+            public Dictionary<BoardPieceId, int> EntranceDeckFloor1;
+            public Dictionary<BoardPieceId, int> ExitDeckFloor1;
+            public Dictionary<BoardPieceId, int> EntranceDeckFloor2;
+            public Dictionary<BoardPieceId, int> ExitDeckFloor2;
+            public Dictionary<BoardPieceId, int> BossDeck;
+            public BoardPieceId KeyHolderFloor1;
+            public BoardPieceId KeyHolderFloor2;
+            public BoardPieceId Boss;
+        }
+
+        public MonsterDeckOverriddenRule(MonsterDeckOverriddenRule.DeckConfig adjustments)
         {
             _adjustments = adjustments;
         }
 
-        public List<BoardPieceId> GetConfigObject() => _adjustments;
+        public MonsterDeckOverriddenRule.DeckConfig GetConfigObject() => _adjustments;
 
         protected override void OnActivate(GameContext gameContext)
         {
@@ -61,6 +74,32 @@
                     nameof(AIDirectorController2_SpawnBossAndMinions_Prefix)));
         }
 
+        private static List<MonsterDeck.MonsterDeckEntry> CreateSubDeck(Dictionary<BoardPieceId, int> subdeck)
+        {
+            var mySubDeck = new List<MonsterDeck.MonsterDeckEntry>() { };
+            foreach (var deckItemConfig in subdeck)
+            {
+                var deckItem = new MonsterDeck.MonsterDeckEntry
+                {
+                    BoardPieceId = deckItemConfig.Key,
+                    enemyWeight = EnemyWeight.Light,
+                    isRedrawEnabled = false,
+                };
+                if (deckItemConfig.Value == 0)
+                {
+                    deckItem.isRedrawEnabled = true;
+                }
+
+                mySubDeck.Add(deckItem);
+                for (int i = 0; i < Math.Max(0, deckItemConfig.Value - 1); i++)
+                {
+                    mySubDeck.Add(deckItem);
+                }
+            }
+
+            return mySubDeck;
+        }
+
         private static bool AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix(ref MonsterDeck __result, ISpawnCategoryProvider spawnCategoryProvider, int floorIndex, IRnd rng, LevelSequence.GameType gameType)
         {
             if (!_isActivated)
@@ -68,32 +107,32 @@
                 return true;
             }
 
-            EssentialsMod.Logger.Msg($"SCP: {spawnCategoryProvider}, FloorIndex: {floorIndex}, RNG: {rng}, GameType: {gameType}");
-            EssentialsMod.Logger.Msg($"globalAdjustments: {_globalAdjustments}");
-            var gameConfigSpawnCategories = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, List<SpawnCategoryDTO>>>("SpawnCategoryDTOlist").Value;
-            var spawnCategories = gameConfigSpawnCategories[MotherbrainGlobalVars.CurrentConfig];
+            List<MonsterDeck.MonsterDeckEntry> standardDeck;
+            List<MonsterDeck.MonsterDeckEntry> spikeDeck;
+            MonsterDeck.MonsterDeckEntry keyHolder;
+            if (floorIndex == 1)
+            {
+                standardDeck = CreateSubDeck(_globalAdjustments.EntranceDeckFloor1);
+                spikeDeck = CreateSubDeck(_globalAdjustments.ExitDeckFloor1);
+                keyHolder = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = _globalAdjustments.KeyHolderFloor1, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
+            }
+            else
+            {
+                standardDeck = CreateSubDeck(_globalAdjustments.EntranceDeckFloor2);
+                spikeDeck = CreateSubDeck(_globalAdjustments.ExitDeckFloor2);
+                keyHolder = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = _globalAdjustments.KeyHolderFloor2, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
+            }
 
+            List<MonsterDeck.MonsterDeckEntry> bossDeck = CreateSubDeck(_globalAdjustments.BossDeck);
 
-            var iceElemental = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.IceElemental, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
-            var chestGoblin = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.ChestGoblin, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = false };
-            var fireElemental = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.FireElemental, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
-            var slimeling = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Slimeling, enemyWeight = EnemyWeight.Light, isRedrawEnabled = true };
-            var rat = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Rat, enemyWeight = EnemyWeight.Light, isRedrawEnabled = true };
-            var spider = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Spider, enemyWeight = EnemyWeight.Light, isRedrawEnabled = true };
-            var unheard = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.TheUnheard, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = true };
-            var unseen = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.TheUnspoken, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = true };
-            var unspoken = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.TheUnseen, enemyWeight = EnemyWeight.Medium, isRedrawEnabled = true };
-            var standardDeck = new List<MonsterDeck.MonsterDeckEntry>() { iceElemental, chestGoblin, chestGoblin, chestGoblin, fireElemental, spider };
-            var spikeDeck = new List<MonsterDeck.MonsterDeckEntry>() { iceElemental, chestGoblin, chestGoblin, chestGoblin, fireElemental, rat };
-            var bossDeck = new List<MonsterDeck.MonsterDeckEntry>() { unheard, unseen, unspoken, slimeling };
-            var keyholder = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = BoardPieceId.Cavetroll, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
             MonsterDeck monsterDeck = new MonsterDeck
             {
                 monsterDeckStandard = standardDeck,
                 monsterDeckSpike = spikeDeck,
                 monsterDeckBoss = bossDeck,
-                Keyholder = keyholder,
+                Keyholder = keyHolder,
             };
+            monsterDeck.ShuffleSubDecks(rng);
             __result = monsterDeck;
             return false; // We returned an user-adjusted config.
         }
@@ -157,7 +196,7 @@
                 EssentialsMod.Logger.Msg("MD: Could not find a spawn zone to spawn the boss");
             }
 
-            PieceSpawnSettings spawnSettings = new PieceSpawnSettings(BoardPieceId.MotherCy, jimpos, 0f, 0, Team.None).SetRandomRotation(rng).SetHasBloodhound(PieceSpawnSettings.BloodHoundStatus.Enabled).AddEffectState(EffectStateType.AIDirectorAmbientEnemy).AddEffectState(EffectStateType.UnitLeader).AddEffectState(EffectStateType.KeyEndChest);
+            PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, jimpos, 0f, 0, Team.None).SetRandomRotation(rng).SetHasBloodhound(PieceSpawnSettings.BloodHoundStatus.Enabled).AddEffectState(EffectStateType.AIDirectorAmbientEnemy).AddEffectState(EffectStateType.UnitLeader).AddEffectState(EffectStateType.KeyEndChest);
             context.spawner.SpawnPiece(context, spawnSettings, ref boardState);
             return false; // We returned an user-adjusted config.
         }
