@@ -16,7 +16,7 @@
 
     public sealed class MonsterDeckOverriddenRule : Rule, IConfigWritable<MonsterDeckOverriddenRule.DeckConfig>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "SubDeckOverriddenRule does stuff.";
+        public override string Description => "MonsterDeck creation is overriden";
 
         private static MonsterDeckOverriddenRule.DeckConfig _globalAdjustments;
         private static bool _isActivated;
