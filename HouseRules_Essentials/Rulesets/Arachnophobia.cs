@@ -173,28 +173,28 @@
             {
                 { BoardPieceId.Spider, 0 }, // Unlimited spiders.
                 { BoardPieceId.SpiderEgg, 5 },
-                { BoardPieceId.GiantSpider, 3 },
+                { BoardPieceId.GiantSpider, 1 },
                 { BoardPieceId.GiantSlime, 1 },
             };
             var exitDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
                 { BoardPieceId.Spider, 0 }, // Unlimited spiders.
-                { BoardPieceId.SpiderEgg, 5 },
-                { BoardPieceId.GiantSpider, 4 },
+                { BoardPieceId.SpiderEgg, 2 },
+                { BoardPieceId.GiantSpider, 3 },
                 { BoardPieceId.ElvenQueen, 1 },
             };
             var entranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
                 { BoardPieceId.Spider, 0 }, // Unlimited spiders.
                 { BoardPieceId.SpiderEgg, 2 },
-                { BoardPieceId.GiantSpider, 8 },
+                { BoardPieceId.GiantSpider, 3 },
                 { BoardPieceId.DruidArcher, 4 },
             };
             var exitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
                 { BoardPieceId.Spider, 0 }, // Unlimited spiders.
                 { BoardPieceId.SpiderEgg, 3 },
-                { BoardPieceId.GiantSpider, 8 },
+                { BoardPieceId.GiantSpider, 2 },
                 { BoardPieceId.RatKing, 1 },
             };
             var bossDeck = new Dictionary<BoardPieceId, int>
