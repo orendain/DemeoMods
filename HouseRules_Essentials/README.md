@@ -117,6 +117,23 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+- __AbilityHealOverridden__: Ability which heal may have the healAmount overridden
+  - Only functions for abilities which do heal. (You can't make a Fireball heal).
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify the new integer for healAmount to use..
+
+  ###### _Example JSON config for AbilityHealOverridden_
+
+  ```json
+  {
+    "Rule": "AbilityHealOverridden",
+    "Config": {
+      "HealingPotion": 3
+    }
+  },
+  ```
+
 - __AbilityRandomPieceList__: The randomPieceList for Abilities is adjusted
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - Some abilities (BeastWhisperer, RatBomb) have lists which are used to spawn random pieces.
@@ -449,6 +466,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "KeyHolderFloor2": "Sigataur",
       "Boss": "Brookmare"
     }
+  },
   ```
 
 
