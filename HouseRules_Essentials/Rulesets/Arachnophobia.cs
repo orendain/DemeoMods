@@ -134,10 +134,10 @@
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 0 },
                 { "FloorOneBudget", 200 },
-                { "FloorOneOuterRingZoneBudget", 60 },
+                { "FloorOneOuterRingZoneBudget", 160 },
                 { "FloorOneBudgetPostSpike", 160 },
                 { "FloorTwoBudget", 200 },
-                { "FloorTwoOuterRingZoneBudget", 90 },
+                { "FloorTwoOuterRingZoneBudget", 190 },
                 { "FloorTwoBudgetPostSpike", 230 },
                 { "FloorThreeBudget", 60 },
                 { "FloorThreeOuterRingZoneBudget", 60 },
@@ -172,42 +172,42 @@
             var entranceDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
                 { BoardPieceId.Spider, 0 }, // Unlimited spiders.
-                { BoardPieceId.SpiderEgg, 20 },
-                { BoardPieceId.GiantSpider, 8 },
+                { BoardPieceId.SpiderEgg, 5 },
+                { BoardPieceId.GiantSpider, 3 },
                 { BoardPieceId.GiantSlime, 1 },
             };
             var exitDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
                 { BoardPieceId.Spider, 0 }, // Unlimited spiders.
-                { BoardPieceId.SpiderEgg, 20 },
-                { BoardPieceId.GiantSpider, 8 },
+                { BoardPieceId.SpiderEgg, 5 },
+                { BoardPieceId.GiantSpider, 4 },
                 { BoardPieceId.ElvenQueen, 1 },
             };
             var entranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
                 { BoardPieceId.Spider, 0 }, // Unlimited spiders.
-                { BoardPieceId.SpiderEgg, 20 },
+                { BoardPieceId.SpiderEgg, 2 },
                 { BoardPieceId.GiantSpider, 8 },
                 { BoardPieceId.DruidArcher, 4 },
             };
             var exitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
                 { BoardPieceId.Spider, 0 }, // Unlimited spiders.
-                { BoardPieceId.SpiderEgg, 20 },
+                { BoardPieceId.SpiderEgg, 3 },
                 { BoardPieceId.GiantSpider, 8 },
                 { BoardPieceId.RatKing, 1 },
             };
             var bossDeck = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.SpiderEgg, 10 },
+                { BoardPieceId.Spider, 0 },
+                { BoardPieceId.GiantSpider, 4 },
                 { BoardPieceId.TheUnseen, 0 },
                 { BoardPieceId.TheUnheard, 0 },
                 { BoardPieceId.TheUnspoken, 0 },
                 { BoardPieceId.DruidArcher, 3 },
-                { BoardPieceId.FireElemental, 3 },
                 { BoardPieceId.ElvenPriest, 3 },
                 { BoardPieceId.ElvenMystic, 3 },
-                { BoardPieceId.Sigataur, 1 },
+                { BoardPieceId.Sigataur, 2 },
             };
             var monsterDeckConfig = new MonsterDeckOverriddenRule.DeckConfig
             {
@@ -216,7 +216,7 @@
                 EntranceDeckFloor2 = entranceDeckFloor2,
                 ExitDeckFloor2 = exitDeckFloor2,
                 BossDeck = bossDeck,
-                KeyHolderFloor1 = BoardPieceId.Cavetroll,
+                KeyHolderFloor1 = BoardPieceId.CavetrollBoss,
                 KeyHolderFloor2 = BoardPieceId.Sigataur,
                 Boss = BoardPieceId.Gorgon,
             };
