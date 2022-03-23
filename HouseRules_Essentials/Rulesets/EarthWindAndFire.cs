@@ -142,9 +142,10 @@
             };
             var entranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.Spider, 10 },
+                { BoardPieceId.Spider, 0 },
                 { BoardPieceId.GoblinFighter, 0 },
-                { BoardPieceId.SporeFungus, 10 },
+                { BoardPieceId.ScabRat, 2 },
+                { BoardPieceId.SporeFungus, 5 },
                 { BoardPieceId.SpiderEgg, 3 },
                 { BoardPieceId.FireElemental, 2 },
                 { BoardPieceId.ElvenArcher, 2 },
@@ -154,6 +155,8 @@
                 { BoardPieceId.Spider, 20 },
                 { BoardPieceId.Rat, 30 },
                 { BoardPieceId.Bandit, 2 },
+                { BoardPieceId.ElvenMarauder, 2 },
+                { BoardPieceId.Mimic, 2 },
                 { BoardPieceId.ChestGoblin, 3 },
                 { BoardPieceId.ElvenPriest, 4 },
                 { BoardPieceId.ElvenMarauder, 2 },
@@ -165,7 +168,7 @@
                 { BoardPieceId.TheUnheard, 0 },
                 { BoardPieceId.TheUnspoken, 0 },
                 { BoardPieceId.Slimeling, 0 },
-                { BoardPieceId.ElvenSkirmisher, 2 },
+                { BoardPieceId.Brookmare, 2 },
             };
             var monsterDeckConfig = new MonsterDeckOverriddenRule.DeckConfig
             {
