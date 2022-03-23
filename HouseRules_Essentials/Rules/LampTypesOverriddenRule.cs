@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
+    using System.Text;
     using Boardgame;
     using Boardgame.AIDirector;
     using Boardgame.Board;
@@ -14,21 +16,28 @@
     using HouseRules.Types;
     using Utils;
 
-    public sealed class LampTypesOverriddenRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
+    public sealed class LampTypesOverriddenRule : Rule, IConfigWritable<LampTypesOverriddenRule.LampConfig>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Lamp types are overridden.";
 
-        private static List<BoardPieceId> _globalAdjustments;
+        private static LampTypesOverriddenRule.LampConfig _globalAdjustments;
         private static bool _isActivated;
 
-        private readonly List<BoardPieceId> _adjustments;
+        private readonly LampTypesOverriddenRule.LampConfig _adjustments;
 
-        public LampTypesOverriddenRule(List<BoardPieceId> adjustments)
+        public struct LampConfig
+        {
+            public List<BoardPieceId> Floor1Lamps;
+            public List<BoardPieceId> Floor2Lamps;
+            public List<BoardPieceId> Floor3Lamps;
+        }
+
+        public LampTypesOverriddenRule(LampTypesOverriddenRule.LampConfig adjustments)
         {
             _adjustments = adjustments;
         }
 
-        public List<BoardPieceId> GetConfigObject() => _adjustments;
+        public LampTypesOverriddenRule.LampConfig GetConfigObject() => _adjustments;
 
         protected override void OnActivate(GameContext gameContext)
         {
@@ -43,7 +52,7 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(ZoneSpawner), "GetLampTypes"),
                 prefix: new HarmonyMethod(
-                    typeof(MonsterDeckOverriddenRule),
+                    typeof(LampTypesOverriddenRule),
                     nameof(ZoneSpawner_GetLampTypes_Prefix)));
         }
 
@@ -54,7 +63,21 @@
                 return true;
             }
 
-            __result = _globalAdjustments.ToArray();
+            var floorIndex = MotherTracker.motherTrackerData.floorIndex;
+            EssentialsMod.Logger.Msg($"Lamps floor index {floorIndex}");
+
+            if (floorIndex == 0)
+            {
+                __result = _globalAdjustments.Floor1Lamps.ToArray();
+            }
+            else if (floorIndex == 1)
+            {
+                __result = _globalAdjustments.Floor2Lamps.ToArray();
+            }
+            else
+            {
+                __result = _globalAdjustments.Floor3Lamps.ToArray();
+            }
 
             return false; // We returned an user-adjusted config.
         }

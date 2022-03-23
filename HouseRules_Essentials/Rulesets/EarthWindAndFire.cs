@@ -232,12 +232,29 @@
 
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);
 
-            var lampTypesRule = new LampTypesOverriddenRule(new List<BoardPieceId>
+            var lampTypesRule = new LampTypesOverriddenRule(new LampTypesOverriddenRule.LampConfig
             {
-                BoardPieceId.OilLamp,
-                BoardPieceId.IceLamp,
-                BoardPieceId.GasLamp,
-                BoardPieceId.VortexLamp,
+                Floor1Lamps = new List<BoardPieceId>
+                {
+                    BoardPieceId.OilLamp,
+                    BoardPieceId.OilLamp,
+                    BoardPieceId.OilLamp,
+                    BoardPieceId.VortexLamp,
+                },
+                Floor2Lamps = new List<BoardPieceId>
+                {
+                    BoardPieceId.GasLamp,
+                    BoardPieceId.GasLamp,
+                    BoardPieceId.GasLamp,
+                    BoardPieceId.VortexLamp,
+                },
+                Floor3Lamps = new List<BoardPieceId>
+                {
+                    BoardPieceId.IceLamp,
+                    BoardPieceId.IceLamp,
+                    BoardPieceId.IceLamp,
+                    BoardPieceId.VortexLamp,
+                },
             });
 
             return Ruleset.NewInstance(

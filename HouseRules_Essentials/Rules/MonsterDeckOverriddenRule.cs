@@ -63,11 +63,6 @@
                     typeof(MonsterDeckOverriddenRule),
                     nameof(AIDirectorDeckConstructor_AddPreFillUnitsToDeck_Prefix)));
             harmony.Patch(
-                original: AccessTools.Method(typeof(ZoneSpawner), "GetLampTypes"),
-                prefix: new HarmonyMethod(
-                    typeof(MonsterDeckOverriddenRule),
-                    nameof(ZoneSpawner_GetLampTypes_Prefix)));
-            harmony.Patch(
                 original: AccessTools.Method(typeof(AIDirectorController2), "SpawnBossAndMinions"),
                 prefix: new HarmonyMethod(
                     typeof(MonsterDeckOverriddenRule),
@@ -145,24 +140,6 @@
             }
 
             return false; // We did all that we needed to do, and that was nothing.
-        }
-
-        private static bool ZoneSpawner_GetLampTypes_Prefix(ref BoardPieceId[] __result)
-        {
-            if (!_isActivated)
-            {
-                return true;
-            }
-
-            __result = new BoardPieceId[]
-                    {
-                        BoardPieceId.OilLamp,
-                        BoardPieceId.IceLamp,
-                        BoardPieceId.GasLamp,
-                        BoardPieceId.VortexLamp,
-                    };
-
-            return false; // We returned an user-adjusted config.
         }
 
         private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorController2 __instance, ref AIDirectorContext context, IRnd rng, ref TransientBoardState boardState)
