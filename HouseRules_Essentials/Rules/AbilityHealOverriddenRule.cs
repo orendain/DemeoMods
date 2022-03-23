@@ -5,8 +5,8 @@
     using Boardgame;
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
-    using HouseRules.Types;
     using HarmonyLib;
+    using HouseRules.Types;
 
     public sealed class AbilityHealOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
     {

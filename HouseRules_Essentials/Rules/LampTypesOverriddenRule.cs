@@ -1,20 +1,11 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
-    using System;
     using System.Collections.Generic;
-    using System.Reflection;
-    using System.Text;
     using Boardgame;
-    using Boardgame.AIDirector;
-    using Boardgame.Board;
-    using Boardgame.BoardEntities;
-    using Boardgame.Data;
     using Boardgame.LayerCake;
-    using Data.GameData;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using Utils;
 
     public sealed class LampTypesOverriddenRule : Rule, IConfigWritable<LampTypesOverriddenRule.LampConfig>, IPatchable, IMultiplayerSafe
     {
