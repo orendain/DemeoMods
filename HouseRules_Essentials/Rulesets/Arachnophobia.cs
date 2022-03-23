@@ -317,6 +317,7 @@
                 piecePieceTypeRule,
                 cardClassRestrictionRule,
                 enemyRespawnRule,
+                pieceUseWhenKilledRule,
                 statusEffectRule);
         }
     }
