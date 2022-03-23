@@ -346,7 +346,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __LampTypesOverridden__: The types of lamps spawned on each floor is overridden.
+- __LampTypesOverridden__: The types of lamps spawned on each floor are overridden.
   - Lamps are spawned in pre-set locations on each map, but the list of available lamps can be configured.
   - Lamps are spawned at random, so specifying multiples of some lamp types can be used to get a desired ratio.
   - Boardpieces other than lamps (e.g. SporeFungus) can also be spawned.
