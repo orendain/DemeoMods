@@ -172,31 +172,80 @@
                 return true;
             }
 
-            EssentialsMod.Logger.Msg($"MD: AI Director context: {context.gameContext}");
-            EssentialsMod.Logger.Msg($"MD: RNG Value: {rng.Value}");
-            EssentialsMod.Logger.Msg($"MD: Boardstate Width: {boardState.Width}");
-            EssentialsMod.Logger.Msg($"MD: Boardstate Height: {boardState.Height}");
             SpawnZoneTag tag = SpawnZoneTag.Zone2;
-            object pickSpawnZoneForKeyholderResult = Traverse.Create(__instance).Method("PickSpawnZoneForKeyholder", context, rng, boardState, tag).GetValue();
-            EssentialsMod.Logger.Msg($"MD: Methods: {Traverse.Create(__instance).Methods()}");
-            var spawnZone = Traverse.Create(pickSpawnZoneForKeyholderResult).Field<SpawnZone>("spawnZone").Value;
-            var keyHolderPosition = Traverse.Create(pickSpawnZoneForKeyholderResult).Field<IntPoint2D>("keyHolderPosition").Value;
-            var jimpos = new IntPoint2D
+            SpawnZone spawnZone = null;
+            SpawnZone spawnZone2 = null;
+            List<SpawnZone> list;
+            list = context.spawnZoneModel.GetZonesWithTag(tag);
+            for (int i = list.Count - 1; i >= 0; i--)
             {
-                x = 20,
-                y = 20,
-            };
-            // var backupKeyHolderPosition = Traverse.Create(pickSpawnZoneForKeyholderResult).Field<IntPoint2D>("backupKeyHolderPosition").Value;
-            EssentialsMod.Logger.Msg($"MD: SpawnZone: {spawnZone}");
-            EssentialsMod.Logger.Msg($"MD: keyHolderPosition: {keyHolderPosition}");
+                SpawnZone spawnZone3 = list[i];
+                if (spawnZone3.GetAllFreeTiles(ref boardState).Count == 0)
+                {
+                    EssentialsMod.Logger.Msg(string.Format("Spawn zone doesn't contain any free tiles, removing it! {0}", spawnZone3.TileRect), string.Empty);
+                    list.RemoveAt(i);
+                }
+            }
 
+            IntPoint2D intPoint2D = IntPoint2D.Invalid;
+            IntPoint2D keyHolderPosition = IntPoint2D.Invalid;
+            int num = 0;
+            for (int j = 0; j < list.Count; j++)
+            {
+                SpawnZone spawnZone4 = list[j];
+                if (spawnZone4.NumStepsToExit >= AIDirectorConfig.KeyHolderMinDistanceToExit && spawnZone4.NumStepsToExit <= AIDirectorConfig.KeyHolderMaxDistanceToExit && spawnZone4.numStepsToEntrance >= AIDirectorConfig.KeyHolderMinDistanceToEntrance)
+                {
+                    List<IntPoint2D> allFreeTiles = spawnZone4.GetAllFreeTiles(ref boardState);
+                    if (allFreeTiles.Count > 0 && intPoint2D == IntPoint2D.Invalid)
+                    {
+                        intPoint2D = rng.RandomElement<IntPoint2D>(allFreeTiles);
+                        keyHolderPosition = intPoint2D;
+                    }
+
+                    if (allFreeTiles.Count > 2)
+                    {
+                        spawnZone = spawnZone4;
+                        break;
+                    }
+
+                    EssentialsMod.Logger.Msg(string.Concat(new string[]
+                    {
+                        "Spawnzone had only ",
+                        allFreeTiles.Count.ToString(),
+                        " free tiles! name:",
+                        spawnZone4.Zone.name,
+                        " position:",
+                        spawnZone4.Zone.centerWorldPosition.ToString(),
+                        " map name:",
+                        MotherbrainGlobalVars.CurrentConfig.ToString(),
+                    }));
+                }
+                else
+                {
+                    num++;
+                    if (spawnZone2 == null)
+                    {
+                        spawnZone2 = spawnZone4;
+                    }
+                }
+            }
+
+            if (spawnZone == null && spawnZone2 != null)
+            {
+                spawnZone = spawnZone2;
+            }
+
+            if (spawnZone != null)
+            {
+                keyHolderPosition = rng.RandomElement<IntPoint2D>(spawnZone.GetAllFreeTiles(ref boardState));
+            }
 
             if (spawnZone == null)
             {
                 EssentialsMod.Logger.Msg("MD: Could not find a spawn zone to spawn the boss");
             }
 
-            PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, jimpos, 0f, 0, Team.None).SetRandomRotation(rng).SetHasBloodhound(PieceSpawnSettings.BloodHoundStatus.Enabled).AddEffectState(EffectStateType.AIDirectorAmbientEnemy).AddEffectState(EffectStateType.UnitLeader).AddEffectState(EffectStateType.KeyEndChest);
+            PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, keyHolderPosition, 0f, 0, Team.None).SetRandomRotation(rng).SetHasBloodhound(PieceSpawnSettings.BloodHoundStatus.Enabled).AddEffectState(EffectStateType.AIDirectorAmbientEnemy).AddEffectState(EffectStateType.UnitLeader).AddEffectState(EffectStateType.KeyEndChest);
             context.spawner.SpawnPiece(context, spawnSettings, ref boardState);
             return false; // We returned an user-adjusted config.
         }
