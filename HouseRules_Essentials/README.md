@@ -329,6 +329,42 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+- __LampTypesOverridden__: The types of lamps spawned on each floor is overridden.
+  - Lamps are spawned in pre-set locations on each map, but the list of available lamps can be configured.
+  - Lamps are spawned at random, so specifying multiples of some lamp types can be used to get a desired ratio.
+  - Boardpieces other than lamps (e.g. SporeFungus) can also be spawned.
+  - To configure:
+    - Specify a list of BoardPieceIDs for each Floor level.
+    - Floor level names must be Floor1Lamps, Floor2Lamps and Floor3Lamps
+
+  ###### _Example JSON config for LampTypesOverridden_
+
+  ```json
+  {
+    "Rule": "LampTypesOverridden",
+    "Config": {
+      "Floor1Lamps": [
+        "OilLamp",
+        "OilLamp",
+        "OilLamp",
+        "VortexLamp"
+      ],
+      "Floor2Lamps": [
+        "GasLamp",
+        "GasLamp",
+        "GasLamp",
+        "VortexLamp"
+      ],
+      "Floor3Lamps": [
+        "IceLamp",
+        "IceLamp",
+        "IceLamp",
+        "VortexLamp"
+      ]
+    }
+  },
+  ```
+
 - __LevelPropertiesModified__: Level properties are modified
   - Allows customisation of Loot, Chests and HealingFountains on a per-floor basis
   - To configure:
@@ -351,6 +387,70 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+
+- __MonsterDeckOverridden__: The MonsterDeck which is used for spawning monsters is overridden.
+  - This rule is a more advanced implementation of SpawnCategoriesOverridden, and will directly configure the MonsterDeck from lists.
+  - Within the game the `AIDirectorController` deals Monsters from the MonsterDeck when populating the levels.
+  - Two subdecks are used for each floor. One subdeck is used when players are near the Entrance, and another nearer the exit.
+  - The subdecks are called 'standard' and 'spike' within the game code, but we're callling them 'Entrance' and 'Exit' for simplicity.
+  - The final 'Boss' level only has a single subDeck
+  - In addition to the MonsterDeck, configuration for the KeyHolder for each floor and the Boss is also required.
+  - To configure:
+    - Specify a lists of BoardPieceIDs for each of the five subdecks.
+    - The subdecks must be named `EntranceDeckFloor1`, `ExitDeckFloor1`, `EntranceDeckFloor2`, `ExitDeckFloor2`, `BossDeck`
+    - Specify single BoardPieceIDs for each of `KeyHolderFloor1`, `KeyHolderFloor2`, and `Boss`
+
+  ###### _Example JSON config for MonsterDeckOverridden_
+
+  ```json
+  {
+    "Rule": "MonsterDeckOverridden",
+    "Config": {
+      "EntranceDeckFloor1": {
+        "Spider": 0,
+        "IceElemental": 2,
+        "ChestGoblin": 3,
+        "FireElemental": 2
+      },
+      "ExitDeckFloor1": {
+        "Rat": 20,
+        "Spider": 20,
+        "IceElemental": 2,
+        "ChestGoblin": 3,
+        "Mimic": 1,
+        "GoblinMadUn": 1,
+        "DruidArcher": 1
+      },
+      "EntranceDeckFloor2": {
+        "Spider": 10,
+        "GoblinFighter": 0,
+        "SporeFungus": 10,
+        "SpiderEgg": 3,
+        "FireElemental": 2,
+        "ElvenArcher": 2
+      },
+      "ExitDeckFloor2": {
+        "Spider": 20,
+        "Rat": 30,
+        "Bandit": 2,
+        "ChestGoblin": 3,
+        "ElvenPriest": 4,
+        "ElvenMarauder": 2
+      },
+      "BossDeck": {
+        "SpiderEgg": 10,
+        "TheUnseen": 0,
+        "TheUnheard": 0,
+        "TheUnspoken": 0,
+        "Slimeling": 0,
+        "ElvenSkirmisher": 2
+      },
+      "KeyHolderFloor1": "Cavetroll",
+      "KeyHolderFloor2": "Sigataur",
+      "Boss": "Brookmare"
+    }
+  ```
+
 
 - __PetsFocusHunterMark__: Pets focus on hunter marked enemies
   - To configure:
