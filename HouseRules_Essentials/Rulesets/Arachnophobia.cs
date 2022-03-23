@@ -11,7 +11,7 @@
         internal static Ruleset Create()
         {
             const string name = "Arachnophobia";
-            const string description = "Money Spiders everywhere. On the walls and in my hair.";
+            const string description = "Money Spiders everywhere. On my face and in my hair.";
 
             var abilityDamageRule = new AbilityDamageAdjustedRule(new Dictionary<AbilityKey, int> { { AbilityKey.Zap, 1 } });
 
@@ -183,11 +183,6 @@
 
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);
 
-            var pieceUseRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
-            {
-                { BoardPieceId.Spider, new List<AbilityKey> { AbilityKey.HealingPotion } },
-            });
-
             var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
             {
                 new StatusEffectData
@@ -251,7 +246,6 @@
                 piecePieceTypeRule,
                 cardClassRestrictionRule,
                 enemyRespawnRule,
-                pieceUseRule,
                 statusEffectRule);
         }
     }
