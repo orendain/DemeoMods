@@ -155,7 +155,6 @@
                 { BoardPieceId.Spider, 20 },
                 { BoardPieceId.Rat, 30 },
                 { BoardPieceId.Bandit, 2 },
-                { BoardPieceId.ElvenMarauder, 2 },
                 { BoardPieceId.Mimic, 2 },
                 { BoardPieceId.ChestGoblin, 3 },
                 { BoardPieceId.ElvenPriest, 4 },
