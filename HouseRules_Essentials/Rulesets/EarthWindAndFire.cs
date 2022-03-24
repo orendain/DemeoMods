@@ -155,8 +155,7 @@
                 { BoardPieceId.Spider, 20 },
                 { BoardPieceId.Rat, 30 },
                 { BoardPieceId.Bandit, 2 },
-                { BoardPieceId.Mimic, 2 },
-                { BoardPieceId.ChestGoblin, 3 },
+                { BoardPieceId.Mimic, 5 },
                 { BoardPieceId.ElvenPriest, 4 },
                 { BoardPieceId.ElvenMarauder, 2 },
             };
@@ -167,7 +166,7 @@
                 { BoardPieceId.TheUnheard, 0 },
                 { BoardPieceId.TheUnspoken, 0 },
                 { BoardPieceId.Slimeling, 0 },
-                { BoardPieceId.Brookmare, 2 },
+                { BoardPieceId.Sigataur, 2 },
             };
             var monsterDeckConfig = new MonsterDeckOverriddenRule.DeckConfig
             {
@@ -217,23 +216,6 @@
                 { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
             });
 
-            var levelProperties = new Dictionary<string, int>
-            {
-                { "FloorOneBudget", 100 },
-                { "FloorOneOuterRingZoneBudget", 30 },
-                { "FloorOneBudgetPostSpike", 80 },
-                { "FloorTwoBudget", 200 },
-                { "FloorTwoOuterRingZoneBudget", 90 },
-                { "FloorTwoBudgetPostSpike", 130 },
-                { "FloorThreeBudget", 40 },
-                { "FloorThreeOuterRingZoneBudget", 40 },
-                { "FloorThreeBudgetPostSpike", 80 },
-                { "PacingSpikeSegmentFloorOneBudget", 2 },
-                { "PacingSpikeSegmentFloorTwoBudget", 6 },
-                { "PacingSpikeSegmentFloorThreeBudget", 1 },
-            };
-            var levelPropertiesRule = new LevelPropertiesModifiedRule(levelProperties);
-
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);
 
             var lampTypesRule = new LampTypesOverriddenRule(new LampTypesOverriddenRule.LampConfig
@@ -276,7 +258,6 @@
                 abilityMaxedRule,
                 pieceUseWhenKilledRule,
                 pieceAbilityListOverriddenRule,
-                levelPropertiesRule,
                 enemyRespawnRule,
                 lampTypesRule);
         }

@@ -133,18 +133,6 @@
                 { "FloorTwoGoldMaxAmount", 1500 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 0 },
-                { "FloorOneBudget", 200 },
-                { "FloorOneOuterRingZoneBudget", 160 },
-                { "FloorOneBudgetPostSpike", 160 },
-                { "FloorTwoBudget", 200 },
-                { "FloorTwoOuterRingZoneBudget", 190 },
-                { "FloorTwoBudgetPostSpike", 230 },
-                { "FloorThreeBudget", 60 },
-                { "FloorThreeOuterRingZoneBudget", 60 },
-                { "FloorThreeBudgetPostSpike", 80 },
-                { "PacingSpikeSegmentFloorOneBudget", 2 },
-                { "PacingSpikeSegmentFloorTwoBudget", 6 },
-                { "PacingSpikeSegmentFloorThreeBudget", 1 },
             };
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(ints);
