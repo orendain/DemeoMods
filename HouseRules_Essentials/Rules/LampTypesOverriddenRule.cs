@@ -55,7 +55,6 @@
             }
 
             var floorIndex = MotherTracker.motherTrackerData.floorIndex;
-            EssentialsMod.Logger.Msg($"Lamps floor index {floorIndex}");
 
             if (floorIndex == 0)
             {
