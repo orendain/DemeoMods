@@ -57,11 +57,6 @@
                     typeof(MonsterDeckOverriddenRule),
                     nameof(AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix)));
             harmony.Patch(
-                original: AccessTools.Method(typeof(AIDirectorDeckConstructor), "AddPreFillUnitsToDeck"),
-                prefix: new HarmonyMethod(
-                    typeof(MonsterDeckOverriddenRule),
-                    nameof(AIDirectorDeckConstructor_AddPreFillUnitsToDeck_Prefix)));
-            harmony.Patch(
                 original: AccessTools.Method(typeof(AIDirectorController2), "SpawnBossAndMinions"),
                 prefix: new HarmonyMethod(
                     typeof(MonsterDeckOverriddenRule),
@@ -70,7 +65,7 @@
 
         private static List<MonsterDeck.MonsterDeckEntry> CreateSubDeck(Dictionary<BoardPieceId, int> subdeck)
         {
-            var mySubDeck = new List<MonsterDeck.MonsterDeckEntry>() { };
+            var mySubDeck = new List<MonsterDeck.MonsterDeckEntry>();
             foreach (var deckItemConfig in subdeck)
             {
                 var deckItem = new MonsterDeck.MonsterDeckEntry
@@ -85,7 +80,7 @@
                 }
 
                 mySubDeck.Add(deckItem);
-                for (int i = 0; i < Math.Max(0, deckItemConfig.Value - 1); i++)
+                for (int i = 0; i < deckItemConfig.Value - 1; i++)
                 {
                     mySubDeck.Add(deckItem);
                 }
@@ -94,7 +89,7 @@
             return mySubDeck;
         }
 
-        private static bool AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix(ref MonsterDeck __result, ISpawnCategoryProvider spawnCategoryProvider, int floorIndex, IRnd rng, LevelSequence.GameType gameType)
+        private static bool AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix(ref MonsterDeck __result, int floorIndex, IRnd rng, LevelSequence.GameType gameType)
         {
             if (!_isActivated)
             {
@@ -131,17 +126,7 @@
             return false; // We returned an user-adjusted config.
         }
 
-        private static bool AIDirectorDeckConstructor_AddPreFillUnitsToDeck_Prefix(List<MonsterDeck.MonsterDeckEntry> monsterDeckList, ISpawnCategoryProvider spawnCategoryProvider)
-        {
-            if (!_isActivated)
-            {
-                return true;
-            }
-
-            return false; // We did all that we needed to do, and that was nothing.
-        }
-
-        private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorController2 __instance, ref AIDirectorContext context, IRnd rng, ref TransientBoardState boardState)
+        private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorContext context, IRnd rng, ref TransientBoardState boardState)
         {
             if (!_isActivated)
             {
@@ -158,7 +143,7 @@
                 SpawnZone spawnZone3 = list[i];
                 if (spawnZone3.GetAllFreeTiles(ref boardState).Count == 0)
                 {
-                    EssentialsMod.Logger.Msg(string.Format("Spawn zone doesn't contain any free tiles, removing it! {0}", spawnZone3.TileRect), string.Empty);
+                    EssentialsMod.Logger.Msg(string.Format("Spawn zone doesn't contain any free tiles, removing it! {0}", spawnZone3.TileRect));
                     list.RemoveAt(i);
                 }
             }
