@@ -36,6 +36,7 @@
     <Compile Include="EssentialsMod.cs" />
     <Compile Include="Rulesets\AoePotionsAndBuffsRuleset.cs" />
     <Compile Include="Rulesets\Arachnophobia.cs" />
+    <Compile Include="Rulesets\EarthWindAndFire.cs" />
     <Compile Include="Rulesets\BeatTheClockRuleset.cs" />
     <Compile Include="Rulesets\BetterSorcererRuleset.cs" />
     <Compile Include="Rulesets\DifficultyEasyRuleset.cs" />
@@ -47,8 +48,11 @@
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rulesets\TheSwirlRuleset.cs" />
     <Compile Include="Rules\AbilityBackstabAdjustedRule.cs" />
+    <Compile Include="Rules\AbilityHealOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
+    <Compile Include="Rules\LampTypesOverriddenRule.cs" />
     <Compile Include="Rules\PieceUseWhenKilledOverriddenRule.cs" />
+    <Compile Include="Rules\MonsterDeckOverriddenRule.cs" />
     <Compile Include="Rules\SpawnCategoryOverriddenRule.cs" />
     <Compile Include="Rules\AbilityActionCostAdjustedRule.cs" />
     <Compile Include="Rules\PiecePieceTypeListOverriddenRule.cs" />

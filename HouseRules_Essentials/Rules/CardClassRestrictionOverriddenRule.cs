@@ -52,9 +52,6 @@
                 if (aks.Contains(cardConfigs[i].Card))
                 {
                     previousConfigs[cardConfigs[i].Card] = cardConfigs[i].ClassRestriction;
-                    EssentialsMod.Logger.Warning($"Changing ClassRestriction on {cardConfigs[i].Card} from " +
-                        $"{cardConfigs[i].ClassRestriction} to " +
-                        $"{cardProperties[cardConfigs[i].Card]} ");
                     cardConfigs[i] = new CardConfigDTO
                     {
                         Card = cardConfigs[i].Card,

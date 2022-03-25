@@ -19,6 +19,7 @@
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityBackstabAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityDamageAdjustedRule));
+            HR.Rulebook.Register(typeof(AbilityHealOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
@@ -33,8 +34,10 @@
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
+            HR.Rulebook.Register(typeof(LampTypesOverriddenRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
+            HR.Rulebook.Register(typeof(MonsterDeckOverriddenRule));
             HR.Rulebook.Register(typeof(PetsFocusHunterMarkRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
@@ -61,6 +64,7 @@
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
             HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());
+            HR.Rulebook.Register(EarthWindAndFire.Create());
             HR.Rulebook.Register(AoePotionsAndBuffsRuleset.Create());
             HR.Rulebook.Register(BetterSorcererRuleset.Create());
             HR.Rulebook.Register(NoSurprisesRuleset.Create());

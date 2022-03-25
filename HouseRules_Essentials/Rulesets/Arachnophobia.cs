@@ -11,7 +11,7 @@
         internal static Ruleset Create()
         {
             const string name = "Arachnophobia";
-            const string description = "Money Spiders everywhere. On the walls and in my hair.";
+            const string description = "Money Spiders everywhere. On my face and in my hair.";
 
             var abilityDamageRule = new AbilityDamageAdjustedRule(new Dictionary<AbilityKey, int> { { AbilityKey.Zap, 1 } });
 
@@ -109,10 +109,10 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Spider, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Spider, Property = "MoveRange", Value = 2 },
 
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 45 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "MoveRange", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 50 },
 
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 35 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 60 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "StartHealth", Value = 85 },
             });
 
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
@@ -124,16 +124,17 @@
 
             var ints = new Dictionary<string, int>
             {
-                { "FloorOneHealingFountains", 4 },
+                { "FloorOneGoldMaxAmount", 1200 },
+                { "FloorOneHealingFountains", 2 },
                 { "FloorOneLootChests", 12 },
                 { "FloorOneClassCardChests", 8 },
-                { "FloorTwoHealingFountains", 4 },
+                { "FloorTwoHealingFountains", 3 },
                 { "FloorTwoLootChests", 9 },
-                { "FloorTwoGoldMaxAmount", 2500 },
-                { "FloorThreeHealingFountains", 6 },
+                { "FloorTwoGoldMaxAmount", 1500 },
+                { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 0 },
             };
-            ints.Add("FloorOneGoldMaxAmount", 1500);
+
             var levelPropertiesRule = new LevelPropertiesModifiedRule(ints);
 
             var heroImmunities = new List<EffectStateType> { EffectStateType.Diseased };
@@ -146,18 +147,68 @@
                 { BoardPieceId.HeroRogue, heroImmunities },
                 { BoardPieceId.HeroSorcerer, heroImmunities },
                 { BoardPieceId.Verochka, new List<EffectStateType> { EffectStateType.Diseased } },
-                { BoardPieceId.RatKing, new List<EffectStateType> { EffectStateType.Petrified } },
-                { BoardPieceId.ElvenQueen, new List<EffectStateType> { EffectStateType.Petrified } },
+                { BoardPieceId.RatKing, new List<EffectStateType> { EffectStateType.Petrified, EffectStateType.Stunned, EffectStateType.Panic, EffectStateType.Frozen, EffectStateType.Disoriented, EffectStateType.Confused } },
+                { BoardPieceId.ElvenQueen, new List<EffectStateType> { EffectStateType.Petrified, EffectStateType.Stunned, EffectStateType.Disoriented, EffectStateType.Confused } },
+                { BoardPieceId.Gorgon, new List<EffectStateType> { EffectStateType.Petrified, EffectStateType.Stunned, EffectStateType.Frozen, EffectStateType.MarkOfAvalon, EffectStateType.Panic, EffectStateType.Disoriented, EffectStateType.Confused } },
             });
 
-            var spawnCategoryRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
+            var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { BoardPieceId.Spider, new List<int> { 200, 50, 1 } },
-                { BoardPieceId.SpiderEgg, new List<int> { 20, 10, 1 } },
-                { BoardPieceId.GiantSpider, new List<int> { 30, 10, 1 } },
-                { BoardPieceId.RatKing, new List<int> { 1, 1, 1 } },
-                { BoardPieceId.ElvenQueen, new List<int> { 1, 1, 2 } },
+                { BoardPieceId.Spider, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods } },
             });
+
+            var entranceDeckFloor1 = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.Spider, 0 }, // Unlimited spiders.
+                { BoardPieceId.SpiderEgg, 5 },
+                { BoardPieceId.GiantSpider, 1 },
+                { BoardPieceId.GiantSlime, 1 },
+            };
+            var exitDeckFloor1 = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.Spider, 0 }, // Unlimited spiders.
+                { BoardPieceId.SpiderEgg, 2 },
+                { BoardPieceId.GiantSpider, 3 },
+                { BoardPieceId.ElvenQueen, 1 },
+            };
+            var entranceDeckFloor2 = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.Spider, 0 }, // Unlimited spiders.
+                { BoardPieceId.SpiderEgg, 2 },
+                { BoardPieceId.GiantSpider, 3 },
+                { BoardPieceId.DruidArcher, 4 },
+            };
+            var exitDeckFloor2 = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.Spider, 0 }, // Unlimited spiders.
+                { BoardPieceId.SpiderEgg, 3 },
+                { BoardPieceId.GiantSpider, 2 },
+                { BoardPieceId.RatKing, 1 },
+            };
+            var bossDeck = new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.Spider, 0 },
+                { BoardPieceId.GiantSpider, 4 },
+                { BoardPieceId.TheUnseen, 0 },
+                { BoardPieceId.TheUnheard, 0 },
+                { BoardPieceId.TheUnspoken, 0 },
+                { BoardPieceId.DruidArcher, 3 },
+                { BoardPieceId.ElvenPriest, 3 },
+                { BoardPieceId.ElvenMystic, 3 },
+                { BoardPieceId.Sigataur, 2 },
+            };
+            var monsterDeckConfig = new MonsterDeckOverriddenRule.DeckConfig
+            {
+                EntranceDeckFloor1 = entranceDeckFloor1,
+                ExitDeckFloor1 = exitDeckFloor1,
+                EntranceDeckFloor2 = entranceDeckFloor2,
+                ExitDeckFloor2 = exitDeckFloor2,
+                BossDeck = bossDeck,
+                KeyHolderFloor1 = BoardPieceId.CavetrollBoss,
+                KeyHolderFloor2 = BoardPieceId.Sigataur,
+                Boss = BoardPieceId.Gorgon,
+            };
+            var monsterDeckRule = new MonsterDeckOverriddenRule(monsterDeckConfig);
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
@@ -182,11 +233,6 @@
             });
 
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);
-
-            var pieceUseRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
-            {
-                { BoardPieceId.Spider, new List<AbilityKey> { AbilityKey.HealingPotion } },
-            });
 
             var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
             {
@@ -225,6 +271,14 @@
                 },
                 new StatusEffectData
                 {
+                    effectStateType = EffectStateType.Invulnerable1,
+                    durationTurns = 2,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
                     effectStateType = EffectStateType.Recovery,
                     durationTurns = 5,
                     healPerTurn = 3,
@@ -245,13 +299,13 @@
                 abilityActionCostRule,
                 levelPropertiesRule,
                 pieceImmunityRule,
-                spawnCategoryRule,
+                monsterDeckRule,
                 pieceAbilityRule,
                 pieceBehaviorsRule,
                 piecePieceTypeRule,
                 cardClassRestrictionRule,
                 enemyRespawnRule,
-                pieceUseRule,
+                pieceUseWhenKilledRule,
                 statusEffectRule);
         }
     }
