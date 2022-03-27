@@ -1,0 +1,36 @@
+{
+  "Name": "(Custom) Difficulty: Legendary",
+  "Description": "Increased game difficulty for those who want to be a legend.",
+  "Rules": [
+    {
+      "Rule": "CardEnergyFromAttackMultiplied",
+      "Config": 0.5
+    },
+    {
+      "Rule": "CardEnergyFromRecyclingMultiplied",
+      "Config": 0.5
+    },
+    {
+      "Rule": "EnemyAttackScaled",
+      "Config": 2.0
+    },
+    {
+      "Rule": "EnemyHealthScaled",
+      "Config": 2.2
+    },
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "BigGoldPileChance": 10,
+        "FloorOneHealingFountains": 0,
+        "FloorOneLootChests": 1,
+        "FloorOneGoldMaxAmount": 504,
+        "FloorTwoHealingFountains": 1,
+        "FloorTwoLootChests": 1,
+        "FloorTwoGoldMaxAmount": 252,
+        "FloorThreeHealingFountains": 0,
+        "FloorThreeLootChests": 1
+      }
+    }
+  ]
+}

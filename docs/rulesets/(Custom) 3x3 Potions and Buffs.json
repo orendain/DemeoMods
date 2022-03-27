@@ -1,6 +1,6 @@
 {
-  "Name": "3x3 Potions and Buffs",
-  "Description": "Heal, Strength, Speed, Adamant, Antitoxin, RepairArmor and Bard buffs are 3x3 AOE",
+  "Name": "(Custom) 3x3 Potions and Buffs",
+  "Description": "Heal, Strength, Speed, Adamant, Antitoxin, RepairArmor and Bard buffs are 3x3 AOE.",
   "Rules": [
     {
       "Rule": "AbilityAoeAdjusted",
@@ -11,15 +11,15 @@
         "SwiftnessPotion": 1,
         "Antitoxin": 1,
         "AdamantPotion": 1,
-        "HealingPotion": 1,
+        "HealingPotion": 1
       }
     },
     {
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
-        "SwiftnessPotion": false,
-        "StrengthPotion": false
+        "StrengthPotion": false,
+        "SwiftnessPotion": false
       }
-    },
+    }
   ]
 }

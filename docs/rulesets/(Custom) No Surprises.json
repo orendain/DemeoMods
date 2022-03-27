@@ -1,0 +1,14 @@
+{
+  "Name": "(Custom) No Surprises",
+  "Description": "No surprises in the dark or coming through doors.",
+  "Rules": [
+    {
+      "Rule": "EnemyDoorOpeningDisabled",
+      "Config": true
+    },
+    {
+      "Rule": "EnemyRespawnDisabled",
+      "Config": true
+    }
+  ]
+}
