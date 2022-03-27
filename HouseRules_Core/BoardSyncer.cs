@@ -67,7 +67,7 @@
                 return;
             }
 
-            if (HR.SelectedRuleset.ModifiedData == SyncableTrigger.None)
+            if (HR.SelectedRuleset.ModifiedSyncables == SyncableTrigger.None)
             {
                 return;
             }
@@ -173,19 +173,19 @@
 
         private static bool IsSyncNeeded()
         {
-            var hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.NewPieceModified) > 0;
+            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
             if (hasSyncType && _isNewSpawnPossible)
             {
                 return true;
             }
 
-            hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.StatusEffectImmunityModified) > 0;
+            hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (hasSyncType && _isStatusImmunitiesTouched)
             {
                 return true;
             }
 
-            hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.StatusEffectDataModified) > 0;
+            hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
             if (hasSyncType && _isStatusEffectsTouched)
             {
                 return true;
