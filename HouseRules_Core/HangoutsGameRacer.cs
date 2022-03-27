@@ -125,7 +125,7 @@
 
             StopWatch.Stop();
             var timeElapsed = StopWatch.Elapsed;
-            HR.Logger.Msg($"Time to join game from Hangouts: {timeElapsed.Seconds:00}.{timeElapsed.Milliseconds:00}s");
+            HR.Logger.Msg($"[HangoutGameRacer] Time to join game from Hangouts: {timeElapsed.Seconds:00}.{timeElapsed.Milliseconds:00}s");
         }
 
         private static GroupLaunchModuleData.ModuleType FindSelectedModelType(GroupLaunchTable groupLaunchTable)
