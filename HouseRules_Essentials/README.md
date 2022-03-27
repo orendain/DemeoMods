@@ -12,7 +12,7 @@ HouseRules API.
 ### Built-in Rulesets
 
 - __Earth Wind & Fire__ : Not the band. Let's get Elemental.
-- __🕷️Arachnophobia🕷️ Ruleset__ : Offers a fresh adventure to be played on the RootsOfEvil Map.
+- __🕷️Arachnophobia🕷️__ : Offers a fresh adventure to be played on the RootsOfEvil Map.
   Chased by violent thugs from their ancestral homes in Sunderhaven, the King and Queen flee into the woods.
   Befriended by money spiders, they hatch a plan to rebuild their fallen empires, but first they're going to need some cash.
 - __🎲LuckyDip🎲__ : Players each start with two 'Drop Chest' cards instead of their normal
