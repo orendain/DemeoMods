@@ -28,7 +28,7 @@
         /// <summary>
         /// Gets the type of data that the rule makes modifications to.
         /// </summary>
-        public SpecialSyncData ModifiedData { get; }
+        public SyncableTrigger ModifiedData { get; }
 
         /// <summary>
         /// Represents the empty/missing ruleset.
@@ -43,11 +43,11 @@
         public static Ruleset NewInstance(string name, string description, List<Rule> rules)
         {
             var safeForMultiplayer = rules.All(r => r is IMultiplayerSafe);
-            var modifiedData = rules.Aggregate(SpecialSyncData.None, (data, rule) => data | rule.ModifiedData);
+            var modifiedData = rules.Aggregate(SyncableTrigger.None, (data, rule) => data | rule.ModifiedData);
             return new Ruleset(name, description, rules, safeForMultiplayer, modifiedData);
         }
 
-        private Ruleset(string name, string description, List<Rule> rules, bool isSafeForMultiplayer, SpecialSyncData modifiedData)
+        private Ruleset(string name, string description, List<Rule> rules, bool isSafeForMultiplayer, SyncableTrigger modifiedData)
         {
             Name = name;
             Description = description;

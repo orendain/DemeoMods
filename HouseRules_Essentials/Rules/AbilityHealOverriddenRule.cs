@@ -12,7 +12,7 @@
     {
         public override string Description => "Ability Heal settings are adjusted";
 
-        protected override SpecialSyncData ModifiedData => SpecialSyncData.PieceData;
+        protected override SyncableTrigger ModifiedData => SyncableTrigger.PieceDataChanged;
 
         private readonly Dictionary<AbilityKey, int> _adjustments;
         private Dictionary<AbilityKey, int> _originals;

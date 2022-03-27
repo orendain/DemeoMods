@@ -8,12 +8,12 @@
     using HarmonyLib;
 
     [Flags]
-    public enum SpecialSyncData
+    public enum SyncableTrigger
     {
         None = 0,
-        PieceData = 1,
-        StatusEffectImmunity = 2,
-        StatusEffectData = 4,
+        PieceDataChanged = 1,
+        StatusEffectImmunityChanged = 2,
+        StatusEffectDataChanged = 4
     }
 
     internal static class BoardSyncer
@@ -61,7 +61,7 @@
                 return;
             }
 
-            if (HR.SelectedRuleset.ModifiedData == SpecialSyncData.None)
+            if (HR.SelectedRuleset.ModifiedData == SyncableTrigger.None)
             {
                 return;
             }
@@ -167,19 +167,19 @@
 
         private static bool IsSyncNeeded()
         {
-            var hasSyncType = (HR.SelectedRuleset.ModifiedData & SpecialSyncData.PieceData) > 0;
+            var hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.PieceDataChanged) > 0;
             if (hasSyncType && _isNewSpawnPossible)
             {
                 return true;
             }
 
-            hasSyncType = (HR.SelectedRuleset.ModifiedData & SpecialSyncData.StatusEffectImmunity) > 0;
+            hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.StatusEffectImmunityChanged) > 0;
             if (hasSyncType && _isStatusImmunitiesTouched)
             {
                 return true;
             }
 
-            hasSyncType = (HR.SelectedRuleset.ModifiedData & SpecialSyncData.StatusEffectData) > 0;
+            hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.StatusEffectDataChanged) > 0;
             if (hasSyncType && _isStatusEffectsTouched)
             {
                 return true;

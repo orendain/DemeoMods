@@ -10,7 +10,7 @@
     {
         public override string Description => "StatusEffects config is Overridden";
 
-        protected override SpecialSyncData ModifiedData => SpecialSyncData.StatusEffectData;
+        protected override SyncableTrigger ModifiedData => SyncableTrigger.StatusEffectDataChanged;
 
         private readonly List<StatusEffectData> _adjustments;
         private List<StatusEffectData> _originals;

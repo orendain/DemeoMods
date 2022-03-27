@@ -62,14 +62,14 @@
         /// <remarks>
         ///     <para>
         ///     There is no need to override this field unless the rule makes changes to one of the defined
-        ///     <see cref="SpecialSyncData"/> types.
+        ///     <see cref="SyncableTrigger"/> types.
         ///     </para>
         ///     <para>
         ///     Multiple types may be seperated by a vertical bar <c>|</c>.
         ///     </para>
         /// </remarks>
-        /// <example><code>SpecialSyncData.PieceData</code></example>
-        /// <example><code>SpecialSyncData.PieceData | SpecialSyncData.StatusEffectImmunity</code></example>
-        protected internal virtual SpecialSyncData ModifiedData => SpecialSyncData.None;
+        /// <example><code>SyncableTrigger.PieceDataChanged</code></example>
+        /// <example><code>SyncableTrigger.PieceDataChanged | SyncableTrigger.StatusEffectImmunityChanged</code></example>
+        protected internal virtual SyncableTrigger ModifiedData => SyncableTrigger.None;
     }
 }

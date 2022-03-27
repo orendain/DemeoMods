@@ -12,7 +12,7 @@
     {
         public override string Description => "Piece immunities are adjusted";
 
-        protected override SpecialSyncData ModifiedData => SpecialSyncData.StatusEffectImmunity;
+        protected override SyncableTrigger ModifiedData => SyncableTrigger.StatusEffectImmunityChanged;
 
         private readonly Dictionary<BoardPieceId, List<EffectStateType>> _adjustments;
         private Dictionary<BoardPieceId, List<EffectStateType>> _originals;
