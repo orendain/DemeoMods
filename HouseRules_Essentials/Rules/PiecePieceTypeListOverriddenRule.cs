@@ -12,7 +12,7 @@
     {
         public override string Description => "Piece piece types are adjusted";
 
-        protected override SyncableTrigger ModifiedData => SyncableTrigger.PieceDataChanged;
+        protected override SyncableTrigger ModifiedData => SyncableTrigger.NewPieceChanged;
 
         private readonly Dictionary<BoardPieceId, List<PieceType>> _adjustments;
         private Dictionary<BoardPieceId, List<PieceType>> _originals;

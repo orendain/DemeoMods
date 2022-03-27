@@ -11,9 +11,18 @@
     public enum SyncableTrigger
     {
         None = 0,
-        PieceDataChanged = 1,
+
+        /// <summary>New pieces are changed or have their attributes modified.</summary>
+        NewPieceChanged = 1,
+
+        /// <summary>Status effect immunities are modified.</summary>
         StatusEffectImmunityChanged = 2,
-        StatusEffectDataChanged = 4
+
+        /// <summary>Status effect data (e.g., values, duration, etc.) are modified.</summary>
+        StatusEffectDataChanged = 4,
+
+        /// <summary>Existing pieces get their attributes modified.</summary>
+        ExistingPieceChanged = 8,
     }
 
     internal static class BoardSyncer
@@ -167,7 +176,7 @@
 
         private static bool IsSyncNeeded()
         {
-            var hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.PieceDataChanged) > 0;
+            var hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.NewPieceChanged) > 0;
             if (hasSyncType && _isNewSpawnPossible)
             {
                 return true;
