@@ -1,0 +1,12 @@
+{
+  "Name": "(Custom) Better Sorcerer",
+  "Description": "0 Action Cost for Sorcerer's Zap - No other changes. #STS",
+  "Rules": [
+    {
+      "Rule": "AbilityActionCostAdjusted",
+      "Config": {
+        "Zap": false
+      }
+    }
+  ]
+}

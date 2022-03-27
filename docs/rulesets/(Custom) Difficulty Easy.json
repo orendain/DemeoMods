@@ -1,0 +1,38 @@
+{
+  "Name": "(Custom) Difficulty: Easy",
+  "Description": "Decreased game difficulty for a more casual playstyle.",
+  "Rules": [
+    {
+      "Rule": "CardEnergyFromAttackMultiplied",
+      "Config": 1.5
+    },
+    {
+      "Rule": "CardEnergyFromRecyclingMultiplied",
+      "Config": 1.5
+    },
+    {
+      "Rule": "EnemyHealthScaled",
+      "Config": 0.8
+    },
+    {
+      "Rule": "EnemyDoorOpeningDisabled",
+      "Config": true
+    },
+    {
+      "Rule": "EnemyRespawnDisabled",
+      "Config": true
+    },
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "BigGoldPileChance": 100,
+        "FloorOneHealingFountains": 2,
+        "FloorOneLootChests": 4,
+        "FloorTwoHealingFountains": 3,
+        "FloorTwoLootChests": 5,
+        "FloorThreeHealingFountains": 2,
+        "FloorThreeLootChests": 2
+      }
+    }
+  ]
+}

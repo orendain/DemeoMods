@@ -1,0 +1,171 @@
+{
+  "Name": "(Custom) Hunter's Paradise",
+  "Description": "Pets, pets, pets! And hunter's mark.",
+  "Rules": [
+    {
+      "Rule": "StartCardsModified",
+      "Config": {
+        "HeroBard": [
+          {
+            "Card": "CallCompanion",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "SummonElemental",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "HuntersMark",
+            "IsReplenishable": true
+          }
+        ],
+        "HeroGuardian": [
+          {
+            "Card": "CallCompanion",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "SummonElemental",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "HuntersMark",
+            "IsReplenishable": true
+          }
+        ],
+        "HeroHunter": [
+          {
+            "Card": "CallCompanion",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "SummonElemental",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "HuntersMark",
+            "IsReplenishable": true
+          }
+        ],
+        "HeroRogue": [
+          {
+            "Card": "CallCompanion",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "SummonElemental",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "HuntersMark",
+            "IsReplenishable": true
+          }
+        ],
+        "HeroSorcerer": [
+          {
+            "Card": "CallCompanion",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "SummonElemental",
+            "IsReplenishable": false
+          },
+          {
+            "Card": "HuntersMark",
+            "IsReplenishable": true
+          }
+        ]
+      }
+    },
+    {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "MarkOfAvalon",
+          "durationTurns": 2,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": true,
+          "damageTags": null,
+          "healPerTurn": 0
+        }
+      ]
+    },
+    {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartArmor",
+          "Value": 0.0
+        }
+      ]
+    },
+    {
+      "Rule": "PetsFocusHunterMark",
+      "Config": true
+    },
+    {
+      "Rule": "CardAdditionOverridden",
+      "Config": {
+        "HeroBard": [
+          "CallCompanion",
+          "SummonElemental",
+          "BeastWhisperer",
+          "PiercingVoice",
+          "Bone",
+          "StrengthPotion",
+          "SwiftnessPotion"
+        ],
+        "HeroGuardian": [
+          "CallCompanion",
+          "SummonElemental",
+          "BeastWhisperer",
+          "PiercingVoice",
+          "Bone",
+          "StrengthPotion",
+          "SwiftnessPotion"
+        ],
+        "HeroHunter": [
+          "CallCompanion",
+          "SummonElemental",
+          "BeastWhisperer",
+          "PiercingVoice",
+          "Bone",
+          "StrengthPotion",
+          "SwiftnessPotion"
+        ],
+        "HeroRogue": [
+          "CallCompanion",
+          "SummonElemental",
+          "BeastWhisperer",
+          "PiercingVoice",
+          "Bone",
+          "StrengthPotion",
+          "SwiftnessPotion"
+        ],
+        "HeroSorcerer": [
+          "CallCompanion",
+          "SummonElemental",
+          "BeastWhisperer",
+          "PiercingVoice",
+          "Bone",
+          "StrengthPotion",
+          "SwiftnessPotion"
+        ]
+      }
+    },
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "FloorOneHealingFountains": 6,
+        "FloorOneLootChests": 6,
+        "FloorTwoHealingFountains": 6,
+        "FloorTwoLootChests": 12,
+        "FloorThreeHealingFountains": 6,
+        "FloorThreeLootChests": 12
+      }
+    }
+  ]
+}

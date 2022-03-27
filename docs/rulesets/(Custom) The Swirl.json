@@ -1,0 +1,147 @@
+{
+  "Name": "(Custom) The Swirl",
+  "Description": "Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.",
+  "Rules": [
+    {
+      "Rule": "StartCardsModified",
+      "Config": {
+        "HeroBard": [
+          {
+            "Card": "Vortex",
+            "IsReplenishable": true
+          },
+          {
+            "Card": "CourageShanty",
+            "IsReplenishable": true
+          }
+        ],
+        "HeroGuardian": [
+          {
+            "Card": "Vortex",
+            "IsReplenishable": true
+          },
+          {
+            "Card": "ReplenishArmor",
+            "IsReplenishable": true
+          }
+        ],
+        "HeroHunter": [
+          {
+            "Card": "Vortex",
+            "IsReplenishable": true
+          },
+          {
+            "Card": "Arrow",
+            "IsReplenishable": true
+          }
+        ],
+        "HeroRogue": [
+          {
+            "Card": "Vortex",
+            "IsReplenishable": true
+          },
+          {
+            "Card": "Sneak",
+            "IsReplenishable": true
+          }
+        ],
+        "HeroSorcerer": [
+          {
+            "Card": "Vortex",
+            "IsReplenishable": true
+          },
+          {
+            "Card": "Zap",
+            "IsReplenishable": true
+          }
+        ]
+      }
+    },
+    {
+      "Rule": "CardAdditionOverridden",
+      "Config": {
+        "HeroBard": [
+          "PoisonBomb",
+          "Fireball",
+          "HurricaneAnthem"
+        ],
+        "HeroGuardian": [
+          "PoisonBomb",
+          "Fireball",
+          "Charge"
+        ],
+        "HeroHunter": [
+          "PoisonBomb",
+          "Fireball",
+          "PoisonedTip"
+        ],
+        "HeroRogue": [
+          "PoisonBomb",
+          "Fireball",
+          "Blink"
+        ],
+        "HeroSorcerer": [
+          "PoisonBomb",
+          "Fireball",
+          "SummonElemental"
+        ]
+      }
+    },
+    {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        {
+          "Piece": "HeroBard",
+          "Property": "StartHealth",
+          "Value": 50.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartHealth",
+          "Value": 50.0
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "StartHealth",
+          "Value": 50.0
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "StartHealth",
+          "Value": 50.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "StartHealth",
+          "Value": 50.0
+        }
+      ]
+    },
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "FloorOneHealingFountains": 2,
+        "FloorOneLootChests": 11,
+        "FloorTwoHealingFountains": 4,
+        "FloorTwoLootChests": 14,
+        "FloorThreeHealingFountains": 4,
+        "FloorThreeLootChests": 12
+      }
+    },
+    {
+      "Rule": "AbilityAoeAdjusted",
+      "Config": {
+        "StrengthPotion": 1,
+        "SwiftnessPotion": 1
+      }
+    },
+    {
+      "Rule": "EnemyRespawnDisabled",
+      "Config": true
+    },
+    {
+      "Rule": "LevelExitLockedUntilAllEnemiesDefeated",
+      "Config": true
+    }
+  ]
+}

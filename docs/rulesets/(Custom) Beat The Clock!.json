@@ -1,0 +1,51 @@
+{
+  "Name": "(Custom) Beat The Clock!",
+  "Description": "Ultra health. Ultra card recycling. Only 15 rounds to escape...",
+  "Rules": [
+    {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        {
+          "Piece": "HeroBard",
+          "Property": "StartHealth",
+          "Value": 200.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartHealth",
+          "Value": 200.0
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "StartHealth",
+          "Value": 200.0
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "StartHealth",
+          "Value": 200.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "StartHealth",
+          "Value": 200.0
+        }
+      ]
+    },
+    {
+      "Rule": "CardEnergyFromRecyclingMultiplied",
+      "Config": 5.0
+    },
+    {
+      "Rule": "RoundCountLimited",
+      "Config": 15
+    },
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "FloorOneLootChests": 15,
+        "FloorTwoLootChests": 15
+      }
+    }
+  ]
+}
