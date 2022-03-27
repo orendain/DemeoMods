@@ -44,6 +44,9 @@
         <Reference Include="PhotonUnityNetworking">
             <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
         </Reference>
+        <Reference Include="PhotonRealtime">
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="UnityEngine.CoreModule">
             <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
@@ -51,6 +54,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="BoardSyncer.cs" />
+        <Compile Include="HangoutsGameRacer.cs" />
         <Compile Include="LifecycleDirector.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="HR.cs" />
