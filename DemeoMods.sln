@@ -29,10 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5
 		docs\images\roomfinder_screenshot.jpg = docs\images\roomfinder_screenshot.jpg
 		docs\images\skipintro_icon.jpg = docs\images\skipintro_icon.jpg
 		docs\PieceConfig.md = docs\PieceConfig.md
-		docs\rulesets\3x3 Potions and Buffs.json = docs\rulesets\3x3 Potions and Buffs.json
-		docs\rulesets\Arachnophobia.json = docs\rulesets\Arachnophobia.json
-		docs\rulesets\Better Sorcerer.json = docs\rulesets\Better Sorcerer.json
-		docs\rulesets\LuckyDip.json = docs\rulesets\LuckyDip.json
 		docs\LevelProperties.md = docs\LevelProperties.md
 	EndProjectSection
 EndProject

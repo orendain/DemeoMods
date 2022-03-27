@@ -11,12 +11,21 @@ HouseRules API.
 
 ### Built-in Rulesets
 
+- __Earth Wind & Fire__ : Not the band. Let's get Elemental.
+- __🕷️Arachnophobia🕷️ Ruleset__ : Offers a fresh adventure to be played on the RootsOfEvil Map.
+  Chased by violent thugs from their ancestral homes in Sunderhaven, the King and Queen flee into the woods.
+  Befriended by money spiders, they hatch a plan to rebuild their fallen empires, but first they're going to need some cash.
+- __🎲LuckyDip🎲__ : Players each start with two 'Drop Chest' cards instead of their normal
+  starting cards, meaning that no two games start the same. Many potions have AOE effect, because it's rude not to share.
+  Many other changes included for faster gameplay with an aim of around 90 minutes per game.
 - __The Swirl__ : Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.
 - __Beat The Clock__ : Ultra health. Ultra card recycling. Only 15 rounds to escape...
 - __Hunter's Paradise__ : Pets, pets, pets! And hunter's mark.
 - __Difficulty Easy__ : Decreased game difficulty for a more casual playstyle.
 - __Difficulty Hard__ : Increased game difficulty for a greater challenge.
 - __Difficulty Legendary__ : Increased game difficulty for those who want to be a legend.
+- __3x3 Potions and Buffs__ : Heal, Strength, Speed, Adamant, Antitoxin, RepairArmor and Bard buffs are 3x3 AOE.
+- __Better Sorcerer__ : 0 Action Cost for Sorcerer's Zap - No other changes. #STS
 - __No Surprises__ :  No surprises in the dark or coming through doors.
 - __Quick and the Dead__ : A mode with a small hand but fast turnaround time on cards means you need to not hesitate.
 
@@ -24,14 +33,13 @@ HouseRules API.
 
 Rulesets may also be configured as JSON files and stored within the game directory `<GAME_DIR>/UserData/HouseRules/<rulesetname>.json`
 
-A selection are available within this repository. These are intended to be fun to play alternative games, and as a good examples for others wanting to create their own rulesets.
+A copy of all built-in rulesets are included as JSON files and, after
+HouseRules installation, can be found in the game directory
+`<GAME_DIR>/UserData/HouseRules/ExampleRulesets/` so you can modify them
+to your heart's content, or use them as a starting point for your own completely
+custom ruleset.
 
-- __[🎲LuckyDip🎲 Ruleset](../docs/rulesets/LuckyDip.json)__ : Players each start with two 'Drop Chest' cards instead of their normal
-starting cards, meaning that no two games start the same. Many potions have AOE effect, because it's rude not to share. 
-Many other changes included for faster gameplay with an aim of around 90 minutes per game.
-- __[🕷️Arachnophobia🕷️ Ruleset](../docs/rulesets/Arachnophobia.json)__ offers a fresh adventure to be played on the RootsOfEvil Map.
-Chased by violent thugs from their ancestral homes in Sunderhaven, the King and Queen flee into the woods. 
-Befriended by money spiders, they hatch a plan to rebuild their fallen empires, but first they're going to need some cash.
+Additionally, [those JSON rulesets can be found within this repository](../docs/rulesets).
 
 The [Settings Reference](../docs/SettingsReference.md) contains lists of all different BehaviourIDs, AbilityKeys and other data types used by the Rules.
 
