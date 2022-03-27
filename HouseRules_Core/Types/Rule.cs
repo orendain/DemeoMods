@@ -57,7 +57,7 @@
         }
 
         /// <summary>
-        /// Gets the type of data that the rule makes modifications to.
+        /// Gets the syncable types that this rule modifies.
         /// </summary>
         /// <remarks>
         ///     <para>
