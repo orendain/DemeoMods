@@ -20,9 +20,6 @@
 
         /// <summary>Status effect data (e.g., values, duration, etc.) are modified.</summary>
         StatusEffectDataChanged = 4,
-
-        /// <summary>Existing pieces get their attributes modified.</summary>
-        ExistingPieceChanged = 8,
     }
 
     internal static class BoardSyncer
