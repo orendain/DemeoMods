@@ -12,6 +12,8 @@
     {
         public override string Description => "Piece UseWhenKilled lists are overridden";
 
+        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified | SyncableTrigger.StatusEffectDataModified;
+
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _adjustments;
         private Dictionary<BoardPieceId, List<AbilityKey>> _originals;
 
