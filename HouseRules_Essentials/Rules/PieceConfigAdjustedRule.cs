@@ -12,7 +12,7 @@
     {
         public override string Description => "Piece configuration is adjusted";
 
-        protected override SpecialSyncData ModifiedData => SpecialSyncData.PieceData;
+        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 
         private readonly List<PieceProperty> _adjustments;
         private List<PieceProperty> _originals;

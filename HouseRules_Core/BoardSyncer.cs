@@ -8,12 +8,18 @@
     using HarmonyLib;
 
     [Flags]
-    public enum SpecialSyncData
+    public enum SyncableTrigger
     {
         None = 0,
-        PieceData = 1,
-        StatusEffectImmunity = 2,
-        StatusEffectData = 4,
+
+        /// <summary>New pieces are changed or have their attributes modified.</summary>
+        NewPieceModified = 1,
+
+        /// <summary>Status effect immunities are modified.</summary>
+        StatusEffectImmunityModified = 2,
+
+        /// <summary>Status effect data (e.g., values, duration, etc.) are modified.</summary>
+        StatusEffectDataModified = 4,
     }
 
     internal static class BoardSyncer
@@ -61,7 +67,7 @@
                 return;
             }
 
-            if (HR.SelectedRuleset.ModifiedData == SpecialSyncData.None)
+            if (HR.SelectedRuleset.ModifiedSyncables == SyncableTrigger.None)
             {
                 return;
             }
@@ -167,19 +173,19 @@
 
         private static bool IsSyncNeeded()
         {
-            var hasSyncType = (HR.SelectedRuleset.ModifiedData & SpecialSyncData.PieceData) > 0;
+            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
             if (hasSyncType && _isNewSpawnPossible)
             {
                 return true;
             }
 
-            hasSyncType = (HR.SelectedRuleset.ModifiedData & SpecialSyncData.StatusEffectImmunity) > 0;
+            hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (hasSyncType && _isStatusImmunitiesTouched)
             {
                 return true;
             }
 
-            hasSyncType = (HR.SelectedRuleset.ModifiedData & SpecialSyncData.StatusEffectData) > 0;
+            hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
             if (hasSyncType && _isStatusEffectsTouched)
             {
                 return true;

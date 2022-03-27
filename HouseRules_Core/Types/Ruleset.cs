@@ -26,9 +26,9 @@
         public bool IsSafeForMultiplayer { get; }
 
         /// <summary>
-        /// Gets the type of data that the rule makes modifications to.
+        /// Gets the syncable types that this rule modifies.
         /// </summary>
-        public SpecialSyncData ModifiedData { get; }
+        public SyncableTrigger ModifiedSyncables { get; }
 
         /// <summary>
         /// Represents the empty/missing ruleset.
@@ -43,17 +43,17 @@
         public static Ruleset NewInstance(string name, string description, List<Rule> rules)
         {
             var safeForMultiplayer = rules.All(r => r is IMultiplayerSafe);
-            var modifiedData = rules.Aggregate(SpecialSyncData.None, (data, rule) => data | rule.ModifiedData);
-            return new Ruleset(name, description, rules, safeForMultiplayer, modifiedData);
+            var syncables = rules.Aggregate(SyncableTrigger.None, (data, rule) => data | rule.ModifiedSyncables);
+            return new Ruleset(name, description, rules, safeForMultiplayer, syncables);
         }
 
-        private Ruleset(string name, string description, List<Rule> rules, bool isSafeForMultiplayer, SpecialSyncData modifiedData)
+        private Ruleset(string name, string description, List<Rule> rules, bool isSafeForMultiplayer, SyncableTrigger modifiedSyncables)
         {
             Name = name;
             Description = description;
             Rules = rules;
             IsSafeForMultiplayer = isSafeForMultiplayer;
-            ModifiedData = modifiedData;
+            ModifiedSyncables = modifiedSyncables;
         }
     }
 }

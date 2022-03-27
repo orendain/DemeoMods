@@ -13,7 +13,7 @@
     {
         public override string Description => "Piece behaviours are adjusted";
 
-        protected override SpecialSyncData ModifiedData => SpecialSyncData.PieceData;
+        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 
         private readonly Dictionary<BoardPieceId, List<Behaviour>> _adjustments;
         private Dictionary<BoardPieceId, List<Behaviour>> _originals;
