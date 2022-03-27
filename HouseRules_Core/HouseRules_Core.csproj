@@ -41,11 +41,11 @@
         <Reference Include="MelonLoader">
             <HintPath>$(SteamDemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>
-        <Reference Include="PhotonUnityNetworking">
-            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
-        </Reference>
         <Reference Include="PhotonRealtime">
             <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
+        </Reference>
+        <Reference Include="PhotonUnityNetworking">
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
         </Reference>
         <Reference Include="System" />
         <Reference Include="UnityEngine.CoreModule">
