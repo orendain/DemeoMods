@@ -70,6 +70,6 @@
         /// </remarks>
         /// <example><code>SyncableTrigger.PieceDataChanged</code></example>
         /// <example><code>SyncableTrigger.PieceDataChanged | SyncableTrigger.StatusEffectImmunityChanged</code></example>
-        protected internal virtual SyncableTrigger ModifiedData => SyncableTrigger.None;
+        protected internal virtual SyncableTrigger ModifiedSyncables => SyncableTrigger.None;
     }
 }

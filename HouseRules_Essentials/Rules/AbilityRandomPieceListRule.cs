@@ -12,7 +12,7 @@
     {
         public override string Description => "Ability randomPieceLists are replaced";
 
-        protected override SyncableTrigger ModifiedData => SyncableTrigger.NewPieceChanged;
+        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 
         private readonly Dictionary<AbilityKey, List<BoardPieceId>> _adjustments;
         private Dictionary<AbilityKey, List<BoardPieceId>> _originals;

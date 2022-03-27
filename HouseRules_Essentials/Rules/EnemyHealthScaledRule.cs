@@ -9,7 +9,7 @@
     {
         public override string Description => "Enemy health is scaled";
 
-        protected override SyncableTrigger ModifiedData => SyncableTrigger.NewPieceChanged;
+        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 
         private static float _globalMultiplier;
         private static bool _isActivated;

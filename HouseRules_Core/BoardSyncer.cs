@@ -13,13 +13,13 @@
         None = 0,
 
         /// <summary>New pieces are changed or have their attributes modified.</summary>
-        NewPieceChanged = 1,
+        NewPieceModified = 1,
 
         /// <summary>Status effect immunities are modified.</summary>
-        StatusEffectImmunityChanged = 2,
+        StatusEffectImmunityModified = 2,
 
         /// <summary>Status effect data (e.g., values, duration, etc.) are modified.</summary>
-        StatusEffectDataChanged = 4,
+        StatusEffectDataModified = 4,
     }
 
     internal static class BoardSyncer
@@ -173,19 +173,19 @@
 
         private static bool IsSyncNeeded()
         {
-            var hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.NewPieceChanged) > 0;
+            var hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.NewPieceModified) > 0;
             if (hasSyncType && _isNewSpawnPossible)
             {
                 return true;
             }
 
-            hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.StatusEffectImmunityChanged) > 0;
+            hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (hasSyncType && _isStatusImmunitiesTouched)
             {
                 return true;
             }
 
-            hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.StatusEffectDataChanged) > 0;
+            hasSyncType = (HR.SelectedRuleset.ModifiedData & SyncableTrigger.StatusEffectDataModified) > 0;
             if (hasSyncType && _isStatusEffectsTouched)
             {
                 return true;

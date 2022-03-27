@@ -43,7 +43,7 @@
         public static Ruleset NewInstance(string name, string description, List<Rule> rules)
         {
             var safeForMultiplayer = rules.All(r => r is IMultiplayerSafe);
-            var modifiedData = rules.Aggregate(SyncableTrigger.None, (data, rule) => data | rule.ModifiedData);
+            var modifiedData = rules.Aggregate(SyncableTrigger.None, (data, rule) => data | rule.ModifiedSyncables);
             return new Ruleset(name, description, rules, safeForMultiplayer, modifiedData);
         }
 
