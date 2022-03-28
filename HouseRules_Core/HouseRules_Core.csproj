@@ -41,6 +41,9 @@
         <Reference Include="MelonLoader">
             <HintPath>$(SteamDemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>
+        <Reference Include="PhotonRealtime">
+            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
+        </Reference>
         <Reference Include="PhotonUnityNetworking">
             <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
         </Reference>
@@ -51,6 +54,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="BoardSyncer.cs" />
+        <Compile Include="HangoutsGameRacer.cs" />
         <Compile Include="LifecycleDirector.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="HR.cs" />
