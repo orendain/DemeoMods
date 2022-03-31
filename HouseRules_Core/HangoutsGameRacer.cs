@@ -1,8 +1,10 @@
 ﻿namespace HouseRules
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
+    using System.Reflection.Emit;
     using Boardgame.Social;
     using Bowser;
     using Bowser.Core;
@@ -52,6 +54,11 @@
                     .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
                     .GetDeclaredMethod("OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(HangoutsGameRacer), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools
+                    .Method(typeof(PlayWithFriendsController).GetNestedType("<TryCreateTheRoom>d__25"), "MoveNext"),
+                transpiler: new HarmonyMethod(typeof(HangoutsGameRacer), nameof(PlayWithFriendsController_TryCreateTheRoom_Transpiler)));
         }
 
         private static void GameStateHobbyShop_Start_Postfix(GameStateHobbyShop __instance, GameStateData baseData)
@@ -125,6 +132,20 @@
             StopWatch.Stop();
             var timeElapsed = StopWatch.Elapsed;
             HR.Logger.Msg($"[HangoutGameRacer] Time to join game from Hangouts: {timeElapsed.Seconds:00}.{timeElapsed.Milliseconds:00}s");
+        }
+
+        private static IEnumerable<CodeInstruction> PlayWithFriendsController_TryCreateTheRoom_Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            foreach (var instruction in instructions)
+            {
+                if (instruction.opcode == OpCodes.Ldc_I4 && instruction.operand.ToString().Contains("500"))
+                {
+                    yield return new CodeInstruction(OpCodes.Ldc_I4, 50);
+                    continue;
+                }
+
+                yield return instruction;
+            }
         }
 
         private static void RaceOutOfHangouts(GroupLaunchTable groupLaunchTable, string groupId, GroupLaunchModuleData.ModuleType moduleType, bool isTableHost)
