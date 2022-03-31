@@ -10,8 +10,8 @@
     using Bowser.Core;
     using Bowser.GameIntegration;
     using HarmonyLib;
+    using HouseRules.Types;
     using Photon.Pun;
-    using Types;
 
     internal static class HangoutsGameRacer
     {
@@ -74,7 +74,7 @@
                 return true;
             }
 
-            HR.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts by front-loading computation.");
+            HR.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts as table host by front-loading computation.");
             _hasJoinedTheRace = true;
 
             var groupId = Guid.NewGuid().ToString();
@@ -97,6 +97,9 @@
             {
                 return false;
             }
+
+            HR.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts as table non-host.");
+            _hasJoinedTheRace = true;
 
             var moduleType = (GroupLaunchModuleData.ModuleType)selectedModuleType;
             if (moduleType == GroupLaunchModuleData.ModuleType.Random)
@@ -178,7 +181,6 @@
 
         private static void PrepareToLeaveHangouts(GroupLaunchTable groupLaunchTable)
         {
-            HR.Logger.Msg("[HangoutGameRacer] Optimizing preparation for leaving hangouts.");
             Traverse.Create(groupLaunchTable).Field<bool>("leavingBowser").Value = true;
 
             // Recreating `GameStateHobbyShop.ExitBowser`
