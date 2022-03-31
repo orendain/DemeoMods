@@ -117,6 +117,11 @@
         {
             _hasJoinedTheRace = false;
 
+            if (!StopWatch.IsRunning)
+            {
+                return;
+            }
+
             StopWatch.Stop();
             var timeElapsed = StopWatch.Elapsed;
             HR.Logger.Msg($"[HangoutGameRacer] Time to join game from Hangouts: {timeElapsed.Seconds:00}.{timeElapsed.Milliseconds:00}s");
