@@ -413,6 +413,24 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+- __LevelSequenceOverridden__: The Level Sequence of dungeon floors is overridden.
+  - List of levels must be exactly five items long. The game will crash at the end if the list is any longer.
+  - Shop levels can be replaced with game levels.
+  - It is possible to use levels from any book (Elven, Sewers, Forest) together in a single list
+  - Level soundtracks may not match the played level or adventure (e.g. The shop "Ah Customers, Welcome" will always play on 2nd and 4th levels)
+  - Level names are ElvenFloor01-17, SewersFloor01-12, ForestFloor01-03, ForestFloor05-09, ShopFloor02, SewersShopFloor & ForestShopFloor
+  - To configure:
+    - Specify a list of strings of level names.
+
+  ###### _Example JSON config for LevelPropertiesModified_
+
+  ```json
+  {
+    "Rule": "LevelSequenceOverridden",
+    "Config": [ "ElvenFloor01", "SewersFloor07", "ForestFloor09", "ForestShopFloor", "ElvenFloor08" ]
+  },
+  ```
+
 - __MonsterDeckOverridden__: The MonsterDeck which is used for spawning monsters is overridden.
   - This rule is a more advanced implementation of SpawnCategoriesOverridden, and will directly configure the MonsterDeck from lists.
   - Within the game the `AIDirectorController` deals Monsters from the MonsterDeck when populating the levels.

@@ -37,6 +37,7 @@
             HR.Rulebook.Register(typeof(LampTypesOverriddenRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
+            HR.Rulebook.Register(typeof(LevelSequenceOverriddenRule));
             HR.Rulebook.Register(typeof(MonsterDeckOverriddenRule));
             HR.Rulebook.Register(typeof(PetsFocusHunterMarkRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
