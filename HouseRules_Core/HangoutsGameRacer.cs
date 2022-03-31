@@ -9,6 +9,7 @@
     using Bowser.GameIntegration;
     using HarmonyLib;
     using Photon.Pun;
+    using Types;
 
     internal static class HangoutsGameRacer
     {
@@ -61,6 +62,11 @@
 
         private static bool GroupLaunchTable_OnStartButtonPressed_Prefix(GroupLaunchTable __instance)
         {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return true;
+            }
+
             HR.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts by front-loading computation.");
             _isStartingHangoutsGame = true;
 
