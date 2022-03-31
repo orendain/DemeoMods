@@ -57,7 +57,7 @@
             };
             newlist.AddRange(replacements); // Append user supplied levels
             Traverse.Create(levelSequence).Field<string[]>("levels").Value = newlist.ToArray();
-            return originals.ToList();
+            return originals.ToList().GetRange(1, 5);
         }
     }
 }
