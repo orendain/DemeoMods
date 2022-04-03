@@ -13,7 +13,8 @@
         private const float WelcomeMessageDurationSeconds = 30f;
 
         private static GameContext _gameContext;
-        private static bool _isStartingGame;
+        private static bool _isCreatingGame;
+        private static bool _isLoadingGame;
 
         internal static bool IsRulesetActive { get; private set; }
 
@@ -32,6 +33,10 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "GoToPlayingState"),
                 postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(GameStateMachine_GoToPlayingState_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(GameStateMachine), "GoToShoppingState"),
+                postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(GameStateMachine_GoToShoppingState_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(PostGameControllerBase), "OnPlayAgainClicked"),
@@ -63,13 +68,6 @@
                 return;
             }
 
-            var createdGameFromSave =
-                Traverse.Create(_gameContext.gameStateMachine).Field<bool>("createdGameFromSave").Value;
-            if (createdGameFromSave)
-            {
-                return;
-            }
-
             var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
@@ -77,22 +75,44 @@
                 return;
             }
 
+            var createdGameFromSave =
+                Traverse.Create(_gameContext.gameStateMachine).Field<bool>("createdGameFromSave").Value;
+            if (createdGameFromSave)
+            {
+                _isLoadingGame = true;
+            }
+            else
+            {
+                _isCreatingGame = true;
+            }
+
             var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
 
             ActivateRuleset();
-            _isStartingGame = true;
             OnPreGameCreated();
         }
 
         private static void GameStateMachine_GoToPlayingState_Postfix()
         {
-            if (!_isStartingGame)
+            if (!_isCreatingGame)
             {
                 return;
             }
 
-            _isStartingGame = false;
+            _isCreatingGame = false;
+            OnPostGameCreated();
+            ShowWelcomeMessage();
+        }
+
+        private static void GameStateMachine_GoToShoppingState_Postfix()
+        {
+            if (!_isLoadingGame)
+            {
+                return;
+            }
+
+            _isLoadingGame = false;
             OnPostGameCreated();
             ShowWelcomeMessage();
         }
@@ -100,7 +120,7 @@
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
             ActivateRuleset();
-            _isStartingGame = true;
+            _isCreatingGame = true;
             OnPreGameCreated();
         }
 
