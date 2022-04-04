@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.2.0-houserules](https://github.com/orendain/demeomods/tree/v1.2.0-houserules) (2022-03-31)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.1.0-houserules...v1.2.0-houserules)
+
+**Features/Enhancements:**
+
+- Enable HangoutsGameRacer optimizations only when a ruleset is selected and for non-table hosts. [\#269](https://github.com/orendain/DemeoMods/pull/269)
+- Enable HouseRules users to race through the Hangout game starting procedure. [\#267](https://github.com/orendain/DemeoMods/pull/267)
+
 ## [v1.1.0-houserules](https://github.com/orendain/demeomods/tree/v1.1.0-houserules) (2022-03-21)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.0.0-houserules...v1.1.0-houserules)

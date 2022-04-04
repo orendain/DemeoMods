@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.2.0-houserules](https://github.com/orendain/demeomods/tree/v1.2.0-houserules) (2022-03-31)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.1.0-houserules...v1.2.0-houserules)
+
 ## [v1.1.0-houserules](https://github.com/orendain/demeomods/tree/v1.1.0-houserules) (2022-03-21)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.0.0-houserules...v1.1.0-houserules)
