@@ -47,7 +47,6 @@ This framework allows the definition of modular gameplay modifications (or
 "rulesets").
 
 Rulesets can be configured as JSON files stored within the game's directory.
-It is currently necessary to select the ruleset by editing the `MelonloaderPreferences.cfg` file before starting the game.
 
 See the [HouseRules_Core readme](HouseRules_Core/README.md) for information about the
 HouseRules framework.

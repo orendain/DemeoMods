@@ -1,0 +1,42 @@
+# Demeo Level Names
+
+A list of all level names defined by Demeo.
+
+- CryptEntrance
+- ElvenFloor01
+- ElvenFloor02
+- ElvenFloor03
+- ElvenFloor04
+- ElvenFloor05
+- ElvenFloor06
+- ElvenFloor07
+- ElvenFloor08
+- ElvenFloor10
+- ElvenFloor11
+- ElvenFloor12
+- ElvenFloor13
+- ElvenFloor14
+- ElvenFloor15
+- ElvenFloor16
+- ElvenFloor17
+- ForestEntrance
+- ForestFloor01
+- ForestFloor02
+- ForestFloor03
+- ForestFloor05
+- ForestFloor06
+- ForestFloor07
+- ForestFloor08
+- ForestFloor09
+- ForestShopFloor
+- PauseFloor
+- SewersEntranceFloor
+- SewersFloor01
+- SewersFloor07
+- SewersFloor08
+- SewersFloor09
+- SewersFloor10
+- SewersFloor11
+- SewersFloor12
+- SewersShopFloor
+- ShopFloor02
