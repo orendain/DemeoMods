@@ -420,7 +420,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Level soundtracks may not match the played level or adventure (e.g. The shop "Ah Customers, Welcome" will always play on 2nd and 4th levels)
   - Level names are ElvenFloor01-17, SewersFloor01-12, ForestFloor01-03, ForestFloor05-09, ShopFloor02, SewersShopFloor & ForestShopFloor
   - To configure:
-    - Specify a list of [LeveNames](../docs/LevelNames.md).
+    - Specify a list of [LevelNames](../docs/LevelNames.md).
 
   ###### _Example JSON config for LevelPropertiesModified_
 
