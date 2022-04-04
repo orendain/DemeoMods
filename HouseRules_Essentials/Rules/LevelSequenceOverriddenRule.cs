@@ -3,22 +3,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
-    using Boardgame.LevelLoading;
-    using Boardgame.Networking;
-    using Data.GameData;
-    using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
-    public sealed class LevelSequenceOverriddenRule : Rule, IConfigWritable<List<string>>, IMultiplayerSafe
+    public sealed class LevelSequenceOverriddenRule : Rule, IConfigWritable<List<string>>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "LevelSequence is overridden";
 
-        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified | SyncableTrigger.StatusEffectDataModified;
-
         private readonly List<string> _adjustments;
-        private List<string> _originals;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LevelSequenceOverriddenRule"/> class.
@@ -27,37 +19,53 @@
         public LevelSequenceOverriddenRule(List<string> adjustments)
         {
             _adjustments = adjustments;
-            _originals = new List<string>();
         }
 
         public List<string> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(GameContext gameContext)
         {
-            _originals = ReplaceExistingProperties(_adjustments);
+            ReplaceExistingProperties(_adjustments, gameContext);
         }
 
-        protected override void OnDeactivate(GameContext gameContext)
+        private static void Patch(Harmony harmony)
         {
-            ReplaceExistingProperties(_originals);
+            harmony.Patch(
+                original: AccessTools.Method(
+                    typeof(LevelSequenceConfiguration), "GetSequenceDefinition"),
+                prefix: new HarmonyMethod(typeof(LevelSequenceOverriddenRule), nameof(LevelSequenceConfiguration_GetSequenceDefinition_Prefix)));
+        }
+
+        /// <remarks>
+        /// Sets a safe sequence definition even if the active game type does not have one that extends to the current level.
+        /// </remarks>
+        private static bool LevelSequenceConfiguration_GetSequenceDefinition_Prefix(ref SequenceDefinition __result, int index, LevelSequence.GameType gameType)
+        {
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+            var sequenceDefinitions = gameContext.levelSequenceConfiguration.sequenceDefinitions.GetSequenceFromId(gameType, out _);
+            if (index >= 0 && index < sequenceDefinitions.Length)
+            {
+                return true;
+            }
+
+            __result = gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel
+                ? sequenceDefinitions[sequenceDefinitions.Length - 1]
+                : sequenceDefinitions[sequenceDefinitions.Length - 3];
+
+            return false;
         }
 
         /// <summary>
         /// Replaces LevelSequence levels with predefined list.
         /// </summary>
-        /// <returns>List of previous LevelSequnece levels that are now replaced.</returns>
-        private static List<string> ReplaceExistingProperties(List<string> replacements)
+        /// <returns>List of previous LevelSequence levels that are now replaced.</returns>
+        private static List<string> ReplaceExistingProperties(List<string> replacements, GameContext gameContext)
         {
-            var levelManager = Resources.FindObjectsOfTypeAll<LevelManager>().First();
-            var levelSequence = Traverse.Create(levelManager).Field<LevelSequence>("levelSequence").Value;
-            var originals = Traverse.Create(levelSequence).Field<string[]>("levels").Value;
-            var newlist = new List<string>
-            {
-                originals[0], // We need the Entrance to match the current one or the game will crash when moving to the next level.
-            };
-            newlist.AddRange(replacements); // Append user supplied levels
-            Traverse.Create(levelSequence).Field<string[]>("levels").Value = newlist.ToArray();
-            return originals.ToList().GetRange(1, 5);
+            var gsmLevelSequence = Traverse.Create(gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
+            var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
+            Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
+                replacements.Prepend(originalSequence[0]).ToArray();
+            return originalSequence.ToList();
         }
     }
 }

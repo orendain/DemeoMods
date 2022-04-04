@@ -97,6 +97,9 @@
       <HintPath>$(SteamDemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="PhotonUnityNetworking">
+      <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
