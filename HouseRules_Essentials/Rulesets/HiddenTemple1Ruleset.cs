@@ -13,11 +13,11 @@
 
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
-                "ElvenFloor14",//small
+                "ElvenFloor16",// relative size: 2
                 "ShopFloor02",
-                "ElvenFloor13",//medium
+                "ElvenFloor12",// relative size: 5
                 "ShopFloor02",
-                "ElvenFloor12",// big
+                "ElvenFloor13",// relative size: 4
             });
 
             return Ruleset.NewInstance(
