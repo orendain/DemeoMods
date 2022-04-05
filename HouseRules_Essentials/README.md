@@ -359,7 +359,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Lamps are spawned at random, so specifying multiples of some lamp types can be used to get a desired ratio.
   - Boardpieces other than lamps (e.g. SporeFungus) can also be spawned.
   - To configure:
-    - Specify a list of BoardPieceIDs for each Floor level.
+    - Specify a list of [BoardPieceIds](../docs/SettingsReference.md#boardpieceids) for each Floor level.
     - Floor level names must be Floor1Lamps, Floor2Lamps and Floor3Lamps
 
   ###### _Example JSON config for LampTypesOverridden_
@@ -420,7 +420,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Level soundtracks may not match the played level or adventure (e.g. The shop "Ah Customers, Welcome" will always play on 2nd and 4th levels)
   - Level names are ElvenFloor01-17, SewersFloor01-12, ForestFloor01-03, ForestFloor05-09, ShopFloor02, SewersShopFloor & ForestShopFloor
   - To configure:
-    - Specify a list of strings of level names.
+    - Specify a list of [LevelNames](../docs/LevelNames.md).
 
   ###### _Example JSON config for LevelPropertiesModified_
 
@@ -439,9 +439,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - The final 'Boss' level only has a single subDeck
   - In addition to the MonsterDeck, configuration for the KeyHolder for each floor and the Boss is also required.
   - To configure:
-    - Specify a lists of BoardPieceIDs for each of the five subdecks.
+    - Specify a lists of [BoardPieceIds](../docs/SettingsReference.md#boardpieceids) for each of the five subdecks.
     - The subdecks must be named `EntranceDeckFloor1`, `ExitDeckFloor1`, `EntranceDeckFloor2`, `ExitDeckFloor2`, `BossDeck`
-    - Specify single BoardPieceIDs for each of `KeyHolderFloor1`, `KeyHolderFloor2`, and `Boss`
+    - Specify single [BoardPieceId](../docs/SettingsReference.md#boardpieceids) for each of `KeyHolderFloor1`, `KeyHolderFloor2`, and `Boss`
 
   ###### _Example JSON config for MonsterDeckOverridden_
 
@@ -571,7 +571,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       { "Piece": "HeroSorcerer", "Property": "MoveRange", "Value": 5 },
       { "Piece": "HeroSorcerer", "Property": "ActionPoint", "Value": 3 },
       { "Piece": "Lure", "Property": "StartHealth", "Value": 30 },
-      { "Piece": "TheBehemoth", "Property": "ActionPoint", "Value": 2 },
+      { "Piece": "SmiteWard", "Property": "ActionPoint", "Value": 2 },
       { "Piece": "HeroSorcerer", "Property": "BerserkBelowHealth", "Value": 0.8 }
     ]
   },
