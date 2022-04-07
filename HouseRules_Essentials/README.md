@@ -97,7 +97,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "AbilityBackstabAdjusted",
     "Config": {
       "Zap": true,
-      "HunterArrow": true,
+      "Arrow": true,
       "PiercingArrow": true,
       "PoisonTip": true,
       "Fireball": true,
@@ -711,7 +711,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 - __StartCardsModified__: Player 🎴 starting cards 🎴 are modified
   - Removes all default cards from Player's hand and replaces them with custom ones.
-  - Replenishable cards do not leave a players hand once cast (e.g. RepairArmor, HunterArrow or Zap).
+  - Replenishable cards do not leave a players hand once cast (e.g. RepairArmor, Arrow or Zap).
   - Max of two replenishable cards per player.
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to replace the starting card hand of.
@@ -735,8 +735,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       ],
       "HeroHunter": [
         { "Card": "HealingPotion", "IsReplenishable": false },
-        { "Card": "HunterArrow", "IsReplenishable": true },
-        { "Card": "HunterArrow", "IsReplenishable": true },
+        { "Card": "Arrow", "IsReplenishable": true },
+        { "Card": "Arrow", "IsReplenishable": true },
         { "Card": "CoinFlip", "IsReplenishable": false },
         { "Card": "DropChest", "IsReplenishable": false },
       ],
