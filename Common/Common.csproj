@@ -33,25 +33,25 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="0Harmony">
-            <HintPath>$(SteamDemeoDir)\MelonLoader\0Harmony.dll</HintPath>
+            <HintPath>$(DemeoVrDir)\MelonLoader\0Harmony.dll</HintPath>
         </Reference>
         <Reference Include="MelonLoader">
-            <HintPath>$(SteamDemeoDir)\MelonLoader\MelonLoader.dll</HintPath>
+            <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
+            <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="Unity.TextMeshPro">
-            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+            <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Unity.TextMeshPro.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+            <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
-            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+            <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UI">
-            <HintPath>$(SteamDemeoDir)\demeo_Data\Managed\UnityEngine.UI.dll</HintPath>
+            <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.UI.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
