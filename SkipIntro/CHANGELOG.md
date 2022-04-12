@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.4.0-skipintro](https://github.com/orendain/demeomods/tree/v1.4.0-skipintro) (2022-04-11)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-skipintro...v1.4.0-skipintro)
+
+**Features/Enhancements:**
+
+- Skip intro loading sequence on PC editions. [\#282](https://github.com/orendain/DemeoMods/pull/282)
+
 ## [v1.3.0](https://github.com/orendain/demeomods/tree/v1.3.0-skipintro) (2022-02-20)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0...v1.3.0-skipintro)
