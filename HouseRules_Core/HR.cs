@@ -7,7 +7,6 @@ namespace HouseRules
 
     public static class HR
     {
-        public const string HouseRulesVersion = "HouseRules 1.2.1";
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Core");
 
         public static readonly Rulebook Rulebook = Rulebook.NewInstance();
