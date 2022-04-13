@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Common;
     using MelonLoader;
+    using Octokit;
     using UnityEngine;
 
     internal class ConfigurationMod : MelonMod
@@ -16,6 +17,13 @@
 
         public override void OnApplicationStart()
         {
+            GitHubClient client = new GitHubClient(new ProductHeaderValue("HouseRules"));
+            var releases = client.Repository.Release.GetAll("orendain", "DemeoMods").Result;
+            var latest = releases[0];
+            Logger.Warning(
+                "The latest release is tagged at {0} and is named {1}",
+                latest.TagName,
+                latest.Name);
             CommonModule.Initialize();
         }
 
