@@ -19,11 +19,15 @@
         {
             GitHubClient client = new GitHubClient(new ProductHeaderValue("HouseRules"));
             var releases = client.Repository.Release.GetAll("orendain", "DemeoMods").Result;
-            var latest = releases[0];
-            Logger.Warning(
-                "The latest release is tagged at {0} and is named {1}",
-                latest.TagName,
-                latest.Name);
+            foreach (var release in releases)
+            {
+                if (release.Name.StartsWith("HouseRules"))
+                {
+                    Logger.Warning($"Latest HouseRules Release {release.Name} has the tag {release.TagName}");
+                    break;
+                }
+            }
+
             CommonModule.Initialize();
         }
 
