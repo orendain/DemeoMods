@@ -24,7 +24,13 @@
                 if (release.Name.StartsWith("HouseRules"))
                 {
                     Logger.Warning($"Latest HouseRules Release {release.Name} has the tag {release.TagName}");
-                    break;
+                    Logger.Warning($"My version {HR.HouseRulesVersion}");
+                    if (release.Name != HR.HouseRulesVersion)
+                    {
+                        // Do the thing that needs to be done.
+                    }
+
+                    break; // Releases are listed in reverse chronological order, so the first HouseRules we find will be the latest.
                 }
             }
 
