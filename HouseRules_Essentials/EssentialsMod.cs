@@ -1,12 +1,20 @@
 ﻿namespace HouseRules.Essentials
 {
+    using System.Reflection;
     using HouseRules.Essentials.Rules;
     using HouseRules.Essentials.Rulesets;
     using MelonLoader;
 
-    internal class EssentialsMod : MelonMod
+    public class EssentialsMod : MelonMod
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Essentials");
+
+        public static string Version()
+        {
+            var assemblyTitleName = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
+            var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            return $"{assemblyTitleName} v{assemblyVersion}";
+        }
 
         public override void OnApplicationStart()
         {

@@ -2,9 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Reflection;
     using Common;
+    using HouseRules.Essentials;
     using MelonLoader;
     using Octokit;
     using UnityEngine;
@@ -29,7 +29,9 @@
 
                     var assemblyTitleName = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
                     var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                    Logger.Warning($"My name is {assemblyTitleName} and my version is {assemblyVersion}");
+                    Logger.Warning($"{HR.Version()}");
+                    Logger.Warning($"{EssentialsMod.Version()}");
+                    Logger.Warning($"{assemblyTitleName} v{assemblyVersion}");
                     Logger.Warning($"My pretty name is {assemblyTitleName.Substring(0, 10)} v{assemblyVersion.Substring(0, 5)}");
                     //var assemblyConfigurationAttribute = typeof(ConfigurationMod).Assemby.GetCustomAttribute<AssemblyConfigurationAttribute>();
 

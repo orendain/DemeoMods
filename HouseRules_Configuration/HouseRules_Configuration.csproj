@@ -38,6 +38,9 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="HouseRules_Essentials">
+      <HintPath>D:\Occulus\Software\resolution-games-demeo\Demeo VR\Mods\HouseRules_Essentials.dll</HintPath>
+    </Reference>
     <Reference Include="MelonLoader">
       <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
