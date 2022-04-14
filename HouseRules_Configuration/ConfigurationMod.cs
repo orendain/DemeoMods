@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using Common;
     using MelonLoader;
     using Octokit;
@@ -24,10 +25,14 @@
             {
                 if (release.Name.StartsWith("HouseRules"))
                 {
-                    var assemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
                     Logger.Warning($"Latest HouseRules Release {release.Name} has the tag {release.TagName}");
-                    Logger.Warning($"My version HouseRules v{assemblyVersion.Substring(0, 4)}");
+
+                    var assemblyTitleName = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
+                    var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                    Logger.Warning($"My name is {assemblyTitleName} and my version is {assemblyVersion}");
+                    Logger.Warning($"My pretty name is {assemblyTitleName.Substring(0, 10)} v{assemblyVersion.Substring(0, 5)}");
+                    //var assemblyConfigurationAttribute = typeof(ConfigurationMod).Assemby.GetCustomAttribute<AssemblyConfigurationAttribute>();
+
                     if (release.Name != assemblyVersion)
                     {
                         // Do the thing that needs to be done.
