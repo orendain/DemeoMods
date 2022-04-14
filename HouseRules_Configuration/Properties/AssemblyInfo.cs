@@ -41,4 +41,4 @@ using MelonLoader;
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonID("574512")]
 [assembly: VerifyLoaderVersion("0.5.3", true)]
-[assembly: MelonAdditionalDependencies("HouseRules_Core")]
+[assembly: MelonAdditionalDependencies("HouseRules_Core", "HouseRules_Essentials")]

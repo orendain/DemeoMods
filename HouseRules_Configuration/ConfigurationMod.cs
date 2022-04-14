@@ -13,33 +13,36 @@
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
+
+        internal static string LatestHouseRulesVersion { get; private set; }
+
         private const int LobbySceneIndex = 1;
         private const int HangoutsSceneIndex = 43;
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
+        public static string Version()
+        {
+            var assemblyTitleName = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
+            var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            return $"{assemblyTitleName} v{assemblyVersion}";
+        }
+
         public override void OnApplicationStart()
         {
+            LatestHouseRulesVersion = "NotCheckedOnlineYet";
+
+            Logger.Msg($"{ConfigurationMod.Version()}");
+            Logger.Msg($"{HR.Version()}");
+            Logger.Msg($"{EssentialsMod.Version()}");
+            Logger.Msg($"Checking github for new releases.");
             GitHubClient client = new GitHubClient(new ProductHeaderValue("HouseRules"));
             var releases = client.Repository.Release.GetAll("orendain", "DemeoMods").Result;
             foreach (var release in releases)
             {
                 if (release.Name.StartsWith("HouseRules"))
                 {
-                    Logger.Warning($"Latest HouseRules Release {release.Name} has the tag {release.TagName}");
-
-                    var assemblyTitleName = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
-                    var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                    Logger.Warning($"{HR.Version()}");
-                    Logger.Warning($"{EssentialsMod.Version()}");
-                    Logger.Warning($"{assemblyTitleName} v{assemblyVersion}");
-                    Logger.Warning($"My pretty name is {assemblyTitleName.Substring(0, 10)} v{assemblyVersion.Substring(0, 5)}");
-                    //var assemblyConfigurationAttribute = typeof(ConfigurationMod).Assemby.GetCustomAttribute<AssemblyConfigurationAttribute>();
-
-                    if (release.Name != assemblyVersion)
-                    {
-                        // Do the thing that needs to be done.
-                    }
-
+                    Logger.Msg($"Latest HouseRules Release {release.Name} has the tag {release.TagName}");
+                    LatestHouseRulesVersion = release.Name;
                     break; // Releases are listed in reverse chronological order, so the first HouseRules we find will be the latest.
                 }
             }
