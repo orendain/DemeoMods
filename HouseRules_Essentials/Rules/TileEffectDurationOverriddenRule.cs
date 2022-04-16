@@ -41,23 +41,22 @@
                     nameof(TileEffectState_GetLayerExpireTime_Prefix)));
         }
 
-        private static bool TileEffectState_GetLayerExpireTime_Prefix(ref TileEffect type, ref int __result)
+        private static bool TileEffectState_GetLayerExpireTime_Prefix(TileEffect type, ref int __result)
         {
             if (!_isActivated)
             {
                 return true;
             }
 
-            if (_globalAdjustments.ContainsKey(type))
+            if (!_globalAdjustments.ContainsKey(type))
             {
-                __result = _globalAdjustments[type];
+                return true;
             }
             else
             {
-                __result = 9999;
+                __result = _globalAdjustments[type];
+                return false; // We returned an user-adjusted config.
             }
-
-            return false; // We returned an user-adjusted config.
         }
     }
 }
