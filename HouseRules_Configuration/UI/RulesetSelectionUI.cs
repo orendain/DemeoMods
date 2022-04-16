@@ -56,15 +56,11 @@
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             _background.transform.localScale = new Vector3(3.75f, 1, 2.5f);
 
-            var currentVersion = BuildVersion.Version;
-            ConfigurationMod.Logger.Warning($"{currentVersion}");
-            var versionName = $"{currentVersion.Substring(0, 10)} {currentVersion.Substring(26, 6)}";
             var menuTitleText = "HouseRules";
-
-            if (ConfigurationMod.LatestHouseRulesVersion != versionName)
+            if (ConfigurationMod.LatestHouseRulesVersion != BuildVersion.Version)
             {
-                ConfigurationMod.Logger.Warning($"Using {versionName} but the latest release is {ConfigurationMod.LatestHouseRulesVersion}");
-                menuTitleText = $"Legacy {versionName}";
+                ConfigurationMod.Logger.Warning($"Using {BuildVersion.Version} but the latest release is {ConfigurationMod.LatestHouseRulesVersion}");
+                menuTitleText = $"Legacy {BuildVersion.Version}";
             }
 
             var menuTitle = _uiHelper.CreateMenuHeaderText(menuTitleText);
