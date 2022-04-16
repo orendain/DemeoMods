@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
     using Common;
     using HouseRules.Essentials;
     using MelonLoader;
@@ -20,20 +19,13 @@
         private const int HangoutsSceneIndex = 43;
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
-        public static string Version()
-        {
-            var assemblyTitleName = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
-            var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            return $"{assemblyTitleName} v{assemblyVersion}";
-        }
-
         public override void OnApplicationStart()
         {
             LatestHouseRulesVersion = "NotCheckedOnlineYet";
 
-            Logger.Msg($"{ConfigurationMod.Version()}");
-            Logger.Msg($"{HR.Version()}");
-            Logger.Msg($"{EssentialsMod.Version()}");
+            Logger.Msg($"{BuildVersion.Version}");
+            Logger.Msg($"{HouseRules.BuildVersion.Version}");
+            Logger.Msg($"{HouseRules.Essentials.BuildVersion.Version}");
             Logger.Msg($"Checking github for new releases.");
             GitHubClient client = new GitHubClient(new ProductHeaderValue("HouseRules"));
             var releases = client.Repository.Release.GetAll("orendain", "DemeoMods").Result;

@@ -33,11 +33,11 @@ using MelonLoader;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.3.0")]
-[assembly: AssemblyFileVersion("1.3.0")]
+[assembly: AssemblyVersion(BuildVersion.MajorMinorVersion)]
+[assembly: AssemblyFileVersion(BuildVersion.Version)]
 
 // Melon Loader.
-[assembly: MelonInfo(typeof(CoreMod), "HouseRules: Core", "1.3.0", "Orendain", "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(CoreMod), "HouseRules: Core", BuildVersion.Version, "Orendain", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonID("574512")]
 [assembly: VerifyLoaderVersion("0.5.3", true)]

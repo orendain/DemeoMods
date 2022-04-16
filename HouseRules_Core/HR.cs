@@ -2,20 +2,12 @@ namespace HouseRules
 {
     using System;
     using System.Linq;
-    using System.Reflection;
     using HouseRules.Types;
     using MelonLoader;
 
     public static class HR
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Core");
-
-        public static string Version()
-        {
-            var assemblyTitleName = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
-            var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            return $"{assemblyTitleName} v{assemblyVersion}";
-        }
 
         public static readonly Rulebook Rulebook = Rulebook.NewInstance();
 

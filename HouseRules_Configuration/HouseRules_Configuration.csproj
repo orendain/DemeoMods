@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildVersion.cs" />
     <Compile Include="ConfigManager.cs" />
     <Compile Include="ConfigurationMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
