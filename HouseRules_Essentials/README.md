@@ -45,7 +45,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 ## Rules and Configurations
 
-- __AbilityActionCostAdjusted__: Adjusts the casting costs for player abilities.
+#### __AbilityActionCostAdjusted__: Adjusts the casting costs for player abilities.
   - Overrides the Ability.CostAP setting for player abilities.
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
@@ -64,7 +64,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __AbilityAoeAdjusted__: Adjusts the Area of Effect range(s) for abilities.
+#### __AbilityAoeAdjusted__: Adjusts the Area of Effect range(s) for abilities.
   - Does not work with all abilities.
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
@@ -84,7 +84,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __AbilityBackstabAdjusted__: Adjusts the enableBackstabBonus setting for abilities.
+#### __AbilityBackstabAdjusted__: Adjusts the enableBackstabBonus setting for abilities.
   - Does not work with all abilities.
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
@@ -106,7 +106,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __AbilityDamageAdjusted__: Ability damage is adjusted
+#### __AbilityDamageAdjusted__: Ability damage is adjusted
   - Only functions for abilities which do damage. (You can't make a HealingPotion hurt).
   - CriticalHitDamage is adjusted to double normal damage.
   - To configure:
@@ -125,7 +125,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __AbilityHealOverridden__: Ability which heal may have the healAmount overridden
+#### __AbilityHealOverridden__: Ability which heal may have the healAmount overridden
   - Only functions for abilities which do heal. (You can't make a Fireball heal).
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
@@ -142,7 +142,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __AbilityRandomPieceList__: The randomPieceList for Abilities is adjusted
+#### __AbilityRandomPieceList__: The randomPieceList for Abilities is adjusted
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - Some abilities (BeastWhisperer, RatBomb) have lists which are used to spawn random pieces.
   - This rule allows the list to be replaced with a different one.
@@ -164,7 +164,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __BackstabConfigOverridden__: A list of Pieces may use 🔪Backstab🔪 instead of just the Assassin
+#### __BackstabConfigOverridden__: A list of Pieces may use 🔪Backstab🔪 instead of just the Assassin
   - Replaces the hardcoded default of HeroRogue with a configurable list.
   - Now everyone can benefit from Backstab bonus.
   - To configure:
@@ -179,7 +179,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
-- __CardAdditionOverridden__: Overrides the lists of cards which players receive from chests & card energy.
+#### __CardAdditionOverridden__: Overrides the lists of cards which players receive from chests & card energy.
   - The default card allocation mechanism is intercepted and changed to use a user-defined list of cards.
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) that should have its card pool overridden.
@@ -197,7 +197,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __CardEnergyFromAttackMultiplied__: Card energy from attack is multiplied
+#### __CardEnergyFromAttackMultiplied__: Card energy from attack is multiplied
   - Multiply how quickly the mana bar fills up when you attack enemies.
   - To configure:
     - Specify a decimal number representing how the energy is multiplied.
@@ -211,7 +211,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __CardEnergyFromRecyclingMultiplied__: Card energy from recycling is multiplied
+#### __CardEnergyFromRecyclingMultiplied__: Card energy from recycling is multiplied
   - To configure:
     - Specify a decimal number representing how the energy is multiplied.
 
@@ -224,7 +224,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __CardLimitModified__: Card limit is modified
+#### __CardLimitModified__: Card limit is modified
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - Change the size of the player's card hand from the default 10/11.
   - To configure:
@@ -239,7 +239,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __CardSellValueMultiplied__: Card sell values are multiplied
+#### __CardSellValueMultiplied__: Card sell values are multiplied
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - Increase card sale values in the shop.
   - To configure:
@@ -254,7 +254,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __CardClassRestrictionOverridden__: Overrides Character Class assignments for cards.
+#### __CardClassRestrictionOverridden__: Overrides Character Class assignments for cards.
   - Cards with a character class of `None` are usable by all players.
   - Cards may be disabled from play by assigning to a non-player Character
   - Cards may be reassigned to other player characters
@@ -275,7 +275,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
-- __EnemyAttackScaled__: Enemy ⚔️attack⚔️ damage is scaled
+#### __EnemyAttackScaled__: Enemy ⚔️attack⚔️ damage is scaled
   - To configure:
     - Specify a decimal number representing how enemy attack damage is multiplied.
 
@@ -288,7 +288,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __EnemyDoorOpeningDisabled__: Enemy 🚪door🚪 opening ability disabled
+#### __EnemyDoorOpeningDisabled__: Enemy 🚪door🚪 opening ability disabled
   - To configure:
     - Specify `true` to disable enemies opening doors.
 
@@ -301,7 +301,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __EnemyHealthScaled__: Enemy health is scaled
+#### __EnemyHealthScaled__: Enemy health is scaled
   - To configure:
     - Specify a decimal number representing how enemy health is multiplied.
 
@@ -314,7 +314,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __EnemyRespawnDisabled__: Enemy respawns are disabled
+#### __EnemyRespawnDisabled__: Enemy respawns are disabled
   - To configure:
     - Specify `true` to disable enemy respawns.
 
@@ -327,7 +327,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __GoldPickedUpMultiplied__: 💰Gold💰 picked up is multiplied
+#### __GoldPickedUpMultiplied__: 💰Gold💰 picked up is multiplied
   - To configure:
     - Specify a decimal number representing how gold is multiplied.
 
@@ -340,7 +340,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __LevelExitLockedUntilAllEnemiesDefeated__: The 🔒exit🔑 from each level will not open if any enemies remain.
+#### __LevelExitLockedUntilAllEnemiesDefeated__: The 🔒exit🔑 from each level will not open if any enemies remain.
   - This rule needs to be used in combination with other rules or it will not be possible to complete a level. (e.g. EnemyRespawnDisabled)
   - To configure:
     - Specify `true` to keep the level exit locked until all enemies are defeated.
@@ -354,7 +354,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __LampTypesOverridden__: The types of lamps spawned on each floor are overridden.
+#### __LampTypesOverridden__: The types of lamps spawned on each floor are overridden.
   - Lamps are spawned in pre-set locations on each map, but the list of available lamps can be configured.
   - Lamps are spawned at random, so specifying multiples of some lamp types can be used to get a desired ratio.
   - Boardpieces other than lamps (e.g. SporeFungus) can also be spawned.
@@ -390,7 +390,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __LevelPropertiesModified__: Level properties are modified
+#### __LevelPropertiesModified__: Level properties are modified
   - Allows customisation of Loot, Chests and HealingFountains on a per-floor basis
   - To configure:
     - Specify the [LevelProperty](../docs/LevelProperties.md) to modify.
@@ -413,7 +413,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __LevelSequenceOverridden__: The Level Sequence of dungeon floors is overridden.
+#### __LevelSequenceOverridden__: The Level Sequence of dungeon floors is overridden.
   - List of levels must be exactly five items long. The game will crash at the end if the list is any longer.
   - Shop levels can be replaced with game levels.
   - It is possible to use levels from any book (Elven, Sewers, Forest) together in a single list
@@ -431,7 +431,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __MonsterDeckOverridden__: The MonsterDeck which is used for spawning monsters is overridden.
+#### __MonsterDeckOverridden__: The MonsterDeck which is used for spawning monsters is overridden.
   - This rule is a more advanced implementation of SpawnCategoriesOverridden, and will directly configure the MonsterDeck from lists.
   - Within the game the `AIDirectorController` deals Monsters from the MonsterDeck when populating the levels.
   - Two subdecks are used for each floor. One subdeck is used when players are near the Entrance, and another nearer the exit.
@@ -496,7 +496,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 
-- __PetsFocusHunterMark__: Pets focus on hunter marked enemies
+#### __PetsFocusHunterMark__: Pets focus on hunter marked enemies
   - To configure:
     - Specify `true` to have pets focus on enemies that are marked.
 
@@ -509,7 +509,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __PieceAbilityListOverridden__: The list of abilities for a ♟️BoardPiece is overridden.
+#### __PieceAbilityListOverridden__: The list of abilities for a ♟️BoardPiece is overridden.
   - Board pieces have abilities such as LaySpiderEgg or SpawnCultists. This rule allows those lists to be overridden.
   - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold, cards, etc.
   - Assigning an Ability to a BoardPiece does not necessarily mean that the piece will have a Behaviour to use it.
@@ -531,7 +531,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __PieceBehavioursListOverridden__: The list of behaviours that a ♟️BoardPiece behaves is overridden.
+#### __PieceBehavioursListOverridden__: The list of behaviours that a ♟️BoardPiece behaves is overridden.
   - Board pieces have behaviours such as Patrol, SpawnPiece, AttackandRetreat. This rule allows those lists to be overridden.
   - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold, cards, etc.
   - Assigning a behaviour to a particular BoardPiece does not mean that the piece is of the correct PieceType to perform it.
@@ -553,7 +553,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __PieceConfigAdjusted__: Allows customization of any numeric field for any ♟️BoardPiece
+#### __PieceConfigAdjusted__: Allows customization of any numeric field for any ♟️BoardPiece
   - Allows customization of many of the properties for each game Piece. 🩺Health, 🎲ActionPoints, 🏃Movement, ⚔️MeleeDamage, etc.
   - Only works for numeric fields. The configured value replaces the default.
   - To configure:
@@ -577,7 +577,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
   
-- __PieceImmunityListAdjusted__: Allows the list of immunities for any ♟️BoardPiece to be overridden
+#### __PieceImmunityListAdjusted__: Allows the list of immunities for any ♟️BoardPiece to be overridden
   - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weakened, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
@@ -595,7 +595,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __PiecePieceTypeListOverridden__: Allows the list of PieceTypes for a ♟️BoardPiece to be overridden.
+#### __PiecePieceTypeListOverridden__: Allows the list of PieceTypes for a ♟️BoardPiece to be overridden.
   - Board pieces have PieceTypes such as IgnoreWhenCharmed, Brittle, Enemy, Prop, Interactable which dictate certain behaviours.
   - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold, cards, etc.
   - Assigning an PieceType to a BoardPiece does not necessarily mean that the piece will change its behaviour.
@@ -617,7 +617,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
   
-- __PieceUseWhenKilledOverridden__: Allows the list of UseWhenKilled abilities for any ♟️BoardPiece to be overridden
+#### __PieceUseWhenKilledOverridden__: Allows the list of UseWhenKilled abilities for any ♟️BoardPiece to be overridden
   - Abilities are triggered when a piece dies.
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
@@ -635,7 +635,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __RatNestsSpawnGold__: Rat nests spawn 💰gold💰
+#### __RatNestsSpawnGold__: Rat nests spawn 💰gold💰
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - To configure:
     - Specify an integer representing the maximum piles of gold that should be spawned each time.
@@ -649,7 +649,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __RegainAbilityIfMaxxedOutOverridden__: Controls whether you get a potion back when you cast it on someone who is already at max.
+#### __RegainAbilityIfMaxxedOutOverridden__: Controls whether you get a potion back when you cast it on someone who is already at max.
   - This rule is to overcome a 'feature' that occurs if you apply an AOE range onto Strength/Speed potions. By default when you cast a strength or speed potion on someone who is already maxed out, you get it returned to your hand. If you cast a potion on a group who are maxed, you get one-potion-per-player returned back to your hand.
   - This rule exists to control that behaviour.
   - To configure:
@@ -668,7 +668,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
-- __RoundCountLimited__:  Sets a limit for the maximum number of rounds a game may take.
+#### __RoundCountLimited__:  Sets a limit for the maximum number of rounds a game may take.
   - For ⏳ beat-the-clock ⏳ type gameplay.
   - If the game is not completed (i.e., the boss defeated) before the specified rounds are up, the game ends as a loss.
   - To configure:
@@ -683,9 +683,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __SampleRule__: A [sample rule](Rules/SampleRule.cs) documenting the anatomy of a HouseRule rule.
+#### __SampleRule__: A [sample rule](Rules/SampleRule.cs) documenting the anatomy of a HouseRule rule.
 
-- __SpawnCategoryOverridden__:  Overrides the Spawn Categories which control distribution of pieces in each map.
+#### __SpawnCategoryOverridden__:  Overrides the Spawn Categories which control distribution of pieces in each map.
   - Each dungeon has a list of pieces which may appear, and controlling properties.
   - This rule replaces the list (for all dungeons) with a new one.
   - Pieces which are not listed in the config will have `IsSpawningEnabled` set to `false` to disable pieces from auto-populating a map.
@@ -709,7 +709,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
-- __StartCardsModified__: Player 🎴 starting cards 🎴 are modified
+#### __StartCardsModified__: Player 🎴 starting cards 🎴 are modified
   - Removes all default cards from Player's hand and replaces them with custom ones.
   - Replenishable cards do not leave a players hand once cast (e.g. RepairArmor, Arrow or Zap).
   - Max of two replenishable cards per player.
@@ -752,7 +752,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
+#### __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
   - There are only six different StatModifiers in the game. They are used by 💪StrengthPotion, 🦶SwiftnessPotion, 🛡️ReplenishArmor, HuntersMark, etc.
   - These modifiers control the power of each corresponding ability.  E.g., by default the stat modifier for SongOfResilience is 5, as it grants 5 units of armor.  
   - To configure:
@@ -775,7 +775,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __StatusEffectConfig__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
+#### __StatusEffectConfig__: The parameters of different StatusEffects (🔥Torch, 🤢Poison, 🥶Frozen) can be overridden
   - Default values can be found in `StatusEffectsConfig.effectsConfig`.
   - To configure:
     - Specify a list of status effects that should replace existing ones of the same type.
