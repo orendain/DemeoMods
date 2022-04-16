@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
     using Common;
     using MelonLoader;
-    using Octokit;
+    using Newtonsoft.Json.Linq;
     using UnityEngine;
 
     internal class ConfigurationMod : MelonMod
@@ -21,45 +23,7 @@
         public override void OnApplicationStart()
         {
             CommonModule.Initialize();
-            LatestHouseRulesVersion = FindLatestReleaseVersion();
-        }
-
-        /// <summary>
-        /// Finds the latest HouseRules release version, returning the empty string if one can not be found.
-        /// </summary>
-        private static string FindLatestReleaseVersion()
-        {
-            Logger.Msg("Checking GitHub for new releases.");
-
-            try
-            {
-                var client = new GitHubClient(new ProductHeaderValue("HouseRules"));
-                var releases = client.Repository.Release.GetAll("orendain", "DemeoMods").Result;
-                foreach (var release in releases)
-                {
-                    if (!release.Name.StartsWith("HouseRules"))
-                    {
-                        continue;
-                    }
-
-                    Logger.Msg($"Latest HouseRules release \"{release.Name}\" has the tag {release.TagName}");
-                    return ExtractVersion(release.TagName);
-                }
-            }
-            catch (ApiException e)
-            {
-                Logger.Warning($"Failed to find latest HouseRules version: {e}");
-            }
-
-            return string.Empty;
-        }
-
-        /// <summary>
-        /// Extracts a semantic version from a standard HouseRules tag name.
-        /// </summary>
-        private static string ExtractVersion(string tag)
-        {
-            return tag.Substring(1).Replace("-houserules", string.Empty);
+            FindLatestReleaseVersion();
         }
 
         public override void OnApplicationLateStart()
@@ -114,6 +78,54 @@
                     Logger.Warning($"Failed to import and register ruleset from file [{file}]. Skipping that ruleset: {e}");
                 }
             }
+        }
+
+        /// <summary>
+        /// Finds the latest HouseRules release version, returning the empty string if one can not be found.
+        /// </summary>
+        private static async void FindLatestReleaseVersion()
+        {
+            Logger.Msg("Checking for latest HouseRules release.");
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
+            client.DefaultRequestHeaders.Add("User-Agent", "HouseRules");
+
+            var responseString = await client.GetStringAsync("https://api.github.com/repos/orendain/DemeoMods/releases");
+            var responseJson = JArray.Parse(responseString);
+            foreach (var obj in responseJson.Children<JObject>())
+            {
+                if (obj["tag_name"] == null)
+                {
+                    continue;
+                }
+
+                if (!TryParseVersion(obj["tag_name"].ToString(), out var version))
+                {
+                    continue;
+                }
+
+                Logger.Msg($"Found latest HouseRules release: {version}");
+                LatestHouseRulesVersion = version;
+                return;
+            }
+
+            LatestHouseRulesVersion = string.Empty;
+        }
+
+        /// <summary>
+        /// Extracts a version from a standard HouseRules tag name.
+        /// </summary>
+        private static bool TryParseVersion(string tag, out string version)
+        {
+            if (!tag.EndsWith("-houserules"))
+            {
+                version = string.Empty;
+                return false;
+            }
+
+            version = tag.Substring(1).Replace("-houserules", string.Empty);
+            return true;
         }
     }
 }
