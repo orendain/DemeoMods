@@ -95,12 +95,13 @@
             var responseJson = JArray.Parse(responseString);
             foreach (var obj in responseJson.Children<JObject>())
             {
-                if (obj["tag_name"] == null)
+                var tagName = obj["tag_name"];
+                if (tagName == null)
                 {
                     continue;
                 }
 
-                if (!TryParseVersion(obj["tag_name"].ToString(), out var version))
+                if (!TryParseVersion(tagName.ToString(), out var version))
                 {
                     continue;
                 }
@@ -109,8 +110,6 @@
                 LatestHouseRulesVersion = version;
                 return;
             }
-
-            LatestHouseRulesVersion = string.Empty;
         }
 
         /// <summary>

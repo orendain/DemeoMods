@@ -4,7 +4,7 @@
     using HouseRules.Essentials.Rulesets;
     using MelonLoader;
 
-    public class EssentialsMod : MelonMod
+    internal class EssentialsMod : MelonMod
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Essentials");
 
