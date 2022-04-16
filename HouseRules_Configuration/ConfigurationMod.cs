@@ -29,9 +29,6 @@
         /// </summary>
         private static string FindLatestReleaseVersion()
         {
-            Logger.Msg($"{BuildVersion.Version}");
-            Logger.Msg($"{HouseRules.BuildVersion.Version}");
-            Logger.Msg($"{Essentials.BuildVersion.Version}");
             Logger.Msg("Checking GitHub for new releases.");
 
             try
