@@ -53,6 +53,7 @@
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
             HR.Rulebook.Register(typeof(StatModifiersOverridenRule));
             HR.Rulebook.Register(typeof(StatusEffectConfigRule));
+            HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
         }
 
         private static void RegisterRulesets()

@@ -809,3 +809,27 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     ]
   },
   ```
+
+- __TileEffectDurationOverriden__: Overrides TileEffect durations settings for gas, acid, web etc.
+  - There are five different TileEffects in the game. Gas, Acid, Web, Water and Target.
+  - Overriding the durations allows for TileEffects to last for longer or shorter times.
+  - It is necessary to specify all five effects in the config for this rule, or they will assume a default duration of 9999 rounds.
+  - To configure:
+    - Specify the `TileEfect` (Gas, Acidm etc) of the effect whose duration should be replaced.
+    - Specify an integer representing the new duration in turns.
+
+  ###### _Example JSON config for TileEffectDurationOverriden_
+
+  ```json
+  {
+    "Rule": "TileEffectDurationOverriden",
+    "Config": {
+      "Gas": 3,
+      "Acid": 4,
+      "Web": 2,
+      "Water": 2,
+      "Target": 0,
+    }
+  },
+  ```
+

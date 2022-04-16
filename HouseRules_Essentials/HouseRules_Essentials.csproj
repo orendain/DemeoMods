@@ -50,6 +50,7 @@
     <Compile Include="Rules\AbilityBackstabAdjustedRule.cs" />
     <Compile Include="Rules\AbilityHealOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
+    <Compile Include="Rules\TileEffectDurationOverriddenRule.cs" />
     <Compile Include="Rules\LampTypesOverriddenRule.cs" />
     <Compile Include="Rules\LevelSequenceOverriddenRule.cs" />
     <Compile Include="Rules\PieceUseWhenKilledOverriddenRule.cs" />
