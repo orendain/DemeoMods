@@ -2,11 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
     using Common;
-    using HouseRules.Essentials;
     using MelonLoader;
-    using Octokit;
+    using Newtonsoft.Json.Linq;
     using UnityEngine;
 
     internal class ConfigurationMod : MelonMod
@@ -20,34 +20,10 @@
         private const int HangoutsSceneIndex = 43;
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
-        public static string Version()
-        {
-            var assemblyTitleName = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
-            var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            return $"{assemblyTitleName} v{assemblyVersion}";
-        }
-
         public override void OnApplicationStart()
         {
-            LatestHouseRulesVersion = "NotCheckedOnlineYet";
-
-            Logger.Msg($"{ConfigurationMod.Version()}");
-            Logger.Msg($"{HR.Version()}");
-            Logger.Msg($"{EssentialsMod.Version()}");
-            Logger.Msg($"Checking github for new releases.");
-            GitHubClient client = new GitHubClient(new ProductHeaderValue("HouseRules"));
-            var releases = client.Repository.Release.GetAll("orendain", "DemeoMods").Result;
-            foreach (var release in releases)
-            {
-                if (release.Name.StartsWith("HouseRules"))
-                {
-                    Logger.Msg($"Latest HouseRules Release {release.Name} has the tag {release.TagName}");
-                    LatestHouseRulesVersion = release.Name;
-                    break; // Releases are listed in reverse chronological order, so the first HouseRules we find will be the latest.
-                }
-            }
-
             CommonModule.Initialize();
+            FindLatestReleaseVersion();
         }
 
         public override void OnApplicationLateStart()
@@ -102,6 +78,54 @@
                     Logger.Warning($"Failed to import and register ruleset from file [{file}]. Skipping that ruleset: {e}");
                 }
             }
+        }
+
+        /// <summary>
+        /// Finds the latest HouseRules release version, returning the empty string if one can not be found.
+        /// </summary>
+        private static async void FindLatestReleaseVersion()
+        {
+            Logger.Msg("Checking for latest HouseRules release.");
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
+            client.DefaultRequestHeaders.Add("User-Agent", "HouseRules");
+
+            var responseString = await client.GetStringAsync("https://api.github.com/repos/orendain/DemeoMods/releases");
+            var responseJson = JArray.Parse(responseString);
+            foreach (var obj in responseJson.Children<JObject>())
+            {
+                if (obj["tag_name"] == null)
+                {
+                    continue;
+                }
+
+                if (!TryParseVersion(obj["tag_name"].ToString(), out var version))
+                {
+                    continue;
+                }
+
+                Logger.Msg($"Found latest HouseRules release: {version}");
+                LatestHouseRulesVersion = version;
+                return;
+            }
+
+            LatestHouseRulesVersion = string.Empty;
+        }
+
+        /// <summary>
+        /// Extracts a version from a standard HouseRules tag name.
+        /// </summary>
+        private static bool TryParseVersion(string tag, out string version)
+        {
+            if (!tag.EndsWith("-houserules"))
+            {
+                version = string.Empty;
+                return false;
+            }
+
+            version = tag.Substring(1).Replace("-houserules", string.Empty);
+            return true;
         }
     }
 }
