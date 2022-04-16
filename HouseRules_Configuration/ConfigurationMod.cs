@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using Common;
-    using HouseRules.Essentials;
     using MelonLoader;
     using Octokit;
     using UnityEngine;
@@ -21,25 +20,49 @@
 
         public override void OnApplicationStart()
         {
-            LatestHouseRulesVersion = "NotCheckedOnlineYet";
+            CommonModule.Initialize();
+            LatestHouseRulesVersion = FindLatestReleaseVersion();
+        }
 
+        /// <summary>
+        /// Finds the latest HouseRules release version, returning the empty string if one can not be found.
+        /// </summary>
+        private static string FindLatestReleaseVersion()
+        {
             Logger.Msg($"{BuildVersion.Version}");
             Logger.Msg($"{HouseRules.BuildVersion.Version}");
-            Logger.Msg($"{HouseRules.Essentials.BuildVersion.Version}");
-            Logger.Msg($"Checking github for new releases.");
-            GitHubClient client = new GitHubClient(new ProductHeaderValue("HouseRules"));
-            var releases = client.Repository.Release.GetAll("orendain", "DemeoMods").Result;
-            foreach (var release in releases)
+            Logger.Msg($"{Essentials.BuildVersion.Version}");
+            Logger.Msg("Checking GitHub for new releases.");
+
+            try
             {
-                if (release.Name.StartsWith("HouseRules"))
+                var client = new GitHubClient(new ProductHeaderValue("HouseRules"));
+                var releases = client.Repository.Release.GetAll("orendain", "DemeoMods").Result;
+                foreach (var release in releases)
                 {
-                    Logger.Msg($"Latest HouseRules Release {release.Name} has the tag {release.TagName}");
-                    LatestHouseRulesVersion = release.Name;
-                    break; // Releases are listed in reverse chronological order, so the first HouseRules we find will be the latest.
+                    if (!release.Name.StartsWith("HouseRules"))
+                    {
+                        continue;
+                    }
+
+                    Logger.Msg($"Latest HouseRules release \"{release.Name}\" has the tag {release.TagName}");
+                    return ExtractVersion(release.TagName);
                 }
             }
+            catch (ApiException e)
+            {
+                Logger.Warning($"Failed to find latest HouseRules version: {e}");
+            }
 
-            CommonModule.Initialize();
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Extracts a semantic version from a standard HouseRules tag name.
+        /// </summary>
+        private static string ExtractVersion(string tag)
+        {
+            return tag.Substring(1).Replace("-houserules", string.Empty);
         }
 
         public override void OnApplicationLateStart()

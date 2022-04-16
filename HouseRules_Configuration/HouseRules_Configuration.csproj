@@ -81,7 +81,7 @@
     </ProjectReference>
     <ProjectReference Include="..\HouseRules_Essentials\HouseRules_Essentials.csproj">
       <Project>{8FC09405-8E06-4090-BB68-94882F0A52D8}</Project>
-      <Name>HouseRules__Essentials</Name>
+      <Name>HouseRules_Essentials</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
