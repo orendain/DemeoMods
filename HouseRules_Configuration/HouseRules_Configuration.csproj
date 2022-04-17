@@ -51,9 +51,6 @@
         <Reference Include="UnityEngine.PhysicsModule">
             <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
-        <Reference Include="UnityEngine.UnityWebRequestModule">
-            <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
-        </Reference>
         <Reference Include="UnityEngine.UI">
             <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.UI.dll</HintPath>
         </Reference>
@@ -77,10 +74,6 @@
         <ProjectReference Include="..\HouseRules_Core\HouseRules_Core.csproj">
             <Project>{b412463f-a4f7-46ce-ac4e-37448762b45b}</Project>
             <Name>HouseRules_Core</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\HouseRules_Essentials\HouseRules_Essentials.csproj">
-            <Project>{8FC09405-8E06-4090-BB68-94882F0A52D8}</Project>
-            <Name>HouseRules_Essentials</Name>
         </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
