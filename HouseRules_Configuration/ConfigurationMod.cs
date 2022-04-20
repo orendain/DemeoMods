@@ -11,8 +11,6 @@
 
     internal class ConfigurationMod : MelonMod
     {
-        private const string DemeoPCEditionString = "Demeo PC Edition";
-
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
 
@@ -56,12 +54,6 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (MelonUtils.CurrentGameAttribute.Name == DemeoPCEditionString)
-            {
-                Logger.Msg("PC Edition detected. Skipping VR UI loading.");
-                return;
-            }
-
             if (buildIndex == LobbySceneIndex || buildIndex == HangoutsSceneIndex)
             {
                 _ = new GameObject("HouseRules_RulesetSelection", typeof(UI.RulesetSelectionUI));
