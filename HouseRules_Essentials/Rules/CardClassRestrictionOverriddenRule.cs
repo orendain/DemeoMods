@@ -51,9 +51,8 @@
                 }
 
                 previousConfigs.Add(cardConfig.Card, cardConfig.ClassRestriction);
-
                 cardConfig.ClassRestriction = cardProperties[cardConfig.Card];
-                cardConfigs.Insert(i, cardConfig);
+                cardConfigs[i] = cardConfig;
             }
 
             return previousConfigs;
