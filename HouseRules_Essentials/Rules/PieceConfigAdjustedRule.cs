@@ -43,7 +43,7 @@
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-                ReplaceExistingProperties(_originals);
+            ReplaceExistingProperties(_originals);
         }
 
         /// <summary>
