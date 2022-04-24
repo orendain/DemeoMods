@@ -101,7 +101,7 @@
 
             var levelExit = context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
             levelExit?.DisableEffectState(EffectStateType.Locked);
-            HR.ScheduleBoardSync();
+            HR.ScheduleResync();
         }
 
         private static bool IsEnemyRemaining(GameContext gameContext)

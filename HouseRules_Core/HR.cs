@@ -39,9 +39,9 @@ namespace HouseRules
             Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
         }
 
-        public static void ScheduleBoardSync()
+        public static void ScheduleResync()
         {
-            BoardSyncer.ScheduleSync();
+            BoardSyncer.ScheduleResync();
         }
     }
 }
