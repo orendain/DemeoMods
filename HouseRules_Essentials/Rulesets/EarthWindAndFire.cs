@@ -220,28 +220,34 @@
 
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);
 
-            var lampTypesRule = new LampTypesOverriddenRule(new LampTypesOverriddenRule.LampConfig
+            var lampTypesRule = new LampTypesOverriddenRule(new Dictionary<int, List<BoardPieceId>>
             {
-                Floor1Lamps = new List<BoardPieceId>
                 {
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.VortexLamp,
+                    1, new List<BoardPieceId>
+                    {
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.VortexLamp,
+                    }
                 },
-                Floor2Lamps = new List<BoardPieceId>
                 {
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.VortexLamp,
+                    2, new List<BoardPieceId>
+                    {
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.VortexLamp,
+                    }
                 },
-                Floor3Lamps = new List<BoardPieceId>
                 {
-                    BoardPieceId.IceLamp,
-                    BoardPieceId.IceLamp,
-                    BoardPieceId.IceLamp,
-                    BoardPieceId.VortexLamp,
+                    3, new List<BoardPieceId>
+                    {
+                        BoardPieceId.IceLamp,
+                        BoardPieceId.IceLamp,
+                        BoardPieceId.IceLamp,
+                        BoardPieceId.VortexLamp,
+                    }
                 },
             });
 
