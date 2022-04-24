@@ -56,20 +56,20 @@
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             _background.transform.localScale = new Vector3(3.75f, 1, 2.5f);
 
-            var menuTitleText = "HouseRules";
-            if (ConfigurationMod.LatestHouseRulesVersion != BuildVersion.Version)
-            {
-                ConfigurationMod.Logger.Warning($"Using {BuildVersion.Version} but the latest release is {ConfigurationMod.LatestHouseRulesVersion}");
-                menuTitleText = $"Legacy {BuildVersion.Version}";
-            }
-
-            var menuTitle = _uiHelper.CreateMenuHeaderText(menuTitleText);
+            var menuTitle = _uiHelper.CreateMenuHeaderText("HouseRules");
             menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
             menuTitle.transform.localPosition = new Vector3(0, 5.95f, UiHelper.DefaultTextZShift);
 
             var selectionPanel = _rulesetSelectionPanel.Panel;
             selectionPanel.transform.SetParent(this.transform, worldPositionStays: false);
             selectionPanel.transform.localPosition = new Vector3(0, 2.5f, 0);
+
+            var versionMessage = ConfigurationMod.IsUpdateAvailable()
+                ? $"v{BuildVersion.Version} >>> new update available! <<<"
+                : $"v{BuildVersion.Version}";
+            var versionText = _uiHelper.CreateLabelText(versionMessage);
+            versionText.transform.SetParent(this.transform, worldPositionStays: false);
+            versionText.transform.localPosition = new Vector3(0, -15f, UiHelper.DefaultTextZShift);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             this.gameObject.AddComponent<BoxCollider>();
