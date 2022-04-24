@@ -134,5 +134,18 @@
             version = tag.Substring(1).Replace("-houserules", string.Empty);
             return true;
         }
+
+        /// <summary>
+        /// Returns true if a newer release is known to be available, false otherwise.
+        /// </summary>
+        internal static bool IsUpdateAvailable()
+        {
+            if (string.IsNullOrEmpty(ConfigurationMod.LatestHouseRulesVersion))
+            {
+                return false;
+            }
+
+            return ConfigurationMod.LatestHouseRulesVersion != BuildVersion.Version;
+        }
     }
 }
