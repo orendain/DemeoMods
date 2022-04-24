@@ -79,12 +79,9 @@
             }
 
             var isNewPieceCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
-            if (isNewPieceCheckRequired && !_isSyncScheduled)
+            if (!_isSyncScheduled && isNewPieceCheckRequired && CanRepresentNewSpawn(serializableEvent))
             {
-                if (CanRepresentNewSpawn(serializableEvent))
-                {
-                    _isSyncScheduled = true;
-                }
+                _isSyncScheduled = true;
             }
 
             if (_isSyncScheduled && IsSyncOpportunity(serializableEvent))
