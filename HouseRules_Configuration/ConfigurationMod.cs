@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using Common;
@@ -136,16 +137,65 @@
         }
 
         /// <summary>
-        /// Returns true if a newer release is known to be available, false otherwise.
+        /// Returns true if an update is available, false otherwise.
         /// </summary>
+        /// <remarks>
+        /// Issues encountered during this process, such as unexpected version formats or internet connectivity issues,
+        /// will result in this method returning false.
+        /// </remarks>
         internal static bool IsUpdateAvailable()
         {
-            if (string.IsNullOrEmpty(ConfigurationMod.LatestHouseRulesVersion))
+            if (string.IsNullOrEmpty(LatestHouseRulesVersion))
             {
                 return false;
             }
 
-            return ConfigurationMod.LatestHouseRulesVersion != BuildVersion.Version;
+            try
+            {
+                var versionParts = SplitVersion(BuildVersion.Version);
+                var onlineVersionParts = SplitVersion(LatestHouseRulesVersion);
+                return IsLessThan(versionParts, onlineVersionParts);
+            }
+            catch (Exception e)
+            {
+                Logger.Warning($"Failed to determine if an update is available: {e}");
+                return false;
+            }
+        }
+
+        private static int[] SplitVersion(string version)
+        {
+            return version.Split('.').Select(int.Parse).ToArray();
+        }
+
+        private static bool IsLessThan(int[] parts, int[] otherParts)
+        {
+            if (parts.Length == 0 && otherParts.Length == 0)
+            {
+                return false;
+            }
+
+            if (parts.Length == 0)
+            {
+                return 0 < otherParts[0];
+            }
+
+            if (otherParts.Length == 0)
+            {
+                return parts[0] < 0;
+            }
+
+            if (parts[0] > otherParts[0])
+            {
+                return false;
+            }
+
+            if (parts[0] < otherParts[0])
+            {
+                return true;
+            }
+
+            return IsLessThan(parts.Skip(1).ToArray(), otherParts.Skip(1).ToArray());
         }
     }
 }
