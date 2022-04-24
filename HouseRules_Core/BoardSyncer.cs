@@ -228,6 +228,7 @@
             _isNewSpawnPossible = false;
             _isStatusImmunitiesTouched = false;
             _isStatusEffectsTouched = false;
+            _isResyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
