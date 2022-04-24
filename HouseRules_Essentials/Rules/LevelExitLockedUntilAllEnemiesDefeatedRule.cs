@@ -105,7 +105,7 @@
 
         private static bool IsEnemyRemaining(GameContext gameContext)
         {
-            return gameContext.pieceAndTurnController.GetEnemyPieces().Select(p =>
+            return gameContext.pieceAndTurnController.GetEnemyPieces().Where(p =>
             {
                 if (p.boardPieceId == BoardPieceId.SpiderEgg)
                 {
