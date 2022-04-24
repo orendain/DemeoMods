@@ -64,12 +64,16 @@
             selectionPanel.transform.SetParent(this.transform, worldPositionStays: false);
             selectionPanel.transform.localPosition = new Vector3(0, 2.5f, 0);
 
-            var versionMessage = ConfigurationMod.IsUpdateAvailable()
-                ? $"v{BuildVersion.Version} >>> new update available! <<<"
-                : $"v{BuildVersion.Version}";
-            var versionText = _uiHelper.CreateLabelText(versionMessage);
+            var versionText = _uiHelper.CreateLabelText($"v{BuildVersion.Version}");
             versionText.transform.SetParent(this.transform, worldPositionStays: false);
-            versionText.transform.localPosition = new Vector3(0, -15f, UiHelper.DefaultTextZShift);
+            versionText.transform.localPosition = new Vector3(-7, -15.85f, UiHelper.DefaultTextZShift);
+
+            if (ConfigurationMod.IsUpdateAvailable())
+            {
+                var updateText = _uiHelper.CreateLabelText("NEW UPDATE AVAILABLE!");
+                updateText.transform.SetParent(this.transform, worldPositionStays: false);
+                updateText.transform.localPosition = new Vector3(4.8f, -15.85f, UiHelper.DefaultTextZShift);
+            }
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             this.gameObject.AddComponent<BoxCollider>();
