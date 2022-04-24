@@ -100,12 +100,7 @@
             GameUI.ShowCameraMessage("All enemies have been defeated! You may advance.", 5);
 
             var levelExit = context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
-            if (levelExit == null)
-            {
-                return;
-            }
-
-            levelExit.DisableEffectState(EffectStateType.Locked);
+            levelExit?.DisableEffectState(EffectStateType.Locked);
         }
 
         private static bool IsEnemyRemaining(GameContext gameContext)
