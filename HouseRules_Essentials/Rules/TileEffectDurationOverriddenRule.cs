@@ -50,11 +50,9 @@
             {
                 return true;
             }
-            else
-            {
-                __result = _globalAdjustments[type];
-                return false; // We returned an user-adjusted config.
-            }
+
+            __result = _globalAdjustments[type];
+            return false; // We returned an user-adjusted config.
         }
     }
 }
