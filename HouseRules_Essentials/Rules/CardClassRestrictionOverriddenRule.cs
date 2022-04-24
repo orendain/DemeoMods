@@ -41,31 +41,19 @@
             var gameConfigCardConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, List<CardConfigDTO>>>("CardConfigDTOlist").Value;
             var cardConfigs = gameConfigCardConfigs[MotherbrainGlobalVars.CurrentConfig];
             var previousConfigs = new Dictionary<AbilityKey, BoardPieceId>();
-            var aks = new List<AbilityKey>();
-            foreach (var ak in cardProperties)
-            {
-                aks.Add(ak.Key);
-            }
 
-            for (int i = 0; i < cardConfigs.Count; i++)
+            for (var i = 0; i < cardConfigs.Count; i++)
             {
-                if (aks.Contains(cardConfigs[i].Card))
+                var cardConfig = cardConfigs[i];
+                if (!cardProperties.ContainsKey(cardConfig.Card))
                 {
-                    previousConfigs[cardConfigs[i].Card] = cardConfigs[i].ClassRestriction;
-                    cardConfigs[i] = new CardConfigDTO
-                    {
-                        Card = cardConfigs[i].Card,
-                        ClassRestriction = cardProperties[cardConfigs[i].Card],
-                        Tags = cardConfigs[i].Tags,
-                        CostInShop = cardConfigs[i].CostInShop,
-                        SellValue = cardConfigs[i].SellValue,
-                        TestValue = cardConfigs[i].TestValue,
-                        ShopRarity = cardConfigs[i].ShopRarity,
-                        ChestRarity = cardConfigs[i].ChestRarity,
-                        ClassRarity = cardConfigs[i].ClassRarity,
-                        CardEnergy = cardConfigs[i].CardEnergy,
-                    };
+                    continue;
                 }
+
+                previousConfigs.Add(cardConfig.Card, cardConfig.ClassRestriction);
+
+                cardConfig.ClassRestriction = cardProperties[cardConfig.Card];
+                cardConfigs.Insert(i, cardConfig);
             }
 
             return previousConfigs;
