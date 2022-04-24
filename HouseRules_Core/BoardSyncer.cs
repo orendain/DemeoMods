@@ -86,7 +86,7 @@
             var isNewPieceCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
             if (isNewPieceCheckRequired)
             {
-                if (CanEventRepresentNewSpawn(serializableEvent))
+                if (CanRepresentNewSpawn(serializableEvent))
                 {
                     _isSyncScheduled = true;
                 }
@@ -123,7 +123,7 @@
             }
         }
 
-        private static bool CanEventRepresentNewSpawn(SerializableEvent serializableEvent)
+        private static bool CanRepresentNewSpawn(SerializableEvent serializableEvent)
         {
             switch (serializableEvent.type)
             {
@@ -133,15 +133,15 @@
                 case SerializableEvent.Type.SlimeFusion:
                     return true;
                 case SerializableEvent.Type.OnAbilityUsed:
-                    return CanAbilityEventRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
+                    return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
-                    return CanPieceDiedEventRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
+                    return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
                 default:
                     return false;
             }
         }
 
-        private static bool CanAbilityEventRepresentNewSpawn(SerializableEventOnAbilityUsed onAbilityUsedEvent)
+        private static bool CanRepresentNewSpawn(SerializableEventOnAbilityUsed onAbilityUsedEvent)
         {
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
@@ -171,7 +171,7 @@
             return isSpawnAbility || isLampAbility;
         }
 
-        private static bool CanPieceDiedEventRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
+        private static bool CanRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
         {
             foreach (var pieceId in pieceDiedEvent.deadPieces)
             {
