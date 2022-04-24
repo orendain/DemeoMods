@@ -87,17 +87,10 @@
                 }
             }
 
-            if (!_isSyncScheduled)
+            if (_isSyncScheduled && IsSyncOpportunity(serializableEvent))
             {
-                return;
+                SyncBoard();
             }
-
-            if (!IsSyncOpportunity(serializableEvent))
-            {
-                return;
-            }
-
-            SyncBoard();
         }
 
         private static void Piece_IsImmuneToStatusEffect_Postfix()
