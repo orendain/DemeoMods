@@ -28,19 +28,19 @@
         private static bool _isNewSpawnPossible;
         private static bool _isStatusImmunitiesTouched;
         private static bool _isStatusEffectsTouched;
-        private static bool _isResyncScheduled;
+        private static bool _isSyncScheduled;
 
         /// <summary>
-        /// Schedules a resync to be triggered at the next available opportunity.
+        /// Schedules a sync to be triggered at the next available opportunity.
         /// </summary>
-        internal static void ScheduleResync()
+        internal static void ScheduleSync()
         {
             if (!HR.IsRulesetActive)
             {
-                throw new InvalidOperationException("Can not request resync without an active ruleset.");
+                throw new InvalidOperationException("Can not request sync without an active ruleset.");
             }
 
-            _isResyncScheduled = true;
+            _isSyncScheduled = true;
         }
 
         internal static void Patch(Harmony harmony)
@@ -81,7 +81,7 @@
                 return;
             }
 
-            if (!_isResyncScheduled && HR.SelectedRuleset.ModifiedSyncables == SyncableTrigger.None)
+            if (!_isSyncScheduled && HR.SelectedRuleset.ModifiedSyncables == SyncableTrigger.None)
             {
                 return;
             }
@@ -187,7 +187,7 @@
 
         private static bool IsSyncNeeded()
         {
-            if (_isResyncScheduled)
+            if (_isSyncScheduled)
             {
                 return true;
             }
@@ -228,7 +228,7 @@
             _isNewSpawnPossible = false;
             _isStatusImmunitiesTouched = false;
             _isStatusEffectsTouched = false;
-            _isResyncScheduled = false;
+            _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
