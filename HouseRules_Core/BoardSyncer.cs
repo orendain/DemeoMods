@@ -25,9 +25,6 @@
     internal static class BoardSyncer
     {
         private static GameContext _gameContext;
-        private static bool _isNewSpawnPossible;
-        private static bool _isStatusImmunitiesTouched;
-        private static bool _isStatusEffectsTouched;
         private static bool _isSyncScheduled;
 
         /// <summary>
@@ -103,19 +100,31 @@
 
         private static void Piece_IsImmuneToStatusEffect_Postfix()
         {
-            _isStatusImmunitiesTouched = true;
+            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
+            if (hasSyncType)
+            {
+                _isSyncScheduled = true;
+            }
         }
 
         private static void EffectSink_AddStatusEffect_Postfix()
         {
-            _isStatusEffectsTouched = true;
+            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
+            if (hasSyncType)
+            {
+                _isSyncScheduled = true;
+            }
         }
 
         private static void UpdateSyncTriggers(SerializableEvent serializableEvent)
         {
-            if (CanEventRepresentNewSpawn(serializableEvent))
+            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
+            if (hasSyncType)
             {
-                _isNewSpawnPossible = true;
+                if (CanEventRepresentNewSpawn(serializableEvent))
+                {
+                    _isSyncScheduled = true;
+                }
             }
         }
 
@@ -187,30 +196,7 @@
 
         private static bool IsSyncNeeded()
         {
-            if (_isSyncScheduled)
-            {
-                return true;
-            }
-
-            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
-            if (hasSyncType && _isNewSpawnPossible)
-            {
-                return true;
-            }
-
-            hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
-            if (hasSyncType && _isStatusImmunitiesTouched)
-            {
-                return true;
-            }
-
-            hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
-            if (hasSyncType && _isStatusEffectsTouched)
-            {
-                return true;
-            }
-
-            return false;
+            return _isSyncScheduled;
         }
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
@@ -225,9 +211,6 @@
 
         private static void SyncBoard()
         {
-            _isNewSpawnPossible = false;
-            _isStatusImmunitiesTouched = false;
-            _isStatusEffectsTouched = false;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
