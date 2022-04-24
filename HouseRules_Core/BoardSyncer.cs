@@ -34,7 +34,7 @@
         {
             if (!HR.IsRulesetActive)
             {
-                throw new InvalidOperationException("Can not request sync without an active ruleset.");
+                throw new InvalidOperationException("Can not schedule sync without an active ruleset.");
             }
 
             _isSyncScheduled = true;
@@ -83,9 +83,16 @@
                 return;
             }
 
-            UpdateSyncTriggers(serializableEvent);
+            var isNewPieceCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
+            if (isNewPieceCheckRequired)
+            {
+                if (CanEventRepresentNewSpawn(serializableEvent))
+                {
+                    _isSyncScheduled = true;
+                }
+            }
 
-            if (!IsSyncNeeded())
+            if (!_isSyncScheduled)
             {
                 return;
             }
@@ -100,8 +107,8 @@
 
         private static void Piece_IsImmuneToStatusEffect_Postfix()
         {
-            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
-            if (hasSyncType)
+            var isEffectImmunityCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
+            if (isEffectImmunityCheckRequired)
             {
                 _isSyncScheduled = true;
             }
@@ -109,22 +116,10 @@
 
         private static void EffectSink_AddStatusEffect_Postfix()
         {
-            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
-            if (hasSyncType)
+            var isEffectDataCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
+            if (isEffectDataCheckRequired)
             {
                 _isSyncScheduled = true;
-            }
-        }
-
-        private static void UpdateSyncTriggers(SerializableEvent serializableEvent)
-        {
-            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
-            if (hasSyncType)
-            {
-                if (CanEventRepresentNewSpawn(serializableEvent))
-                {
-                    _isSyncScheduled = true;
-                }
             }
         }
 
@@ -192,11 +187,6 @@
             }
 
             return false;
-        }
-
-        private static bool IsSyncNeeded()
-        {
-            return _isSyncScheduled;
         }
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
