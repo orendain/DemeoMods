@@ -31,7 +31,7 @@
         private static bool _isResyncScheduled;
 
         /// <summary>
-        /// Schedules a resync to be triggered at the next opportunity.
+        /// Schedules a resync to be triggered at the next available opportunity.
         /// </summary>
         internal static void ScheduleResync()
         {
