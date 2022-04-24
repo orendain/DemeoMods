@@ -66,6 +66,7 @@
         <Compile Include="..\Common\**\*.cs" Exclude="..\Common\Properties\AssemblyInfo.cs;..\Common\bin\**\*.*;..\Common\obj\**\*.*;..\Common\**\*.csproj;..\Common\**\*.user;..\Common\**\*.vstemplate">
             <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Compile>
+        <Compile Include="VersionChecker.cs" />
     </ItemGroup>
     <ItemGroup>
         <!-- Manually download this specific variant during runtime: https://cloudsmith.io/~jillejr/repos/newtonsoft-json-for-unity/packages/detail/npm/jillejr.newtonsoft.json-for-unity/13.0.102 -->
