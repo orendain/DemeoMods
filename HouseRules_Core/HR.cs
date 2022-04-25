@@ -12,6 +12,8 @@ namespace HouseRules
 
         internal static bool IsRulesetActive => LifecycleDirector.IsRulesetActive;
 
+        public static void ScheduleResync() => BoardSyncer.ScheduleResync();
+
         public static void SelectRuleset(string ruleset)
         {
             if (IsRulesetActive)
@@ -34,11 +36,6 @@ namespace HouseRules
             SelectedRuleset = Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
 
             CoreMod.Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
-        }
-
-        public static void ScheduleResync()
-        {
-            BoardSyncer.ScheduleResync();
         }
     }
 }
