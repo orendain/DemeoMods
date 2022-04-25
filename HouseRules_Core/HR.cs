@@ -34,8 +34,12 @@ namespace HouseRules
             }
 
             SelectedRuleset = Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
-
             CoreMod.Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
+        }
+
+        public static void ScheduleBoardSync()
+        {
+            BoardSyncer.ScheduleSync();
         }
     }
 }
