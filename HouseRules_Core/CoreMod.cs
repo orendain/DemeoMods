@@ -36,7 +36,7 @@
                 Logger.Msg($"Patching game with rule type: {ruleType}");
 
                 var traverse = Traverse.Create(ruleType)
-                    .Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] {RulesPatcher});
+                    .Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] { RulesPatcher });
                 if (!traverse.MethodExists())
                 {
                     Logger.Warning($"Could not find expected Patch method for rule [{ruleType}]. Skipping patching for that rule.");
