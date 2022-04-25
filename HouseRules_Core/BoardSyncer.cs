@@ -25,22 +25,19 @@
     internal static class BoardSyncer
     {
         private static GameContext _gameContext;
-        private static bool _isNewSpawnPossible;
-        private static bool _isStatusImmunitiesTouched;
-        private static bool _isStatusEffectsTouched;
-        private static bool _isResyncScheduled;
+        private static bool _isSyncScheduled;
 
         /// <summary>
-        /// Schedules a resync to be triggered at the next available opportunity.
+        /// Schedules a sync to be triggered at the next available opportunity.
         /// </summary>
-        internal static void ScheduleResync()
+        internal static void ScheduleSync()
         {
             if (!HR.IsRulesetActive)
             {
-                throw new InvalidOperationException("Can not request resync without an active ruleset.");
+                throw new InvalidOperationException("Can not schedule sync without an active ruleset.");
             }
 
-            _isResyncScheduled = true;
+            _isSyncScheduled = true;
         }
 
         internal static void Patch(Harmony harmony)
@@ -81,45 +78,37 @@
                 return;
             }
 
-            if (!_isResyncScheduled && HR.SelectedRuleset.ModifiedSyncables == SyncableTrigger.None)
+            var isNewPieceCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
+            if (!_isSyncScheduled && isNewPieceCheckRequired && CanRepresentNewSpawn(serializableEvent))
             {
-                return;
+                _isSyncScheduled = true;
             }
 
-            UpdateSyncTriggers(serializableEvent);
-
-            if (!IsSyncNeeded())
+            if (_isSyncScheduled && IsSyncOpportunity(serializableEvent))
             {
-                return;
+                SyncBoard();
             }
-
-            if (!IsSyncOpportunity(serializableEvent))
-            {
-                return;
-            }
-
-            SyncBoard();
         }
 
         private static void Piece_IsImmuneToStatusEffect_Postfix()
         {
-            _isStatusImmunitiesTouched = true;
+            var isEffectImmunityCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
+            if (isEffectImmunityCheckRequired)
+            {
+                _isSyncScheduled = true;
+            }
         }
 
         private static void EffectSink_AddStatusEffect_Postfix()
         {
-            _isStatusEffectsTouched = true;
-        }
-
-        private static void UpdateSyncTriggers(SerializableEvent serializableEvent)
-        {
-            if (CanEventRepresentNewSpawn(serializableEvent))
+            var isEffectDataCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
+            if (isEffectDataCheckRequired)
             {
-                _isNewSpawnPossible = true;
+                _isSyncScheduled = true;
             }
         }
 
-        private static bool CanEventRepresentNewSpawn(SerializableEvent serializableEvent)
+        private static bool CanRepresentNewSpawn(SerializableEvent serializableEvent)
         {
             switch (serializableEvent.type)
             {
@@ -129,15 +118,15 @@
                 case SerializableEvent.Type.SlimeFusion:
                     return true;
                 case SerializableEvent.Type.OnAbilityUsed:
-                    return CanAbilityEventRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
+                    return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
-                    return CanPieceDiedEventRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
+                    return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
                 default:
                     return false;
             }
         }
 
-        private static bool CanAbilityEventRepresentNewSpawn(SerializableEventOnAbilityUsed onAbilityUsedEvent)
+        private static bool CanRepresentNewSpawn(SerializableEventOnAbilityUsed onAbilityUsedEvent)
         {
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
@@ -167,7 +156,7 @@
             return isSpawnAbility || isLampAbility;
         }
 
-        private static bool CanPieceDiedEventRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
+        private static bool CanRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
         {
             foreach (var pieceId in pieceDiedEvent.deadPieces)
             {
@@ -185,34 +174,6 @@
             return false;
         }
 
-        private static bool IsSyncNeeded()
-        {
-            if (_isResyncScheduled)
-            {
-                return true;
-            }
-
-            var hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
-            if (hasSyncType && _isNewSpawnPossible)
-            {
-                return true;
-            }
-
-            hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
-            if (hasSyncType && _isStatusImmunitiesTouched)
-            {
-                return true;
-            }
-
-            hasSyncType = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
-            if (hasSyncType && _isStatusEffectsTouched)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
             if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
@@ -225,10 +186,7 @@
 
         private static void SyncBoard()
         {
-            _isNewSpawnPossible = false;
-            _isStatusImmunitiesTouched = false;
-            _isStatusEffectsTouched = false;
-            _isResyncScheduled = false;
+            _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
