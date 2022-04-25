@@ -28,14 +28,14 @@
         private static void PatchRegisteredRules()
         {
             var patchableRules = HR.Rulebook.RuleTypes.Where(typ => typeof(IPatchable).IsAssignableFrom(typ)).ToList();
-
             HR.Logger.Msg($"Found [{patchableRules.Count}] registered rules that require game patching.");
 
             foreach (var ruleType in patchableRules)
             {
                 HR.Logger.Msg($"Patching game with rule type: {ruleType}");
 
-                var traverse = Traverse.Create(ruleType).Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] { RulesPatcher });
+                var traverse = Traverse.Create(ruleType)
+                    .Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] { RulesPatcher });
                 if (!traverse.MethodExists())
                 {
                     HR.Logger.Warning($"Could not find expected Patch method for rule [{ruleType}]. Skipping patching for that rule.");

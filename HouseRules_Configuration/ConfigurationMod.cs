@@ -9,12 +9,11 @@
     internal class ConfigurationMod : MelonMod
     {
         private const string DemeoPCEditionString = "Demeo PC Edition";
+        private const int LobbySceneIndex = 1;
+        private const int HangoutsSceneIndex = 43;
 
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
-
-        private const int LobbySceneIndex = 1;
-        private const int HangoutsSceneIndex = 43;
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
         internal static bool IsUpdateAvailable { get; private set; }
