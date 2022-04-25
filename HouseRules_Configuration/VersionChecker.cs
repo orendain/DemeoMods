@@ -35,7 +35,7 @@
         /// </summary>
         private static async Task<string> FindLatestReleaseVersion()
         {
-            ConfigurationMod.Logger.Msg("Checking for latest HouseRules release.");
+            ConfigurationMod.Logger.Msg("Searching for the latest HouseRules release.");
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
@@ -56,11 +56,11 @@
                     continue;
                 }
 
-                ConfigurationMod.Logger.Msg($"Found latest HouseRules release: {version}");
+                ConfigurationMod.Logger.Msg($"Found the latest HouseRules release: {version}");
                 return version;
             }
 
-            throw new InvalidOperationException("Failed to find valid HouseRules release.");
+            throw new InvalidOperationException("Failed to find a valid HouseRules release tag.");
         }
 
         /// <summary>
