@@ -17,10 +17,12 @@
         private const int HangoutsSceneIndex = 43;
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
+        internal static bool IsUpdateAvailable { get; private set; }
+
         public override void OnApplicationStart()
         {
             CommonModule.Initialize();
-            VersionChecker.FindLatestReleaseVersion();
+            DetermineIfUpdateAvailable();
         }
 
         public override void OnApplicationLateStart()
@@ -61,6 +63,11 @@
             {
                 _ = new GameObject("HouseRules_RulesetSelection", typeof(UI.RulesetSelectionUI));
             }
+        }
+
+        private static async void DetermineIfUpdateAvailable()
+        {
+            IsUpdateAvailable = await VersionChecker.IsUpdateAvailable();
         }
 
         private static void LoadRulesetsFromConfig()

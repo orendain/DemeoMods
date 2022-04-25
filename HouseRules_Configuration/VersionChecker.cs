@@ -4,16 +4,39 @@
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Threading.Tasks;
     using Newtonsoft.Json.Linq;
 
     internal static class VersionChecker
     {
-        internal static string LatestHouseRulesVersion { get; private set; }
+        /// <summary>
+        /// Returns true if an update is available, false otherwise.
+        /// </summary>
+        /// <remarks>
+        /// Issues encountered during this process, such as unexpected version formats or internet connectivity issues,
+        /// will result in this method returning false.
+        /// </remarks>
+        internal static async Task<bool> IsUpdateAvailable()
+        {
+            try
+            {
+                var latestReleaseVersion = await FindLatestReleaseVersion();
+
+                var versionParts = SplitVersion(BuildVersion.Version);
+                var latestReleaseVersionParts = SplitVersion(latestReleaseVersion);
+                return IsLessThan(versionParts, latestReleaseVersionParts);
+            }
+            catch (Exception e)
+            {
+                ConfigurationMod.Logger.Warning($"Failed to determine if an update is available: {e}");
+                return false;
+            }
+        }
 
         /// <summary>
         /// Finds the latest HouseRules release version, returning the empty string if one can not be found.
         /// </summary>
-        internal static async void FindLatestReleaseVersion()
+        private static async Task<string> FindLatestReleaseVersion()
         {
             ConfigurationMod.Logger.Msg("Checking for latest HouseRules release.");
 
@@ -37,9 +60,10 @@
                 }
 
                 ConfigurationMod.Logger.Msg($"Found latest HouseRules release: {version}");
-                LatestHouseRulesVersion = version;
-                return;
+                return version;
             }
+
+            throw new InvalidOperationException("Failed to find valid HouseRules release.");
         }
 
         /// <summary>
@@ -55,33 +79,6 @@
 
             version = tag.Substring(1).Replace("-houserules", string.Empty);
             return true;
-        }
-
-        /// <summary>
-        /// Returns true if an update is available, false otherwise.
-        /// </summary>
-        /// <remarks>
-        /// Issues encountered during this process, such as unexpected version formats or internet connectivity issues,
-        /// will result in this method returning false.
-        /// </remarks>
-        internal static bool IsUpdateAvailable()
-        {
-            if (string.IsNullOrEmpty(LatestHouseRulesVersion))
-            {
-                return false;
-            }
-
-            try
-            {
-                var versionParts = SplitVersion(BuildVersion.Version);
-                var onlineVersionParts = SplitVersion(LatestHouseRulesVersion);
-                return IsLessThan(versionParts, onlineVersionParts);
-            }
-            catch (Exception e)
-            {
-                ConfigurationMod.Logger.Warning($"Failed to determine if an update is available: {e}");
-                return false;
-            }
         }
 
         private static int[] SplitVersion(string version)
