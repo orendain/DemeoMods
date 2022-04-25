@@ -68,6 +68,7 @@
         private static async void DetermineIfUpdateAvailable()
         {
             IsUpdateAvailable = await VersionChecker.IsUpdateAvailable();
+            Logger.Msg($"{(IsUpdateAvailable ? "New" : "No new")} HouseRules update found.");
         }
 
         private static void LoadRulesetsFromConfig()

@@ -21,10 +21,7 @@
             try
             {
                 var latestReleaseVersion = await FindLatestReleaseVersion();
-
-                var versionParts = SplitVersion(BuildVersion.Version);
-                var latestReleaseVersionParts = SplitVersion(latestReleaseVersion);
-                return IsLessThan(versionParts, latestReleaseVersionParts);
+                return IsLessThan(BuildVersion.Version, latestReleaseVersion);
             }
             catch (Exception e)
             {
@@ -79,6 +76,13 @@
 
             version = tag.Substring(1).Replace("-houserules", string.Empty);
             return true;
+        }
+
+        private static bool IsLessThan(string version, string otherVersion)
+        {
+            var versionParts = SplitVersion(version);
+            var otherVersionParts = SplitVersion(otherVersion);
+            return IsLessThan(versionParts, otherVersionParts);
         }
 
         private static int[] SplitVersion(string version)
