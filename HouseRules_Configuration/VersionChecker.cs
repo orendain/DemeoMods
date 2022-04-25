@@ -99,7 +99,7 @@
 
             if (parts.Length == 0)
             {
-                return 0 < otherParts[0];
+                return otherParts[0] > 0;
             }
 
             if (otherParts.Length == 0)
