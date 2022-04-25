@@ -68,7 +68,7 @@
             versionText.transform.SetParent(this.transform, worldPositionStays: false);
             versionText.transform.localPosition = new Vector3(-7, -15.85f, UiHelper.DefaultTextZShift);
 
-            if (ConfigurationMod.IsUpdateAvailable())
+            if (ConfigurationMod.IsUpdateAvailable)
             {
                 var updateText = _uiHelper.CreateLabelText("NEW UPDATE AVAILABLE!");
                 updateText.transform.SetParent(this.transform, worldPositionStays: false);

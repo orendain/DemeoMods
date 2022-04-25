@@ -74,7 +74,7 @@
                 return true;
             }
 
-            HR.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts as table host by front-loading computation.");
+            CoreMod.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts as table host by front-loading computation.");
             _hasJoinedTheRace = true;
 
             var groupId = Guid.NewGuid().ToString();
@@ -98,7 +98,7 @@
                 return false;
             }
 
-            HR.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts as table non-host.");
+            CoreMod.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts as table non-host.");
             _hasJoinedTheRace = true;
 
             var moduleType = (GroupLaunchModuleData.ModuleType)selectedModuleType;
@@ -134,7 +134,7 @@
 
             StopWatch.Stop();
             var timeElapsed = StopWatch.Elapsed;
-            HR.Logger.Msg($"[HangoutGameRacer] Time to join game from Hangouts: {timeElapsed.Seconds:00}.{timeElapsed.Milliseconds:00}s");
+            CoreMod.Logger.Msg($"[HangoutGameRacer] Time to join game from Hangouts: {timeElapsed.Seconds:00}.{timeElapsed.Milliseconds:00}s");
         }
 
         private static IEnumerable<CodeInstruction> PlayWithFriendsController_TryCreateTheRoom_Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -164,7 +164,7 @@
                     destination = destination,
                 };
 
-                HR.Logger.Msg("[HangoutGameRacer] Pre-fetched room code.");
+                CoreMod.Logger.Msg("[HangoutGameRacer] Pre-fetched room code.");
                 PrepareToLeaveHangouts(groupLaunchTable);
 
                 if (isTableHost)

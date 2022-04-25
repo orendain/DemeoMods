@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using Boardgame;
     using Boardgame.Board;
-    using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
 
@@ -15,7 +14,6 @@
         private static bool _isActivated;
 
         private readonly Dictionary<TileEffect, int> _adjustments;
-
 
         public TileEffectDurationOverriddenRule(Dictionary<TileEffect, int> adjustments)
         {
@@ -52,11 +50,9 @@
             {
                 return true;
             }
-            else
-            {
-                __result = _globalAdjustments[type];
-                return false; // We returned an user-adjusted config.
-            }
+
+            __result = _globalAdjustments[type];
+            return false; // We returned an user-adjusted config.
         }
     }
 }

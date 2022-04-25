@@ -40,7 +40,7 @@
                     nameof(Piece_IsRogue_Prefix)));
         }
 
-        private static bool Piece_IsRogue_Prefix(ref Piece __instance, ref bool __result)
+        private static bool Piece_IsRogue_Prefix(Piece __instance, ref bool __result)
         {
             if (!_isActivated)
             {

@@ -70,7 +70,7 @@
                 return;
             }
 
-            if (!_globalHeroCards.TryGetValue(piece.boardPieceId, out List<AbilityKey> replacementAbilityKeys))
+            if (!_globalHeroCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
             {
                 return;
             }
