@@ -8,6 +8,7 @@
 
     internal class CoreMod : MelonMod
     {
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Core");
         private static readonly Harmony RulesPatcher = new Harmony("com.orendain.demeomods.houserules.core.patcher");
 
         public override void OnApplicationStart()
@@ -28,17 +29,17 @@
         private static void PatchRegisteredRules()
         {
             var patchableRules = HR.Rulebook.RuleTypes.Where(typ => typeof(IPatchable).IsAssignableFrom(typ)).ToList();
-            HR.Logger.Msg($"Found [{patchableRules.Count}] registered rules that require game patching.");
+            Logger.Msg($"Found [{patchableRules.Count}] registered rules that require game patching.");
 
             foreach (var ruleType in patchableRules)
             {
-                HR.Logger.Msg($"Patching game with rule type: {ruleType}");
+                Logger.Msg($"Patching game with rule type: {ruleType}");
 
                 var traverse = Traverse.Create(ruleType)
-                    .Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] { RulesPatcher });
+                    .Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] {RulesPatcher});
                 if (!traverse.MethodExists())
                 {
-                    HR.Logger.Warning($"Could not find expected Patch method for rule [{ruleType}]. Skipping patching for that rule.");
+                    Logger.Warning($"Could not find expected Patch method for rule [{ruleType}]. Skipping patching for that rule.");
                     continue;
                 }
 
@@ -49,7 +50,7 @@
                 catch (Exception e)
                 {
                     // TODO(orendain): Perm disable rules/rulesets that fail to patch/load.
-                    HR.Logger.Error($"Failed to patch game with rule type [{ruleType}]: {e}");
+                    Logger.Error($"Failed to patch game with rule type [{ruleType}]: {e}");
                 }
             }
         }

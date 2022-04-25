@@ -138,7 +138,7 @@
         {
             if (IsRulesetActive)
             {
-                HR.Logger.Warning("Ruleset activation was attempted whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
+                CoreMod.Logger.Warning("Ruleset activation was attempted whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
                 return;
             }
 
@@ -149,24 +149,24 @@
 
             if (GameHub.GetGameMode == GameHub.GameMode.Multiplayer && !HR.SelectedRuleset.IsSafeForMultiplayer)
             {
-                HR.Logger.Warning($"The selected ruleset [{HR.SelectedRuleset.Name}] is not safe for multiplayer games. Skipping activation.");
+                CoreMod.Logger.Warning($"The selected ruleset [{HR.SelectedRuleset.Name}] is not safe for multiplayer games. Skipping activation.");
                 return;
             }
 
             IsRulesetActive = true;
 
-            HR.Logger.Msg($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            CoreMod.Logger.Msg($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
                 {
-                    HR.Logger.Msg($"Activating rule type: {rule.GetType()}");
+                    CoreMod.Logger.Msg($"Activating rule type: {rule.GetType()}");
                     rule.OnActivate(_gameContext);
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    HR.Logger.Warning($"Failed to activate rule [{rule.GetType()}]: {e}");
+                    CoreMod.Logger.Warning($"Failed to activate rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -180,18 +180,18 @@
 
             IsRulesetActive = false;
 
-            HR.Logger.Msg($"Deactivating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            CoreMod.Logger.Msg($"Deactivating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
                 {
-                    HR.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
+                    CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
                     rule.OnDeactivate(_gameContext);
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    HR.Logger.Warning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
+                    CoreMod.Logger.Warning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -212,13 +212,13 @@
             {
                 try
                 {
-                    HR.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
+                    CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
                     rule.OnPreGameCreated(_gameContext);
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    HR.Logger.Warning($"Failed to successfully call OnPreGameCreated on rule [{rule.GetType()}]: {e}");
+                    CoreMod.Logger.Warning($"Failed to successfully call OnPreGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -239,13 +239,13 @@
             {
                 try
                 {
-                    HR.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
+                    CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
                     rule.OnPostGameCreated(_gameContext);
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    HR.Logger.Warning($"Failed to successfully call OnPostGameCreated on rule [{rule.GetType()}]: {e}");
+                    CoreMod.Logger.Warning($"Failed to successfully call OnPostGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
         }
