@@ -52,7 +52,7 @@
             {
                 if (bpis.Contains(spawnCategories[i].BoardPieceId))
                 {
-                    previousConfigs[spawnCategories[i].BoardPieceId] = new List<int>()
+                    previousConfigs[spawnCategories[i].BoardPieceId] = new List<int>
                     {
                         spawnCategories[i].MaxPerDeck,
                         spawnCategories[i].PreFill,
