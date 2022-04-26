@@ -12,7 +12,7 @@ namespace HouseRules
 
         internal static bool IsRulesetActive => LifecycleDirector.IsRulesetActive;
 
-        public static void ScheduleResync() => BoardSyncer.ScheduleResync();
+        public static void ScheduleResync() => BoardSyncer.ScheduleSync();
 
         public static void SelectRuleset(string ruleset)
         {
