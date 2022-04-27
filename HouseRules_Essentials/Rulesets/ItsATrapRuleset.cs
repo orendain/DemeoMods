@@ -21,7 +21,8 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexLamp, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = false },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -30,7 +31,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexLamp, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = false },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -39,7 +40,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexLamp, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = false },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -48,7 +49,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexLamp, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = false },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -57,7 +58,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = false },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexLamp, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = false },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
@@ -78,6 +79,8 @@
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
+                        AbilityKey.TheBehemoth,
+                        AbilityKey.RepeatingBallista,
                         AbilityKey.TheBehemoth,
                         AbilityKey.VortexLamp,
                         AbilityKey.HealingPotion,
@@ -127,7 +130,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
-                        AbilityKey.RepeatingBallista,
+                        AbilityKey.Vortex,
                         AbilityKey.Torch,
                         AbilityKey.Bone,
                         AbilityKey.DetectEnemies,
@@ -136,12 +139,10 @@
                 {
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
-                        AbilityKey.PoisonBomb,
                         AbilityKey.HealingPotion,
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
-                        AbilityKey.TheBehemoth,
                         AbilityKey.Vortex,
                         AbilityKey.Torch,
                         AbilityKey.Sneak,
@@ -198,7 +199,6 @@
                     BoardPieceId.OilLamp,
                     BoardPieceId.OilLamp,
                     BoardPieceId.HealingBeacon,
-                    BoardPieceId.HealingBeacon,
                 }
                 },
                 {
@@ -213,7 +213,6 @@
                     BoardPieceId.GasLamp,
                     BoardPieceId.OilLamp,
                     BoardPieceId.OilLamp,
-                    BoardPieceId.HealingBeacon,
                     BoardPieceId.HealingBeacon,
                 }
                 },
