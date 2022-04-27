@@ -13,7 +13,7 @@
             const string name = "Arachnophobia";
             const string description = "Money Spiders everywhere. On my face and in my hair.";
 
-            var abilityDamageRule = new AbilityDamageAdjustedRule(new Dictionary<AbilityKey, int> { { AbilityKey.Zap, 1 } });
+            var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 4 } } });
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {

@@ -12,7 +12,7 @@
             const string name = "Earth Wind & Fire";
             const string description = "Not the band. Let's get Elemental";
 
-            var abilityDamageRule = new AbilityDamageAdjustedRule(new Dictionary<AbilityKey, int> { { AbilityKey.Zap, 1 } });
+            var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 5 } } });
 
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {

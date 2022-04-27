@@ -106,21 +106,21 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-#### __AbilityDamageAdjusted__: Ability damage is adjusted
+#### __AbilityDamageOverridden__: Ability targetDamage and critDamage are adjusted
   - Only functions for abilities which do damage. (You can't make a HealingPotion hurt).
   - CriticalHitDamage is adjusted to double normal damage.
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
-    - Specify a positive integer to increase damage, or a negative number to decrease it. E.g.: `"Zap": 1` will increase Zap damage from 1 to 2.
+    - Specify a positive integers for targetDamage and critDamage respectively E.g.: `"Zap": [ 2, 5 ]` will set Zap targetDamage to 2 and critDmage to 5.
 
-  ###### _Example JSON config for AbilityDamageAdjusted_
+  ###### _Example JSON config for AbilityDamageOverridden_
 
   ```json
   {
-    "Rule": "AbilityDamageAdjusted",
+    "Rule": "AbilityDamageOverridden",
     "Config": {
-      "Zap": 1,
-      "WhirlwindAttack": 1,
+      "Zap": [ 2, 4 ],
+      "Whirlwind": [ 4, 8 ]
     }
   },
   ```
