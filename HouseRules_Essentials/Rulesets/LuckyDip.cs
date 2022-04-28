@@ -13,7 +13,7 @@
             const string name = "LuckyDip";
             const string description = "Life is like a box of chocolates + AOE changes, so stay close to your allies";
 
-            var abilityDamageRule = new AbilityDamageAdjustedRule(new Dictionary<AbilityKey, int> { { AbilityKey.Zap, 1 } });
+            var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 5 } } });
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {

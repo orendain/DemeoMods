@@ -18,7 +18,7 @@
         {
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityBackstabAdjustedRule));
-            HR.Rulebook.Register(typeof(AbilityDamageAdjustedRule));
+            HR.Rulebook.Register(typeof(AbilityDamageOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityHealOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
