@@ -21,7 +21,7 @@
         public struct CardConfig
         {
             public AbilityKey Card;
-            public bool IsReplenishable;
+            public int IsReplenishable;
         }
 
         public StartCardsModifiedRule(Dictionary<BoardPieceId, List<CardConfig>> heroStartCards)
@@ -47,6 +47,50 @@
                 postfix: new HarmonyMethod(
                     typeof(StartCardsModifiedRule),
                     nameof(Piece_CreatePiece_Postfix)));
+            harmony.Patch(
+                original: AccessTools.Method(typeof(Inventory), "RestoreReplenishables"),
+                prefix: new HarmonyMethod(
+                    typeof(StartCardsModifiedRule),
+                    nameof(Inventory_RestoreReplenishables_Prefix)));
+        }
+
+        private static bool Inventory_RestoreReplenishables_Prefix(bool __result, Piece piece)
+        {
+            if (!_isActivated)
+            {
+                return true;
+            }
+
+            __result = false;
+            for (int i = 0; i < piece.inventory.Items.Count; i++)
+            {
+                Inventory.Item value = piece.inventory.Items[i];
+                var targetRefresh = (value.flags & 224) >> 5;
+                var countdown = (value.flags & 28) >> 2;
+                if (piece.inventory.Items[i].IsReplenishing && (!piece.HasEffectState(EffectStateType.Stealthed) || piece.inventory.Items[i].abilityKey != AbilityKey.Sneak))
+                {
+                    // If countdown was zero when we got called, then we need to set it.
+                    if (countdown == 0)
+                    {
+                        countdown = targetRefresh;
+                    }
+
+                    // If we reached our desired turn count we can unset isReplenishing and return true
+                    if (countdown == 1)
+                    {
+                        value.flags &= -3; // unsets isReplenishing (bit1 ) allowing card to be used again.
+                        __result = true;
+                    }
+
+                    countdown -= 1;
+                    value.flags &= 227; // Zero only the countdown bits using a bitmask
+                    value.flags |= countdown << 2; // OR with countdown to set them again.
+                    piece.inventory.Items[i] = value;
+                    // piece.inventory.needSync = true;
+                }
+            }
+
+            return false;
         }
 
         private static void Piece_CreatePiece_Postfix(ref Piece __result)
@@ -71,7 +115,26 @@
 
             foreach (var card in _globalHeroStartCards[piece.boardPieceId])
             {
-                piece.TryAddAbilityToInventory(card.Card, isReplenishable: card.IsReplenishable);
+                // flag bits
+                // 0 : isReplenishable
+                // 1 : isReplenishing
+                // 2-4 : ReplenishCounter - 3-bit range used by RestoreReplenishables for counting rounds.
+                // 5-7 : ReplenishFrequency - 3-bit number, user-configured target.
+                int flags = 0;
+                if (card.IsReplenishable > 0)
+                {
+                    flags = 1;
+                    int refreshFrequency = card.IsReplenishable;
+                    flags |= refreshFrequency << 5; // logical or with refreshFrequency shifted 5 bits to the left to become ReplenishFrequency bits 5-7
+                }
+
+                piece.inventory.Items.Add(new Inventory.Item
+                {
+                    abilityKey = card.Card,
+                    flags = flags,
+                    originalOwner = -1,
+                });
+                // piece.inventory.needSync = true;
             }
         }
 
@@ -79,7 +142,7 @@
         {
             foreach (var startCards in heroStartCards.Values)
             {
-                if (startCards.Count(c => c.IsReplenishable) > 2)
+                if (startCards.Count(c => c.IsReplenishable > 0) > 2)
                 {
                     throw new ArgumentException("Only 2 replenishable cards allowed.");
                 }

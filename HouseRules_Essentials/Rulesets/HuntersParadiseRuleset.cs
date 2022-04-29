@@ -15,9 +15,9 @@
 
             var startCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CallCompanion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SummonElemental, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HuntersMark, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CallCompanion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SummonElemental, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HuntersMark, IsReplenishable = 1 },
             };
             var startingCardsRule = new StartCardsModifiedRule(
                 new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>

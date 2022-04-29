@@ -14,28 +14,28 @@
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, IsReplenishable = 1 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, IsReplenishable = 1 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, IsReplenishable = 1 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 1 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, IsReplenishable = true },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, IsReplenishable = 1 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {

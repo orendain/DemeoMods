@@ -16,48 +16,48 @@
 
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 0 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 0 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 0 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 0 },
             };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 0 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {

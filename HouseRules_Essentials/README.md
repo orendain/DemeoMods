@@ -716,7 +716,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to replace the starting card hand of.
     - Specify the [AbilityKey](../docs/SettingsReference.md#boardpieceids) of the cards to add to the piece's hand.
-    - Specify `true` if the card should replenish, or `false` if it should not.
+    - Specify integer value for replenish frequency. 0=NoReplenish, 1=EveryTurn, 2=Every 2 Turns etc
+    - Max replenish frequency value is 7 
 
   ###### _Example JSON config for StartCardsModified_
 
@@ -725,28 +726,28 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "StartCardsModified",
     "Config": {
       "HeroGuardian": [
-        { "Card": "HealingPotion", "IsReplenishable": false },
-        { "Card": "ReplenishArmor", "IsReplenishable": true },
-        { "Card": "WhirlwindAttack", "IsReplenishable": true },
-        { "Card": "PiercingThrow", "IsReplenishable": false },
-        { "Card": "CoinFlip", "IsReplenishable": false },
-        { "Card": "TheBehemoth", "IsReplenishable": false },
-        { "Card": "SwordOfAvalon", "IsReplenishable": false },
+        { "Card": "HealingPotion", "IsReplenishable": 0 },
+        { "Card": "ReplenishArmor", "IsReplenishable": 1 },
+        { "Card": "WhirlwindAttack", "IsReplenishable": 1 },
+        { "Card": "PiercingThrow", "IsReplenishable": 0 },
+        { "Card": "CoinFlip", "IsReplenishable": 0 },
+        { "Card": "TheBehemoth", "IsReplenishable": 0 },
+        { "Card": "SwordOfAvalon", "IsReplenishable": 0 },
       ],
       "HeroHunter": [
-        { "Card": "HealingPotion", "IsReplenishable": false },
-        { "Card": "Arrow", "IsReplenishable": true },
-        { "Card": "Arrow", "IsReplenishable": true },
-        { "Card": "CoinFlip", "IsReplenishable": false },
-        { "Card": "DropChest", "IsReplenishable": false },
+        { "Card": "HealingPotion", "IsReplenishable": 0 },
+        { "Card": "Arrow", "IsReplenishable": 1 },
+        { "Card": "Arrow", "IsReplenishable": 1 },
+        { "Card": "CoinFlip", "IsReplenishable": 0 },
+        { "Card": "DropChest", "IsReplenishable": 0 },
       ],
       "HeroSorcerer": [
-        { "Card": "HealingPotion", "IsReplenishable": false },
-        { "Card": "Zap", "IsReplenishable": true },
-        { "Card": "WhirlwindAttack", "IsReplenishable": true },
-        { "Card": "Freeze", "IsReplenishable": false },
-        { "Card": "Fireball", "IsReplenishable": false },
-        { "Card": "CallCompanion", "IsReplenishable": false },
+        { "Card": "HealingPotion", "IsReplenishable": 0 },
+        { "Card": "Zap", "IsReplenishable": 1 },
+        { "Card": "WhirlwindAttack", "IsReplenishable": 1 },
+        { "Card": "Freeze", "IsReplenishable": 0 },
+        { "Card": "Fireball", "IsReplenishable": 0 },
+        { "Card": "CallCompanion", "IsReplenishable": 0 },
       ],
     }
   },
