@@ -18,6 +18,7 @@ HouseRules API.
 - __🎲LuckyDip🎲__ : Players each start with two 'Drop Chest' cards instead of their normal
   starting cards, meaning that no two games start the same. Many potions have AOE effect, because it's rude not to share.
   Many other changes included for faster gameplay with an aim of around 90 minutes per game.
+- __💣It's A Trap💣__ : Build fiendiesh traps for your enemies and lure them to their deaths, but do try not to kill your friends. Lamps and BoobyTraps aplenty. Enemies cannot open doors, DetectEnemies/EyeOfAvalon & Torch will not be attacked, Stealth & TileEffect durations extended.
 - __The Swirl__ : Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.
 - __Beat The Clock__ : Ultra health. Ultra card recycling. Only 15 rounds to escape...
 - __Hunter's Paradise__ : Pets, pets, pets! And hunter's mark.
