@@ -124,7 +124,7 @@
                 if (card.IsReplenishable > 0)
                 {
                     flags = 1;
-                    int refreshFrequency = card.IsReplenishable;
+                    int refreshFrequency = (card.IsReplenishable < 0) ? 0 : (card.IsReplenishable > 7) ? 7 : card.IsReplenishable; // Clamp 0-7 range.
                     flags |= refreshFrequency << 5; // logical or with refreshFrequency shifted 5 bits to the left to become ReplenishFrequency bits 5-7
                 }
 
