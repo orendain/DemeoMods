@@ -54,7 +54,7 @@
                     nameof(Inventory_RestoreReplenishables_Prefix)));
         }
 
-        private static bool Inventory_RestoreReplenishables_Prefix(bool __result, Piece piece)
+        private static bool Inventory_RestoreReplenishables_Prefix(ref bool __result, Piece piece)
         {
             if (!_isActivated)
             {
@@ -65,8 +65,8 @@
             for (int i = 0; i < piece.inventory.Items.Count; i++)
             {
                 Inventory.Item value = piece.inventory.Items[i];
-                var targetRefresh = (value.flags & 224) >> 5;
-                var countdown = (value.flags & 28) >> 2;
+                var targetRefresh = (value.flags >> 5) & 7;
+                var countdown = (value.flags >> 2) & 7;
                 if (piece.inventory.Items[i].IsReplenishing && (!piece.HasEffectState(EffectStateType.Stealthed) || piece.inventory.Items[i].abilityKey != AbilityKey.Sneak))
                 {
                     // If countdown was zero when we got called, then we need to set it.
@@ -86,7 +86,7 @@
                     value.flags &= 227; // Zero only the countdown bits using a bitmask
                     value.flags |= countdown << 2; // OR with countdown to set them again.
                     piece.inventory.Items[i] = value;
-                    // piece.inventory.needSync = true;
+                    Traverse.Create(piece.inventory).Property<bool>("needSync").Value = true;
                 }
             }
 
@@ -124,7 +124,7 @@
                 if (card.IsReplenishable > 0)
                 {
                     flags = 1;
-                    int refreshFrequency = (card.IsReplenishable < 0) ? 0 : (card.IsReplenishable > 7) ? 7 : card.IsReplenishable; // Clamp 0-7 range.
+                    int refreshFrequency = (card.IsReplenishable > 7) ? 7 : card.IsReplenishable; // Limit to max of 7 turns.
                     flags |= refreshFrequency << 5; // logical or with refreshFrequency shifted 5 bits to the left to become ReplenishFrequency bits 5-7
                 }
 
@@ -134,7 +134,7 @@
                     flags = flags,
                     originalOwner = -1,
                 });
-                // piece.inventory.needSync = true;
+                Traverse.Create(piece.inventory).Property<bool>("needSync").Value = true;
             }
         }
 
