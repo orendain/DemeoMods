@@ -134,6 +134,8 @@
                         AbilityKey.Torch,
                         AbilityKey.Bone,
                         AbilityKey.DetectEnemies,
+                        AbilityKey.WebBomb,
+                        AbilityKey.VortexLamp,
                     }
                 },
                 {
@@ -147,6 +149,9 @@
                         AbilityKey.Torch,
                         AbilityKey.Sneak,
                         AbilityKey.DetectEnemies,
+                        AbilityKey.Banish,
+                        AbilityKey.Lure,
+                        AbilityKey.WebBomb,
                     }
                 },
             });
@@ -243,6 +248,33 @@
                 {
                     effectStateType = EffectStateType.Stealthed,
                     durationTurns = 5,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Courageous,
+                    durationTurns = 2,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Fearless,
+                    durationTurns = 2,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Heroic,
+                    durationTurns = 2,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
