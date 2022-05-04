@@ -173,7 +173,7 @@
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoLootChests", 14 },
                 { "FloorThreeHealingFountains", 1 },
-                { "FloorThreeLootChests", 12 },
+                { "FloorThreeLootChests", 8 },
                 { "FloorOneEndZoneSpikeMaxBudget", 12 },
                 { "PacingSpikeSegmentFloorOneBudget", 12 },
             });
