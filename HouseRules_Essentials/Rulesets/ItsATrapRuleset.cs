@@ -134,6 +134,8 @@
                         AbilityKey.Torch,
                         AbilityKey.Bone,
                         AbilityKey.DetectEnemies,
+                        AbilityKey.WebBomb,
+                        AbilityKey.VortexLamp,
                     }
                 },
                 {
@@ -147,6 +149,9 @@
                         AbilityKey.Torch,
                         AbilityKey.Sneak,
                         AbilityKey.DetectEnemies,
+                        AbilityKey.Banish,
+                        AbilityKey.Lure,
+                        AbilityKey.WebBomb,
                     }
                 },
             });
