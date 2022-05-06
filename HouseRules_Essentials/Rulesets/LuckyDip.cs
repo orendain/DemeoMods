@@ -17,45 +17,45 @@
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WebBomb, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WebBomb, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, IsReplenishable = 0 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PanicPowder, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PanicPowder, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, IsReplenishable = true },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = false },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, IsReplenishable = 0 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
