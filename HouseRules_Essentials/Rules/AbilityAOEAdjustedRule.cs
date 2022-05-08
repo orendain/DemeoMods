@@ -12,6 +12,8 @@
     {
         public override string Description => "Ability AOE Ranges are adjusted";
 
+        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.StatusEffectDataModified;
+
         private readonly Dictionary<AbilityKey, int> _adjustments;
         private Dictionary<AbilityKey, int> _originals;
 
