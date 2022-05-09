@@ -8,71 +8,71 @@
         "HeroBard": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": false
+            "IsReplenishable": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ],
         "HeroGuardian": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": false
+            "IsReplenishable": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ],
         "HeroHunter": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": false
+            "IsReplenishable": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ],
         "HeroRogue": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": false
+            "IsReplenishable": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": false
+            "IsReplenishable": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ]
       }
