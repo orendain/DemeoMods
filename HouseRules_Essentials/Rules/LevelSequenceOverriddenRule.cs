@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
+    using Boardgame.SerializableEvents;
+    using Boardgame.SerializableEvents.CustomEventHandlers;
     using HarmonyLib;
     using HouseRules.Types;
 
@@ -45,6 +47,13 @@
                 prefix: new HarmonyMethod(
                     typeof(LevelSequenceOverriddenRule),
                     nameof(LevelSequenceConfiguration_GetSequenceDefinition_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(
+                    typeof(PlayAgainEventHandler), "AfterResponse"),
+                prefix: new HarmonyMethod(
+                    typeof(LevelSequenceOverriddenRule),
+                    nameof(PlayAgainEventHandler_AfterResponse_Prefix)));
         }
 
         /// <remarks>
@@ -72,6 +81,26 @@
                 ? sequenceDefinitions[sequenceDefinitions.Length - 1]
                 : sequenceDefinitions[sequenceDefinitions.Length - 3];
 
+            return false;
+        }
+
+        /// <remarks>
+        /// Overrides the level sequence used for a restarted game with the fresh copy of the current overriden one.
+        /// </remarks>
+        private static bool PlayAgainEventHandler_AfterResponse_Prefix(SerializableEventQueue eventQueue)
+        {
+            if (!_isActivated)
+            {
+                return true;
+            }
+
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+            var gsmLevelSequence = gameContext.levelSequenceConfiguration.GetNewLevelSequence(-1, GameHub.GameType);
+            var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
+
+            Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
+                _globalAdjustments.Prepend(originalSequence[0]).ToArray();
+            eventQueue.SendEventRequest(new SerializableEventStartNewGame(gsmLevelSequence));
             return false;
         }
 
