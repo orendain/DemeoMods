@@ -1,0 +1,450 @@
+{
+  "Name": "(Custom) Earth Wind & Fire",
+  "Description": "Not the band. Let's get Elemental",
+  "Rules": [
+    {
+      "Rule": "AbilityDamageOverridden",
+      "Config": {
+        "Zap": [
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "Rule": "StartCardsModified",
+      "Config": {
+        "HeroGuardian": [
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Electricity",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Sneak",
+            "IsReplenishable": 0
+          }
+        ],
+        "HeroHunter": [
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Electricity",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Sneak",
+            "IsReplenishable": 0
+          }
+        ],
+        "HeroRogue": [
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Electricity",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Sneak",
+            "IsReplenishable": 0
+          }
+        ],
+        "HeroSorcerer": [
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Electricity",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Sneak",
+            "IsReplenishable": 0
+          }
+        ],
+        "HeroBard": [
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Electricity",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Sneak",
+            "IsReplenishable": 0
+          }
+        ]
+      }
+    },
+    {
+      "Rule": "CardAdditionOverridden",
+      "Config": {
+        "HeroGuardian": [
+          "Bone",
+          "Fireball",
+          "Teleportation",
+          "RevealPath",
+          "Freeze",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "CallCompanion",
+          "WhirlwindAttack",
+          "LetItRain",
+          "WaterDive",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "WoodenBone",
+          "Torch"
+        ],
+        "HeroHunter": [
+          "Bone",
+          "Fireball",
+          "Teleportation",
+          "RevealPath",
+          "Freeze",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "CallCompanion",
+          "WhirlwindAttack",
+          "LetItRain",
+          "WaterDive",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "WoodenBone",
+          "Torch"
+        ],
+        "HeroRogue": [
+          "Bone",
+          "Fireball",
+          "Teleportation",
+          "RevealPath",
+          "Freeze",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "CallCompanion",
+          "WhirlwindAttack",
+          "LetItRain",
+          "WaterDive",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "WoodenBone",
+          "Torch"
+        ],
+        "HeroSorcerer": [
+          "Bone",
+          "Fireball",
+          "Teleportation",
+          "RevealPath",
+          "Freeze",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "CallCompanion",
+          "WhirlwindAttack",
+          "LetItRain",
+          "WaterDive",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "WoodenBone",
+          "Torch"
+        ],
+        "HeroBard": [
+          "Bone",
+          "Fireball",
+          "Teleportation",
+          "RevealPath",
+          "Freeze",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "CallCompanion",
+          "WhirlwindAttack",
+          "LetItRain",
+          "WaterDive",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "WoodenBone",
+          "Torch"
+        ]
+      }
+    },
+    {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartArmor",
+          "Value": 0.0
+        },
+        {
+          "Piece": "Sigataur",
+          "Property": "StartHealth",
+          "Value": 38.0
+        },
+        {
+          "Piece": "Brookmare",
+          "Property": "StartHealth",
+          "Value": 75.0
+        },
+        {
+          "Piece": "Brookmare",
+          "Property": "StartArmor",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "AttackDamage",
+          "Value": 3.0
+        }
+      ]
+    },
+    {
+      "Rule": "BackstabConfigOverridden",
+      "Config": [
+        "HeroGuardian",
+        "HeroSorcerer",
+        "HeroRogue",
+        "HeroBard"
+      ]
+    },
+    {
+      "Rule": "AbilityBackstabAdjusted",
+      "Config": {
+        "Zap": true,
+        "Arrow": true,
+        "PiercingThrow": true,
+        "PoisonedTip": true,
+        "Fireball": true,
+        "Freeze": true,
+        "Bone": true,
+        "WhirlwindAttack": true
+      }
+    },
+    {
+      "Rule": "MonsterDeckOverridden",
+      "Config": {
+        "EntranceDeckFloor1": {
+          "Spider": 0,
+          "IceElemental": 2,
+          "ChestGoblin": 3,
+          "FireElemental": 2
+        },
+        "ExitDeckFloor1": {
+          "Rat": 20,
+          "Spider": 20,
+          "IceElemental": 2,
+          "ChestGoblin": 3,
+          "Mimic": 1,
+          "GoblinMadUn": 1,
+          "DruidArcher": 1
+        },
+        "EntranceDeckFloor2": {
+          "Spider": 0,
+          "GoblinFighter": 0,
+          "ScabRat": 2,
+          "SporeFungus": 5,
+          "SpiderEgg": 3,
+          "FireElemental": 2,
+          "ElvenArcher": 2
+        },
+        "ExitDeckFloor2": {
+          "Spider": 20,
+          "Rat": 30,
+          "Bandit": 2,
+          "Mimic": 5,
+          "ElvenPriest": 4,
+          "ElvenMarauder": 2
+        },
+        "BossDeck": {
+          "SpiderEgg": 10,
+          "TheUnseen": 0,
+          "TheUnheard": 0,
+          "TheUnspoken": 0,
+          "Slimeling": 0,
+          "Sigataur": 2
+        },
+        "KeyHolderFloor1": "Cavetroll",
+        "KeyHolderFloor2": "Sigataur",
+        "Boss": "Brookmare"
+      }
+    },
+    {
+      "Rule": "AbilityAoeAdjusted",
+      "Config": {
+        "CourageShanty": 1,
+        "ReplenishArmor": 1,
+        "StrengthPotion": 1,
+        "SwiftnessPotion": 1,
+        "Antitoxin": 1,
+        "AdamantPotion": 1,
+        "HealingPotion": 1,
+        "OneMoreThing": 1
+      }
+    },
+    {
+      "Rule": "AbilityHealOverridden",
+      "Config": {
+        "HealingPotion": 3
+      }
+    },
+    {
+      "Rule": "RegainAbilityIfMaxxedOutOverridden",
+      "Config": {
+        "StrengthPotion": false,
+        "SwiftnessPotion": false
+      }
+    },
+    {
+      "Rule": "PieceUseWhenKilledOverridden",
+      "Config": {
+        "Spider": [
+          "HealingPotion",
+          "OneMoreThing"
+        ],
+        "IceElemental": [
+          "LetItRain"
+        ]
+      }
+    },
+    {
+      "Rule": "PieceAbilityListOverridden",
+      "Config": {
+        "HeroGuardian": [
+          "OneMoreThing",
+          "EarthShatter",
+          "Fireball",
+          "HurricaneAnthem",
+          "AbsorbMySoul"
+        ],
+        "HeroHunter": [
+          "OneMoreThing",
+          "EarthShatter",
+          "Fireball",
+          "HurricaneAnthem",
+          "AbsorbMySoul"
+        ],
+        "HeroSorcerer": [
+          "OneMoreThing",
+          "EarthShatter",
+          "Fireball",
+          "HurricaneAnthem",
+          "AbsorbMySoul"
+        ],
+        "HeroRogue": [
+          "OneMoreThing",
+          "EarthShatter",
+          "Fireball",
+          "HurricaneAnthem",
+          "AbsorbMySoul"
+        ],
+        "HeroBard": [
+          "OneMoreThing",
+          "EarthShatter",
+          "Fireball",
+          "HurricaneAnthem",
+          "AbsorbMySoul"
+        ]
+      }
+    },
+    {
+      "Rule": "EnemyRespawnDisabled",
+      "Config": true
+    },
+    {
+      "Rule": "LampTypesOverridden",
+      "Config": {
+        "1": [
+          "OilLamp",
+          "OilLamp",
+          "OilLamp",
+          "VortexLamp"
+        ],
+        "2": [
+          "GasLamp",
+          "GasLamp",
+          "GasLamp",
+          "VortexLamp"
+        ],
+        "3": [
+          "IceLamp",
+          "IceLamp",
+          "IceLamp",
+          "VortexLamp"
+        ]
+      }
+    }
+  ]
+}
