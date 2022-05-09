@@ -10,6 +10,9 @@
     {
         public override string Description => "LevelSequence is overridden";
 
+        private static List<string> _globalAdjustments;
+        private static bool _isActivated;
+
         private readonly List<string> _adjustments;
 
         /// <summary>
@@ -23,9 +26,15 @@
 
         public List<string> GetConfigObject() => _adjustments;
 
+        protected override void OnActivate(GameContext gameContext)
+        {
+            _globalAdjustments = _adjustments;
+            _isActivated = true;
+        }
+
         protected override void OnPreGameCreated(GameContext gameContext)
         {
-            ReplaceExistingProperties(_adjustments, gameContext);
+            ReplaceExistingProperties(_globalAdjustments, gameContext);
         }
 
         private static void Patch(Harmony harmony)
@@ -33,16 +42,27 @@
             harmony.Patch(
                 original: AccessTools.Method(
                     typeof(LevelSequenceConfiguration), "GetSequenceDefinition"),
-                prefix: new HarmonyMethod(typeof(LevelSequenceOverriddenRule), nameof(LevelSequenceConfiguration_GetSequenceDefinition_Prefix)));
+                prefix: new HarmonyMethod(
+                    typeof(LevelSequenceOverriddenRule),
+                    nameof(LevelSequenceConfiguration_GetSequenceDefinition_Prefix)));
         }
 
         /// <remarks>
         /// Sets a safe sequence definition even if the active game type does not have one that extends to the current level.
         /// </remarks>
-        private static bool LevelSequenceConfiguration_GetSequenceDefinition_Prefix(ref SequenceDefinition __result, int index, LevelSequence.GameType gameType)
+        private static bool LevelSequenceConfiguration_GetSequenceDefinition_Prefix(
+            ref SequenceDefinition __result,
+            int index,
+            LevelSequence.GameType gameType)
         {
+            if (!_isActivated)
+            {
+                return true;
+            }
+
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-            var sequenceDefinitions = gameContext.levelSequenceConfiguration.sequenceDefinitions.GetSequenceFromId(gameType, out _);
+            var sequenceDefinitions =
+                gameContext.levelSequenceConfiguration.sequenceDefinitions.GetSequenceFromId(gameType, out _);
             if (index >= 0 && index < sequenceDefinitions.Length)
             {
                 return true;
@@ -61,8 +81,10 @@
         /// <returns>List of previous LevelSequence levels that are now replaced.</returns>
         private static List<string> ReplaceExistingProperties(List<string> replacements, GameContext gameContext)
         {
-            var gsmLevelSequence = Traverse.Create(gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
+            var gsmLevelSequence =
+                Traverse.Create(gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
+
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 replacements.Prepend(originalSequence[0]).ToArray();
             return originalSequence.ToList();
