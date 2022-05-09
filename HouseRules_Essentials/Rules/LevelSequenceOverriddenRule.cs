@@ -87,7 +87,9 @@
         /// <remarks>
         /// Overrides the level sequence used for a restarted game with the fresh copy of the current overriden one.
         /// </remarks>
-        private static bool PlayAgainEventHandler_AfterResponse_Prefix(SerializableEventQueue eventQueue)
+        private static bool PlayAgainEventHandler_AfterResponse_Prefix(
+            PlayAgainEventHandler __instance,
+            SerializableEventQueue eventQueue)
         {
             if (!_isActivated)
             {
@@ -95,7 +97,10 @@
             }
 
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-            var gsmLevelSequence = gameContext.levelSequenceConfiguration.GetNewLevelSequence(-1, GameHub.GameType);
+            var newGameType =
+                Traverse.Create(__instance).Field<PostGameControllerBase>("postGameController").Value.gameType;
+
+            var gsmLevelSequence = gameContext.levelSequenceConfiguration.GetNewLevelSequence(-1, newGameType);
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
