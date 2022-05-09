@@ -22,6 +22,7 @@ HouseRules API.
 - __The Swirl__ : Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.
 - __Beat The Clock__ : Ultra health. Ultra card recycling. Only 15 rounds to escape...
 - __Hunter's Paradise__ : Pets, pets, pets! And hunter's mark.
+- __Demeo Reloaded__ : The Gray Alien's 'Demeo Reloaded' ruleset. New enemies, no respawns and too many other changes to list in a single line. 
 - __Difficulty Easy__ : Decreased game difficulty for a more casual playstyle.
 - __Difficulty Hard__ : Increased game difficulty for a greater challenge.
 - __Difficulty Legendary__ : Increased game difficulty for those who want to be a legend.

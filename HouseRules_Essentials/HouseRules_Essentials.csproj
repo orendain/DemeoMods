@@ -43,6 +43,7 @@
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
     <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
+    <Compile Include="Rulesets\DemeoReloaded.cs" />
     <Compile Include="Rulesets\ItsATrapRuleset.cs" />
     <Compile Include="Rulesets\LuckyDip.cs" />
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
