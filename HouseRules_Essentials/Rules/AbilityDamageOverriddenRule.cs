@@ -7,7 +7,7 @@
     using DataKeys;
     using HouseRules.Types;
 
-    public sealed class AbilityDamageOverriddenRule: Rule, IConfigWritable<Dictionary<AbilityKey, List<int>>>, IMultiplayerSafe
+    public sealed class AbilityDamageOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<int>>>, IMultiplayerSafe
     {
         public override string Description => "Ability damage values are overridden";
 
