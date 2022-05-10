@@ -60,50 +60,50 @@
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ShatteringVoice, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ShatteringVoice, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
 
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WhirlwindAttack, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingThrow, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Charge, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grab, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WhirlwindAttack, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingThrow, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Charge, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grab, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, ReplenishFrequency = 1 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HailOfArrows, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CallCompanion, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BeastWhisperer, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HailOfArrows, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CallCompanion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BeastWhisperer, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonBomb, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CursedDagger, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonBomb, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CursedDagger, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 1 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Freeze, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SummonElemental, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, IsReplenishable = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Freeze, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SummonElemental, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {

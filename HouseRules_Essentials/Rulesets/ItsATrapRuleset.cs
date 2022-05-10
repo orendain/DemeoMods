@@ -16,49 +16,49 @@
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, IsReplenishable = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, IsReplenishable = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, IsReplenishable = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
