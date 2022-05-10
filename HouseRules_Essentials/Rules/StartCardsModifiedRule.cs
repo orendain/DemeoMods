@@ -123,6 +123,7 @@
                 int flags = 0;
                 if (card.IsReplenishable > 0)
                 {
+                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                     flags = 1;
                     int refreshFrequency = (card.IsReplenishable > 7) ? 7 : card.IsReplenishable; // Limit to max of 7 turns.
                     flags |= refreshFrequency << 5; // logical or with refreshFrequency shifted 5 bits to the left to become ReplenishFrequency bits 5-7
