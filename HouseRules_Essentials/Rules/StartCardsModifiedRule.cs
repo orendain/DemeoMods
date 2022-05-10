@@ -21,7 +21,7 @@
         public struct CardConfig
         {
             public AbilityKey Card;
-            public int IsReplenishable;
+            public int ReplenishFrequency;
         }
 
         public StartCardsModifiedRule(Dictionary<BoardPieceId, List<CardConfig>> heroStartCards)
@@ -121,10 +121,11 @@
                 // 2-4 : ReplenishCounter - 3-bit range used by RestoreReplenishables for counting rounds.
                 // 5-7 : ReplenishFrequency - 3-bit number, user-configured target.
                 int flags = 0;
-                if (card.IsReplenishable > 0)
+                if (card.ReplenishFrequency > 0)
                 {
+                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                     flags = 1;
-                    int refreshFrequency = (card.IsReplenishable > 7) ? 7 : card.IsReplenishable; // Limit to max of 7 turns.
+                    int refreshFrequency = (card.ReplenishFrequency > 7) ? 7 : card.ReplenishFrequency; // Limit to max of 7 turns.
                     flags |= refreshFrequency << 5; // logical or with refreshFrequency shifted 5 bits to the left to become ReplenishFrequency bits 5-7
                 }
 
@@ -142,7 +143,7 @@
         {
             foreach (var startCards in heroStartCards.Values)
             {
-                if (startCards.Count(c => c.IsReplenishable > 0) > 2)
+                if (startCards.Count(c => c.ReplenishFrequency > 0) > 2)
                 {
                     throw new ArgumentException("Only 2 replenishable cards allowed.");
                 }
