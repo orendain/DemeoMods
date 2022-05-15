@@ -26,7 +26,7 @@
             var hunterScoreEntry = configCategory.CreateEntry("hunter", 0);
             var sorcererScoreEntry = configCategory.CreateEntry("sorcerer", 0);
             var downedScoreEntry = configCategory.CreateEntry("downed", description: "Downed players.", default_value: 0);
-            var javelinScoreEntry = configCategory.CreateEntry("javelin", description: "Players with the javelin.", default_value: 0);
+            var javelinScoreEntry = configCategory.CreateEntry("javelin", description: "Players with the Sigataurian Javelin.", default_value: 0);
 
             var isEnabled = enabledEntry.Value;
             var boardPieceScores = new Dictionary<BoardPieceId, int>

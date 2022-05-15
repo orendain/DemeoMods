@@ -12,6 +12,7 @@ mods, or are interested in learning to build your own.
   - [HouseRules](#houserules)
   - [SkipIntro](#skipintro)
   - [RoomFinder](#roomfinder)
+  - [Custom Turn Order](#custom-turn-order)
   - [RoomCode](#roomcode)
 - [Installation](#installation)
 - [For Developers](#for-developers)
@@ -78,6 +79,11 @@ lists all public rooms, along with their properties, so you can pick which one
 to join.
 
 ![RoomFinder Screenshot](docs/images/roomfinder_screenshot.jpg)
+
+### Custom Turn Order
+
+Define your own player turn order! See the
+[CustomTurnOrder readme](CustomTurnOrder/README.md) for configuration options.
 
 ### RoomCode
 
