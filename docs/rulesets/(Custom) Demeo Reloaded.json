@@ -1,0 +1,880 @@
+{
+  "Name": "(Custom) Demeo Reloaded",
+  "Description": "MANY class changes. NEW enemies. BETTER loot. No respawns. Yet somehow challenging...",
+  "Rules": [
+    {
+      "Rule": "SpawnCategoryOverridden",
+      "Config": {
+        "Mimic": [
+          1,
+          1,
+          1
+        ],
+        "Wyvern": [
+          1,
+          1,
+          2
+        ],
+        "ChestGoblin": [
+          1,
+          1,
+          2
+        ],
+        "RootGolem": [
+          1,
+          0,
+          2
+        ],
+        "Brookmare": [
+          1,
+          0,
+          2
+        ],
+        "EarthElemental": [
+          2,
+          1,
+          2
+        ],
+        "Bandit": [
+          2,
+          0,
+          1
+        ],
+        "Cavetroll": [
+          1,
+          0,
+          1
+        ],
+        "DruidArcher": [
+          4,
+          0,
+          1
+        ],
+        "DruidHoundMaster": [
+          4,
+          1,
+          1
+        ],
+        "ElvenArcher": [
+          4,
+          1,
+          1
+        ],
+        "ElvenHound": [
+          4,
+          1,
+          1
+        ],
+        "ElvenMarauder": [
+          1,
+          0,
+          1
+        ],
+        "GoblinChieftan": [
+          4,
+          0,
+          1
+        ],
+        "GoblinMadUn": [
+          6,
+          1,
+          1
+        ],
+        "RootBeast": [
+          4,
+          0,
+          1
+        ],
+        "RootHound": [
+          4,
+          1,
+          1
+        ],
+        "ScabRat": [
+          3,
+          0,
+          1
+        ],
+        "TheUnspoken": [
+          3,
+          0,
+          1
+        ],
+        "Spider": [
+          6,
+          4,
+          1
+        ],
+        "SpiderEgg": [
+          6,
+          3,
+          1
+        ],
+        "GiantSpider": [
+          4,
+          0,
+          1
+        ],
+        "Rat": [
+          8,
+          6,
+          1
+        ],
+        "Slimeling": [
+          4,
+          1,
+          1
+        ],
+        "Thug": [
+          3,
+          1,
+          2
+        ],
+        "ElvenMystic": [
+          6,
+          0,
+          1
+        ],
+        "ElvenPriest": [
+          4,
+          0,
+          1
+        ],
+        "ElvenSkirmisher": [
+          4,
+          0,
+          1
+        ],
+        "FireElemental": [
+          3,
+          0,
+          1
+        ],
+        "GoblinFighter": [
+          6,
+          3,
+          1
+        ],
+        "GoblinRanger": [
+          6,
+          3,
+          1
+        ],
+        "Gorgon": [
+          1,
+          0,
+          2
+        ],
+        "IceElemental": [
+          2,
+          0,
+          1
+        ],
+        "KillerBee": [
+          8,
+          4,
+          1
+        ],
+        "RatNest": [
+          4,
+          2,
+          1
+        ],
+        "RootMage": [
+          4,
+          1,
+          1
+        ],
+        "SporeFungus": [
+          6,
+          2,
+          1
+        ],
+        "TheUnheard": [
+          3,
+          0,
+          1
+        ],
+        "SilentSentinel": [
+          1,
+          0,
+          2
+        ],
+        "GiantSlime": [
+          2,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "Rule": "StartCardsModified",
+      "Config": {
+        "HeroBard": [
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "SongOfRecovery",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "ShatteringVoice",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "CourageShanty",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "CourageShanty",
+            "IsReplenishable": 1
+          }
+        ],
+        "HeroGuardian": [
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "WhirlwindAttack",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "PiercingThrow",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Charge",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Grab",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "ReplenishArmor",
+            "IsReplenishable": 1
+          }
+        ],
+        "HeroHunter": [
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "HailOfArrows",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "PoisonedTip",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "CallCompanion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "BeastWhisperer",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Arrow",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Arrow",
+            "IsReplenishable": 1
+          }
+        ],
+        "HeroRogue": [
+          {
+            "Card": "Sneak",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Blink",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "PoisonBomb",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "CursedDagger",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "DiseasedBite",
+            "IsReplenishable": 1
+          }
+        ],
+        "HeroSorcerer": [
+          {
+            "Card": "Zap",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "HealingPotion",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Fireball",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Freeze",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "SummonElemental",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Electricity",
+            "IsReplenishable": 1
+          }
+        ]
+      }
+    },
+    {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        {
+          "Piece": "HeroHunter",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "StartHealth",
+          "Value": 13.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartHealth",
+          "Value": 14.0
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "StartHealth",
+          "Value": 11.0
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "StartHealth",
+          "Value": 12.0
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "AttackDamage",
+          "Value": 2.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "AttackDamage",
+          "Value": 1.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "AttackDamage",
+          "Value": 4.0
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "CriticalHitDamage",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "CriticalHitDamage",
+          "Value": 3.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "CriticalHitDamage",
+          "Value": 9.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.9
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "StartArmor",
+          "Value": 5.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "StartHealth",
+          "Value": 24.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "MoveRange",
+          "Value": 3.0
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "BarkArmor",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "MoveRange",
+          "Value": 4.0
+        },
+        {
+          "Piece": "KillerBee",
+          "Property": "WaterTrailChance",
+          "Value": 0.15
+        },
+        {
+          "Piece": "Rat",
+          "Property": "WaterTrailChance",
+          "Value": 0.15
+        }
+      ]
+    },
+    {
+      "Rule": "CardAdditionOverridden",
+      "Config": {
+        "HeroGuardian": [
+          "Antitoxin",
+          "Bone",
+          "Regroup",
+          "Rejuvenation",
+          "OneMoreThing",
+          "BottleOfLye",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "HealingWard",
+          "WhirlwindAttack",
+          "WarCry",
+          "TheBehemoth",
+          "PiercingThrow",
+          "Charge",
+          "HealingWard"
+        ],
+        "HeroBard": [
+          "WebBomb",
+          "Regroup",
+          "Rejuvenation",
+          "OneMoreThing",
+          "PanicPowder",
+          "BottleOfLye",
+          "Teleportation",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "SongOfRecovery",
+          "SongOfResilience",
+          "BlockAbilities",
+          "PiercingVoice",
+          "ShatteringVoice",
+          "HurricaneAnthem"
+        ],
+        "HeroHunter": [
+          "Antitoxin",
+          "BeastWhisperer",
+          "WebBomb",
+          "RepeatingBallista",
+          "Regroup",
+          "Rejuvenation",
+          "OneMoreThing",
+          "PanicPowder",
+          "Barricade",
+          "BottleOfLye",
+          "RevealPath",
+          "DetectEnemies",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "ScrollOfCharm",
+          "HailOfArrows",
+          "CallCompanion",
+          "PoisonedTip",
+          "HuntersMark",
+          "Lure"
+        ],
+        "HeroRogue": [
+          "WebBomb",
+          "Regroup",
+          "Rejuvenation",
+          "OneMoreThing",
+          "PanicPowder",
+          "Barricade",
+          "BottleOfLye",
+          "Bone",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "Blink",
+          "PoisonBomb",
+          "CoinFlip",
+          "CursedDagger",
+          "BoobyTrap",
+          "FlashBomb"
+        ],
+        "HeroSorcerer": [
+          "Bone",
+          "Antitoxin",
+          "Regroup",
+          "Rejuvenation",
+          "OneMoreThing",
+          "PanicPowder",
+          "BottleOfLye",
+          "Teleportation",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "Banish",
+          "Fireball",
+          "Freeze",
+          "MagicShield",
+          "MagicBarrier",
+          "Vortex"
+        ]
+      }
+    },
+    {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "HealingSong",
+          "durationTurns": 5,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Recovery",
+          "durationTurns": 5,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Courageous",
+          "durationTurns": 3,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Heroic",
+          "durationTurns": 4,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Fearless",
+          "durationTurns": 5,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        }
+      ]
+    },
+    {
+      "Rule": "PieceAbilityListOverridden",
+      "Config": {
+        "EarthElemental": [
+          "EnemyMelee",
+          "EnemyKnockbackMelee",
+          "EarthShatter",
+          "EnemyJavelin"
+        ],
+        "Mimic": [
+          "EnemyMelee",
+          "AcidSpit"
+        ],
+        "RootMage": [
+          "EnemyMelee",
+          "TeleportEnemy"
+        ],
+        "KillerBee": [
+          "EnemyMelee",
+          "ThornPowder"
+        ]
+      }
+    },
+    {
+      "Rule": "PieceBehavioursListOverridden",
+      "Config": {
+        "EarthElemental": [
+          "FollowPlayerMeleeAttacker",
+          "AttackPlayer",
+          "EarthShatter",
+          "RangedAttackHighPrio"
+        ],
+        "Mimic": [
+          "FollowPlayerMeleeAttacker",
+          "AttackPlayer",
+          "RangedAttackHighPrio"
+        ],
+        "RootMage": [
+          "FollowPlayerMeleeAttacker",
+          "AttackPlayer",
+          "CastOnTeam"
+        ],
+        "KillerBee": [
+          "FollowPlayerMeleeAttacker",
+          "AttackPlayer",
+          "RangedAttackHighPrio"
+        ]
+      }
+    },
+    {
+      "Rule": "PieceImmunityListAdjusted",
+      "Config": {
+        "HeroSorcerer": [
+          "Stunned",
+          "Frozen"
+        ],
+        "HeroHunter": [
+          "Tangled",
+          "Petrified"
+        ],
+        "HeroGuardian": [
+          "Stunned",
+          "Weaken"
+        ],
+        "HeroBard": [
+          "Diseased"
+        ],
+        "HeroRogue": [
+          "Tangled",
+          "Diseased"
+        ],
+        "Mimic": [
+          "Panic",
+          "Stunned",
+          "Weaken",
+          "Diseased"
+        ],
+        "Wyvern": [
+          "Panic",
+          "Tangled",
+          "Frozen",
+          "Diseased",
+          "Tangled"
+        ],
+        "KillerBee": [
+          "Tangled",
+          "Diseased"
+        ],
+        "EarthElemental": [
+          "Stunned",
+          "Diseased",
+          "Panic",
+          "Tangled",
+          "Weaken"
+        ]
+      }
+    },
+    {
+      "Rule": "TileEffectDurationOverridden",
+      "Config": {
+        "Gas": 3,
+        "Acid": 4,
+        "Web": 4,
+        "Water": 3,
+        "Target": 0
+      }
+    },
+    {
+      "Rule": "AbilityActionCostAdjusted",
+      "Config": {
+        "Zap": false,
+        "Sneak": false,
+        "Grab": false,
+        "BeastWhisperer": false
+      }
+    },
+    {
+      "Rule": "AbilityHealOverridden",
+      "Config": {
+        "HealingPotion": 12,
+        "Rejuvenation": 12,
+        "AltarHeal": 12
+      }
+    },
+    {
+      "Rule": "AbilityAoeAdjusted",
+      "Config": {
+        "SongOfRecovery": 2,
+        "SongOfResilience": 2,
+        "FlashBomb": 1,
+        "WebBomb": 1,
+        "PoisonBomb": 1,
+        "HailOfArrows": 1,
+        "WarCry": 1,
+        "WhirlwindAttack": 1,
+        "Fireball": 1,
+        "Freeze": 1
+      }
+    },
+    {
+      "Rule": "AbilityDamageOverridden",
+      "Config": {
+        "Zap": [
+          3,
+          8
+        ],
+        "Fireball": [
+          12,
+          25
+        ],
+        "Freeze": [
+          7,
+          15
+        ],
+        "WhirlwindAttack": [
+          4,
+          9
+        ],
+        "Charge": [
+          4,
+          12
+        ],
+        "PiercingThrow": [
+          5,
+          11
+        ],
+        "Blink": [
+          7,
+          17
+        ],
+        "CursedDagger": [
+          4,
+          12
+        ],
+        "PoisonedTip": [
+          6,
+          13
+        ],
+        "HailOfArrows": [
+          5,
+          11
+        ],
+        "Arrow": [
+          4,
+          11
+        ],
+        "Electricity": [
+          2,
+          5
+        ],
+        "DiseasedBite": [
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "Rule": "BackstabConfigOverridden",
+      "Config": [
+        "HeroBard",
+        "HeroRogue"
+      ]
+    },
+    {
+      "Rule": "PetsFocusHunterMark",
+      "Config": true
+    },
+    {
+      "Rule": "EnemyRespawnDisabled",
+      "Config": true
+    },
+    {
+      "Rule": "CardEnergyFromAttackMultiplied",
+      "Config": 0.75
+    },
+    {
+      "Rule": "CardEnergyFromRecyclingMultiplied",
+      "Config": 0.75
+    },
+    {
+      "Rule": "EnemyAttackScaled",
+      "Config": 1.25
+    },
+    {
+      "Rule": "EnemyHealthScaled",
+      "Config": 1.334
+    },
+    {
+      "Rule": "LevelSequenceOverridden",
+      "Config": [
+        "SewersFloor12",
+        "ShopFloor02",
+        "ElvenFloor02",
+        "ForestShopFloor",
+        "ForestFloor02"
+      ]
+    },
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "BigGoldPileChance": 30,
+        "FloorOneHealingFountains": 1,
+        "FloorOneLootChests": 1,
+        "FloorOneClassCardChests": 2,
+        "FloorOneGoldMaxAmount": 600,
+        "FloorTwoHealingFountains": 1,
+        "FloorTwoLootChests": 2,
+        "FloorTwoClassCardChests": 3,
+        "FloorTwoGoldMaxAmount": 800,
+        "FloorThreeHealingFountains": 1,
+        "FloorThreeLootChests": 1
+      }
+    }
+  ]
+}

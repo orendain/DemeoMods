@@ -25,7 +25,7 @@
         // TODO(orendain): Disallow registration after a certain point in init process.
         public void Register(Type ruleType)
         {
-            HR.Logger.Msg($"Registering rule type: {ruleType}");
+            CoreMod.Logger.Msg($"Registering rule type: {ruleType}");
 
             if (RuleTypes.Contains(ruleType))
             {
@@ -42,7 +42,7 @@
 
         public void Register(Ruleset ruleset)
         {
-            HR.Logger.Msg($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
+            CoreMod.Logger.Msg($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
 
             if (IsRulesetRegistered(ruleset.Name))
             {

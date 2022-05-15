@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/orendain/demeomods/tree/HEAD)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.4.0-roomfinder...HEAD)
+
+**Fixes:**
+
+- Adjust RoomFinder UI to compensate for common UI changes. [\#229](https://github.com/orendain/DemeoMods/pull/229)
+
 ## [v1.4.0-roomfinder](https://github.com/orendain/demeomods/tree/v1.4.0-roomfinder) (2022-02-20)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-roomfinder...v1.4.0-roomfinder)

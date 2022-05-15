@@ -3,17 +3,16 @@ namespace HouseRules
     using System;
     using System.Linq;
     using HouseRules.Types;
-    using MelonLoader;
 
     public static class HR
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Core");
-
         public static readonly Rulebook Rulebook = Rulebook.NewInstance();
 
         public static Ruleset SelectedRuleset { get; private set; } = Ruleset.None;
 
         internal static bool IsRulesetActive => LifecycleDirector.IsRulesetActive;
+
+        public static void ScheduleResync() => BoardSyncer.ScheduleSync();
 
         public static void SelectRuleset(string ruleset)
         {
@@ -25,7 +24,7 @@ namespace HouseRules
             if (Ruleset.None.Name.Equals(ruleset, StringComparison.OrdinalIgnoreCase))
             {
                 SelectedRuleset = Ruleset.None;
-                Logger.Msg("Cleared selected ruleset.");
+                CoreMod.Logger.Msg("Cleared selected ruleset.");
                 return;
             }
 
@@ -35,8 +34,12 @@ namespace HouseRules
             }
 
             SelectedRuleset = Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
+            CoreMod.Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
+        }
 
-            Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
+        public static void ScheduleBoardSync()
+        {
+            BoardSyncer.ScheduleSync();
         }
     }
 }

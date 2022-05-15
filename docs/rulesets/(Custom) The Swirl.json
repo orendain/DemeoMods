@@ -8,51 +8,51 @@
         "HeroBard": [
           {
             "Card": "Vortex",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "CourageShanty",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ],
         "HeroGuardian": [
           {
             "Card": "Vortex",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "ReplenishArmor",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ],
         "HeroHunter": [
           {
             "Card": "Vortex",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "Arrow",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ],
         "HeroRogue": [
           {
             "Card": "Vortex",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "Vortex",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "Zap",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           }
         ]
       }

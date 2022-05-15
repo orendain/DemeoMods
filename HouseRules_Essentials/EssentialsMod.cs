@@ -18,7 +18,7 @@
         {
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityBackstabAdjustedRule));
-            HR.Rulebook.Register(typeof(AbilityDamageAdjustedRule));
+            HR.Rulebook.Register(typeof(AbilityDamageOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityHealOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
@@ -53,6 +53,7 @@
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
             HR.Rulebook.Register(typeof(StatModifiersOverridenRule));
             HR.Rulebook.Register(typeof(StatusEffectConfigRule));
+            HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
         }
 
         private static void RegisterRulesets()
@@ -63,7 +64,9 @@
             HR.Rulebook.Register(LuckyDip.Create());
             HR.Rulebook.Register(TheSwirlRuleset.Create());
             HR.Rulebook.Register(BeatTheClockRuleset.Create());
+            HR.Rulebook.Register(ItsATrapRuleset.Create());
             HR.Rulebook.Register(HuntersParadiseRuleset.Create());
+            HR.Rulebook.Register(DemeoReloaded.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
             HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());

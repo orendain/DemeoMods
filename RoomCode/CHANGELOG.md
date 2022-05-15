@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.1.0-roomcode](https://github.com/orendain/demeomods/tree/v1.1.0-roomcode) (2022-04-11)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.0.0-roomcode...v1.1.0-roomcode)
+
+**Features/Enhancements:**
+
+- Override room codes on PC editions. [\#283](https://github.com/orendain/DemeoMods/pull/283)
+
 ## [v1.0.0-roomcode](https://github.com/orendain/demeomods/tree/v1.0.0-roomcode) (2022-02-20)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/faa2e50c1fdc985e4bf0383f16ef8980eb1580b9...v1.0.0-roomcode)

@@ -1,11 +1,14 @@
 {
   "Name": "(Custom) Arachnophobia",
-  "Description": "Money Spiders everywhere. On the walls and in my hair.",
+  "Description": "Money Spiders everywhere. On my face and in my hair.",
   "Rules": [
     {
-      "Rule": "AbilityDamageAdjusted",
+      "Rule": "AbilityDamageOverridden",
       "Config": {
-        "Zap": 1
+        "Zap": [
+          2,
+          4
+        ]
       }
     },
     {
@@ -14,127 +17,127 @@
         "HeroBard": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "CourageShanty",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "IceLamp",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "SongOfRecovery",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "HurricaneAnthem",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "ShatteringVoice",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ],
         "HeroGuardian": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "ReplenishArmor",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "Bone",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "WhirlwindAttack",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "PiercingThrow",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ],
         "HeroHunter": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "Arrow",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "PoisonedTip",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "HailOfArrows",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "CallCompanion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ],
         "HeroRogue": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "PanicPowder",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "BoobyTrap",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "PoisonBomb",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "Zap",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "OilLamp",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "HeavensFury",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "DetectEnemies",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ]
       }
@@ -249,17 +252,17 @@
         {
           "Piece": "RatKing",
           "Property": "StartHealth",
-          "Value": 45.0
-        },
-        {
-          "Piece": "RatKing",
-          "Property": "MoveRange",
-          "Value": 2.0
+          "Value": 50.0
         },
         {
           "Piece": "ElvenQueen",
           "Property": "StartHealth",
-          "Value": 35.0
+          "Value": 60.0
+        },
+        {
+          "Piece": "Gorgon",
+          "Property": "StartHealth",
+          "Value": 85.0
         }
       ]
     },
@@ -274,15 +277,15 @@
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
-        "FloorOneHealingFountains": 4,
+        "FloorOneGoldMaxAmount": 1200,
+        "FloorOneHealingFountains": 2,
         "FloorOneLootChests": 12,
         "FloorOneClassCardChests": 8,
-        "FloorTwoHealingFountains": 4,
+        "FloorTwoHealingFountains": 3,
         "FloorTwoLootChests": 9,
-        "FloorTwoGoldMaxAmount": 2500,
-        "FloorThreeHealingFountains": 6,
-        "FloorThreeLootChests": 0,
-        "FloorOneGoldMaxAmount": 1500
+        "FloorTwoGoldMaxAmount": 1500,
+        "FloorThreeHealingFountains": 1,
+        "FloorThreeLootChests": 0
       }
     },
     {
@@ -307,41 +310,71 @@
           "Diseased"
         ],
         "RatKing": [
-          "Petrified"
+          "Petrified",
+          "Stunned",
+          "Panic",
+          "Frozen",
+          "Disoriented",
+          "Confused"
         ],
         "ElvenQueen": [
-          "Petrified"
+          "Petrified",
+          "Stunned",
+          "Disoriented",
+          "Confused"
+        ],
+        "Gorgon": [
+          "Petrified",
+          "Stunned",
+          "Frozen",
+          "MarkOfAvalon",
+          "Panic",
+          "Disoriented",
+          "Confused"
         ]
       }
     },
     {
-      "Rule": "SpawnCategoryOverridden",
+      "Rule": "MonsterDeckOverridden",
       "Config": {
-        "Spider": [
-          200,
-          50,
-          1
-        ],
-        "SpiderEgg": [
-          20,
-          10,
-          1
-        ],
-        "GiantSpider": [
-          30,
-          10,
-          1
-        ],
-        "RatKing": [
-          1,
-          1,
-          1
-        ],
-        "ElvenQueen": [
-          1,
-          1,
-          2
-        ]
+        "EntranceDeckFloor1": {
+          "Spider": 0,
+          "SpiderEgg": 5,
+          "GiantSpider": 1,
+          "GiantSlime": 1
+        },
+        "ExitDeckFloor1": {
+          "Spider": 0,
+          "SpiderEgg": 2,
+          "GiantSpider": 3,
+          "ElvenQueen": 1
+        },
+        "EntranceDeckFloor2": {
+          "Spider": 0,
+          "SpiderEgg": 2,
+          "GiantSpider": 3,
+          "DruidArcher": 4
+        },
+        "ExitDeckFloor2": {
+          "Spider": 0,
+          "SpiderEgg": 3,
+          "GiantSpider": 2,
+          "RatKing": 1
+        },
+        "BossDeck": {
+          "Spider": 0,
+          "GiantSpider": 4,
+          "TheUnseen": 0,
+          "TheUnheard": 0,
+          "TheUnspoken": 0,
+          "DruidArcher": 3,
+          "ElvenPriest": 3,
+          "ElvenMystic": 3,
+          "Sigataur": 2
+        },
+        "KeyHolderFloor1": "CavetrollBoss",
+        "KeyHolderFloor2": "Sigataur",
+        "Boss": "Gorgon"
       }
     },
     {
@@ -400,7 +433,7 @@
       "Rule": "PieceUseWhenKilledOverridden",
       "Config": {
         "Spider": [
-          "HealingPotion"
+          "EnemyDropStolenGoods"
         ]
       }
     },
@@ -440,6 +473,16 @@
         {
           "effectStateType": "Fearless",
           "durationTurns": 6,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Invulnerable1",
+          "durationTurns": 2,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,

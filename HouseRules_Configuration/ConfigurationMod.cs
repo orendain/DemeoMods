@@ -8,15 +8,20 @@
 
     internal class ConfigurationMod : MelonMod
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
-        internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
+        private const string DemeoPCEditionString = "Demeo PC Edition";
         private const int LobbySceneIndex = 1;
         private const int HangoutsSceneIndex = 43;
+
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
+        internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
         private static readonly List<string> FailedRulesetFiles = new List<string>();
+
+        internal static bool IsUpdateAvailable { get; private set; }
 
         public override void OnApplicationStart()
         {
             CommonModule.Initialize();
+            DetermineIfUpdateAvailable();
         }
 
         public override void OnApplicationLateStart()
@@ -47,10 +52,22 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
+            if (MelonUtils.CurrentGameAttribute.Name == DemeoPCEditionString)
+            {
+                Logger.Msg("PC Edition detected. Skipping VR UI loading.");
+                return;
+            }
+
             if (buildIndex == LobbySceneIndex || buildIndex == HangoutsSceneIndex)
             {
                 _ = new GameObject("HouseRules_RulesetSelection", typeof(UI.RulesetSelectionUI));
             }
+        }
+
+        private static async void DetermineIfUpdateAvailable()
+        {
+            IsUpdateAvailable = await VersionChecker.IsUpdateAvailable();
+            Logger.Msg($"{(IsUpdateAvailable ? "New" : "No new")} HouseRules update found.");
         }
 
         private static void LoadRulesetsFromConfig()

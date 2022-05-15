@@ -54,6 +54,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="BoardSyncer.cs" />
+        <Compile Include="BuildVersion.cs" />
         <Compile Include="HangoutsGameRacer.cs" />
         <Compile Include="LifecycleDirector.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

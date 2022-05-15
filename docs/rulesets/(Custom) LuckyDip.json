@@ -3,9 +3,12 @@
   "Description": "Life is like a box of chocolates + AOE changes, so stay close to your allies",
   "Rules": [
     {
-      "Rule": "AbilityDamageAdjusted",
+      "Rule": "AbilityDamageOverridden",
       "Config": {
-        "Zap": 1
+        "Zap": [
+          2,
+          5
+        ]
       }
     },
     {
@@ -14,119 +17,119 @@
         "HeroBard": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "CourageShanty",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "WebBomb",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "SongOfRecovery",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ],
         "HeroGuardian": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "ReplenishArmor",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "Bone",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ],
         "HeroHunter": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "Arrow",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "PoisonedTip",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ],
         "HeroRogue": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "PanicPowder",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "Zap",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "Torch",
-            "IsReplenishable": true
+            "IsReplenishable": 1
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": false
+            "IsReplenishable": 0
           }
         ]
       }

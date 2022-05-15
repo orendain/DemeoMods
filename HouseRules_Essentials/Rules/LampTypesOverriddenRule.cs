@@ -7,28 +7,21 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class LampTypesOverriddenRule : Rule, IConfigWritable<LampTypesOverriddenRule.LampConfig>, IPatchable, IMultiplayerSafe
+    public sealed class LampTypesOverriddenRule : Rule, IConfigWritable<Dictionary<int, List<BoardPieceId>>>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Lamp types are overridden.";
 
-        private static LampTypesOverriddenRule.LampConfig _globalAdjustments;
+        private static Dictionary<int, List<BoardPieceId>> _globalAdjustments;
         private static bool _isActivated;
 
-        private readonly LampTypesOverriddenRule.LampConfig _adjustments;
+        private readonly Dictionary<int, List<BoardPieceId>> _adjustments;
 
-        public struct LampConfig
-        {
-            public List<BoardPieceId> Floor1Lamps;
-            public List<BoardPieceId> Floor2Lamps;
-            public List<BoardPieceId> Floor3Lamps;
-        }
-
-        public LampTypesOverriddenRule(LampTypesOverriddenRule.LampConfig adjustments)
+        public LampTypesOverriddenRule(Dictionary<int, List<BoardPieceId>> adjustments)
         {
             _adjustments = adjustments;
         }
 
-        public LampTypesOverriddenRule.LampConfig GetConfigObject() => _adjustments;
+        public Dictionary<int, List<BoardPieceId>> GetConfigObject() => _adjustments;
 
         protected override void OnActivate(GameContext gameContext)
         {
@@ -54,21 +47,13 @@
                 return true;
             }
 
-            var floorIndex = MotherTracker.motherTrackerData.floorIndex;
-
-            if (floorIndex == 0)
+            var floorIndex = MotherTracker.motherTrackerData.floorIndex + 1;
+            if (!_globalAdjustments.ContainsKey(floorIndex))
             {
-                __result = _globalAdjustments.Floor1Lamps.ToArray();
-            }
-            else if (floorIndex == 1)
-            {
-                __result = _globalAdjustments.Floor2Lamps.ToArray();
-            }
-            else
-            {
-                __result = _globalAdjustments.Floor3Lamps.ToArray();
+                return true;
             }
 
+            __result = _globalAdjustments[floorIndex].ToArray();
             return false; // We returned an user-adjusted config.
         }
     }

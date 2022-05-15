@@ -1,0 +1,398 @@
+{
+  "Name": "(Custom) It's A Trap!",
+  "Description": "Everything you need to build devious traps for your enemies, but try not to kill your friends.",
+  "Rules": [
+    {
+      "Rule": "AbilityActionCostAdjusted",
+      "Config": {
+        "BoobyTrap": false
+      }
+    },
+    {
+      "Rule": "CardAdditionOverridden",
+      "Config": {
+        "HeroBard": [
+          "PoisonBomb",
+          "MagicBarrier",
+          "OilLamp",
+          "GasLamp",
+          "IceLamp",
+          "TheBehemoth",
+          "RepeatingBallista",
+          "TheBehemoth",
+          "VortexLamp",
+          "HealingPotion",
+          "Torch",
+          "Sneak",
+          "Bone",
+          "DetectEnemies"
+        ],
+        "HeroGuardian": [
+          "PoisonBomb",
+          "MagicBarrier",
+          "Bone",
+          "HealingPotion",
+          "OilLamp",
+          "GasLamp",
+          "IceLamp",
+          "VortexLamp",
+          "RevealPath",
+          "Torch",
+          "Sneak",
+          "DetectEnemies"
+        ],
+        "HeroHunter": [
+          "PoisonBomb",
+          "MagicBarrier",
+          "HealingPotion",
+          "PoisonedTip",
+          "OilLamp",
+          "GasLamp",
+          "IceLamp",
+          "Torch",
+          "Sneak",
+          "DetectEnemies"
+        ],
+        "HeroRogue": [
+          "PoisonBomb",
+          "HealingPotion",
+          "OilLamp",
+          "GasLamp",
+          "IceLamp",
+          "Vortex",
+          "Torch",
+          "Bone",
+          "DetectEnemies",
+          "WebBomb",
+          "VortexLamp"
+        ],
+        "HeroSorcerer": [
+          "HealingPotion",
+          "OilLamp",
+          "GasLamp",
+          "IceLamp",
+          "Vortex",
+          "Torch",
+          "Sneak",
+          "DetectEnemies",
+          "Banish",
+          "Lure",
+          "WebBomb"
+        ]
+      }
+    },
+    {
+      "Rule": "AbilityAoeAdjusted",
+      "Config": {
+        "StrengthPotion": 1,
+        "SwiftnessPotion": 1,
+        "HealingPotion": 1
+      }
+    },
+    {
+      "Rule": "LampTypesOverridden",
+      "Config": {
+        "1": [
+          "GasLamp",
+          "OilLamp",
+          "VortexLamp",
+          "GasLamp",
+          "OilLamp",
+          "VortexLamp",
+          "OilLamp",
+          "OilLamp",
+          "HealingBeacon"
+        ],
+        "2": [
+          "GasLamp",
+          "GasLamp",
+          "GasLamp",
+          "GasLamp",
+          "GasLamp",
+          "GasLamp",
+          "GasLamp",
+          "OilLamp",
+          "OilLamp",
+          "HealingBeacon"
+        ],
+        "3": [
+          "OilLamp",
+          "IceLamp",
+          "VortexLamp",
+          "OilLamp",
+          "IceLamp",
+          "VortexLamp",
+          "HealingBeacon"
+        ]
+      }
+    },
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "FloorOneHealingFountains": 0,
+        "FloorOneLootChests": 11,
+        "FloorTwoHealingFountains": 1,
+        "FloorTwoLootChests": 14,
+        "FloorThreeHealingFountains": 1,
+        "FloorThreeLootChests": 12,
+        "FloorOneEndZoneSpikeMaxBudget": 12,
+        "PacingSpikeSegmentFloorOneBudget": 12
+      }
+    },
+    {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        {
+          "Piece": "HeroBard",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
+          "Piece": "Torch",
+          "Property": "VisionRange",
+          "Value": 40.0
+        }
+      ]
+    },
+    {
+      "Rule": "PiecePieceTypeListOverridden",
+      "Config": {
+        "Torch": [
+          "Prop",
+          "UpdateFogOfWar",
+          "ShowNameplate"
+        ],
+        "EyeOfAvalon": [
+          "Prop",
+          "UpdateFogOfWar",
+          "Immovable",
+          "ShowHealthbar",
+          "ShowNameplate"
+        ],
+        "HealingBeacon": [
+          "Prop",
+          "Bot",
+          "ShowNameplate"
+        ]
+      }
+    },
+    {
+      "Rule": "StartCardsModified",
+      "Config": {
+        "HeroBard": [
+          {
+            "Card": "BoobyTrap",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "CourageShanty",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "OilLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "GasLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "IceLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "Sneak",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "DetectEnemies",
+            "IsReplenishable": 0
+          }
+        ],
+        "HeroGuardian": [
+          {
+            "Card": "BoobyTrap",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "ReplenishArmor",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "OilLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "GasLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "IceLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "DetectEnemies",
+            "IsReplenishable": 0
+          }
+        ],
+        "HeroHunter": [
+          {
+            "Card": "BoobyTrap",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Arrow",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "OilLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "GasLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "IceLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "DetectEnemies",
+            "IsReplenishable": 0
+          }
+        ],
+        "HeroRogue": [
+          {
+            "Card": "BoobyTrap",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Sneak",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "OilLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "GasLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "IceLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "DetectEnemies",
+            "IsReplenishable": 0
+          }
+        ],
+        "HeroSorcerer": [
+          {
+            "Card": "BoobyTrap",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "Zap",
+            "IsReplenishable": 1
+          },
+          {
+            "Card": "OilLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "GasLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "IceLamp",
+            "IsReplenishable": 0
+          },
+          {
+            "Card": "DetectEnemies",
+            "IsReplenishable": 0
+          }
+        ]
+      }
+    },
+    {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "Stealthed",
+          "durationTurns": 5,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Courageous",
+          "durationTurns": 2,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Fearless",
+          "durationTurns": 2,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Heroic",
+          "durationTurns": 2,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        }
+      ]
+    },
+    {
+      "Rule": "TileEffectDurationOverridden",
+      "Config": {
+        "Gas": 10,
+        "Acid": 1,
+        "Web": 10,
+        "Water": 10,
+        "Target": 0
+      }
+    },
+    {
+      "Rule": "EnemyDoorOpeningDisabled",
+      "Config": true
+    }
+  ]
+}

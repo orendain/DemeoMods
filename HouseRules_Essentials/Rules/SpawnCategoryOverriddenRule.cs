@@ -48,14 +48,15 @@
                 bpis.Add(nap.Key);
             }
 
-            for (int i = 0; i < spawnCategories.Count; i++)
+            for (var i = 0; i < spawnCategories.Count; i++)
             {
                 if (bpis.Contains(spawnCategories[i].BoardPieceId))
                 {
-                    previousConfigs[spawnCategories[i].BoardPieceId] = new List<int>()
-                    { spawnCategories[i].MaxPerDeck,
-                      spawnCategories[i].PreFill,
-                      spawnCategories[i].FirstAllowedLevelIndex,
+                    previousConfigs[spawnCategories[i].BoardPieceId] = new List<int>
+                    {
+                        spawnCategories[i].MaxPerDeck,
+                        spawnCategories[i].PreFill,
+                        spawnCategories[i].FirstAllowedLevelIndex,
                     };
 
                     spawnCategories[i] = new SpawnCategoryDTO

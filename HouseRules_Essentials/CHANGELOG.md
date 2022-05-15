@@ -1,5 +1,16 @@
 # Changelog
 
+## [v1.3.0-houserules](https://github.com/orendain/demeomods/tree/v1.3.0-houserules) (2022-04-17)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-houserules...v1.3.0-houserules)
+
+**Features/Enhancements:**
+
+- Check if a new release of HouseRules is available during game startup. [\#292](https://github.com/orendain/DemeoMods/pull/292)
+- Add a new rule for controlling the duration of TileEffects. [\#291](https://github.com/orendain/DemeoMods/pull/291)
+- Extend LevelSequence rule to allow arbitrarily long sequences. [\#275](https://github.com/orendain/DemeoMods/pull/275)
+- Add a new rule for overriding the LevelSequence used in a game session. [\#272](https://github.com/orendain/DemeoMods/pull/272)
+
 ## [v1.2.0-houserules](https://github.com/orendain/demeomods/tree/v1.2.0-houserules) (2022-03-31)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.1.0-houserules...v1.2.0-houserules)
