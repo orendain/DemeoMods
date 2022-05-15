@@ -6,11 +6,11 @@
     using DataKeys;
     using MelonLoader;
 
-    public class PieceScorer
+    internal class PieceScorer
     {
         private const string PrependedConfigDescription = "Directions: Add numbers to each of the attributes below. Players with higher totals go first in the turn order.\n";
 
-        private readonly Dictionary<BoardPieceId, int> _boardPieceScores;
+        private readonly Dictionary<BoardPieceId, int> _pieceScores;
         private readonly int _downedScore;
         private readonly int _javelinScore;
 
@@ -43,10 +43,10 @@
             return new PieceScorer(isEnabled, boardPieceScores, downedScore, javelinScore);
         }
 
-        private PieceScorer(bool isEnabled, Dictionary<BoardPieceId, int> boardPieceScores, int downedScore, int javelinScore)
+        private PieceScorer(bool isEnabled, Dictionary<BoardPieceId, int> pieceScores, int downedScore, int javelinScore)
         {
             IsEnabled = isEnabled;
-            _boardPieceScores = boardPieceScores;
+            _pieceScores = pieceScores;
             _downedScore = downedScore;
             _javelinScore = javelinScore;
         }
@@ -66,7 +66,7 @@
         {
             var score = 0;
 
-            if (_boardPieceScores.TryGetValue(piece.boardPieceId, out var pieceScore))
+            if (_pieceScores.TryGetValue(piece.boardPieceId, out var pieceScore))
             {
                 score += pieceScore;
             }
