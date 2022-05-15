@@ -7,6 +7,7 @@
     using Boardgame.TurnOrder;
     using DataKeys;
     using HarmonyLib;
+    using Photon.Pun;
 
     internal static class TurnOrderInjector
     {
@@ -21,6 +22,11 @@
             RearrangePlayerTurnOrder __instance,
             TurnQueue turnQueue)
         {
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                return true;
+            }
+
             if (!TurnOrderCustomizerMod.PieceScorer.IsEnabled)
             {
                 return true;

@@ -41,6 +41,9 @@
         <Reference Include="MelonLoader">
             <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>
+        <Reference Include="PhotonUnityNetworking">
+            <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="PieceScorer.cs" />
