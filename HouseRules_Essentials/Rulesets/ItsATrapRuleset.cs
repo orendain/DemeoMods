@@ -136,6 +136,7 @@
                         AbilityKey.DetectEnemies,
                         AbilityKey.WebBomb,
                         AbilityKey.VortexLamp,
+                        AbilityKey.Teleportation,
                     }
                 },
                 {
@@ -152,6 +153,8 @@
                         AbilityKey.Banish,
                         AbilityKey.Lure,
                         AbilityKey.WebBomb,
+                        AbilityKey.Teleportation,
+                        AbilityKey.Regroup,
                     }
                 },
             });
