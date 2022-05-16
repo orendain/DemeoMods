@@ -16,49 +16,55 @@
 
             var spawnCatetoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
-                { BoardPieceId.Mimic, new List<int> { 1, 1, 1 } },
-                { BoardPieceId.Wyvern, new List<int> { 1, 1, 2 } },
-                { BoardPieceId.ChestGoblin, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.RootGolem, new List<int> { 1, 1, 2 } },
-                { BoardPieceId.Brookmare, new List<int> { 1, 1, 2 } },
-                { BoardPieceId.EarthElemental, new List<int> { 1, 1, 1 } },
-                { BoardPieceId.Bandit, new List<int> { 3, 2, 1 } },
-                { BoardPieceId.Cavetroll, new List<int> { 1, 1, 2 } },
-                { BoardPieceId.DruidArcher, new List<int> { 3, 2, 1 } },
-                { BoardPieceId.DruidHoundMaster, new List<int> { 3, 2, 1 } },
-                { BoardPieceId.ElvenArcher, new List<int> { 4, 2, 2 } },
-                { BoardPieceId.ElvenHound, new List<int> { 6, 3, 2 } },
-                { BoardPieceId.ElvenMarauder, new List<int> { 1, 1, 1 } },
-                { BoardPieceId.GoblinChieftan, new List<int> { 3, 2, 1 } },
-                { BoardPieceId.GoblinMadUn, new List<int> { 3, 2, 1 } },
-                { BoardPieceId.RootBeast, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.RootHound, new List<int> { 6, 2, 2 } },
-                { BoardPieceId.ScabRat, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.Wyvern, new List<int> { 3, 1, 2 } },
+                { BoardPieceId.Cavetroll, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.RootGolem, new List<int> { 3, 1, 2 } },
+                { BoardPieceId.Brookmare, new List<int> { 2, 1, 2 } },
+                { BoardPieceId.Gorgon, new List<int> { 2, 1, 2 } },
+                { BoardPieceId.SilentSentinel, new List<int> { 2, 1, 2 } },
+                { BoardPieceId.ElvenArcher, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.ElvenHound, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.RootHound, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.TheUnspoken, new List<int> { 3, 2, 1 } },
-                { BoardPieceId.Spider, new List<int> { 5, 2, 1 } },
+                { BoardPieceId.Mimic, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.EarthElemental, new List<int> { 5, 2, 1 } },
+                { BoardPieceId.Sigataur, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.ChestGoblin, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.CultMemberElder, new List<int> { 6, 2, 1 } },
+                { BoardPieceId.ElvenCultist, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.SpiderEgg, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.TheUnseen, new List<int> { 3, 1, 2 } },
+                { BoardPieceId.GiantSlime, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.FireElemental, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.ElvenMarauder, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.IceElemental, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.GiantSpider, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.Rat, new List<int> { 8, 6, 1 } },
-                { BoardPieceId.Slimeling, new List<int> { 4, 1, 1 } },
-                { BoardPieceId.Thug, new List<int> { 3, 1, 2 } },
-                { BoardPieceId.ElvenMystic, new List<int> { 6, 2, 1 } },
-                { BoardPieceId.ElvenPriest, new List<int> { 3, 2, 1 } },
-                { BoardPieceId.ElvenSkirmisher, new List<int> { 3, 2, 1 } },
-                { BoardPieceId.FireElemental, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.Bandit, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.DruidArcher, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.DruidHoundMaster, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.GoblinChieftan, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.GoblinMadUn, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.RootBeast, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.ScabRat, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.Spider, new List<int> { 5, 3, 1 } },
+                { BoardPieceId.Rat, new List<int> { 6, 3, 1 } },
+                { BoardPieceId.TheUnheard, new List<int> { 4, 3, 2 } },
+                { BoardPieceId.Slimeling, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.Thug, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.ElvenMystic, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.ElvenPriest, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.ElvenSkirmisher, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.GoblinFighter, new List<int> { 3, 2, 1 } },
                 { BoardPieceId.GoblinRanger, new List<int> { 3, 2, 1 } },
-                { BoardPieceId.Gorgon, new List<int> { 1, 1, 2 } },
-                { BoardPieceId.IceElemental, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.KillerBee, new List<int> { 5, 2, 1 } },
-                { BoardPieceId.RatNest, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.RootMage, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.SporeFungus, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.TheUnheard, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.SilentSentinel, new List<int> { 1, 1, 2 } },
-                { BoardPieceId.GiantSlime, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.KillerBee, new List<int> { 6, 3, 1 } },
+                { BoardPieceId.RatNest, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.RootMage, new List<int> { 6, 3, 1 } },
+                { BoardPieceId.SporeFungus, new List<int> { 4, 1, 1 } },
             });
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, ReplenishFrequency = 0 },
@@ -69,6 +75,7 @@
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WhirlwindAttack, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingThrow, ReplenishFrequency = 0 },
@@ -78,6 +85,7 @@
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HailOfArrows, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, ReplenishFrequency = 0 },
@@ -88,6 +96,7 @@
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, ReplenishFrequency = 0 },
@@ -97,6 +106,7 @@
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
@@ -131,11 +141,15 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 24 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "MoveRange", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ChestGoblin, Property = "AttackDamage", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ChestGoblin, Property = "StartHealth", Value = 18 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ChestGoblin, Property = "MoveRange", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Bandit, Property = "WaterTrailChance", Value = 0.15f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Thug, Property = "WaterTrailChance", Value = 0.15f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.KillerBee, Property = "WaterTrailChance", Value = 0.15f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Rat, Property = "WaterTrailChance", Value = 0.15f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Spider, Property = "WaterTrailChance", Value = 0.15f },
@@ -276,6 +290,15 @@
             {
                 new StatusEffectData
                 {
+                    effectStateType = EffectStateType.TorchPlayer,
+                    durationTurns = 25,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
                     effectStateType = EffectStateType.HealingSong,
                     durationTurns = 5,
                     damagePerTurn = 0,
@@ -326,6 +349,7 @@
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.EnemyJavelin } },
                 { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit } },
                 { BoardPieceId.RootMage, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportEnemy } },
+                { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold } },
                 { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder } },
             });
 
@@ -348,6 +372,7 @@
                 { BoardPieceId.Mimic, new List<EffectStateType> {EffectStateType.Panic, EffectStateType.Stunned, EffectStateType.Weaken, EffectStateType.Diseased } },
                 { BoardPieceId.Wyvern, new List<EffectStateType> {EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Frozen, EffectStateType.Diseased, EffectStateType.Tangled } },
                 { BoardPieceId.KillerBee, new List<EffectStateType> {EffectStateType.Tangled, EffectStateType.Diseased } },
+                { BoardPieceId.ChestGoblin, new List<EffectStateType> {EffectStateType.Panic, EffectStateType.Stunned } },
                 { BoardPieceId.EarthElemental, new List<EffectStateType> {EffectStateType.Stunned, EffectStateType.Diseased, EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Weaken } },
             });
 
@@ -412,7 +437,7 @@
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.75f);
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.75f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.25f);
-            var enemyHealthScaledRule = new EnemyHealthScaledRule(1.334f);
+            var enemyHealthScaledRule = new EnemyHealthScaledRule(1.25f);
 
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
@@ -429,11 +454,11 @@
                 { "FloorOneHealingFountains", 1 },
                 { "FloorOneLootChests", 1 },
                 { "FloorOneClassCardChests", 2 },
-                { "FloorOneGoldMaxAmount", 600 },
+                { "FloorOneGoldMaxAmount", 725 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoLootChests", 2 },
                 { "FloorTwoClassCardChests", 3 },
-                { "FloorTwoGoldMaxAmount", 800 },
+                { "FloorTwoGoldMaxAmount", 900 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 1 },
             });
