@@ -839,6 +839,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 #### __TurnOrderOverridden__: Override the player turn order. 
   - The game will compute the turn order at the start of every turn.
   - For each attribute that a player satisfies, they get a corresponding value added to their initiative score. Players with higher initiative scores go first.
+  - The `Downed` attribute is considered when players are downed, and the `Javelin` attribute is considered when players have the Sigataurian Javelin in their inventory.
   - To configure:
     - Specify a value for any attribute that should add to a player's initiative score.
 
