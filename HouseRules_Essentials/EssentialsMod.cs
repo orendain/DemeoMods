@@ -54,6 +54,7 @@
             HR.Rulebook.Register(typeof(StatModifiersOverridenRule));
             HR.Rulebook.Register(typeof(StatusEffectConfigRule));
             HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
+            HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
         }
 
         private static void RegisterRulesets()
