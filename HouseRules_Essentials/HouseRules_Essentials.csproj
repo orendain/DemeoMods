@@ -88,6 +88,7 @@
     <Compile Include="Rules\RoundCountLimitedRule.cs" />
     <Compile Include="Rules\SampleRule.cs" />
     <Compile Include="Rules\StartCardsModifiedRule.cs" />
+    <Compile Include="Rules\TurnOrderOverriddenRule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
