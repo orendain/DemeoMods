@@ -813,7 +813,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-- __TileEffectDurationOverriden__: Overrides TileEffect durations settings for gas, acid, web etc.
+#### __TileEffectDurationOverriden__: Overrides TileEffect durations settings for gas, acid, web etc.
   - There are five different TileEffects in the game. Gas, Acid, Web, Water and Target.
   - Overriding the durations allows for TileEffects to last for longer or shorter times.
   - It is necessary to specify all five effects in the config for this rule, or they will assume a default duration of 9999 rounds.
@@ -836,3 +836,25 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+#### __TurnOrderOverridden__: Override the player turn order. 
+  - The game will compute the turn order at the start of every turn.
+  - For each attribute that a player satisfies, they get a corresponding value added to their initiative score. Players with higher initiative scores go first.
+  - To configure:
+    - Specify a value for any attribute that should add to a player's initiative score.
+
+  ###### _Example JSON config for TurnOrderOverridden_
+
+  ```json
+  {
+    "Rule": "TurnOrderOverridden",
+    "Config": {
+      "Assassin": 8,
+      "Bard": 2,
+      "Guardian": 20,
+      "Hunter": 6,
+      "Sorcerer": 4,
+      "Downed": 10,
+      "Javelin": 10,
+    }
+  },
+  ```
