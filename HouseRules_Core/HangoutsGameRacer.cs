@@ -86,12 +86,12 @@
 
         private static bool GroupLaunchTable_OnStartGroupLaunchRPC_Prefix(GroupLaunchTable __instance, string groupId, int selectedModuleType, int randomIndex)
         {
-            StopWatch.Restart();
-
             if (HR.SelectedRuleset == Ruleset.None)
             {
                 return true;
             }
+
+            StopWatch.Restart();
 
             if (_hasJoinedTheRace)
             {
