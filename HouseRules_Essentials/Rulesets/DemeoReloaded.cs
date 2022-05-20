@@ -203,7 +203,6 @@
                         AbilityKey.PiercingVoice,
                         AbilityKey.ShatteringVoice,
                         AbilityKey.HurricaneAnthem,
-
                     }
                 },
                 {
@@ -231,7 +230,6 @@
                         AbilityKey.PoisonedTip,
                         AbilityKey.HuntersMark,
                         AbilityKey.Lure,
-
                     }
                 },
                 {
@@ -256,7 +254,6 @@
                         AbilityKey.CursedDagger,
                         AbilityKey.BoobyTrap,
                         AbilityKey.FlashBomb,
-
                     }
                 },
                 {
@@ -280,7 +277,6 @@
                         AbilityKey.MagicShield,
                         AbilityKey.MagicBarrier,
                         AbilityKey.Vortex,
-
                     }
                 },
             });
@@ -355,24 +351,24 @@
             var pieceBehavourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
             {
                 { BoardPieceId.EarthElemental, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.EarthShatter, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.Mimic, new List<Behaviour> {  Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.RootMage, new List<Behaviour> {  Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.CastOnTeam } },
-                { BoardPieceId.KillerBee, new List<Behaviour> {  Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.ChestGoblin, new List<Behaviour> {  Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackAndRetreat } },
+                { BoardPieceId.Mimic, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.RootMage, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.CastOnTeam } },
+                { BoardPieceId.KillerBee, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.ChestGoblin, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackAndRetreat } },
             });
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
-                { BoardPieceId.HeroSorcerer, new List<EffectStateType> {EffectStateType.Stunned, EffectStateType.Frozen } },
-                { BoardPieceId.HeroHunter, new List<EffectStateType> {EffectStateType.Tangled, EffectStateType.Petrified } },
-                { BoardPieceId.HeroGuardian, new List<EffectStateType> {EffectStateType.Stunned, EffectStateType.Weaken } },
-                { BoardPieceId.HeroBard, new List<EffectStateType> {EffectStateType.Diseased } },
-                { BoardPieceId.HeroRogue, new List<EffectStateType> {EffectStateType.Tangled, EffectStateType.Diseased } },
-                { BoardPieceId.Mimic, new List<EffectStateType> {EffectStateType.Panic, EffectStateType.Stunned, EffectStateType.Weaken, EffectStateType.Diseased } },
-                { BoardPieceId.Wyvern, new List<EffectStateType> {EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Frozen, EffectStateType.Diseased, EffectStateType.Tangled } },
-                { BoardPieceId.KillerBee, new List<EffectStateType> {EffectStateType.Tangled, EffectStateType.Diseased } },
-                { BoardPieceId.ChestGoblin, new List<EffectStateType> {EffectStateType.Stunned } },
-                { BoardPieceId.EarthElemental, new List<EffectStateType> {EffectStateType.Stunned, EffectStateType.Diseased, EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Weaken } },
+                { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Stunned, EffectStateType.Frozen } },
+                { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Petrified } },
+                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Stunned, EffectStateType.Weaken } },
+                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Diseased } },
+                { BoardPieceId.Mimic, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Stunned, EffectStateType.Weaken, EffectStateType.Diseased } },
+                { BoardPieceId.Wyvern, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Frozen, EffectStateType.Diseased, EffectStateType.Tangled } },
+                { BoardPieceId.KillerBee, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Diseased } },
+                { BoardPieceId.ChestGoblin, new List<EffectStateType> { EffectStateType.Stunned } },
+                { BoardPieceId.EarthElemental, new List<EffectStateType> { EffectStateType.Stunned, EffectStateType.Diseased, EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Weaken } },
             });
 
             var tileEffectDuration = new TileEffectDurationOverriddenRule(new Dictionary<Boardgame.Board.TileEffect, int>
