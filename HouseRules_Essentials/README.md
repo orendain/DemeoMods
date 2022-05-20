@@ -670,6 +670,23 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
+#### __RegroupAllies__: Enables the Regroup card to teleport both players and allies.
+  - Allows the Regroup ability to teleport Verochka, Elementals and other allies.
+  - Will not teleport props such as Behemoth, Ballista etc
+  - Will not teleport Elementals when they have the SelfDestruct status.
+  - To configure:
+    - Specify and integer representing the maximum number of allies to teleport.
+
+  ###### _Example JSON config for RegroupAllies_
+
+  ```json
+    {
+      "Rule": "RegroupAllies",
+      "Config": 8
+    },
+  ```
+
+
 #### __RoundCountLimited__:  Sets a limit for the maximum number of rounds a game may take.
   - For ⏳ beat-the-clock ⏳ type gameplay.
   - If the game is not completed (i.e., the boss defeated) before the specified rounds are up, the game ends as a loss.
