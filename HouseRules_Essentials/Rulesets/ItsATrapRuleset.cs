@@ -136,6 +136,7 @@
                         AbilityKey.DetectEnemies,
                         AbilityKey.WebBomb,
                         AbilityKey.VortexLamp,
+                        AbilityKey.Teleportation,
                     }
                 },
                 {
@@ -152,6 +153,8 @@
                         AbilityKey.Banish,
                         AbilityKey.Lure,
                         AbilityKey.WebBomb,
+                        AbilityKey.Teleportation,
+                        AbilityKey.Regroup,
                     }
                 },
             });
@@ -173,7 +176,7 @@
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoLootChests", 14 },
                 { "FloorThreeHealingFountains", 1 },
-                { "FloorThreeLootChests", 12 },
+                { "FloorThreeLootChests", 8 },
                 { "FloorOneEndZoneSpikeMaxBudget", 12 },
                 { "PacingSpikeSegmentFloorOneBudget", 12 },
             });
@@ -248,6 +251,33 @@
                 {
                     effectStateType = EffectStateType.Stealthed,
                     durationTurns = 5,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Courageous,
+                    durationTurns = 2,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Fearless,
+                    durationTurns = 2,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Heroic,
+                    durationTurns = 2,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,

@@ -442,7 +442,6 @@
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.667f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.334f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.334f);
-
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
                 "ForestFloor01",
