@@ -18,27 +18,27 @@
             {
                 { BoardPieceId.Wyvern, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.Cavetroll, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.RootGolem, new List<int> { 3, 1, 2 } },
+                { BoardPieceId.RootGolem, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.Brookmare, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.Gorgon, new List<int> { 2, 1, 2 } },
-                { BoardPieceId.SilentSentinel, new List<int> { 3, 1, 2 } },
+                { BoardPieceId.SilentSentinel, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.ElvenArcher, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.ElvenHound, new List<int> { 4, 3, 1 } },
-                { BoardPieceId.RootHound, new List<int> { 4, 3, 1 } },
+                { BoardPieceId.ElvenHound, new List<int> { 5, 3, 1 } },
+                { BoardPieceId.RootHound, new List<int> { 5, 3, 1 } },
                 { BoardPieceId.TheUnspoken, new List<int> { 4, 3, 1 } },
                 { BoardPieceId.Mimic, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.EarthElemental, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.Sigataur, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.ChestGoblin, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.Sigataur, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.ChestGoblin, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.CultMemberElder, new List<int> { 5, 2, 1 } },
-                { BoardPieceId.ElvenCultist, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.ElvenCultist, new List<int> { 5, 2, 1 } },
                 { BoardPieceId.SpiderEgg, new List<int> { 5, 2, 1 } },
                 { BoardPieceId.TheUnseen, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.GiantSlime, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.GiantSlime, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.FireElemental, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ElvenMarauder, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.IceElemental, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.GiantSpider, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.GiantSpider, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.Bandit, new List<int> { 5, 3, 1 } },
                 { BoardPieceId.DruidArcher, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.DruidHoundMaster, new List<int> { 4, 2, 1 } },
@@ -49,7 +49,7 @@
                 { BoardPieceId.Spider, new List<int> { 5, 2, 1 } },
                 { BoardPieceId.Rat, new List<int> { 5, 2, 1 } },
                 { BoardPieceId.TheUnheard, new List<int> { 3, 2, 2 } },
-                { BoardPieceId.Slimeling, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.Slimeling, new List<int> { 5, 2, 1 } },
                 { BoardPieceId.Thug, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.ElvenMystic, new List<int> { 5, 3, 1 } },
                 { BoardPieceId.ElvenPriest, new List<int> { 4, 2, 1 } },
@@ -58,7 +58,7 @@
                 { BoardPieceId.GoblinRanger, new List<int> { 5, 2, 1 } },
                 { BoardPieceId.KillerBee, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.RatNest, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.RootMage, new List<int> { 4, 3, 1 } },
+                { BoardPieceId.RootMage, new List<int> { 5, 3, 1 } },
                 { BoardPieceId.SporeFungus, new List<int> { 5, 2, 1 } },
             });
 
@@ -70,8 +70,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ShatteringVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
-
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TurretHealProjectile, ReplenishFrequency = 1 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -125,7 +124,7 @@
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 13 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 14 },
@@ -164,12 +163,17 @@
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
                         AbilityKey.Bone,
+                        AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.Rejuvenation,
                         AbilityKey.OneMoreThing,
+                        AbilityKey.PanicPowder,
+                        AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
+                        AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
+                        AbilityKey.RepeatingBallista,
                         AbilityKey.HeavensFury,
                         AbilityKey.AdamantPotion,
                         AbilityKey.HealingPotion,
@@ -179,12 +183,12 @@
                         AbilityKey.TheBehemoth,
                         AbilityKey.PiercingThrow,
                         AbilityKey.Charge,
-                        AbilityKey.HealingWard,
                     }
                 },
                 {
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
+                        AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.Rejuvenation,
@@ -194,6 +198,7 @@
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
+                        AbilityKey.RepeatingBallista,
                         AbilityKey.HeavensFury,
                         AbilityKey.AdamantPotion,
                         AbilityKey.HealingPotion,
@@ -203,12 +208,12 @@
                         AbilityKey.PiercingVoice,
                         AbilityKey.ShatteringVoice,
                         AbilityKey.HurricaneAnthem,
-
                     }
                 },
                 {
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
+                        AbilityKey.Bone,
                         AbilityKey.BeastWhisperer,
                         AbilityKey.WebBomb,
                         AbilityKey.RepeatingBallista,
@@ -218,8 +223,7 @@
                         AbilityKey.PanicPowder,
                         AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
-                        AbilityKey.RevealPath,
-                        AbilityKey.DetectEnemies,
+                        AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.HeavensFury,
@@ -231,12 +235,12 @@
                         AbilityKey.PoisonedTip,
                         AbilityKey.HuntersMark,
                         AbilityKey.Lure,
-
                     }
                 },
                 {
                     BoardPieceId.HeroRogue, new List<AbilityKey>
                     {
+                        AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.Rejuvenation,
@@ -244,7 +248,6 @@
                         AbilityKey.PanicPowder,
                         AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
-                        AbilityKey.Bone,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.HeavensFury,
@@ -256,7 +259,6 @@
                         AbilityKey.CursedDagger,
                         AbilityKey.BoobyTrap,
                         AbilityKey.FlashBomb,
-
                     }
                 },
                 {
@@ -280,7 +282,6 @@
                         AbilityKey.MagicShield,
                         AbilityKey.MagicBarrier,
                         AbilityKey.Vortex,
-
                     }
                 },
             });
@@ -355,24 +356,24 @@
             var pieceBehavourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
             {
                 { BoardPieceId.EarthElemental, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.EarthShatter, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.Mimic, new List<Behaviour> {  Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.RootMage, new List<Behaviour> {  Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.CastOnTeam } },
-                { BoardPieceId.KillerBee, new List<Behaviour> {  Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.ChestGoblin, new List<Behaviour> {  Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackAndRetreat } },
+                { BoardPieceId.Mimic, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.RootMage, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.CastOnTeam } },
+                { BoardPieceId.KillerBee, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.ChestGoblin, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackAndRetreat } },
             });
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
-                { BoardPieceId.HeroSorcerer, new List<EffectStateType> {EffectStateType.Stunned, EffectStateType.Frozen } },
-                { BoardPieceId.HeroHunter, new List<EffectStateType> {EffectStateType.Tangled, EffectStateType.Petrified } },
-                { BoardPieceId.HeroGuardian, new List<EffectStateType> {EffectStateType.Stunned, EffectStateType.Weaken } },
-                { BoardPieceId.HeroBard, new List<EffectStateType> {EffectStateType.Diseased } },
-                { BoardPieceId.HeroRogue, new List<EffectStateType> {EffectStateType.Tangled, EffectStateType.Diseased } },
-                { BoardPieceId.Mimic, new List<EffectStateType> {EffectStateType.Panic, EffectStateType.Stunned, EffectStateType.Weaken, EffectStateType.Diseased } },
-                { BoardPieceId.Wyvern, new List<EffectStateType> {EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Frozen, EffectStateType.Diseased, EffectStateType.Tangled } },
-                { BoardPieceId.KillerBee, new List<EffectStateType> {EffectStateType.Tangled, EffectStateType.Diseased } },
-                { BoardPieceId.ChestGoblin, new List<EffectStateType> {EffectStateType.Stunned } },
-                { BoardPieceId.EarthElemental, new List<EffectStateType> {EffectStateType.Stunned, EffectStateType.Diseased, EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Weaken } },
+                { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Stunned, EffectStateType.Frozen } },
+                { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Petrified } },
+                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Stunned, EffectStateType.Weaken } },
+                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Diseased } },
+                { BoardPieceId.Mimic, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Stunned, EffectStateType.Weaken, EffectStateType.Diseased } },
+                { BoardPieceId.Wyvern, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Frozen, EffectStateType.Diseased, EffectStateType.Tangled } },
+                { BoardPieceId.KillerBee, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Diseased } },
+                { BoardPieceId.ChestGoblin, new List<EffectStateType> { EffectStateType.Stunned } },
+                { BoardPieceId.EarthElemental, new List<EffectStateType> { EffectStateType.Stunned, EffectStateType.Diseased, EffectStateType.Panic, EffectStateType.Tangled, EffectStateType.Weaken } },
             });
 
             var tileEffectDuration = new TileEffectDurationOverriddenRule(new Dictionary<Boardgame.Board.TileEffect, int>
@@ -384,13 +385,18 @@
                 { TileEffect.Target, 0 },
             });
 
+            var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
+            {
+                { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods, AbilityKey.DropChest } },
+                { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.Explosion, AbilityKey.DeathDropJavelin } },
+            });
+
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Zap, false },
                 { AbilityKey.Sneak, false },
                 { AbilityKey.Grab, false },
-                { AbilityKey.BeastWhisperer, false },
-                { AbilityKey.CallCompanion, false },
+                { AbilityKey.CourageShanty, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -416,48 +422,47 @@
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
-                { AbilityKey.Zap, new List<int> { 3, 8 } },
-                { AbilityKey.Fireball, new List<int> { 12, 25 } },
-                { AbilityKey.Freeze, new List<int> { 7, 15 } },
-                { AbilityKey.Vortex, new List<int> { 3, 8 } },
+                { AbilityKey.Zap, new List<int> { 3, 12 } },
+                { AbilityKey.Fireball, new List<int> { 12, 30 } },
+                { AbilityKey.Freeze, new List<int> { 7, 20 } },
+                { AbilityKey.Vortex, new List<int> { 3, 12 } },
                 { AbilityKey.WhirlwindAttack, new List<int> { 4, 9 } },
                 { AbilityKey.Charge, new List<int> { 4, 12 } },
                 { AbilityKey.PiercingThrow, new List<int> { 5, 11 } },
                 { AbilityKey.Blink, new List<int> { 7, 17 } },
                 { AbilityKey.CursedDagger, new List<int> { 4, 12 } },
-                { AbilityKey.PoisonedTip, new List<int> { 6, 13 } },
-                { AbilityKey.HailOfArrows, new List<int> { 5, 11 } },
+                { AbilityKey.PoisonedTip, new List<int> { 6, 14 } },
+                { AbilityKey.HailOfArrows, new List<int> { 5, 12 } },
                 { AbilityKey.Arrow, new List<int> { 4, 11 } },
-                { AbilityKey.Electricity, new List<int> { 2, 5 } },
-                { AbilityKey.DiseasedBite, new List<int> { 2, 5 } },
+                { AbilityKey.Electricity, new List<int> { 2, 10 } },
+                { AbilityKey.DiseasedBite, new List<int> { 2, 2 } },
             });
 
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.8f);
-            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.8f);
-            var enemyAttackScaledRule = new EnemyAttackScaledRule(1.2f);
-            var enemyHealthScaledRule = new EnemyHealthScaledRule(1.2f);
-
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.667f);
+            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.667f);
+            var enemyAttackScaledRule = new EnemyAttackScaledRule(1.334f);
+            var enemyHealthScaledRule = new EnemyHealthScaledRule(1.334f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
-                "ForestFloor01",
+                "ForestFloor03",
                 "ForestShopFloor",
-                "ElvenFloor08",
+                "ElvenFloor12",
                 "ShopFloor02",
-                "SewersFloor09",
+                "SewersFloor07",
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "BigGoldPileChance", 30 },
                 { "FloorOneHealingFountains", 1 },
-                { "FloorOneLootChests", 3 },
-                { "FloorOneGoldMaxAmount", 600 },
+                { "FloorOneLootChests", 2 },
+                { "FloorOneGoldMaxAmount", 550 },
                 { "FloorTwoHealingFountains", 1 },
-                { "FloorTwoLootChests", 5 },
-                { "FloorTwoGoldMaxAmount", 800 },
+                { "FloorTwoLootChests", 4 },
+                { "FloorTwoGoldMaxAmount", 750 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 1 },
             });
@@ -474,6 +479,7 @@
                 pieceBehavourListRule,
                 pieceImmunityRule,
                 tileEffectDuration,
+                pieceUseWhenKilledRule,
                 abilityActionCostRule,
                 abilityHealOverriddenRule,
                 aoeAdjustmentedRule,
