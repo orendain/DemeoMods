@@ -48,6 +48,22 @@
                     nameof(Teleport_GetPiecesToTeleport_Prefix)));
         }
 
+        private static bool IsTeleportable(Piece piece)
+        {
+            if ((piece.IsPlayerFaction() ||
+                piece.HasEffectState(EffectStateType.ConfusedPermanent)) &&
+                !piece.HasEffectState(EffectStateType.SelfDestruct) &&
+                !piece.IsPlayer() &&
+                !piece.IsProp())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private static bool Teleport_GetPiecesToTeleport_Prefix(ref List<Target> __result, TeleportTargetPiece mode, int maxNum, AbilityContext abilityContext, PieceAndTurnController pieceAndTurnController)
         {
             if (!_isActivated)
@@ -55,32 +71,29 @@
                 return true;
             }
 
-            List<Target> list = new List<Target>(maxNum);
-            if (mode == TeleportTargetPiece.Attacker || mode == TeleportTargetPiece.Defenders)
+
+            if (mode != TeleportTargetPiece.MyTeam)
             {
                 return true;
             }
-            else if (mode == TeleportTargetPiece.MyTeam)
+
+            List<Target> list = new List<Target>(maxNum);
+            if (mode == TeleportTargetPiece.MyTeam)
             {
                 var attacker = AccessTools.StructFieldRefAccess<AbilityContext, Target>(ref abilityContext, "attacker");
-                int me = attacker.piece.networkID;
+                int attackerId = attacker.piece.networkID;
                 PieceType type = attacker.piece.IsPlayer() ? PieceType.Player : PieceType.Enemy;
                 int count = 0;
                 pieceAndTurnController.ForEachPiece(
                     delegate(Piece piece)
                 {
-                    if (piece.HasPieceType(type) && piece.networkID != me && count < _maxNum)
+                    if (piece.HasPieceType(type) && piece.networkID != attackerId && count < _maxNum)
                     {
                         list.Add(new Target(piece.effectSink));
                         count++;
                     }
 
-                    if (type == PieceType.Player && (piece.IsPlayerFaction() ||
-                        piece.HasEffectState(EffectStateType.ConfusedPermanent)) &&
-                        !piece.HasEffectState(EffectStateType.SelfDestruct) &&
-                        !piece.IsPlayer() &&
-                        !piece.IsProp() &&
-                        count < _maxNum)
+                    if (type == PieceType.Player && IsTeleportable(piece) && count < _maxNum)
                     {
                         list.Add(new Target(piece.effectSink));
                         count++;
