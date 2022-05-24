@@ -103,6 +103,7 @@
             }
 
             __result = list;
+            HR.ScheduleBoardSync();
 
             return false; // We returned an user-adjusted config.
         }
