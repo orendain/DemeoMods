@@ -206,7 +206,7 @@
                 EssentialsMod.Logger.Msg("MD: Could not find a spawn zone to spawn the boss");
             }
 
-            PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, keyHolderPosition, 0f, 0, Team.None).SetRandomRotation(rng).SetHasBloodhound(PieceSpawnSettings.BloodHoundStatus.Enabled).AddEffectState(EffectStateType.AIDirectorAmbientEnemy).AddEffectState(EffectStateType.UnitLeader).AddEffectState(EffectStateType.KeyEndChest);
+            PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, keyHolderPosition, Team.Two, 0f, 0).SetRandomRotation(rng).SetHasBloodhound(PieceSpawnSettings.BloodHoundStatus.Enabled).AddEffectState(EffectStateType.AIDirectorAmbientEnemy).AddEffectState(EffectStateType.UnitLeader).AddEffectState(EffectStateType.KeyEndChest);
             context.spawner.SpawnPiece(context, spawnSettings, ref boardState);
             return false; // We returned an user-adjusted config.
         }
