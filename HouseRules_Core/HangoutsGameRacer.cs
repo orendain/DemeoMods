@@ -185,7 +185,7 @@
 
             // Recreating `GameStateHobbyShop.ExitBowser`
             var teleport = Traverse.Create(_gameStateHobbyShop).Field<Teleport>("teleport").Value;
-            teleport.SetTeleportationEnabled(enabled: false);
+            teleport.UpdateState(true, false);
             Traverse.Create<BowserTriggerHandler>().Method("StopHobbyShopAmbience").GetValue();
         }
 
