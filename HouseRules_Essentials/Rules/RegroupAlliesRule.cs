@@ -89,13 +89,13 @@
                 {
                     if (piece.HasPieceType(type) && piece.networkID != attackerId && count < _maxNum)
                     {
-                        list.Add(new Target(piece.effectSink));
+                        list.Add(new Target(piece));
                         count++;
                     }
 
                     if (type == PieceType.Player && IsTeleportable(piece) && count < _maxNum)
                     {
-                        list.Add(new Target(piece.effectSink));
+                        list.Add(new Target(piece));
                         count++;
                     }
                 },
