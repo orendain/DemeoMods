@@ -26,7 +26,6 @@
 
         public StartCardsModifiedRule(Dictionary<BoardPieceId, List<CardConfig>> heroStartCards)
         {
-            ValidateCards(heroStartCards);
             _heroStartCards = heroStartCards;
         }
 
@@ -136,17 +135,6 @@
                     originalOwner = -1,
                 });
                 Traverse.Create(piece.inventory).Property<bool>("needSync").Value = true;
-            }
-        }
-
-        private static void ValidateCards(Dictionary<BoardPieceId, List<CardConfig>> heroStartCards)
-        {
-            foreach (var startCards in heroStartCards.Values)
-            {
-                if (startCards.Count(c => c.ReplenishFrequency > 0) > 2)
-                {
-                    throw new ArgumentException("Only 2 replenishable cards allowed.");
-                }
             }
         }
     }
