@@ -329,6 +329,27 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+#### __FreeAbilityOnCrit__: A Critical Hit rewards you with a free ability.
+  - Whenever you score a critical hit, a user-configured card is added to your inventory.
+  - Allows configuration of different abilities on a per-hero basis.
+  - To configure:
+    - Specify a Dictionary of [BoardPieceIds](../docs/SettingsReference.md#boardpieceids) and abilities.
+
+  ###### _Example JSON config for FreeAbilityOnCrit_
+
+  ```json
+  {
+    "Rule": "FreeAbilityOnCrit",
+    "Config": {
+      "HeroBard": "OneMoreThing",
+      "HeroHunter": "PoisonedTip",
+      "HeroSorcerer": "Fireball",
+      "HeroGuardian": "Bone",
+      "HeroRogue": "PoisonBomb"
+    }
+  },
+```  
+
 #### __GoldPickedUpMultiplied__: 💰Gold💰 picked up is multiplied
   - To configure:
     - Specify a decimal number representing how gold is multiplied.
