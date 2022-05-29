@@ -35,9 +35,9 @@
     <Reference Include="0Harmony">
       <HintPath>$(DemeoVrDir)\MelonLoader\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="BowserCore, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BowserCore">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Occulus\Software\resolution-games-demeo\Demeo VR\demeo_Data\Managed\BowserCore.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserCore.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
       <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>

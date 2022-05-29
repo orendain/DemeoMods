@@ -39,7 +39,7 @@
       <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BowserCore">
-      <HintPath>D:\Occulus\Software\resolution-games-demeo\Demeo VR\demeo_Data\Managed\BowserCore.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserCore.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
       <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
