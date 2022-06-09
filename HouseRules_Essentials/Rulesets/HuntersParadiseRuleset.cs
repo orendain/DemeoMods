@@ -69,14 +69,18 @@
                 { BoardPieceId.HeroSorcerer, allowedCards },
             });
 
-            var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            var levelPropertiesRule = new LevelPropertiesModifiedRule(new LevelPropertiesModifiedRule.ConfigData
             {
-                { "FloorOneHealingFountains", 6 },
-                { "FloorOneLootChests", 6 },
-                { "FloorTwoHealingFountains", 6 },
-                { "FloorTwoLootChests", 12 },
-                { "FloorThreeHealingFountains", 6 },
-                { "FloorThreeLootChests", 12 },
+                Adjustments = new Dictionary<string, int>
+                {
+                    { "FloorOneHealingFountains", 6 },
+                    { "FloorOneLootChests", 6 },
+                    { "FloorTwoHealingFountains", 6 },
+                    { "FloorTwoLootChests", 12 },
+                    { "FloorThreeHealingFountains", 6 },
+                    { "FloorThreeLootChests", 12 },
+                },
+                Limit = new List<Boardgame.GameConfigType> { Boardgame.GameConfigType.None },
             });
 
             return Ruleset.NewInstance(

@@ -169,17 +169,38 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Torch, Property = "VisionRange", Value = 40 },
             });
 
-            var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            var defaultPropertiesRule = new LevelPropertiesModifiedRule(new LevelPropertiesModifiedRule.ConfigData
             {
-                { "FloorOneHealingFountains", 0 },
-                { "FloorOneLootChests", 11 },
-                { "FloorTwoHealingFountains", 1 },
-                { "FloorTwoLootChests", 14 },
-                { "FloorThreeHealingFountains", 1 },
-                { "FloorThreeLootChests", 8 },
-                { "FloorOneEndZoneSpikeMaxBudget", 12 },
-                { "PacingSpikeSegmentFloorOneBudget", 12 },
+                Adjustments = new Dictionary<string, int>
+                {
+                    { "FloorOneHealingFountains", 0 },
+                    { "FloorOneLootChests", 11 },
+                    { "FloorTwoHealingFountains", 1 },
+                    { "FloorTwoLootChests", 14 },
+                    { "FloorThreeHealingFountains", 1 },
+                    { "FloorThreeLootChests", 8 },
+                    { "FloorOneEndZoneSpikeMaxBudget", 12 },
+                    { "PacingSpikeSegmentFloorOneBudget", 12 },
+                },
+                Limit = new List<Boardgame.GameConfigType> { Boardgame.GameConfigType.Elven, Boardgame.GameConfigType.Forest },
             });
+
+            var sewersPropertiesRule = new LevelPropertiesModifiedRule(new LevelPropertiesModifiedRule.ConfigData
+            {
+                Adjustments = new Dictionary<string, int>
+                {
+                    { "FloorOneHealingFountains", 5 },
+                    { "FloorOneLootChests", 25 },
+                    { "FloorTwoHealingFountains", 1 },
+                    { "FloorTwoLootChests", 14 },
+                    { "FloorThreeHealingFountains", 1 },
+                    { "FloorThreeLootChests", 8 },
+                    { "FloorOneEndZoneSpikeMaxBudget", 12 },
+                    { "PacingSpikeSegmentFloorOneBudget", 12 },
+                },
+                Limit = new List<Boardgame.GameConfigType> { Boardgame.GameConfigType.Sewers },
+            });
+
 
             var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
@@ -328,7 +349,8 @@
                 allowedCardsRule,
                 aoePotions,
                 lampTypesRule,
-                levelPropertiesRule,
+                defaultPropertiesRule,
+                sewersPropertiesRule,
                 piecesAdjustedRule,
                 piecePieceTypeRule,
                 startingCardsRule,

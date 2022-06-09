@@ -122,17 +122,20 @@
                 { AbilityKey.Sneak, false },
             });
 
-            var ints = new Dictionary<string, int>
+            var ints = new LevelPropertiesModifiedRule.ConfigData
             {
-                { "FloorOneGoldMaxAmount", 1200 },
-                { "FloorOneHealingFountains", 2 },
-                { "FloorOneLootChests", 12 },
-                { "FloorOneClassCardChests", 8 },
-                { "FloorTwoHealingFountains", 3 },
-                { "FloorTwoLootChests", 9 },
-                { "FloorTwoGoldMaxAmount", 1500 },
-                { "FloorThreeHealingFountains", 1 },
-                { "FloorThreeLootChests", 0 },
+                Adjustments = new Dictionary<string, int> {
+                    { "FloorOneGoldMaxAmount", 1200 },
+                    { "FloorOneHealingFountains", 2 },
+                    { "FloorOneLootChests", 12 },
+                    { "FloorOneClassCardChests", 8 },
+                    { "FloorTwoHealingFountains", 3 },
+                    { "FloorTwoLootChests", 9 },
+                    { "FloorTwoGoldMaxAmount", 1500 },
+                    { "FloorThreeHealingFountains", 1 },
+                    { "FloorThreeLootChests", 0 },
+                },
+                Limit = new List<Boardgame.GameConfigType> { Boardgame.GameConfigType.None },
             };
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(ints);

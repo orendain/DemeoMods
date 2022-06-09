@@ -22,10 +22,14 @@
             });
             var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(5);
             var roundLimitRule = new RoundCountLimitedRule(15);
-            var levelRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            var levelRule = new LevelPropertiesModifiedRule(new LevelPropertiesModifiedRule.ConfigData
             {
-                { "FloorOneLootChests", 15 },
-                { "FloorTwoLootChests", 15 },
+                Adjustments = new Dictionary<string, int>
+                {
+                    { "FloorOneLootChests", 15 },
+                    { "FloorTwoLootChests", 15 },
+                },
+                Limit = new List<Boardgame.GameConfigType> { Boardgame.GameConfigType.None },
             });
 
             return Ruleset.NewInstance(

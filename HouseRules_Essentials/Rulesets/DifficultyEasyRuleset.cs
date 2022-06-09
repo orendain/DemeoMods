@@ -17,15 +17,19 @@
             var enemyDoorDisabled = new EnemyDoorOpeningDisabledRule(true);
             var enemyRespawnDisabled = new EnemyRespawnDisabledRule(true);
 
-            var levelPropertiesModified = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            var levelPropertiesModified = new LevelPropertiesModifiedRule(new LevelPropertiesModifiedRule.ConfigData
             {
-              { "BigGoldPileChance", 100 },
-              { "FloorOneHealingFountains", 2 },
-              { "FloorOneLootChests", 4 },
-              { "FloorTwoHealingFountains", 3 },
-              { "FloorTwoLootChests", 5 },
-              { "FloorThreeHealingFountains", 2 },
-              { "FloorThreeLootChests", 2 },
+                Adjustments = new Dictionary<string, int>
+                {
+                  { "BigGoldPileChance", 100 },
+                  { "FloorOneHealingFountains", 2 },
+                  { "FloorOneLootChests", 4 },
+                  { "FloorTwoHealingFountains", 3 },
+                  { "FloorTwoLootChests", 5 },
+                  { "FloorThreeHealingFountains", 2 },
+                  { "FloorThreeLootChests", 2 },
+                },
+                Limit = new List<Boardgame.GameConfigType> { Boardgame.GameConfigType.None },
             });
 
             return Ruleset.NewInstance(

@@ -454,17 +454,21 @@
                 "SewersFloor07",
             });
 
-            var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            var levelPropertiesRule = new LevelPropertiesModifiedRule(new LevelPropertiesModifiedRule.ConfigData
             {
-                { "BigGoldPileChance", 30 },
-                { "FloorOneHealingFountains", 1 },
-                { "FloorOneLootChests", 2 },
-                { "FloorOneGoldMaxAmount", 550 },
-                { "FloorTwoHealingFountains", 1 },
-                { "FloorTwoLootChests", 4 },
-                { "FloorTwoGoldMaxAmount", 750 },
-                { "FloorThreeHealingFountains", 1 },
-                { "FloorThreeLootChests", 1 },
+                Adjustments = new Dictionary<string, int>
+                {
+                    { "BigGoldPileChance", 30 },
+                    { "FloorOneHealingFountains", 1 },
+                    { "FloorOneLootChests", 2 },
+                    { "FloorOneGoldMaxAmount", 550 },
+                    { "FloorTwoHealingFountains", 1 },
+                    { "FloorTwoLootChests", 4 },
+                    { "FloorTwoGoldMaxAmount", 750 },
+                    { "FloorThreeHealingFountains", 1 },
+                    { "FloorThreeLootChests", 1 },
+                },
+                Limit = new List<Boardgame.GameConfigType> { Boardgame.GameConfigType.None },
             });
 
             return Ruleset.NewInstance(

@@ -64,14 +64,18 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 50 },
             });
 
-            var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            var levelPropertiesRule = new LevelPropertiesModifiedRule(new LevelPropertiesModifiedRule.ConfigData
             {
-                { "FloorOneHealingFountains", 2 },
-                { "FloorOneLootChests", 11 },
-                { "FloorTwoHealingFountains", 4 },
-                { "FloorTwoLootChests", 14 },
-                { "FloorThreeHealingFountains", 4 },
-                { "FloorThreeLootChests", 12 },
+                Adjustments = new Dictionary<string, int>
+                {
+                    { "FloorOneHealingFountains", 2 },
+                    { "FloorOneLootChests", 11 },
+                    { "FloorTwoHealingFountains", 4 },
+                    { "FloorTwoLootChests", 14 },
+                    { "FloorThreeHealingFountains", 4 },
+                    { "FloorThreeLootChests", 12 },
+                },
+                Limit = new List<Boardgame.GameConfigType> { Boardgame.GameConfigType.None },
             });
 
             var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>

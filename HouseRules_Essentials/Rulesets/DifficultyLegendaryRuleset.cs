@@ -11,7 +11,9 @@
             const string name = "Difficulty: Legendary";
             const string description = "Increased game difficulty for those who want to be a legend.";
 
-            var levelProperties = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            var levelProperties = new LevelPropertiesModifiedRule(new LevelPropertiesModifiedRule.ConfigData
+            {
+                Adjustments = new Dictionary<string, int>
             {
                 { "BigGoldPileChance", 10 },
                 { "FloorOneHealingFountains", 0 },
@@ -22,6 +24,8 @@
                 { "FloorTwoGoldMaxAmount", 252 },
                 { "FloorThreeHealingFountains", 0 },
                 { "FloorThreeLootChests", 1 },
+            },
+                Limit = new List<Boardgame.GameConfigType> { Boardgame.GameConfigType.None },
             });
 
             var cardEnergyAttack = new CardEnergyFromAttackMultipliedRule(0.5f);
