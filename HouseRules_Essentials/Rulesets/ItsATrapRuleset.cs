@@ -334,6 +334,7 @@
                 startingCardsRule,
                 statusEffectRule,
                 tileEffectDuration,
+                new CardShopConfigurationOverriddenRule(true),
                 new EnemyDoorOpeningDisabledRule(true));
         }
     }
