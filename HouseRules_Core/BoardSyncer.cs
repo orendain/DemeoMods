@@ -176,7 +176,7 @@
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
-            if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
+            if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
             {
                 return serializableEvent.type == SerializableEvent.Type.EndTurn;
             }
