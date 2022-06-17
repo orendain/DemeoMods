@@ -36,28 +36,35 @@
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(Ability), "GenerateAttackDamage"),
-                prefix: new HarmonyMethod(
+                postfix: new HarmonyMethod(
                     typeof(FreeAbilityOnCritRule),
-                    nameof(Ability_GenerateAttackDamage_Prefix)));
+                    nameof(Ability_GenerateAttackDamage_Postfix)));
         }
 
-        private static bool Ability_GenerateAttackDamage_Prefix(Piece source, Dice.Outcome diceResult)
+        private static void Ability_GenerateAttackDamage_Postfix(Piece source, Dice.Outcome diceResult)
         {
             if (!_isActivated)
             {
-                return true;
+                return;
             }
 
-            if (diceResult == Dice.Outcome.Crit)
+            if (diceResult != Dice.Outcome.Crit)
             {
-                if (source.IsPlayer() && _globalAdjustments.ContainsKey(source.boardPieceId))
-                {
-                    source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
-                    HR.ScheduleBoardSync();
-                }
+                return;
             }
 
-            return true; // Allow the regular GenerateAttackDamage function to run afterwards.
+            if (!source.IsPlayer())
+            {
+                return;
+            }
+
+            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
+            {
+                return;
+            }
+
+            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
+            HR.ScheduleBoardSync();
         }
     }
 }
