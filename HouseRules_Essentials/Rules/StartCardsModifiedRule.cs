@@ -92,7 +92,7 @@
             return false;
         }
 
-        private static void Piece_CreatePieceInternal_Prefix(ref PieceSpawnSettings spawnSettings)
+        private static void Piece_CreatePieceInternal_Prefix(PieceSpawnSettings spawnSettings)
         {
             if (!_isActivated)
             {
