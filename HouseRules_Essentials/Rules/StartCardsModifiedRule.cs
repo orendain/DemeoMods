@@ -2,9 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Boardgame;
     using Boardgame.BoardEntities;
+    using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -69,24 +69,45 @@
 
                 if (piece.inventory.Items[i].IsReplenishing && (!piece.HasEffectState(EffectStateType.Stealthed) || piece.inventory.Items[i].abilityKey != AbilityKey.Sneak))
                 {
-                    // If countdown was zero when we got called, then we need to set it.
-                    if (countdown == 0)
+                    bool flag = false;
+                    if (!AbilityFactory.TryGetAbility(value.abilityKey, out Ability ability))
                     {
-                        countdown = targetRefresh;
+                        throw new Exception("Failed to get ability prefab from ability key while attempting to replenish hand!");
                     }
 
-                    // If we reached our desired turn count we can unset isReplenishing and return true
-                    if (countdown == 1)
+                    int j = 0;
+                    int count = ability.effectsPreventingReplenished.Count;
+                    while (j < count)
                     {
-                        value.flags &= -3; // unsets isReplenishing (bit1 ) allowing card to be used again.
-                        __result = true;
+                        if (piece.HasEffectState(ability.effectsPreventingReplenished[j]))
+                        {
+                            flag = true;
+                        }
+
+                        j++;
                     }
 
-                    countdown -= 1;
-                    value.flags &= 911; // Zero only the countdown bits using a bitmask
-                    value.flags |= countdown << 4; // OR with countdown to set them again.
-                    piece.inventory.Items[i] = value;
-                    Traverse.Create(piece.inventory).Property<bool>("needSync").Value = true;
+                    if (!flag)
+                    {
+                        // If countdown was zero when we got called, then we need to set it.
+                        if (countdown == 0)
+                        {
+                            countdown = targetRefresh;
+                        }
+
+                        // If we reached our desired turn count we can unset isReplenishing and return true
+                        if (countdown == 1)
+                        {
+                            value.flags &= -3; // unsets isReplenishing (bit1 ) allowing card to be used again.
+                            __result = true;
+                        }
+
+                        countdown -= 1;
+                        value.flags &= 911; // Zero only the countdown bits using a bitmask
+                        value.flags |= countdown << 4; // OR with countdown to set them again.
+                        piece.inventory.Items[i] = value;
+                        Traverse.Create(piece.inventory).Property<bool>("needSync").Value = true;
+                    }
                 }
             }
 
