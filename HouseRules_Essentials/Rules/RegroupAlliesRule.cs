@@ -99,7 +99,7 @@
                         count++;
                     }
                 },
-                    PieceAndTurnController.SearchPiece.IncludeDisabled);
+                    PieceAndTurnController.SearchPiece.All);
             }
 
             __result = list;
