@@ -8,7 +8,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class FreeAbilityOnCritRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable, IMultiplayerSafe
+    public sealed class FreeAbilityOnCritRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable,
+        IMultiplayerSafe
     {
         public override string Description => "Critical Hit gives free card.";
 

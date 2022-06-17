@@ -8,11 +8,13 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class PieceUseWhenKilledOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe
+    public sealed class PieceUseWhenKilledOverriddenRule : Rule,
+        IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe
     {
         public override string Description => "Piece UseWhenKilled lists are overridden";
 
-        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified | SyncableTrigger.StatusEffectDataModified;
+        protected override SyncableTrigger ModifiedSyncables =>
+            SyncableTrigger.NewPieceModified | SyncableTrigger.StatusEffectDataModified;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _adjustments;
         private Dictionary<BoardPieceId, List<AbilityKey>> _originals;
@@ -44,9 +46,12 @@
         /// Replaces existing PieceConfig properties with those specified.
         /// </summary>
         /// <returns>Dictionary of lists of previous PieceConfig properties that are now replaced.</returns>
-        private static Dictionary<BoardPieceId, List<AbilityKey>> ReplaceExistingProperties(Dictionary<BoardPieceId, List<AbilityKey>> pieceConfigChanges)
+        private static Dictionary<BoardPieceId, List<AbilityKey>> ReplaceExistingProperties(
+            Dictionary<BoardPieceId, List<AbilityKey>> pieceConfigChanges)
         {
-            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
+            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
+                .Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict")
+                .Value;
             var previousProperties = new Dictionary<BoardPieceId, List<AbilityKey>>();
 
             foreach (var item in pieceConfigChanges)

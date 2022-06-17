@@ -4,7 +4,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class CardEnergyFromRecyclingMultipliedRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
+    public sealed class CardEnergyFromRecyclingMultipliedRule : Rule, IConfigWritable<float>, IPatchable,
+        IMultiplayerSafe
     {
         public override string Description => "CardConfig energy from recycling is multiplied";
 

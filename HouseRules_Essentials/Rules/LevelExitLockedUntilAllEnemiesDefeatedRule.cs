@@ -9,7 +9,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class LevelExitLockedUntilAllEnemiesDefeatedRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class LevelExitLockedUntilAllEnemiesDefeatedRule : Rule, IConfigWritable<bool>, IPatchable,
+        IMultiplayerSafe
     {
         public override string Description => "Level exit stays locked until all enemies are defeated.";
 
@@ -36,7 +37,7 @@
             harmony.Patch(
                 original: AccessTools.Constructor(
                     typeof(BoardgameActionPieceDied),
-                    new[] { typeof(GameContext), typeof(int[]), typeof(int) }),
+                    new[] {typeof(GameContext), typeof(int[]), typeof(int)}),
                 postfix: new HarmonyMethod(
                     typeof(LevelExitLockedUntilAllEnemiesDefeatedRule),
                     nameof(BoardgameActionPieceDied_Constructor_Postfix)));
@@ -70,10 +71,12 @@
 
         private static void RemoveKeyFromEnemies(GameContext gameContext)
         {
-            var keyHolder = gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasEffectState(EffectStateType.Key));
+            var keyHolder =
+                gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasEffectState(EffectStateType.Key));
             if (keyHolder == null)
             {
-                EssentialsMod.Logger.Warning("[LevelExitLockedUntilAllEnemiesDefeated] Could not find key holder on this level. Skipping.");
+                EssentialsMod.Logger.Warning(
+                    "[LevelExitLockedUntilAllEnemiesDefeated] Could not find key holder on this level. Skipping.");
                 return;
             }
 

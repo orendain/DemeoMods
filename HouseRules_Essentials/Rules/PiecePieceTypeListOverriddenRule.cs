@@ -8,7 +8,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class PiecePieceTypeListOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<PieceType>>>, IMultiplayerSafe
+    public sealed class PiecePieceTypeListOverriddenRule : Rule,
+        IConfigWritable<Dictionary<BoardPieceId, List<PieceType>>>, IMultiplayerSafe
     {
         public override string Description => "Piece piece types are adjusted";
 
@@ -40,9 +41,12 @@
             ReplaceExistingProperties(_originals);
         }
 
-        private static Dictionary<BoardPieceId, List<PieceType>> ReplaceExistingProperties(Dictionary<BoardPieceId, List<PieceType>> pieceConfigChanges)
+        private static Dictionary<BoardPieceId, List<PieceType>> ReplaceExistingProperties(
+            Dictionary<BoardPieceId, List<PieceType>> pieceConfigChanges)
         {
-            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
+            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
+                .Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict")
+                .Value;
             var previousProperties = new Dictionary<BoardPieceId, List<PieceType>>();
 
             foreach (var item in pieceConfigChanges)

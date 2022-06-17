@@ -6,7 +6,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class TileEffectDurationOverriddenRule : Rule, IConfigWritable<Dictionary<TileEffect, int>>, IPatchable, IMultiplayerSafe
+    public sealed class TileEffectDurationOverriddenRule : Rule, IConfigWritable<Dictionary<TileEffect, int>>,
+        IPatchable, IMultiplayerSafe
     {
         public override string Description => "Tile Effect durations are overridden.";
 

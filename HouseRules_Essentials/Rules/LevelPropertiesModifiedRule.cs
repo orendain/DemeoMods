@@ -24,7 +24,8 @@
         protected override void OnDeactivate(GameContext gameContext)
         {
             Traverse.Create(gameContext.playerDataController)
-                .Field<Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>>("mergedDreadDataCollection").Value = null;
+                .Field<Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>>("mergedDreadDataCollection")
+                .Value = null;
             Traverse.Create(gameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
         }
 
@@ -33,7 +34,8 @@
             Traverse.Create(gameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
 
             var mergedDreadDataCollection = Traverse.Create(gameContext.playerDataController)
-                .Field<Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>>("mergedDreadDataCollection").Value;
+                .Field<Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>>("mergedDreadDataCollection")
+                .Value;
 
             foreach (var mergedDreadData in mergedDreadDataCollection.Values)
             {
@@ -51,7 +53,8 @@
         {
             foreach (var modification in _levelProperties)
             {
-                AccessTools.StructFieldRefAccess<DreadLevelsDTO, int>(ref dreadLevelDto, modification.Key) = modification.Value;
+                AccessTools.StructFieldRefAccess<DreadLevelsDTO, int>(ref dreadLevelDto, modification.Key) =
+                    modification.Value;
             }
         }
     }

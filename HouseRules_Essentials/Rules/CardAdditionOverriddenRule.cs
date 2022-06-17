@@ -10,7 +10,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IPatchable, IMultiplayerSafe
+    public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
+        IPatchable, IMultiplayerSafe
     {
         public override string Description => "Card additions are overridden";
 
@@ -44,7 +45,9 @@
                     nameof(SerializableEventQueue_RespondToRequest_Prefix)));
         }
 
-        private static void SerializableEventQueue_RespondToRequest_Prefix(SerializableEventQueue __instance, ref SerializableEvent request)
+        private static void SerializableEventQueue_RespondToRequest_Prefix(
+            SerializableEventQueue __instance,
+            ref SerializableEvent request)
         {
             if (!_isActivated)
             {
@@ -56,7 +59,7 @@
                 return;
             }
 
-            var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
+            var addCardToPieceEvent = (SerializableEventAddCardToPiece) request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
 
             var targetPieceId = Traverse.Create(addCardToPieceEvent).Field<int>("targetPieceId").Value;
