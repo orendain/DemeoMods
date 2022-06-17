@@ -277,6 +277,19 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
+#### __CourageShantyAddsHP__: In addition to normal effects, Courage Shanty also adds HP
+  - To configure:
+    - Specify a decimal number for how many HP to add to the target each time CourageShanty is used.
+
+  ###### _Example JSON config for CourageShantyAddsHP_
+
+  ```json
+  {
+    "Rule": "CourageShantyAddsHP",
+    "Config": 2
+  },
+  ```
+
 #### __EnemyAttackScaled__: Enemy ⚔️attack⚔️ damage is scaled
   - To configure:
     - Specify a decimal number representing how enemy attack damage is multiplied.
