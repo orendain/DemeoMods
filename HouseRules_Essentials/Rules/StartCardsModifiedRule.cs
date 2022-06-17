@@ -42,10 +42,10 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(Piece), "CreatePiece"),
-                postfix: new HarmonyMethod(
+                original: AccessTools.Method(typeof(PieceSpawner), "CreatePieceInternal"),
+                prefix: new HarmonyMethod(
                     typeof(StartCardsModifiedRule),
-                    nameof(Piece_CreatePiece_Postfix)));
+                    nameof(Piece_CreatePieceInternal_Prefix)));
             harmony.Patch(
                 original: AccessTools.Method(typeof(Inventory), "RestoreReplenishables"),
                 prefix: new HarmonyMethod(
@@ -92,27 +92,28 @@
             return false;
         }
 
-        private static void Piece_CreatePiece_Postfix(ref Piece __result)
+        private static void Piece_CreatePieceInternal_Prefix(PieceSpawnSettings spawnSettings)
         {
             if (!_isActivated)
             {
                 return;
             }
 
-            if (!_globalHeroStartCards.ContainsKey(__result.boardPieceId))
+            if (!_globalHeroStartCards.ContainsKey(spawnSettings.boardPieceId))
             {
                 return;
             }
 
-            SetInventory(__result);
+            var inventory = CreateInventory(spawnSettings.boardPieceId);
+            Traverse.Create(spawnSettings).Property<Inventory>("Inventory").Value = inventory;
+            Traverse.Create(spawnSettings).Property<bool>("SetInventory").Value = true;
         }
 
-        private static void SetInventory(Piece piece)
+        private static Inventory CreateInventory(BoardPieceId boardPieceId)
         {
-            piece.inventory.Items.Clear();
-            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value = 0;
+            var inventory = new Inventory();
 
-            foreach (var card in _globalHeroStartCards[piece.boardPieceId])
+            foreach (var card in _globalHeroStartCards[boardPieceId])
             {
                 // flag bits
                 // 0 : isReplenishable
@@ -122,20 +123,21 @@
                 int flags = 0;
                 if (card.ReplenishFrequency > 0)
                 {
-                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                    Traverse.Create(inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                     flags = 1;
                     int refreshFrequency = (card.ReplenishFrequency > 7) ? 7 : card.ReplenishFrequency; // Limit to max of 7 turns.
                     flags |= refreshFrequency << 5; // logical or with refreshFrequency shifted 5 bits to the left to become ReplenishFrequency bits 5-7
                 }
 
-                piece.inventory.Items.Add(new Inventory.Item
+                inventory.Items.Add(new Inventory.Item
                 {
                     abilityKey = card.Card,
                     flags = flags,
                     originalOwner = -1,
                 });
-                Traverse.Create(piece.inventory).Property<bool>("needSync").Value = true;
             }
+
+            return inventory;
         }
     }
 }
