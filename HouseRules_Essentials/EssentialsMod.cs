@@ -23,6 +23,7 @@
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
+            HR.Rulebook.Register(typeof(CourageShantyAddsHPRule));
             HR.Rulebook.Register(typeof(CardAdditionOverriddenRule));
             HR.Rulebook.Register(typeof(CardClassRestrictionOverriddenRule));
             HR.Rulebook.Register(typeof(CardEnergyFromAttackMultipliedRule));
@@ -33,6 +34,7 @@
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
+            HR.Rulebook.Register(typeof(FreeAbilityOnCritRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
             HR.Rulebook.Register(typeof(LampTypesOverriddenRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));

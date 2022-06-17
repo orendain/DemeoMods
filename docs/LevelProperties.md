@@ -62,3 +62,10 @@ A list of all level properties defined by Demeo, and their types.
 - FloorThreeClassCardChests (int)
 - FloorThreeLootChests (int)
 - FloorThreeGoldChests (int)
+- FloorOnePotionStand (int)
+- FloorTwoPotionStand (int)
+- FloorThreePotionStand (int)
+- FloorOneMerchant (int)
+- FloorTwoMerchant (int)
+- FloorThreeMerchant (int)
+

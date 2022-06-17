@@ -277,6 +277,19 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
+#### __CourageShantyAddsHP__: In addition to normal effects, Courage Shanty also adds HP
+  - To configure:
+    - Specify a decimal number for how many HP to add to the target each time CourageShanty is used.
+
+  ###### _Example JSON config for CourageShantyAddsHP_
+
+  ```json
+  {
+    "Rule": "CourageShantyAddsHP",
+    "Config": 2
+  },
+  ```
+
 #### __EnemyAttackScaled__: Enemy ⚔️attack⚔️ damage is scaled
   - To configure:
     - Specify a decimal number representing how enemy attack damage is multiplied.
@@ -328,6 +341,27 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": true
   },
   ```
+
+#### __FreeAbilityOnCrit__: A Critical Hit rewards you with a free ability.
+  - Whenever you score a critical hit, a user-configured card is added to your inventory.
+  - Allows configuration of different abilities on a per-hero basis.
+  - To configure:
+    - Specify a Dictionary of [BoardPieceIds](../docs/SettingsReference.md#boardpieceids) and abilities.
+
+  ###### _Example JSON config for FreeAbilityOnCrit_
+
+  ```json
+  {
+    "Rule": "FreeAbilityOnCrit",
+    "Config": {
+      "HeroBard": "OneMoreThing",
+      "HeroHunter": "PoisonedTip",
+      "HeroSorcerer": "Fireball",
+      "HeroGuardian": "Bone",
+      "HeroRogue": "PoisonBomb"
+    }
+  },
+```  
 
 #### __GoldPickedUpMultiplied__: 💰Gold💰 picked up is multiplied
   - To configure:
