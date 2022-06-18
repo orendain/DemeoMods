@@ -75,7 +75,7 @@
             HR.Rulebook.Register(AoePotionsAndBuffsRuleset.Create());
             HR.Rulebook.Register(BetterSorcererRuleset.Create());
             HR.Rulebook.Register(NoSurprisesRuleset.Create());
-            HR.Rulebook.Register(QuickandDeadRuleset.Create());
+            HR.Rulebook.Register(QuickAndDeadRuleset.Create());
         }
     }
 }

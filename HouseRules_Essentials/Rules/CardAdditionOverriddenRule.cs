@@ -59,11 +59,11 @@
                 return;
             }
 
-            var addCardToPieceEvent = (SerializableEventAddCardToPiece) request;
+            var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
 
             var targetPieceId = Traverse.Create(addCardToPieceEvent).Field<int>("targetPieceId").Value;
-            if (!gameContext.pieceAndTurnController.TryGetPiece(targetPieceId, out Piece piece))
+            if (!gameContext.pieceAndTurnController.TryGetPiece(targetPieceId, out var piece))
             {
                 return;
             }

@@ -14,7 +14,7 @@
             const string name = "Demeo Reloaded";
             const string description = "MANY class changes. NEW enemies. BETTER loot. No respawns. Yet somehow challenging...";
 
-            var spawnCatetoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
+            var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
                 { BoardPieceId.Wyvern, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.Cavetroll, new List<int> { 2, 1, 1 } },
@@ -353,7 +353,7 @@
                 { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder } },
             });
 
-            var pieceBehavourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
+            var pieceBehaviourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
             {
                 { BoardPieceId.EarthElemental, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.EarthShatter, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.Mimic, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
@@ -406,7 +406,7 @@
                 { AbilityKey.AltarHeal, 12 },
             });
 
-            var aoeAdjustmentedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
+            var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.SongOfRecovery, 2 },
                 { AbilityKey.SongOfResilience, 2 },
@@ -470,19 +470,19 @@
             return Ruleset.NewInstance(
                 name,
                 description,
-                spawnCatetoriesRule,
+                spawnCategoriesRule,
                 startingCardsRule,
                 piecesAdjustedRule,
                 allowedCardsRule,
                 statusEffectRule,
                 pieceAbilityRule,
-                pieceBehavourListRule,
+                pieceBehaviourListRule,
                 pieceImmunityRule,
                 tileEffectDuration,
                 pieceUseWhenKilledRule,
                 abilityActionCostRule,
                 abilityHealOverriddenRule,
-                aoeAdjustmentedRule,
+                aoeAdjustedRule,
                 abilityDamageRule,
                 backstabConfigRule,
                 petsFocusHuntersMarkRule,

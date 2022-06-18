@@ -50,7 +50,7 @@
         /// <summary>
         /// Replaces existing PieceConfig properties with those specified.
         /// </summary>
-        /// <returns>Dictionary of GameConfigYypes and lists of previous PieceConfig properties that are now replaced.</returns>
+        /// <returns>Previous properties that are now replaced.</returns>
         private static List<PieceProperty> ReplaceExistingProperties(List<PieceProperty> pieceConfigChanges)
         {
             var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
