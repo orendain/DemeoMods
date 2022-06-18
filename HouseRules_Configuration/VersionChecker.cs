@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Configuration
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -90,19 +91,19 @@
             return version.Split('.').Select(int.Parse).ToArray();
         }
 
-        private static bool IsLessThan(int[] parts, int[] otherParts)
+        private static bool IsLessThan(IReadOnlyList<int> parts, IReadOnlyList<int> otherParts)
         {
-            if (parts.Length == 0 && otherParts.Length == 0)
+            if (parts.Count == 0 && otherParts.Count == 0)
             {
                 return false;
             }
 
-            if (parts.Length == 0)
+            if (parts.Count == 0)
             {
                 return otherParts[0] > 0;
             }
 
-            if (otherParts.Length == 0)
+            if (otherParts.Count == 0)
             {
                 return parts[0] < 0;
             }
