@@ -32,16 +32,6 @@
             SetDefaultSerializationSettings();
         }
 
-        internal void SetDefaultRuleset(string rulesetName)
-        {
-            _defaultRulesetEntry.Value = rulesetName;
-        }
-
-        internal void SetLoadRulesetsFromConfig(bool loadFromConfig)
-        {
-            _loadRulesetsFromConfigEntry.Value = loadFromConfig;
-        }
-
         internal string GetDefaultRuleset()
         {
             return _defaultRulesetEntry.Value;
@@ -50,11 +40,6 @@
         internal bool GetLoadRulesetsFromConfig()
         {
             return _loadRulesetsFromConfigEntry.Value;
-        }
-
-        internal void Save()
-        {
-            _configCategory.SaveToFile();
         }
 
         /// <summary>
