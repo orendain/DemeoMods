@@ -45,7 +45,7 @@
         /// <summary>
         /// Gets a list of all ruleset files founds.
         /// </summary>
-        internal List<string> RulesetFiles => Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
+        internal static List<string> RulesetFiles => Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
 
         /// <summary>
         /// Exports the specified ruleset by writing it to a file in the default ruleset directory.
@@ -216,7 +216,10 @@
                 : ruleName;
         }
 
-        internal static string SanitizeRulesetFilename(string rulesetName)
+        /// <summary>
+        /// Returns a modified version of the specified string, sanitized for writing to the filesystem.
+        /// </summary>
+        private static string SanitizeRulesetFilename(string rulesetName)
         {
             var invalids = Path.GetInvalidFileNameChars();
             return string.Join(string.Empty, rulesetName.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');

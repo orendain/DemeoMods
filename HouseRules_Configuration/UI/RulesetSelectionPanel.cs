@@ -31,10 +31,10 @@
 
         private RulesetSelectionPanel(Rulebook rulebook, UiHelper uiHelper, GameObject panel, PageStack pageStack)
         {
-            this._rulebook = rulebook;
-            this._uiHelper = uiHelper;
-            this._pageStack = pageStack;
-            this.Panel = panel;
+            _rulebook = rulebook;
+            _uiHelper = uiHelper;
+            _pageStack = pageStack;
+            Panel = panel;
 
             Render();
         }
