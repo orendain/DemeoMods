@@ -9,7 +9,8 @@
     using HouseRules.Types;
     using Behaviour = DataKeys.Behaviour;
 
-    public sealed class PieceBehavioursListOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<Behaviour>>>, IMultiplayerSafe
+    public sealed class PieceBehavioursListOverriddenRule : Rule,
+        IConfigWritable<Dictionary<BoardPieceId, List<Behaviour>>>, IMultiplayerSafe
     {
         public override string Description => "Piece behaviours are adjusted";
 
@@ -41,9 +42,12 @@
             ReplaceExistingProperties(_originals);
         }
 
-        private static Dictionary<BoardPieceId, List<Behaviour>> ReplaceExistingProperties(Dictionary<BoardPieceId, List<Behaviour>> pieceConfigChanges)
+        private static Dictionary<BoardPieceId, List<Behaviour>> ReplaceExistingProperties(
+            Dictionary<BoardPieceId, List<Behaviour>> pieceConfigChanges)
         {
-            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
+            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
+                .Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict")
+                .Value;
             var previousProperties = new Dictionary<BoardPieceId, List<Behaviour>>();
 
             foreach (var item in pieceConfigChanges)

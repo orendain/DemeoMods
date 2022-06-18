@@ -8,7 +8,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class StatModifiersOverridenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
+    public sealed class StatModifiersOverridenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>,
+        IMultiplayerSafe
     {
         public override string Description => "StatModifiersOverridenRule are overridden";
 
@@ -47,12 +48,14 @@
             {
                 if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
                 {
-                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
+                    throw new InvalidOperationException(
+                        $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
                 }
 
                 if (!ability.TryGetComponent(statModifierType, out var statModifier))
                 {
-                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding StatModifier.");
+                    throw new InvalidOperationException(
+                        $"AbilityKey [{replacement.Key}] does not have a corresponding StatModifier.");
                 }
 
                 originals[replacement.Key] = Traverse.Create(statModifier).Field<int>("additiveBonus").Value;

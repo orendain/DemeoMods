@@ -7,7 +7,8 @@
     using DataKeys;
     using HouseRules.Types;
 
-    public sealed class AbilityBackstabAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>, IMultiplayerSafe
+    public sealed class AbilityBackstabAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>,
+        IMultiplayerSafe
     {
         public override string Description => "Ability backstab enablement is adjusted";
 
@@ -44,7 +45,8 @@
             {
                 if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
                 {
-                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
+                    throw new InvalidOperationException(
+                        $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
                 }
 
                 originals[replacement.Key] = ability.enableBackstabBonus;

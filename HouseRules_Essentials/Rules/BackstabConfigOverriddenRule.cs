@@ -7,7 +7,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class BackstabConfigOverriddenRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
+    public sealed class BackstabConfigOverriddenRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable,
+        IMultiplayerSafe
     {
         public override string Description => "Backstab is allocated to new BoardPieceIDs";
 

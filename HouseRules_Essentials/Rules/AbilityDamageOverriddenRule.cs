@@ -37,7 +37,8 @@
             ReplaceAbilities(_originals);
         }
 
-        private static Dictionary<AbilityKey, List<int>> ReplaceAbilities(Dictionary<AbilityKey, List<int>> replacements)
+        private static Dictionary<AbilityKey, List<int>> ReplaceAbilities(
+            Dictionary<AbilityKey, List<int>> replacements)
         {
             var originals = new Dictionary<AbilityKey, List<int>>();
 
@@ -45,10 +46,12 @@
             {
                 if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
                 {
-                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
+                    throw new InvalidOperationException(
+                        $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
                 }
 
-                originals[replacement.Key] = new List<int> { ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage };
+                originals[replacement.Key] = new List<int>
+                    { ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage };
                 ability.abilityDamage.targetDamage = replacement.Value[0];
                 ability.abilityDamage.critDamage = replacement.Value[1];
             }

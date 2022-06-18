@@ -10,6 +10,7 @@
     [Flags]
     public enum SyncableTrigger
     {
+        /// <summary>Nothing that needs special syncing is modified.</summary>
         None = 0,
 
         /// <summary>New pieces are changed or have their attributes modified.</summary>

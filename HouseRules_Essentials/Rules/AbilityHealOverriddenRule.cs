@@ -45,11 +45,13 @@
             {
                 if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
                 {
-                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
+                    throw new InvalidOperationException(
+                        $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
                 }
 
                 originals[replacement.Key] = ability.abilityHeal.GetHealAmount();
-                AccessTools.StructFieldRefAccess<Ability.AbilityHeal, int>(ref ability.abilityHeal, "healAmount") = replacement.Value;
+                AccessTools.StructFieldRefAccess<Ability.AbilityHeal, int>(ref ability.abilityHeal, "healAmount") =
+                    replacement.Value;
             }
 
             return originals;
