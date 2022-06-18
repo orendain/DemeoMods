@@ -42,7 +42,9 @@
     <Compile Include="Rulesets\DifficultyEasyRuleset.cs" />
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
+    <Compile Include="Rulesets\HiddenTemple2Ruleset.cs" />
     <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
+    <Compile Include="Rulesets\HiddenTemple1Ruleset.cs" />
     <Compile Include="Rulesets\DemeoReloaded.cs" />
     <Compile Include="Rulesets\ItsATrapRuleset.cs" />
     <Compile Include="Rulesets\LuckyDip.cs" />

@@ -63,6 +63,8 @@
         private static void RegisterRulesets()
         {
             HR.Rulebook.Register(Arachnophobia.Create());
+            HR.Rulebook.Register(HiddenTemple1Ruleset.Create());
+            HR.Rulebook.Register(HiddenTemple2Ruleset.Create());
             HR.Rulebook.Register(LuckyDip.Create());
             HR.Rulebook.Register(TheSwirlRuleset.Create());
             HR.Rulebook.Register(BeatTheClockRuleset.Create());
