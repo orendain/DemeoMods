@@ -1,4 +1,4 @@
-﻿namespace HouseRules.Essentials.Rules
+namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
     using Boardgame;
@@ -7,9 +7,9 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
+    using UnityEngine;
 
-    public sealed class FreeAbilityOnCritRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable,
-        IMultiplayerSafe
+    public sealed class FreeAbilityOnCritRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Critical Hit gives free card.";
 
@@ -49,23 +49,43 @@
                 return;
             }
 
-            if (diceResult != Dice.Outcome.Crit)
+            if (diceResult == Dice.Outcome.Crit)
             {
-                return;
+                if (source.IsPlayer() && _globalAdjustments.ContainsKey(source.boardPieceId))
+                {
+                    source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
+                    if (source.characterClass == CharacterClass.Assassin)
+                    {
+                        if (currentAP < 1)
+                        {
+                            source.inventory.AddGold(10);
+                            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
+                        }
+                        else
+                        {
+                            int money = Random.Range(11, 21);
+                            source.inventory.AddGold(money);
+                        }
+                    }
+                    else
+                    {
+                        if (currentAP < 1)
+                        {
+                            source.inventory.AddGold(10);
+                            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
+                        }
+                        else
+                        {
+                            int money = Random.Range(11, 21);
+                            source.inventory.AddGold(money);
+                        }
+                    }
+
+                    HR.ScheduleBoardSync();
+                }
             }
 
-            if (!source.IsPlayer())
-            {
-                return;
-            }
-
-            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
-            {
-                return;
-            }
-
-            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
-            HR.ScheduleBoardSync();
+            return;
         }
     }
 }

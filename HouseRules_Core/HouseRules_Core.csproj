@@ -33,26 +33,35 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>$(DemeoVrDir)\MelonLoader\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\MelonLoader\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BowserCore">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserCore.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\BowserCore.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
-      <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="PhotonRealtime">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
     </Reference>
     <Reference Include="PhotonUnityNetworking">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
