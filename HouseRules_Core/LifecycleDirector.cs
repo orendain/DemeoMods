@@ -6,10 +6,8 @@
     using System.Text;
     using Boardgame;
     using Boardgame.Networking;
-    using ExitGames.Client.Photon;
     using HarmonyLib;
     using HouseRules.Types;
-    using Photon.Pun;
     using Photon.Realtime;
 
     internal static class LifecycleDirector
@@ -168,7 +166,7 @@
 
 
         /// <summary>
-        /// Add properties to the room to indicate it's modded nature.
+        /// Add properties to the room to indicate its modded nature.
         /// </summary>
         /// <remarks>
         /// Properties may be used by other mods to distinguish modded rooms from non-modded rooms.
