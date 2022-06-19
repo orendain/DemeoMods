@@ -134,7 +134,6 @@
 
             _isCreatingGame = false;
             OnPostGameCreated();
-            // UpdateRoomProperties();
             ShowWelcomeMessage();
         }
 
@@ -167,6 +166,13 @@
             DeactivateRuleset();
         }
 
+
+        /// <summary>
+        /// Add properties to the room to indicate it's modded nature.
+        /// </summary>
+        /// <remarks>
+        /// Properties may be used by other mods to distinguish modded rooms from non-modded rooms.
+        /// </remarks>
         private static void AddModdedRoomProperties(RoomOptions roomOptions)
         {
             if (roomOptions.CustomRoomPropertiesForLobby.Contains(ModdedRoomPropertyKey))
@@ -181,24 +187,6 @@
             roomOptions.CustomRoomPropertiesForLobby = newOptions;
 
             roomOptions.CustomRoomProperties.Add(ModdedRoomPropertyKey, true);
-        }
-
-        /// <summary>
-        /// Add properties to the room to indicate it's modded nature.
-        /// </summary>
-        /// <remarks>
-        /// These properties may be
-        /// </remarks>
-        private static void UpdateRoomProperties()
-        {
-            if (!IsRulesetActive)
-            {
-                return;
-            }
-
-            var roomProperties = new Hashtable();
-            roomProperties.Add(ModdedRoomPropertyKey, "true");
-            PhotonNetwork.CurrentRoom.SetCustomProperties(roomProperties);
         }
 
         private static void ActivateRuleset()
