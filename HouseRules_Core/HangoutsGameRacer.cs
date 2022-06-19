@@ -32,10 +32,10 @@
                     nameof(GameStateHobbyShop_Start_Postfix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(GroupLaunchTable), "OnStartButtonPressed"),
+                original: AccessTools.Method(typeof(GroupLaunchTable), "StartGroupLaunch"),
                 prefix: new HarmonyMethod(
                     typeof(HangoutsGameRacer),
-                    nameof(GroupLaunchTable_OnStartButtonPressed_Prefix)));
+                    nameof(GroupLaunchTable_StartGroupLaunch_Prefix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(GroupLaunchTable), "OnStartGroupLaunchRPC"),
@@ -58,7 +58,9 @@
             harmony.Patch(
                 original: AccessTools
                     .Method(typeof(PlayWithFriendsController).GetNestedType("<TryCreateTheRoom>d__25"), "MoveNext"),
-                transpiler: new HarmonyMethod(typeof(HangoutsGameRacer), nameof(PlayWithFriendsController_TryCreateTheRoom_Transpiler)));
+                transpiler: new HarmonyMethod(
+                    typeof(HangoutsGameRacer),
+                    nameof(PlayWithFriendsController_TryCreateTheRoom_Transpiler)));
         }
 
         private static void GameStateHobbyShop_Start_Postfix(GameStateHobbyShop __instance, GameStateData baseData)
@@ -67,14 +69,15 @@
             _coroutineSpinner = (GameStateHobbyShopData)baseData;
         }
 
-        private static bool GroupLaunchTable_OnStartButtonPressed_Prefix(GroupLaunchTable __instance)
+        private static bool GroupLaunchTable_StartGroupLaunch_Prefix(GroupLaunchTable __instance)
         {
             if (HR.SelectedRuleset == Ruleset.None)
             {
                 return true;
             }
 
-            CoreMod.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts as table host by front-loading computation.");
+            CoreMod.Logger.Msg(
+                "[HangoutGameRacer] Attempting to race out of Hangouts as table host by front-loading computation.");
             _hasJoinedTheRace = true;
 
             var groupId = Guid.NewGuid().ToString();
@@ -84,7 +87,11 @@
             return false;
         }
 
-        private static bool GroupLaunchTable_OnStartGroupLaunchRPC_Prefix(GroupLaunchTable __instance, string groupId, int selectedModuleType, int randomIndex)
+        private static bool GroupLaunchTable_OnStartGroupLaunchRPC_Prefix(
+            GroupLaunchTable __instance,
+            string groupId,
+            int selectedModuleType,
+            int randomIndex)
         {
             if (HR.SelectedRuleset == Ruleset.None)
             {
@@ -111,7 +118,9 @@
             return false;
         }
 
-        private static bool SocialProviderParea_Constructor_Prefix(SocialProviderParea __instance, Action<ISocialProvider, JoinParameters> onJoinReceived)
+        private static bool SocialProviderParea_Constructor_Prefix(
+            SocialProviderParea __instance,
+            Action<ISocialProvider, JoinParameters> onJoinReceived)
         {
             if (!_hasJoinedTheRace)
             {
@@ -119,7 +128,9 @@
             }
 
             Traverse.Create(__instance).Field<JoinParameters>("joinParameters").Value = _joinParameters;
-            Traverse.Create(__instance).Field<Action<ISocialProvider, JoinParameters>>("onJoinReceived").Value = onJoinReceived;
+            Traverse.Create(__instance).Field<Action<ISocialProvider, JoinParameters>>("onJoinReceived").Value =
+                onJoinReceived;
+
             return false;
         }
 
@@ -134,10 +145,12 @@
 
             StopWatch.Stop();
             var timeElapsed = StopWatch.Elapsed;
-            CoreMod.Logger.Msg($"[HangoutGameRacer] Time to join game from Hangouts: {timeElapsed.Seconds:00}.{timeElapsed.Milliseconds:00}s");
+            CoreMod.Logger.Msg(
+                $"[HangoutGameRacer] Time to join game from Hangouts: {timeElapsed.Seconds:00}.{timeElapsed.Milliseconds:00}s");
         }
 
-        private static IEnumerable<CodeInstruction> PlayWithFriendsController_TryCreateTheRoom_Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> PlayWithFriendsController_TryCreateTheRoom_Transpiler(
+            IEnumerable<CodeInstruction> instructions)
         {
             foreach (var instruction in instructions)
             {
@@ -151,7 +164,11 @@
             }
         }
 
-        private static void RaceOutOfHangouts(GroupLaunchTable groupLaunchTable, string groupId, GroupLaunchModuleData.ModuleType moduleType, bool isTableHost)
+        private static void RaceOutOfHangouts(
+            GroupLaunchTable groupLaunchTable,
+            string groupId,
+            GroupLaunchModuleData.ModuleType moduleType,
+            bool isTableHost)
         {
             var destination = ConvertModuleTypeToDestination(moduleType);
             var stringToRoomCode = new StringToRoomCode(_coroutineSpinner);
@@ -169,10 +186,19 @@
 
                 if (isTableHost)
                 {
-                    // Originally from `GroupLaunchTable.OnStartButtonPressed`.
-                    var playersInParty = Traverse.Create(groupLaunchTable).Field<int[]>("playersInParty").Value;
-                    var groupLaunchTableData = Traverse.Create(groupLaunchTable).Field<GroupLaunchTableData>("data").Value;
-                    groupLaunchTableData.photonView.RPC("BowserStartGroupLaunchRPC", RpcTarget.All, playersInParty[0], playersInParty[1], playersInParty[2], playersInParty[3], groupId, (int)moduleType, -1);
+                    // Originally from `GroupLaunchTable.StartGroupLaunch`.
+                    var party = Traverse.Create(groupLaunchTable).Field<GroupLaunchTableParty>("party").Value;
+                    var data = Traverse.Create(groupLaunchTable).Field<GroupLaunchTableData>("data").Value;
+                    data.photonView.RPC(
+                        "BowserStartGroupLaunchRPC",
+                        RpcTarget.All,
+                        party.GetPlayerActorNumberInPartySlot(0),
+                        party.GetPlayerActorNumberInPartySlot(1),
+                        party.GetPlayerActorNumberInPartySlot(2),
+                        party.GetPlayerActorNumberInPartySlot(3),
+                        groupId,
+                        (int)moduleType,
+                        -1);
                 }
 
                 LeaveHangouts();
@@ -183,15 +209,15 @@
         {
             Traverse.Create(groupLaunchTable).Field<bool>("leavingBowser").Value = true;
 
-            // Recreating `GameStateHobbyShop.ExitBowser`
-            var teleport = Traverse.Create(_gameStateHobbyShop).Field<Teleport>("teleport").Value;
-            teleport.UpdateState(isMovementDisabled: true, isTurningDisabled: false);
+            // Most of `GameStateHobbyShop.ExitBowser`.
+            var movement = Traverse.Create(_gameStateHobbyShop).Field<MovementManager>("movement").Value;
+            movement.SetMoveAndTurnDisabled(isMovementDisabled: true, isTurningDisabled: true);
             Traverse.Create<BowserTriggerHandler>().Method("StopHobbyShopAmbience").GetValue();
         }
 
         private static void LeaveHangouts()
         {
-            PhotonNetwork.SendAllOutgoingCommands();
+            // The rest of `GameStateHobbyShop.ExitBowser`.
             BowserIntegration.ExitBowser();
         }
 
@@ -202,13 +228,16 @@
             var moduleType = modules[selectedModuleIndex].moduleType;
             if (moduleType == GroupLaunchModuleData.ModuleType.Random)
             {
-                moduleType = (GroupLaunchModuleData.ModuleType)UnityEngine.Random.Range(1, Enum.GetValues(typeof(GroupLaunchModuleData.ModuleType)).Length);
+                moduleType = (GroupLaunchModuleData.ModuleType)UnityEngine.Random.Range(
+                    1,
+                    Enum.GetValues(typeof(GroupLaunchModuleData.ModuleType)).Length);
             }
 
             return moduleType;
         }
 
-        private static PlayWithFriendsController.Destination ConvertModuleTypeToDestination(GroupLaunchModuleData.ModuleType moduleType)
+        private static PlayWithFriendsController.Destination ConvertModuleTypeToDestination(
+            GroupLaunchModuleData.ModuleType moduleType)
         {
             switch (moduleType)
             {
@@ -218,6 +247,8 @@
                     return PlayWithFriendsController.Destination.RealmOfTheRatKing;
                 case GroupLaunchModuleData.ModuleType.RootsOfEvil:
                     return PlayWithFriendsController.Destination.RootsOfEvil;
+                case GroupLaunchModuleData.ModuleType.SerpentLord:
+                    return PlayWithFriendsController.Destination.Desert;
                 default:
                     return PlayWithFriendsController.Destination.TheBlackSarcophagus;
             }
