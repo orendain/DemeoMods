@@ -9,7 +9,7 @@
     internal class RoomFinderMod : MelonMod
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
-        internal static readonly ModState ModState = ModState.NewInstance();
+        internal static readonly SharedState SharedState = SharedState.NewInstance();
 
         private const int LobbySceneIndex = 1;
 

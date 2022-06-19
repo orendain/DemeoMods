@@ -27,22 +27,22 @@
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
-            RoomFinderMod.ModState.GameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
+            RoomFinderMod.SharedState.GameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
         }
 
         private static void MatchMakingState_OnRoomListUpdated_Postfix()
         {
-            RoomFinderMod.ModState.HasRoomListUpdated = true;
+            RoomFinderMod.SharedState.HasRoomListUpdated = true;
         }
 
         private static bool MatchMakingState_FindGame_Prefix()
         {
-            if (!RoomFinderMod.ModState.IsRefreshingRoomList)
+            if (!RoomFinderMod.SharedState.IsRefreshingRoomList)
             {
                 return true;
             }
 
-            RoomFinderMod.ModState.GameContext.gameStateMachine.goBackToMenuState = true;
+            RoomFinderMod.SharedState.GameContext.gameStateMachine.goBackToMenuState = true;
             return false;
         }
     }

@@ -45,18 +45,18 @@
                 return;
             }
 
-            if (!RoomFinderMod.ModState.IsRefreshingRoomList)
+            if (!RoomFinderMod.SharedState.IsRefreshingRoomList)
             {
                 return;
             }
 
-            if (!RoomFinderMod.ModState.HasRoomListUpdated)
+            if (!RoomFinderMod.SharedState.HasRoomListUpdated)
             {
                 return;
             }
 
-            RoomFinderMod.ModState.IsRefreshingRoomList = false;
-            RoomFinderMod.ModState.HasRoomListUpdated = false;
+            RoomFinderMod.SharedState.IsRefreshingRoomList = false;
+            RoomFinderMod.SharedState.HasRoomListUpdated = false;
             PopulateRoomList();
         }
 
@@ -90,8 +90,8 @@
 
         private static void RefreshRoomList()
         {
-            RoomFinderMod.ModState.IsRefreshingRoomList = true;
-            Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
+            RoomFinderMod.SharedState.IsRefreshingRoomList = true;
+            Traverse.Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
                 .Method("QuickPlay", LevelSequence.GameType.Invalid, true)
                 .GetValue();
         }
@@ -99,7 +99,7 @@
         private void PopulateRoomList()
         {
             var cachedRooms =
-                Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine)
+                Traverse.Create(RoomFinderMod.SharedState.GameContext.gameStateMachine)
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
 
             RoomFinderMod.Logger.Msg($"Captured {cachedRooms.Count} rooms.");
