@@ -22,7 +22,12 @@
             return NewInstance(room.Name, gameType, floorIndex, room.PlayerCount, room.MaxPlayers);
         }
 
-        private static Room NewInstance(string name, LevelSequence.GameType gameType, int floor, int currentPlayers, int maxPlayers)
+        private static Room NewInstance(
+            string name,
+            LevelSequence.GameType gameType,
+            int floor,
+            int currentPlayers,
+            int maxPlayers)
         {
             return new Room(name, gameType, floor, currentPlayers, maxPlayers);
         }
