@@ -70,9 +70,6 @@
             var pageNavigation = _pageStack.NavigationPanel;
             pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
             pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
-
-            var rooms = new GameObject("Rooms");
-            rooms.transform.SetParent(Panel.transform, worldPositionStays: false);
         }
 
         private GameObject CreateHeader()
