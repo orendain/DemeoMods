@@ -48,11 +48,16 @@
         {
             _rooms = rooms;
             SortRooms();
-            RedrawRoomPages();
+            DrawRoomPages();
         }
 
         private void Draw()
         {
+            foreach (Transform child in Panel.transform)
+            {
+                Object.Destroy(child.gameObject);
+            }
+
             var header = CreateHeader();
             header.transform.SetParent(Panel.transform, worldPositionStays: false);
 
@@ -60,11 +65,16 @@
             pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
             pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
 
-            RedrawRoomPages();
+            _roomPages.transform.SetParent(Panel.transform, worldPositionStays: false);
+            _roomPages.transform.localPosition = new Vector3(0, -1.5f, 0);
+
+            DrawRoomPages();
         }
 
-        private void RedrawRoomPages()
+        private void DrawRoomPages()
         {
+            _pageStack.Clear();
+
             foreach (Transform child in _roomPages.transform)
             {
                 Object.Destroy(child.gameObject);
@@ -74,8 +84,7 @@
             var roomPages = roomPartitions.Select(CreatePage).ToList();
             foreach (var page in roomPages)
             {
-                page.transform.SetParent(Panel.transform, worldPositionStays: false);
-                page.transform.localPosition = new Vector3(0, -1.5f, 0);
+                page.transform.SetParent(_roomPages.transform, worldPositionStays: false);
                 _pageStack.AddPage(page);
             }
         }
@@ -192,7 +201,7 @@
 
             _sortOrder = sortOrder;
             SortRooms();
-            RedrawRoomPages();
+            DrawRoomPages();
         }
 
         private void SortRooms()
