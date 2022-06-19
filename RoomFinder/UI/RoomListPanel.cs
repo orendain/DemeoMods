@@ -60,7 +60,12 @@
 
             var roomPartitions = PartitionRooms();
             var roomPages = roomPartitions.Select(CreatePage).ToList();
-            roomPages.ForEach(_pageStack.AddPage);
+            foreach (var page in roomPages)
+            {
+                page.transform.SetParent(Panel.transform, worldPositionStays: false);
+                page.transform.localPosition = new Vector3(0, -1.5f, 0);
+                _pageStack.AddPage(page);
+            }
 
             var pageNavigation = _pageStack.NavigationPanel;
             pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
@@ -115,8 +120,6 @@
         private GameObject CreatePage(IReadOnlyCollection<Room> rooms)
         {
             var container = new GameObject("Rooms");
-            container.transform.SetParent(Panel.transform, worldPositionStays: false);
-            container.transform.localPosition = new Vector3(0, -1.5f, 0);
 
             for (var i = 0; i < rooms.Count; i++)
             {
