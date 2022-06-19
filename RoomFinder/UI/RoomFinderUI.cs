@@ -82,6 +82,10 @@
 
             _roomListPanel.Panel.transform.SetParent(transform, worldPositionStays: false);
 
+            var versionText = _uiHelper.CreateLabelText($"v{BuildVersion.Version}");
+            versionText.transform.SetParent(transform, worldPositionStays: false);
+            versionText.transform.localPosition = new Vector3(-3.25f, -19.5f, UiHelper.DefaultTextZShift);
+
             // TODO(orendain): Fix so that ray interacts with entire object.
             gameObject.AddComponent<BoxCollider>();
 
