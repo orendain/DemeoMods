@@ -12,7 +12,7 @@
 
     internal class RoomListPanel
     {
-        private const int MaxRoomsPerPage = 20;
+        private const int MaxRoomsPerPage = 14;
 
         private readonly UiHelper _uiHelper;
         private readonly PageStack _pageStack;
@@ -113,12 +113,11 @@
         {
             var container = new GameObject("Rooms");
             container.transform.SetParent(GameObject.transform, worldPositionStays: false);
-            container.transform.localPosition = new Vector3(0, -2.5f, 0);
+            container.transform.localPosition = new Vector3(0, -1.5f, 0);
 
             for (var i = 0; i < rooms.Count; i++)
             {
-                // var yOffset = (1 + roomIndex++) * -1f;
-                var yOffset = i * -2f;
+                var yOffset = i * -1f;
                 var roomRow = CreateRoomRow(rooms.ElementAt(i));
                 roomRow.transform.SetParent(container.transform, worldPositionStays: false);
                 roomRow.transform.localPosition = new Vector3(0, yOffset, 0);
