@@ -129,6 +129,34 @@
             return container;
         }
 
+        private GameObject CreateRoomRow(Room room)
+        {
+            var container = new GameObject(room.Name);
+
+            var joinButton = _uiHelper.CreateButton(JoinRoomAction(room.Name));
+            joinButton.transform.SetParent(container.transform, worldPositionStays: false);
+            joinButton.transform.localScale = new Vector3(0.32f, 0.45f, 0.45f);
+            joinButton.transform.localPosition = new Vector3(-3f, 0, UiHelper.DefaultButtonZShift);
+
+            var joinText = _uiHelper.CreateText(room.Name, Color.white, UiHelper.DefaultLabelFontSize);
+            joinText.transform.SetParent(container.transform, worldPositionStays: false);
+            joinText.transform.localPosition = new Vector3(-3f, 0, UiHelper.DefaultTextZShift);
+
+            var gameLabel = _uiHelper.CreateLabelText(room.GameType.ToString());
+            gameLabel.transform.SetParent(container.transform, worldPositionStays: false);
+            gameLabel.transform.localPosition = new Vector3(-0.4f, 0, UiHelper.DefaultTextZShift);
+
+            var floorLabel = _uiHelper.CreateLabelText(room.Floor.ToString());
+            floorLabel.transform.SetParent(container.transform, worldPositionStays: false);
+            floorLabel.transform.localPosition = new Vector3(1.75f, 0, UiHelper.DefaultTextZShift);
+
+            var playersLabel = _uiHelper.CreateLabelText($"{room.CurrentPlayers}/{room.MaxPlayers}");
+            playersLabel.transform.SetParent(container.transform, worldPositionStays: false);
+            playersLabel.transform.localPosition = new Vector3(3.25f, 0, UiHelper.DefaultTextZShift);
+
+            return container;
+        }
+
         private GameObject CreateSortButton(string text, Action action)
         {
             var container = new GameObject(text);
@@ -163,34 +191,6 @@
             _rooms = _isDescendingOrder
                 ? _rooms.OrderByDescending(_sortOrder).ToList()
                 : _rooms.OrderBy(_sortOrder).ToList();
-        }
-
-        private GameObject CreateRoomRow(Room room)
-        {
-            var container = new GameObject(room.Name);
-
-            var joinButton = _uiHelper.CreateButton(JoinRoomAction(room.Name));
-            joinButton.transform.SetParent(container.transform, worldPositionStays: false);
-            joinButton.transform.localScale = new Vector3(0.32f, 0.45f, 0.45f);
-            joinButton.transform.localPosition = new Vector3(-3f, 0, UiHelper.DefaultButtonZShift);
-
-            var joinText = _uiHelper.CreateText(room.Name, Color.white, UiHelper.DefaultLabelFontSize);
-            joinText.transform.SetParent(container.transform, worldPositionStays: false);
-            joinText.transform.localPosition = new Vector3(-3f, 0, UiHelper.DefaultTextZShift);
-
-            var gameLabel = _uiHelper.CreateLabelText(room.GameType.ToString());
-            gameLabel.transform.SetParent(container.transform, worldPositionStays: false);
-            gameLabel.transform.localPosition = new Vector3(-0.4f, 0, UiHelper.DefaultTextZShift);
-
-            var floorLabel = _uiHelper.CreateLabelText(room.Floor.ToString());
-            floorLabel.transform.SetParent(container.transform, worldPositionStays: false);
-            floorLabel.transform.localPosition = new Vector3(1.75f, 0, UiHelper.DefaultTextZShift);
-
-            var playersLabel = _uiHelper.CreateLabelText($"{room.CurrentPlayers}/{room.MaxPlayers}");
-            playersLabel.transform.SetParent(container.transform, worldPositionStays: false);
-            playersLabel.transform.localPosition = new Vector3(3.25f, 0, UiHelper.DefaultTextZShift);
-
-            return container;
         }
 
         private static Action JoinRoomAction(string roomCode)
