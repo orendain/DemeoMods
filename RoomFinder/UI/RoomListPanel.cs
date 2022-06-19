@@ -32,13 +32,13 @@
 
         private RoomListPanel(UiHelper uiHelper, GameObject panel,PageStack pageStack)
         {
-            this._uiHelper = uiHelper;
-            this._pageStack = pageStack;
-            this.GameObject = panel;
-            this._sortOrder = r => r.CurrentPlayers;
-            this._isDescendingOrder = true;
+            _uiHelper = uiHelper;
+            _pageStack = pageStack;
+            GameObject = panel;
+            _sortOrder = r => r.CurrentPlayers;
+            _isDescendingOrder = true;
 
-            this._rooms = new List<Room>();
+            _rooms = new List<Room>();
         }
 
         internal void SetRooms(IEnumerable<RoomInfo> rooms)

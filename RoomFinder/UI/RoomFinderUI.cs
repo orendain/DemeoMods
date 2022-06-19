@@ -62,35 +62,35 @@
 
         private void Initialize()
         {
-            this.transform.SetParent(_uiHelper.DemeoResource.VrLobbyTableAnchor.transform, worldPositionStays: true);
-            this.transform.position = new Vector3(25, 30, 0);
-            this.transform.rotation = Quaternion.Euler(0, 40, 0);
+            transform.SetParent(_uiHelper.DemeoResource.VrLobbyTableAnchor.transform, worldPositionStays: true);
+            transform.position = new Vector3(25, 30, 0);
+            transform.rotation = Quaternion.Euler(0, 40, 0);
 
             _background = new GameObject("RoomFinderUIBackground");
             _background.AddComponent<MeshFilter>().mesh = _uiHelper.DemeoResource.MenuBoxMesh;
             _background.AddComponent<MeshRenderer>().material = _uiHelper.DemeoResource.MenuBoxMaterial;
 
-            _background.transform.SetParent(this.transform, worldPositionStays: false);
+            _background.transform.SetParent(transform, worldPositionStays: false);
             _background.transform.localPosition = new Vector3(0, -3.6f, 0);
             _background.transform.localRotation =
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             _background.transform.localScale = new Vector3(2, 1, 2.5f);
 
             var menuTitle = _uiHelper.CreateMenuHeaderText("RoomFinder");
-            menuTitle.transform.SetParent(this.transform, worldPositionStays: false);
+            menuTitle.transform.SetParent(transform, worldPositionStays: false);
             menuTitle.transform.localPosition = new Vector3(0, 2.375f, UiHelper.DefaultTextZShift);
 
             var refreshButton = _uiHelper.CreateButton(RefreshRoomList);
-            refreshButton.transform.SetParent(this.transform, worldPositionStays: false);
+            refreshButton.transform.SetParent(transform, worldPositionStays: false);
             refreshButton.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultButtonZShift);
             refreshButton.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
 
             var refreshText = _uiHelper.CreateButtonText("Refresh");
-            refreshText.transform.SetParent(this.transform, worldPositionStays: false);
+            refreshText.transform.SetParent(transform, worldPositionStays: false);
             refreshText.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
-            this.gameObject.AddComponent<BoxCollider>();
+            gameObject.AddComponent<BoxCollider>();
 
             _isInitialized = true;
         }
@@ -111,7 +111,7 @@
             RoomFinderMod.Logger.Msg($"Captured {cachedRooms.Count} rooms.");
 
             _roomListPanel.SetRooms(cachedRooms.Values.ToList());
-            _roomListPanel.GameObject.transform.SetParent(this.transform, worldPositionStays: false);
+            _roomListPanel.GameObject.transform.SetParent(transform, worldPositionStays: false);
             _roomListPanel.GameObject.transform.localPosition = new Vector3(0, -1, 0);
         }
     }
