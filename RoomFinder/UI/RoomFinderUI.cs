@@ -101,6 +101,7 @@
             var cachedRooms =
                 Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine)
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
+
             RoomFinderMod.Logger.Msg($"Captured {cachedRooms.Count} rooms.");
 
             var rooms = cachedRooms.Values.ToList().Select(Room.Parse).ToList();

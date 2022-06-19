@@ -18,7 +18,7 @@
         public override void OnApplicationStart()
         {
             var harmony = new Harmony("com.orendain.demeomods.roomfinder");
-            ModPatcher.Patch(harmony);
+            Patcher.Patch(harmony);
             CommonModule.Initialize();
         }
 
