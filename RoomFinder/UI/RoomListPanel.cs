@@ -16,9 +16,9 @@
 
         private readonly UiHelper _uiHelper;
         private readonly PageStack _pageStack;
-        private Func<RoomListEntry, object> _sortOrder;
+        private Func<Room, object> _sortOrder;
         private bool _isDescendingOrder;
-        private List<RoomListEntry> _rooms;
+        private List<Room> _rooms;
 
         internal GameObject GameObject { get; }
 
@@ -38,12 +38,12 @@
             this._sortOrder = r => r.CurrentPlayers;
             this._isDescendingOrder = true;
 
-            this._rooms = new List<RoomListEntry>();
+            this._rooms = new List<Room>();
         }
 
         internal void SetRooms(IEnumerable<RoomInfo> rooms)
         {
-            _rooms = rooms.Select(RoomListEntry.Parse).ToList();
+            _rooms = rooms.Select(Room.Parse).ToList();
             SortRooms();
             Render();
         }
@@ -99,7 +99,7 @@
         /// <summary>
         /// Partition rooms into groups based on the maximum allowed rooms per page.
         /// </summary>
-        private IEnumerable<List<RoomListEntry>> PartitionRooms()
+        private IEnumerable<List<Room>> PartitionRooms()
         {
             return FilterValidRooms(_rooms)
                 .Select((value, index) => new { group = index / MaxRoomsPerPage, value })
@@ -107,12 +107,12 @@
                 .Select(group => group.Select(g => g.value).ToList());
         }
 
-        private static IEnumerable<RoomListEntry> FilterValidRooms(IEnumerable<RoomListEntry> rooms)
+        private static IEnumerable<Room> FilterValidRooms(IEnumerable<Room> rooms)
         {
             return rooms.Where(room => room.GameType != LevelSequence.GameType.Invalid).Where(room => room.Floor >= 0);
         }
 
-        private GameObject CreatePage(IReadOnlyCollection<RoomListEntry> rooms)
+        private GameObject CreatePage(IReadOnlyCollection<Room> rooms)
         {
             var container = new GameObject("Rooms");
             container.transform.SetParent(GameObject.transform, worldPositionStays: false);
@@ -146,7 +146,7 @@
             return container;
         }
 
-        private void SetSortOrderAndApply(Func<RoomListEntry, object> sortOrder)
+        private void SetSortOrderAndApply(Func<Room, object> sortOrder)
         {
             if (_sortOrder == sortOrder)
             {
@@ -165,7 +165,7 @@
                 : _rooms.OrderBy(_sortOrder).ToList();
         }
 
-        private GameObject CreateRoomRow(RoomListEntry room)
+        private GameObject CreateRoomRow(Room room)
         {
             var container = new GameObject(room.Name);
 
