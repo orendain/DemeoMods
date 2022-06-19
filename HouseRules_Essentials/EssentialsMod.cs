@@ -16,24 +16,27 @@
 
         private static void RegisterRuleTypes()
         {
+            HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityBackstabAdjustedRule));
+            HR.Rulebook.Register(typeof(AbilityBreaksStealthAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityDamageOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityHealOverriddenRule));
-            HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
+            HR.Rulebook.Register(typeof(AbilityStealthDamageOverriddenRule));
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
-            HR.Rulebook.Register(typeof(CourageShantyAddsHpRule));
             HR.Rulebook.Register(typeof(CardAdditionOverriddenRule));
             HR.Rulebook.Register(typeof(CardClassRestrictionOverriddenRule));
             HR.Rulebook.Register(typeof(CardEnergyFromAttackMultipliedRule));
             HR.Rulebook.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
+            HR.Rulebook.Register(typeof(CourageShantyAddsHPRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
+            HR.Rulebook.Register(typeof(FixStatusEffectsRule));
             HR.Rulebook.Register(typeof(FreeAbilityOnCritRule));
             HR.Rulebook.Register(typeof(FreeActionPointsOnCritRule));
             HR.Rulebook.Register(typeof(FreeHealOnCritRule));

@@ -49,12 +49,12 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (diceResult == Dice.Outcome.Crit)
+            if (diceResult == Dice.Outcome.Hit)
             {
                 if (source.IsPlayer() && _globalAdjustments.Contains(source.boardPieceId))
                 {
                     source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-                    if (source.characterClass == CharacterClass.Assassin)
+                    if (source.boardPieceId == BoardPieceId.HeroRogue)
                     {
                         int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
                         if (currentST > 0)
@@ -72,29 +72,30 @@ namespace HouseRules.Essentials.Rules
                     }
                     else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
                     {
-                        if (currentAP > 0)
+                        if (source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Overcharge) < 1)
                         {
-                            AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
-                            AbilityFactory.TryGetAbility(AbilityKey.LightningBolt, out var abilityL);
-                            if (abilityZ.IsCritting() || abilityL.IsCritting())
+                            if (source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Discharge) > 0)
                             {
-                                source.effectSink.RemoveStatusEffect(EffectStateType.Discharge);
-                                abilityZ.effectsPreventingUse.Clear();
-                                abilityZ.effectsPreventingReplenished.Clear();
-                                abilityL.effectsPreventingUse.Clear();
-                                abilityL.effectsPreventingReplenished.Clear();
-                                source.inventory.RemoveDisableCooldownFlags();
-                                source.inventory.RestoreReplenishables(source);
-                                source.inventory.AddGold(10);
+                                MelonLoader.MelonLogger.Msg("Discharge Remove");
+                                AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
+                                AbilityFactory.TryGetAbility(AbilityKey.LightningBolt, out var abilityL);
+                                AbilityFactory.TryGetAbility(AbilityKey.Overcharge, out var abilityO);
+                                // source.effectSink.RemoveStatusEffect(EffectStateType.Discharge);
+                                abilityZ.effectsPreventingUse.Remove(EffectStateType.Discharge);// Clear();
+                                abilityZ.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
+                                abilityL.effectsPreventingUse.Remove(EffectStateType.Discharge);
+                                abilityL.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
+                                abilityO.effectsPreventingUse.Remove(EffectStateType.Discharge);
+                                abilityO.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
                             }
-                        }
-                        else
-                        {
-                            int money = Random.Range(11, 21);
-                            source.inventory.AddGold(money);
+
+                            MelonLoader.MelonLogger.Msg("Restore Zap");
+                            source.inventory.RemoveDisableCooldownFlags();
+                            source.inventory.RestoreReplenishables(source);
+                            source.inventory.AddGold(10);
                         }
                     }
-                    else if (currentAP > 0 || source.characterClass == CharacterClass.Guardian)
+                    else if (currentAP > 0 || source.boardPieceId == BoardPieceId.HeroGuardian)
                     {
                         source.inventory.AddGold(10);
                         source.inventory.RestoreReplenishables(source);

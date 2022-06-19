@@ -50,15 +50,18 @@
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rulesets\TheSwirlRuleset.cs" />
     <Compile Include="Rules\AbilityBackstabAdjustedRule.cs" />
+    <Compile Include="Rules\AbilityBreaksStealthAdjustedRule.cs" />
     <Compile Include="Rules\AbilityDamageOverriddenRule.cs" />
     <Compile Include="Rules\AbilityHealOverriddenRule.cs" />
+    <Compile Include="Rules\AbilityStealthDamageOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
+    <Compile Include="Rules\CourageShantyAddsHPRule.cs" />
+    <Compile Include="Rules\FixStatusEffectsRule.cs" />
+    <Compile Include="Rules\FreeHealOnCritRule.cs" />
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />
     <Compile Include="Rules\FreeActionPointsOnCritRule.cs" />
-    <Compile Include="Rules\FreeHealOnCritRule.cs" />
     <Compile Include="Rules\FreeHealOnHitRule.cs" />
     <Compile Include="Rules\FreeReplenishablesOnCritRule.cs" />
-    <Compile Include="Rules\CourageShantyAddsHPRule.cs" />
     <Compile Include="Rules\TileEffectDurationOverriddenRule.cs" />
     <Compile Include="Rules\LampTypesOverriddenRule.cs" />
     <Compile Include="Rules\LevelSequenceOverriddenRule.cs" />
@@ -98,20 +101,20 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\MelonLoader\0Harmony.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\MelonLoader\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\MelonLoader\MelonLoader.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="PhotonUnityNetworking">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

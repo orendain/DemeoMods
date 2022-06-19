@@ -53,17 +53,25 @@ namespace HouseRules.Essentials.Rules
                 if (source.IsPlayer() && _globalAdjustments.Contains(source.boardPieceId))
                 {
                     source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-                    if (currentAP < 1)
+                    if (source.boardPieceId == BoardPieceId.HeroGuardian)
                     {
-                        source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 2);
+                        if (currentAP < 1)
+                        {
+                            source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 2);
+                        }
+                        else
+                        {
+                            source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                        }
+
+                        source.EnableEffectState(EffectStateType.Frenzy);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
                     }
-                    else
+                    else if (currentAP < 1)
                     {
                         source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                     }
 
-                    source.EnableEffectState(EffectStateType.Frenzy);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
                     HR.ScheduleBoardSync();
                 }
             }
