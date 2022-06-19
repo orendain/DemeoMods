@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
     using System.Reflection;
     using System.Reflection.Emit;
     using Boardgame.Social;
@@ -89,6 +90,10 @@
 
         private static bool GroupLaunchTable_OnStartGroupLaunchRPC_Prefix(
             GroupLaunchTable __instance,
+            int player1,
+            int player2,
+            int player3,
+            int player4,
             string groupId,
             int selectedModuleType,
             int randomIndex)
@@ -98,12 +103,20 @@
                 return true;
             }
 
-            StopWatch.Restart();
-
             if (_hasJoinedTheRace)
             {
                 return false;
             }
+
+            var includedPlayers = new[] { player1, player2, player3, player4 };
+            var playerManager = Traverse.Create(__instance).Field<PlayerManager>("playerManager").Value;
+            var localActorNumber = playerManager.LocalPlayerActorNumber;
+            if (!includedPlayers.Contains(localActorNumber))
+            {
+                return true;
+            }
+
+            StopWatch.Restart();
 
             CoreMod.Logger.Msg("[HangoutGameRacer] Attempting to race out of Hangouts as table non-host.");
             _hasJoinedTheRace = true;
