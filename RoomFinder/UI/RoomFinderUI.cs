@@ -60,7 +60,6 @@
             RoomFinderMod.Logger.Msg("Initialization complete.");
         }
 
-
         private void Initialize()
         {
             this.transform.SetParent(_uiHelper.DemeoResource.VrLobbyTableAnchor.transform, worldPositionStays: true);
