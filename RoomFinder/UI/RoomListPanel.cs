@@ -20,7 +20,7 @@
         private bool _isDescendingOrder;
         private List<Room> _rooms;
 
-        internal GameObject GameObject { get; }
+        internal GameObject Panel { get; }
 
         internal static RoomListPanel NewInstance(UiHelper uiHelper)
         {
@@ -34,7 +34,7 @@
         {
             _uiHelper = uiHelper;
             _pageStack = pageStack;
-            GameObject = panel;
+            Panel = panel;
             _sortOrder = r => r.CurrentPlayers;
             _isDescendingOrder = true;
 
@@ -50,24 +50,24 @@
 
         private void Render()
         {
-            foreach (Transform child in GameObject.transform)
+            foreach (Transform child in Panel.transform)
             {
                 Object.Destroy(child.gameObject);
             }
 
             var header = CreateHeader();
-            header.transform.SetParent(GameObject.transform, worldPositionStays: false);
+            header.transform.SetParent(Panel.transform, worldPositionStays: false);
 
             var roomPartitions = PartitionRooms();
             var roomPages = roomPartitions.Select(CreatePage).ToList();
             roomPages.ForEach(_pageStack.AddPage);
 
             var pageNavigation = _pageStack.NavigationPanel;
-            pageNavigation.transform.SetParent(GameObject.transform, worldPositionStays: false);
+            pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
             pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
 
             var rooms = new GameObject("Rooms");
-            rooms.transform.SetParent(GameObject.transform, worldPositionStays: false);
+            rooms.transform.SetParent(Panel.transform, worldPositionStays: false);
         }
 
         private GameObject CreateHeader()
@@ -115,7 +115,7 @@
         private GameObject CreatePage(IReadOnlyCollection<Room> rooms)
         {
             var container = new GameObject("Rooms");
-            container.transform.SetParent(GameObject.transform, worldPositionStays: false);
+            container.transform.SetParent(Panel.transform, worldPositionStays: false);
             container.transform.localPosition = new Vector3(0, -1.5f, 0);
 
             for (var i = 0; i < rooms.Count; i++)
