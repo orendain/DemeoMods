@@ -6,7 +6,6 @@
     using Boardgame;
     using Common.UI;
     using HarmonyLib;
-    using Photon.Realtime;
     using UnityEngine;
     using Object = UnityEngine.Object;
 
@@ -30,7 +29,7 @@
                 new GameObject("RoomListPanel"));
         }
 
-        private RoomListPanel(UiHelper uiHelper,  PageStack pageStack, GameObject panel)
+        private RoomListPanel(UiHelper uiHelper, PageStack pageStack, GameObject panel)
         {
             _uiHelper = uiHelper;
             _pageStack = pageStack;
@@ -169,7 +168,8 @@
             var buttonText = _uiHelper.CreateText(text, Color.white, UiHelper.DefaultButtonFontSize);
             buttonText.transform.SetParent(container.transform, worldPositionStays: false);
             buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-            buttonText.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
+            buttonText.transform.localPosition =
+                new Vector3(0, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
 
             return container;
         }
