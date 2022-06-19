@@ -26,22 +26,22 @@
         {
             return new RoomListPanel(
                 uiHelper,
-                new GameObject("RoomListPanel"),
-                PageStack.NewInstance(uiHelper));
+                PageStack.NewInstance(uiHelper),
+                new GameObject("RoomListPanel"));
         }
 
-        private RoomListPanel(UiHelper uiHelper, GameObject panel,PageStack pageStack)
+        private RoomListPanel(UiHelper uiHelper,  PageStack pageStack, GameObject panel)
         {
             _uiHelper = uiHelper;
             _pageStack = pageStack;
             Panel = panel;
+
             _sortOrder = r => r.CurrentPlayers;
             _isDescendingOrder = true;
-
             _rooms = new List<Room>();
         }
 
-        internal void SetRooms(IEnumerable<RoomInfo> rooms)
+        internal void UpdateRooms(IEnumerable<RoomInfo> rooms)
         {
             _rooms = rooms.Select(Room.Parse).ToList();
             SortRooms();
