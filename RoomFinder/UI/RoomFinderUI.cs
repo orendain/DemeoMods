@@ -32,7 +32,7 @@
             RoomFinderMod.Logger.Msg("UI helper ready. Proceeding with initialization.");
 
             _uiHelper = UiHelper.Instance();
-            _roomListPanel = RoomListPanel.NewInstance(_uiHelper);
+            _roomListPanel = RoomListPanel.NewInstance(_uiHelper, RefreshRoomList);
             Initialize();
 
             RoomFinderMod.Logger.Msg("Initialization complete.");
@@ -80,14 +80,7 @@
             menuTitle.transform.SetParent(transform, worldPositionStays: false);
             menuTitle.transform.localPosition = new Vector3(0, 2.375f, UiHelper.DefaultTextZShift);
 
-            var refreshButton = _uiHelper.CreateButton(RefreshRoomList);
-            refreshButton.transform.SetParent(transform, worldPositionStays: false);
-            refreshButton.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultButtonZShift);
-            refreshButton.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-
-            var refreshText = _uiHelper.CreateButtonText("Refresh");
-            refreshText.transform.SetParent(transform, worldPositionStays: false);
-            refreshText.transform.localPosition = new Vector3(0, 0.3f, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
+            _roomListPanel.Panel.transform.SetParent(transform, worldPositionStays: false);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             gameObject.AddComponent<BoxCollider>();
@@ -112,8 +105,6 @@
 
             var rooms = cachedRooms.Values.ToList().Select(Room.Parse).ToList();
             _roomListPanel.UpdateRooms(rooms);
-            _roomListPanel.Panel.transform.SetParent(transform, worldPositionStays: false);
-            _roomListPanel.Panel.transform.localPosition = new Vector3(0, -1, 0);
         }
     }
 }

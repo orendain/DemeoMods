@@ -14,29 +14,31 @@
         private const int MaxRoomsPerPage = 14;
 
         private readonly UiHelper _uiHelper;
+        private readonly Action _onRefresh;
         private readonly PageStack _pageStack;
-        private readonly GameObject _roomPages;
+        private GameObject _roomPages;
         private Func<Room, object> _sortOrder;
         private bool _isDescendingOrder;
         private IEnumerable<Room> _rooms;
 
         internal GameObject Panel { get; }
 
-        internal static RoomListPanel NewInstance(UiHelper uiHelper)
+        internal static RoomListPanel NewInstance(UiHelper uiHelper, Action onRefresh)
         {
             return new RoomListPanel(
                 uiHelper,
+                onRefresh,
                 PageStack.NewInstance(uiHelper),
                 new GameObject("RoomListPanel"));
         }
 
-        private RoomListPanel(UiHelper uiHelper, PageStack pageStack, GameObject panel)
+        private RoomListPanel(UiHelper uiHelper, Action onRefresh, PageStack pageStack, GameObject panel)
         {
             _uiHelper = uiHelper;
+            _onRefresh = onRefresh;
             _pageStack = pageStack;
             Panel = panel;
 
-            _roomPages = new GameObject("RoomPages");
             _sortOrder = r => r.CurrentPlayers;
             _isDescendingOrder = true;
             _rooms = new List<Room>();
@@ -61,12 +63,13 @@
             var header = CreateHeader();
             header.transform.SetParent(Panel.transform, worldPositionStays: false);
 
+            _roomPages = new GameObject("RoomPages");
+            _roomPages.transform.SetParent(Panel.transform, worldPositionStays: false);
+            _roomPages.transform.localPosition = new Vector3(0, -3f, 0);
+
             var pageNavigation = _pageStack.NavigationPanel;
             pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
-            pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
-
-            _roomPages.transform.SetParent(Panel.transform, worldPositionStays: false);
-            _roomPages.transform.localPosition = new Vector3(0, -1.5f, 0);
+            pageNavigation.transform.localPosition = new Vector3(0, -18.25f, 0);
 
             DrawRoomPages();
         }
@@ -92,6 +95,27 @@
         private GameObject CreateHeader()
         {
             var container = new GameObject("Header");
+
+            var refreshButton = _uiHelper.CreateButton(_onRefresh);
+            refreshButton.transform.SetParent(container.transform, worldPositionStays: false);
+            refreshButton.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultButtonZShift);
+            refreshButton.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+
+            var refreshText = _uiHelper.CreateButtonText("Refresh");
+            refreshText.transform.SetParent(container.transform, worldPositionStays: false);
+            refreshText.transform.localPosition =
+                new Vector3(0, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
+
+            var sortHeader = CreateSortHeader();
+            sortHeader.transform.SetParent(container.transform, worldPositionStays: false);
+            sortHeader.transform.localPosition = new Vector3(0, -1.75f, 0);
+
+            return container;
+        }
+
+        private GameObject CreateSortHeader()
+        {
+            var container = new GameObject("SortHeader");
 
             var sortLabel = _uiHelper.CreateLabelText("Sort by:");
             sortLabel.transform.SetParent(container.transform, worldPositionStays: false);
