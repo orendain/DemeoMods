@@ -116,7 +116,7 @@
 
         private GameObject CreatePage(IReadOnlyCollection<Room> rooms)
         {
-            var container = new GameObject("Rooms");
+            var container = new GameObject("RoomPage");
 
             for (var i = 0; i < rooms.Count; i++)
             {
