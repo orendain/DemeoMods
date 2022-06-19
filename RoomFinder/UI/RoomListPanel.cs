@@ -18,7 +18,7 @@
         private readonly PageStack _pageStack;
         private Func<Room, object> _sortOrder;
         private bool _isDescendingOrder;
-        private List<Room> _rooms;
+        private IEnumerable<Room> _rooms;
 
         internal GameObject Panel { get; }
 
@@ -41,9 +41,9 @@
             _rooms = new List<Room>();
         }
 
-        internal void UpdateRooms(IEnumerable<RoomInfo> rooms)
+        internal void UpdateRooms(IEnumerable<Room> rooms)
         {
-            _rooms = rooms.Select(Room.Parse).ToList();
+            _rooms = rooms;
             SortRooms();
             Render();
         }

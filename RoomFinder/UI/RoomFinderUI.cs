@@ -110,7 +110,8 @@
                     .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
             RoomFinderMod.Logger.Msg($"Captured {cachedRooms.Count} rooms.");
 
-            _roomListPanel.UpdateRooms(cachedRooms.Values.ToList());
+            var rooms = cachedRooms.Values.ToList().Select(Room.Parse).ToList();
+            _roomListPanel.UpdateRooms(rooms);
             _roomListPanel.Panel.transform.SetParent(transform, worldPositionStays: false);
             _roomListPanel.Panel.transform.localPosition = new Vector3(0, -1, 0);
         }
