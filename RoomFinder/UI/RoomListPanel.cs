@@ -24,7 +24,10 @@
 
         internal static RoomListPanel NewInstance(UiHelper uiHelper)
         {
-            return new RoomListPanel(uiHelper, new GameObject("RoomListPanel"), PageStack.NewInstance(uiHelper));
+            return new RoomListPanel(
+                uiHelper,
+                new GameObject("RoomListPanel"),
+                PageStack.NewInstance(uiHelper));
         }
 
         private RoomListPanel(UiHelper uiHelper, GameObject panel,PageStack pageStack)

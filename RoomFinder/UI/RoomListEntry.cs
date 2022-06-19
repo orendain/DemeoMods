@@ -22,22 +22,12 @@
             return NewInstance(room.Name, gameType, floorIndex, room.PlayerCount, room.MaxPlayers);
         }
 
-        private static RoomListEntry NewInstance(
-            string name,
-            LevelSequence.GameType gameType,
-            int floor,
-            int currentPlayers,
-            int maxPlayers)
+        private static RoomListEntry NewInstance(string name, LevelSequence.GameType gameType, int floor, int currentPlayers, int maxPlayers)
         {
             return new RoomListEntry(name, gameType, floor, currentPlayers, maxPlayers);
         }
 
-        private RoomListEntry(
-            string name,
-            LevelSequence.GameType gameType,
-            int floor,
-            int currentPlayers,
-            int maxPlayers)
+        private RoomListEntry(string name, LevelSequence.GameType gameType, int floor, int currentPlayers, int maxPlayers)
         {
             Name = name;
             GameType = gameType;
