@@ -21,23 +21,6 @@
             StartCoroutine(WaitAndInitialize());
         }
 
-        private IEnumerator WaitAndInitialize()
-        {
-            while (!UiHelper.IsReady())
-            {
-                RoomFinderMod.Logger.Msg("UI helper not yet ready. Trying again...");
-                yield return new WaitForSecondsRealtime(1);
-            }
-
-            RoomFinderMod.Logger.Msg("UI helper ready. Proceeding with initialization.");
-
-            _uiHelper = UiHelper.Instance();
-            _roomListPanel = RoomListPanel.NewInstance(_uiHelper);
-            Initialize();
-
-            RoomFinderMod.Logger.Msg("Initialization complete.");
-        }
-
         private void Update()
         {
             if (!_isInitialized)
@@ -59,6 +42,24 @@
             RoomFinderMod.ModState.HasRoomListUpdated = false;
             PopulateRoomList();
         }
+
+        private IEnumerator WaitAndInitialize()
+        {
+            while (!UiHelper.IsReady())
+            {
+                RoomFinderMod.Logger.Msg("UI helper not yet ready. Trying again...");
+                yield return new WaitForSecondsRealtime(1);
+            }
+
+            RoomFinderMod.Logger.Msg("UI helper ready. Proceeding with initialization.");
+
+            _uiHelper = UiHelper.Instance();
+            _roomListPanel = RoomListPanel.NewInstance(_uiHelper);
+            Initialize();
+
+            RoomFinderMod.Logger.Msg("Initialization complete.");
+        }
+
 
         private void Initialize()
         {
