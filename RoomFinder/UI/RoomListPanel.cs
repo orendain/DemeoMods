@@ -15,6 +15,7 @@
 
         private readonly UiHelper _uiHelper;
         private readonly PageStack _pageStack;
+        private readonly GameObject _roomPages;
         private Func<Room, object> _sortOrder;
         private bool _isDescendingOrder;
         private IEnumerable<Room> _rooms;
@@ -35,27 +36,39 @@
             _pageStack = pageStack;
             Panel = panel;
 
+            _roomPages = new GameObject("RoomPages");
             _sortOrder = r => r.CurrentPlayers;
             _isDescendingOrder = true;
             _rooms = new List<Room>();
+
+            Draw();
         }
 
         internal void UpdateRooms(IEnumerable<Room> rooms)
         {
             _rooms = rooms;
             SortRooms();
-            Render();
+            RedrawRoomPages();
         }
 
-        private void Render()
+        private void Draw()
         {
-            foreach (Transform child in Panel.transform)
+            var header = CreateHeader();
+            header.transform.SetParent(Panel.transform, worldPositionStays: false);
+
+            var pageNavigation = _pageStack.NavigationPanel;
+            pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
+            pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
+
+            RedrawRoomPages();
+        }
+
+        private void RedrawRoomPages()
+        {
+            foreach (Transform child in _roomPages.transform)
             {
                 Object.Destroy(child.gameObject);
             }
-
-            var header = CreateHeader();
-            header.transform.SetParent(Panel.transform, worldPositionStays: false);
 
             var roomPartitions = PartitionRooms();
             var roomPages = roomPartitions.Select(CreatePage).ToList();
@@ -65,10 +78,6 @@
                 page.transform.localPosition = new Vector3(0, -1.5f, 0);
                 _pageStack.AddPage(page);
             }
-
-            var pageNavigation = _pageStack.NavigationPanel;
-            pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
-            pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
         }
 
         private GameObject CreateHeader()
@@ -183,7 +192,7 @@
 
             _sortOrder = sortOrder;
             SortRooms();
-            Render();
+            RedrawRoomPages();
         }
 
         private void SortRooms()
