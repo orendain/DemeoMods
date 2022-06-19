@@ -35,7 +35,20 @@ namespace Common.UI
         public void AddPage(GameObject page)
         {
             _pages.Add(page);
+            UpdatePageStatus();
             UpdatePageVisibility();
+        }
+
+        /// <summary>
+        /// Removes all pages from the stack.
+        /// </summary>
+        /// <remarks>
+        /// Note that this stops tracking all current pages, but does not explicitly destroy them.
+        /// </remarks>
+        public void Clear()
+        {
+            _pages.Clear();
+            _currentPageIndex = 0;
             UpdatePageStatus();
         }
 
@@ -86,15 +99,20 @@ namespace Common.UI
             UpdatePageVisibility();
         }
 
-        private void UpdatePageVisibility()
-        {
-            _pages.ForEach(p => p.SetActive(false));
-            _pages[_currentPageIndex].SetActive(true);
-        }
-
         private void UpdatePageStatus()
         {
             _statusText.text = $"{_currentPageIndex + 1}/{_pages.Count}";
+        }
+
+        private void UpdatePageVisibility()
+        {
+            if (_pages.Count == 0)
+            {
+                return;
+            }
+
+            _pages.ForEach(p => p.SetActive(false));
+            _pages[_currentPageIndex].SetActive(true);
         }
 
         private static int Mod(int x, int m)
