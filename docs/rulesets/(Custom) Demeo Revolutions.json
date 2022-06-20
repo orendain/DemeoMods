@@ -275,12 +275,8 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Overcharge",
-            "ReplenishFrequency": 1
-          },
-          {
             "Card": "Electricity",
-            "ReplenishFrequency": 1
+            "ReplenishFrequency": 2
           }
         ]
       }
@@ -898,6 +894,7 @@
       "Rule": "AbilityHealOverridden",
       "Config":
       {
+        "WaterBottle": 5,
         "HealingPotion": 10,
         "Rejuvenation": 10,
         "AltarHeal": 16,
@@ -914,7 +911,8 @@
         "WebBomb": 1,
         "PoisonBomb": 1,
         "WarCry": 1,
-        "WhirlwindAttack": 1
+        "WhirlwindAttack": 1,
+        "Deflect": 2
       }
     },
     {
@@ -922,6 +920,7 @@
       "Config":
       {
         "Zap": [4, 8, 4, 8],
+        "ScrollElectricity": [4, 8, 4, 8],
         "Fireball": [13, 32, 8, 12],
         "Freeze": [8, 22, 4, 8],
         "Vortex": [4, 14, 2, 6],
@@ -1041,11 +1040,11 @@
     },
     {
       "Rule": "CardEnergyFromAttackMultiplied",
-      "Config": 0.2
+      "Config": 0.25
     },
     {
       "Rule": "CardEnergyFromRecyclingMultiplied",
-      "Config": 0.2
+      "Config": 0.25
     },
     {
       "Rule": "EnemyAttackScaled",
@@ -1053,16 +1052,16 @@
     },
     {
       "Rule": "EnemyHealthScaled",
-      "Config": 2.25
+      "Config": 2.15
     },
     {
       "Rule": "LevelSequenceOverridden",
       "Config":
       [
+        "SewersFloor01",
+        "SewersShopFloor",
         "ForestFloor01",
         "ForestShopFloor",
-        "DesertFloor02",
-        "DesertShopFloor",
         "ElvenFloor17"
       ]
     },

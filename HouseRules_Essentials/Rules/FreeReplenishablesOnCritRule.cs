@@ -72,27 +72,20 @@ namespace HouseRules.Essentials.Rules
                     }
                     else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
                     {
-                        if (source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Overcharge) < 1)
+                        if (currentAP > 0)
                         {
-                            if (source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Discharge) > 0)
-                            {
-                                MelonLoader.MelonLogger.Msg("Discharge Remove");
-                                AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
-                                AbilityFactory.TryGetAbility(AbilityKey.LightningBolt, out var abilityL);
-                                AbilityFactory.TryGetAbility(AbilityKey.Overcharge, out var abilityO);
-                                // source.effectSink.RemoveStatusEffect(EffectStateType.Discharge);
-                                abilityZ.effectsPreventingUse.Remove(EffectStateType.Discharge);// Clear();
-                                abilityZ.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
-                                abilityL.effectsPreventingUse.Remove(EffectStateType.Discharge);
-                                abilityL.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
-                                abilityO.effectsPreventingUse.Remove(EffectStateType.Discharge);
-                                abilityO.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
-                            }
-
-                            MelonLoader.MelonLogger.Msg("Restore Zap");
+                            AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
                             source.inventory.RemoveDisableCooldownFlags();
+                            abilityZ.effectsPreventingUse.Remove(EffectStateType.Discharge);
+                            abilityZ.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
                             source.inventory.RestoreReplenishables(source);
                             source.inventory.AddGold(10);
+                        }
+                        else
+                        {
+                            int money = Random.Range(11, 21);
+                            source.inventory.AddGold(money);
+                            source.inventory.RestoreReplenishables(source);
                         }
                     }
                     else if (currentAP > 0 || source.boardPieceId == BoardPieceId.HeroGuardian)
