@@ -12,7 +12,10 @@
 
     internal class RoomListPanel
     {
+        private const int MaxRoomsPerPage = 14;
+
         private readonly UiHelper _uiHelper;
+        private readonly PageStack _pageStack;
         private Func<RoomListEntry, object> _sortOrder;
         private bool _isDescendingOrder;
         private List<RoomListEntry> _rooms;
@@ -21,12 +24,16 @@
 
         internal static RoomListPanel NewInstance(UiHelper uiHelper)
         {
-            return new RoomListPanel(uiHelper, new GameObject("RoomListPanel"));
+            return new RoomListPanel(
+                uiHelper,
+                new GameObject("RoomListPanel"),
+                PageStack.NewInstance(uiHelper));
         }
 
-        private RoomListPanel(UiHelper uiHelper, GameObject panel)
+        private RoomListPanel(UiHelper uiHelper, GameObject panel,PageStack pageStack)
         {
             this._uiHelper = uiHelper;
+            this._pageStack = pageStack;
             this.GameObject = panel;
             this._sortOrder = r => r.CurrentPlayers;
             this._isDescendingOrder = true;
@@ -51,27 +58,16 @@
             var header = CreateHeader();
             header.transform.SetParent(GameObject.transform, worldPositionStays: false);
 
+            var roomPartitions = PartitionRooms();
+            var roomPages = roomPartitions.Select(CreatePage).ToList();
+            roomPages.ForEach(_pageStack.AddPage);
+
+            var pageNavigation = _pageStack.NavigationPanel;
+            pageNavigation.transform.SetParent(GameObject.transform, worldPositionStays: false);
+            pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
+
             var rooms = new GameObject("Rooms");
             rooms.transform.SetParent(GameObject.transform, worldPositionStays: false);
-
-            var roomIndex = 0;
-            foreach (var room in _rooms)
-            {
-                if (room.GameType == LevelSequence.GameType.Invalid)
-                {
-                    continue;
-                }
-
-                if (room.Floor < 0)
-                {
-                    continue;
-                }
-
-                var yOffset = (1 + roomIndex++) * -1f;
-                var roomRow = CreateRoomRow(room);
-                roomRow.transform.SetParent(rooms.transform, worldPositionStays: false);
-                roomRow.transform.localPosition = new Vector3(0, yOffset, 0);
-            }
         }
 
         private GameObject CreateHeader()
@@ -96,6 +92,39 @@
             playersButton.transform.SetParent(container.transform, worldPositionStays: false);
             playersButton.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             playersButton.transform.localPosition = new Vector3(3.5f, 0, 0);
+
+            return container;
+        }
+
+        /// <summary>
+        /// Partition rooms into groups based on the maximum allowed rooms per page.
+        /// </summary>
+        private IEnumerable<List<RoomListEntry>> PartitionRooms()
+        {
+            return FilterValidRooms(_rooms)
+                .Select((value, index) => new { group = index / MaxRoomsPerPage, value })
+                .GroupBy(pair => pair.group)
+                .Select(group => group.Select(g => g.value).ToList());
+        }
+
+        private static IEnumerable<RoomListEntry> FilterValidRooms(IEnumerable<RoomListEntry> rooms)
+        {
+            return rooms.Where(room => room.GameType != LevelSequence.GameType.Invalid).Where(room => room.Floor >= 0);
+        }
+
+        private GameObject CreatePage(IReadOnlyCollection<RoomListEntry> rooms)
+        {
+            var container = new GameObject("Rooms");
+            container.transform.SetParent(GameObject.transform, worldPositionStays: false);
+            container.transform.localPosition = new Vector3(0, -1.5f, 0);
+
+            for (var i = 0; i < rooms.Count; i++)
+            {
+                var yOffset = i * -1f;
+                var roomRow = CreateRoomRow(rooms.ElementAt(i));
+                roomRow.transform.SetParent(container.transform, worldPositionStays: false);
+                roomRow.transform.localPosition = new Vector3(0, yOffset, 0);
+            }
 
             return container;
         }
