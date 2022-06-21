@@ -16,10 +16,10 @@
         private readonly UiHelper _uiHelper;
         private readonly Action _onRefresh;
         private readonly PageStack _pageStack;
-        private GameObject _roomPages;
         private Func<Room, object> _sortOrder;
         private bool _isDescendingOrder;
         private IEnumerable<Room> _rooms;
+        private GameObject _roomPages;
 
         internal GameObject Panel { get; }
 
@@ -48,7 +48,7 @@
 
         internal void UpdateRooms(IEnumerable<Room> rooms)
         {
-            _rooms = rooms;
+            _rooms = FilterValidRooms(rooms);
             SortRooms();
             DrawRoomPages();
         }
@@ -69,7 +69,7 @@
 
             var pageNavigation = _pageStack.NavigationPanel;
             pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
-            pageNavigation.transform.localPosition = new Vector3(0, -18.25f, 0);
+            pageNavigation.transform.localPosition = new Vector3(0, -18f, 0);
 
             DrawRoomPages();
         }
@@ -140,19 +140,22 @@
         }
 
         /// <summary>
+        /// Filter out invalid rooms.
+        /// </summary>
+        private static IEnumerable<Room> FilterValidRooms(IEnumerable<Room> rooms)
+        {
+            return rooms.Where(room => room.GameType != LevelSequence.GameType.Invalid).Where(room => room.Floor >= 0);
+        }
+
+        /// <summary>
         /// Partition rooms into groups based on the maximum allowed rooms per page.
         /// </summary>
         private IEnumerable<List<Room>> PartitionRooms()
         {
-            return FilterValidRooms(_rooms)
+            return _rooms
                 .Select((value, index) => new { group = index / MaxRoomsPerPage, value })
                 .GroupBy(pair => pair.group)
                 .Select(group => group.Select(g => g.value).ToList());
-        }
-
-        private static IEnumerable<Room> FilterValidRooms(IEnumerable<Room> rooms)
-        {
-            return rooms.Where(room => room.GameType != LevelSequence.GameType.Invalid).Where(room => room.Floor >= 0);
         }
 
         private GameObject CreatePage(IReadOnlyCollection<Room> rooms)
