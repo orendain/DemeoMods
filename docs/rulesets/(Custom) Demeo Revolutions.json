@@ -18,7 +18,7 @@
         "ScorpionSandPile": [ 3, 1, 1],
         "EmptySandPile": [ 2, 1, 1],
         "GoldSandPile": [ 2, 1, 1],
-        "JeweledScarab": [ 2, 1, 2],
+        "JeweledScarab": [ 3, 1, 1],
         "SmallCorruption": [ 4, 1, 1],
         "GeneralRonthian": [ 2, 1, 2],
         "ElvenArcher": [ 4, 2, 1],
@@ -43,9 +43,9 @@
         "ElvenSkirmisher": [ 4, 2, 1 ],
         "GoblinFighter": [ 5, 2, 1 ],
         "GoblinRanger": [5, 2, 1 ],
-        "SpiderEgg": [ 5, 2, 1],
-        "SporeFungus": [ 5, 2, 1 ],
-        "RatNest": [ 5, 2, 1 ],
+        "SpiderEgg": [ 4, 1, 1],
+        "SporeFungus": [ 4, 2, 1 ],
+        "RatNest": [ 4, 2, 1 ],
         "CultMemberElder": [ 5, 2, 1],
         "RootMage": [ 5, 3, 1 ],
         "KillerBee": [ 5, 2, 1 ],
@@ -276,7 +276,7 @@
           },
           {
             "Card": "Electricity",
-            "ReplenishFrequency": 2
+            "ReplenishFrequency": 1
           }
         ]
       }
@@ -538,10 +538,8 @@
           "VigorPotion",
           "ScrollTsunami",
           "ScrollElectricity",
-          "MagicPotion",
           "LuckPotion",
           "IceImmunePotion",
-          "FireImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
@@ -579,10 +577,8 @@
           "VigorPotion",
           "ScrollTsunami",
           "ScrollElectricity",
-          "MagicPotion",
           "LuckPotion",
           "IceImmunePotion",
-          "FireImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
@@ -619,10 +615,8 @@
           "VigorPotion",
           "ScrollTsunami",
           "ScrollElectricity",
-          "MagicPotion",
           "LuckPotion",
           "IceImmunePotion",
-          "FireImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
@@ -663,10 +657,8 @@
           "VigorPotion",
           "ScrollTsunami",
           "ScrollElectricity",
-          "MagicPotion",
           "LuckPotion",
           "IceImmunePotion",
-          "FireImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
@@ -703,7 +695,6 @@
           "MagicPotion",
           "LuckPotion",
           "IceImmunePotion",
-          "FireImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
@@ -742,7 +733,6 @@
           "MagicPotion",
           "LuckPotion",
           "IceImmunePotion",
-          "FireImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
@@ -881,8 +871,6 @@
       "Config":
       {
         "Zap": false,
-        "LightningBolt": false,
-        "Overcharge": false,
         "Sneak": false,
         "Grab": false,
         "CourageShanty": false,
@@ -920,7 +908,6 @@
       "Config":
       {
         "Zap": [4, 8, 4, 8],
-        "ScrollElectricity": [4, 8, 4, 8],
         "Fireball": [13, 32, 8, 12],
         "Freeze": [8, 22, 4, 8],
         "Vortex": [4, 14, 2, 6],
@@ -960,17 +947,7 @@
           "DiseasedBite": true
         }
     },
-//    {
-//      "Rule": "AbilityBreaksStealthAdjusted",
-//      "Config":
-//      {
-//        "DiseasedBite": false,
-//        "PoisonBomb": false,
-//        "FlashBomb": false,
-//        "CoinFlip": false
-//      }
-//    },
-   {
+    {
       "Rule": "AbilityStealthDamageOverridden",
       "Config":
       {
@@ -1023,13 +1000,6 @@
         "HeroRogue": "FlashBomb"
       }
     },
-//    {
-//      "Rule": "FixStatusEffects",
-//      "Config":
-//      [
-//          "HeroGuardian"
-//      ]
-//    },
     {
       "Rule": "PetsFocusHunterMark",
       "Config": true
@@ -1060,9 +1030,9 @@
       [
         "SewersFloor01",
         "SewersShopFloor",
-        "ForestFloor01",
+        "ForestFloor03",
         "ForestShopFloor",
-        "ElvenFloor17"
+        "ElvenFloor16"
       ]
     },
     {
