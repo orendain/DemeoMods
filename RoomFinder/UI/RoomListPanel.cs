@@ -6,7 +6,6 @@
     using Boardgame;
     using Common.UI;
     using HarmonyLib;
-    using Photon.Realtime;
     using UnityEngine;
     using Object = UnityEngine.Object;
 
@@ -15,64 +14,108 @@
         private const int MaxRoomsPerPage = 14;
 
         private readonly UiHelper _uiHelper;
+        private readonly Action _onRefresh;
         private readonly PageStack _pageStack;
-        private Func<RoomListEntry, object> _sortOrder;
+        private Func<Room, object> _sortOrder;
         private bool _isDescendingOrder;
-        private List<RoomListEntry> _rooms;
+        private IEnumerable<Room> _rooms;
+        private GameObject _roomPages;
 
-        internal GameObject GameObject { get; }
+        internal GameObject Panel { get; }
 
-        internal static RoomListPanel NewInstance(UiHelper uiHelper)
+        internal static RoomListPanel NewInstance(UiHelper uiHelper, Action onRefresh)
         {
             return new RoomListPanel(
                 uiHelper,
-                new GameObject("RoomListPanel"),
-                PageStack.NewInstance(uiHelper));
+                onRefresh,
+                PageStack.NewInstance(uiHelper),
+                new GameObject("RoomListPanel"));
         }
 
-        private RoomListPanel(UiHelper uiHelper, GameObject panel,PageStack pageStack)
+        private RoomListPanel(UiHelper uiHelper, Action onRefresh, PageStack pageStack, GameObject panel)
         {
-            this._uiHelper = uiHelper;
-            this._pageStack = pageStack;
-            this.GameObject = panel;
-            this._sortOrder = r => r.CurrentPlayers;
-            this._isDescendingOrder = true;
+            _uiHelper = uiHelper;
+            _onRefresh = onRefresh;
+            _pageStack = pageStack;
+            Panel = panel;
 
-            this._rooms = new List<RoomListEntry>();
+            _sortOrder = r => r.CurrentPlayers;
+            _isDescendingOrder = true;
+            _rooms = new List<Room>();
+
+            Draw();
         }
 
-        internal void SetRooms(IEnumerable<RoomInfo> rooms)
+        internal void UpdateRooms(IEnumerable<Room> rooms)
         {
-            _rooms = rooms.Select(RoomListEntry.Parse).ToList();
+            _rooms = FilterValidRooms(rooms);
             SortRooms();
-            Render();
+            DrawRoomPages();
         }
 
-        private void Render()
+        private void Draw()
         {
-            foreach (Transform child in GameObject.transform)
+            foreach (Transform child in Panel.transform)
             {
                 Object.Destroy(child.gameObject);
             }
 
             var header = CreateHeader();
-            header.transform.SetParent(GameObject.transform, worldPositionStays: false);
+            header.transform.SetParent(Panel.transform, worldPositionStays: false);
+
+            _roomPages = new GameObject("RoomPages");
+            _roomPages.transform.SetParent(Panel.transform, worldPositionStays: false);
+            _roomPages.transform.localPosition = new Vector3(0, -3f, 0);
+
+            var pageNavigation = _pageStack.NavigationPanel;
+            pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
+            pageNavigation.transform.localPosition = new Vector3(0, -18f, 0);
+
+            DrawRoomPages();
+        }
+
+        private void DrawRoomPages()
+        {
+            _pageStack.Clear();
+
+            foreach (Transform child in _roomPages.transform)
+            {
+                Object.Destroy(child.gameObject);
+            }
 
             var roomPartitions = PartitionRooms();
             var roomPages = roomPartitions.Select(CreatePage).ToList();
-            roomPages.ForEach(_pageStack.AddPage);
-
-            var pageNavigation = _pageStack.NavigationPanel;
-            pageNavigation.transform.SetParent(GameObject.transform, worldPositionStays: false);
-            pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
-
-            var rooms = new GameObject("Rooms");
-            rooms.transform.SetParent(GameObject.transform, worldPositionStays: false);
+            foreach (var page in roomPages)
+            {
+                page.transform.SetParent(_roomPages.transform, worldPositionStays: false);
+                _pageStack.AddPage(page);
+            }
         }
 
         private GameObject CreateHeader()
         {
             var container = new GameObject("Header");
+
+            var refreshButton = _uiHelper.CreateButton(_onRefresh);
+            refreshButton.transform.SetParent(container.transform, worldPositionStays: false);
+            refreshButton.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultButtonZShift);
+            refreshButton.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+
+            var refreshText = _uiHelper.CreateButtonText("Refresh");
+            refreshText.transform.SetParent(container.transform, worldPositionStays: false);
+            refreshText.transform.localPosition =
+                new Vector3(0, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
+
+            var sortHeader = CreateSortHeader();
+            sortHeader.transform.SetParent(container.transform, worldPositionStays: false);
+            sortHeader.transform.localPosition = new Vector3(0, -1.75f, 0);
+
+            return container;
+        }
+
+        private GameObject CreateSortHeader()
+        {
+            var container = new GameObject("SortHeader");
 
             var sortLabel = _uiHelper.CreateLabelText("Sort by:");
             sortLabel.transform.SetParent(container.transform, worldPositionStays: false);
@@ -97,26 +140,27 @@
         }
 
         /// <summary>
+        /// Filter out invalid rooms.
+        /// </summary>
+        private static IEnumerable<Room> FilterValidRooms(IEnumerable<Room> rooms)
+        {
+            return rooms.Where(room => room.GameType != LevelSequence.GameType.Invalid).Where(room => room.Floor >= 0);
+        }
+
+        /// <summary>
         /// Partition rooms into groups based on the maximum allowed rooms per page.
         /// </summary>
-        private IEnumerable<List<RoomListEntry>> PartitionRooms()
+        private IEnumerable<List<Room>> PartitionRooms()
         {
-            return FilterValidRooms(_rooms)
+            return _rooms
                 .Select((value, index) => new { group = index / MaxRoomsPerPage, value })
                 .GroupBy(pair => pair.group)
                 .Select(group => group.Select(g => g.value).ToList());
         }
 
-        private static IEnumerable<RoomListEntry> FilterValidRooms(IEnumerable<RoomListEntry> rooms)
+        private GameObject CreatePage(IReadOnlyCollection<Room> rooms)
         {
-            return rooms.Where(room => room.GameType != LevelSequence.GameType.Invalid).Where(room => room.Floor >= 0);
-        }
-
-        private GameObject CreatePage(IReadOnlyCollection<RoomListEntry> rooms)
-        {
-            var container = new GameObject("Rooms");
-            container.transform.SetParent(GameObject.transform, worldPositionStays: false);
-            container.transform.localPosition = new Vector3(0, -1.5f, 0);
+            var container = new GameObject("RoomPage");
 
             for (var i = 0; i < rooms.Count; i++)
             {
@@ -129,43 +173,7 @@
             return container;
         }
 
-        private GameObject CreateSortButton(string text, Action action)
-        {
-            var container = new GameObject(text);
-
-            var button = _uiHelper.CreateButton(action);
-            button.transform.SetParent(container.transform, worldPositionStays: false);
-            button.transform.localScale = new Vector3(0.55f, 0.9f, 0.9f);
-            button.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultButtonZShift);
-
-            var buttonText = _uiHelper.CreateText(text, Color.white, UiHelper.DefaultButtonFontSize);
-            buttonText.transform.SetParent(container.transform, worldPositionStays: false);
-            buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-            buttonText.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
-
-            return container;
-        }
-
-        private void SetSortOrderAndApply(Func<RoomListEntry, object> sortOrder)
-        {
-            if (_sortOrder == sortOrder)
-            {
-                _isDescendingOrder = !_isDescendingOrder;
-            }
-
-            _sortOrder = sortOrder;
-            SortRooms();
-            Render();
-        }
-
-        private void SortRooms()
-        {
-            _rooms = _isDescendingOrder
-                ? _rooms.OrderByDescending(_sortOrder).ToList()
-                : _rooms.OrderBy(_sortOrder).ToList();
-        }
-
-        private GameObject CreateRoomRow(RoomListEntry room)
+        private GameObject CreateRoomRow(Room room)
         {
             var container = new GameObject(room.Name);
 
@@ -193,12 +201,49 @@
             return container;
         }
 
+        private GameObject CreateSortButton(string text, Action action)
+        {
+            var container = new GameObject(text);
+
+            var button = _uiHelper.CreateButton(action);
+            button.transform.SetParent(container.transform, worldPositionStays: false);
+            button.transform.localScale = new Vector3(0.55f, 0.9f, 0.9f);
+            button.transform.localPosition = new Vector3(0, 0, UiHelper.DefaultButtonZShift);
+
+            var buttonText = _uiHelper.CreateText(text, Color.white, UiHelper.DefaultButtonFontSize);
+            buttonText.transform.SetParent(container.transform, worldPositionStays: false);
+            buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            buttonText.transform.localPosition =
+                new Vector3(0, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
+
+            return container;
+        }
+
+        private void SetSortOrderAndApply(Func<Room, object> sortOrder)
+        {
+            if (_sortOrder == sortOrder)
+            {
+                _isDescendingOrder = !_isDescendingOrder;
+            }
+
+            _sortOrder = sortOrder;
+            SortRooms();
+            DrawRoomPages();
+        }
+
+        private void SortRooms()
+        {
+            _rooms = _isDescendingOrder
+                ? _rooms.OrderByDescending(_sortOrder).ToList()
+                : _rooms.OrderBy(_sortOrder).ToList();
+        }
+
         private static Action JoinRoomAction(string roomCode)
         {
             return () =>
             {
                 RoomFinderMod.Logger.Msg($"Joining room [{roomCode}].");
-                Traverse.Create(RoomFinderMod.ModState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
+                Traverse.Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
                     .Method("JoinGame", roomCode, true)
                     .GetValue();
             };
