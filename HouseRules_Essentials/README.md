@@ -166,6 +166,27 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+#### __AbilityStealthDamageOverridden__: Ability stealthBonusDamage is overridden
+  - Can function for abilities which don't do damage. (You can make a FlashBomb hurt).
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify a positive integer for stealthBonusDamage E.g.: `"PlayerMelee": 2` adds 2 damage to a normal attack if stealthed.
+
+  ###### _Example JSON config for AbilityStealthDamageOverridden_
+
+  ```json
+  {
+    "Rule": "AbilityStealthDamageOverridden",
+    "Config":
+    {
+      "Blink": 4,
+      "DiseasedBite": 2,
+      "PoisonBomb": 1,
+      "CursedDagger": 3,
+      "PlayerMelee": 2
+    }
+  },
+  ```
 #### __BackstabConfigOverridden__: A list of Pieces may use 🔪Backstab🔪 instead of just the Assassin
   - Replaces the hardcoded default of HeroRogue with a configurable list.
   - Now everyone can benefit from Backstab bonus.

@@ -52,6 +52,7 @@
     <Compile Include="Rules\AbilityBackstabAdjustedRule.cs" />
     <Compile Include="Rules\AbilityBreaksStealthAdjustedRule.cs" />
     <Compile Include="Rules\AbilityDamageOverriddenRule.cs" />
+    <Compile Include="Rules\AbilityStealthDamageOverriddenRule.cs" />
     <Compile Include="Rules\AbilityHealOverriddenRule.cs" />
     <Compile Include="Rules\AbilityStealthDamageOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
