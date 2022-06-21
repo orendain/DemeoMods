@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildVersion.cs" />
     <Compile Include="RoomFinderMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Patcher.cs" />
