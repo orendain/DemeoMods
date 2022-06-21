@@ -27,6 +27,7 @@
                     { BoardPieceId.HeroHunter, startCards },
                     { BoardPieceId.HeroRogue, startCards },
                     { BoardPieceId.HeroSorcerer, startCards },
+                    { BoardPieceId.HeroWarlock, startCards },
                 });
 
             var noGuardianArmorRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
@@ -67,6 +68,7 @@
                 { BoardPieceId.HeroHunter, allowedCards },
                 { BoardPieceId.HeroRogue, allowedCards },
                 { BoardPieceId.HeroSorcerer, allowedCards },
+                { BoardPieceId.HeroWarlock, allowedCards },
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
