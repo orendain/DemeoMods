@@ -49,6 +49,7 @@
                 return;
             }
 
+            MelonLoader.MelonLogger.Msg("Free Heal/Hit called");
             if (diceResult == Dice.Outcome.Hit && source.IsPlayer())
             {
                 int chance = Random.Range(1, 101);

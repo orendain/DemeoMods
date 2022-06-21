@@ -117,6 +117,7 @@
                 score += scores.Downed;
             }
 
+            MelonLoader.MelonLogger.Msg("Javelin check called");
             if (piece.inventory.HasAbility(AbilityKey.SigataurianJavelin) && MotherbrainGlobalVars.CurrentConfig == GameConfigType.Forest)
             {
                 score += scores.Javelin;

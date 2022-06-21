@@ -49,16 +49,23 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (diceResult == Dice.Outcome.Hit)
+            MelonLoader.MelonLogger.Msg("Free Replenish called");
+            if (diceResult == Dice.Outcome.Crit)
             {
+                MelonLoader.MelonLogger.Msg("Replenish(0)");
                 if (source.IsPlayer() && _globalAdjustments.Contains(source.boardPieceId))
                 {
+                    MelonLoader.MelonLogger.Msg("Replenish(1)");
                     source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
+                    int money = Random.Range(11, 21);
+                    MelonLoader.MelonLogger.Msg("Replenish(2)");
                     if (source.boardPieceId == BoardPieceId.HeroRogue)
                     {
+                        MelonLoader.MelonLogger.Msg("Replenish: Assassin check");
                         int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
                         if (currentST > 0)
                         {
+                            MelonLoader.MelonLogger.Msg("Replenish: Stealth refresh(1)");
                             source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
                             source.inventory.RestoreReplenishables(source);
                             source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
@@ -67,43 +74,48 @@ namespace HouseRules.Essentials.Rules
                         }
                         else
                         {
+                            MelonLoader.MelonLogger.Msg("Replenish: Stealth refresh(2)");
                             source.inventory.RestoreReplenishables(source);
                         }
                     }
                     else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
                     {
+                        MelonLoader.MelonLogger.Msg("Replenish: Sorcerer check");
                         if (currentAP > 0)
                         {
+                            MelonLoader.MelonLogger.Msg("Replenish: Zap refresh(1)");
                             AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
                             source.inventory.RemoveDisableCooldownFlags();
                             abilityZ.effectsPreventingUse.Remove(EffectStateType.Discharge);
                             abilityZ.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
-                            source.inventory.RestoreReplenishables(source);
                             source.inventory.AddGold(10);
+                            source.inventory.RestoreReplenishables(source);
                         }
                         else
                         {
-                            int money = Random.Range(11, 21);
+                            MelonLoader.MelonLogger.Msg("Replenish: Zap refresh(2)");
                             source.inventory.AddGold(money);
-                            source.inventory.RestoreReplenishables(source);
                         }
                     }
                     else if (currentAP > 0 || source.boardPieceId == BoardPieceId.HeroGuardian)
                     {
+                        MelonLoader.MelonLogger.Msg("Replenish(3)");
                         source.inventory.AddGold(10);
                         source.inventory.RestoreReplenishables(source);
                     }
                     else
                     {
-                        int money = Random.Range(11, 21);
+                        MelonLoader.MelonLogger.Msg("Replenish(4)");
                         source.inventory.AddGold(money);
                         source.inventory.RestoreReplenishables(source);
                     }
 
+                    MelonLoader.MelonLogger.Msg("Replenish(5)");
                     HR.ScheduleBoardSync();
                 }
             }
 
+            MelonLoader.MelonLogger.Msg("Replenish FINISHED!");
             return;
         }
     }

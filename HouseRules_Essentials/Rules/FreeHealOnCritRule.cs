@@ -49,6 +49,7 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
+            MelonLoader.MelonLogger.Msg("Free Replenish called");
             if (diceResult == Dice.Outcome.Crit && source.IsPlayer())
             {
                 int chance = Random.Range(1, 101);

@@ -49,12 +49,13 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
+            MelonLoader.MelonLogger.Msg("Free Ability called");
             if (diceResult == Dice.Outcome.Crit)
             {
                 if (source.IsPlayer() && _globalAdjustments.ContainsKey(source.boardPieceId))
                 {
                     source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-                    if (source.characterClass == CharacterClass.Assassin)
+                    if (source.boardPieceId == BoardPieceId.HeroRogue)
                     {
                         if (currentAP < 1)
                         {

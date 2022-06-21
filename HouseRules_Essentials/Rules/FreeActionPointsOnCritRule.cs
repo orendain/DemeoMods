@@ -48,6 +48,7 @@ namespace HouseRules.Essentials.Rules
                 return true;
             }
 
+            MelonLoader.MelonLogger.Msg("Free AP called");
             if (diceResult == Dice.Outcome.Crit)
             {
                 if (source.IsPlayer() && _globalAdjustments.Contains(source.boardPieceId))
