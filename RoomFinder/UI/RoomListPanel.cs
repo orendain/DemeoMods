@@ -48,7 +48,8 @@
 
         internal void UpdateRooms(IEnumerable<Room> rooms)
         {
-            _rooms = FilterValidRooms(rooms);
+            _rooms = rooms;
+            FilterValidRooms();
             SortRooms();
             DrawRoomPages();
         }
@@ -69,8 +70,7 @@
 
             var pageNavigation = _pageStack.NavigationPanel;
             pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
-            pageNavigation.transform.localPosition = new Vector3(0, -18.25f, 0);
-            pageNavigation.transform.localPosition = new Vector3(0, -18f, 0);
+            pageNavigation.transform.localPosition = new Vector3(0, -18.2f, 0);
 
             DrawRoomPages();
         }
@@ -140,20 +140,13 @@
             return container;
         }
 
-        /// Filter out invalid rooms.
-        /// </summary>
-        private static IEnumerable<Room> FilterValidRooms(IEnumerable<Room> rooms)
-        {
-            return rooms.Where(room => room.GameType != LevelSequence.GameType.Invalid).Where(room => room.Floor >= 0);
-        }
-
         /// <summary>
         /// Partition rooms into groups based on the maximum allowed rooms per page.
         /// </summary>
         private IEnumerable<List<Room>> PartitionRooms()
         {
             return _rooms
-                .Select((value, index) => new { group = index / MaxRoomsPerPage, value })
+                .Select((value, index) => new { group = index / MaxRoomsPerPage,  value })
                 .GroupBy(pair => pair.group)
                 .Select(group => group.Select(g => g.value).ToList());
         }
@@ -231,6 +224,19 @@
             DrawRoomPages();
         }
 
+        /// <summary>
+        /// Filter out invalid rooms.
+        /// </summary>
+        private void FilterValidRooms()
+        {
+            _rooms = _rooms
+                .Where(room => room.GameType != LevelSequence.GameType.Invalid)
+                .Where(room => room.Floor >= 0);
+        }
+
+        /// <summary>
+        /// Sort rooms based on the sort order preference.
+        /// </summary>
         private void SortRooms()
         {
             _rooms = _isDescendingOrder
