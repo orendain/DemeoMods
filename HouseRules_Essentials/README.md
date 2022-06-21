@@ -22,7 +22,7 @@ HouseRules API.
 - __The Swirl__ : Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.
 - __Beat The Clock__ : Ultra health. Ultra card recycling. Only 15 rounds to escape...
 - __Hunter's Paradise__ : Pets, pets, pets! And hunter's mark.
-- __Demeo Reloaded__ : The Gray Alien's 'Demeo Reloaded' ruleset. New enemies, no respawns and too many other changes to list in a single line. 
+- __Demeo Reloaded__ : The Gray Alien's ruleset. MANY class changes. NEW enemies. BETTER loot. No respawns. Yet somehow challenging...
 - __Difficulty Easy__ : Decreased game difficulty for a more casual playstyle.
 - __Difficulty Hard__ : Increased game difficulty for a greater challenge.
 - __Difficulty Legendary__ : Increased game difficulty for those who want to be a legend.
@@ -30,7 +30,7 @@ HouseRules API.
 - __Better Sorcerer__ : 0 Action Cost for Sorcerer's Zap - No other changes. #STS
 - __No Surprises__ :  No surprises in the dark or coming through doors.
 - __Quick and the Dead__ : A mode with a small hand but fast turnaround time on cards means you need to not hesitate.
-
+- __Flipping Out__ : Coin Flips ONLY! BIG ENEMIES! Heads... or tails?
 ### JSON Rulesets
 
 Rulesets may also be configured as JSON files and stored within the game directory `<GAME_DIR>/UserData/HouseRules/<rulesetname>.json`
