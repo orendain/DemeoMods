@@ -64,7 +64,8 @@
           "Bone",
           "DetectEnemies",
           "WebBomb",
-          "VortexLamp"
+          "VortexLamp",
+          "Teleportation"
         ],
         "HeroSorcerer": [
           "HealingPotion",
@@ -77,7 +78,25 @@
           "DetectEnemies",
           "Banish",
           "Lure",
-          "WebBomb"
+          "WebBomb",
+          "Teleportation",
+          "Regroup"
+        ],
+        "HeroWarlock": [
+          "HealingPotion",
+          "OilLamp",
+          "GasLamp",
+          "IceLamp",
+          "Vortex",
+          "Torch",
+          "MissileSwarm",
+          "DetectEnemies",
+          "Banish",
+          "Lure",
+          "MinionCharge",
+          "Teleportation",
+          "Regroup",
+          "TeleportLamp"
         ]
       }
     },
@@ -134,7 +153,7 @@
         "FloorTwoHealingFountains": 1,
         "FloorTwoLootChests": 14,
         "FloorThreeHealingFountains": 1,
-        "FloorThreeLootChests": 12,
+        "FloorThreeLootChests": 8,
         "FloorOneEndZoneSpikeMaxBudget": 12,
         "PacingSpikeSegmentFloorOneBudget": 12
       }
@@ -164,6 +183,11 @@
         },
         {
           "Piece": "HeroSorcerer",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
+          "Piece": "HeroWarlock",
           "Property": "StartHealth",
           "Value": 30.0
         },
@@ -202,135 +226,169 @@
         "HeroBard": [
           {
             "Card": "BoobyTrap",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "CourageShanty",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "OilLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "GasLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "IceLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DetectEnemies",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroGuardian": [
           {
             "Card": "BoobyTrap",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "ReplenishArmor",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "OilLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "GasLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "IceLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DetectEnemies",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroHunter": [
           {
             "Card": "BoobyTrap",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Arrow",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "OilLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "GasLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "IceLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DetectEnemies",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroRogue": [
           {
             "Card": "BoobyTrap",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "OilLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "GasLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "IceLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DetectEnemies",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "BoobyTrap",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Zap",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "OilLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "GasLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "IceLamp",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DetectEnemies",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
+          }
+        ],
+        "HeroWarlock": [
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "BoobyTrap",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "OilLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GasLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "IceLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "TeleportLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "DetectEnemies",
+            "ReplenishFrequency": 0
           }
         ]
       }
@@ -346,7 +404,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Courageous",
@@ -356,7 +420,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Fearless",
@@ -366,7 +436,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Heroic",
@@ -376,7 +452,61 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
+        },
+        {
+          "effectStateType": "Courageous",
+          "durationTurns": 2,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
+        },
+        {
+          "effectStateType": "Fearless",
+          "durationTurns": 2,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
+        },
+        {
+          "effectStateType": "Heroic",
+          "durationTurns": 2,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         }
       ]
     },

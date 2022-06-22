@@ -17,127 +17,157 @@
         "HeroBard": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "CourageShanty",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "IceLamp",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "SongOfRecovery",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "HurricaneAnthem",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "ShatteringVoice",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroGuardian": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "ReplenishArmor",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Bone",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "WhirlwindAttack",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "PiercingThrow",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroHunter": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Arrow",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "PoisonedTip",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "HailOfArrows",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "CallCompanion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroRogue": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "PanicPowder",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "BoobyTrap",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "PoisonBomb",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Zap",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "OilLamp",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "HeavensFury",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DetectEnemies",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
+          }
+        ],
+        "HeroWarlock": [
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "MinionCharge",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "MissileSwarm",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HeavensFury",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "DetectEnemies",
+            "ReplenishFrequency": 0
           }
         ]
       }
@@ -186,6 +216,11 @@
         },
         {
           "Piece": "HeroSorcerer",
+          "Property": "StartHealth",
+          "Value": 15.0
+        },
+        {
+          "Piece": "HeroWarlock",
           "Property": "StartHealth",
           "Value": 15.0
         },
@@ -270,6 +305,7 @@
       "Rule": "AbilityActionCostAdjusted",
       "Config": {
         "Zap": false,
+        "MagicMissile": false,
         "CourageShanty": false,
         "Sneak": false
       }
@@ -304,6 +340,9 @@
           "Diseased"
         ],
         "HeroSorcerer": [
+          "Diseased"
+        ],
+        "HeroWarlock": [
           "Diseased"
         ],
         "Verochka": [
@@ -448,7 +487,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 3
+          "healPerTurn": 3,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Courageous",
@@ -458,7 +503,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Heroic",
@@ -468,7 +519,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Fearless",
@@ -478,7 +535,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Invulnerable1",
@@ -488,7 +551,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Recovery",
@@ -498,7 +567,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 3
+          "healPerTurn": 3,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         }
       ]
     }
