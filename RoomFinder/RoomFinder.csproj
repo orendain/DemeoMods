@@ -79,6 +79,7 @@
     <Compile Include="..\Common\**\*.cs" Exclude="..\Common\Properties\AssemblyInfo.cs;..\Common\bin\**\*.*;..\Common\obj\**\*.*;..\Common\**\*.csproj;..\Common\**\*.user;..\Common\**\*.vstemplate">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Compile>
+    <Compile Include="UI\RoomListPanelNonVr.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="CopyToModsDir" AfterTargets="Build">
