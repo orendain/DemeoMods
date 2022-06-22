@@ -72,6 +72,11 @@
 
         private static void CreatingGameState_TryCreateRoom_Prefix()
         {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
             var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
@@ -93,6 +98,11 @@
 
         private static void CreatingGameState_OnJoinedRoom_Prefix()
         {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
             if (_gameContext.gameStateMachine.goBackToMenuState)
             {
                 return;
@@ -173,6 +183,11 @@
         /// </remarks>
         private static void AddModdedRoomProperties(RoomOptions roomOptions)
         {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
             if (roomOptions.CustomRoomPropertiesForLobby.Contains(ModdedRoomPropertyKey))
             {
                 CoreMod.Logger.Warning($"Room options already include custom property: {ModdedRoomPropertyKey}");
