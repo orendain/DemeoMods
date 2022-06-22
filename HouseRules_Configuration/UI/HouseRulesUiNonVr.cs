@@ -1,6 +1,5 @@
 ﻿namespace HouseRules.Configuration.UI
 {
-    using System;
     using System.Collections;
     using Common.UI;
     using Common.UI.Element;
@@ -12,7 +11,6 @@
         private NonVrResourceTable _resourceTable;
         private IElementCreator _elementCreator;
         private RulesetSelectionPanelNonVr _rulesetPanel;
-
         private GameObject _page;
         private bool _pageVisible;
 

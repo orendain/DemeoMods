@@ -15,7 +15,6 @@
     {
         private NonVrResourceTable _resourceTable;
         private NonVrElementCreator _elementCreator;
-        private GameObject _background;
         private RoomListPanelNonVr _roomListPanel;
         private GameObject _page;
         private bool _pageVisible;
