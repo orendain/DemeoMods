@@ -202,6 +202,22 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
+#### __BlockFriendlyFire__: Player on Player attack damage is blocked
+  - Players are added to the list of pieces who have blocked with armor when dealing player->player attack damage.
+  - Damage to party members is reduced to 1hp
+  - To configure:
+    - Specify `true` to reduce player on player damage to 1hp.
+
+  ###### _Example JSON config for BlockFriendlyFire_
+
+  ```json
+    {
+      "Rule": "BlockFriendlyFire",
+      "Config": true
+    },
+  ```
+
+
 #### __CardAdditionOverridden__: Overrides the lists of cards which players receive from chests & card energy.
   - The default card allocation mechanism is intercepted and changed to use a user-defined list of cards.
   - To configure:
