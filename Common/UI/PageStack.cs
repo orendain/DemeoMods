@@ -85,6 +85,11 @@ namespace Common.UI
 
         private void UpdatePageVisibility()
         {
+            if (_pages.Count < 1)
+            {
+                return;
+            }
+
             _pages.ForEach(p => p.SetActive(false));
             _pages[_currentPageIndex].SetActive(true);
         }
