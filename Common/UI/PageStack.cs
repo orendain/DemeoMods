@@ -40,6 +40,19 @@ namespace Common.UI
             UpdatePageStatus();
         }
 
+        /// <summary>
+        /// Removes all pages from the stack.
+        /// </summary>
+        /// <remarks>
+        /// Note that this stops tracking all current pages, but does not explicitly destroy them.
+        /// </remarks>
+        public void Clear()
+        {
+            _pages.Clear();
+            _currentPageIndex = 0;
+            UpdatePageStatus();
+        }
+
         private void OnPreviousPageClick()
         {
             AdvancePageIndex(-1);
