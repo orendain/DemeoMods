@@ -14,8 +14,6 @@
 
         public Sprite ButtonBlueNormal { get; private set; }
 
-        public Sprite ButtonGreenNormal { get; private set; }
-
         public Sprite ButtonRedNormal { get; private set; }
 
         public Sprite PaperDecorated { get; private set; }
@@ -53,7 +51,6 @@
         internal static bool IsReady()
         {
             return Resources.FindObjectsOfTypeAll<Sprite>().Any(x => x.name == "ButtonMenuBlue")
-                   && Resources.FindObjectsOfTypeAll<Sprite>().Any(x => x.name == "ButtonMenuGreen")
                    && Resources.FindObjectsOfTypeAll<Sprite>().Any(x => x.name == "ButtonMenuRed")
                    && Resources.FindObjectsOfTypeAll<Sprite>().Any(x => x.name == "PaperDecorated")
                    && Resources.FindObjectsOfTypeAll<GameObject>().Any(x => x.name == "DesktopMainMenu(Clone)")
@@ -64,7 +61,6 @@
         private void Refresh()
         {
             ButtonBlueNormal = Resources.FindObjectsOfTypeAll<Sprite>().First(x => x.name == "ButtonMenuBlue");
-            ButtonGreenNormal = Resources.FindObjectsOfTypeAll<Sprite>().First(x => x.name == "ButtonMenuGreen");
             ButtonRedNormal = Resources.FindObjectsOfTypeAll<Sprite>().First(x => x.name == "ButtonMenuRed");
             PaperDecorated = Resources.FindObjectsOfTypeAll<Sprite>().First(x => x.name == "PaperDecorated");
             AnchorDesktopMainMenu = Resources.FindObjectsOfTypeAll<GameObject>()
