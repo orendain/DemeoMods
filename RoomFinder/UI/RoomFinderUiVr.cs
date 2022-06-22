@@ -5,16 +5,19 @@
     using System.Linq;
     using Boardgame;
     using Common.UI;
+    using Common.UI.Element;
     using HarmonyLib;
     using Photon.Realtime;
     using UnityEngine;
 
-    internal class RoomFinderUI : MonoBehaviour
+    internal class RoomFinderUiVr : MonoBehaviour
     {
         private bool _isInitialized;
-        private UiHelper _uiHelper;
+        private VrResourceTable _resourceTable;
+        private VrElementCreator _elementCreator;
         private GameObject _background;
         private RoomListPanel _roomListPanel;
+        private Transform _anchor;
 
         private void Start()
         {
@@ -23,16 +26,22 @@
 
         private IEnumerator WaitAndInitialize()
         {
-            while (!UiHelper.IsReady())
-            {
-                RoomFinderMod.Logger.Msg("UI helper not yet ready. Trying again...");
+            while (!VrElementCreator.IsReady()
+                   || Resources.FindObjectsOfTypeAll<charactersoundlistener>()
+                       .Count(x => x.name == "MenuBox_BindPose") < 2) {
+
+                RoomFinderMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            RoomFinderMod.Logger.Msg("UI helper ready. Proceeding with initialization.");
+            RoomFinderMod.Logger.Msg("UI dependencies ready. Proceeding with initialization.");
 
-            _uiHelper = UiHelper.Instance();
-            _roomListPanel = RoomListPanel.NewInstance(_uiHelper, RefreshRoomList);
+            _resourceTable = VrResourceTable.Instance();
+            _elementCreator = VrElementCreator.Instance();
+            _roomListPanel = RoomListPanel.NewInstance(_elementCreator, RefreshRoomList);
+            _anchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
+            .First(x => x.name == "MenuBox_BindPose").transform;
+
             Initialize();
 
             RoomFinderMod.Logger.Msg("Initialization complete.");
@@ -62,13 +71,13 @@
 
         private void Initialize()
         {
-            transform.SetParent(_uiHelper.DemeoResource.VrLobbyTableAnchor.transform, worldPositionStays: true);
+            transform.SetParent(_anchor, worldPositionStays: true);
             transform.position = new Vector3(25, 30, 0);
             transform.rotation = Quaternion.Euler(0, 40, 0);
 
             _background = new GameObject("RoomFinderUIBackground");
-            _background.AddComponent<MeshFilter>().mesh = _uiHelper.DemeoResource.MenuBoxMesh;
-            _background.AddComponent<MeshRenderer>().material = _uiHelper.DemeoResource.MenuBoxMaterial;
+            _background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuBoxMesh;
+            _background.AddComponent<MeshRenderer>().material = _resourceTable.MenuBoxMaterial;
 
             _background.transform.SetParent(transform, worldPositionStays: false);
             _background.transform.localPosition = new Vector3(0, -3.6f, 0);
@@ -76,15 +85,15 @@
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             _background.transform.localScale = new Vector3(2, 1, 2.5f);
 
-            var menuTitle = _uiHelper.CreateMenuHeaderText("RoomFinder");
+            var menuTitle = _elementCreator.CreateMenuHeaderText("RoomFinder");
             menuTitle.transform.SetParent(transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 2.375f, UiHelper.DefaultTextZShift);
+            menuTitle.transform.localPosition = new Vector3(0, 2.375f, VrElementCreator.DefaultTextZShift);
 
             _roomListPanel.Panel.transform.SetParent(transform, worldPositionStays: false);
 
-            var versionText = _uiHelper.CreateLabelText($"v{BuildVersion.Version}");
+            var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
-            versionText.transform.localPosition = new Vector3(-3.25f, -19.5f, UiHelper.DefaultTextZShift);
+            versionText.transform.localPosition = new Vector3(-3.25f, -19.5f, VrElementCreator.DefaultTextZShift);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             gameObject.AddComponent<BoxCollider>();
