@@ -14,8 +14,6 @@
 
         public Sprite ButtonBlueNormal { get; private set; }
 
-        public Sprite ButtonGreenNormal { get; private set; }
-
         public Sprite ButtonRedNormal { get; private set; }
 
         public Sprite PaperDecorated { get; private set; }
