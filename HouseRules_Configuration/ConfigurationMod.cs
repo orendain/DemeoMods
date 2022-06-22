@@ -59,6 +59,10 @@
                 {
                     return;
                 }
+
+                Logger.Msg("Recognized lobby in PC. Loading UI.");
+                _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
+                return;
             }
 
             if (buildIndex == VrHangoutsSceneIndex)
