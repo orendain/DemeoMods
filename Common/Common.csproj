@@ -63,6 +63,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommonModule.cs" />
     <Compile Include="UI\PageStack.cs" />
+    <Compile Include="UI\Element\HangoutsElementCreator.cs" />
+    <Compile Include="UI\Element\IElementCreator.cs" />
+    <Compile Include="UI\Element\VrElementCreator.cs" />
     <Compile Include="UI\Resource\VrResourceTable.cs" />
     <Compile Include="UI\UiEnvironments.cs" />
   </ItemGroup>
