@@ -71,6 +71,7 @@
     <Compile Include="UI\HouseRulesUiNonVr.cs" />
     <Compile Include="UI\HouseRulesUiVr.cs" />
     <Compile Include="UI\RulesetSelectionPanelNonVr.cs" />
+
     <Compile Include="UI\RulesetSelectionPanelVr.cs" />
     <Compile Include="VersionChecker.cs" />
   </ItemGroup>
