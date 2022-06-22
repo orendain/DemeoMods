@@ -29,7 +29,7 @@
                 return;
             }
 
-            _roomFinderUi = new GameObject("RoomFinderUI", typeof(RoomFinderUI));
+            _roomFinderUi = new GameObject("RoomFinderUI", typeof(RoomFinderUiVr));
         }
     }
 }
