@@ -63,11 +63,12 @@ namespace HouseRules.Essentials.Rules
                     {
                         MelonLoader.MelonLogger.Msg("Replenish: Assassin check");
                         int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
+                        AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var abilityS);
                         if (currentST > 0)
                         {
                             MelonLoader.MelonLogger.Msg("Replenish: Stealth refresh(1)");
                             source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
-                            source.inventory.RestoreReplenishables(source);
+                            source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                             source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
                             source.EnableEffectState(EffectStateType.Stealthed);
                             source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
@@ -75,7 +76,7 @@ namespace HouseRules.Essentials.Rules
                         else
                         {
                             MelonLoader.MelonLogger.Msg("Replenish: Stealth refresh(2)");
-                            source.inventory.RestoreReplenishables(source);
+                            source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                         }
                     }
                     else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
@@ -89,7 +90,7 @@ namespace HouseRules.Essentials.Rules
                             abilityZ.effectsPreventingUse.Remove(EffectStateType.Discharge);
                             abilityZ.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
                             source.inventory.AddGold(10);
-                            source.inventory.RestoreReplenishables(source);
+                            source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                         }
                         else
                         {
@@ -101,13 +102,13 @@ namespace HouseRules.Essentials.Rules
                     {
                         MelonLoader.MelonLogger.Msg("Replenish(3)");
                         source.inventory.AddGold(10);
-                        source.inventory.RestoreReplenishables(source);
+                        source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                     }
                     else
                     {
                         MelonLoader.MelonLogger.Msg("Replenish(4)");
                         source.inventory.AddGold(money);
-                        source.inventory.RestoreReplenishables(source);
+                        source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                     }
 
                     MelonLoader.MelonLogger.Msg("Replenish(5)");
