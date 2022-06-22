@@ -5,17 +5,13 @@
     using TMPro;
     using UnityEngine;
 
-    internal class DemeoResource
+    internal class VrResourceTable
     {
-        private static DemeoResource _instance;
+        private static VrResourceTable _instance;
 
-        public Color ColorBrown { get; } = new Color(0.0392f, 0.0157f, 0, 1);
+        internal static Color ColorBrown { get; } = new Color(0.0392f, 0.0157f, 0, 1);
 
-        public Color ColorBeige { get; } = new Color(0.878f, 0.752f, 0.384f, 1);
-
-        public Component VrLobbyTableAnchor { get; private set; }
-
-        public GameObject HangoutsTableAnchor { get; private set; }
+        internal static Color ColorBeige { get; } = new Color(0.878f, 0.752f, 0.384f, 1);
 
         public TMP_FontAsset Font { get; private set; }
 
@@ -35,7 +31,7 @@
 
         public Material MenuBoxMaterial { get; private set; }
 
-        public static DemeoResource Instance()
+        public static VrResourceTable Instance()
         {
             if (_instance != null)
             {
@@ -44,22 +40,22 @@
 
             if (!IsReady())
             {
-                throw new InvalidOperationException("Demeo UI resources not yet available.");
+                throw new InvalidOperationException("VR UI resources not yet available.");
             }
 
-            _instance = new DemeoResource();
+            _instance = new VrResourceTable();
             return _instance;
         }
 
-        private DemeoResource()
+        private VrResourceTable()
         {
-            Initialize();
+            Refresh();
         }
 
         /// <summary>
-        /// Returns true when all required Demeo resources are found and accounted for.
+        /// Returns true if the all UI dependencies are met.
         /// </summary>
-        public static bool IsReady()
+        internal static bool IsReady()
         {
             return Resources.FindObjectsOfTypeAll<TMP_FontAsset>().Any(x => x.name == "Demeo SDF")
                    && Resources.FindObjectsOfTypeAll<TMP_ColorGradient>().Any(x => x.name == "Demeo - Main Menu Buttons")
@@ -67,17 +63,10 @@
                    && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuMat")
                    && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuHover")
                    && Resources.FindObjectsOfTypeAll<Mesh>().Any(x => x.name == "MenuBox_SettingsButton")
-                   && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuMat (Instance)")
-                   && IsAnchorReady();
+                   && Resources.FindObjectsOfTypeAll<Material>().Any(x => x.name == "MainMenuMat (Instance)");
         }
 
-        private static bool IsAnchorReady()
-        {
-            return Resources.FindObjectsOfTypeAll<charactersoundlistener>().Count(x => x.name == "MenuBox_BindPose") > 1
-                   || Resources.FindObjectsOfTypeAll<GameObject>().Any(x => x.name == "GroupLaunchTable");
-        }
-
-        public void Initialize()
+        protected internal void Refresh()
         {
             Font = Resources.FindObjectsOfTypeAll<TMP_FontAsset>().First(x => x.name == "Demeo SDF");
             FontColorGradient = Resources
@@ -90,16 +79,6 @@
             ButtonHoverMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuHover");
             MenuBoxMesh = Resources.FindObjectsOfTypeAll<Mesh>().First(x => x.name == "MenuBox_SettingsButton");
             MenuBoxMaterial = Resources.FindObjectsOfTypeAll<Material>().First(x => x.name == "MainMenuMat (Instance)");
-
-            InitializeAnchors();
-        }
-
-        private void InitializeAnchors()
-        {
-            VrLobbyTableAnchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
-                .FirstOrDefault(x => x.name == "MenuBox_BindPose");
-            HangoutsTableAnchor = Resources.FindObjectsOfTypeAll<GameObject>()
-                .FirstOrDefault(x => x.name == "GroupLaunchTable");
         }
     }
 }

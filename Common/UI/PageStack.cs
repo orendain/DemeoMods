@@ -1,31 +1,32 @@
 namespace Common.UI
 {
     using System.Collections.Generic;
+    using Common.UI.Element;
     using TMPro;
     using UnityEngine;
 
-    internal class PageStack
+    public class PageStack
     {
-        private readonly UiHelper _uiHelper;
+        private readonly IElementCreator _elementCreator;
         private readonly List<GameObject> _pages;
-        private readonly TextMeshPro _statusText;
+        private readonly TMP_Text _statusText;
         private int _currentPageIndex;
 
-        internal GameObject NavigationPanel { get; }
+        internal PageStackNavigation Navigation { get; }
 
-        public static PageStack NewInstance(UiHelper uiHelper)
+        public static PageStack NewInstance(IElementCreator elementCreator)
         {
-            return new PageStack(uiHelper);
+            return new PageStack(elementCreator);
         }
 
-        private PageStack(UiHelper uiHelper)
+        private PageStack(IElementCreator elementCreator)
         {
-            _uiHelper = uiHelper;
+            _elementCreator = elementCreator;
             _pages = new List<GameObject>();
             _currentPageIndex = 0;
-            NavigationPanel = CreateNavigation();
+            Navigation = CreateNavigation();
 
-            _statusText = NavigationPanel.GetComponentInChildren<TextMeshPro>();
+            _statusText = Navigation.PageStatus.GetComponent<TMP_Text>();
             UpdatePageStatus();
         }
 
@@ -35,20 +36,7 @@ namespace Common.UI
         public void AddPage(GameObject page)
         {
             _pages.Add(page);
-            UpdatePageStatus();
             UpdatePageVisibility();
-        }
-
-        /// <summary>
-        /// Removes all pages from the stack.
-        /// </summary>
-        /// <remarks>
-        /// Note that this stops tracking all current pages, but does not explicitly destroy them.
-        /// </remarks>
-        public void Clear()
-        {
-            _pages.Clear();
-            _currentPageIndex = 0;
             UpdatePageStatus();
         }
 
@@ -62,33 +50,16 @@ namespace Common.UI
             AdvancePageIndex(1);
         }
 
-        private GameObject CreateNavigation()
+        private PageStackNavigation CreateNavigation()
         {
-            var container = new GameObject("PageStackNavigation");
-
             // TODO(orendain): Remove reliance on this label being first (for _statusText).
-            var pageStatus = _uiHelper.CreateText(string.Empty, _uiHelper.DemeoResource.ColorBrown, UiHelper.DefaultButtonFontSize);
-            pageStatus.transform.SetParent(container.transform, worldPositionStays: false);
-
-            var prevButton = _uiHelper.CreateButton(OnPreviousPageClick);
-            prevButton.transform.SetParent(container.transform, worldPositionStays: false);
-            prevButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            prevButton.transform.localPosition = new Vector3(-2.5f, 0, UiHelper.DefaultButtonZShift);
-
-            var prevButtonText = _uiHelper.CreateButtonText("<");
-            prevButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            prevButtonText.transform.localPosition = new Vector3(-2.5f, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
-
-            var nextButton = _uiHelper.CreateButton(OnNextPageClick);
-            nextButton.transform.SetParent(container.transform, worldPositionStays: false);
-            nextButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            nextButton.transform.localPosition = new Vector3(2.5f, 0, UiHelper.DefaultButtonZShift);
-
-            var nextButtonText = _uiHelper.CreateButtonText(">");
-            nextButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            nextButtonText.transform.localPosition = new Vector3(2.5f, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
-
-            return container;
+            var navigation = new PageStackNavigation();
+            navigation.PageStatus = _elementCreator.CreateText(string.Empty, VrResourceTable.ColorBrown, _elementCreator.DefaultButtonFontSize());;
+            navigation.PreviousButton = _elementCreator.CreateButton(OnPreviousPageClick);
+            navigation.PreviousButtonText = _elementCreator.CreateButtonText("<");
+            navigation.NextButton = _elementCreator.CreateButton(OnNextPageClick);
+            navigation.NextButtonText = _elementCreator.CreateButtonText(">");
+            return navigation;
         }
 
         private void AdvancePageIndex(int advancement)
@@ -99,25 +70,29 @@ namespace Common.UI
             UpdatePageVisibility();
         }
 
+        private void UpdatePageVisibility()
+        {
+            _pages.ForEach(p => p.SetActive(false));
+            _pages[_currentPageIndex].SetActive(true);
+        }
+
         private void UpdatePageStatus()
         {
             _statusText.text = $"{_currentPageIndex + 1}/{_pages.Count}";
         }
 
-        private void UpdatePageVisibility()
-        {
-            if (_pages.Count == 0)
-            {
-                return;
-            }
-
-            _pages.ForEach(p => p.SetActive(false));
-            _pages[_currentPageIndex].SetActive(true);
-        }
-
         private static int Mod(int x, int m)
         {
             return ((x % m) + m) % m;
+        }
+
+        internal class PageStackNavigation
+        {
+            internal GameObject PageStatus;
+            internal GameObject PreviousButton;
+            internal GameObject PreviousButtonText;
+            internal GameObject NextButton;
+            internal GameObject NextButtonText;
         }
     }
 }
