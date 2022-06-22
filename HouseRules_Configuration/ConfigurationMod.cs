@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Common;
+    using HouseRules.Configuration.UI;
     using MelonLoader;
     using UnityEngine;
 
@@ -10,7 +11,7 @@
     {
         private const string DemeoPCEditionString = "Demeo PC Edition";
         private const int LobbySceneIndex = 1;
-        private const int HangoutsSceneIndex = 43;
+        private const int VrHangoutsSceneIndex = 43;
 
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
@@ -54,14 +55,26 @@
         {
             if (MelonUtils.CurrentGameAttribute.Name == DemeoPCEditionString)
             {
-                Logger.Msg("PC Edition detected. Skipping VR UI loading.");
+                if (buildIndex != LobbySceneIndex)
+                {
+                    return;
+                }
+            }
+
+            if (buildIndex == VrHangoutsSceneIndex)
+            {
+                Logger.Msg("Recognized lobby in Hangouts. Loading UI.");
+                _ = new GameObject("HouseRulesUiHangouts", typeof(HouseRulesUiHangouts));
                 return;
             }
 
-            if (buildIndex == LobbySceneIndex || buildIndex == HangoutsSceneIndex)
+            if (buildIndex != LobbySceneIndex)
             {
-                _ = new GameObject("HouseRules_RulesetSelection", typeof(UI.RulesetSelectionUI));
+                return;
             }
+
+            Logger.Msg("Recognized lobby in VR. Loading UI.");
+            _ = new GameObject("HouseRulesUiVr", typeof(HouseRulesUiVr));
         }
 
         private static async void DetermineIfUpdateAvailable()
