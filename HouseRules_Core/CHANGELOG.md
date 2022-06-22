@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.4.0-houserules](https://github.com/orendain/demeomods/tree/v1.4.0-houserules) (2022-06-22)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-houserules...v1.4.0-houserules)
+
+**Features/Enhancements:**
+
+- Enable support for PC-Flatscreen version. [\#302](https://github.com/orendain/DemeoMods/pull/302)
+- Improve performance for Board Syncing. [\#310](https://github.com/orendain/DemeoMods/pull/310)
+- Ensure compatibility with Demeo v1.16. [\#349](https://github.com/orendain/DemeoMods/pull/349)
+
 ## [v1.3.0-houserules](https://github.com/orendain/demeomods/tree/v1.3.0-houserules) (2022-04-17)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-houserules...v1.3.0-houserules)

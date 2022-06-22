@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.4.0-houserules](https://github.com/orendain/demeomods/tree/v1.4.0-houserules) (2022-06-22)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-houserules...v1.4.0-houserules)
+
+**Features/Enhancements:**
+
+- Display HouseRules version in the UI. [\#308](https://github.com/orendain/DemeoMods/pull/308)
+- Ensure compatibility with Demeo v1.16. [\#349](https://github.com/orendain/DemeoMods/pull/349)
+- Tag HouseRules games with a custom property (viewable in Roomfinder) [\#360](https://github.com/orendain/DemeoMods/pull/360)
+- Update support for starting HouseRules games from Hangouts. [\#366](https://github.com/orendain/DemeoMods/pull/366)
+- Add NonVR UI for PC-Flatscreen Demeo release. [#373](https://github.com/orendain/DemeoMods/pull/373)
+
 ## [v1.3.0-houserules](https://github.com/orendain/demeomods/tree/v1.3.0-houserules) (2022-04-17)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-houserules...v1.3.0-houserules)

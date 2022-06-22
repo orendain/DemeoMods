@@ -1,5 +1,26 @@
 # Changelog
 
+## [v1.4.0-houserules](https://github.com/orendain/demeomods/tree/v1.4.0-houserules) (2022-04-17)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-houserules...v1.4.0-houserules)
+
+**Features/Enhancements:**
+
+- Fix resetting the original value for adjusted AoE abilities. [\#304](https://github.com/orendain/DemeoMods/pull/304)
+- Modify Lamp Rule to support arbitrary number of levels. [\#311](https://github.com/orendain/DemeoMods/pull/311)
+- Replace `AbilityDamageAdjustedRule` with an improved `AbilityDamageOverriddenRule`. [\#318](https://github.com/orendain/DemeoMods/pull/318)
+- New 'It's a Trap!' ruleset added - Build elaborate traps for your enemies (and friends). [\#320](https://github.com/orendain/DemeoMods/pull/320)
+- Enable configuraable `replenishFrequency` in `StartCardsOverridden`. [\#319](https://github.com/orendain/DemeoMods/pull/319)
+- Fix `LevelSequenceOverridden` bug with 'Play Again' games [\#328](https://github.com/orendain/DemeoMods/pull/328)
+- New 'Demeo Reloaded' ruleset (submitted by The Gray Alien). [\#329](https://github.com/orendain/DemeoMods/pull/329)
+- Update `CardHandLimit` for compatibility with Demeo versions later than v1.14 [\#333](https://github.com/orendain/DemeoMods/pull/333)
+- New `TurnOrderOverridden` rule for dyanmically controlling the Heroes turn order. [\#336](https://github.com/orendain/DemeoMods/pull/336)
+- New 'FreeAbilityOnCrit` rule to give a Hero a card whenever they score a Crit. [\#345](https://github.com/orendain/DemeoMods/pull/345)
+- Remove limit on number of Replenishables in `StartCardsModified` as the hard limits are no more. [\#355](https://github.com/orendain/DemeoMods/pull/355)
+- New `AbilityStealthDamageOverridden` rule for configuring extra damage when stealthed (submitted by The Gray Alien) [\#359](https://github.com/orendain/DemeoMods/pull/359)
+- New 'Flipping Out' ruleset (idea by GQJenn, Ruleset by The Gray Alien) [\#368](https://github.com/orendain/DemeoMods/pull/369)
+- Add configuration for the new Warlock character to existing rulesets. [\#369](https://github.com/orendain/DemeoMods/pull/369)
+
 ## [v1.3.0-houserules](https://github.com/orendain/demeomods/tree/v1.3.0-houserules) (2022-04-17)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-houserules...v1.3.0-houserules)
