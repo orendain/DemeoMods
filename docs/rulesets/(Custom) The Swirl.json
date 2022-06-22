@@ -8,51 +8,61 @@
         "HeroBard": [
           {
             "Card": "Vortex",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "CourageShanty",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           }
         ],
         "HeroGuardian": [
           {
             "Card": "Vortex",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "ReplenishArmor",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           }
         ],
         "HeroHunter": [
           {
             "Card": "Vortex",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Arrow",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           }
         ],
         "HeroRogue": [
           {
             "Card": "Vortex",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "Vortex",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Zap",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroWarlock": [
+          {
+            "Card": "Vortex",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
           }
         ]
       }
@@ -84,6 +94,11 @@
           "PoisonBomb",
           "Fireball",
           "SummonElemental"
+        ],
+        "HeroWarlock": [
+          "PoisonBomb",
+          "Fireball",
+          "MissileSwarm"
         ]
       }
     },
@@ -112,6 +127,11 @@
         },
         {
           "Piece": "HeroSorcerer",
+          "Property": "StartHealth",
+          "Value": 50.0
+        },
+        {
+          "Piece": "HeroWarlock",
           "Property": "StartHealth",
           "Value": 50.0
         }

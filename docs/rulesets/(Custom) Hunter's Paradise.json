@@ -8,71 +8,85 @@
         "HeroBard": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           }
         ],
         "HeroGuardian": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           }
         ],
         "HeroHunter": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           }
         ],
         "HeroRogue": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "CallCompanion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "SummonElemental",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "HuntersMark",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroWarlock": [
+          {
+            "Card": "CallCompanion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "SummonElemental",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "HuntersMark",
+            "ReplenishFrequency": 1
           }
         ]
       }
@@ -88,7 +102,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": true,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         }
       ]
     },
@@ -146,6 +166,15 @@
           "SwiftnessPotion"
         ],
         "HeroSorcerer": [
+          "CallCompanion",
+          "SummonElemental",
+          "BeastWhisperer",
+          "PiercingVoice",
+          "Bone",
+          "StrengthPotion",
+          "SwiftnessPotion"
+        ],
+        "HeroWarlock": [
           "CallCompanion",
           "SummonElemental",
           "BeastWhisperer",
