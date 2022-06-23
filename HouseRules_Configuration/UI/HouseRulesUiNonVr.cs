@@ -56,7 +56,7 @@
             button.transform.SetParent(container.transform, worldPositionStays: false);
             button.transform.localScale = new Vector2(1.75f, 0.65f);
 
-            var text = _elementCreator.CreateText("HouseRules", Color.white, NonVrElementCreator.DefaultLabelFontSize);
+            var text = _elementCreator.CreateText("HouseRules", Color.white, NonVrElementCreator.NormalFontSize);
             text.transform.SetParent(container.transform, worldPositionStays: false);
             text.GetComponent<Graphic>().raycastTarget = false;
 
@@ -74,7 +74,7 @@
             paperContainer.AddComponent<Image>().sprite = _resourceTable.PaperDecorated;
             paperContainer.GetComponent<RectTransform>().sizeDelta = new Vector2(1576, 876);
 
-            var title = _elementCreator.CreateText("HouseRules", _resourceTable.ColorBrown, 36);
+            var title = _elementCreator.CreateText("HouseRules", NonVrElementCreator.ColorBrown, 36);
             title.transform.SetParent(page.transform, worldPositionStays: false);
             title.transform.localPosition = new Vector2(0, 310f);
 

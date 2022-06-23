@@ -86,13 +86,13 @@
 
             var menuTitle = _elementCreator.CreateMenuHeaderText("RoomFinder");
             menuTitle.transform.SetParent(transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 2.375f, VrElementCreator.DefaultTextZShift);
+            menuTitle.transform.localPosition = new Vector3(0, 2.375f, VrElementCreator.TextZShift);
 
             _roomListPanel.Panel.transform.SetParent(transform, worldPositionStays: false);
 
             var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
-            versionText.transform.localPosition = new Vector3(-3.25f, -19.5f, VrElementCreator.DefaultTextZShift);
+            versionText.transform.localPosition = new Vector3(-3.25f, -19.5f, VrElementCreator.TextZShift);
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             gameObject.AddComponent<BoxCollider>();

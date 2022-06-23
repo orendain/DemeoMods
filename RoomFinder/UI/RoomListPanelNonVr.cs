@@ -175,7 +175,7 @@
             joinButton.transform.localScale = new Vector2(1.2f, 0.65f);
             joinButton.transform.localPosition = new Vector2(-150f, 0);
 
-            var joinText = _elementCreator.CreateText(room.Name, Color.white, NonVrElementCreator.DefaultLabelFontSize);
+            var joinText = _elementCreator.CreateText(room.Name, Color.white, NonVrElementCreator.NormalFontSize);
             joinText.transform.SetParent(container.transform, worldPositionStays: false);
             joinText.transform.localPosition = new Vector2(-150f, 0);
 
@@ -202,7 +202,7 @@
             button.transform.SetParent(container.transform, worldPositionStays: false);
             button.transform.localScale = new Vector2(1.1f, 0.37f);
 
-            var buttonText = _elementCreator.CreateText(text, Color.white, NonVrElementCreator.DefaultLabelFontSize);
+            var buttonText = _elementCreator.CreateText(text, Color.white, NonVrElementCreator.NormalFontSize);
             buttonText.transform.SetParent(container.transform, worldPositionStays: false);
 
             return container;

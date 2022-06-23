@@ -58,7 +58,7 @@
 
             var menuTitle = _elementCreator.CreateMenuHeaderText("HouseRules");
             menuTitle.transform.SetParent(transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 5.95f, VrElementCreator.DefaultTextZShift);
+            menuTitle.transform.localPosition = new Vector3(0, 5.95f, VrElementCreator.TextZShift);
 
             var selectionPanel = _rulesetPanel.Panel;
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
@@ -66,13 +66,13 @@
 
             var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
-            versionText.transform.localPosition = new Vector3(-7, -15.85f, VrElementCreator.DefaultTextZShift);
+            versionText.transform.localPosition = new Vector3(-7, -15.85f, VrElementCreator.TextZShift);
 
             if (ConfigurationMod.IsUpdateAvailable)
             {
                 var updateText = _elementCreator.CreateNormalText("NEW UPDATE AVAILABLE!");
                 updateText.transform.SetParent(transform, worldPositionStays: false);
-                updateText.transform.localPosition = new Vector3(4.8f, -15.85f, VrElementCreator.DefaultTextZShift);
+                updateText.transform.localPosition = new Vector3(4.8f, -15.85f, VrElementCreator.TextZShift);
             }
 
             // TODO(orendain): Fix so that ray interacts with entire object.

@@ -7,6 +7,7 @@
     public class PageStackNavigation
     {
         private readonly PageStack _pageStack;
+        private readonly IElementCreator _elementCreator;
 
         private GameObject _pageStatus;
         private GameObject _previousButton;
@@ -31,12 +32,21 @@
         private PageStackNavigation(PageStack pageStack, IElementCreator elementCreator)
         {
             _pageStack = pageStack;
+            _elementCreator = elementCreator;
 
-            _pageStatus = elementCreator.CreateText(string.Empty, VrResourceTable.ColorBrown, elementCreator.DefaultButtonFontSize());
             _previousButton = elementCreator.CreateButton(OnPreviousPageClick);
             _previousButtonText = elementCreator.CreateButtonText("<");
             _nextButton = elementCreator.CreateButton(OnNextPageClick);
             _nextButtonText = elementCreator.CreateButtonText(">");
+
+            if (Environments.CurrentEnvironment() == Environment.NonVr)
+            {
+                InitializeForNonVr();
+            }
+            else
+            {
+                InitializeForVr();
+            }
 
             Panel = new GameObject("PageStackNavigation");
             _pageStatus.transform.SetParent(Panel.transform, worldPositionStays: false);
@@ -46,6 +56,22 @@
             _nextButtonText.transform.SetParent(Panel.transform, worldPositionStays: false);
 
             PageStatusText = _pageStatus.GetComponent<TMP_Text>();
+        }
+
+        private void InitializeForNonVr()
+        {
+            _pageStatus = _elementCreator.CreateText(
+                string.Empty,
+                NonVrElementCreator.ColorBrown,
+                NonVrElementCreator.ButtonFontSize);
+        }
+
+        private void InitializeForVr()
+        {
+            _pageStatus = _elementCreator.CreateText(
+                string.Empty,
+                VrElementCreator.ColorBrown,
+                VrElementCreator.ButtonFontSize);
         }
 
         public void PositionForNonVr()

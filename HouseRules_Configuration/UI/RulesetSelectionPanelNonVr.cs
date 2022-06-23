@@ -120,7 +120,7 @@
             button.transform.localPosition = new Vector3(-225f, 0);
 
             var buttonText =
-                _elementCreator.CreateText(ruleset.Name, Color.white, NonVrElementCreator.DefaultLabelFontSize);
+                _elementCreator.CreateText(ruleset.Name, Color.white, NonVrElementCreator.NormalFontSize);
             buttonText.transform.SetParent(container.transform, worldPositionStays: false);
             buttonText.transform.localPosition = new Vector3(-225f, 0);
             buttonText.GetComponent<Graphic>().raycastTarget = false;
