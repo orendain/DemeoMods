@@ -28,7 +28,6 @@
         {
             while (!NonVrElementCreator.IsReady())
             {
-
                 RoomFinderMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
@@ -81,7 +80,7 @@
             button.transform.SetParent(container.transform, worldPositionStays: false);
             button.transform.localScale = new Vector2(1.75f, 0.65f);
 
-            var text = _elementCreator.CreateText("RoomFinder", Color.white, NonVrElementCreator.DefaultLabelFontSize);
+            var text = _elementCreator.CreateText("RoomFinder", Color.white, NonVrElementCreator.NormalFontSize);
             text.transform.SetParent(container.transform, worldPositionStays: false);
             text.GetComponent<Graphic>().raycastTarget = false;
 
@@ -99,7 +98,7 @@
             paperContainer.AddComponent<Image>().sprite = _resourceTable.PaperDecorated;
             paperContainer.GetComponent<RectTransform>().sizeDelta = new Vector2(1576, 876);
 
-            var title = _elementCreator.CreateText("RoomFinder", _resourceTable.ColorBrown, 36);
+            var title = _elementCreator.CreateText("RoomFinder", NonVrElementCreator.ColorBrown, 36);
             title.transform.SetParent(page.transform, worldPositionStays: false);
             title.transform.localPosition = new Vector2(0, 310f);
 

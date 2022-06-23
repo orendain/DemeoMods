@@ -43,8 +43,6 @@
             return VrElementCreator.IsReady() && CommonModule.HangoutsButtonHandler != null;
         }
 
-        public int DefaultButtonFontSize() => _elementCreator.DefaultButtonFontSize();
-
         public GameObject CreateNormalText(string text)
         {
             return _elementCreator.CreateNormalText(text);

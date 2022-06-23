@@ -67,6 +67,7 @@
     <Compile Include="UI\Element\IElementCreator.cs" />
     <Compile Include="UI\Element\NonVrElementCreator.cs" />
     <Compile Include="UI\Element\VrElementCreator.cs" />
+    <Compile Include="UI\PageStackNavigation.cs" />
     <Compile Include="UI\Resource\NonVrResourceTable.cs" />
     <Compile Include="UI\Resource\VrResourceTable.cs" />
     <Compile Include="UI\Environments.cs" />

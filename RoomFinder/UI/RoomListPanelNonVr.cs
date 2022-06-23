@@ -29,7 +29,7 @@
             return new RoomListPanelNonVr(
                 elementCreator,
                 onRefresh,
-                PageStack.NewInstance(elementCreator),
+                PageStack.NewInstance(),
                 new GameObject("RoomListPanelNonVr"));
         }
 
@@ -73,36 +73,12 @@
             _roomPages.transform.SetParent(Panel.transform, worldPositionStays: false);
             _roomPages.transform.localPosition = new Vector2(0, -100f);
 
-            var navigation = CreateNavigation();
+            _pageStack.Navigation.PositionForNonVr();
+            var navigation = _pageStack.Navigation.Panel;
             navigation.transform.SetParent(Panel.transform, worldPositionStays: false);
             navigation.transform.localPosition = new Vector2(0, -610f);
 
             DrawRoomPages();
-        }
-
-        private GameObject CreateNavigation()
-        {
-            var container = new GameObject("PageStackNavigation");
-
-            _pageStack.Navigation.PageStatus.transform.SetParent(container.transform, worldPositionStays: false);
-
-            _pageStack.Navigation.PreviousButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.PreviousButton.transform.localScale = new Vector2(0.8f, 0.6f);
-            _pageStack.Navigation.PreviousButton.transform.localPosition = new Vector2(-80f, 0);
-
-            _pageStack.Navigation.PreviousButtonText.transform.SetParent(
-                container.transform,
-                worldPositionStays: false);
-            _pageStack.Navigation.PreviousButtonText.transform.localPosition = new Vector2(-80f, 0);
-
-            _pageStack.Navigation.NextButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButton.transform.localScale = new Vector2(0.8f, 0.6f);
-            _pageStack.Navigation.NextButton.transform.localPosition = new Vector2(80f, 0);
-
-            _pageStack.Navigation.NextButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButtonText.transform.localPosition = new Vector2(80f, 0);
-
-            return container;
         }
 
         private void DrawRoomPages()
@@ -199,7 +175,7 @@
             joinButton.transform.localScale = new Vector2(1.2f, 0.65f);
             joinButton.transform.localPosition = new Vector2(-150f, 0);
 
-            var joinText = _elementCreator.CreateText(room.Name, Color.white, NonVrElementCreator.DefaultLabelFontSize);
+            var joinText = _elementCreator.CreateText(room.Name, Color.white, NonVrElementCreator.NormalFontSize);
             joinText.transform.SetParent(container.transform, worldPositionStays: false);
             joinText.transform.localPosition = new Vector2(-150f, 0);
 
@@ -226,7 +202,7 @@
             button.transform.SetParent(container.transform, worldPositionStays: false);
             button.transform.localScale = new Vector2(1.1f, 0.37f);
 
-            var buttonText = _elementCreator.CreateText(text, Color.white, NonVrElementCreator.DefaultLabelFontSize);
+            var buttonText = _elementCreator.CreateText(text, Color.white, NonVrElementCreator.NormalFontSize);
             buttonText.transform.SetParent(container.transform, worldPositionStays: false);
 
             return container;

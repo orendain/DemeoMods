@@ -8,9 +8,13 @@
 
     internal class NonVrElementCreator : IElementCreator
     {
-        public const int DefaultLabelFontSize = 25;
-        public const int DefaultMenuHeaderFontSize = 50;
+        public const int NormalFontSize = 25;
+        public const int ButtonFontSize = 35;
+        public const int HeaderFontSize = 50;
         private const int CollisionLayer = 5;
+
+        public static readonly Color ColorBeige = new Color(0.878f, 0.752f, 0.384f, 1);
+        public static readonly Color ColorBrown = new Color(0.0392f, 0.0157f, 0, 1);
 
         private static NonVrElementCreator _instance;
 
@@ -45,21 +49,19 @@
             return NonVrResourceTable.IsReady();
         }
 
-        public int DefaultButtonFontSize() => 35;
-
         public GameObject CreateNormalText(string text)
         {
-            return CreateText(text, _resourceTable.ColorBrown, fontSize: DefaultLabelFontSize);
+            return CreateText(text, ColorBrown, fontSize: NormalFontSize);
         }
 
         public GameObject CreateButtonText(string text)
         {
-            return CreateText(text, _resourceTable.ColorBeige, fontSize: DefaultButtonFontSize());
+            return CreateText(text, ColorBeige, fontSize: ButtonFontSize);
         }
 
         public GameObject CreateMenuHeaderText(string text)
         {
-            return CreateText(text, _resourceTable.ColorBeige, fontSize: DefaultMenuHeaderFontSize);
+            return CreateText(text, ColorBeige, fontSize: HeaderFontSize);
         }
 
         public GameObject CreateText(string text, Color color, int fontSize)

@@ -8,10 +8,6 @@
     {
         private static NonVrResourceTable _instance;
 
-        public Color ColorBeige { get; } = new Color(0.878f, 0.752f, 0.384f, 1);
-
-        public Color ColorBrown { get; } = new Color(0.0392f, 0.0157f, 0, 1);
-
         public Sprite ButtonBlueNormal { get; private set; }
 
         public Sprite ButtonRedNormal { get; private set; }

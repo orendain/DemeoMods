@@ -28,7 +28,7 @@
                 rulebook,
                 elementCreator,
                 new GameObject("RulesetSelectionPanel"),
-                PageStack.NewInstance(elementCreator));
+                PageStack.NewInstance());
         }
 
         private RulesetSelectionPanelNonVr(
@@ -55,34 +55,10 @@
             var rulesetPages = rulesetPartitions.Select(CreateRulesetPage).ToList();
             rulesetPages.ForEach(_pageStack.AddPage);
 
-            var navigation = CreateNavigation();
+            _pageStack.Navigation.PositionForNonVr();
+            var navigation = _pageStack.Navigation.Panel;
             navigation.transform.SetParent(Panel.transform, worldPositionStays: false);
             navigation.transform.localPosition = new Vector3(0, -610f, 0);
-        }
-
-        private GameObject CreateNavigation()
-        {
-            var container = new GameObject("PageStackNavigation");
-
-            _pageStack.Navigation.PageStatus.transform.SetParent(container.transform, worldPositionStays: false);
-
-            _pageStack.Navigation.PreviousButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.PreviousButton.transform.localScale = new Vector2(0.8f, 0.6f);
-            _pageStack.Navigation.PreviousButton.transform.localPosition = new Vector3(-80f, 0);
-
-            _pageStack.Navigation.PreviousButtonText.transform.SetParent(
-                container.transform,
-                worldPositionStays: false);
-            _pageStack.Navigation.PreviousButtonText.transform.localPosition = new Vector3(-80f, 0);
-
-            _pageStack.Navigation.NextButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButton.transform.localScale = new Vector2(0.8f, 0.6f);
-            _pageStack.Navigation.NextButton.transform.localPosition = new Vector2(80f, 0);
-
-            _pageStack.Navigation.NextButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButtonText.transform.localPosition = new Vector3(80f, 0);
-
-            return container;
         }
 
         private GameObject CreateHeader()
@@ -144,7 +120,7 @@
             button.transform.localPosition = new Vector3(-225f, 0);
 
             var buttonText =
-                _elementCreator.CreateText(ruleset.Name, Color.white, NonVrElementCreator.DefaultLabelFontSize);
+                _elementCreator.CreateText(ruleset.Name, Color.white, NonVrElementCreator.NormalFontSize);
             buttonText.transform.SetParent(container.transform, worldPositionStays: false);
             buttonText.transform.localPosition = new Vector3(-225f, 0);
             buttonText.GetComponent<Graphic>().raycastTarget = false;

@@ -27,7 +27,7 @@
                 rulebook,
                 elementCreator,
                 new GameObject("RulesetSelectionPanel"),
-                PageStack.NewInstance(elementCreator));
+                PageStack.NewInstance());
         }
 
         private RulesetSelectionPanelVr(
@@ -54,9 +54,10 @@
             var rulesetPages = rulesetPartitions.Select(CreateRulesetPage).ToList();
             rulesetPages.ForEach(_pageStack.AddPage);
 
-            var pageNavigation = CreateNavigation();
-            pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
-            pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
+            _pageStack.Navigation.PositionForVr();
+            var navigation = _pageStack.Navigation.Panel;
+            navigation.transform.SetParent(Panel.transform, worldPositionStays: false);
+            navigation.transform.localPosition = new Vector3(0, -17f, 0);
         }
 
         private GameObject CreateHeader()
@@ -69,51 +70,18 @@
             var rectTransform = (RectTransform)infoText.transform;
             rectTransform.SetParent(headerContainer.transform, worldPositionStays: false);
             rectTransform.sizeDelta = new Vector2(10, 2);
-            rectTransform.localPosition = new Vector3(0, 0, VrElementCreator.DefaultTextZShift);
+            rectTransform.localPosition = new Vector3(0, 0, VrElementCreator.TextZShift);
 
             var selectedText = _elementCreator.CreateNormalText("Selected ruleset: ");
             rectTransform = (RectTransform)selectedText.transform;
             rectTransform.SetParent(headerContainer.transform, worldPositionStays: false);
             rectTransform.sizeDelta = new Vector2(10, 2);
-            rectTransform.localPosition = new Vector3(0, -1.5f, VrElementCreator.DefaultTextZShift);
+            rectTransform.localPosition = new Vector3(0, -1.5f, VrElementCreator.TextZShift);
 
             _selectedText = selectedText.GetComponent<TMP_Text>();
             UpdateSelectedText();
 
             return headerContainer;
-        }
-
-        private GameObject CreateNavigation()
-        {
-            var container = new GameObject("PageStackNavigation");
-
-            _pageStack.Navigation.PageStatus.transform.SetParent(container.transform, worldPositionStays: false);
-
-            _pageStack.Navigation.PreviousButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.PreviousButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _pageStack.Navigation.PreviousButton.transform.localPosition =
-                new Vector3(-2.5f, 0, VrElementCreator.DefaultButtonZShift);
-
-            _pageStack.Navigation.PreviousButtonText.transform.SetParent(
-                container.transform,
-                worldPositionStays: false);
-            _pageStack.Navigation.PreviousButtonText.transform.localPosition = new Vector3(
-                -2.5f,
-                0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
-
-            _pageStack.Navigation.NextButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _pageStack.Navigation.NextButton.transform.localPosition =
-                new Vector3(2.5f, 0, VrElementCreator.DefaultButtonZShift);
-
-            _pageStack.Navigation.NextButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButtonText.transform.localPosition = new Vector3(
-                2.5f,
-                0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
-
-            return container;
         }
 
         private IEnumerable<List<Ruleset>> PartitionRulesets()
@@ -148,22 +116,22 @@
             var button = _elementCreator.CreateButton(SelectRulesetAction(ruleset.Name));
             button.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             button.transform.localScale = new Vector3(1f, 0.6f, 1f);
-            button.transform.localPosition = new Vector3(-4.5f, 0, VrElementCreator.DefaultButtonZShift);
+            button.transform.localPosition = new Vector3(-4.5f, 0, VrElementCreator.ButtonZShift);
 
             var buttonText =
-                _elementCreator.CreateText(ruleset.Name, Color.white, VrElementCreator.DefaultLabelFontSize);
+                _elementCreator.CreateText(ruleset.Name, Color.white, VrElementCreator.NormalFontSize);
             buttonText.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             buttonText.transform.localPosition = new Vector3(
                 -4.5f,
                 0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
+                VrElementCreator.ButtonZShift + VrElementCreator.TextZShift);
 
             var description = _elementCreator.CreateNormalText(ruleset.Description);
             var rectTransform = (RectTransform)description.transform;
             rectTransform.SetParent(roomRowContainer.transform, worldPositionStays: false);
             rectTransform.pivot = Vector2.left;
             rectTransform.sizeDelta = new Vector2(9, 1);
-            rectTransform.localPosition = new Vector3(-9.7f, -0.5f, VrElementCreator.DefaultTextZShift);
+            rectTransform.localPosition = new Vector3(-9.7f, -0.5f, VrElementCreator.TextZShift);
 
             return roomRowContainer;
         }

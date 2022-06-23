@@ -24,12 +24,12 @@
 
         internal GameObject Panel { get; }
 
-        internal static RoomListPanel NewInstance(VrElementCreator uiHelper, Action onRefresh)
+        internal static RoomListPanel NewInstance(VrElementCreator elementCreator, Action onRefresh)
         {
             return new RoomListPanel(
-                uiHelper,
+                elementCreator,
                 onRefresh,
-                PageStack.NewInstance(uiHelper),
+                PageStack.NewInstance(),
                 new GameObject("RoomListPanel"));
         }
 
@@ -69,44 +69,12 @@
             _roomPages.transform.SetParent(Panel.transform, worldPositionStays: false);
             _roomPages.transform.localPosition = new Vector3(0, -3f, 0);
 
-            var pageNavigation = CreateNavigation();
-            pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
-            pageNavigation.transform.localPosition = new Vector3(0, -18.2f, 0);
+            _pageStack.Navigation.PositionForVr();
+            var navigation = _pageStack.Navigation.Panel;
+            navigation.transform.SetParent(Panel.transform, worldPositionStays: false);
+            navigation.transform.localPosition = new Vector3(0, -18.2f, 0);
 
             DrawRoomPages();
-        }
-
-        private GameObject CreateNavigation()
-        {
-            var container = new GameObject("PageStackNavigation");
-
-            _pageStack.Navigation.PageStatus.transform.SetParent(container.transform, worldPositionStays: false);
-
-            _pageStack.Navigation.PreviousButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.PreviousButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _pageStack.Navigation.PreviousButton.transform.localPosition =
-                new Vector3(-2.5f, 0, VrElementCreator.DefaultButtonZShift);
-
-            _pageStack.Navigation.PreviousButtonText.transform.SetParent(
-                container.transform,
-                worldPositionStays: false);
-            _pageStack.Navigation.PreviousButtonText.transform.localPosition = new Vector3(
-                -2.5f,
-                0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
-
-            _pageStack.Navigation.NextButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _pageStack.Navigation.NextButton.transform.localPosition =
-                new Vector3(2.5f, 0, VrElementCreator.DefaultButtonZShift);
-
-            _pageStack.Navigation.NextButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButtonText.transform.localPosition = new Vector3(
-                2.5f,
-                0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
-
-            return container;
         }
 
         private void DrawRoomPages()
@@ -133,13 +101,13 @@
 
             var refreshButton = _elementCreator.CreateButton(_onRefresh);
             refreshButton.transform.SetParent(container.transform, worldPositionStays: false);
-            refreshButton.transform.localPosition = new Vector3(0, 0, VrElementCreator.DefaultButtonZShift);
+            refreshButton.transform.localPosition = new Vector3(0, 0, VrElementCreator.ButtonZShift);
             refreshButton.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
 
             var refreshText = _elementCreator.CreateButtonText("Refresh");
             refreshText.transform.SetParent(container.transform, worldPositionStays: false);
             refreshText.transform.localPosition =
-                new Vector3(0, 0, VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
+                new Vector3(0, 0, VrElementCreator.ButtonZShift + VrElementCreator.TextZShift);
 
             var sortHeader = CreateSortHeader();
             sortHeader.transform.SetParent(container.transform, worldPositionStays: false);
@@ -154,7 +122,7 @@
 
             var sortLabel = _elementCreator.CreateNormalText("Sort by:");
             sortLabel.transform.SetParent(container.transform, worldPositionStays: false);
-            sortLabel.transform.localPosition = new Vector3(-3f, 0, VrElementCreator.DefaultTextZShift);
+            sortLabel.transform.localPosition = new Vector3(-3f, 0, VrElementCreator.TextZShift);
 
             var gameButton = CreateSortButton("Game", () => SetSortOrderAndApply(r => r.GameType));
             gameButton.transform.SetParent(container.transform, worldPositionStays: false);
@@ -207,23 +175,23 @@
             var joinButton = _elementCreator.CreateButton(JoinRoomAction(room.Name));
             joinButton.transform.SetParent(container.transform, worldPositionStays: false);
             joinButton.transform.localScale = new Vector3(0.32f, 0.45f, 0.45f);
-            joinButton.transform.localPosition = new Vector3(-3f, 0, VrElementCreator.DefaultButtonZShift);
+            joinButton.transform.localPosition = new Vector3(-3f, 0, VrElementCreator.ButtonZShift);
 
-            var joinText = _elementCreator.CreateText(room.Name, Color.white, VrElementCreator.DefaultLabelFontSize);
+            var joinText = _elementCreator.CreateText(room.Name, Color.white, VrElementCreator.NormalFontSize);
             joinText.transform.SetParent(container.transform, worldPositionStays: false);
-            joinText.transform.localPosition = new Vector3(-3f, 0, VrElementCreator.DefaultTextZShift);
+            joinText.transform.localPosition = new Vector3(-3f, 0, VrElementCreator.TextZShift);
 
             var gameLabel = _elementCreator.CreateNormalText(room.GameType.ToString());
             gameLabel.transform.SetParent(container.transform, worldPositionStays: false);
-            gameLabel.transform.localPosition = new Vector3(-0.4f, 0, VrElementCreator.DefaultTextZShift);
+            gameLabel.transform.localPosition = new Vector3(-0.4f, 0, VrElementCreator.TextZShift);
 
             var floorLabel = _elementCreator.CreateNormalText(room.Floor.ToString());
             floorLabel.transform.SetParent(container.transform, worldPositionStays: false);
-            floorLabel.transform.localPosition = new Vector3(1.75f, 0, VrElementCreator.DefaultTextZShift);
+            floorLabel.transform.localPosition = new Vector3(1.75f, 0, VrElementCreator.TextZShift);
 
             var playersLabel = _elementCreator.CreateNormalText($"{room.CurrentPlayers}/{room.MaxPlayers}");
             playersLabel.transform.SetParent(container.transform, worldPositionStays: false);
-            playersLabel.transform.localPosition = new Vector3(3.25f, 0, VrElementCreator.DefaultTextZShift);
+            playersLabel.transform.localPosition = new Vector3(3.25f, 0, VrElementCreator.TextZShift);
 
             return container;
         }
@@ -235,13 +203,13 @@
             var button = _elementCreator.CreateButton(action);
             button.transform.SetParent(container.transform, worldPositionStays: false);
             button.transform.localScale = new Vector3(0.55f, 0.9f, 0.9f);
-            button.transform.localPosition = new Vector3(0, 0, VrElementCreator.DefaultButtonZShift);
+            button.transform.localPosition = new Vector3(0, 0, VrElementCreator.ButtonZShift);
 
-            var buttonText = _elementCreator.CreateText(text, Color.white, _elementCreator.DefaultButtonFontSize());
+            var buttonText = _elementCreator.CreateText(text, Color.white, VrElementCreator.ButtonFontSize);
             buttonText.transform.SetParent(container.transform, worldPositionStays: false);
             buttonText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
             buttonText.transform.localPosition =
-                new Vector3(0, 0, VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
+                new Vector3(0, 0, VrElementCreator.ButtonZShift + VrElementCreator.TextZShift);
 
             return container;
         }

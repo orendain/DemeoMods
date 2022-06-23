@@ -8,11 +8,15 @@
     // https://forum.unity.com/threads/whats-the-best-practice-for-moving-recttransforms-in-script.264495
     internal class VrElementCreator : IElementCreator
     {
-        public const int DefaultLabelFontSize = 5;
-        public const int DefaultMenuHeaderFontSize = 10;
-        public const float DefaultButtonZShift = -0.1f;
-        public const float DefaultTextZShift = -0.2f;
+        public const int NormalFontSize = 5;
+        public const int ButtonFontSize = 7;
+        public const int HeaderFontSize = 10;
+        public const float TextZShift = -0.2f;
+        public const float ButtonZShift = -0.1f;
         private const int CollisionLayer = 5;
+
+        public static readonly Color ColorBeige = new Color(0.878f, 0.752f, 0.384f, 1);
+        public static readonly Color ColorBrown = new Color(0.0392f, 0.0157f, 0, 1);
 
         private static VrElementCreator _instance;
 
@@ -47,21 +51,19 @@
             return VrResourceTable.IsReady();
         }
 
-        public int DefaultButtonFontSize() => 7;
-
         public GameObject CreateNormalText(string text)
         {
-            return CreateText(text, VrResourceTable.ColorBrown, fontSize: DefaultLabelFontSize);
+            return CreateText(text, ColorBrown, fontSize: NormalFontSize);
         }
 
         public GameObject CreateButtonText(string text)
         {
-            return CreateText(text, VrResourceTable.ColorBeige, fontSize: DefaultButtonFontSize());
+            return CreateText(text, ColorBeige, fontSize: ButtonFontSize);
         }
 
         public GameObject CreateMenuHeaderText(string text)
         {
-            return CreateText(text, VrResourceTable.ColorBeige, fontSize: DefaultMenuHeaderFontSize);
+            return CreateText(text, ColorBeige, fontSize: HeaderFontSize);
         }
 
         /// <summary>
@@ -92,7 +94,7 @@
             textComponent.fontSizeMin = 1;
             textComponent.fontStyle = FontStyles.Normal;
             textComponent.text = text;
-            textComponent.transform.localPosition = new Vector3(0, 0, DefaultTextZShift);
+            textComponent.transform.localPosition = new Vector3(0, 0, TextZShift);
 
             return container;
         }
