@@ -9,7 +9,7 @@
     using TMPro;
     using UnityEngine;
 
-    internal class RulesetSelectionPanelVr
+    internal class RulesetListPanelVr
     {
         private const int MaxRulesetsPerPage = 7;
 
@@ -21,15 +21,15 @@
 
         internal GameObject Panel { get; }
 
-        internal static RulesetSelectionPanelVr NewInstance(Rulebook rulebook, IElementCreator elementCreator)
+        internal static RulesetListPanelVr NewInstance(Rulebook rulebook, IElementCreator elementCreator)
         {
-            return new RulesetSelectionPanelVr(
+            return new RulesetListPanelVr(
                 rulebook,
                 elementCreator,
                 PageStack.NewInstance());
         }
 
-        private RulesetSelectionPanelVr(
+        private RulesetListPanelVr(
             Rulebook rulebook,
             IElementCreator elementCreator,
             PageStack pageStack)
@@ -37,7 +37,7 @@
             _rulebook = rulebook;
             _elementCreator = elementCreator;
             _pageStack = pageStack;
-            Panel = new GameObject("RulesetSelectionPanel");
+            Panel = new GameObject("RulesetListPanel");
 
             Render();
         }

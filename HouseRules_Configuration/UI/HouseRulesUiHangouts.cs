@@ -10,7 +10,7 @@
     {
         private VrResourceTable _resourceTable;
         private IElementCreator _elementCreator;
-        private RulesetSelectionPanelVr _rulesetPanel;
+        private RulesetListPanelVr _rulesetPanel;
         private Transform _anchor;
 
         private void Start()
@@ -31,7 +31,7 @@
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = HangoutsElementCreator.Instance();
-            _rulesetPanel = RulesetSelectionPanelVr.NewInstance(HR.Rulebook, _elementCreator);
+            _rulesetPanel = RulesetListPanelVr.NewInstance(HR.Rulebook, _elementCreator);
             _anchor = Resources.FindObjectsOfTypeAll<GameObject>().First(x => x.name == "GroupLaunchTable").transform;
 
             Initialize();
