@@ -10,7 +10,7 @@
     {
         public const int NormalFontSize = 25;
         public const int ButtonFontSize = 35;
-        public const int HeaderFontSize = 50;
+        public const int HeaderFontSize = 36;
         private const int CollisionLayer = 5;
 
         public static readonly Color ColorBeige = new Color(0.878f, 0.752f, 0.384f, 1);
@@ -61,7 +61,7 @@
 
         public GameObject CreateMenuHeaderText(string text)
         {
-            return CreateText(text, ColorBeige, fontSize: HeaderFontSize);
+            return CreateText(text, ColorBrown, fontSize: HeaderFontSize);
         }
 
         public GameObject CreateText(string text, Color color, int fontSize)

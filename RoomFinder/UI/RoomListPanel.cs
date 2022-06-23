@@ -29,16 +29,15 @@
             return new RoomListPanel(
                 elementCreator,
                 onRefresh,
-                PageStack.NewInstance(),
-                new GameObject("RoomListPanel"));
+                PageStack.NewInstance());
         }
 
-        private RoomListPanel(VrElementCreator elementCreator, Action onRefresh, PageStack pageStack, GameObject panel)
+        private RoomListPanel(VrElementCreator elementCreator, Action onRefresh, PageStack pageStack)
         {
             _elementCreator = elementCreator;
             _onRefresh = onRefresh;
             _pageStack = pageStack;
-            Panel = panel;
+            Panel = new GameObject("RoomListPanel");
 
             _sortOrder = r => r.CurrentPlayers;
             _isDescendingOrder = true;
