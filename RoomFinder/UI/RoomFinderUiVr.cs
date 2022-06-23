@@ -15,7 +15,7 @@
         private bool _isInitialized;
         private VrResourceTable _resourceTable;
         private VrElementCreator _elementCreator;
-        private RoomListPanel _roomListPanel;
+        private RoomListPanelVr _roomListPanelVr;
         private Transform _anchor;
 
         private void Start()
@@ -38,7 +38,7 @@
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = VrElementCreator.Instance();
-            _roomListPanel = RoomListPanel.NewInstance(_elementCreator, RefreshRoomList);
+            _roomListPanelVr = RoomListPanelVr.NewInstance(_elementCreator, RefreshRoomList);
             _anchor = Resources
                 .FindObjectsOfTypeAll<charactersoundlistener>()
                 .First(x => x.name == "MenuBox_BindPose").transform;
@@ -88,7 +88,7 @@
             headerText.transform.SetParent(transform, worldPositionStays: false);
             headerText.transform.localPosition = new Vector3(0, 2.375f, VrElementCreator.TextZShift);
 
-            var selectionPanel = _roomListPanel.Panel;
+            var selectionPanel = _roomListPanelVr.Panel;
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
 
             var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
@@ -118,7 +118,7 @@
             RoomFinderMod.Logger.Msg($"Captured {cachedRooms.Count} rooms.");
 
             var rooms = cachedRooms.Values.ToList().Select(Room.Parse).ToList();
-            _roomListPanel.UpdateRooms(rooms);
+            _roomListPanelVr.UpdateRooms(rooms);
         }
     }
 }
