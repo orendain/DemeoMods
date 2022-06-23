@@ -33,11 +33,12 @@ using RoomFinder;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion(BuildVersion.MajorMinorVersion)]
+[assembly: AssemblyFileVersion(BuildVersion.Version)]
 
 // Melon Loader.
-[assembly: MelonInfo(typeof(RoomFinderMod), "RoomFinder", "1.4.0", "Orendain", "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(RoomFinderMod), "RoomFinder", BuildVersion.Version, "Orendain", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
+[assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("566788")]
 [assembly: VerifyLoaderVersion("0.5.3", true)]

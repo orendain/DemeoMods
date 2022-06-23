@@ -8,7 +8,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class PieceConfigAdjustedRule : Rule, IConfigWritable<List<PieceConfigAdjustedRule.PieceProperty>>, IMultiplayerSafe
+    public sealed class PieceConfigAdjustedRule : Rule, IConfigWritable<List<PieceConfigAdjustedRule.PieceProperty>>,
+        IMultiplayerSafe
     {
         public override string Description => "Piece configuration is adjusted";
 
@@ -49,10 +50,12 @@
         /// <summary>
         /// Replaces existing PieceConfig properties with those specified.
         /// </summary>
-        /// <returns>Dictionary of GameConfigYypes and lists of previous PieceConfig properties that are now replaced.</returns>
+        /// <returns>Previous properties that are now replaced.</returns>
         private static List<PieceProperty> ReplaceExistingProperties(List<PieceProperty> pieceConfigChanges)
         {
-            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict").Value;
+            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
+                .Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict")
+                .Value;
             var previousProperties = new List<PieceProperty>();
 
             foreach (var item in pieceConfigChanges)
@@ -78,7 +81,7 @@
             var valueType = Traverse.Create(pieceConfigDto).Field(property).GetValueType();
             if (valueType == typeof(int))
             {
-                AccessTools.StructFieldRefAccess<PieceConfigDTO, int>(ref pieceConfigDto, property) = (int)value;
+                AccessTools.StructFieldRefAccess<PieceConfigDTO, int>(ref pieceConfigDto, property) = (int) value;
                 return;
             }
 

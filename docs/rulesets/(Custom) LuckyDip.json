@@ -17,119 +17,145 @@
         "HeroBard": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "CourageShanty",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "WebBomb",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "SongOfRecovery",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroGuardian": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "ReplenishArmor",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Bone",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroHunter": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Arrow",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "PoisonedTip",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroRogue": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "PanicPowder",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Zap",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Torch",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "DropChest",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
+          }
+        ],
+        "HeroWarlock": [
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "MissileSwarm",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Torch",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "DropChest",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "DropChest",
+            "ReplenishFrequency": 0
           }
         ]
       }
@@ -175,12 +201,22 @@
           "Value": 15.0
         },
         {
+          "Piece": "HeroWarlock",
+          "Property": "StartHealth",
+          "Value": 15.0
+        },
+        {
           "Piece": "HeroBard",
           "Property": "MoveRange",
           "Value": 5.0
         },
         {
           "Piece": "HeroHunter",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroWarlock",
           "Property": "MoveRange",
           "Value": 5.0
         },
@@ -289,6 +325,13 @@
           "Frozen",
           "Tangled",
           "Petrified"
+        ],
+        "HeroWarlock": [
+          "Diseased",
+          "Stunned",
+          "Frozen",
+          "Tangled",
+          "Petrified"
         ]
       }
     },
@@ -318,7 +361,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Stealthed",
@@ -328,7 +377,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "HealingSong",
@@ -338,7 +393,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 3
+          "healPerTurn": 3,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Courageous",
@@ -348,7 +409,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Heroic",
@@ -358,7 +425,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Fearless",
@@ -368,7 +441,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Recovery",
@@ -378,7 +457,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 3
+          "healPerTurn": 3,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         }
       ]
     }

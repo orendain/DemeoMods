@@ -2,7 +2,7 @@
 {
     using Boardgame;
 
-    internal class ModState
+    internal class SharedState
     {
         internal GameContext GameContext { get; set; }
 
@@ -10,12 +10,14 @@
 
         internal bool HasRoomListUpdated { get; set; }
 
-        internal static ModState NewInstance()
+        internal bool HasLoadingScreenClosed { get; set; }
+
+        internal static SharedState NewInstance()
         {
-            return new ModState();
+            return new SharedState();
         }
 
-        private ModState()
+        private SharedState()
         {
         }
     }

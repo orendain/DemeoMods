@@ -3,7 +3,7 @@
     using Boardgame;
     using Photon.Realtime;
 
-    internal class RoomListEntry
+    internal class Room
     {
         internal string Name { get; }
 
@@ -15,19 +15,24 @@
 
         internal int MaxPlayers { get; }
 
-        internal static RoomListEntry Parse(RoomInfo room)
+        internal static Room Parse(RoomInfo room)
         {
             var gameType = ExtractGameType(room);
             var floorIndex = ExtractFloorNumber(room);
             return NewInstance(room.Name, gameType, floorIndex, room.PlayerCount, room.MaxPlayers);
         }
 
-        private static RoomListEntry NewInstance(string name, LevelSequence.GameType gameType, int floor, int currentPlayers, int maxPlayers)
+        private static Room NewInstance(
+            string name,
+            LevelSequence.GameType gameType,
+            int floor,
+            int currentPlayers,
+            int maxPlayers)
         {
-            return new RoomListEntry(name, gameType, floor, currentPlayers, maxPlayers);
+            return new Room(name, gameType, floor, currentPlayers, maxPlayers);
         }
 
-        private RoomListEntry(string name, LevelSequence.GameType gameType, int floor, int currentPlayers, int maxPlayers)
+        private Room(string name, LevelSequence.GameType gameType, int floor, int currentPlayers, int maxPlayers)
         {
             Name = name;
             GameType = gameType;

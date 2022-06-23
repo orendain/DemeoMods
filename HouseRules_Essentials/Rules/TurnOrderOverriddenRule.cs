@@ -26,6 +26,7 @@
             public int Guardian;
             public int Hunter;
             public int Sorcerer;
+            public int Warlock;
             public int Downed;
             public int Javelin;
         }
@@ -106,6 +107,9 @@
                 case BoardPieceId.HeroRogue:
                     score += scores.Assassin;
                     break;
+                case BoardPieceId.HeroWarlock:
+                    score += scores.Warlock;
+                    break;
             }
 
             if (piece.IsDowned())
@@ -113,7 +117,7 @@
                 score += scores.Downed;
             }
 
-            if (piece.inventory.HasAbility(AbilityKey.SigataurianJavelin))
+            if (piece.inventory.HasAbility(AbilityKey.SigataurianJavelin) && MotherbrainGlobalVars.CurrentConfig == GameConfigType.Forest)
             {
                 score += scores.Javelin;
             }

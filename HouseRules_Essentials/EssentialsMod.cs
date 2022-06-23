@@ -22,8 +22,9 @@
             HR.Rulebook.Register(typeof(AbilityHealOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
+            HR.Rulebook.Register(typeof(AbilityStealthDamageOverriddenRule));
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
-            HR.Rulebook.Register(typeof(CourageShantyAddsHPRule));
+            HR.Rulebook.Register(typeof(CourageShantyAddsHpRule));
             HR.Rulebook.Register(typeof(CardAdditionOverriddenRule));
             HR.Rulebook.Register(typeof(CardClassRestrictionOverriddenRule));
             HR.Rulebook.Register(typeof(CardEnergyFromAttackMultipliedRule));
@@ -50,7 +51,6 @@
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
             HR.Rulebook.Register(typeof(RegainAbilityIfMaxxedOutOverriddenRule));
-            HR.Rulebook.Register(typeof(RegroupAlliesRule));
             HR.Rulebook.Register(typeof(RoundCountLimitedRule));
             HR.Rulebook.Register(typeof(SpawnCategoryOverriddenRule));
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
@@ -69,6 +69,7 @@
             HR.Rulebook.Register(ItsATrapRuleset.Create());
             HR.Rulebook.Register(HuntersParadiseRuleset.Create());
             HR.Rulebook.Register(DemeoReloaded.Create());
+            HR.Rulebook.Register(FlippingOut.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
             HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());
@@ -76,7 +77,7 @@
             HR.Rulebook.Register(AoePotionsAndBuffsRuleset.Create());
             HR.Rulebook.Register(BetterSorcererRuleset.Create());
             HR.Rulebook.Register(NoSurprisesRuleset.Create());
-            HR.Rulebook.Register(QuickandDeadRuleset.Create());
+            HR.Rulebook.Register(QuickAndDeadRuleset.Create());
         }
     }
 }

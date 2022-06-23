@@ -17,131 +17,157 @@
         "HeroGuardian": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "HurricaneAnthem",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Electricity",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroHunter": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "HurricaneAnthem",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Electricity",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroRogue": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "HurricaneAnthem",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Electricity",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroSorcerer": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "HurricaneAnthem",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Electricity",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           }
         ],
         "HeroBard": [
           {
             "Card": "HealingPotion",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "HurricaneAnthem",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Electricity",
-            "IsReplenishable": 1
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Fireball",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
           },
           {
             "Card": "Sneak",
-            "IsReplenishable": 0
+            "ReplenishFrequency": 0
+          }
+        ],
+        "HeroWarlock": [
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Electricity",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Fireball",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Fireball",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Sneak",
+            "ReplenishFrequency": 0
           }
         ]
       }
@@ -238,6 +264,24 @@
           "HealingPotion",
           "WoodenBone",
           "Torch"
+        ],
+        "HeroWarlock": [
+          "Bone",
+          "Fireball",
+          "Teleportation",
+          "RevealPath",
+          "Freeze",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "CallCompanion",
+          "WhirlwindAttack",
+          "LetItRain",
+          "WaterDive",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "WoodenBone",
+          "Torch"
         ]
       }
     },
@@ -277,7 +321,8 @@
         "HeroGuardian",
         "HeroSorcerer",
         "HeroRogue",
-        "HeroBard"
+        "HeroBard",
+        "HeroWarlock"
       ]
     },
     {
@@ -411,6 +456,13 @@
           "AbsorbMySoul"
         ],
         "HeroBard": [
+          "OneMoreThing",
+          "EarthShatter",
+          "Fireball",
+          "HurricaneAnthem",
+          "AbsorbMySoul"
+        ],
+        "HeroWarlock": [
           "OneMoreThing",
           "EarthShatter",
           "Fireball",

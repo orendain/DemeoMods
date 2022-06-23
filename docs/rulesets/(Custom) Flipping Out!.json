@@ -1,0 +1,503 @@
+{
+  "Name": "(Custom) Flipping Out!",
+  "Description": "Coin Flips ONLY! BIG ENEMIES! Heads... or tails?",
+  "Rules": [
+    {
+      "Rule": "EnemyRespawnDisabled",
+      "Config": true
+    },
+    {
+      "Rule": "EnemyHealthScaled",
+      "Config": 3.0
+    },
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "BigGoldPileChance": 1,
+        "FloorOneHealingFountains": 1,
+        "FloorOnePotionStand": 0,
+        "FloorOneMerchant": 0,
+        "FloorOneLootChests": 9,
+        "FloorOneGoldMaxAmount": 0,
+        "FloorTwoHealingFountains": 1,
+        "FloorTwoPotionStand": 0,
+        "FloorTwoMerchant": 0,
+        "FloorTwoLootChests": 9,
+        "FloorTwoGoldMaxAmount": 0
+      }
+    },
+    {
+      "Rule": "CardAdditionOverridden",
+      "Config": {
+        "HeroGuardian": [
+          "CoinFlip"
+        ],
+        "HeroBard": [
+          "CoinFlip"
+        ],
+        "HeroHunter": [
+          "CoinFlip"
+        ],
+        "HeroRogue": [
+          "CoinFlip"
+        ],
+        "HeroSorcerer": [
+          "Bone"
+        ],
+        "HeroWarlock": [
+          "CoinFlip"
+        ]
+      }
+    },
+    {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartArmor",
+          "Value": 0.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
+        {
+          "Piece": "HeroWarlock",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
+        {
+          "Piece": "Cavetroll",
+          "Property": "MoveRange",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Sigataur",
+          "Property": "MoveRange",
+          "Value": 2.0
+        },
+        {
+          "Piece": "GiantSlime",
+          "Property": "MoveRange",
+          "Value": 2.0
+        },
+        {
+          "Piece": "ElvenMarauder",
+          "Property": "MoveRange",
+          "Value": 2.0
+        },
+        {
+          "Piece": "GiantSpider",
+          "Property": "MoveRange",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Brookmare",
+          "Property": "MoveRange",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Gorgon",
+          "Property": "MoveRange",
+          "Value": 2.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "MoveRange",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "MoveRange",
+          "Value": 3.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "MoveRange",
+          "Value": 3.0
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "MoveRange",
+          "Value": 3.0
+        },
+        {
+          "Piece": "Cavetroll",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "Sigataur",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "GiantSlime",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "ElvenMarauder",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "GiantSpider",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "Brookmare",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "Gorgon",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "AttackDamage",
+          "Value": 20.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "StartHealth",
+          "Value": 130.0
+        }
+      ]
+    },
+    {
+      "Rule": "PieceAbilityListOverridden",
+      "Config": {
+        "Cavetroll": [
+          "EnemyMelee"
+        ],
+        "Mimic": [
+          "EnemyMelee"
+        ],
+        "Sigataur": [
+          "EnemyMelee"
+        ],
+        "GiantSlime": [
+          "EnemyMelee"
+        ],
+        "ElvenMarauder": [
+          "EnemyMelee"
+        ],
+        "GiantSpider": [
+          "EnemyMelee"
+        ],
+        "Brookmare": [
+          "EnemyMelee"
+        ],
+        "Gorgon": [
+          "EnemyMelee"
+        ],
+        "SilentSentinel": [
+          "EnemyMelee"
+        ],
+        "EarthElemental": [
+          "EnemyMelee"
+        ],
+        "Wyvern": [
+          "EnemyMelee"
+        ]
+      }
+    },
+    {
+      "Rule": "StartCardsModified",
+      "Config": {
+        "HeroWarlock": [
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Implode",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "MissileSwarm",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroBard": [
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "SongOfRecovery",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CourageShanty",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroGuardian": [
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "WhirlwindAttack",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "PiercingThrow",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "ReplenishArmor",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroHunter": [
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HailOfArrows",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "PoisonedTip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Arrow",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Arrow",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroRogue": [
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Rejuvenation",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Sneak",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroSorcerer": [
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Fireball",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Freeze",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Zap",
+            "ReplenishFrequency": 1
+          }
+        ]
+      }
+    },
+    {
+      "Rule": "MonsterDeckOverridden",
+      "Config": {
+        "EntranceDeckFloor1": {
+          "Cavetroll": 0,
+          "Sigataur": 0,
+          "GiantSpider": 0,
+          "GiantSlime": 0,
+          "ElvenMarauder": 0,
+          "Brookmare": 0,
+          "Gorgon": 0,
+          "SilentSentinel": 0
+        },
+        "ExitDeckFloor1": {
+          "Cavetroll": 0,
+          "Sigataur": 0,
+          "GiantSpider": 0,
+          "GiantSlime": 0,
+          "ElvenMarauder": 0,
+          "Brookmare": 0,
+          "Gorgon": 0,
+          "SilentSentinel": 0
+        },
+        "EntranceDeckFloor2": {
+          "Cavetroll": 0,
+          "Sigataur": 0,
+          "GiantSpider": 0,
+          "GiantSlime": 0,
+          "ElvenMarauder": 0,
+          "Brookmare": 0,
+          "Gorgon": 0,
+          "SilentSentinel": 0
+        },
+        "ExitDeckFloor2": {
+          "Cavetroll": 0,
+          "Sigataur": 0,
+          "GiantSpider": 0,
+          "GiantSlime": 0,
+          "ElvenMarauder": 0,
+          "Brookmare": 0,
+          "Gorgon": 0,
+          "SilentSentinel": 0
+        },
+        "BossDeck": {
+          "Cavetroll": 0,
+          "Sigataur": 0,
+          "GiantSpider": 0,
+          "GiantSlime": 0,
+          "ElvenMarauder": 0,
+          "Brookmare": 0,
+          "Gorgon": 0,
+          "SilentSentinel": 0
+        },
+        "KeyHolderFloor1": "Mimic",
+        "KeyHolderFloor2": "EarthElemental",
+        "Boss": "Wyvern"
+      }
+    }
+  ]
+}

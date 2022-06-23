@@ -8,28 +8,42 @@
 
     internal class RoomFinderMod : MelonMod
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
-        internal static readonly ModState ModState = ModState.NewInstance();
-
+        private const string DemeoPCEditionString = "Demeo PC Edition";
         private const int LobbySceneIndex = 1;
+
+        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
+        internal static readonly SharedState SharedState = SharedState.NewInstance();
 
         private GameObject _roomFinderUi;
 
         public override void OnApplicationStart()
         {
             var harmony = new Harmony("com.orendain.demeomods.roomfinder");
-            ModPatcher.Patch(harmony);
+            Patcher.Patch(harmony);
             CommonModule.Initialize();
         }
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
+            if (MelonUtils.CurrentGameAttribute.Name == DemeoPCEditionString)
+            {
+                if (buildIndex != LobbySceneIndex)
+                {
+                    return;
+                }
+
+                Logger.Msg("Recognized lobby in PC. Loading UI.");
+                _ = new GameObject("RoomFinderUiNonVr", typeof(RoomFinderUiNonVr));
+                return;
+            }
+
             if (buildIndex != LobbySceneIndex)
             {
                 return;
             }
 
-            _roomFinderUi = new GameObject("RoomFinderUI", typeof(RoomFinderUI));
+            Logger.Msg("Recognized lobby in VR. Loading UI.");
+            _roomFinderUi = new GameObject("RoomFinderUiVr", typeof(RoomFinderUiVr));
         }
     }
 }

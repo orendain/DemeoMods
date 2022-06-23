@@ -7,7 +7,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class CardClassRestrictionOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, BoardPieceId>>, IMultiplayerSafe
+    public sealed class CardClassRestrictionOverriddenRule : Rule,
+        IConfigWritable<Dictionary<AbilityKey, BoardPieceId>>, IMultiplayerSafe
     {
         public override string Description => "Card class restrictions are overridden";
 
@@ -36,9 +37,11 @@
             UpdateExistingCardConfigs(_originals);
         }
 
-        private static Dictionary<AbilityKey, BoardPieceId> UpdateExistingCardConfigs(Dictionary<AbilityKey, BoardPieceId> cardProperties)
+        private static Dictionary<AbilityKey, BoardPieceId> UpdateExistingCardConfigs(
+            Dictionary<AbilityKey, BoardPieceId> cardProperties)
         {
-            var gameConfigCardConfigs = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, List<CardConfigDTO>>>("CardConfigDTOlist").Value;
+            var gameConfigCardConfigs = Traverse.Create(typeof(GameDataAPI))
+                .Field<Dictionary<GameConfigType, List<CardConfigDTO>>>("CardConfigDTOlist").Value;
             var cardConfigs = gameConfigCardConfigs[MotherbrainGlobalVars.CurrentConfig];
             var previousConfigs = new Dictionary<AbilityKey, BoardPieceId>();
 

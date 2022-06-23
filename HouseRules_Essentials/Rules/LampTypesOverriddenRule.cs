@@ -7,7 +7,8 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class LampTypesOverriddenRule : Rule, IConfigWritable<Dictionary<int, List<BoardPieceId>>>, IPatchable, IMultiplayerSafe
+    public sealed class LampTypesOverriddenRule : Rule, IConfigWritable<Dictionary<int, List<BoardPieceId>>>,
+        IPatchable, IMultiplayerSafe
     {
         public override string Description => "Lamp types are overridden.";
 

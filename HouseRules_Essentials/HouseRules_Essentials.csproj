@@ -42,6 +42,7 @@
     <Compile Include="Rulesets\DifficultyEasyRuleset.cs" />
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
+    <Compile Include="Rulesets\FlippingOut.cs" />
     <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
     <Compile Include="Rulesets\DemeoReloaded.cs" />
     <Compile Include="Rulesets\ItsATrapRuleset.cs" />
@@ -51,11 +52,11 @@
     <Compile Include="Rulesets\TheSwirlRuleset.cs" />
     <Compile Include="Rules\AbilityBackstabAdjustedRule.cs" />
     <Compile Include="Rules\AbilityDamageOverriddenRule.cs" />
+    <Compile Include="Rules\AbilityStealthDamageOverriddenRule.cs" />
     <Compile Include="Rules\AbilityHealOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />
     <Compile Include="Rules\CourageShantyAddsHPRule.cs" />
-    <Compile Include="Rules\RegroupAlliesRule.cs" />
     <Compile Include="Rules\TileEffectDurationOverriddenRule.cs" />
     <Compile Include="Rules\LampTypesOverriddenRule.cs" />
     <Compile Include="Rules\LevelSequenceOverriddenRule.cs" />

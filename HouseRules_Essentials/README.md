@@ -22,7 +22,7 @@ HouseRules API.
 - __The Swirl__ : Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.
 - __Beat The Clock__ : Ultra health. Ultra card recycling. Only 15 rounds to escape...
 - __Hunter's Paradise__ : Pets, pets, pets! And hunter's mark.
-- __Demeo Reloaded__ : The Gray Alien's 'Demeo Reloaded' ruleset. New enemies, no respawns and too many other changes to list in a single line. 
+- __Demeo Reloaded__ : The Gray Alien's ruleset. MANY class changes. NEW enemies. BETTER loot. No respawns. Yet somehow challenging...
 - __Difficulty Easy__ : Decreased game difficulty for a more casual playstyle.
 - __Difficulty Hard__ : Increased game difficulty for a greater challenge.
 - __Difficulty Legendary__ : Increased game difficulty for those who want to be a legend.
@@ -30,7 +30,7 @@ HouseRules API.
 - __Better Sorcerer__ : 0 Action Cost for Sorcerer's Zap - No other changes. #STS
 - __No Surprises__ :  No surprises in the dark or coming through doors.
 - __Quick and the Dead__ : A mode with a small hand but fast turnaround time on cards means you need to not hesitate.
-
+- __Flipping Out__ : Coin Flips ONLY! BIG ENEMIES! Heads... or tails?
 ### JSON Rulesets
 
 Rulesets may also be configured as JSON files and stored within the game directory `<GAME_DIR>/UserData/HouseRules/<rulesetname>.json`
@@ -166,6 +166,27 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+#### __AbilityStealthDamageOverridden__: Ability stealthBonusDamage is overridden
+  - Can function for abilities which don't do damage. (You can make a FlashBomb hurt).
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify a positive integer for stealthBonusDamage E.g.: `"PlayerMelee": 2` adds 2 damage to a normal attack if stealthed.
+
+  ###### _Example JSON config for AbilityStealthDamageOverridden_
+
+  ```json
+  {
+    "Rule": "AbilityStealthDamageOverridden",
+    "Config":
+    {
+      "Blink": 4,
+      "DiseasedBite": 2,
+      "PoisonBomb": 1,
+      "CursedDagger": 3,
+      "PlayerMelee": 2
+    }
+  },
+  ```
 #### __BackstabConfigOverridden__: A list of Pieces may use 🔪Backstab🔪 instead of just the Assassin
   - Replaces the hardcoded default of HeroRogue with a configurable list.
   - Now everyone can benefit from Backstab bonus.
@@ -703,23 +724,6 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       }
     },
   ```
-
-#### __RegroupAllies__: Enables the Regroup card to teleport both players and allies.
-  - Allows the Regroup ability to teleport Verochka, Elementals and other allies.
-  - Will not teleport props such as Behemoth, Ballista etc
-  - Will not teleport Elementals when they have the SelfDestruct status.
-  - To configure:
-    - Specify and integer representing the maximum number of allies to teleport.
-
-  ###### _Example JSON config for RegroupAllies_
-
-  ```json
-    {
-      "Rule": "RegroupAllies",
-      "Config": 8
-    },
-  ```
-
 
 #### __RoundCountLimited__:  Sets a limit for the maximum number of rounds a game may take.
   - For ⏳ beat-the-clock ⏳ type gameplay.

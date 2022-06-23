@@ -44,6 +44,9 @@
     <Reference Include="MelonLoader">
       <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Photon3Unity3D.dll</HintPath>
+    </Reference>
     <Reference Include="PhotonRealtime">
       <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
     </Reference>

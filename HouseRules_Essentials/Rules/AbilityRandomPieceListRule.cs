@@ -38,7 +38,8 @@
             ReplaceAbilities(_originals);
         }
 
-        private static Dictionary<AbilityKey, List<BoardPieceId>> ReplaceAbilities(Dictionary<AbilityKey, List<BoardPieceId>> replacements)
+        private static Dictionary<AbilityKey, List<BoardPieceId>> ReplaceAbilities(
+            Dictionary<AbilityKey, List<BoardPieceId>> replacements)
         {
             var originals = new Dictionary<AbilityKey, List<BoardPieceId>>();
 
@@ -46,7 +47,8 @@
             {
                 if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
                 {
-                    throw new InvalidOperationException($"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
+                    throw new InvalidOperationException(
+                        $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
                 }
 
                 originals[replacement.Key] = ability.randomPieceList.ToList();

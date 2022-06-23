@@ -24,7 +24,8 @@
         {
             if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
             {
-                throw new InvalidOperationException($"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");
+                throw new InvalidOperationException(
+                    $"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");
             }
 
             ability.pieceToSpawn = BoardPieceId.GoldPile;
@@ -36,7 +37,8 @@
         {
             if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
             {
-                throw new InvalidOperationException($"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");
+                throw new InvalidOperationException(
+                    $"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");
             }
 
             ability.pieceToSpawn = BoardPieceId.Rat;

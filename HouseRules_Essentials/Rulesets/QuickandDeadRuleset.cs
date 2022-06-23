@@ -3,7 +3,7 @@ namespace HouseRules.Essentials.Rulesets
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
 
-    internal static class QuickandDeadRuleset
+    internal static class QuickAndDeadRuleset
     {
         internal static Ruleset Create()
         {
