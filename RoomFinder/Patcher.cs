@@ -1,15 +1,18 @@
 ﻿namespace RoomFinder
 {
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Reflection;
     using Boardgame;
     using Boardgame.Ui.LobbyMenu;
     using Common.UI;
     using HarmonyLib;
-    using RGCommon;
+    using Photon.Realtime;
 
     internal static class Patcher
     {
+        private const string ModdedRoomPropertyKey = "modded";
+
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
@@ -38,8 +41,24 @@
             RoomFinderMod.SharedState.GameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
         }
 
-        private static void MatchMakingState_OnRoomListUpdated_Postfix()
+        private static void MatchMakingState_OnRoomListUpdated_Postfix(List<RoomInfo> rooms)
         {
+            var cachedRooms = Traverse
+                .Create(RoomFinderMod.SharedState.GameContext.gameStateMachine)
+                .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
+
+            foreach (var room in rooms.Where(IsRoomModded))
+            {
+                if (cachedRooms.ContainsKey(room.Name))
+                {
+                    cachedRooms[room.Name] = room;
+                }
+                else
+                {
+                    cachedRooms.Add(room.Name, room);
+                }
+            }
+
             RoomFinderMod.SharedState.HasRoomListUpdated = true;
         }
 
@@ -68,6 +87,16 @@
 
             __instance.GetLobbyMenuController.view.ShowMainContent(LobbyMenuController.MenuContent.Play);
             return false;
+        }
+
+        private static bool IsRoomModded(RoomInfo room)
+        {
+            if (!room.CustomProperties.TryGetValue(ModdedRoomPropertyKey, out _))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
