@@ -81,18 +81,18 @@
         {
             var container = new GameObject("Text");
 
-            var buttonText = container.AddComponent<TextMeshPro>();
-            buttonText.font = _resourceTable.Font;
-            buttonText.fontStyle = FontStyles.Normal;
-            buttonText.text = text;
-            buttonText.color = color;
-            buttonText.colorGradientPreset = _resourceTable.FontColorGradient;
-            buttonText.alignment = TextAlignmentOptions.Center;
-            buttonText.fontSize = fontSize;
-            buttonText.fontSizeMax = fontSize;
-            buttonText.fontSizeMin = 1;
-            buttonText.enableAutoSizing = true;
-            buttonText.transform.localPosition = new Vector3(0, 0, DefaultTextZShift);
+            var textComponent = container.AddComponent<TextMeshPro>();
+            textComponent.alignment = TextAlignmentOptions.Center;
+            textComponent.color = color;
+            textComponent.colorGradientPreset = _resourceTable.FontColorGradient;
+            textComponent.enableAutoSizing = true;
+            textComponent.font = _resourceTable.Font;
+            textComponent.fontSize = fontSize;
+            textComponent.fontSizeMax = fontSize;
+            textComponent.fontSizeMin = 1;
+            textComponent.fontStyle = FontStyles.Normal;
+            textComponent.text = text;
+            textComponent.transform.localPosition = new Vector3(0, 0, DefaultTextZShift);
 
             return container;
         }
@@ -102,9 +102,6 @@
             return WrapObject(CreateButtonRaw(callback));
         }
 
-        /// <summary>
-        /// Creates a button to function in Demeo VR UI.
-        /// </summary>
         internal GameObject CreateButtonRaw(Action callback)
         {
             var button = new GameObject("Button");
@@ -114,9 +111,9 @@
             button.AddComponent<MeshFilter>().mesh = _resourceTable.ButtonMeshBlue;
             button.AddComponent<MeshRenderer>().material = _resourceTable.ButtonMaterial;
 
-            var menuButtonHoverEffect = button.AddComponent<MenuButtonHoverEffect>();
-            menuButtonHoverEffect.hoverMaterial = _resourceTable.ButtonHoverMaterial;
-            menuButtonHoverEffect.Init();
+            var hoverEffect = button.AddComponent<MenuButtonHoverEffect>();
+            hoverEffect.hoverMaterial = _resourceTable.ButtonMaterialHover;
+            hoverEffect.Init();
 
             // Added after HoverMaterial to enable effect.
             button.AddComponent<ClickableButton>().InitButton(0, string.Empty, callback, false);

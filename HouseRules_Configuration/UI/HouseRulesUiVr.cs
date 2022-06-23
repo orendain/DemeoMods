@@ -48,8 +48,8 @@
             transform.rotation = Quaternion.Euler(0, 70, 0);
 
             _background = new GameObject("Background");
-            _background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuBoxMesh;
-            _background.AddComponent<MeshRenderer>().material = _resourceTable.MenuBoxMaterial;
+            _background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
+            _background.AddComponent<MeshRenderer>().material = _resourceTable.MenuMaterial;
             _background.transform.SetParent(transform, worldPositionStays: false);
             _background.transform.localPosition = new Vector3(0, 0, 0);
             _background.transform.localRotation =
