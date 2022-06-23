@@ -9,10 +9,6 @@
     {
         private static VrResourceTable _instance;
 
-        internal static Color ColorBeige { get; } = new Color(0.878f, 0.752f, 0.384f, 1);
-
-        internal static Color ColorBrown { get; } = new Color(0.0392f, 0.0157f, 0, 1);
-
         public TMP_FontAsset Font { get; private set; }
 
         public TMP_ColorGradient FontColorGradient { get; private set; }

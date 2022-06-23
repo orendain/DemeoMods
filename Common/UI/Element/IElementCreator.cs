@@ -5,8 +5,6 @@
 
     public interface IElementCreator
     {
-        int DefaultButtonFontSize();
-
         /// <summary>
         /// Creates a normal text element.
         /// </summary>

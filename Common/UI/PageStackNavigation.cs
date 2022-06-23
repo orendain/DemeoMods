@@ -64,20 +64,20 @@
         public void PositionForVr()
         {
             _previousButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _previousButton.transform.localPosition = new Vector3(-2.5f, 0, VrElementCreator.DefaultButtonZShift);
+            _previousButton.transform.localPosition = new Vector3(-2.5f, 0, VrElementCreator.ButtonZShift);
 
             _previousButtonText.transform.localPosition = new Vector3(
                 -2.5f,
                 0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
+                VrElementCreator.ButtonZShift + VrElementCreator.TextZShift);
 
             _nextButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _nextButton.transform.localPosition = new Vector3(2.5f, 0, VrElementCreator.DefaultButtonZShift);
+            _nextButton.transform.localPosition = new Vector3(2.5f, 0, VrElementCreator.ButtonZShift);
 
             _nextButtonText.transform.localPosition = new Vector3(
                 2.5f,
                 0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
+                VrElementCreator.ButtonZShift + VrElementCreator.TextZShift);
         }
 
         private void OnPreviousPageClick()
