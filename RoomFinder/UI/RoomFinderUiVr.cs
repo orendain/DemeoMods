@@ -12,10 +12,9 @@
 
     internal class RoomFinderUiVr : MonoBehaviour
     {
-        private bool _isInitialized;
         private VrResourceTable _resourceTable;
         private VrElementCreator _elementCreator;
-        private RoomListPanelVr _roomListPanelVr;
+        private RoomListPanelVr _roomListPanel;
         private Transform _anchor;
 
         private void Start()
@@ -38,7 +37,7 @@
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = VrElementCreator.Instance();
-            _roomListPanelVr = RoomListPanelVr.NewInstance(_elementCreator, RefreshRoomList);
+            _roomListPanel = RoomListPanelVr.NewInstance(_elementCreator, RefreshRoomList);
             _anchor = Resources
                 .FindObjectsOfTypeAll<charactersoundlistener>()
                 .First(x => x.name == "MenuBox_BindPose").transform;
@@ -49,11 +48,6 @@
 
         private void Update()
         {
-            if (!_isInitialized)
-            {
-                return;
-            }
-
             if (!RoomFinderMod.SharedState.IsRefreshingRoomList)
             {
                 return;
@@ -64,8 +58,14 @@
                 return;
             }
 
+            if (!RoomFinderMod.SharedState.HasLoadingScreenClosed)
+            {
+                return;
+            }
+
             RoomFinderMod.SharedState.IsRefreshingRoomList = false;
             RoomFinderMod.SharedState.HasRoomListUpdated = false;
+            RoomFinderMod.SharedState.HasLoadingScreenClosed = false;
             PopulateRoomList();
         }
 
@@ -88,7 +88,7 @@
             headerText.transform.SetParent(transform, worldPositionStays: false);
             headerText.transform.localPosition = new Vector3(0, 2.375f, VrElementCreator.TextZShift);
 
-            var selectionPanel = _roomListPanelVr.Panel;
+            var selectionPanel = _roomListPanel.Panel;
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
 
             var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
@@ -97,8 +97,6 @@
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             gameObject.AddComponent<BoxCollider>();
-
-            _isInitialized = true;
         }
 
         private static void RefreshRoomList()
@@ -118,7 +116,7 @@
             RoomFinderMod.Logger.Msg($"Captured {cachedRooms.Count} rooms.");
 
             var rooms = cachedRooms.Values.ToList().Select(Room.Parse).ToList();
-            _roomListPanelVr.UpdateRooms(rooms);
+            _roomListPanel.UpdateRooms(rooms);
         }
     }
 }

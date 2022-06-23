@@ -67,6 +67,7 @@
             }
 
             __instance.GetLobbyMenuController.view.ShowMainContent(LobbyMenuController.MenuContent.Play);
+            RoomFinderMod.SharedState.HasLoadingScreenClosed = true;
             return false;
         }
     }
