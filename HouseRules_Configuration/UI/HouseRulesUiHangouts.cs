@@ -10,7 +10,6 @@
     {
         private VrResourceTable _resourceTable;
         private IElementCreator _elementCreator;
-        private GameObject _background;
         private RulesetSelectionPanelVr _rulesetPanel;
         private Transform _anchor;
 
@@ -46,18 +45,18 @@
             transform.localScale = new Vector3(0.045f, 0.045f, 0.045f);
             gameObject.AddComponent<FaceLocalPlayer>();
 
-            _background = new GameObject("Background");
-            _background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
-            _background.AddComponent<MeshRenderer>().material = _resourceTable.MenuMaterial;
-            _background.transform.SetParent(transform, worldPositionStays: false);
-            _background.transform.localPosition = new Vector3(0, 0, 0);
-            _background.transform.localRotation =
+            var background = new GameObject("Background");
+            background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
+            background.AddComponent<MeshRenderer>().material = _resourceTable.MenuMaterial;
+            background.transform.SetParent(transform, worldPositionStays: false);
+            background.transform.localPosition = new Vector3(0, 0, 0);
+            background.transform.localRotation =
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
-            _background.transform.localScale = new Vector3(3.75f, 1, 2.5f);
+            background.transform.localScale = new Vector3(3.75f, 1, 2.5f);
 
-            var menuTitle = _elementCreator.CreateMenuHeaderText("HouseRules");
-            menuTitle.transform.SetParent(transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 5.95f, VrElementCreator.TextZShift);
+            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules");
+            headerText.transform.SetParent(transform, worldPositionStays: false);
+            headerText.transform.localPosition = new Vector3(0, 5.95f, VrElementCreator.TextZShift);
 
             var selectionPanel = _rulesetPanel.Panel;
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
