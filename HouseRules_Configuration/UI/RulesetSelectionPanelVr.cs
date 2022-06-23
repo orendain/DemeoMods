@@ -26,20 +26,18 @@
             return new RulesetSelectionPanelVr(
                 rulebook,
                 elementCreator,
-                new GameObject("RulesetSelectionPanel"),
                 PageStack.NewInstance());
         }
 
         private RulesetSelectionPanelVr(
             Rulebook rulebook,
             IElementCreator elementCreator,
-            GameObject panel,
             PageStack pageStack)
         {
             _rulebook = rulebook;
             _elementCreator = elementCreator;
             _pageStack = pageStack;
-            Panel = panel;
+            Panel = new GameObject("RulesetSelectionPanel");
 
             Render();
         }
@@ -62,26 +60,26 @@
 
         private GameObject CreateHeader()
         {
-            var headerContainer = new GameObject("Header");
+            var container = new GameObject("Header");
 
             var infoText =
                 _elementCreator.CreateNormalText(
                     "Select a ruleset for your next private multiplayer game or skirmish.");
             var rectTransform = (RectTransform)infoText.transform;
-            rectTransform.SetParent(headerContainer.transform, worldPositionStays: false);
+            rectTransform.SetParent(container.transform, worldPositionStays: false);
             rectTransform.sizeDelta = new Vector2(10, 2);
             rectTransform.localPosition = new Vector3(0, 0, VrElementCreator.TextZShift);
 
             var selectedText = _elementCreator.CreateNormalText("Selected ruleset: ");
             rectTransform = (RectTransform)selectedText.transform;
-            rectTransform.SetParent(headerContainer.transform, worldPositionStays: false);
+            rectTransform.SetParent(container.transform, worldPositionStays: false);
             rectTransform.sizeDelta = new Vector2(10, 2);
             rectTransform.localPosition = new Vector3(0, -1.5f, VrElementCreator.TextZShift);
 
             _selectedText = selectedText.GetComponent<TMP_Text>();
             UpdateSelectedText();
 
-            return headerContainer;
+            return container;
         }
 
         private IEnumerable<List<Ruleset>> PartitionRulesets()
@@ -101,9 +99,9 @@
             for (var i = 0; i < rulesets.Count; i++)
             {
                 var yOffset = i * -2f;
-                var rulesetRow = CreateRulesetRow(rulesets.ElementAt(i));
-                rulesetRow.transform.SetParent(container.transform, worldPositionStays: false);
-                rulesetRow.transform.localPosition = new Vector3(0, yOffset, 0);
+                var row = CreateRulesetRow(rulesets.ElementAt(i));
+                row.transform.SetParent(container.transform, worldPositionStays: false);
+                row.transform.localPosition = new Vector3(0, yOffset, 0);
             }
 
             return container;
@@ -111,16 +109,16 @@
 
         private GameObject CreateRulesetRow(Ruleset ruleset)
         {
-            var roomRowContainer = new GameObject(ruleset.Name);
+            var container = new GameObject(ruleset.Name);
 
             var button = _elementCreator.CreateButton(SelectRulesetAction(ruleset.Name));
-            button.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
+            button.transform.SetParent(container.transform, worldPositionStays: false);
             button.transform.localScale = new Vector3(1f, 0.6f, 1f);
             button.transform.localPosition = new Vector3(-4.5f, 0, VrElementCreator.ButtonZShift);
 
             var buttonText =
                 _elementCreator.CreateText(ruleset.Name, Color.white, VrElementCreator.NormalFontSize);
-            buttonText.transform.SetParent(roomRowContainer.transform, worldPositionStays: false);
+            buttonText.transform.SetParent(container.transform, worldPositionStays: false);
             buttonText.transform.localPosition = new Vector3(
                 -4.5f,
                 0,
@@ -128,12 +126,12 @@
 
             var description = _elementCreator.CreateNormalText(ruleset.Description);
             var rectTransform = (RectTransform)description.transform;
-            rectTransform.SetParent(roomRowContainer.transform, worldPositionStays: false);
+            rectTransform.SetParent(container.transform, worldPositionStays: false);
             rectTransform.pivot = Vector2.left;
             rectTransform.sizeDelta = new Vector2(9, 1);
             rectTransform.localPosition = new Vector3(-9.7f, -0.5f, VrElementCreator.TextZShift);
 
-            return roomRowContainer;
+            return container;
         }
 
         private Action SelectRulesetAction(string rulesetName)

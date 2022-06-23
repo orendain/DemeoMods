@@ -27,7 +27,8 @@
         private IEnumerator WaitAndInitialize()
         {
             while (!VrElementCreator.IsReady()
-                   || Resources.FindObjectsOfTypeAll<charactersoundlistener>()
+                   || Resources
+                       .FindObjectsOfTypeAll<charactersoundlistener>()
                        .Count(x => x.name == "MenuBox_BindPose") < 2)
             {
                 RoomFinderMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
@@ -39,11 +40,11 @@
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = VrElementCreator.Instance();
             _roomListPanel = RoomListPanel.NewInstance(_elementCreator, RefreshRoomList);
-            _anchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
-            .First(x => x.name == "MenuBox_BindPose").transform;
+            _anchor = Resources
+                .FindObjectsOfTypeAll<charactersoundlistener>()
+                .First(x => x.name == "MenuBox_BindPose").transform;
 
             Initialize();
-
             RoomFinderMod.Logger.Msg("Initialization complete.");
         }
 
