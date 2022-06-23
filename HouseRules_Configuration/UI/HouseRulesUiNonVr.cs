@@ -10,7 +10,7 @@
     {
         private NonVrResourceTable _resourceTable;
         private IElementCreator _elementCreator;
-        private RulesetSelectionPanelNonVr _rulesetPanel;
+        private RulesetListPanelNonVr _rulesetPanel;
         private bool _pageVisible;
 
         private void Start()
@@ -30,7 +30,7 @@
 
             _resourceTable = NonVrResourceTable.Instance();
             _elementCreator = NonVrElementCreator.Instance();
-            _rulesetPanel = RulesetSelectionPanelNonVr.NewInstance(HR.Rulebook, _elementCreator);
+            _rulesetPanel = RulesetListPanelNonVr.NewInstance(HR.Rulebook, _elementCreator);
 
             Initialize();
             ConfigurationMod.Logger.Msg("Initialization complete.");

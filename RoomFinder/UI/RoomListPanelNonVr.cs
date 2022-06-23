@@ -40,7 +40,7 @@
             _elementCreator = elementCreator;
             _onRefresh = onRefresh;
             _pageStack = pageStack;
-            Panel = new GameObject("RoomListPanelNonVr");
+            Panel = new GameObject("RoomListPanel");
 
             _sortOrder = r => r.CurrentPlayers;
             _isDescendingOrder = true;
