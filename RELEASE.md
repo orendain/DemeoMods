@@ -9,8 +9,8 @@ This page describes the release process.
 Uncomment the relevant line from `ExampleRulesetExporter.cs`. Build and run the
 mod so it generates JSON files for built-in rulesets during game startup.
 
-Open and merge a PR with these JSON files added to `docs/rulesets` for
-documentation and reference purposes.
+Open a PR with these JSON files added to `docs/rulesets` for documentation and
+reference purposes.
 
 ## Cutting a release
 
@@ -27,6 +27,9 @@ tag. The following example assumes the semantic version "1.0.0" and the mod
 git tag -s "v1.0.0-houserules" -m "HouseRules v1.0.0"
 git push origin "v1.0.0-houserules"
 ```
+
+If multiple mod are released simultaneously, it is acceptable to apply both tags
+to the same commit.
 
 ### Bundle the release
 
@@ -96,10 +99,15 @@ generated changelog.
 
 ```shell
 cd <mod>
-github-changelog-generator
+github_changelog_generator
 ```
 
+> Note: Unless the `--token <personal_access_token>` argument is specified, the
+> GitHub rate limits will be hit pretty quickly.
+
 ### Publish the release
+
+#### GitHub
 
 1. Create
    a [release in GitHub](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)
@@ -108,3 +116,13 @@ github-changelog-generator
 3. Optionally include a top-level message highlighting the most important points
    of the release.
 4. Include the bundled ZIP file as a release asset.
+
+#### CurseForge
+
+1. Upload the mod's ZIP file
+   as [a file to the relevant CurseForge project](https://support.curseforge.com/en/support/solutions/articles/9000197242-file-project-types-and-additional-fields)
+   (see the section labeled `Adding Files to a Project`).
+2. Mark the file as with the `Release Type` "Release".
+3. The `Display Name` may be left blank so as to take the name of the ZIP file.
+4. Include a copy-paste of the generated changelog, with images removed as
+   they're not supported by CurseForge markdown.
