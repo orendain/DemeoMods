@@ -15,7 +15,6 @@
         private bool _isInitialized;
         private VrResourceTable _resourceTable;
         private VrElementCreator _elementCreator;
-        private GameObject _background;
         private RoomListPanel _roomListPanel;
         private Transform _anchor;
 
@@ -76,20 +75,21 @@
             transform.position = new Vector3(25, 30, 0);
             transform.rotation = Quaternion.Euler(0, 40, 0);
 
-            _background = new GameObject("RoomFinderUIBackground");
-            _background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
-            _background.AddComponent<MeshRenderer>().material = _resourceTable.MenuMaterial;
-            _background.transform.SetParent(transform, worldPositionStays: false);
-            _background.transform.localPosition = new Vector3(0, -3.6f, 0);
-            _background.transform.localRotation =
+            var background = new GameObject("RoomFinderUIBackground");
+            background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
+            background.AddComponent<MeshRenderer>().material = _resourceTable.MenuMaterial;
+            background.transform.SetParent(transform, worldPositionStays: false);
+            background.transform.localPosition = new Vector3(0, -3.6f, 0);
+            background.transform.localRotation =
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
-            _background.transform.localScale = new Vector3(2, 1, 2.5f);
+            background.transform.localScale = new Vector3(2, 1, 2.5f);
 
-            var menuTitle = _elementCreator.CreateMenuHeaderText("RoomFinder");
-            menuTitle.transform.SetParent(transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 2.375f, VrElementCreator.TextZShift);
+            var headerText = _elementCreator.CreateMenuHeaderText("RoomFinder");
+            headerText.transform.SetParent(transform, worldPositionStays: false);
+            headerText.transform.localPosition = new Vector3(0, 2.375f, VrElementCreator.TextZShift);
 
-            _roomListPanel.Panel.transform.SetParent(transform, worldPositionStays: false);
+            var selectionPanel = _roomListPanel.Panel;
+            selectionPanel.transform.SetParent(transform, worldPositionStays: false);
 
             var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
