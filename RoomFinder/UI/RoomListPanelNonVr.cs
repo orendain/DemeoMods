@@ -135,6 +135,10 @@
             playersButton.transform.SetParent(container.transform, worldPositionStays: false);
             playersButton.transform.localPosition = new Vector2(175f, 0);
 
+            var moddedButton = CreateSortButton("Modded", () => SetSortOrderAndApply(r => r.IsModded));
+            moddedButton.transform.SetParent(container.transform, worldPositionStays: false);
+            moddedButton.transform.localPosition = new Vector2(275f, 0);
+
             return container;
         }
 
@@ -188,6 +192,10 @@
             var playersLabel = _elementCreator.CreateNormalText($"{room.CurrentPlayers}/{room.MaxPlayers}");
             playersLabel.transform.SetParent(container.transform, worldPositionStays: false);
             playersLabel.transform.localPosition = new Vector2(162.5f, 0);
+
+            var moddedLabel = _elementCreator.CreateNormalText(room.IsModded ? "Yes" : "-");
+            moddedLabel.transform.SetParent(container.transform, worldPositionStays: false);
+            moddedLabel.transform.localPosition = new Vector2(262.5f, 0);
 
             return container;
         }
