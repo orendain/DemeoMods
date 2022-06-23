@@ -27,7 +27,7 @@
                 rulebook,
                 elementCreator,
                 new GameObject("RulesetSelectionPanel"),
-                PageStack.NewInstance(elementCreator));
+                PageStack.NewInstance());
         }
 
         private RulesetSelectionPanelVr(
@@ -54,9 +54,10 @@
             var rulesetPages = rulesetPartitions.Select(CreateRulesetPage).ToList();
             rulesetPages.ForEach(_pageStack.AddPage);
 
-            var pageNavigation = CreateNavigation();
-            pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
-            pageNavigation.transform.localPosition = new Vector3(0, -17f, 0);
+            _pageStack.Navigation.PositionForVr();
+            var navigation = _pageStack.Navigation.Panel;
+            navigation.transform.SetParent(Panel.transform, worldPositionStays: false);
+            navigation.transform.localPosition = new Vector3(0, -17f, 0);
         }
 
         private GameObject CreateHeader()
@@ -81,39 +82,6 @@
             UpdateSelectedText();
 
             return headerContainer;
-        }
-
-        private GameObject CreateNavigation()
-        {
-            var container = new GameObject("PageStackNavigation");
-
-            _pageStack.Navigation.PageStatus.transform.SetParent(container.transform, worldPositionStays: false);
-
-            _pageStack.Navigation.PreviousButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.PreviousButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _pageStack.Navigation.PreviousButton.transform.localPosition =
-                new Vector3(-2.5f, 0, VrElementCreator.DefaultButtonZShift);
-
-            _pageStack.Navigation.PreviousButtonText.transform.SetParent(
-                container.transform,
-                worldPositionStays: false);
-            _pageStack.Navigation.PreviousButtonText.transform.localPosition = new Vector3(
-                -2.5f,
-                0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
-
-            _pageStack.Navigation.NextButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _pageStack.Navigation.NextButton.transform.localPosition =
-                new Vector3(2.5f, 0, VrElementCreator.DefaultButtonZShift);
-
-            _pageStack.Navigation.NextButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButtonText.transform.localPosition = new Vector3(
-                2.5f,
-                0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
-
-            return container;
         }
 
         private IEnumerable<List<Ruleset>> PartitionRulesets()

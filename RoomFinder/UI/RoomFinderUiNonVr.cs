@@ -28,7 +28,6 @@
         {
             while (!NonVrElementCreator.IsReady())
             {
-
                 RoomFinderMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }

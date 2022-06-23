@@ -24,12 +24,12 @@
 
         internal GameObject Panel { get; }
 
-        internal static RoomListPanel NewInstance(VrElementCreator uiHelper, Action onRefresh)
+        internal static RoomListPanel NewInstance(VrElementCreator elementCreator, Action onRefresh)
         {
             return new RoomListPanel(
-                uiHelper,
+                elementCreator,
                 onRefresh,
-                PageStack.NewInstance(uiHelper),
+                PageStack.NewInstance(),
                 new GameObject("RoomListPanel"));
         }
 
@@ -69,44 +69,12 @@
             _roomPages.transform.SetParent(Panel.transform, worldPositionStays: false);
             _roomPages.transform.localPosition = new Vector3(0, -3f, 0);
 
-            var pageNavigation = CreateNavigation();
-            pageNavigation.transform.SetParent(Panel.transform, worldPositionStays: false);
-            pageNavigation.transform.localPosition = new Vector3(0, -18.2f, 0);
+            _pageStack.Navigation.PositionForVr();
+            var navigation = _pageStack.Navigation.Panel;
+            navigation.transform.SetParent(Panel.transform, worldPositionStays: false);
+            navigation.transform.localPosition = new Vector3(0, -18.2f, 0);
 
             DrawRoomPages();
-        }
-
-        private GameObject CreateNavigation()
-        {
-            var container = new GameObject("PageStackNavigation");
-
-            _pageStack.Navigation.PageStatus.transform.SetParent(container.transform, worldPositionStays: false);
-
-            _pageStack.Navigation.PreviousButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.PreviousButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _pageStack.Navigation.PreviousButton.transform.localPosition =
-                new Vector3(-2.5f, 0, VrElementCreator.DefaultButtonZShift);
-
-            _pageStack.Navigation.PreviousButtonText.transform.SetParent(
-                container.transform,
-                worldPositionStays: false);
-            _pageStack.Navigation.PreviousButtonText.transform.localPosition = new Vector3(
-                -2.5f,
-                0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
-
-            _pageStack.Navigation.NextButton.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            _pageStack.Navigation.NextButton.transform.localPosition =
-                new Vector3(2.5f, 0, VrElementCreator.DefaultButtonZShift);
-
-            _pageStack.Navigation.NextButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            _pageStack.Navigation.NextButtonText.transform.localPosition = new Vector3(
-                2.5f,
-                0,
-                VrElementCreator.DefaultButtonZShift + VrElementCreator.DefaultTextZShift);
-
-            return container;
         }
 
         private void DrawRoomPages()

@@ -1,32 +1,26 @@
 namespace Common.UI
 {
     using System.Collections.Generic;
-    using Common.UI.Element;
-    using TMPro;
     using UnityEngine;
 
     public class PageStack
     {
-        private readonly IElementCreator _elementCreator;
         private readonly List<GameObject> _pages;
-        private readonly TMP_Text _statusText;
         private int _currentPageIndex;
 
-        internal PageStackNavigation Navigation { get; }
+        public PageStackNavigation Navigation { get; }
 
-        public static PageStack NewInstance(IElementCreator elementCreator)
+        public static PageStack NewInstance()
         {
-            return new PageStack(elementCreator);
+            return new PageStack();
         }
 
-        private PageStack(IElementCreator elementCreator)
+        private PageStack()
         {
-            _elementCreator = elementCreator;
             _pages = new List<GameObject>();
             _currentPageIndex = 0;
-            Navigation = CreateNavigation();
+            Navigation = PageStackNavigation.NewInstance(this);
 
-            _statusText = Navigation.PageStatus.GetComponent<TMP_Text>();
             UpdatePageStatus();
         }
 
@@ -53,29 +47,7 @@ namespace Common.UI
             UpdatePageStatus();
         }
 
-        private void OnPreviousPageClick()
-        {
-            AdvancePageIndex(-1);
-        }
-
-        private void OnNextPageClick()
-        {
-            AdvancePageIndex(1);
-        }
-
-        private PageStackNavigation CreateNavigation()
-        {
-            // TODO(orendain): Remove reliance on this label being first (for _statusText).
-            var navigation = new PageStackNavigation();
-            navigation.PageStatus = _elementCreator.CreateText(string.Empty, VrResourceTable.ColorBrown, _elementCreator.DefaultButtonFontSize());;
-            navigation.PreviousButton = _elementCreator.CreateButton(OnPreviousPageClick);
-            navigation.PreviousButtonText = _elementCreator.CreateButtonText("<");
-            navigation.NextButton = _elementCreator.CreateButton(OnNextPageClick);
-            navigation.NextButtonText = _elementCreator.CreateButtonText(">");
-            return navigation;
-        }
-
-        private void AdvancePageIndex(int advancement)
+        public void AdvancePageIndex(int advancement)
         {
             _currentPageIndex += advancement;
             _currentPageIndex = Mod(_currentPageIndex, _pages.Count);
@@ -96,21 +68,12 @@ namespace Common.UI
 
         private void UpdatePageStatus()
         {
-            _statusText.text = $"{_currentPageIndex + 1}/{_pages.Count}";
+            Navigation.PageStatusText.text = $"{_currentPageIndex + 1}/{_pages.Count}";
         }
 
         private static int Mod(int x, int m)
         {
             return ((x % m) + m) % m;
-        }
-
-        internal class PageStackNavigation
-        {
-            internal GameObject PageStatus;
-            internal GameObject PreviousButton;
-            internal GameObject PreviousButtonText;
-            internal GameObject NextButton;
-            internal GameObject NextButtonText;
         }
     }
 }
