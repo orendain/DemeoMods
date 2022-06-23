@@ -15,7 +15,7 @@
         public static void Initialize()
         {
             var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.common");
-            ModPatcher.Patch(harmony);
+            Patcher.Patch(harmony);
         }
     }
 }

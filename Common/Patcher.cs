@@ -4,13 +4,13 @@
     using Bowser.GameIntegration;
     using HarmonyLib;
 
-    internal static class ModPatcher
+    internal static class Patcher
     {
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateHobbyShop), "Start"),
-                postfix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateHobbyShop_Start_Postfix)));
+                postfix: new HarmonyMethod(typeof(Patcher), nameof(GameStateHobbyShop_Start_Postfix)));
         }
 
         private static void GameStateHobbyShop_Start_Postfix(GameStateHobbyShop __instance)
