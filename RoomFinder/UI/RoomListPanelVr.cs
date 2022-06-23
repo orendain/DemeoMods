@@ -10,7 +10,7 @@
     using UnityEngine;
     using Object = UnityEngine.Object;
 
-    internal class RoomListPanel
+    internal class RoomListPanelVr
     {
         private const int MaxRoomsPerPage = 14;
 
@@ -24,21 +24,20 @@
 
         internal GameObject Panel { get; }
 
-        internal static RoomListPanel NewInstance(VrElementCreator elementCreator, Action onRefresh)
+        internal static RoomListPanelVr NewInstance(VrElementCreator elementCreator, Action onRefresh)
         {
-            return new RoomListPanel(
+            return new RoomListPanelVr(
                 elementCreator,
                 onRefresh,
-                PageStack.NewInstance(),
-                new GameObject("RoomListPanel"));
+                PageStack.NewInstance());
         }
 
-        private RoomListPanel(VrElementCreator elementCreator, Action onRefresh, PageStack pageStack, GameObject panel)
+        private RoomListPanelVr(VrElementCreator elementCreator, Action onRefresh, PageStack pageStack)
         {
             _elementCreator = elementCreator;
             _onRefresh = onRefresh;
             _pageStack = pageStack;
-            Panel = panel;
+            Panel = new GameObject("RoomListPanel");
 
             _sortOrder = r => r.CurrentPlayers;
             _isDescendingOrder = true;

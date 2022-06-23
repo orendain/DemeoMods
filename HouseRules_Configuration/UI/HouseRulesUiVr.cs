@@ -10,8 +10,7 @@
     {
         private VrResourceTable _resourceTable;
         private IElementCreator _elementCreator;
-        private GameObject _background;
-        private RulesetSelectionPanelVr _rulesetPanel;
+        private RulesetListPanelVr _rulesetPanel;
         private Transform _anchor;
 
         private void Start()
@@ -22,7 +21,8 @@
         private IEnumerator WaitAndInitialize()
         {
             while (!VrElementCreator.IsReady()
-                   || Resources.FindObjectsOfTypeAll<charactersoundlistener>()
+                   || Resources
+                       .FindObjectsOfTypeAll<charactersoundlistener>()
                        .Count(x => x.name == "MenuBox_BindPose") < 2)
             {
                 ConfigurationMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
@@ -33,8 +33,9 @@
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = VrElementCreator.Instance();
-            _rulesetPanel = RulesetSelectionPanelVr.NewInstance(HR.Rulebook, _elementCreator);
-            _anchor = Resources.FindObjectsOfTypeAll<charactersoundlistener>()
+            _rulesetPanel = RulesetListPanelVr.NewInstance(HR.Rulebook, _elementCreator);
+            _anchor = Resources
+                .FindObjectsOfTypeAll<charactersoundlistener>()
                 .First(x => x.name == "MenuBox_BindPose").transform;
 
             Initialize();
@@ -47,18 +48,18 @@
             transform.position = new Vector3(32.6f, 26.4f, -12.8f);
             transform.rotation = Quaternion.Euler(0, 70, 0);
 
-            _background = new GameObject("Background");
-            _background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
-            _background.AddComponent<MeshRenderer>().material = _resourceTable.MenuMaterial;
-            _background.transform.SetParent(transform, worldPositionStays: false);
-            _background.transform.localPosition = new Vector3(0, 0, 0);
-            _background.transform.localRotation =
+            var background = new GameObject("Background");
+            background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
+            background.AddComponent<MeshRenderer>().material = _resourceTable.MenuMaterial;
+            background.transform.SetParent(transform, worldPositionStays: false);
+            background.transform.localPosition = new Vector3(0, 0, 0);
+            background.transform.localRotation =
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
-            _background.transform.localScale = new Vector3(3.75f, 1, 2.5f);
+            background.transform.localScale = new Vector3(3.75f, 1, 2.5f);
 
-            var menuTitle = _elementCreator.CreateMenuHeaderText("HouseRules");
-            menuTitle.transform.SetParent(transform, worldPositionStays: false);
-            menuTitle.transform.localPosition = new Vector3(0, 5.95f, VrElementCreator.TextZShift);
+            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules");
+            headerText.transform.SetParent(transform, worldPositionStays: false);
+            headerText.transform.localPosition = new Vector3(0, 5.95f, VrElementCreator.TextZShift);
 
             var selectionPanel = _rulesetPanel.Panel;
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
