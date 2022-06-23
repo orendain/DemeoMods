@@ -62,31 +62,18 @@
             return CreateText(text, _resourceTable.ColorBeige, fontSize: DefaultMenuHeaderFontSize);
         }
 
-        /// <summary>
-        /// Creates a text object.
-        /// </summary>
-        /// <remarks>
-        ///     <para>
-        ///     The text is pre-shifted <c>-0.2</c> along the Z-axis, so as to appear slightly in front of non-text
-        ///     objects by default.
-        ///     </para>
-        ///     <para>
-        ///     The <c>transform</c> of the returned object may be casted as a <see cref="RectTransform"/>.
-        ///     </para>
-        /// </remarks>
-        /// <returns>The GameObject containing the text component.</returns>
         public GameObject CreateText(string text, Color color, int fontSize)
         {
             var container = new GameObject("Text");
 
-            var buttonText = container.AddComponent<TextMeshProUGUI>();
-            buttonText.alignment = TextAlignmentOptions.Center;
-            buttonText.color = color;
-            buttonText.enableAutoSizing = true;
-            buttonText.fontSize = fontSize;
-            buttonText.fontSizeMax = fontSize;
-            buttonText.fontSizeMin = 1;
-            buttonText.text = text;
+            var textComponent = container.AddComponent<TextMeshProUGUI>();
+            textComponent.alignment = TextAlignmentOptions.Center;
+            textComponent.color = color;
+            textComponent.enableAutoSizing = true;
+            textComponent.fontSize = fontSize;
+            textComponent.fontSizeMax = fontSize;
+            textComponent.fontSizeMin = 1;
+            textComponent.text = text;
 
             container.GetComponent<Graphic>().raycastTarget = false;
 
@@ -98,28 +85,23 @@
             return WrapObject(CreateButtonRaw(callback));
         }
 
-        /// <summary>
-        /// Creates a button to function in Demeo VR UI.
-        /// </summary>
         private GameObject CreateButtonRaw(Action callback)
         {
-            var button = new GameObject("Button");
-            button.layer = CollisionLayer;
+            var container = new GameObject("Button");
+            container.layer = CollisionLayer;
 
-            var nonVrButton = button.AddComponent<NonVrButton>();
-            nonVrButton.AssignClickCallback(callback);
-            nonVrButton.GetComponent<Button>().interactable = true;
+            var button = container.AddComponent<NonVrButton>();
+            button.AssignClickCallback(callback);
+            button.GetComponent<Button>().interactable = true;
 
             var normalContainer = new GameObject("Normal");
-            normalContainer.transform.SetParent(button.transform, worldPositionStays: false);
+            normalContainer.transform.SetParent(container.transform, worldPositionStays: false);
 
-            var buttonBackground = new GameObject("Image");
-            buttonBackground.transform.SetParent(normalContainer.transform, worldPositionStays: false);
+            var normalImage = new GameObject("Image");
+            normalImage.transform.SetParent(normalContainer.transform, worldPositionStays: false);
+            normalImage.AddComponent<Image>().sprite = _resourceTable.ButtonBlueNormal;
 
-            var imageComponent = buttonBackground.AddComponent<Image>();
-            imageComponent.sprite = _resourceTable.ButtonBlueNormal;
-
-            return button;
+            return container;
         }
 
         /// <summary>

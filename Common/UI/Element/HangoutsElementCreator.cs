@@ -11,7 +11,7 @@
         private static HangoutsElementCreator _instance;
 
         private readonly VrResourceTable _resourceTable;
-        private readonly VrElementCreator _vrElementCreator;
+        private readonly VrElementCreator _elementCreator;
 
         public static HangoutsElementCreator Instance()
         {
@@ -32,7 +32,7 @@
         private HangoutsElementCreator(VrResourceTable resourceTable, VrElementCreator elementCreator)
         {
             _resourceTable = resourceTable;
-            _vrElementCreator = elementCreator;
+            _elementCreator = elementCreator;
         }
 
         /// <summary>
@@ -40,32 +40,29 @@
         /// </summary>
         internal static bool IsReady()
         {
-            CommonModule.Logger.Msg(VrElementCreator.IsReady());
-            CommonModule.Logger.Msg(CommonModule.HangoutsButtonHandler != null);
-            return VrElementCreator.IsReady()
-                   && CommonModule.HangoutsButtonHandler != null;
+            return VrElementCreator.IsReady() && CommonModule.HangoutsButtonHandler != null;
         }
 
-        public int DefaultButtonFontSize() => _vrElementCreator.DefaultButtonFontSize();
+        public int DefaultButtonFontSize() => _elementCreator.DefaultButtonFontSize();
 
         public GameObject CreateNormalText(string text)
         {
-            return _vrElementCreator.CreateNormalText(text);
+            return _elementCreator.CreateNormalText(text);
         }
 
         public GameObject CreateButtonText(string text)
         {
-            return _vrElementCreator.CreateButtonText(text);
+            return _elementCreator.CreateButtonText(text);
         }
 
         public GameObject CreateMenuHeaderText(string text)
         {
-            return _vrElementCreator.CreateMenuHeaderText(text);
+            return _elementCreator.CreateMenuHeaderText(text);
         }
 
         public GameObject CreateText(string text, Color color, int fontSize)
         {
-            return _vrElementCreator.CreateText(text, color, fontSize);
+            return _elementCreator.CreateText(text, color, fontSize);
         }
 
         public GameObject CreateButton(Action callback)
@@ -73,17 +70,14 @@
             return WrapObject(CreateButtonRaw(callback));
         }
 
-        /// <summary>
-        /// Creates a button to function in Demeo Hangouts.
-        /// </summary>
         private GameObject CreateButtonRaw(Action callback)
         {
-            var button = _vrElementCreator.CreateButtonRaw(callback);
+            var button = _elementCreator.CreateButtonRaw(callback);
             button.layer = CollisionLayer;
 
             var buttonData = button.AddComponent<BowserButtonData>();
             buttonData.buttonVisuals = button;
-            buttonData.hoverMat = _resourceTable.ButtonHoverMaterial;
+            buttonData.hoverMat = _resourceTable.ButtonMaterialHover;
             buttonData.isLocalPress = true;
             buttonData.pointerOnly = true;
             buttonData.pressedPosition = buttonData.visualsIdlePosition;

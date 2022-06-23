@@ -8,9 +8,9 @@
     {
         private static NonVrResourceTable _instance;
 
-        public Color ColorBrown { get; } = new Color(0.0392f, 0.0157f, 0, 1);
-
         public Color ColorBeige { get; } = new Color(0.878f, 0.752f, 0.384f, 1);
+
+        public Color ColorBrown { get; } = new Color(0.0392f, 0.0157f, 0, 1);
 
         public Sprite ButtonBlueNormal { get; private set; }
 
@@ -42,7 +42,7 @@
 
         private NonVrResourceTable()
         {
-            Refresh();
+            Initialize();
         }
 
         /// <summary>
@@ -58,12 +58,13 @@
                    && Resources.FindObjectsOfTypeAll<GameObject>().Any(x => x.name == "NavigationBar");
         }
 
-        private void Refresh()
+        private void Initialize()
         {
             ButtonBlueNormal = Resources.FindObjectsOfTypeAll<Sprite>().First(x => x.name == "ButtonMenuBlue");
             ButtonRedNormal = Resources.FindObjectsOfTypeAll<Sprite>().First(x => x.name == "ButtonMenuRed");
             PaperDecorated = Resources.FindObjectsOfTypeAll<Sprite>().First(x => x.name == "PaperDecorated");
-            AnchorDesktopMainMenu = Resources.FindObjectsOfTypeAll<GameObject>()
+            AnchorDesktopMainMenu = Resources
+                .FindObjectsOfTypeAll<GameObject>()
                 .First(x => x.name == "DesktopMainMenu(Clone)");
             AnchorDesktopPages = Resources.FindObjectsOfTypeAll<GameObject>().First(x => x.name == "Pages");
             AnchorNavigationBar = Resources.FindObjectsOfTypeAll<GameObject>().First(x => x.name == "NavigationBar");
