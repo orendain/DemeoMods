@@ -10,6 +10,8 @@
 
         internal bool HasRoomListUpdated { get; set; }
 
+        internal bool HasLoadingScreenClosed { get; set; }
+
         internal static SharedState NewInstance()
         {
             return new SharedState();

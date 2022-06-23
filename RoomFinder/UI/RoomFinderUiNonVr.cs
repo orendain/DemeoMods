@@ -53,9 +53,14 @@
                 return;
             }
 
+            if (!RoomFinderMod.SharedState.HasLoadingScreenClosed)
+            {
+                return;
+            }
+
             RoomFinderMod.SharedState.IsRefreshingRoomList = false;
             RoomFinderMod.SharedState.HasRoomListUpdated = false;
-
+            RoomFinderMod.SharedState.HasLoadingScreenClosed = false;
             PopulateRoomList();
         }
 
