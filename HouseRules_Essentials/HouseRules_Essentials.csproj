@@ -54,6 +54,7 @@
     <Compile Include="Rules\AbilityDamageOverriddenRule.cs" />
     <Compile Include="Rules\AbilityStealthDamageOverriddenRule.cs" />
     <Compile Include="Rules\AbilityHealOverriddenRule.cs" />
+    <Compile Include="Rules\DontShockFriendsRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
     <Compile Include="Rules\BlockFriendlyFireRule.cs" />
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />

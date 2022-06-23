@@ -327,6 +327,21 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+#### __DontShockFriends__: Electrical damage between players is zeroed
+  - Electricity Damage from friendly fire is zeroed
+  - To configure:
+    - Specify `true` to remove player on player electrical damage.
+
+  ###### _Example JSON config for DontShockFriends_
+
+  ```json
+    {
+      "Rule": "DontShockFriends",
+      "Config": true
+    },
+  ```
+
+
 #### __EnemyAttackScaled__: Enemy ⚔️attack⚔️ damage is scaled
   - To configure:
     - Specify a decimal number representing how enemy attack damage is multiplied.
