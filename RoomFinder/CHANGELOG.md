@@ -1,12 +1,22 @@
 # Changelog
 
-## [Unreleased](https://github.com/orendain/demeomods/tree/HEAD)
+## [v1.5.0-roomfinder](https://github.com/orendain/demeomods/tree/v1.5.0-roomfinder) (2022-06-22)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/v1.4.0-roomfinder...HEAD)
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.4.0-roomfinder...v1.5.0-roomfinder)
+
+**Features/Enhancements:**
+
+- Introduce a RoomFinder UI for the PC Edition. [\#381](https://github.com/orendain/DemeoMods/pull/381)
+- Display version on RoomFinder UI. [\#364](https://github.com/orendain/DemeoMods/pull/364)
+- Paginate rooms that appear in the RoomFinder panel. [\#361](https://github.com/orendain/DemeoMods/pull/361)
 
 **Fixes:**
 
 - Adjust RoomFinder UI to compensate for common UI changes. [\#229](https://github.com/orendain/DemeoMods/pull/229)
+
+**Chores:**
+
+- Perform maintenance on RoomFinder. [\#362](https://github.com/orendain/DemeoMods/pull/362)
 
 ## [v1.4.0-roomfinder](https://github.com/orendain/demeomods/tree/v1.4.0-roomfinder) (2022-02-20)
 
@@ -22,6 +32,8 @@
 - Update RoomFinder UI with knowledge of updated Common UI library. [\#168](https://github.com/orendain/DemeoMods/pull/168)
 - Perform maintenance on RoomFinder. [\#158](https://github.com/orendain/DemeoMods/pull/158)
 - Remove patching and state in common module. [\#139](https://github.com/orendain/DemeoMods/pull/139)
+
+
 
 ## [v1.3.0-roomfinder](https://github.com/orendain/demeomods/tree/v1.3.0-roomfinder) (2022-01-09)
 

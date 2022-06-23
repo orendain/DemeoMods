@@ -140,7 +140,7 @@
 
             var button = _elementCreator.CreateButton(SelectRulesetAction(ruleset.Name));
             button.transform.SetParent(container.transform, worldPositionStays: false);
-            button.transform.localScale = new Vector3(2.2f, 0.75f, 1f);
+            button.transform.localScale = new Vector3(2.2f, 0.75f);
             button.transform.localPosition = new Vector3(-225f, 0);
 
             var buttonText =

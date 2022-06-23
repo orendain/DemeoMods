@@ -8,14 +8,32 @@ mods, or are interested in learning to build your own.
 [![Discord](https://img.shields.io/discord/841011788195823626?logo=discord&logoColor=fff&style=for-the-badge)](https://discord.gg/4BNSwmr784)
 
 ## Contents
+- [Installation](#installation)
 - [Mods](#mods)
   - [HouseRules](#houserules)
   - [SkipIntro](#skipintro)
   - [RoomFinder](#roomfinder)
   - [RoomCode](#roomcode)
-- [Installation](#installation)
 - [For Developers](#for-developers)
 - [Shoutouts](#shoutouts)
+
+## Installation
+
+> Note: Only the PCVR and PC Edition versions of Demeo are currently supported.
+> E.g., playing on a Quest2 works, but only when linked to a PC.
+
+1. Install [MelonLoader](https://github.com/LavaGang/MelonLoader#how-to-use-the-installer)
+   (must be version `0.5.3` or later).
+2. Download the latest version of the mod you want from the table below.
+3. Unzip the downloaded files/folders into the root of your Demeo game directory.
+4. Done. The mods will automatically load upon starting Demeo.
+
+| Mod        | Latest Release                                                                 | Direct Download Link                                                                                                   |
+|------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| HouseRules | [v1.4.0](https://github.com/orendain/DemeoMods/releases/tag/v1.4.0-houserules) | [HouseRules_1.4.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.4.0-houserules/HouseRules_1.4.0.zip) |
+| SkipInto   | [v1.4.0](https://github.com/orendain/DemeoMods/releases/tag/v1.4.0-skipintro)  | [SkipIntro_1.4.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.4.0-skipintro/SkipIntro_1.4.0.zip)    |
+| RoomFinder | [v1.5.0](https://github.com/orendain/DemeoMods/releases/tag/v1.5.0-roomfinder) | [RoomFinder_1.5.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.5.0-roomfinder/RoomFinder_1.5.0.zip) |
+| RoomCode   | [v1.1.0](https://github.com/orendain/DemeoMods/releases/tag/v1.1.0-roomcode)   | [RoomCode_1.1.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.1.0-roomcode/RoomCode_1.1.0.zip)       |
 
 ## Mods
 
@@ -85,19 +103,6 @@ Set your own room code, skipping Demeo's random room code generation.
 
 See the [RoomCode readme](RoomCode/README.md) for more information and configuration
 options.
-
-## Installation
-
-> Note: Only PCVR versions of games are currently supported.
-> E.g., playing on a Quest2 works, but only when linked to a PC.
-
-1. Install [MelonLoader](https://github.com/LavaGang/MelonLoader#how-to-use-the-installer)
-   (must be version `0.5.3` or later).
-2. Download the the mods that you would like to use from
-   the [releases page](https://github.com/orendain/DemeoMods/releases).
-3. Place the mod DLL files in the `/Mods` folder (created by MelonLoader) in
-   your game directory.
-4. Done. The mods will load automatically upon starting the game.
 
 ## For Developers
 
