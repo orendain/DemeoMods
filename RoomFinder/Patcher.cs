@@ -1,10 +1,12 @@
 ﻿namespace RoomFinder
 {
+    using System.Collections.ObjectModel;
     using System.Reflection;
     using Boardgame;
     using Boardgame.Ui.LobbyMenu;
-    using Common;
+    using Common.UI;
     using HarmonyLib;
+    using RGCommon;
 
     internal static class Patcher
     {
@@ -54,7 +56,7 @@
 
         private static bool Lobby_HideMenu_Prefix(Lobby __instance)
         {
-            if (!CommonModule.IsPcEdition())
+            if (!Environments.IsPcEdition())
             {
                 return true;
             }

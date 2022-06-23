@@ -69,7 +69,7 @@
     <Compile Include="UI\Element\VrElementCreator.cs" />
     <Compile Include="UI\Resource\NonVrResourceTable.cs" />
     <Compile Include="UI\Resource\VrResourceTable.cs" />
-    <Compile Include="UI\UiEnvironments.cs" />
+    <Compile Include="UI\Environments.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
