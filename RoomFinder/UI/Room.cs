@@ -5,6 +5,8 @@
 
     internal class Room
     {
+        private const string ModdedRoomPropertyKey = "modded";
+
         internal string Name { get; }
 
         internal LevelSequence.GameType GameType { get; }
@@ -15,11 +17,14 @@
 
         internal int MaxPlayers { get; }
 
+        internal bool IsModded { get; }
+
         internal static Room Parse(RoomInfo room)
         {
             var gameType = ExtractGameType(room);
             var floorIndex = ExtractFloorNumber(room);
-            return NewInstance(room.Name, gameType, floorIndex, room.PlayerCount, room.MaxPlayers);
+            var isModded = ExtractModdedStatus(room);
+            return NewInstance(room.Name, gameType, floorIndex, room.PlayerCount, room.MaxPlayers, isModded);
         }
 
         private static Room NewInstance(
@@ -27,18 +32,26 @@
             LevelSequence.GameType gameType,
             int floor,
             int currentPlayers,
-            int maxPlayers)
+            int maxPlayers,
+            bool isModded)
         {
-            return new Room(name, gameType, floor, currentPlayers, maxPlayers);
+            return new Room(name, gameType, floor, currentPlayers, maxPlayers, isModded);
         }
 
-        private Room(string name, LevelSequence.GameType gameType, int floor, int currentPlayers, int maxPlayers)
+        private Room(
+            string name,
+            LevelSequence.GameType gameType,
+            int floor,
+            int currentPlayers,
+            int maxPlayers,
+            bool isModded)
         {
             Name = name;
             GameType = gameType;
             Floor = floor;
             CurrentPlayers = currentPlayers;
             MaxPlayers = maxPlayers;
+            IsModded = isModded;
         }
 
         private static LevelSequence.GameType ExtractGameType(RoomInfo room)
@@ -51,6 +64,11 @@
         private static int ExtractFloorNumber(RoomInfo room)
         {
             return room.CustomProperties.TryGetValue("fi", out var obj) ? (int)obj : -1;
+        }
+
+        private static bool ExtractModdedStatus(RoomInfo room)
+        {
+            return room.CustomProperties.TryGetValue(ModdedRoomPropertyKey, out var obj) && (bool)obj;
         }
     }
 }
