@@ -13,7 +13,7 @@
             const string name = "LuckyDip";
             const string description = "Life is like a box of chocolates + AOE changes, so stay close to your allies";
 
-            var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 5 } } });
+            var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 5, 2, 5 } } });
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -57,6 +57,16 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, ReplenishFrequency = 0 },
             };
+            var warlockCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MissileSwarm, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, ReplenishFrequency = 0 },
+            };
+
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
                 { BoardPieceId.HeroBard, bardCards },
@@ -64,6 +74,7 @@
                 { BoardPieceId.HeroHunter, hunterCards },
                 { BoardPieceId.HeroRogue, assassinCards },
                 { BoardPieceId.HeroSorcerer, sorcererCards },
+                { BoardPieceId.HeroWarlock, warlockCards },
             });
 
             var abilityAoeRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
@@ -84,9 +95,11 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 15 },
 
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "MoveRange", Value = 5 },
 
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 30 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SmiteWard, Property = "StartHealth", Value = 20 },
@@ -140,6 +153,7 @@
             var hunterImmunities = new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Frozen, EffectStateType.Petrified };
             var rogueImmunities = new List<EffectStateType> { EffectStateType.Frozen, EffectStateType.Petrified };
             var sorcererImmunities = new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
+            var warlockImmunities = new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
@@ -148,6 +162,7 @@
                 { BoardPieceId.HeroHunter, hunterImmunities },
                 { BoardPieceId.HeroRogue, rogueImmunities },
                 { BoardPieceId.HeroSorcerer, sorcererImmunities },
+                { BoardPieceId.HeroWarlock, warlockImmunities },
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>

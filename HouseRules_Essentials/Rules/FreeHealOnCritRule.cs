@@ -49,48 +49,56 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            MelonLoader.MelonLogger.Msg("Free Replenish called");
-            if (diceResult == Dice.Outcome.Crit && source.IsPlayer())
+            if (diceResult != Dice.Outcome.Crit)
             {
-                int chance = Random.Range(1, 101);
-                if (chance < 6)
-                {
-                    if (_globalAdjustments.Contains(source.boardPieceId))
-                    {
-                        if (source.boardPieceId == BoardPieceId.HeroRogue)
-                        {
-                            source.effectSink.Heal(4);
-                            source.AnimateWobble();
-                        }
-                        else
-                        {
-                            source.effectSink.Heal(3);
-                            source.AnimateWobble();
-                        }
-                    }
-                    else
-                    {
-                        source.effectSink.Heal(2);
-                        source.AnimateWobble();
-                    }
+                return;
+            }
 
-                    HR.ScheduleBoardSync();
-                }
-                else if (_globalAdjustments.Contains(source.boardPieceId))
+            if (!source.IsPlayer())
+            {
+                return;
+            }
+
+            MelonLoader.MelonLogger.Msg("Free Crit Heal started");
+            int chance = Random.Range(1, 101);
+            if (chance > 95)
+            {
+                if (_globalAdjustments.Contains(source.boardPieceId))
                 {
                     if (source.boardPieceId == BoardPieceId.HeroRogue)
                     {
-                        source.effectSink.Heal(2);
+                        source.effectSink.Heal(4);
+                        source.AnimateWobble();
                     }
                     else
                     {
-                        source.effectSink.Heal(1);
+                        source.effectSink.Heal(3);
+                        source.AnimateWobble();
                     }
-
-                    HR.ScheduleBoardSync();
                 }
+                else
+                {
+                    source.effectSink.Heal(2);
+                    source.AnimateWobble();
+                }
+
+                HR.ScheduleBoardSync();
+            }
+            else if (_globalAdjustments.Contains(source.boardPieceId))
+            {
+                if (source.boardPieceId == BoardPieceId.HeroRogue)
+                {
+                    source.effectSink.Heal(2);
+                }
+                else
+                {
+                    source.effectSink.Heal(1);
+                }
+
+                HR.ScheduleBoardSync();
             }
 
+            MelonLoader.MelonLogger.Msg("Free Crit Heal Finished");
             return;
         }
     }

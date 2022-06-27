@@ -36,48 +36,57 @@ namespace HouseRules.Essentials.Rules
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(Ability), "GenerateAttackDamage"),
-                prefix: new HarmonyMethod(
+                postfix: new HarmonyMethod(
                     typeof(FreeActionPointsOnCritRule),
-                    nameof(Ability_GenerateAttackDamage_Prefix)));
+                    nameof(Ability_GenerateAttackDamage_Postfix)));
         }
 
-        private static bool Ability_GenerateAttackDamage_Prefix(Piece source, Dice.Outcome diceResult)
+        private static void Ability_GenerateAttackDamage_Postfix(Piece source, Piece mainTarget, Dice.Outcome diceResult)
         {
             if (!_isActivated)
             {
-                return true;
+                return;
             }
 
-            MelonLoader.MelonLogger.Msg("Free AP called");
-            if (diceResult == Dice.Outcome.Crit)
+            if (diceResult != Dice.Outcome.Crit)
             {
-                if (source.IsPlayer() && _globalAdjustments.Contains(source.boardPieceId))
-                {
-                    source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-                    if (source.boardPieceId == BoardPieceId.HeroGuardian)
-                    {
-                        if (currentAP < 1)
-                        {
-                            source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 2);
-                        }
-                        else
-                        {
-                            source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
-                        }
-
-                        source.EnableEffectState(EffectStateType.Frenzy);
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
-                    }
-                    else if (currentAP < 1)
-                    {
-                        source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
-                    }
-
-                    HR.ScheduleBoardSync();
-                }
+                return;
             }
 
-            return true; // Allow the regular GenerateAttackDamage function to run afterwards.
+            if (!source.IsPlayer())
+            {
+                return;
+            }
+
+            if (!_globalAdjustments.Contains(source.boardPieceId))
+            {
+                return;
+            }
+
+            MelonLoader.MelonLogger.Msg("Free AP started");
+            source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
+            if (source.boardPieceId == BoardPieceId.HeroGuardian)
+            {
+                if (currentAP < 1)
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 2);
+                }
+                else
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                }
+
+                source.EnableEffectState(EffectStateType.Frenzy);
+                source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
+            }
+            else
+            {
+                source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+            }
+
+            MelonLoader.MelonLogger.Msg("Free AP finished");
+            HR.ScheduleBoardSync();
+            return;
         }
     }
 }

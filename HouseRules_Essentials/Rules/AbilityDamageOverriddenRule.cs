@@ -51,9 +51,11 @@
                 }
 
                 originals[replacement.Key] = new List<int>
-                    { ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage };
+                    { ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage, ability.abilityDamage.splashDamage, ability.abilityDamage.critSplashDamage };
                 ability.abilityDamage.targetDamage = replacement.Value[0];
                 ability.abilityDamage.critDamage = replacement.Value[1];
+                ability.abilityDamage.splashDamage = replacement.Value[2];
+                ability.abilityDamage.critSplashDamage = replacement.Value[3];
             }
 
             return originals;

@@ -29,7 +29,7 @@ namespace HouseRules.Essentials.Rules
         {
             _globalAdjustments = _adjustments;
             _isActivated = true;
-          }
+        }
 
         protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
@@ -49,74 +49,70 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            MelonLoader.MelonLogger.Msg("Free Replenish called");
-            if (diceResult == Dice.Outcome.Crit)
+            if (diceResult != Dice.Outcome.Crit)
             {
-                MelonLoader.MelonLogger.Msg("Replenish(0)");
-                if (source.IsPlayer() && _globalAdjustments.Contains(source.boardPieceId))
-                {
-                    MelonLoader.MelonLogger.Msg("Replenish(1)");
-                    source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-                    int money = Random.Range(11, 21);
-                    MelonLoader.MelonLogger.Msg("Replenish(2)");
-                    if (source.boardPieceId == BoardPieceId.HeroRogue)
-                    {
-                        MelonLoader.MelonLogger.Msg("Replenish: Assassin check");
-                        int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
-                        AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var abilityS);
-                        if (currentST > 0)
-                        {
-                            MelonLoader.MelonLogger.Msg("Replenish: Stealth refresh(1)");
-                            source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
-                            source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                            source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
-                            source.EnableEffectState(EffectStateType.Stealthed);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
-                        }
-                        else
-                        {
-                            MelonLoader.MelonLogger.Msg("Replenish: Stealth refresh(2)");
-                            source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                        }
-                    }
-                    else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
-                    {
-                        MelonLoader.MelonLogger.Msg("Replenish: Sorcerer check");
-                        if (currentAP > 0)
-                        {
-                            MelonLoader.MelonLogger.Msg("Replenish: Zap refresh(1)");
-                            AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
-                            source.inventory.RemoveDisableCooldownFlags();
-                            abilityZ.effectsPreventingUse.Remove(EffectStateType.Discharge);
-                            abilityZ.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
-                            source.inventory.AddGold(10);
-                            source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                        }
-                        else
-                        {
-                            MelonLoader.MelonLogger.Msg("Replenish: Zap refresh(2)");
-                            source.inventory.AddGold(money);
-                        }
-                    }
-                    else if (currentAP > 0 || source.boardPieceId == BoardPieceId.HeroGuardian)
-                    {
-                        MelonLoader.MelonLogger.Msg("Replenish(3)");
-                        source.inventory.AddGold(10);
-                        source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                    }
-                    else
-                    {
-                        MelonLoader.MelonLogger.Msg("Replenish(4)");
-                        source.inventory.AddGold(money);
-                        source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                    }
-
-                    MelonLoader.MelonLogger.Msg("Replenish(5)");
-                    HR.ScheduleBoardSync();
-                }
+                return;
             }
 
-            MelonLoader.MelonLogger.Msg("Replenish FINISHED!");
+            if (!source.IsPlayer())
+            {
+                return;
+            }
+
+            if (!_globalAdjustments.Contains(source.boardPieceId))
+            {
+                return;
+            }
+
+            MelonLoader.MelonLogger.Msg("Replenish started");
+            source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
+            int money = Random.Range(11, 21);
+            if (source.boardPieceId == BoardPieceId.HeroRogue)
+            {
+                int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
+                if (currentST > 0)
+                {
+                    source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
+                    source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                    source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
+                    source.EnableEffectState(EffectStateType.Stealthed);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
+                }
+                else
+                {
+                    source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                }
+            }
+            else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
+            {
+                if (currentAP > 0)
+                {
+                    AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
+                    source.inventory.RemoveDisableCooldownFlags();
+                    abilityZ.effectsPreventingUse.Remove(EffectStateType.Discharge);
+                    abilityZ.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
+                    source.inventory.AddGold(10);
+                    source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                }
+                else
+                {
+                    source.inventory.AddGold(money);
+                }
+            }
+            else if (currentAP > 0 || source.boardPieceId == BoardPieceId.HeroGuardian)
+            {
+                source.inventory.AddGold(10);
+                source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+            }
+            else
+            {
+                source.inventory.AddGold(money);
+                source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+            }
+
+            HR.ScheduleBoardSync();
+
+            MelonLoader.MelonLogger.Msg("Replenish finished");
             return;
         }
     }

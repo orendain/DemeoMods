@@ -17,9 +17,7 @@
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
                 { BoardPieceId.BigBoiMutant, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.EnemyTurret, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.LargeCorruption, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.LocustSwarmCloud, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileArcher, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileMutantWizard, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.SandScorpion, new List<int> { 3, 1, 1 } },
@@ -27,9 +25,8 @@
                 { BoardPieceId.ScorpionSandPile, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.EmptySandPile, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.GoldSandPile, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.JeweledScarab, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.SmallCorruption, new List<int> { 4, 1, 1 } },
-                { BoardPieceId.GeneralRonthian, new List<int> { 2, 1, 2 } },
+                { BoardPieceId.GeneralRonthian, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.Wyvern, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.Cavetroll, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.RootGolem, new List<int> { 2, 1, 2 } },
@@ -95,7 +92,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ShatteringVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TurretHealProjectile, ReplenishFrequency = 5 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -115,7 +112,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Lure, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 1 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -149,7 +146,7 @@
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "ActionPoint", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 11 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 12 },
@@ -297,6 +294,7 @@
                         AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
+                        AbilityKey.SwiftnessPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.HealingPotion,
@@ -556,8 +554,11 @@
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Zap, false },
+                { AbilityKey.LightningBolt, false },
+                { AbilityKey.Overcharge, false },
                 { AbilityKey.Sneak, false },
                 { AbilityKey.Grab, false },
+                { AbilityKey.Arrow, false },
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.MinionCharge, false },
             });
@@ -567,6 +568,7 @@
                 { AbilityKey.HealingPotion, 10 },
                 { AbilityKey.Rejuvenation, 10 },
                 { AbilityKey.AltarHeal, 15 },
+                { AbilityKey.TurretHealProjectile, 5 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
@@ -582,18 +584,19 @@
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
-                { AbilityKey.Zap, new List<int> { 3, 8 } },
-                { AbilityKey.Fireball, new List<int> { 12, 30 } },
-                { AbilityKey.Freeze, new List<int> { 7, 20 } },
-                { AbilityKey.Vortex, new List<int> { 3, 12 } },
-                { AbilityKey.WhirlwindAttack, new List<int> { 4, 9 } },
-                { AbilityKey.Charge, new List<int> { 4, 12 } },
-                { AbilityKey.PiercingThrow, new List<int> { 5, 11 } },
-                { AbilityKey.Blink, new List<int> { 7, 19 } },
-                { AbilityKey.CursedDagger, new List<int> { 4, 13 } },
-                { AbilityKey.PoisonedTip, new List<int> { 6, 16 } },
-                { AbilityKey.HailOfArrows, new List<int> { 6, 16 } },
-                { AbilityKey.Arrow, new List<int> { 4, 12 } },
+                { AbilityKey.Zap, new List<int> { 3, 8, 3, 8 } },
+                { AbilityKey.Fireball, new List<int> { 12, 30, 7, 15 } },
+                { AbilityKey.Freeze, new List<int> { 7, 20, 7, 20 } },
+                { AbilityKey.Vortex, new List<int> { 3, 12, 2, 5 } },
+                { AbilityKey.WhirlwindAttack, new List<int> { 4, 9, 4, 9 } },
+                { AbilityKey.Charge, new List<int> { 4, 12, 4, 12 } },
+                { AbilityKey.PiercingThrow, new List<int> { 5, 11, 5, 11 } },
+                { AbilityKey.Blink, new List<int> { 7, 19, 7, 19 } },
+                { AbilityKey.CursedDagger, new List<int> { 4, 13, 4, 13 } },
+                { AbilityKey.PoisonedTip, new List<int> { 6, 16, 6, 16 } },
+                { AbilityKey.HailOfArrows, new List<int> { 6, 16, 6, 16 } },
+                { AbilityKey.Arrow, new List<int> { 4, 12, 4, 12 } },
+                { AbilityKey.EnemyFireball, new List<int> { 7, 7, 7, 7 } },
             });
 
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
@@ -606,7 +609,7 @@
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
                 "SewersFloor01",
-                "SewerShopFloor",
+                "SewersShopFloor",
                 "ForestFloor02",
                 "ForestShopFloor",
                 "ElvenFloor14",
@@ -622,8 +625,8 @@
                 { "FloorOneGoldMaxAmount", 550 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
-                { "FloorTwoMerchant", 1 },
-                { "FloorTwoLootChests", 4 },
+                { "FloorTwoMerchant", 0 },
+                { "FloorTwoLootChests", 3 },
                 { "FloorTwoGoldMaxAmount", 750 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },

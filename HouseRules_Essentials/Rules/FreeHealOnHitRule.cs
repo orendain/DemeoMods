@@ -49,29 +49,43 @@
                 return;
             }
 
-            MelonLoader.MelonLogger.Msg("Free Heal/Hit called");
-            if (diceResult == Dice.Outcome.Hit && source.IsPlayer())
+            if (diceResult != Dice.Outcome.Hit)
             {
-                int chance = Random.Range(1, 101);
-                if (chance < 6)
-                {
-                    if (_globalAdjustments.Contains(source.boardPieceId))
-                    {
-                        source.effectSink.Heal(2);
-                        source.AnimateWobble();
-                    }
-                    else
-                    {
-                        source.effectSink.Heal(1);
-                        source.AnimateWobble();
-                    }
+                return;
+            }
 
-                    HR.ScheduleBoardSync();
+            if (!source.IsPlayer())
+            {
+                return;
+            }
+
+            int chance = Random.Range(1, 101);
+            if (_globalAdjustments.Contains(source.boardPieceId))
+            {
+                if (chance > 95)
+                {
+                    source.effectSink.Heal(2);
+                    source.AnimateWobble();
                 }
-                else if (_globalAdjustments.Contains(source.boardPieceId))
+                else
                 {
                     source.effectSink.Heal(1);
-                    HR.ScheduleBoardSync();
+                }
+
+                HR.ScheduleBoardSync();
+            }
+            else if (chance > 95)
+            {
+                source.effectSink.Heal(1);
+                HR.ScheduleBoardSync();
+            }
+
+            if (source.boardPieceId == BoardPieceId.HeroGuardian)
+            {
+                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
+                if (damageResist < 1)
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
                 }
             }
 

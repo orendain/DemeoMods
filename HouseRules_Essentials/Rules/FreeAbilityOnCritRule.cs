@@ -7,7 +7,6 @@ namespace HouseRules.Essentials.Rules
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
     public sealed class FreeAbilityOnCritRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable, IMultiplayerSafe
     {
@@ -49,44 +48,24 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            MelonLoader.MelonLogger.Msg("Free Ability called");
-            if (diceResult == Dice.Outcome.Crit)
+            if (diceResult != Dice.Outcome.Crit)
             {
-                if (source.IsPlayer() && _globalAdjustments.ContainsKey(source.boardPieceId))
-                {
-                    source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-                    if (source.boardPieceId == BoardPieceId.HeroRogue)
-                    {
-                        if (currentAP < 1)
-                        {
-                            source.inventory.AddGold(10);
-                            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
-                        }
-                        else
-                        {
-                            int money = Random.Range(11, 21);
-                            source.inventory.AddGold(money);
-                        }
-                    }
-                    else
-                    {
-                        if (currentAP < 1)
-                        {
-                            source.inventory.AddGold(10);
-                            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
-                        }
-                        else
-                        {
-                            int money = Random.Range(11, 21);
-                            source.inventory.AddGold(money);
-                        }
-                    }
-
-                    HR.ScheduleBoardSync();
-                }
+                return;
             }
 
-            return;
+            if (!source.IsPlayer())
+            {
+                return;
+            }
+
+            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
+            {
+                return;
+            }
+
+            MelonLoader.MelonLogger.Msg("FreeAbilityOnCrit");
+            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
+            HR.ScheduleBoardSync();
         }
     }
 }
