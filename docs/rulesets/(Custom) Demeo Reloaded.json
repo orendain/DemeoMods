@@ -1,6 +1,6 @@
 {
   "Name": "Demeo Reloaded",
-  "Description": "MANY class changes. NEW enemies. BETTER loot. No respawns. Yet somehow challenging...",
+  "Description": "The fight for the future begins...",
   "Rules": [
     {
       "Rule": "SpawnCategoryOverridden",

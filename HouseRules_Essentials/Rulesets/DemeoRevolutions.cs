@@ -12,7 +12,7 @@
         internal static Ruleset Create()
         {
             const string name = "Demeo Revolutions";
-            const string description = "Get your criticals on. It's time for the next level!";
+            const string description = "Everything that has a beginning has an end.";
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {

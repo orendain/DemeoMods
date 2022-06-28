@@ -12,7 +12,7 @@
         internal static Ruleset Create()
         {
             const string name = "Demeo Reloaded";
-            const string description = "MANY class changes. NEW enemies. BETTER loot. No respawns. Yet somehow challenging...";
+            const string description = "The fight for the future begins...";
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
