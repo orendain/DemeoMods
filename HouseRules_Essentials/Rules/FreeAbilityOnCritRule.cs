@@ -64,8 +64,13 @@
                 return;
             }
 
-            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
-            HR.ScheduleBoardSync();
+            if (source.GetActionPoints() < 1)
+            {
+                source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
+                HR.ScheduleBoardSync();
+            }
+
+            return;
         }
     }
 }
