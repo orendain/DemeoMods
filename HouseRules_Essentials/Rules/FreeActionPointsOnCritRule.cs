@@ -77,14 +77,13 @@ namespace HouseRules.Essentials.Rules
 
                 source.EnableEffectState(EffectStateType.Frenzy);
                 source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
+                HR.ScheduleBoardSync();
             }
             else
             {
                 source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                HR.ScheduleBoardSync();
             }
-
-            HR.ScheduleBoardSync();
-            return;
         }
     }
 }

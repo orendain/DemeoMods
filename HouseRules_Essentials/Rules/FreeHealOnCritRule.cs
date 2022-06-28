@@ -96,8 +96,6 @@ namespace HouseRules.Essentials.Rules
 
                 HR.ScheduleBoardSync();
             }
-
-            return;
         }
     }
 }

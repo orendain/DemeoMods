@@ -86,10 +86,9 @@
                 if (damageResist < 1)
                 {
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
+                    HR.ScheduleBoardSync();
                 }
             }
-
-            return;
         }
     }
 }

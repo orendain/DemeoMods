@@ -76,10 +76,12 @@ namespace HouseRules.Essentials.Rules
                     source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
                     source.EnableEffectState(EffectStateType.Stealthed);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
+                    HR.ScheduleBoardSync();
                 }
                 else
                 {
                     source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                    HR.ScheduleBoardSync();
                 }
             }
             else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
@@ -92,6 +94,7 @@ namespace HouseRules.Essentials.Rules
                     abilityZ.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
                     source.inventory.AddGold(10);
                     source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                    HR.ScheduleBoardSync();
                 }
                 else
                 {
@@ -102,15 +105,14 @@ namespace HouseRules.Essentials.Rules
             {
                 source.inventory.AddGold(10);
                 source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                HR.ScheduleBoardSync();
             }
             else
             {
                 source.inventory.AddGold(money);
                 source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                HR.ScheduleBoardSync();
             }
-
-            HR.ScheduleBoardSync();
-            return;
         }
     }
 }

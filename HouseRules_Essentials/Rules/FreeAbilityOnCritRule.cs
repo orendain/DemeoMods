@@ -69,8 +69,6 @@
                 source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
                 HR.ScheduleBoardSync();
             }
-
-            return;
         }
     }
 }
