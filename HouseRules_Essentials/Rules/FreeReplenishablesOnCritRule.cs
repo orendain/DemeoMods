@@ -64,7 +64,6 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            MelonLoader.MelonLogger.Msg("Replenish started");
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
             int money = Random.Range(11, 21);
             if (source.boardPieceId == BoardPieceId.HeroRogue)
@@ -111,8 +110,6 @@ namespace HouseRules.Essentials.Rules
             }
 
             HR.ScheduleBoardSync();
-
-            MelonLoader.MelonLogger.Msg("Replenish finished");
             return;
         }
     }

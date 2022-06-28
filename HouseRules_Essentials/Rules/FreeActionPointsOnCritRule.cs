@@ -63,7 +63,6 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            MelonLoader.MelonLogger.Msg("Free AP started");
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
             if (source.boardPieceId == BoardPieceId.HeroGuardian)
             {
@@ -84,7 +83,6 @@ namespace HouseRules.Essentials.Rules
                 source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
             }
 
-            MelonLoader.MelonLogger.Msg("Free AP finished");
             HR.ScheduleBoardSync();
             return;
         }

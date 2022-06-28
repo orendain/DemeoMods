@@ -59,7 +59,6 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            MelonLoader.MelonLogger.Msg("Free Crit Heal started");
             int chance = Random.Range(1, 101);
             if (chance > 95)
             {
@@ -98,7 +97,6 @@ namespace HouseRules.Essentials.Rules
                 HR.ScheduleBoardSync();
             }
 
-            MelonLoader.MelonLogger.Msg("Free Crit Heal Finished");
             return;
         }
     }

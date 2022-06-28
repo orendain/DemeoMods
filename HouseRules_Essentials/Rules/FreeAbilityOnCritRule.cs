@@ -1,4 +1,4 @@
-namespace HouseRules.Essentials.Rules
+﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
     using Boardgame;
@@ -8,7 +8,8 @@ namespace HouseRules.Essentials.Rules
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class FreeAbilityOnCritRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable, IMultiplayerSafe
+    public sealed class FreeAbilityOnCritRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable,
+        IMultiplayerSafe
     {
         public override string Description => "Critical Hit gives free card.";
 
@@ -63,7 +64,6 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            MelonLoader.MelonLogger.Msg("FreeAbilityOnCrit");
             source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
             HR.ScheduleBoardSync();
         }
