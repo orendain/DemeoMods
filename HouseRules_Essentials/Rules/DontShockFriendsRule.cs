@@ -39,29 +39,36 @@
 
         private static void Patch(Harmony harmony)
         {
+
             harmony.Patch(
-                original: AccessTools.Method(typeof(Damage), "DealDamage", parameters: new[] { typeof(Target), typeof(Damage), typeof(IntPoint2D), typeof(Target), typeof(PieceAndTurnController), typeof(BoardModel), typeof(OverkillController), typeof(bool) }),
+                original: AccessTools.Method(typeof(ProjectileHitSequence), "OnStarted"),
                 prefix: new HarmonyMethod(
                     typeof(DontShockFriendsRule),
-                    nameof(Ability_DealDamage_Prefix)));
+                    nameof(ProjectileHitSequence_OnStarted_Prefix)));
         }
 
-        private static bool Ability_DealDamage_Prefix(Target target, Damage damage, Target attacker, ref int __result)
+        private static bool ProjectileHitSequence_OnStarted_Prefix(ref ProjectileHitSequence __instance)
         {
             if (!_isActivated)
             {
                 return true;
             }
 
-            if (attacker.piece.IsPlayer() && target.piece.IsPlayer() && damage.HasTag(DamageTag.Electricity))
+            var targetPiece = Traverse.Create(__instance).Field("targetPiece").GetValue<Piece>();
+            var abilityContext = Traverse.Create(__instance).Field("abilityContext").GetValue<AbilityContext>();
+            var damage = Traverse.Create(abilityContext).Field("damage").GetValue<Damage>();
+            var attackerTarget = Traverse.Create(abilityContext).Field("attacker").GetValue<Target>();
+            var attacker = Traverse.Create(attackerTarget).Field("piece").GetValue<Piece>();
+
+            if (attacker.IsPlayer() && targetPiece.IsPlayer() && damage.HasTag(DamageTag.Electricity))
             {
                 var localizedText = Traverse.Create(damage).Method("GetLocalizedText", paramTypes: new[] { typeof(string), typeof(bool) }, arguments: new object[] { "Ui/pieceUi/notification/damage/noDamage", false }).GetValue<string>();
-                Notification.ShowGoldenText(target.gameObject, localizedText);
-                __result = 0;
-                return false;
+                Notification.ShowGoldenText(new Target(targetPiece).gameObject, localizedText);
+                return false; // Don't run the original OnStarted method.
             }
 
             return true;
         }
+
     }
 }
