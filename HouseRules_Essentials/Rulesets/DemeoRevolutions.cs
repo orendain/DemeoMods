@@ -12,7 +12,7 @@
         internal static Ruleset Create()
         {
             const string name = "Demeo Revolutions";
-            const string description = "MANY class changes. NEW enemies. BETTER loot. No respawns. Yet somehow challenging...";
+            const string description = "Get your criticals on. It's time for the next level!";
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
@@ -638,19 +638,35 @@
                 { AbilityKey.TornadoCharge, new List<int> { 3, 3, 3, 3 } },
             });
 
+            var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
+            { Assassin = 0, Bard = 12, Warlock = 4, Guardian = 8, Hunter = 2, Sorcerer = 6, Downed = -30, Javelin = 13 });
+
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {
                 { BoardPieceId.HeroHunter, AbilityKey.Bone },
             });
-
-            var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
-            { Assassin = 0, Bard = 12, Warlock = 4, Guardian = 8, Hunter = 2, Sorcerer = 6, Downed = -30, Javelin = 13 });
 
             var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue });
             var freeHealOnCritRule = new FreeHealOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
             var freeActionPointsOnCritRule = new FreeActionPointsOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroGuardian, BoardPieceId.HeroRogue });
             var freeRepleishablesOnCritRule = new FreeReplenishablesOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue, BoardPieceId.HeroGuardian, BoardPieceId.HeroSorcerer, BoardPieceId.HeroHunter, BoardPieceId.HeroWarlock });
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
+            var abilityBackstabRule = new AbilityBackstabAdjustedRule(new Dictionary<AbilityKey, bool>
+            {
+                { AbilityKey.PiercingVoice, true },
+                { AbilityKey.ShatteringVoice, true },
+                { AbilityKey.DiseasedBite, true },
+            });
+
+            var abilityStealthDamageRule = new AbilityStealthDamageOverriddenRule(new Dictionary<AbilityKey, int>
+            {
+                { AbilityKey.Blink, 4 },
+                { AbilityKey.DiseasedBite, 2 },
+                { AbilityKey.PoisonBomb, 1 },
+                { AbilityKey.CursedDagger, 3 },
+                { AbilityKey.PlayerMelee, 2 },
+            });
+
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.2f);
@@ -708,6 +724,8 @@
                 freeRepleishablesOnCritRule,
                 freeActionPointsOnCritRule,
                 freeAbilityOnCritRule,
+                abilityBackstabRule,
+                abilityStealthDamageRule,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,
