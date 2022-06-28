@@ -99,6 +99,7 @@ namespace HouseRules.Essentials.Rules
                 else
                 {
                     source.inventory.AddGold(money);
+                    HR.ScheduleBoardSync();
                 }
             }
             else if (currentAP > 0 || source.boardPieceId == BoardPieceId.HeroGuardian)

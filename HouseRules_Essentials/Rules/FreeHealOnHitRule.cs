@@ -66,17 +66,18 @@
                 {
                     source.effectSink.Heal(2);
                     source.AnimateWobble();
+                    HR.ScheduleBoardSync();
                 }
                 else
                 {
                     source.effectSink.Heal(1);
+                    HR.ScheduleBoardSync();
                 }
-
-                HR.ScheduleBoardSync();
             }
             else if (chance > 95)
             {
                 source.effectSink.Heal(1);
+                source.AnimateWobble();
                 HR.ScheduleBoardSync();
             }
 

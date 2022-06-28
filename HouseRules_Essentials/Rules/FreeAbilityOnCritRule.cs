@@ -64,11 +64,13 @@
                 return;
             }
 
-            if (source.GetActionPoints() < 1)
+            if (source.GetActionPoints() > 0)
             {
-                source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
-                HR.ScheduleBoardSync();
+                return;
             }
+
+            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
+            HR.ScheduleBoardSync();
         }
     }
 }
