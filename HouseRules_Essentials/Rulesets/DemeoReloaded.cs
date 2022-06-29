@@ -1,4 +1,4 @@
-﻿namespace HouseRules.Essentials.Rulesets
+namespace HouseRules.Essentials.Rulesets
 {
     using System.Collections.Generic;
     using Boardgame.Board;
@@ -12,14 +12,12 @@
         internal static Ruleset Create()
         {
             const string name = "Demeo Reloaded";
-            const string description = "MANY class changes. NEW enemies. BETTER loot. No respawns. Yet somehow challenging...";
+            const string description = "The fight for the future begins...";
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
                 { BoardPieceId.BigBoiMutant, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.EnemyTurret, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.LargeCorruption, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.LocustSwarmCloud, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileArcher, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileMutantWizard, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.SandScorpion, new List<int> { 3, 1, 1 } },
@@ -27,9 +25,8 @@
                 { BoardPieceId.ScorpionSandPile, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.EmptySandPile, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.GoldSandPile, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.JeweledScarab, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.SmallCorruption, new List<int> { 4, 1, 1 } },
-                { BoardPieceId.GeneralRonthian, new List<int> { 2, 1, 2 } },
+                { BoardPieceId.GeneralRonthian, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.Wyvern, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.Cavetroll, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.RootGolem, new List<int> { 2, 1, 2 } },
@@ -95,7 +92,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ShatteringVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TurretHealProjectile, ReplenishFrequency = 5 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -297,6 +294,7 @@
                         AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
+                        AbilityKey.SwiftnessPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.HealingPotion,
@@ -556,6 +554,7 @@
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Zap, false },
+                { AbilityKey.LightningBolt, false },
                 { AbilityKey.Sneak, false },
                 { AbilityKey.Grab, false },
                 { AbilityKey.CourageShanty, false },
@@ -567,6 +566,7 @@
                 { AbilityKey.HealingPotion, 10 },
                 { AbilityKey.Rejuvenation, 10 },
                 { AbilityKey.AltarHeal, 15 },
+                { AbilityKey.TurretHealProjectile, 5 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
@@ -606,7 +606,7 @@
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
                 "SewersFloor01",
-                "SewerShopFloor",
+                "SewersShopFloor",
                 "ForestFloor02",
                 "ForestShopFloor",
                 "ElvenFloor14",
@@ -619,12 +619,12 @@
                 { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
-                { "FloorOneGoldMaxAmount", 550 },
+                { "FloorOneGoldMaxAmount", 500 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
-                { "FloorTwoMerchant", 1 },
-                { "FloorTwoLootChests", 4 },
-                { "FloorTwoGoldMaxAmount", 750 },
+                { "FloorTwoMerchant", 0 },
+                { "FloorTwoLootChests", 3 },
+                { "FloorTwoGoldMaxAmount", 600 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
