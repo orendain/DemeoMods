@@ -226,9 +226,15 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "AttackDamage", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ScabRat, Property = "AttackDamage", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinMadUn, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Rat, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.TheUnseen, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenCultist, Property = "AttackDamage", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EnemyTurret, Property = "AttackDamage", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinRanger, Property = "AttackDamage", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.OilLamp, Property = "AttackDamage", Value = 7 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ProximityMine, Property = "AttackDamage", Value = 7 },
             });
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -649,7 +655,6 @@
                 { AbilityKey.MinionCharge, new List<int> { 4, 9, 4, 9 } },
                 { AbilityKey.MissileSwarm, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.MagicMissile, new List<int> { 2, 5, 2, 5 } },
-                { AbilityKey.Explosion, new List<int> { 7, 7, 7, 7 } },
                 { AbilityKey.TornadoCharge, new List<int> { 3, 3, 3, 3 } },
             });
 

@@ -662,6 +662,16 @@
           "Value": 4
         },
         {
+          "Piece": "ScabRat",
+          "Property": "AttackDamage",
+          "Value": 4
+        },
+        {
+          "Piece": "GoblinMadUn",
+          "Property": "AttackDamage",
+          "Value": 4
+        },
+        {
           "Piece": "Rat",
           "Property": "AttackDamage",
           "Value": 2
@@ -675,6 +685,26 @@
           "Piece": "ElvenCultist",
           "Property": "AttackDamage",
           "Value": 2
+        },
+        {
+          "Piece": "EnemyTurret",
+          "Property": "AttackDamage",
+          "Value": 2
+        },
+        {
+          "Piece": "GoblinRanger",
+          "Property": "AttackDamage",
+          "Value": 2
+        },
+        {
+          "Piece": "OilLamp",
+          "Property": "AttackDamage",
+          "Value": 7
+        },
+        {
+          "Piece": "ProximityMine",
+          "Property": "AttackDamage",
+          "Value": 7
         }
       ]
     },
@@ -1107,7 +1137,6 @@
         "MinionCharge": [4, 9, 4, 9],
         "MissileSwarm": [2, 2, 2, 2],
         "MagicMissile": [2, 5, 2, 5],
-        "Explosion": [7, 7, 7, 7],
         "TornadoCharge": [3, 3, 3, 3]
       }
     },
