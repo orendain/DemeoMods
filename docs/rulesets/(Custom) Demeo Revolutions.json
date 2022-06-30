@@ -697,6 +697,11 @@
           "Value": 2
         },
         {
+          "Piece": "SandScorpion",
+          "Property": "AttackDamage",
+          "Value": 2
+        },
+        {
           "Piece": "OilLamp",
           "Property": "AttackDamage",
           "Value": 7
@@ -705,6 +710,11 @@
           "Piece": "ProximityMine",
           "Property": "AttackDamage",
           "Value": 7
+        },
+        {
+          "Piece": "Tornado",
+          "Property": "AliveForRounds",
+          "Value": 2
         }
       ]
     },
