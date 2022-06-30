@@ -87,6 +87,7 @@
     <Compile Include="Rules\CardSellValueMultipliedRule.cs" />
     <Compile Include="Rules\AbilityAoeAdjustedRule.cs" />
     <Compile Include="Rules\EnemyAttackScaledRule.cs" />
+    <Compile Include="Rules\EnemyCooldownOverriddenRule.cs" />
     <Compile Include="Rules\EnemyDoorOpeningDisabledRule.cs" />
     <Compile Include="Rules\EnemyHealthScaledRule.cs" />
     <Compile Include="Rules\EnemyRespawnDisabledRule.cs" />
