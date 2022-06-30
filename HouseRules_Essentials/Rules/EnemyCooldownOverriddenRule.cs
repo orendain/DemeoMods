@@ -17,7 +17,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="EnemyCooldownOverriddenRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Key-value pairs of abilityKey and extra stealth damage.</param>
+        /// <param name="adjustments">Key-value pairs of abilityKey and cooldown value.</param>
         public EnemyCooldownOverriddenRule(Dictionary<AbilityKey, int> adjustments)
         {
             _adjustments = adjustments;
