@@ -1,14 +1,12 @@
 {
-  "Name": "Demeo Reloaded",
+  "Name": "(Custom) Demeo Reloaded",
   "Description": "The fight for the future begins...",
   "Rules": [
     {
       "Rule": "SpawnCategoryOverridden",
       "Config": {
         "BigBoiMutant": [ 3, 1, 1],
-        "EnemyTurret": [ 3, 1, 1],
         "LargeCorruption": [ 3, 1, 1],
-        "LocustSwarmCloud": [ 3, 1, 1],
         "ReptileArcher": [ 3, 1, 1],
         "ReptileMutantWizard": [ 3, 1, 1],
         "SandScorpion": [ 3, 1, 1],
@@ -16,9 +14,8 @@
         "ScorpionSandPile": [ 3, 1, 1],
         "EmptySandPile": [ 2, 1, 1],
         "GoldSandPile": [ 2, 1, 1],
-        "JeweledScarab": [ 2, 1, 2],
         "SmallCorruption": [ 4, 1, 1],
-        "GeneralRonthian": [ 2, 1, 2],
+        "GeneralRonthian": [ 2, 1, 1],
         "Wyvern": [ 2, 1, 2 ],
         "CaveTroll": [ 2, 1, 1],
         "RootGolem": [ 2, 1, 2],
@@ -124,8 +121,8 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "CourageShanty",
-            "ReplenishFrequency": 1
+            "Card": "TurretHealProjectile",
+            "ReplenishFrequency": 5
           }
         ],
         "HeroGuardian": [
@@ -184,7 +181,7 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Arrow",
+            "Card": "EnemyFireball",
             "ReplenishFrequency": 1
           }
         ],
@@ -257,11 +254,6 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
-        {
-          "Piece": "HeroHunter",
-          "Property": "ActionPoint",
-          "Value": 3
-        },
         {
           "Piece": "HeroRogue",
           "Property": "MoveRange",
@@ -841,7 +833,9 @@
         "Overcharge": false,
         "Sneak": false,
         "Grab": false,
-        "MinionCharge": false
+        "MinionCharge": false,
+        "CourageShanty": false,
+        "Arrow": false
       }
     },
     {
@@ -850,7 +844,8 @@
       {
         "HealingPotion": 10,
         "Rejuvenation": 10,
-        "AltarHeal": 15
+        "AltarHeal": 15,
+        "TurretHealProjectile": 5
       }
     },
     {
@@ -879,7 +874,8 @@
         "CursedDagger": [4, 13],
         "PoisonedTip": [6, 16],
         "HailOfArrows": [6, 16],
-        "Arrow": [4, 12]
+        "Arrow": [4, 12],
+        "EnemyFireball": [7, 7]
       }
     },
     {
@@ -926,9 +922,9 @@
       "Rule": "LevelSequenceOverridden",
       "Config": [
         "SewersFloor01",
-        "SewerShopFloor",
-        "ForestFloor02",
         "ForestShopFloor",
+        "ForestFloor02",
+        "ShopFloor02",
         "ElvenFloor14"
       ]
     },

@@ -707,9 +707,9 @@
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
                 "SewersFloor12",
-                "SewersShopFloor",
-                "ForestFloor01",
                 "ForestShopFloor",
+                "ForestFloor01",
+                "ShopFloor02",
                 "ElvenFloor13",
             });
 
