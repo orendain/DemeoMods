@@ -64,6 +64,23 @@
       }
     },
     {
+      "Rule": "CardShopRarityOverridden",
+      "Config":
+      {
+        "Barricade": 25,
+        "Bone": 25,
+        "BottleOfLye": 25,
+        "WaterBottle": 25,
+        "AdamantPotion": 30,
+        "HeavensFury": 30,
+        "Rejuvenation": 30,
+        "OilLamp": 0,
+        "GasLamp": 0,
+        "VortexLamp": 0,
+        "IceLamp": 0
+      }
+    },
+    {
       "Rule": "StartCardsModified",
       "Config": {
         "HeroWarlock":

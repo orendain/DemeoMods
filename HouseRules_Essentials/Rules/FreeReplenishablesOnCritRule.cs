@@ -68,10 +68,12 @@ namespace HouseRules.Essentials.Rules
             int money = Random.Range(11, 21);
             if (source.boardPieceId == BoardPieceId.HeroRogue)
             {
+                AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var abilityS);
                 int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
                 if (currentST > 0)
                 {
                     source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
+                    abilityS.effectsPreventingReplenished.Clear();
                     source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                     source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
                     source.EnableEffectState(EffectStateType.Stealthed);
@@ -80,6 +82,7 @@ namespace HouseRules.Essentials.Rules
                 }
                 else
                 {
+                    abilityS.effectsPreventingReplenished.Clear();
                     source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                     HR.ScheduleBoardSync();
                 }
@@ -89,9 +92,9 @@ namespace HouseRules.Essentials.Rules
                 if (currentAP > 0)
                 {
                     AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
+                    source.effectSink.RemoveStatusEffect(EffectStateType.Discharge);
                     source.inventory.RemoveDisableCooldownFlags();
-                    abilityZ.effectsPreventingUse.Remove(EffectStateType.Discharge);
-                    abilityZ.effectsPreventingReplenished.Remove(EffectStateType.Discharge);
+                    abilityZ.effectsPreventingUse.Clear();
                     source.inventory.AddGold(10);
                     source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                     HR.ScheduleBoardSync();
