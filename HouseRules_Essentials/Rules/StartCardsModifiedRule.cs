@@ -53,7 +53,7 @@
                     nameof(Inventory_RestoreReplenishables_Prefix)));
         }
 
-        private static bool Inventory_RestoreReplenishables_Prefix(ref bool __result, Piece piece)
+        private static bool Inventory_RestoreReplenishables_Prefix(ref bool __result, Piece piece, EffectStateType[] previousEffects)
         {
             if (!_isActivated)
             {
@@ -67,27 +67,46 @@
                 var targetRefresh = (value.flags >> 7) & 7;
                 var countdown = (value.flags >> 4) & 7;
 
-                if (piece.inventory.Items[i].IsReplenishing && (!piece.HasEffectState(EffectStateType.Stealthed) || piece.inventory.Items[i].abilityKey != AbilityKey.Sneak))
+                if (piece.inventory.Items[i].IsReplenishing)
                 {
-                    bool flag = false;
+                    bool skipReplenishing = false;
                     if (!AbilityFactory.TryGetAbility(value.abilityKey, out Ability ability))
                     {
                         throw new Exception("Failed to get ability prefab from ability key while attempting to replenish hand!");
                     }
 
+                    if (piece.inventory.Items[i].abilityKey == AbilityKey.Sneak)
+                    {
+                        bool foundPreviousEffect = false;
+                        foreach (EffectStateType effect in previousEffects)
+                        {
+                            if (ability.effectsPreventingReplenished.Contains(effect))
+                            {
+                                foundPreviousEffect = true;
+                                break;
+                            }
+                        }
+
+                        if (foundPreviousEffect)
+                        {
+                            continue;
+                        }
+                    }
+
+                    // Add a method to determine if Demeo Revolutions is loaded...
                     int j = 0;
                     int count = ability.effectsPreventingReplenished.Count;
                     while (j < count)
                     {
                         if (piece.HasEffectState(ability.effectsPreventingReplenished[j]))
                         {
-                            flag = true;
+                            skipReplenishing = true;
                         }
 
                         j++;
                     }
 
-                    if (!flag)
+                    if (!skipReplenishing)
                     {
                         // If countdown was zero when we got called, then we need to set it.
                         if (countdown == 0)
