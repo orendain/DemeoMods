@@ -78,11 +78,13 @@ namespace HouseRules.Essentials.Rules
                     source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
                     source.EnableEffectState(EffectStateType.Stealthed);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
+                    source.inventory.AddGold(10);
                     HR.ScheduleBoardSync();
                 }
                 else
                 {
                     abilityS.effectsPreventingReplenished.Clear();
+                    source.inventory.AddGold(money);
                     source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                     HR.ScheduleBoardSync();
                 }
@@ -102,11 +104,11 @@ namespace HouseRules.Essentials.Rules
                 else
                 {
                     source.inventory.AddGold(money);
-                    HR.ScheduleBoardSync();
                 }
             }
             else if (currentAP > 0 || source.boardPieceId == BoardPieceId.HeroGuardian)
             {
+                // Need to Fix PC Edition Warlock/Bard UI not updating
                 source.inventory.AddGold(10);
                 source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                 HR.ScheduleBoardSync();
