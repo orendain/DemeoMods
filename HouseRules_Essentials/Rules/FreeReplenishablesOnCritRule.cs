@@ -68,25 +68,21 @@ namespace HouseRules.Essentials.Rules
             int money = Random.Range(11, 21);
             if (source.boardPieceId == BoardPieceId.HeroRogue)
             {
-                AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var abilityS);
+                // AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var abilityS);
                 int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
                 if (currentST > 0)
                 {
                     source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
-                    abilityS.effectsPreventingReplenished.Clear();
                     source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
                     source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
                     source.EnableEffectState(EffectStateType.Stealthed);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
                     source.inventory.AddGold(10);
-                    HR.ScheduleBoardSync();
                 }
                 else
                 {
-                    abilityS.effectsPreventingReplenished.Clear();
                     source.inventory.AddGold(money);
                     source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                    HR.ScheduleBoardSync();
                 }
             }
             else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
@@ -99,7 +95,6 @@ namespace HouseRules.Essentials.Rules
                     abilityZ.effectsPreventingUse.Clear();
                     source.inventory.AddGold(10);
                     source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                    HR.ScheduleBoardSync();
                 }
                 else
                 {
@@ -111,14 +106,14 @@ namespace HouseRules.Essentials.Rules
                 // Need to Fix PC Edition Warlock/Bard UI not updating
                 source.inventory.AddGold(10);
                 source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                HR.ScheduleBoardSync();
             }
             else
             {
                 source.inventory.AddGold(money);
                 source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                HR.ScheduleBoardSync();
             }
+
+            HR.ScheduleBoardSync();
         }
     }
 }
