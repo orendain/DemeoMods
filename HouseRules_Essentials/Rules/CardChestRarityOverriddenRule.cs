@@ -7,19 +7,19 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class CardShopRarityOverriddenRule : Rule,
+    public sealed class CardChestRarityOverriddenRule : Rule,
         IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
     {
-        public override string Description => "Card shop rarity is overridden";
+        public override string Description => "Card chest rarity is overridden";
 
         private readonly Dictionary<AbilityKey, int> _adjustments;
         private Dictionary<AbilityKey, int> _originals;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CardShopRarityOverriddenRule"/> class.
+        /// Initializes a new instance of the <see cref="CardChestRarityOverriddenRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Accepts list of AbilityKeys for cards which should have shop rarity changed.</param>
-        public CardShopRarityOverriddenRule(Dictionary<AbilityKey, int> adjustments)
+        /// <param name="adjustments">Accepts list of AbilityKeys for cards which should have chest rarity changed.</param>
+        public CardChestRarityOverriddenRule(Dictionary<AbilityKey, int> adjustments)
         {
             _adjustments = adjustments;
             _originals = new Dictionary<AbilityKey, int>();
@@ -53,8 +53,8 @@
                     continue;
                 }
 
-                previousConfigs.Add(cardConfig.Card, cardConfig.ShopRarity);
-                cardConfig.ShopRarity = cardProperties[cardConfig.Card];
+                previousConfigs.Add(cardConfig.Card, cardConfig.ChestRarity);
+                cardConfig.ChestRarity = cardProperties[cardConfig.Card];
                 cardConfigs[i] = cardConfig;
             }
 

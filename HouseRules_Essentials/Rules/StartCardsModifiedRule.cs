@@ -93,7 +93,6 @@
                         }
                     }
 
-                    // Add a method to determine if Demeo Revolutions is loaded...
                     int j = 0;
                     int count = ability.effectsPreventingReplenished.Count;
                     while (j < count)
