@@ -49,12 +49,12 @@
                 return;
             }
 
-            if (diceResult != Dice.Outcome.Crit)
+            if (!source.IsPlayer())
             {
                 return;
             }
 
-            if (!source.IsPlayer())
+            if (diceResult != Dice.Outcome.Crit)
             {
                 return;
             }
@@ -64,13 +64,13 @@
                 return;
             }
 
-            if (source.GetActionPoints() > 0)
+            source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
+            if (currentAP > 0)
             {
                 return;
             }
 
             source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
-            HR.ScheduleBoardSync();
         }
     }
 }

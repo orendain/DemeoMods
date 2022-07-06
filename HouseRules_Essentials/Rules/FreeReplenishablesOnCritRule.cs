@@ -7,7 +7,6 @@ namespace HouseRules.Essentials.Rules
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
     public sealed class FreeReplenishablesOnCritRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
@@ -49,12 +48,12 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (diceResult != Dice.Outcome.Crit)
+            if (!source.IsPlayer())
             {
                 return;
             }
 
-            if (!source.IsPlayer())
+            if (diceResult != Dice.Outcome.Crit)
             {
                 return;
             }
@@ -65,55 +64,38 @@ namespace HouseRules.Essentials.Rules
             }
 
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-            int money = Random.Range(11, 21);
             if (source.boardPieceId == BoardPieceId.HeroRogue)
             {
-                // AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var abilityS);
                 int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
                 if (currentST > 0)
                 {
                     source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
-                    source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                    source.RestoreReplenishableAbilities(source.effectSink.GetActiveStatusEffects());
                     source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
                     source.EnableEffectState(EffectStateType.Stealthed);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
                     source.inventory.AddGold(10);
-                }
-                else
-                {
-                    source.inventory.AddGold(money);
-                    source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                    return;
                 }
             }
             else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
             {
                 if (currentAP > 0)
                 {
-                    AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
-                    source.effectSink.RemoveStatusEffect(EffectStateType.Discharge);
-                    source.inventory.RemoveDisableCooldownFlags();
-                    abilityZ.effectsPreventingUse.Clear();
-                    source.inventory.AddGold(10);
-                    source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                    if (!source.effectSink.HasEffectState(EffectStateType.Overcharge))
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Zap, out var abilityZ);
+                        source.effectSink.RemoveStatusEffect(EffectStateType.Discharge);
+                        abilityZ.effectsPreventingUse.Clear();
+                        source.inventory.RemoveDisableCooldownFlags();
+                       // source.inventory.RemoveFromInventory(AbilityKey.Zap);
+                       // source.inventory.TryAddAbilityToInventory(AbilityKey.Zap, isReplenishable: true);
+                    }
                 }
-                else
-                {
-                    source.inventory.AddGold(money);
-                }
-            }
-            else if (currentAP > 0 || source.boardPieceId == BoardPieceId.HeroGuardian)
-            {
-                // Need to Fix PC Edition Warlock/Bard UI not updating
-                source.inventory.AddGold(10);
-                source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-            }
-            else
-            {
-                source.inventory.AddGold(money);
-                source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
             }
 
-            HR.ScheduleBoardSync();
+            source.inventory.AddGold(10);
+            source.RestoreReplenishableAbilities(source.effectSink.GetActiveStatusEffects());
         }
     }
 }

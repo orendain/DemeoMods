@@ -49,12 +49,12 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (diceResult != Dice.Outcome.Crit)
+            if (!source.IsPlayer())
             {
                 return;
             }
 
-            if (!source.IsPlayer())
+            if (diceResult != Dice.Outcome.Crit)
             {
                 return;
             }
@@ -66,22 +66,20 @@ namespace HouseRules.Essentials.Rules
                 {
                     if (source.boardPieceId == BoardPieceId.HeroRogue)
                     {
-                        source.effectSink.Heal(4);
+                        source.effectSink.Heal(3);
                         source.AnimateWobble();
                     }
                     else
                     {
-                        source.effectSink.Heal(3);
+                        source.effectSink.Heal(2);
                         source.AnimateWobble();
                     }
                 }
                 else
                 {
-                    source.effectSink.Heal(2);
+                    source.effectSink.Heal(1);
                     source.AnimateWobble();
                 }
-
-                HR.ScheduleBoardSync();
             }
             else if (_globalAdjustments.Contains(source.boardPieceId))
             {
@@ -93,8 +91,6 @@ namespace HouseRules.Essentials.Rules
                 {
                     source.effectSink.Heal(1);
                 }
-
-                HR.ScheduleBoardSync();
             }
         }
     }

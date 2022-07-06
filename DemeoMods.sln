@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32505.173
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{45B0C288-5514-4914-92BB-2FCF1E696C28}"
 EndProject
@@ -27,11 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5
 		docs\images\house-rules-logo2.png = docs\images\house-rules-logo2.png
 		docs\images\houserules_menu_screenshot.jpg = docs\images\houserules_menu_screenshot.jpg
 		docs\images\houserules_screenshot.jpg = docs\images\houserules_screenshot.jpg
-		docs\LevelNames.md = docs\LevelNames.md
-		docs\LevelProperties.md = docs\LevelProperties.md
-		docs\PieceConfig.md = docs\PieceConfig.md
 		docs\images\roomfinder_screenshot.jpg = docs\images\roomfinder_screenshot.jpg
 		docs\images\skipintro_icon.jpg = docs\images\skipintro_icon.jpg
+		docs\PieceConfig.md = docs\PieceConfig.md
+		docs\LevelProperties.md = docs\LevelProperties.md
+		docs\LevelNames.md = docs\LevelNames.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules_Configuration", "HouseRules_Configuration\HouseRules_Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
@@ -44,7 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExampleRulesets", "ExampleR
 		docs\rulesets\(Custom) Arachnophobia.json = docs\rulesets\(Custom) Arachnophobia.json
 		docs\rulesets\(Custom) Beat The Clock!.json = docs\rulesets\(Custom) Beat The Clock!.json
 		docs\rulesets\(Custom) Better Sorcerer.json = docs\rulesets\(Custom) Better Sorcerer.json
-		docs\rulesets\(Custom) Demeo Reloaded.json = docs\rulesets\(Custom) Demeo Reloaded.json
+		docs\rulesets\(Custom) Demeo Reloaded For PC Edition.json = docs\rulesets\(Custom) Demeo Reloaded For PC Edition.json
+		docs\rulesets\(Custom) Demeo Reloaded For PC VR.json = docs\rulesets\(Custom) Demeo Reloaded For PC VR.json
 		docs\rulesets\(Custom) Demeo Revolutions.json = docs\rulesets\(Custom) Demeo Revolutions.json
 		docs\rulesets\(Custom) Difficulty Easy.json = docs\rulesets\(Custom) Difficulty Easy.json
 		docs\rulesets\(Custom) Difficulty Hard.json = docs\rulesets\(Custom) Difficulty Hard.json

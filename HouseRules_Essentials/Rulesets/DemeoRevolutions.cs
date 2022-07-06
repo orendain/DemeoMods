@@ -74,24 +74,24 @@
 
             var cardChestRarityRule = new CardChestRarityOverriddenRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.Barricade, 25 },
-                { AbilityKey.Bone, 25 },
-                { AbilityKey.BottleOfLye, 25 },
-                { AbilityKey.WaterBottle, 25 },
-                { AbilityKey.AdamantPotion, 10 },
-                { AbilityKey.HeavensFury, 10 },
-                { AbilityKey.Rejuvenation, 10 },
+                { AbilityKey.Barricade, 15 },
+                { AbilityKey.Bone, 15 },
+                { AbilityKey.BottleOfLye, 15 },
+                { AbilityKey.WaterBottle, 15 },
+                { AbilityKey.AdamantPotion, 2 },
+                { AbilityKey.HeavensFury, 2 },
+                { AbilityKey.Rejuvenation, 2 },
             });
 
             var cardShopRarityRule = new CardShopRarityOverriddenRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.Barricade, 25 },
-                { AbilityKey.Bone, 25 },
-                { AbilityKey.BottleOfLye, 25 },
-                { AbilityKey.WaterBottle, 25 },
-                { AbilityKey.AdamantPotion, 20 },
-                { AbilityKey.HeavensFury, 20 },
-                { AbilityKey.Rejuvenation, 20 },
+                { AbilityKey.Barricade, 15 },
+                { AbilityKey.Bone, 15 },
+                { AbilityKey.BottleOfLye, 15 },
+                { AbilityKey.WaterBottle, 15 },
+                { AbilityKey.AdamantPotion, 5 },
+                { AbilityKey.HeavensFury, 5 },
+                { AbilityKey.Rejuvenation, 5 },
                 { AbilityKey.OilLamp, 0 },
                 { AbilityKey.GasLamp, 0 },
                 { AbilityKey.VortexLamp, 0 },
@@ -170,6 +170,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
+                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Overcharge, ReplenishFrequency = 1 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
@@ -361,7 +362,6 @@
                 {
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
-                        AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.RepeatingBallista,
                         AbilityKey.PanicPowder,
@@ -465,7 +465,6 @@
                         AbilityKey.Rejuvenation,
                         AbilityKey.HealingPotion,
                         AbilityKey.VigorPotion,
-                        AbilityKey.SpellPowerPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.MagicPotion,
@@ -601,12 +600,12 @@
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.EnemyJavelin } },
-                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit } },
+                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.PanicPowderArrow } },
                 { BoardPieceId.RootMage, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportEnemy } },
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold } },
                 { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder } },
                 { BoardPieceId.CultMemberElder, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Weaken } },
-                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.LightningBolt, AbilityKey.EnemyFireball } },
+                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.PanicPowderArrow, AbilityKey.EnemyFireball } },
                 { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeapHeavy } },
                 { BoardPieceId.ElvenArcher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyArrowSnipe, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
@@ -648,11 +647,15 @@
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Zap, false },
+                { AbilityKey.LightningBolt, false },
+                { AbilityKey.Overcharge, false },
+                { AbilityKey.Overload, false },
                 { AbilityKey.Sneak, false },
                 { AbilityKey.Grab, false },
                 { AbilityKey.Arrow, false },
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.MinionCharge, false },
+                { AbilityKey.SpawnRandomLamp, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -677,11 +680,17 @@
                 { AbilityKey.PoisonGas, 1 },
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.BlockAbilities, 1 },
+                { AbilityKey.MagicShield, 1 },
+                { AbilityKey.Overload, 1 },
+                { AbilityKey.Overcharge, 1 },
             });
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
                 { AbilityKey.Zap, new List<int> { 4, 8, 4, 8 } },
+                { AbilityKey.LightningBolt, new List<int> { 6, 12, 6, 12 } },
+                { AbilityKey.Overload, new List<int> { 6, 12, 6, 12 } },
+                { AbilityKey.Overcharge, new List<int> { 6, 12, 6, 12 } },
                 { AbilityKey.Fireball, new List<int> { 13, 32, 8, 16 } },
                 { AbilityKey.Freeze, new List<int> { 6, 18, 6, 18 } },
                 { AbilityKey.Vortex, new List<int> { 4, 14, 2, 6 } },
@@ -706,12 +715,15 @@
                 { AbilityKey.TornadoCharge, new List<int> { 3, 3, 3, 3 } },
             });
 
-            var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
-            { Assassin = 0, Bard = 12, Warlock = 4, Guardian = 8, Hunter = 2, Sorcerer = 6, Downed = -30, Javelin = 13 });
+            /*var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
+            { Bard = 15, Guardian = 14, Sorcerer = 13, Warlock = 12, Hunter = 11, Assassin = 10, Downed = -6, Javelin = 12 });*/
 
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {
                 { BoardPieceId.HeroHunter, AbilityKey.Bone },
+                { BoardPieceId.HeroSorcerer, AbilityKey.SpellPowerPotion },
+                { BoardPieceId.HeroWarlock, AbilityKey.SpellPowerPotion },
+                { BoardPieceId.HeroBard, AbilityKey.SpawnRandomLamp },
             });
 
             var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue });
@@ -737,13 +749,15 @@
 
             var enemyCooldownRule = new EnemyCooldownOverriddenRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.Zap, 1 },
-                { AbilityKey.LightningBolt, 1 },
-                { AbilityKey.LeapHeavy, 1 },
-                { AbilityKey.EnemyFrostball, 1 },
-                { AbilityKey.EnemyFireball, 1 },
+                { AbilityKey.Zap, 2 },
+                { AbilityKey.LightningBolt, 2 },
+                { AbilityKey.LeapHeavy, 2 },
+                { AbilityKey.EnemyFrostball, 2 },
+                { AbilityKey.EnemyFireball, 2 },
             });
 
+            // var immunityFixRule = new ImmunityFixRule(true);
+            var dontShockFriendRule = new DontShockFriendsRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.2f);
@@ -797,7 +811,7 @@
                 aoeAdjustedRule,
                 abilityDamageRule,
                 backstabConfigRule,
-                turnOrderRule,
+                // turnOrderRule,
                 freeHealOnHitRule,
                 freeHealOnCritRule,
                 freeRepleishablesOnCritRule,
@@ -806,6 +820,8 @@
                 abilityBackstabRule,
                 abilityStealthDamageRule,
                 enemyCooldownRule,
+                // immunityFixRule,
+                dontShockFriendRule,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,

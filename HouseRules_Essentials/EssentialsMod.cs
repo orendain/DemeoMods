@@ -34,6 +34,7 @@
             HR.Rulebook.Register(typeof(CardChestRarityOverriddenRule));
             HR.Rulebook.Register(typeof(CardShopRarityOverriddenRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
+            HR.Rulebook.Register(typeof(DontShockFriendsRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
             HR.Rulebook.Register(typeof(EnemyCooldownOverriddenRule));
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
@@ -45,6 +46,7 @@
             HR.Rulebook.Register(typeof(FreeHealOnHitRule));
             HR.Rulebook.Register(typeof(FreeReplenishablesOnCritRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
+            HR.Rulebook.Register(typeof(ImmunityFixRule));
             HR.Rulebook.Register(typeof(LampTypesOverriddenRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));

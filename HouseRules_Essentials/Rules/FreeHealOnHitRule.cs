@@ -49,12 +49,12 @@
                 return;
             }
 
-            if (diceResult != Dice.Outcome.Hit)
+            if (!source.IsPlayer())
             {
                 return;
             }
 
-            if (!source.IsPlayer())
+            if (diceResult != Dice.Outcome.Hit)
             {
                 return;
             }
@@ -66,19 +66,16 @@
                 {
                     source.effectSink.Heal(2);
                     source.AnimateWobble();
-                    HR.ScheduleBoardSync();
                 }
                 else
                 {
                     source.effectSink.Heal(1);
-                    HR.ScheduleBoardSync();
                 }
             }
             else if (chance > 95)
             {
                 source.effectSink.Heal(1);
                 source.AnimateWobble();
-                HR.ScheduleBoardSync();
             }
 
             if (source.boardPieceId == BoardPieceId.HeroGuardian)
@@ -87,7 +84,6 @@
                 if (damageResist < 1)
                 {
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-                    HR.ScheduleBoardSync();
                 }
             }
         }
