@@ -100,7 +100,7 @@
             var newGameType =
                 Traverse.Create(__instance).Field<PostGameControllerBase>("postGameController").Value.gameType;
 
-            var gsmLevelSequence = gameContext.levelSequenceConfiguration.GetNewLevelSequence(-1, newGameType);
+            var gsmLevelSequence = gameContext.levelSequenceConfiguration.GetNewLevelSequence(-1, newGameType, LevelSequence.ControlType.OneHero);
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
