@@ -62,7 +62,7 @@
             var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
 
-            var targetPieceId = Traverse.Create(addCardToPieceEvent).Field<int>("targetPieceId").Value;
+            var targetPieceId = Traverse.Create(addCardToPieceEvent).Field<int>("pieceId").Value;
             if (!gameContext.pieceAndTurnController.TryGetPiece(targetPieceId, out var piece))
             {
                 return;
