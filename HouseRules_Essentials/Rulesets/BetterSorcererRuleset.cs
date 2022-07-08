@@ -10,7 +10,7 @@
         internal static Ruleset Create()
         {
             const string name = "Better Sorcerer";
-            const string description = "0 Action Cost for Sorcerer's Zap - No other changes. #STS";
+            const string description = "0 Action Cost for Sorcerer's Zap & prevent electricity based friendly-fire. #STS";
 
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
@@ -20,7 +20,8 @@
             return Ruleset.NewInstance(
                 name,
                 description,
-                abilityActionCostRule);
+                abilityActionCostRule,
+                new PartyElectricityDamageOverriddenRule(true));
         }
     }
 }
