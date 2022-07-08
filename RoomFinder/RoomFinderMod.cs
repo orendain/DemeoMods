@@ -14,8 +14,6 @@
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
         internal static readonly SharedState SharedState = SharedState.NewInstance();
 
-        private GameObject _roomFinderUi;
-
         public override void OnApplicationStart()
         {
             var harmony = new Harmony("com.orendain.demeomods.roomfinder");
@@ -43,7 +41,7 @@
             }
 
             Logger.Msg("Recognized lobby in VR. Loading UI.");
-            _roomFinderUi = new GameObject("RoomFinderUiVr", typeof(RoomFinderUiVr));
+            _ = new GameObject("RoomFinderUiVr", typeof(RoomFinderUiVr));
         }
     }
 }
