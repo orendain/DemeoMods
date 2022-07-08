@@ -61,16 +61,20 @@
         "BigBoiMutant": [ 2, 1, 1 ]
       }
     },
-    {
+    /*{
       "Rule": "CardChestRarityOverridden",
       "Config": {
         "Barricade": 15,
         "Bone": 15,
         "BottleOfLye": 15,
         "WaterBottle": 15,
-        "AdamantPotion": 2,
-        "HeavensFury": 2,
-        "Rejuvenation": 2
+        "AdamantPotion": 0,
+        "HeavensFury": 0,
+        "Rejuvenation": 0,
+        "OilLamp": 0,
+        "GasLamp": 0,
+        "VortexLamp": 0,
+        "IceLamp": 0
       }
     },
     {
@@ -88,7 +92,7 @@
         "VortexLamp": 0,
         "IceLamp": 0
       }
-    },
+    },*/
     {
       "Rule": "StartCardsModified",
       "Config": {
@@ -470,36 +474,6 @@
           "Value": 25
         },
         {
-          "Piece": "Bandit",
-          "Property": "WaterTrailChance",
-          "Value": 0.15
-        },
-        {
-          "Piece": "Thug",
-          "Property": "WaterTrailChance",
-          "Value": 0.15
-        },
-        {
-          "Piece": "KillerBee",
-          "Property": "WaterTrailChance",
-          "Value": 0.15
-        },
-        {
-          "Piece": "Rat",
-          "Property": "WaterTrailChance",
-          "Value": 0.15
-        },
-        {
-          "Piece": "Spider",
-          "Property": "WaterTrailChance",
-          "Value": 0.15
-        },
-        {
-          "Piece": "ElvenHound",
-          "Property": "WaterTrailChance",
-          "Value": 0.15
-        },
-        {
           "Piece": "Verochka",
           "Property": "StartHealth",
           "Value": 15
@@ -607,12 +581,12 @@
         {
           "Piece": "SnakeBoss",
           "Property": "AttackDamage",
-          "Value": 5
+          "Value": 6
         },
         {
           "Piece": "SnakeTailBoss",
           "Property": "AttackDamage",
-          "Value": 5
+          "Value": 6
         },
         {
           "Piece": "WizardBoss",
@@ -622,7 +596,7 @@
         {
           "Piece": "ElvenQueen",
           "Property": "AttackDamage",
-          "Value": 5
+          "Value": 6
         },
         {
           "Piece": "RatKing",
@@ -632,12 +606,12 @@
         {
           "Piece": "MotherCy",
           "Property": "AttackDamage",
-          "Value": 5
+          "Value": 6
         },
         {
           "Piece": "RootLord",
           "Property": "AttackDamage",
-          "Value": 5
+          "Value": 6
         },
         {
           "Piece": "Brookmare",
@@ -1067,7 +1041,7 @@
         "ChestGoblin": [ "EnemyMelee", "EnemyStealGold" ],
         "KillerBee": [ "EnemyMelee", "ThornPowder" ],
         "CultMemberElder": [ "EnemyMelee", "Weaken" ],
-        "Wyvern": [ "EnemyMelee", "DiseasedBite", "PanicPowderArrow", "EnemyFireball" ],
+        "Wyvern": [ "EnemyMelee", "DiseasedBite", "PanicPowderArrow", "LightningBolt" ],
         "SilentSentinel": [ "EnemyMelee", "LeapHeavy" ],
         "ElvenArcher": [ "EnemyMelee", "EnemyArrowSnipe", "EnemyFrostball" ],
         "ElvenCultist": [ "EnemyMelee", "LeechMelee" ],
@@ -1121,7 +1095,8 @@
         "CourageShanty": false,
         "Arrow": false,
         "MinionCharge": false,
-        "SpawnRandomLamp": false
+        "SpawnRandomLamp": false,
+        "SpellPowerPotion": false
       }
     },
     {
@@ -1148,7 +1123,6 @@
         "PoisonGas": 1,
         "BlindingLight": 1,
         "BlockAbilities": 1,
-        "MagicShield": 1,
         "Overload": 1,
         "Overcharge": 1
       }
@@ -1184,7 +1158,7 @@
         "TornadoCharge": [ 3, 3, 3, 3 ]
       }
     },
-    /*{
+    {
       "Rule": "TurnOrderOverridden",
       "Config":
       {
@@ -1197,7 +1171,7 @@
         "Downed": -6,
         "Javelin": 12
       }
-    },*/
+    },
     {
       "Rule": "FreeAbilityOnCrit",
       "Config": 
@@ -1279,15 +1253,11 @@
         "LightningBolt": 2,
         "LeapHeavy": 2,
         "EnemyFrostball": 2,
-        "EnemyFireball": 2
+        "EnemyFireball": 1
       }
     },
-    /*{
-      "Rule": "ImmunityFix",
-      "Config": true
-    },*/
     {
-      "Rule": "DontShockFriends",
+      "Rule": "PartyElectricityDamage",
       "Config": true
     },
     {
@@ -1318,11 +1288,11 @@
       "Rule": "LevelSequenceOverridden",
       "Config": 
       [
-        "SewersFloor12",
+        "ElvenFloor13",
+        "SewersShopFloor",
+        "SewerFloor12",
         "ForestShopFloor",
-        "ForestFloor01",
-        "ShopFloor02",
-        "ElvenFloor13"
+        "ForestFloor07"
       ]
     },
     {

@@ -1,5 +1,25 @@
 # Changelog
 
+## [v1.4.0-houserules](https://github.com/orendain/demeomods/tree/v1.4.0-houserules) (2022-06-22)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-houserules...v1.4.0-houserules)
+
+**Features/Enhancements:**
+
+- Add NonVr UI for HouseRules. [\#373](https://github.com/orendain/DemeoMods/pull/373)
+- Add NonVR utilities to the common module. [\#372](https://github.com/orendain/DemeoMods/pull/372)
+- Modify HouseRules to account for the recent `common/ui` refactor. [\#371](https://github.com/orendain/DemeoMods/pull/371)
+- Display HouseRules version on the UI. [\#308](https://github.com/orendain/DemeoMods/pull/308)
+- Enable HouseRules to run on PC edition. [\#302](https://github.com/orendain/DemeoMods/pull/302)
+
+**Chores:**
+
+- Adjust RoomFinder to be compatible with the latest `common/ui` refactor. [\#374](https://github.com/orendain/DemeoMods/pull/374)
+- WIP - V1.15 compatibility [\#344](https://github.com/orendain/DemeoMods/pull/344)
+- Apply maintenance across HouseRules: fix typos, apply auto-formatting, reduce nesting. [\#341](https://github.com/orendain/DemeoMods/pull/341)
+- Perform maintenance on HouseRules modules. [\#312](https://github.com/orendain/DemeoMods/pull/312)
+- Apply partial semver checking when determining if an online version is an update. [\#309](https://github.com/orendain/DemeoMods/pull/309)
+
 ## [v1.3.0-houserules](https://github.com/orendain/demeomods/tree/v1.3.0-houserules) (2022-04-17)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-houserules...v1.3.0-houserules)

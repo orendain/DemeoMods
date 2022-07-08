@@ -72,15 +72,19 @@
                 { BoardPieceId.BigBoiMutant, new List<int> { 2, 1, 1 } },
             });
 
-            var cardChestRarityRule = new CardChestRarityOverriddenRule(new Dictionary<AbilityKey, int>
+            /*var cardChestRarityRule = new CardChestRarityOverriddenRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.Barricade, 15 },
                 { AbilityKey.Bone, 15 },
                 { AbilityKey.BottleOfLye, 15 },
                 { AbilityKey.WaterBottle, 15 },
-                { AbilityKey.AdamantPotion, 2 },
-                { AbilityKey.HeavensFury, 2 },
-                { AbilityKey.Rejuvenation, 2 },
+                { AbilityKey.AdamantPotion, 3 },
+                { AbilityKey.HeavensFury, 3 },
+                { AbilityKey.Rejuvenation, 3 },
+                { AbilityKey.OilLamp, 0 },
+                { AbilityKey.GasLamp, 0 },
+                { AbilityKey.VortexLamp, 0 },
+                { AbilityKey.IceLamp, 0 },
             });
 
             var cardShopRarityRule = new CardShopRarityOverriddenRule(new Dictionary<AbilityKey, int>
@@ -96,7 +100,7 @@
                 { AbilityKey.GasLamp, 0 },
                 { AbilityKey.VortexLamp, 0 },
                 { AbilityKey.IceLamp, 0 },
-            });
+            });*/
 
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -212,12 +216,6 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 25 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Bandit, Property = "WaterTrailChance", Value = 0.15f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Thug, Property = "WaterTrailChance", Value = 0.15f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.KillerBee, Property = "WaterTrailChance", Value = 0.15f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Rat, Property = "WaterTrailChance", Value = 0.15f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Spider, Property = "WaterTrailChance", Value = 0.15f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenHound, Property = "WaterTrailChance", Value = 0.15f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 10 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Barricade, Property = "StartHealth", Value = 18 },
@@ -239,10 +237,10 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "AttackDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeTailBoss, Property = "AttackDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "AttackDamage", Value = 6 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "AttackDamage", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "AttackDamage", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "AttackDamage", Value = 6 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "AttackDamage", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "AttackDamage", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "AttackDamage", Value = 6 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "AttackDamage", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "AttackDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "AttackDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "AttackDamage", Value = 5 },
@@ -605,7 +603,7 @@
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold } },
                 { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder } },
                 { BoardPieceId.CultMemberElder, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Weaken } },
-                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.PanicPowderArrow, AbilityKey.EnemyFireball } },
+                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.PanicPowderArrow, AbilityKey.LightningBolt } },
                 { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeapHeavy } },
                 { BoardPieceId.ElvenArcher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyArrowSnipe, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
@@ -656,6 +654,7 @@
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.MinionCharge, false },
                 { AbilityKey.SpawnRandomLamp, false },
+                { AbilityKey.SpellPowerPotion, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -680,7 +679,6 @@
                 { AbilityKey.PoisonGas, 1 },
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.BlockAbilities, 1 },
-                { AbilityKey.MagicShield, 1 },
                 { AbilityKey.Overload, 1 },
                 { AbilityKey.Overcharge, 1 },
             });
@@ -715,8 +713,8 @@
                 { AbilityKey.TornadoCharge, new List<int> { 3, 3, 3, 3 } },
             });
 
-            /*var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
-            { Bard = 15, Guardian = 14, Sorcerer = 13, Warlock = 12, Hunter = 11, Assassin = 10, Downed = -6, Javelin = 12 });*/
+            var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
+            { Bard = 15, Guardian = 14, Sorcerer = 13, Warlock = 12, Hunter = 11, Assassin = 10, Downed = -6, Javelin = 12 });
 
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {
@@ -753,11 +751,10 @@
                 { AbilityKey.LightningBolt, 2 },
                 { AbilityKey.LeapHeavy, 2 },
                 { AbilityKey.EnemyFrostball, 2 },
-                { AbilityKey.EnemyFireball, 2 },
+                { AbilityKey.EnemyFireball, 1 },
             });
 
-            // var immunityFixRule = new ImmunityFixRule(true);
-            var dontShockFriendRule = new DontShockFriendsRule(true);
+            var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.2f);
@@ -766,11 +763,11 @@
             var enemyHealthScaledRule = new EnemyHealthScaledRule(2.5f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
-                "SewersFloor12",
-                "ForestShopFloor",
-                "ForestFloor01",
-                "ShopFloor02",
                 "ElvenFloor13",
+                "SewersShopFloor",
+                "SewerFloor12",
+                "ForestShopFloor",
+                "ForestFloor07",
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
@@ -796,8 +793,8 @@
                 name,
                 description,
                 spawnCategoriesRule,
-                cardChestRarityRule,
-                cardShopRarityRule,
+                /*cardChestRarityRule,
+                cardShopRarityRule,*/
                 startingCardsRule,
                 piecesAdjustedRule,
                 allowedCardsRule,
@@ -811,7 +808,7 @@
                 aoeAdjustedRule,
                 abilityDamageRule,
                 backstabConfigRule,
-                // turnOrderRule,
+                turnOrderRule,
                 freeHealOnHitRule,
                 freeHealOnCritRule,
                 freeRepleishablesOnCritRule,
@@ -820,8 +817,7 @@
                 abilityBackstabRule,
                 abilityStealthDamageRule,
                 enemyCooldownRule,
-                // immunityFixRule,
-                dontShockFriendRule,
+                partyElectricity,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,

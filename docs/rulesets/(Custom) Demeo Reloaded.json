@@ -67,6 +67,10 @@
         "HeroWarlock":
         [
           {
+            "Card": "Torch",
+            "ReplenishFrequency": 0
+          },
+          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },

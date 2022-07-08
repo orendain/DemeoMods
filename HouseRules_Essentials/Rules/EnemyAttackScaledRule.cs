@@ -4,6 +4,7 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
+    using UnityEngine;
 
     public sealed class EnemyAttackScaledRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
     {
@@ -50,7 +51,15 @@
                 return;
             }
 
-            __result = (int)(__result * _globalMultiplier);
+            if (__result < 30)
+            {
+                float range = Random.Range(0.85f, 1.05f);
+                __result = (int)(__result * _globalMultiplier * range);
+            }
+            else
+            {
+                __result = (int)(__result * _globalMultiplier);
+            }
         }
     }
 }

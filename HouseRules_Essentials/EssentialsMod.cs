@@ -34,7 +34,6 @@
             HR.Rulebook.Register(typeof(CardChestRarityOverriddenRule));
             HR.Rulebook.Register(typeof(CardShopRarityOverriddenRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
-            HR.Rulebook.Register(typeof(DontShockFriendsRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
             HR.Rulebook.Register(typeof(EnemyCooldownOverriddenRule));
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
@@ -46,12 +45,12 @@
             HR.Rulebook.Register(typeof(FreeHealOnHitRule));
             HR.Rulebook.Register(typeof(FreeReplenishablesOnCritRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
-            HR.Rulebook.Register(typeof(ImmunityFixRule));
             HR.Rulebook.Register(typeof(LampTypesOverriddenRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(LevelSequenceOverriddenRule));
             HR.Rulebook.Register(typeof(MonsterDeckOverriddenRule));
+            HR.Rulebook.Register(typeof(PartyElectricityDamageOverriddenRule));
             HR.Rulebook.Register(typeof(PetsFocusHunterMarkRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
@@ -79,8 +78,7 @@
             HR.Rulebook.Register(BeatTheClockRuleset.Create());
             HR.Rulebook.Register(ItsATrapRuleset.Create());
             HR.Rulebook.Register(HuntersParadiseRuleset.Create());
-            HR.Rulebook.Register(DemeoReloadedForPC.Create());
-            HR.Rulebook.Register(DemeoReloadedForVR.Create());
+            HR.Rulebook.Register(DemeoReloaded.Create());
             HR.Rulebook.Register(FlippingOut.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());

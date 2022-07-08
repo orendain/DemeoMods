@@ -1,5 +1,53 @@
 # Changelog
 
+## [v1.4.0-houserules](https://github.com/orendain/demeomods/tree/v1.4.0-houserules) (2022-06-22)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-houserules...v1.4.0-houserules)
+
+**Features/Enhancements:**
+
+- Add an initial configuration for Warlock where needed in rulesets. [\#369](https://github.com/orendain/DemeoMods/pull/369)
+- Introduce a new ruleset: Flipping Out [\#367](https://github.com/orendain/DemeoMods/pull/367)
+- Restore functionality for configurable replenish frequences and add support for Overcharge. [\#356](https://github.com/orendain/DemeoMods/pull/356)
+- Remove `RegroupAllies` rule, as the equivalent change is now the default in Demeo. [\#352](https://github.com/orendain/DemeoMods/pull/352)
+- Add a user-configurable amout of HP to target each time CourageShanty is cast. [\#346](https://github.com/orendain/DemeoMods/pull/346)
+- Gain a user-configured ability whenever a critical hit is scored. [\#345](https://github.com/orendain/DemeoMods/pull/345)
+- Allow Regroup to teleport both enemies and players. [\#340](https://github.com/orendain/DemeoMods/pull/340)
+- Introduce a new rule: TurnOrderOverridden, allowing the player turn order to be customized. [\#336](https://github.com/orendain/DemeoMods/pull/336)
+- Ruleset rebalance tweaks from Gray Alien [\#335](https://github.com/orendain/DemeoMods/pull/335)
+- The Gray Alien's Demeo Reloaded ruleset. [\#329](https://github.com/orendain/DemeoMods/pull/329)
+- It's a trap rebalance [\#324](https://github.com/orendain/DemeoMods/pull/324)
+- Its a trap ruleset [\#320](https://github.com/orendain/DemeoMods/pull/320)
+- Store replenishFrequency in the unused bits of Inventory 'flags' [\#319](https://github.com/orendain/DemeoMods/pull/319)
+- Replace flawed AbilityDamageAdjusted rule with a better alternative. [\#318](https://github.com/orendain/DemeoMods/pull/318)
+- Modify lamp type rule to support arbitrary number of levels. [\#311](https://github.com/orendain/DemeoMods/pull/311)
+- Enable HouseRules to run on PC edition. [\#302](https://github.com/orendain/DemeoMods/pull/302)
+
+**Fixes:**
+
+- Update `LevelExitLockedUntilAllEnemiesDefeatedRule` to be compatible with Demeo 1.16. [\#354](https://github.com/orendain/DemeoMods/pull/354)
+- Modify `StartCardsModifiedRule` to account for new piece spawning logic in Demeo 1.16. [\#353](https://github.com/orendain/DemeoMods/pull/353)
+- Fix - Card hand size limited to 9 cards after configurable replenishables were recently added. [\#333](https://github.com/orendain/DemeoMods/pull/333)
+- Fix `LevelSequenceOverriddenRule` to override level sequences for "Play Again" games. [\#328](https://github.com/orendain/DemeoMods/pull/328)
+- Added a board sync trigger to AbilityAoeAdjustedRule, to fix AoE potion changes not syncing across clients. [\#326](https://github.com/orendain/DemeoMods/pull/326)
+- Fix the door staying locked for players when using the `LevelExitLockedUntilAllEnemiesDefeated` rule. [\#307](https://github.com/orendain/DemeoMods/pull/307)
+- Fix LevelExitLockedUntilAllEnemiesDefeated rule counting friendly monsters and spider eggs as monsters that must be killed. [\#305](https://github.com/orendain/DemeoMods/pull/305)
+- Fix resetting the original value for adjusted AoE abilities. [\#304](https://github.com/orendain/DemeoMods/pull/304)
+
+**Chores:**
+
+- Add FlippingOut ruleset to the build list. [\#368](https://github.com/orendain/DemeoMods/pull/368)
+- Remove unneeded logic in `CardLimitModifiedRule` as changes in Demeo 1.16 no longer require it. [\#355](https://github.com/orendain/DemeoMods/pull/355)
+- V1.16 compatibility [\#349](https://github.com/orendain/DemeoMods/pull/349)
+- WIP - V1.15 compatibility [\#344](https://github.com/orendain/DemeoMods/pull/344)
+- Rebalance Demeo Reloaded ruleset and fix build/compile warnings [\#343](https://github.com/orendain/DemeoMods/pull/343)
+- Apply maintenance across HouseRules: fix typos, apply auto-formatting, reduce nesting. [\#341](https://github.com/orendain/DemeoMods/pull/341)
+- Further balance changes to Demeo Reloaded ruleset [\#339](https://github.com/orendain/DemeoMods/pull/339)
+- It's A Trap ruleset tewaks. [\#338](https://github.com/orendain/DemeoMods/pull/338)
+- Adjust `ItsATrapRuleset` with updated `StartCardsModifiedRule` format. [\#327](https://github.com/orendain/DemeoMods/pull/327)
+- Simplify CardClassRestrictionOverrideRule [\#313](https://github.com/orendain/DemeoMods/pull/313)
+- Perform maintenance on HouseRules modules. [\#312](https://github.com/orendain/DemeoMods/pull/312)
+
 ## [v1.3.0-houserules](https://github.com/orendain/demeomods/tree/v1.3.0-houserules) (2022-04-17)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-houserules...v1.3.0-houserules)

@@ -10,7 +10,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class DontShockFriendsRule : Rule, IConfigWritable<bool>, IPatchable,
+    public sealed class PartyElectricityDamageOverriddenRule : Rule, IConfigWritable<bool>, IPatchable,
         IMultiplayerSafe
     {
         public override string Description => "Player on player electricity damage is zero.";
@@ -21,7 +21,7 @@
         private readonly bool _adjustments;
         private static GameContext _gameContext;
 
-        public DontShockFriendsRule(bool adjustments)
+        public PartyElectricityDamageOverriddenRule(bool adjustments)
         {
             _adjustments = adjustments;
         }
@@ -42,14 +42,14 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(ProjectileHitSequence), "OnStarted"),
                 prefix: new HarmonyMethod(
-                    typeof(DontShockFriendsRule),
+                    typeof(PartyElectricityDamageOverriddenRule),
                     nameof(ProjectileHitSequence_OnStarted_Prefix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(SerializableEventQueue), "ValidateSerializableEvent"),
                 prefix: new HarmonyMethod(
-                    typeof(DontShockFriendsRule),
-                    nameof(SerializableEventQueue_ValidateSerializableEvent_Postfix)));
+                    typeof(PartyElectricityDamageOverriddenRule),
+                    nameof(SerializableEventQueue_ValidateSerializableEvent_Prefix)));
         }
 
         private static bool ProjectileHitSequence_OnStarted_Prefix(ref ProjectileHitSequence __instance)
@@ -77,7 +77,7 @@
             return true;
         }
 
-        private static bool SerializableEventQueue_ValidateSerializableEvent_Postfix(byte[] serializableEventData, ref SerializableEvent __result)
+        private static bool SerializableEventQueue_ValidateSerializableEvent_Prefix(byte[] serializableEventData, ref SerializableEvent __result)
         {
             if (!_isActivated)
             {
@@ -89,7 +89,7 @@
                 SerializableEvent action = SerializableEvent.Deserialize(new BinaryReader(new MemoryStream(serializableEventData)));
                 if (action.type == SerializableEvent.Type.SetStatusEffects)
                 {
-                    EssentialsMod.Logger.Msg($"Bypassing Validate for {action.type}");
+                    // EssentialsMod.Logger.Msg($"Bypassing Validate for {action.type}");
                     __result = action;
                     return false; // Don't run the original OnStarted method.
                 }

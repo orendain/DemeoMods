@@ -1,5 +1,28 @@
 # Changelog
 
+## [v1.4.0-houserules](https://github.com/orendain/demeomods/tree/v1.4.0-houserules) (2022-06-22)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-houserules...v1.4.0-houserules)
+
+**Features/Enhancements:**
+
+- Tag HouseRules games with a custom room property. [\#360](https://github.com/orendain/DemeoMods/pull/360)
+- Improve performance of the board syncing feature. [\#310](https://github.com/orendain/DemeoMods/pull/310)
+- Add a `ScheduleResync` method to allow rules to manually schedule board syncs. [\#306](https://github.com/orendain/DemeoMods/pull/306)
+- Enable HouseRules to run on PC edition. [\#302](https://github.com/orendain/DemeoMods/pull/302)
+
+**Fixes:**
+
+- Update support for starting HouseRules games from Hangouts. [\#366](https://github.com/orendain/DemeoMods/pull/366)
+- Typofix - ScheduleResync method got renamed. [\#316](https://github.com/orendain/DemeoMods/pull/316)
+
+**Chores:**
+
+- V1.16 compatibility [\#349](https://github.com/orendain/DemeoMods/pull/349)
+- WIP - V1.15 compatibility [\#344](https://github.com/orendain/DemeoMods/pull/344)
+- Apply maintenance across HouseRules: fix typos, apply auto-formatting, reduce nesting. [\#341](https://github.com/orendain/DemeoMods/pull/341)
+- Perform maintenance on HouseRules modules. [\#312](https://github.com/orendain/DemeoMods/pull/312)
+
 ## [v1.3.0-houserules](https://github.com/orendain/demeomods/tree/v1.3.0-houserules) (2022-04-17)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-houserules...v1.3.0-houserules)

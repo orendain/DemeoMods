@@ -1,16 +1,19 @@
 ﻿namespace HouseRules
 {
     using System;
+    using System.Linq;
     using System.Reflection;
     using System.Text;
     using Boardgame;
     using Boardgame.Networking;
     using HarmonyLib;
     using HouseRules.Types;
+    using Photon.Realtime;
 
     internal static class LifecycleDirector
     {
         private const float WelcomeMessageDurationSeconds = 30f;
+        private const string ModdedRoomPropertyKey = "modded";
 
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
@@ -23,6 +26,12 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
                 postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(GameStartup_InitializeGame_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools
+                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
+                    .GetDeclaredMethod("TryCreateRoom"),
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_TryCreateRoom_Prefix)));
 
             harmony.Patch(
                 original: AccessTools
@@ -61,19 +70,50 @@
             _gameContext = gameContext;
         }
 
+        private static void CreatingGameState_TryCreateRoom_Prefix()
+        {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
+            /*var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+                .Field<CreateGameMode>("createGameMode").Value;
+            if (createGameMode != CreateGameMode.Private)
+            {
+                return;
+            }*/
+
+            var gameStateTraverse = Traverse.Create(_gameContext.gameStateMachine).Field("creatingGameState");
+            if (!gameStateTraverse.FieldExists())
+            {
+                CoreMod.Logger.Error("Failed to find required \"creatingGameState\" field.");
+                return;
+            }
+
+            var gameState = gameStateTraverse.GetValue();
+            var roomOptions = Traverse.Create(gameState).Field<RoomOptions>("roomOptions").Value;
+            AddModdedRoomProperties(roomOptions);
+        }
+
         private static void CreatingGameState_OnJoinedRoom_Prefix()
         {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
             if (_gameContext.gameStateMachine.goBackToMenuState)
             {
                 return;
             }
 
-            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+            /*var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
-            }
+            }*/
 
             var createdGameFromSave =
                 Traverse.Create(_gameContext.gameStateMachine).Field<bool>("createdGameFromSave").Value;
@@ -131,7 +171,35 @@
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
-            DeactivateRuleset();
+            MelonLoader.MelonLogger.Msg("<--- DISCONNECTED --->");
+            // DeactivateRuleset();
+        }
+
+        /// <summary>
+        /// Add properties to the room to indicate its modded nature.
+        /// </summary>
+        /// <remarks>
+        /// Properties may be used by other mods to distinguish modded rooms from non-modded rooms.
+        /// </remarks>
+        private static void AddModdedRoomProperties(RoomOptions roomOptions)
+        {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
+            if (roomOptions.CustomRoomPropertiesForLobby.Contains(ModdedRoomPropertyKey))
+            {
+                CoreMod.Logger.Warning($"Room options already include custom property: {ModdedRoomPropertyKey}");
+                return;
+            }
+
+            var newOptions = new string[roomOptions.CustomRoomPropertiesForLobby.Length + 1];
+            newOptions[0] = ModdedRoomPropertyKey;
+            roomOptions.CustomRoomPropertiesForLobby.CopyTo(newOptions, 1);
+            roomOptions.CustomRoomPropertiesForLobby = newOptions;
+
+            roomOptions.CustomRoomProperties.Add(ModdedRoomPropertyKey, true);
         }
 
         private static void ActivateRuleset()
@@ -282,13 +350,14 @@
             sb.AppendLine($"{HR.SelectedRuleset.Name}:");
             sb.AppendLine(HR.SelectedRuleset.Description);
             sb.AppendLine();
-            sb.AppendLine("Rules:");
+            sb.AppendLine($"{HR.SelectedRuleset.Rules.Count} Rules loaded!");
+            /*sb.AppendLine("Rules:");
 
             for (var i = 0; i < HR.SelectedRuleset.Rules.Count; i++)
             {
                 var description = HR.SelectedRuleset.Rules[i].Description;
                 sb.AppendLine($"{i + 1}. {description}");
-            }
+            }*/
 
             return sb.ToString();
         }

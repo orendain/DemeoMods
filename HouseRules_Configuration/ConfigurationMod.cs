@@ -3,14 +3,14 @@
     using System;
     using System.Collections.Generic;
     using Common;
+    using Common.UI;
+    using HouseRules.Configuration.UI;
     using MelonLoader;
     using UnityEngine;
 
     internal class ConfigurationMod : MelonMod
     {
-        private const string DemeoPCEditionString = "Demeo PC Edition";
         private const int LobbySceneIndex = 1;
-        private const int HangoutsSceneIndex = 43;
 
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
@@ -52,16 +52,32 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (MelonUtils.CurrentGameAttribute.Name == DemeoPCEditionString)
+            if (Environments.IsPcEdition())
             {
-                Logger.Msg("PC Edition detected. Skipping VR UI loading.");
+                if (buildIndex != LobbySceneIndex)
+                {
+                    return;
+                }
+
+                Logger.Msg("Recognized lobby in PC. Loading UI.");
+                _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
                 return;
             }
 
-            if (buildIndex == LobbySceneIndex || buildIndex == HangoutsSceneIndex)
+            if (Environments.IsInHangouts())
             {
-                _ = new GameObject("HouseRules_RulesetSelection", typeof(UI.RulesetSelectionUI));
+                Logger.Msg("Recognized lobby in Hangouts. Loading UI.");
+                _ = new GameObject("HouseRulesUiHangouts", typeof(HouseRulesUiHangouts));
+                return;
             }
+
+            if (buildIndex != LobbySceneIndex)
+            {
+                return;
+            }
+
+            Logger.Msg("Recognized lobby in VR. Loading UI.");
+            _ = new GameObject("HouseRulesUiVr", typeof(HouseRulesUiVr));
         }
 
         private static async void DetermineIfUpdateAvailable()
@@ -85,7 +101,8 @@
                 catch (Exception e)
                 {
                     FailedRulesetFiles.Add(file);
-                    Logger.Warning($"Failed to import and register ruleset from file [{file}]. Skipping that ruleset: {e}");
+                    Logger.Warning(
+                        $"Failed to import and register ruleset from file [{file}]. Skipping that ruleset: {e}");
                 }
             }
         }
