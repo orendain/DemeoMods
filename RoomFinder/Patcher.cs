@@ -1,12 +1,8 @@
 ﻿namespace RoomFinder
 {
-    using System.Collections.ObjectModel;
     using System.Reflection;
     using Boardgame;
-    using Boardgame.Ui.LobbyMenu;
-    using Common.UI;
     using HarmonyLib;
-    using RGCommon;
 
     internal static class Patcher
     {
@@ -27,10 +23,6 @@
                     .Inner(typeof(GameStateMachine), "MatchMakingState").GetTypeInfo()
                     .GetDeclaredMethod("FindGame"),
                 prefix: new HarmonyMethod(typeof(Patcher), nameof(MatchMakingState_FindGame_Prefix)));
-
-            harmony.Patch(
-                original: AccessTools.Method(typeof(Lobby), "HideMenu"),
-                prefix: new HarmonyMethod(typeof(Patcher), nameof(Lobby_HideMenu_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -51,23 +43,6 @@
             }
 
             RoomFinderMod.SharedState.GameContext.gameStateMachine.goBackToMenuState = true;
-            return false;
-        }
-
-        private static bool Lobby_HideMenu_Prefix(Lobby __instance)
-        {
-            if (!Environments.IsPcEdition())
-            {
-                return true;
-            }
-
-            if (!RoomFinderMod.SharedState.IsRefreshingRoomList)
-            {
-                return true;
-            }
-
-            __instance.GetLobbyMenuController.view.ShowMainContent(LobbyMenuController.MenuContent.Play);
-            RoomFinderMod.SharedState.HasLoadingScreenClosed = true;
             return false;
         }
     }

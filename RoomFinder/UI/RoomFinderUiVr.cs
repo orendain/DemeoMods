@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
+    using Boardgame.Ui.LobbyMenu;
     using Common.UI;
     using Common.UI.Element;
     using HarmonyLib;
@@ -58,14 +59,8 @@
                 return;
             }
 
-            if (!RoomFinderMod.SharedState.HasLoadingScreenClosed)
-            {
-                return;
-            }
-
             RoomFinderMod.SharedState.IsRefreshingRoomList = false;
             RoomFinderMod.SharedState.HasRoomListUpdated = false;
-            RoomFinderMod.SharedState.HasLoadingScreenClosed = false;
             PopulateRoomList();
         }
 
@@ -102,9 +97,16 @@
         private static void RefreshRoomList()
         {
             RoomFinderMod.SharedState.IsRefreshingRoomList = true;
-            Traverse.Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
-                .Method("QuickPlay", LevelSequence.GameType.Invalid, true)
-                .GetValue();
+            var lobbyMenuContext = Traverse
+                .Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
+                .Field<LobbyMenu.ILobbyMenuContext>("lobbyMenuContext")
+                .Value;
+
+            lobbyMenuContext.QuickPlay(
+                LevelSequence.GameType.Invalid,
+                LevelSequence.ControlType.OneHero,
+                matchMakeAnyGame: true,
+                onError: null);
         }
 
         private void PopulateRoomList()
