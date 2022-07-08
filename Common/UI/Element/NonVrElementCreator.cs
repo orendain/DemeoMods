@@ -8,7 +8,7 @@
 
     internal class NonVrElementCreator : IElementCreator
     {
-        public const int NormalFontSize = 25;
+        public const int NormalFontSize = 22;
         public const int ButtonFontSize = 35;
         public const int HeaderFontSize = 36;
         private const int CollisionLayer = 5;
