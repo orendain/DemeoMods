@@ -127,7 +127,11 @@
                 .Field<LobbyMenu.ILobbyMenuContext>("lobbyMenuContext")
                 .Value;
 
-            lobbyMenuContext.QuickPlay(LevelSequence.GameType.Invalid, LevelSequence.ControlType.OneHero, true, null);
+            lobbyMenuContext.QuickPlay(
+                LevelSequence.GameType.Invalid,
+                LevelSequence.ControlType.OneHero,
+                matchMakeAnyGame: true,
+                onError: null);
         }
 
         private void PopulateRoomList()
