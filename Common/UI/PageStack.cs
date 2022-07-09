@@ -1,31 +1,26 @@
 namespace Common.UI
 {
     using System.Collections.Generic;
-    using TMPro;
     using UnityEngine;
 
-    internal class PageStack
+    public class PageStack
     {
-        private readonly UiHelper _uiHelper;
         private readonly List<GameObject> _pages;
-        private readonly TextMeshPro _statusText;
         private int _currentPageIndex;
 
-        internal GameObject NavigationPanel { get; }
+        public PageStackNavigation Navigation { get; }
 
-        public static PageStack NewInstance(UiHelper uiHelper)
+        public static PageStack NewInstance()
         {
-            return new PageStack(uiHelper);
+            return new PageStack();
         }
 
-        private PageStack(UiHelper uiHelper)
+        private PageStack()
         {
-            _uiHelper = uiHelper;
             _pages = new List<GameObject>();
             _currentPageIndex = 0;
-            NavigationPanel = CreateNavigation();
+            Navigation = PageStackNavigation.NewInstance(this);
 
-            _statusText = NavigationPanel.GetComponentInChildren<TextMeshPro>();
             UpdatePageStatus();
         }
 
@@ -39,46 +34,20 @@ namespace Common.UI
             UpdatePageStatus();
         }
 
-        private void OnPreviousPageClick()
+        /// <summary>
+        /// Removes all pages from the stack.
+        /// </summary>
+        /// <remarks>
+        /// Note that this stops tracking all current pages, but does not explicitly destroy them.
+        /// </remarks>
+        public void Clear()
         {
-            AdvancePageIndex(-1);
+            _pages.Clear();
+            _currentPageIndex = 0;
+            UpdatePageStatus();
         }
 
-        private void OnNextPageClick()
-        {
-            AdvancePageIndex(1);
-        }
-
-        private GameObject CreateNavigation()
-        {
-            var container = new GameObject("PageStackNavigation");
-
-            // TODO(orendain): Remove reliance on this label being first (for _statusText).
-            var pageStatus = _uiHelper.CreateText(string.Empty, _uiHelper.DemeoResource.ColorBrown, UiHelper.DefaultButtonFontSize);
-            pageStatus.transform.SetParent(container.transform, worldPositionStays: false);
-
-            var prevButton = _uiHelper.CreateButton(OnPreviousPageClick);
-            prevButton.transform.SetParent(container.transform, worldPositionStays: false);
-            prevButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            prevButton.transform.localPosition = new Vector3(-2.5f, 0, UiHelper.DefaultButtonZShift);
-
-            var prevButtonText = _uiHelper.CreateButtonText("<");
-            prevButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            prevButtonText.transform.localPosition = new Vector3(-2.5f, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
-
-            var nextButton = _uiHelper.CreateButton(OnNextPageClick);
-            nextButton.transform.SetParent(container.transform, worldPositionStays: false);
-            nextButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
-            nextButton.transform.localPosition = new Vector3(2.5f, 0, UiHelper.DefaultButtonZShift);
-
-            var nextButtonText = _uiHelper.CreateButtonText(">");
-            nextButtonText.transform.SetParent(container.transform, worldPositionStays: false);
-            nextButtonText.transform.localPosition = new Vector3(2.5f, 0, UiHelper.DefaultButtonZShift + UiHelper.DefaultTextZShift);
-
-            return container;
-        }
-
-        private void AdvancePageIndex(int advancement)
+        public void AdvancePageIndex(int advancement)
         {
             _currentPageIndex += advancement;
             _currentPageIndex = Mod(_currentPageIndex, _pages.Count);
@@ -88,13 +57,18 @@ namespace Common.UI
 
         private void UpdatePageVisibility()
         {
+            if (_pages.Count < 1)
+            {
+                return;
+            }
+
             _pages.ForEach(p => p.SetActive(false));
             _pages[_currentPageIndex].SetActive(true);
         }
 
         private void UpdatePageStatus()
         {
-            _statusText.text = $"{_currentPageIndex + 1}/{_pages.Count}";
+            Navigation.PageStatusText.text = $"{_currentPageIndex + 1}/{_pages.Count}";
         }
 
         private static int Mod(int x, int m)
