@@ -14,7 +14,7 @@
 
         private static List<string> _globalAdjustments;
         private static bool _isActivated;
-
+        private static bool _isDesert = false;
         private readonly List<string> _adjustments;
 
         /// <summary>
@@ -69,6 +69,17 @@
                 return true;
             }
 
+            if (_isDesert)
+            {
+                return true;
+            }
+
+            if (gameType == LevelSequence.GameType.Desert)
+            {
+                _isDesert = true;
+                return true;
+            }
+
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var sequenceDefinitions =
                 gameContext.levelSequenceConfiguration.sequenceDefinitions.GetSequenceFromId(gameType, out _);
@@ -96,6 +107,11 @@
                 return true;
             }
 
+            if (_isDesert)
+            {
+                return true;
+            }
+
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var newGameType =
                 Traverse.Create(__instance).Field<PostGameControllerBase>("postGameController").Value.gameType;
@@ -119,9 +135,17 @@
                 Traverse.Create(gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
 
-            Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
-                replacements.Prepend(originalSequence[0]).ToArray();
-            return originalSequence.ToList();
+            if (gsmLevelSequence.gameType != LevelSequence.GameType.Desert)
+            {
+                Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
+                    replacements.Prepend(originalSequence[0]).ToArray();
+                return originalSequence.ToList();
+            }
+            else
+            {
+                _isDesert = true;
+                return originalSequence.ToList();
+            }
         }
     }
 }
