@@ -765,7 +765,7 @@
             {
                 "ElvenFloor13",
                 "SewersShopFloor",
-                "SewerFloor12",
+                "SewersFloor12",
                 "ForestShopFloor",
                 "ForestFloor07",
             });
