@@ -19,7 +19,8 @@
         private static readonly Random Rnd = new Random();
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;
-        private static bool _isChest = true;
+        private static bool _isPotionStand = false;
+        private static bool _isChest = false;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
 
@@ -70,7 +71,11 @@
             Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
             if (whatIsit.type == Interactable.Type.PotionStand)
             {
-                _isChest = false;
+                _isPotionStand = true;
+            }
+            else if (whatIsit.type == Interactable.Type.Chest)
+            {
+                _isChest = true;
             }
         }
 
@@ -85,6 +90,12 @@
 
             if (request.type != SerializableEvent.Type.AddCardToPiece)
             {
+                return;
+            }
+
+            if (_isPotionStand)
+            {
+                // TODO: Add method to allow custom card loot for Potion Stands here
                 return;
             }
 
