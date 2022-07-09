@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
+    using Boardgame.Data;
     using Boardgame.BoardEntities;
     using Boardgame.SerializableEvents;
     using DataKeys;
@@ -18,6 +19,7 @@
         private static readonly Random Rnd = new Random();
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;
+        private static bool _isChest = true;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
 
@@ -39,10 +41,37 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
+                original: AccessTools.Method(typeof(Interactable), "OnInteraction"),
+                prefix: new HarmonyMethod(
+                    typeof(CardAdditionOverriddenRule),
+                    nameof(Interactable_OnInteraction_Prefix)));
+
+            harmony.Patch(
                 original: AccessTools.Method(typeof(SerializableEventQueue), "RespondToRequest"),
                 prefix: new HarmonyMethod(
                     typeof(CardAdditionOverriddenRule),
                     nameof(SerializableEventQueue_RespondToRequest_Prefix)));
+        }
+
+        private static void Interactable_OnInteraction_Prefix(
+            GameContext gameContext,
+            IntPoint2D targetTile)
+        {
+            if (!_isActivated)
+            {
+                return;
+            }
+
+            if (!gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile))
+            {
+                return;
+            }
+
+            Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
+            if (whatIsit.type == Interactable.Type.PotionStand)
+            {
+                _isChest = false;
+            }
         }
 
         private static void SerializableEventQueue_RespondToRequest_Prefix(
@@ -55,6 +84,11 @@
             }
 
             if (request.type != SerializableEvent.Type.AddCardToPiece)
+            {
+                return;
+            }
+
+            if (!_isChest)
             {
                 return;
             }
