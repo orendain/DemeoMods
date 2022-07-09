@@ -69,12 +69,13 @@
             var rectTransform = (RectTransform)infoText.transform;
             rectTransform.SetParent(container.transform, worldPositionStays: false);
             rectTransform.sizeDelta = new Vector2(500, 100);
+            rectTransform.localPosition = new Vector2(0, 20f);
 
             var selectedText = _elementCreator.CreateNormalText("Selected ruleset: ");
             rectTransform = (RectTransform)selectedText.transform;
             rectTransform.SetParent(container.transform, worldPositionStays: false);
             rectTransform.sizeDelta = new Vector2(500, 100);
-            rectTransform.localPosition = new Vector2(0, -75f);
+            rectTransform.localPosition = new Vector2(0, -45f);
 
             _selectedText = selectedText.GetComponent<TMP_Text>();
             UpdateSelectedText();
@@ -94,7 +95,7 @@
         {
             var container = new GameObject("Rulesets");
             container.transform.SetParent(Panel.transform, worldPositionStays: false);
-            container.transform.localPosition = new Vector2(0, -125f);
+            container.transform.localPosition = new Vector2(0, -115f);
 
             for (var i = 0; i < rulesets.Count; i++)
             {
@@ -112,22 +113,25 @@
             var container = new GameObject(ruleset.Name);
 
             var button = _elementCreator.CreateButton(SelectRulesetAction(ruleset.Name));
+            button.transform.localScale = new Vector2(3f, 0.85f);
             button.transform.SetParent(container.transform, worldPositionStays: false);
-            button.transform.localScale = new Vector2(2.2f, 0.75f);
-            button.transform.localPosition = new Vector2(-225f, 0);
+            button.transform.localPosition = new Vector2(-325f, 0);
 
             var buttonText =
                 _elementCreator.CreateText(ruleset.Name, Color.white, NonVrElementCreator.NormalFontSize);
-            buttonText.transform.SetParent(container.transform, worldPositionStays: false);
-            buttonText.transform.localPosition = new Vector2(-225f, 0);
             buttonText.GetComponent<Graphic>().raycastTarget = false;
+            var buttonTextTransform = (RectTransform)buttonText.transform;
+            buttonTextTransform.SetParent(container.transform, worldPositionStays: false);
+            buttonTextTransform.sizeDelta = new Vector2(300, 50);
+            buttonTextTransform.localPosition = new Vector2(-325f, 1);
+   
 
             var description = _elementCreator.CreateNormalText(ruleset.Description);
             var rectTransform = (RectTransform)description.transform;
             rectTransform.SetParent(container.transform, worldPositionStays: false);
             rectTransform.pivot = Vector2.left;
-            rectTransform.sizeDelta = new Vector2(450, 50);
-            rectTransform.localPosition = new Vector2(-485f, -25f);
+            rectTransform.sizeDelta = new Vector2(700, 50);
+            rectTransform.localPosition = new Vector2(-825f, -25f);
 
             return container;
         }

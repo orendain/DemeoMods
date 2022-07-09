@@ -1,0 +1,140 @@
+name: Build Mods
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: cmd
+
+jobs:
+
+  build_houserules:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Prepare
+        run: |
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/ee723cfe2c3c9ee6004fbb0554fca4cc3557de0e/ws.zip
+          7z x ws.zip 
+
+      - name: Build HouseRules_Core
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Core\HouseRules_Core.csproj
+      - name: Build HouseRules_Essentials
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Essentials\HouseRules_Essentials.csproj
+      - name: Build HouseRules_Configuration
+        run: msbuild -restore -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Configuration\HouseRules_Configuration.csproj
+
+      - name: Retrieve Newtonsoft
+        run: |
+          C:\msys64\usr\bin\wget.exe https://github.com/jilleJr/Newtonsoft.Json-for-Unity/archive/refs/tags/13.0.102.zip
+          7z e 13.0.102.zip -o. "Newtonsoft.Json-for-Unity-13.0.102\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.dll"
+
+      - name: Assemble Zip
+        run: |
+          mkdir Bundle\Mods
+          xcopy HouseRules_Core\bin\Release\HouseRules_Core.dll Bundle\Mods
+          xcopy HouseRules_Essentials\bin\Release\HouseRules_Essentials.dll Bundle\Mods
+          xcopy HouseRules_Configuration\bin\Release\HouseRules_Configuration.dll Bundle\Mods
+          mkdir Bundle\UserLibs
+          xcopy Newtonsoft.Json.dll Bundle\UserLibs
+          mkdir Bundle\UserData\HouseRules\ExampleRulesets
+          xcopy docs\rulesets\* Bundle\UserData\HouseRules\ExampleRulesets
+
+      - name: Upload HouseRules
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: HouseRules
+          path: Bundle\*
+
+  build_roomfinder:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Prepare
+        run: |
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/ee723cfe2c3c9ee6004fbb0554fca4cc3557de0e/ws.zip
+          7z x ws.zip
+
+      - name: Build RoomFinder
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" RoomFinder\RoomFinder.csproj
+
+      - name: Assemble Zip
+        run: |
+          mkdir Bundle\Mods
+          xcopy RoomFinder\bin\Release\RoomFinder.dll Bundle\Mods
+
+      - name: Upload RoomFinder
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: RoomFinder
+          path: Bundle\*
+
+  build_skipintro:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Prepare
+        run: |
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/ee723cfe2c3c9ee6004fbb0554fca4cc3557de0e/ws.zip
+          7z x ws.zip
+
+      - name: Build SkipIntro
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" SkipIntro\SkipIntro.csproj
+
+      - name: Assemble Zip
+        run: |
+          mkdir Bundle\Mods
+          xcopy SkipIntro\bin\Release\SkipIntro.dll Bundle\Mods
+
+      - name: Upload SkipIntro
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: SkipIntro
+          path: Bundle\*
+
+  build_roomcode:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Prepare
+        run: |
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/ee723cfe2c3c9ee6004fbb0554fca4cc3557de0e/ws.zip
+          7z x ws.zip
+
+      - name: Build RoomCode
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" RoomCode\RoomCode.csproj
+
+      - name: Assemble Zip
+        run: |
+          mkdir Bundle\Mods
+          xcopy RoomCode\bin\Release\RoomCode.dll Bundle\Mods
+
+      - name: Upload RoomCode
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: RoomCode
+          path: Bundle\*
