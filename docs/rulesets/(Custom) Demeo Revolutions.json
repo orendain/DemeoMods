@@ -58,7 +58,9 @@
         "Gorgon": [ 2, 1, 2 ],
         "SilentSentinel": [ 2, 1, 2 ],
         "Wyvern": [ 2, 1, 2 ],
-        "BigBoiMutant": [ 2, 1, 1 ]
+        "BigBoiMutant": [ 2, 1, 1 ],
+        "ScarabSandPile": [ 2, 1, 1 ],
+        "EmptySandPile":  [ 2, 1, 1 ]
       }
     },
     /*{
@@ -730,9 +732,6 @@
           "StrengthPotion",
           "SwiftnessPotion",
           "RepeatingBallista",
-          "AdamantPotion",
-          "HeavensFury",
-          "Rejuvenation",
           "HealingPotion",
           "VigorPotion",
           "ScrollTsunami",
@@ -771,9 +770,6 @@
           "BottleOfLye",
           "Teleportation",
           "SwiftnessPotion",
-          "AdamantPotion",
-          "HeavensFury",
-          "Rejuvenation",
           "HealingPotion",
           "VigorPotion",
           "ScrollTsunami",
@@ -811,9 +807,6 @@
           "BottleOfLye",
           "Teleportation",
           "StrengthPotion",
-          "AdamantPotion",
-          "HeavensFury",
-          "Rejuvenation",
           "HealingPotion",
           "VigorPotion",
           "ScrollTsunami",
@@ -856,9 +849,6 @@
           "BottleOfLye",
           "Teleportation",
           "StrengthPotion",
-          "AdamantPotion",
-          "HeavensFury",
-          "Rejuvenation",
           "HealingPotion",
           "VigorPotion",
           "ScrollTsunami",
@@ -893,9 +883,6 @@
           "BottleOfLye",
           "Teleportation",
           "SwiftnessPotion",
-          "AdamantPotion",
-          "HeavensFury",
-          "Rejuvenation",
           "HealingPotion",
           "VigorPotion",
           "ScrollTsunami",
@@ -935,9 +922,6 @@
           "Barricade",
           "BottleOfLye",
           "SwiftnessPotion",
-          "AdamantPotion",
-          "HeavensFury",
-          "Rejuvenation",
           "HealingPotion",
           "VigorPotion",
           "ScrollTsunami",
@@ -1046,7 +1030,8 @@
         "ElvenArcher": [ "EnemyMelee", "EnemyArrowSnipe", "EnemyFrostball" ],
         "ElvenCultist": [ "EnemyMelee", "LeechMelee" ],
         "TheUnseen": [ "EnemyMelee", "Zap" ],
-        "ElvenQueen": [ "SummonBossMinions", "EnemyKnockbackMelee", "LightningBolt", "EarthShatter", "Telekinesis" ]
+        "ElvenQueen": [ "SummonBossMinions", "ImplosionExplosionRain", "LightningBolt", "EarthShatter" ],
+        "BigBoiMutant": [ "EnemyKnockbackMelee", "Shockwave", "LeapHeavy" ]
       }
     },
     {
@@ -1288,7 +1273,7 @@
       "Rule": "LevelSequenceOverridden",
       "Config": 
       [
-        "ElvenFloor13",
+        "ElvenFloor12",
         "SewersShopFloor",
         "SewersFloor12",
         "ForestShopFloor",
@@ -1307,7 +1292,7 @@
         "FloorOneGoldMaxAmount": 400,
         "FloorTwoHealingFountains": 1,
         "FloorTwoPotionStand": 1,
-        "FloorTwoMerchant": 0,
+        "FloorTwoMerchant": 1,
         "FloorTwoLootChests": 3,
         "FloorTwoGoldMaxAmount": 500,
         "FloorThreeHealingFountains": 1,

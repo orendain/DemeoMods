@@ -70,6 +70,8 @@
                 { BoardPieceId.SilentSentinel, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.Wyvern, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.BigBoiMutant, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.ScarabSandPile, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.EmptySandPile, new List<int> { 2, 1, 1 } },
             });
 
             /*var cardChestRarityRule = new CardChestRarityOverriddenRule(new Dictionary<AbilityKey, int>
@@ -104,7 +106,7 @@
 
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterBottle, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implode, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MissileSwarm, ReplenishFrequency = 0 },
@@ -117,7 +119,7 @@
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterBottle, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, ReplenishFrequency = 0 },
@@ -129,7 +131,7 @@
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterBottle, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WhirlwindAttack, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingThrow, ReplenishFrequency = 0 },
@@ -141,7 +143,7 @@
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterBottle, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HailOfArrows, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, ReplenishFrequency = 0 },
@@ -153,7 +155,7 @@
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterBottle, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 0 },
@@ -165,7 +167,7 @@
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterBottle, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Freeze, ReplenishFrequency = 0 },
@@ -280,9 +282,6 @@
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.RepeatingBallista,
-                        AbilityKey.AdamantPotion,
-                        AbilityKey.HeavensFury,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.HealingPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
@@ -324,9 +323,6 @@
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.SwiftnessPotion,
-                        AbilityKey.AdamantPotion,
-                        AbilityKey.HeavensFury,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.HealingPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
@@ -367,9 +363,6 @@
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
-                        AbilityKey.AdamantPotion,
-                        AbilityKey.HeavensFury,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.HealingPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
@@ -415,9 +408,6 @@
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
-                        AbilityKey.AdamantPotion,
-                        AbilityKey.HeavensFury,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.HealingPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
@@ -458,9 +448,6 @@
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.SwiftnessPotion,
-                        AbilityKey.AdamantPotion,
-                        AbilityKey.HeavensFury,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.HealingPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
@@ -502,9 +489,6 @@
                         AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
                         AbilityKey.SwiftnessPotion,
-                        AbilityKey.AdamantPotion,
-                        AbilityKey.HeavensFury,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.HealingPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
@@ -608,7 +592,8 @@
                 { BoardPieceId.ElvenArcher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyArrowSnipe, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
                 { BoardPieceId.TheUnseen, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Zap } },
-                { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.SummonBossMinions, AbilityKey.EnemyKnockbackMelee, AbilityKey.LightningBolt, AbilityKey.EarthShatter, AbilityKey.Telekinesis } },
+                { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.SummonBossMinions, AbilityKey.LightningBolt, AbilityKey.EarthShatter, AbilityKey.ImplosionExplosionRain } },
+                { BoardPieceId.BigBoiMutant, new List<AbilityKey> {AbilityKey.EnemyKnockbackMelee, AbilityKey.Shockwave, AbilityKey.LeapHeavy } },
             });
 
             var pieceBehaviourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
@@ -767,7 +752,7 @@
                 "SewersShopFloor",
                 "SewersFloor12",
                 "ForestShopFloor",
-                "ForestFloor07",
+                "ForestFloor02",
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
@@ -780,7 +765,7 @@
                 { "FloorOneGoldMaxAmount", 400 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
-                { "FloorTwoMerchant", 0 },
+                { "FloorTwoMerchant", 1 },
                 { "FloorTwoLootChests", 3 },
                 { "FloorTwoGoldMaxAmount", 500 },
                 { "FloorThreeHealingFountains", 1 },
