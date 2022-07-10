@@ -1020,13 +1020,13 @@
       "Rule": "PieceAbilityListOverridden",
       "Config": {
         "EarthElemental": [ "EnemyMelee", "EnemyKnockbackMelee", "EarthShatter", "EnemyJavelin" ],
-        "Mimic": [ "EnemyMelee", "PanicPowderArrow" ],
+        "Mimic": [ "EnemyMelee", "PanicPowderArrow", "AcidSpit" ],
         "RootMage": [ "EnemyMelee", "TeleportEnemy" ],
         "ChestGoblin": [ "EnemyMelee", "EnemyStealGold" ],
         "KillerBee": [ "EnemyMelee", "ThornPowder" ],
-        "CultMemberElder": [ "EnemyMelee", "Weaken" ],
+        "CultMemberElder": [ "EnemyMelee", "Weaken", "EnemyFireball" ],
         "Wyvern": [ "EnemyMelee", "DiseasedBite", "PanicPowderArrow", "LightningBolt" ],
-        "SilentSentinel": [ "EnemyMelee", "LeapHeavy" ],
+        "SilentSentinel": [ "EnemyMelee", "LeapHeavy", "PanicPowderArrow" ],
         "ElvenArcher": [ "EnemyMelee", "EnemyArrowSnipe", "EnemyFrostball" ],
         "ElvenCultist": [ "EnemyMelee", "LeechMelee" ],
         "TheUnseen": [ "EnemyMelee", "Zap" ],
@@ -1140,7 +1140,19 @@
         "MinionCharge": [ 4, 9, 4, 9 ],
         "MissileSwarm": [ 2, 2, 2, 2 ],
         "MagicMissile": [ 2, 5, 2, 5 ],
-        "TornadoCharge": [ 3, 3, 3, 3 ]
+        "TornadoCharge": [ 3, 3, 3, 3 ],
+        "AcidSpit": [ 5, 5, 5, 5 ],
+        "EnemyTurretDamageProjectile": [ 2, 2, 2, 2 ],
+        "EnemyArrow": [ 3, 3, 3, 3 ],
+        "EnemyArrowSnipe": [ 5, 5, 5, 5 ],
+        "EnemyJavelin": [ 5, 5, 5, 5 ],
+        "EnemyPikeMeleeAttack": [ 5, 5, 5, 5 ],
+        "IceExplosion": [ 6, 6, 6, 6 ],
+        "LeapHeavy": [ 6, 6, 6, 6 ],
+        "Leap": [ 2, 2, 2, 2 ],
+        "Shockwave": [ 5, 5, 5, 5 ],
+        "Tsunami": [ 5, 5, 5, 5 ],
+        "ScrollTsunami": [ 5, 5, 5, 5 ]
       }
     },
     {
@@ -1238,7 +1250,7 @@
         "LightningBolt": 2,
         "LeapHeavy": 2,
         "EnemyFrostball": 2,
-        "EnemyFireball": 1
+        "EnemyFireball": 2
       }
     },
     {

@@ -582,13 +582,13 @@
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.EnemyJavelin } },
-                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.PanicPowderArrow } },
+                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.PanicPowderArrow, AbilityKey.AcidSpit } },
                 { BoardPieceId.RootMage, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportEnemy } },
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold } },
                 { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder } },
-                { BoardPieceId.CultMemberElder, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Weaken } },
+                { BoardPieceId.CultMemberElder, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Weaken, AbilityKey.EnemyFireball } },
                 { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.PanicPowderArrow, AbilityKey.LightningBolt } },
-                { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeapHeavy } },
+                { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeapHeavy, AbilityKey.PanicPowderArrow } },
                 { BoardPieceId.ElvenArcher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyArrowSnipe, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
                 { BoardPieceId.TheUnseen, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Zap } },
@@ -660,7 +660,7 @@
                 { AbilityKey.PoisonBomb, 1 },
                 { AbilityKey.WarCry, 1 },
                 { AbilityKey.WhirlwindAttack, 1 },
-                { AbilityKey.Deflect, 1 },
+                { AbilityKey.Deflect, 2 },
                 { AbilityKey.PoisonGas, 1 },
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.BlockAbilities, 1 },
@@ -686,7 +686,7 @@
                 { AbilityKey.HailOfArrows, new List<int> { 6, 16, 6, 16 } },
                 { AbilityKey.Arrow, new List<int> { 4, 12, 4, 12 } },
                 { AbilityKey.EnemyFireball, new List<int> { 7, 7, 7, 7 } },
-                { AbilityKey.EnemyFrostball, new List<int> { 7, 7, 7, 7 } },
+                { AbilityKey.EnemyFrostball, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.Electricity, new List<int> { 3, 6, 1, 2 } },
                 { AbilityKey.TurretDamageProjectile, new List<int> { 3, 3, 3, 3 } },
                 { AbilityKey.TurretHighDamageProjectile, new List<int> { 6, 6, 3, 3 } },
@@ -696,6 +696,18 @@
                 { AbilityKey.MissileSwarm, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.MagicMissile, new List<int> { 2, 5, 2, 5 } },
                 { AbilityKey.TornadoCharge, new List<int> { 3, 3, 3, 3 } },
+                { AbilityKey.AcidSpit, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.EnemyTurretDamageProjectile, new List<int> { 2, 2, 2, 2 } },
+                { AbilityKey.EnemyArrow, new List<int> { 3, 3, 3, 3 } },
+                { AbilityKey.EnemyArrowSnipe, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.EnemyJavelin, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.EnemyPikeMeleeAttack, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.IceExplosion, new List<int> { 6, 6, 6, 6 } },
+                { AbilityKey.LeapHeavy, new List<int> { 6, 6, 6, 6 } },
+                { AbilityKey.Leap, new List<int> { 2, 2, 2, 2 } },
+                { AbilityKey.Shockwave, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.Tsunami, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.ScrollTsunami, new List<int> { 5, 5, 5, 5 } },
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
@@ -736,7 +748,7 @@
                 { AbilityKey.LightningBolt, 2 },
                 { AbilityKey.LeapHeavy, 2 },
                 { AbilityKey.EnemyFrostball, 2 },
-                { AbilityKey.EnemyFireball, 1 },
+                { AbilityKey.EnemyFireball, 2 },
             });
 
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
