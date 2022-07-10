@@ -7,6 +7,8 @@ mods, or are interested in learning to build your own.
 
 [![Discord](https://img.shields.io/discord/841011788195823626?logo=discord&logoColor=fff&style=for-the-badge)](https://discord.gg/4BNSwmr784)
 
+[![Latest Build](https://img.shields.io/github/workflow/status/orendain/demeomods/Build%20Mods/main?label=latest%20build&style=for-the-badge)](https://github.com/orendain/DemeoMods/actions/workflows/build.yml)
+
 ## Contents
 - [Installation](#installation)
 - [Mods](#mods)
