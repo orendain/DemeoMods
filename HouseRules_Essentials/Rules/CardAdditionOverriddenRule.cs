@@ -19,8 +19,8 @@
         private static readonly Random Rnd = new Random();
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;
-        private static bool _isPotionStand = false;
-        private static bool _isChest = false;
+        private static bool _isPotionStand;
+        private static bool _isChest;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
 
@@ -68,6 +68,8 @@
                 return;
             }
 
+            _isPotionStand = false;
+            _isChest = false;
             Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
             if (whatIsit.type == Interactable.Type.PotionStand)
             {
