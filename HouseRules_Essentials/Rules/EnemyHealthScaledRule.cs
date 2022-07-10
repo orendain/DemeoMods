@@ -53,10 +53,10 @@
                 return;
             }
 
-            if (__result < 6)
+            if (__instance.PowerIndex < 41)
             {
-                float range = Random.Range(0.85f, 1.10f);
-                __result = (int)(__result * _globalMultiplier * range);
+                float range = Random.Range(0.75f, 1.0f);
+                __result = (int)((__result * _globalMultiplier) * range);
             }
             else
             {

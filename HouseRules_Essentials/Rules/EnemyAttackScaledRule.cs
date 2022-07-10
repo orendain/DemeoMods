@@ -51,10 +51,22 @@
                 return;
             }
 
-            if (__result < 30)
+            if (__result > 2)
             {
-                float range = Random.Range(0.85f, 1.05f);
-                __result = (int)(__result * _globalMultiplier * range);
+                if (__instance.PowerIndex < 30)
+                {
+                    int range = Random.Range(-1, 2);
+                    __result = (int)(__result * _globalMultiplier) + range;
+                }
+                else if (__instance.PowerIndex > 29 && __instance.PowerIndex < 41)
+                {
+                    int range = Random.Range(0, 2);
+                    __result = (int)(__result * _globalMultiplier) - range;
+                }
+                else
+                {
+                    __result = (int)(__result * _globalMultiplier);
+                }
             }
             else
             {
