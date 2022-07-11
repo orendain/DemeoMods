@@ -106,6 +106,7 @@
                 return;
             }
 
+            _isChest = false;
             var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
 
