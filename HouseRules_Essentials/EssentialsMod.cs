@@ -42,6 +42,7 @@
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(LevelSequenceOverriddenRule));
             HR.Rulebook.Register(typeof(MonsterDeckOverriddenRule));
+            HR.Rulebook.Register(typeof(PartyElectricityDamageOverriddenRule));
             HR.Rulebook.Register(typeof(PetsFocusHunterMarkRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
