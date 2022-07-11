@@ -106,7 +106,6 @@
                 return;
             }
 
-            _isChest = false;
             var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
 
@@ -128,6 +127,7 @@
 
             var replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
+            _isChest = false;
         }
     }
 }
