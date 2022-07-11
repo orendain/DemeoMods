@@ -70,7 +70,7 @@
                 var localizedText = Traverse.Create(damage).Method("GetLocalizedText", paramTypes: new[] { typeof(string), typeof(bool) }, arguments: new object[] { "Ui/pieceUi/notification/damage/noDamage", false }).GetValue<string>();
                 Notification.ShowGoldenText(new Target(targetPiece).gameObject, localizedText);
                 _gameContext.serializableEventQueue.SendEventRequest(new SerializeableEventSetStatusEffects(targetPiece.networkID, new EffectStateType[] { }, new EffectStateType[] { EffectStateType.Stunned }));
-
+                targetPiece.effectSink.SubtractHealth(0);
                 return false; // Don't run the original OnStarted method.
             }
 

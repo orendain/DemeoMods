@@ -644,7 +644,6 @@
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.WaterBottle, 5 },
                 { AbilityKey.HealingPotion, 10 },
                 { AbilityKey.Rejuvenation, 10 },
                 { AbilityKey.AltarHeal, 16 },
@@ -717,7 +716,7 @@
             {
                 { BoardPieceId.HeroHunter, AbilityKey.Bone },
                 { BoardPieceId.HeroSorcerer, AbilityKey.SpellPowerPotion },
-                { BoardPieceId.HeroWarlock, AbilityKey.SpellPowerPotion },
+                { BoardPieceId.HeroWarlock, AbilityKey.WaterBottle },
                 { BoardPieceId.HeroBard, AbilityKey.SpawnRandomLamp },
             });
 

@@ -1087,7 +1087,6 @@
     {
       "Rule": "AbilityHealOverridden",
       "Config": {
-        "WaterBottle": 5,
         "HealingPotion": 10,
         "Rejuvenation": 10,
         "AltarHeal": 16,
@@ -1175,7 +1174,7 @@
       {
         "HeroHunter": "Bone",
         "HeroWarlock": "SpellPowerPotion",
-        "HeroSorcerer": "SpellPowerPotion",
+        "HeroSorcerer": "WaterBottle",
         "HeroBard": "SpawnRandomLamp"
       }
     },
