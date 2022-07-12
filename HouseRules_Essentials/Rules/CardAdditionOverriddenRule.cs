@@ -20,7 +20,6 @@
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;
         private static bool _isPotionStand;
-        private static bool _isChest;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
 
@@ -69,15 +68,10 @@
             }
 
             _isPotionStand = false;
-            _isChest = false;
             Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
             if (whatIsit.type == Interactable.Type.PotionStand)
             {
                 _isPotionStand = true;
-            }
-            else if (whatIsit.type == Interactable.Type.Chest)
-            {
-                _isChest = true;
             }
         }
 
@@ -101,15 +95,17 @@
                 return;
             }
 
-            if (!_isChest)
-            {
-                return;
-            }
-
             var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
 
             var pieceId = Traverse.Create(addCardToPieceEvent).Field<int>("pieceId").Value;
+            var cardSource = Traverse.Create(addCardToPieceEvent).Field<int>("cardSource").Value;
+
+            if (cardSource != (int)MotherTracker.Context.Energy && cardSource != (int)MotherTracker.Context.Chest)
+            {
+                return;
+            }
+
             if (!gameContext.pieceAndTurnController.TryGetPiece(pieceId, out var piece))
             {
                 return;
@@ -127,7 +123,6 @@
 
             var replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
-            _isChest = false;
         }
     }
 }
