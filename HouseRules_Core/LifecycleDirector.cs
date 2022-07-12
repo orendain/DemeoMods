@@ -44,7 +44,7 @@
                 original: AccessTools
                     .Inner(typeof(GameStateMachine), "PlayingState").GetTypeInfo()
                     .GetDeclaredMethod("OnMasterClientChanged"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_OnMasterClientChanged_Prefix)));
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(PlayingGameState_OnMasterClientChanged_Prefix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "GoToPlayingState"),
@@ -140,7 +140,7 @@
             OnPreGameCreated();
         }
 
-        private static void CreatingGameState_OnMasterClientChanged_Prefix()
+        private static void PlayingGameState_OnMasterClientChanged_Prefix()
         {
             MelonLoader.MelonLogger.Warning("Master Client changed...");
             if (!GameStateMachine.IsMasterClient)
