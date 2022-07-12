@@ -172,6 +172,7 @@
             CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
             ActivateRuleset();
             OnPreGameCreated();
+            OnPostGameCreated();
         }
 
         private static void GameStateMachine_GoToPlayingState_Postfix()
