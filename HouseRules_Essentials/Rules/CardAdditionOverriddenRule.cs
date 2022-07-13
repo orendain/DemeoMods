@@ -20,6 +20,7 @@
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;
         private static bool _isPotionStand;
+        private static int _numPlayers;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
 
@@ -71,6 +72,7 @@
             Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
             if (whatIsit.type == Interactable.Type.PotionStand)
             {
+                _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
                 _isPotionStand = true;
             }
         }
@@ -92,13 +94,20 @@
             if (_isPotionStand)
             {
                 // TODO: Add method to allow custom card loot for Potion Stands here
-                _isPotionStand = false;
+                if (_numPlayers > 1)
+                {
+                    _numPlayers--;
+                }
+                else
+                {
+                    _isPotionStand = false;
+                }
+
                 return;
             }
 
             var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
-
             var pieceId = Traverse.Create(addCardToPieceEvent).Field<int>("pieceId").Value;
             var cardSource = Traverse.Create(addCardToPieceEvent).Field<int>("cardSource").Value;
 
