@@ -92,6 +92,7 @@
             if (_isPotionStand)
             {
                 // TODO: Add method to allow custom card loot for Potion Stands here
+                _isPotionStand = false;
                 return;
             }
 
