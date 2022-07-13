@@ -12,7 +12,7 @@
 
     internal static class LifecycleDirector
     {
-        private const float WelcomeMessageDurationSeconds = 30f;
+        private static float WelcomeMessageDurationSeconds = 30f;
         private const string ModdedRoomPropertyKey = "modded";
 
         private static GameContext _gameContext;
@@ -175,6 +175,9 @@
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
+            WelcomeMessageDurationSeconds = 10f;
+            ShowWelcomeMessage();
+            WelcomeMessageDurationSeconds = 30f;
         }
 
         private static void GameStateMachine_GoToPlayingState_Postfix()
