@@ -84,12 +84,12 @@
                 return;
             }
 
-            /*var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
-            }*/
+            }
 
             var gameStateTraverse = Traverse.Create(_gameContext.gameStateMachine).Field("creatingGameState");
             if (!gameStateTraverse.FieldExists())
@@ -115,12 +115,12 @@
                 return;
             }
 
-            /*var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
-            }*/
+            }
 
             var createdGameFromSave =
                 Traverse.Create(_gameContext.gameStateMachine).Field<bool>("createdGameFromSave").Value;
@@ -269,7 +269,6 @@
             }
 
             IsRulesetActive = true;
-            _gameId = 0;
 
             CoreMod.Logger.Msg($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)

@@ -99,7 +99,7 @@
       "Config": {
         "HeroWarlock": [
           {
-            "Card": "WaterBottle",
+            "Card": "Torch",
             "ReplenishFrequency": 0
           },
           {
@@ -137,7 +137,7 @@
         ],
         "HeroBard": [
           {
-            "Card": "WaterBottle",
+            "Card": "Torch",
             "ReplenishFrequency": 0
           },
           {
@@ -169,13 +169,13 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Overcharge",
-            "ReplenishFrequency": 1
+            "Card": "EnemyFrostball",
+            "ReplenishFrequency": 2
           }
         ],
         "HeroGuardian": [
           {
-            "Card": "WaterBottle",
+            "Card": "Torch",
             "ReplenishFrequency": 0
           },
           {
@@ -213,7 +213,7 @@
         ],
         "HeroHunter": [
           {
-            "Card": "WaterBottle",
+            "Card": "Torch",
             "ReplenishFrequency": 0
           },
           {
@@ -251,7 +251,7 @@
         ],
         "HeroRogue": [
           {
-            "Card": "WaterBottle",
+            "Card": "Torch",
             "ReplenishFrequency": 0
           },
           {
@@ -284,12 +284,12 @@
           },
           {
             "Card": "DiseasedBite",
-            "ReplenishFrequency": 1
+            "ReplenishFrequency": 2
           }
         ],
         "HeroSorcerer": [
           {
-            "Card": "WaterBottle",
+            "Card": "Torch",
             "ReplenishFrequency": 0
           },
           {

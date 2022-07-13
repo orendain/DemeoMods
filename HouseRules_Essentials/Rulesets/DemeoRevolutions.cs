@@ -126,7 +126,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BlockAbilities, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Overcharge, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFrostball, ReplenishFrequency = 2 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -162,7 +162,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CursedDagger, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.FlashBomb, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 2 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {

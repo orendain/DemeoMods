@@ -88,8 +88,31 @@ namespace HouseRules.Essentials.Rules
                         source.effectSink.RemoveStatusEffect(EffectStateType.Discharge);
                         abilityZ.effectsPreventingUse.Clear();
                         source.inventory.RemoveDisableCooldownFlags();
-                       // source.inventory.RemoveFromInventory(AbilityKey.Zap);
-                       // source.inventory.TryAddAbilityToInventory(AbilityKey.Zap, isReplenishable: true);
+                        source.inventory.AddGold(10);
+                        if (source.inventory.HasAbility(AbilityKey.Electricity, includeIsReplenishing: false))
+                        {
+                            source.RestoreReplenishableAbilities(source.effectSink.GetActiveStatusEffects());
+                            return;
+                        }
+                        else
+                        {
+                            source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
+                            for (int i = 0; i < source.inventory.Items.Count; i++)
+                            {
+                                if (source.inventory.Items[i].abilityKey == AbilityKey.Electricity)
+                                {
+                                    source.inventory.ExhaustReplenishableItem(i);
+                                    break;
+                                }
+                            }
+
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        source.inventory.AddGold(10);
+                        return;
                     }
                 }
             }
