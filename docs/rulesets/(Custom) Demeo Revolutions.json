@@ -169,8 +169,8 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "TurretHealProjectile",
-            "ReplenishFrequency": 7
+            "Card": "Overcharge",
+            "ReplenishFrequency": 1
           }
         ],
         "HeroGuardian": [
@@ -385,11 +385,6 @@
           "Value": 4
         },
         {
-          "Piece": "HeroRogue",
-          "Property": "AttackDamage",
-          "Value": 4
-        },
-        {
           "Piece": "HeroBard",
           "Property": "CriticalHitDamage",
           "Value": 7
@@ -407,7 +402,7 @@
         {
           "Piece": "HeroRogue",
           "Property": "CriticalHitDamage",
-          "Value": 13
+          "Value": 11
         },
         {
           "Piece": "HeroHunter",
@@ -896,7 +891,6 @@
           "FireImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
-          "WaterBottle",
           "Banish",
           "Fireball",
           "Freeze",
@@ -961,7 +955,7 @@
       "Config": [
         {
           "effectStateType": "TorchPlayer",
-          "durationTurns": 25,
+          "durationTurns": 20,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -990,8 +984,18 @@
           "healPerTurn": 3
         },
         {
+          "effectStateType": "MagicShield",
+          "durationTurns": 5,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
           "effectStateType": "Deflect",
-          "durationTurns": 9,
+          "durationTurns": 6,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -1001,7 +1005,7 @@
         },
         {
           "effectStateType": "FireImmunity",
-          "durationTurns": 18,
+          "durationTurns": 12,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -1011,7 +1015,7 @@
         },
         {
           "effectStateType": "IceImmunity",
-          "durationTurns": 18,
+          "durationTurns": 12,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -1077,16 +1081,16 @@
       "Rule": "AbilityActionCostAdjusted",
       "Config": {
         "Zap": false,
-        "LightningBolt": false,
-        "Overcharge": false,
-        "Overload": false,
+        //"LightningBolt": false,
+        //"Overcharge": false,
+        //"Overload": false,
         "Sneak": false,
         "Grab": false,
         "CourageShanty": false,
         "Arrow": false,
         "MinionCharge": false,
-        "SpawnRandomLamp": false,
-        "SpellPowerPotion": false
+        "SpellPowerPotion": false,
+        "EnemyFlashbang": false
       }
     },
     {
@@ -1112,20 +1116,19 @@
         "PoisonGas": 1,
         "BlindingLight": 1,
         "BlockAbilities": 1,
-        "Overload": 1,
-        "Overcharge": 1
+        "EnemyFlashbang": 1
       }
     },
     {
       "Rule": "AbilityDamageOverridden",
       "Config": {
-        "Zap": [ 4, 8, 4, 8 ],
-        "LightningBolt": [ 6, 12, 6, 12 ],
-        "Overload": [ 6, 12, 6, 12 ],
-        "Overcharge": [ 6, 12, 6, 12 ],
-        "Fireball": [ 13, 32, 8, 16 ],
-        "Freeze": [ 6, 18, 6, 28 ],
-        "Vortex": [ 4, 14, 2, 6 ],
+        "Zap": [ 3, 6, 3, 6 ],
+        "LightningBolt": [ 5, 10, 5, 10 ],
+        "Overload": [ 2, 4, 2, 4 ],
+        "Overcharge": [ 2, 4, 2, 4 ],
+        "Fireball": [ 12, 30, 6, 15 ],
+        "Freeze": [ 5, 15, 5, 15 ],
+        "Vortex": [ 3, 12, 2, 6 ],
         "WhirlwindAttack": [ 5, 11, 5, 11 ],
         "Charge": [ 5, 15, 5, 15 ],
         "PiercingThrow": [ 6, 13, 6, 13 ],
@@ -1175,12 +1178,11 @@
     },
     {
       "Rule": "FreeAbilityOnCrit",
-      "Config": 
-      {
+      "Config": {
         "HeroHunter": "Bone",
         "HeroWarlock": "SpellPowerPotion",
         "HeroSorcerer": "WaterBottle",
-        "HeroBard": "SpawnRandomLamp"
+        "HeroBard": "EnemyFlashbang"
       }
     },
     {
@@ -1228,8 +1230,8 @@
     },
     {
       "Rule": "AbilityBackstabAdjusted",
-      "Config": 
-      {
+      "Config": {
+        "PoisonBomb": true,
         "PiercingVoice": true,
         "ShatteringVoice": true,
         "DiseasedBite": true
@@ -1289,11 +1291,11 @@
       "Rule": "LevelSequenceOverridden",
       "Config": 
       [
-        "ElvenFloor12",
+        "ElvenFloor13",
         "SewersShopFloor",
         "SewersFloor12",
         "ForestShopFloor",
-        "ForestFloor07"
+        "ForestFloor02"
       ]
     },
     {

@@ -12,12 +12,13 @@
 
     internal static class LifecycleDirector
     {
-        private const float WelcomeMessageDurationSeconds = 30f;
+        private static float WelcomeMessageDurationSeconds = 10f;
         private const string ModdedRoomPropertyKey = "modded";
 
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
+        private static long _gameId;
 
         internal static bool IsRulesetActive { get; private set; }
 
@@ -38,6 +39,12 @@
                     .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
                     .GetDeclaredMethod("OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools
+                    .Inner(typeof(GameStateMachine), "PlayingState").GetTypeInfo()
+                    .GetDeclaredMethod("OnMasterClientChanged"),
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(PlayingGameState_OnMasterClientChanged_Prefix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "GoToPlayingState"),
@@ -129,8 +136,46 @@
             var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
 
+            _gameId = GameHub.GameID;
+            CoreMod.Logger.Warning($"Game: {_gameId} loaded");
             ActivateRuleset();
             OnPreGameCreated();
+        }
+
+        private static void PlayingGameState_OnMasterClientChanged_Prefix()
+        {
+            MelonLoader.MelonLogger.Warning("Master Client changed...");
+            if (!GameStateMachine.IsMasterClient)
+            {
+                MelonLoader.MelonLogger.Warning("I'm *NOT* the Master Client yet...");
+                return;
+            }
+
+            MelonLoader.MelonLogger.Warning("I'm the Master Client now!");
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
+            if (_gameContext.gameStateMachine.goBackToMenuState)
+            {
+                return;
+            }
+
+            if (_gameId != GameHub.GameID)
+            {
+                MelonLoader.MelonLogger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
+                return;
+            }
+
+            var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
+            MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
+
+            CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
+            ActivateRuleset();
+            OnPreGameCreated();
+            OnPostGameCreated();
+            ShowWelcomeMessage();
         }
 
         private static void GameStateMachine_GoToPlayingState_Postfix()
@@ -166,13 +211,15 @@
 
         private static void GameStateMachine_EndGame_Prefix()
         {
+            _gameId = 0;
             DeactivateRuleset();
         }
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
-            MelonLoader.MelonLogger.Msg("<--- DISCONNECTED --->");
-            // DeactivateRuleset();
+            // _gameId = GameHub.GameID;
+            MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {_gameId} --->");
+            DeactivateRuleset();
         }
 
         /// <summary>
@@ -222,6 +269,7 @@
             }
 
             IsRulesetActive = true;
+            _gameId = 0;
 
             CoreMod.Logger.Msg($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)

@@ -126,7 +126,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BlockAbilities, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TurretHealProjectile, ReplenishFrequency = 7 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Overcharge, ReplenishFrequency = 1 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -199,11 +199,10 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 11 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "AttackDamage", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "AttackDamage", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "CriticalHitDamage", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "CriticalHitDamage", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 9 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 13 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 11 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
@@ -230,6 +229,9 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SwordOfAvalon, Property = "AttackDamage", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Tornado, Property = "ActionPoint", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootMage, Property = "StartHealth", Value = 6 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "StartHealth", Value = 25 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeTailBoss, Property = "StartHealth", Value = 25 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 60 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 50 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 55 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 50 },
@@ -461,7 +463,6 @@
                         AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.WaterBottle,
                         AbilityKey.Banish,
                         AbilityKey.Fireball,
                         AbilityKey.Freeze,
@@ -529,7 +530,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.TorchPlayer,
-                    durationTurns = 25,
+                    durationTurns = 20,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -557,8 +558,17 @@
                 },
                 new StatusEffectData
                 {
+                    effectStateType = EffectStateType.MagicShield,
+                    durationTurns = 5,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
                     effectStateType = EffectStateType.Deflect,
-                    durationTurns = 9,
+                    durationTurns = 6,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -567,7 +577,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.FireImmunity,
-                    durationTurns = 18,
+                    durationTurns = 12,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -576,7 +586,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.IceImmunity,
-                    durationTurns = 18,
+                    durationTurns = 12,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -598,7 +608,7 @@
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
                 { BoardPieceId.TheUnseen, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Zap } },
                 { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.SummonBossMinions, AbilityKey.LightningBolt, AbilityKey.EarthShatter, AbilityKey.ImplosionExplosionRain } },
-                { BoardPieceId.BigBoiMutant, new List<AbilityKey> {AbilityKey.EnemyKnockbackMelee, AbilityKey.Shockwave, AbilityKey.LeapHeavy } },
+                { BoardPieceId.BigBoiMutant, new List<AbilityKey> { AbilityKey.EnemyKnockbackMelee, AbilityKey.Shockwave, AbilityKey.LeapHeavy } },
             });
 
             var pieceBehaviourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
@@ -635,9 +645,9 @@
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Zap, false },
-                { AbilityKey.LightningBolt, false },
+                /*{ AbilityKey.LightningBolt, false },
                 { AbilityKey.Overcharge, false },
-                { AbilityKey.Overload, false },
+                { AbilityKey.Overload, false },*/
                 { AbilityKey.Sneak, false },
                 { AbilityKey.Grab, false },
                 { AbilityKey.Arrow, false },
@@ -645,6 +655,7 @@
                 { AbilityKey.MinionCharge, false },
                 { AbilityKey.SpawnRandomLamp, false },
                 { AbilityKey.SpellPowerPotion, false },
+                { AbilityKey.EnemyFlashbang, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -668,24 +679,23 @@
                 { AbilityKey.PoisonGas, 1 },
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.BlockAbilities, 1 },
-                { AbilityKey.Overload, 1 },
-                { AbilityKey.Overcharge, 1 },
+                { AbilityKey.EnemyFlashbang, 1 },
             });
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
-                { AbilityKey.Zap, new List<int> { 4, 8, 4, 8 } },
-                { AbilityKey.LightningBolt, new List<int> { 6, 12, 6, 12 } },
-                { AbilityKey.Overload, new List<int> { 6, 12, 6, 12 } },
-                { AbilityKey.Overcharge, new List<int> { 6, 12, 6, 12 } },
-                { AbilityKey.Fireball, new List<int> { 13, 32, 8, 16 } },
-                { AbilityKey.Freeze, new List<int> { 6, 18, 6, 18 } },
-                { AbilityKey.Vortex, new List<int> { 4, 14, 2, 6 } },
+                { AbilityKey.Zap, new List<int> { 3, 6, 3, 6 } },
+                { AbilityKey.LightningBolt, new List<int> { 5, 10, 5, 10 } },
+                { AbilityKey.Overload, new List<int> { 2, 4, 2, 4 } },
+                { AbilityKey.Overcharge, new List<int> { 2, 4, 2, 4 } },
+                { AbilityKey.Fireball, new List<int> { 12, 30, 6, 15 } },
+                { AbilityKey.Freeze, new List<int> { 5, 15, 5, 15 } },
+                { AbilityKey.Vortex, new List<int> { 3, 12, 2, 6 } },
                 { AbilityKey.WhirlwindAttack, new List<int> { 5, 11, 5, 11 } },
                 { AbilityKey.Charge, new List<int> { 5, 15, 5, 15 } },
                 { AbilityKey.PiercingThrow, new List<int> { 6, 13, 6, 13 } },
-                { AbilityKey.Blink, new List<int> { 9, 23, 9, 23 } },
-                { AbilityKey.CursedDagger, new List<int> { 5, 15, 5, 15 } },
+                { AbilityKey.Blink, new List<int> { 8, 20, 8, 20 } },
+                { AbilityKey.CursedDagger, new List<int> { 4, 12, 4, 12 } },
                 { AbilityKey.PoisonedTip, new List<int> { 6, 16, 6, 16 } },
                 { AbilityKey.HailOfArrows, new List<int> { 6, 16, 6, 16 } },
                 { AbilityKey.Arrow, new List<int> { 4, 12, 4, 12 } },
@@ -694,8 +704,8 @@
                 { AbilityKey.Electricity, new List<int> { 3, 6, 1, 2 } },
                 { AbilityKey.TurretDamageProjectile, new List<int> { 3, 3, 3, 3 } },
                 { AbilityKey.TurretHighDamageProjectile, new List<int> { 6, 6, 3, 3 } },
-                { AbilityKey.PiercingVoice, new List<int> { 4, 9, 4, 8 } },
-                { AbilityKey.ShatteringVoice, new List<int> { 7, 15, 7, 14 } },
+                { AbilityKey.PiercingVoice, new List<int> { 3, 6, 3, 6 } },
+                { AbilityKey.ShatteringVoice, new List<int> { 6, 12, 6, 12 } },
                 { AbilityKey.MinionCharge, new List<int> { 4, 9, 4, 9 } },
                 { AbilityKey.MissileSwarm, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.MagicMissile, new List<int> { 2, 5, 2, 5 } },
@@ -720,9 +730,9 @@
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {
                 { BoardPieceId.HeroHunter, AbilityKey.Bone },
-                { BoardPieceId.HeroSorcerer, AbilityKey.SpellPowerPotion },
-                { BoardPieceId.HeroWarlock, AbilityKey.WaterBottle },
-                { BoardPieceId.HeroBard, AbilityKey.SpawnRandomLamp },
+                { BoardPieceId.HeroSorcerer, AbilityKey.WaterBottle },
+                { BoardPieceId.HeroWarlock, AbilityKey.SpellPowerPotion },
+                { BoardPieceId.HeroBard, AbilityKey.EnemyFlashbang },
             });
 
             var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue });
@@ -732,6 +742,7 @@
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
             var abilityBackstabRule = new AbilityBackstabAdjustedRule(new Dictionary<AbilityKey, bool>
             {
+                { AbilityKey.PoisonBomb, true },
                 { AbilityKey.PiercingVoice, true },
                 { AbilityKey.ShatteringVoice, true },
                 { AbilityKey.DiseasedBite, true },
