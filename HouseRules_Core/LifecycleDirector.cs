@@ -136,6 +136,8 @@
             var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
 
+            _gameId = GameHub.GameID;
+            CoreMod.Logger.Warning($"Game: {_gameId} loaded");
             ActivateRuleset();
             OnPreGameCreated();
         }
@@ -214,7 +216,6 @@
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
-            _gameId = GameHub.GameID;
             MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {_gameId} --->");
             DeactivateRuleset();
         }
