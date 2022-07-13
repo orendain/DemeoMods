@@ -137,7 +137,7 @@
             MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
 
             _gameId = GameHub.GameID;
-            CoreMod.Logger.Warning($"Game: {_gameId} loaded");
+            CoreMod.Logger.Warning($"New game with gameId {_gameId} loaded");
             ActivateRuleset();
             OnPreGameCreated();
         }
@@ -164,7 +164,7 @@
 
             if (_gameId != GameHub.GameID)
             {
-                MelonLoader.MelonLogger.Warning($"Old game {_gameId} doesn't match new game {GameHub.GameID}");
+                MelonLoader.MelonLogger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
                 return;
             }
 
