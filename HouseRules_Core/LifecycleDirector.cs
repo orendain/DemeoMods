@@ -326,7 +326,10 @@
                 try
                 {
                     CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
-                    rule.OnPreGameCreated(_gameContext);
+                    if (rule.Description != "LevelSequence is overridden")
+                    {
+                        rule.OnPreGameCreated(_gameContext);
+                    }
                 }
                 catch (Exception e)
                 {
