@@ -13,11 +13,12 @@
     internal static class LifecycleDirector
     {
         private const string ModdedRoomPropertyKey = "modded";
-        private static float WelcomeMessageDurationSeconds = 10f;
+        private static float welcomeMessageDurationSeconds = 10f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
         private static long _gameId;
+        private static bool _isReconnect = false;
 
         internal static bool IsRulesetActive { get; private set; }
 
@@ -164,14 +165,17 @@
             if (_gameId != GameHub.GameID)
             {
                 MelonLoader.MelonLogger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
+                _isReconnect = false;
+                DeactivateRuleset();
                 return;
             }
 
-            CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
+            MelonLoader.MelonLogger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
             ShowWelcomeMessage();
+            _isReconnect = false;
         }
 
         private static void GameStateMachine_GoToPlayingState_Postfix()
@@ -213,8 +217,8 @@
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
-            // _gameId = GameHub.GameID;
-            MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {_gameId} --->");
+            MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
+            _isReconnect = true;
             DeactivateRuleset();
         }
 
@@ -266,7 +270,7 @@
 
             IsRulesetActive = true;
 
-            CoreMod.Logger.Msg($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            MelonLoader.MelonLogger.Warning($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
@@ -296,8 +300,11 @@
             {
                 try
                 {
-                    CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
-                    rule.OnDeactivate(_gameContext);
+                    if (!_isReconnect || (_isReconnect && !rule.Description.Contains("Piece ")))
+                    {
+                        CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
+                        rule.OnDeactivate(_gameContext);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -324,7 +331,7 @@
                 try
                 {
                     CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
-                    if (rule.Description != "LevelSequence is overridden")
+                    if (!_isReconnect || (_isReconnect && (rule.Description != "LevelSequence is overridden" && !rule.Description.Contains("Piece "))))
                     {
                         rule.OnPreGameCreated(_gameContext);
                     }
@@ -353,8 +360,11 @@
             {
                 try
                 {
-                    CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
-                    rule.OnPostGameCreated(_gameContext);
+                    if (!_isReconnect || (_isReconnect && (rule.Description != "LevelSequence is overridden" && !rule.Description.Contains("Piece "))))
+                    {
+                        CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
+                        rule.OnPostGameCreated(_gameContext);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -373,11 +383,11 @@
 
             if (!IsRulesetActive)
             {
-                GameUI.ShowCameraMessage(NotSafeForMultiplayerMessage(), WelcomeMessageDurationSeconds);
+                GameUI.ShowCameraMessage(NotSafeForMultiplayerMessage(), welcomeMessageDurationSeconds);
                 return;
             }
 
-            GameUI.ShowCameraMessage(RulesetActiveMessage(), WelcomeMessageDurationSeconds);
+            GameUI.ShowCameraMessage(RulesetActiveMessage(), welcomeMessageDurationSeconds);
         }
 
         private static string NotSafeForMultiplayerMessage()

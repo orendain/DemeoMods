@@ -18,7 +18,7 @@
         /// Initializes a new instance of the <see cref="SpawnCategoryOverriddenRule"/> class.
         /// </summary>
         /// <param name="adjustments">Accepts a Dictionary of BoardPieceIDs and Int settings
-        /// for MaxPerDe</param>
+        /// for MaxPerDeck.</param>
         public SpawnCategoryOverriddenRule(Dictionary<BoardPieceId, List<int>> adjustments)
         {
             _adjustments = adjustments;
@@ -59,19 +59,39 @@
                         spawnCategories[i].FirstAllowedLevelIndex,
                     };
 
+                    bool canHoldKey;
+                    if (spawnCategories[i].BoardPieceId == BoardPieceId.GeneralRonthian)
+                    {
+                        canHoldKey = false;
+                    }
+                    else
+                    {
+                        canHoldKey = spawnCategories[i].IsAllowedKeyholder;
+                    }
+
+                    bool maxPerDeck;
+                    if (spawnCategories[i].BoardPieceId == BoardPieceId.ScarabSandPile)
+                    {
+                        maxPerDeck = true;
+                    }
+                    else
+                    {
+                        maxPerDeck = false;
+                    }
+
                     spawnCategories[i] = new SpawnCategoryDTO
                     {
                         BoardPieceId = spawnCategories[i].BoardPieceId,
                         EnemyWeight = spawnCategories[i].EnemyWeight,
                         IsSpawningEnabled = true,
-                        IsAllowedKeyholder = spawnCategories[i].IsAllowedKeyholder,
+                        IsAllowedKeyholder = canHoldKey,
                         IsBossSynergyUnit = spawnCategories[i].IsBossSynergyUnit,
-                        OverrideDefaultMaxPerDeckBehaviour = true,
+                        OverrideDefaultMaxPerDeckBehaviour = maxPerDeck,
                         MaxPerDeck = spawnModifications[spawnCategories[i].BoardPieceId][0],
                         PreFill = spawnModifications[spawnCategories[i].BoardPieceId][1],
                         FirstAllowedLevelIndex = spawnModifications[spawnCategories[i].BoardPieceId][2],
                         IsRedrawEnabled = spawnCategories[i].IsRedrawEnabled,
-                        IsPriorityUnit = true,
+                        IsPriorityUnit = spawnCategories[i].IsPriorityUnit,
                     };
                 }
                 else

@@ -5,6 +5,7 @@
     {
       "Rule": "SpawnCategoryOverridden",
       "Config": {
+        "ScarabSandPile": [ 0, 1, 2 ],
         "LargeCorruption": [ 3, 1, 1 ],
         "ReptileArcher": [ 3, 1, 1 ],
         "ReptileMutantWizard": [ 3, 1, 1 ],
@@ -59,7 +60,7 @@
         "SilentSentinel": [ 2, 1, 2 ],
         "Wyvern": [ 2, 1, 2 ],
         "BigBoiMutant": [ 2, 1, 1 ],
-        "EmptySandPile":  [ 2, 1, 1 ]
+        "EmptySandPile": [ 2, 1, 1 ]
       }
     },
     /*{

@@ -16,6 +16,7 @@
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
+                { BoardPieceId.ScarabSandPile, new List<int> { 0, 1, 2 } },
                 { BoardPieceId.LargeCorruption, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileArcher, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileMutantWizard, new List<int> { 3, 1, 1 } },
