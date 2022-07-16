@@ -552,6 +552,19 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+#### __PartyElectricityDamageOverridden__: Electrical damage between players is zeroed
+  - Electricity Damage from friendly fire is zeroed
+  - To configure:
+    - Specify `true` to remove player on player electrical damage.
+
+  ###### _Example JSON config for PartyElectricityDamageOverridden_
+
+  ```json
+    {
+      "Rule": "PartyElectricityDamageOverridden",
+      "Config": true
+    },
+  ```
 
 #### __PetsFocusHunterMark__: Pets focus on hunter marked enemies
   - To configure:
