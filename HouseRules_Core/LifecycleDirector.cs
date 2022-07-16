@@ -18,6 +18,7 @@
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
         private static long _gameId;
+        private static bool _isReconnect = false;
 
         internal static bool IsRulesetActive { get; private set; }
 
@@ -168,12 +169,14 @@
             }
 
             CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
+            _isReconnect = true;
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
             WelcomeMessageDurationSeconds = 10f;
             ShowWelcomeMessage();
             WelcomeMessageDurationSeconds = 30f;
+            _isReconnect = false;
         }
 
         private static void GameStateMachine_GoToPlayingState_Postfix()
@@ -326,7 +329,7 @@
                 try
                 {
                     CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
-                    if (rule.Description != "LevelSequence is overridden")
+                    if (!_isReconnect || (_isReconnect && rule.Description != "LevelSequence is overridden"))
                     {
                         rule.OnPreGameCreated(_gameContext);
                     }
