@@ -165,11 +165,12 @@
             if (_gameId != GameHub.GameID)
             {
                 MelonLoader.MelonLogger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
+                _isReconnect = false;
+                DeactivateRuleset();
                 return;
             }
 
             CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
-            _isReconnect = true;
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
@@ -218,7 +219,8 @@
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
-            MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {_gameId} --->");
+            MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
+            _isReconnect = true;
             DeactivateRuleset();
         }
 
@@ -301,8 +303,11 @@
             {
                 try
                 {
-                    CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
-                    rule.OnDeactivate(_gameContext);
+                    if (!_isReconnect || (_isReconnect && !rule.Description.Contains("Piece ")))
+                    {
+                        CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
+                        rule.OnDeactivate(_gameContext);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -329,7 +334,7 @@
                 try
                 {
                     CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
-                    if (!_isReconnect || (_isReconnect && rule.Description != "LevelSequence is overridden"))
+                    if (!_isReconnect || (_isReconnect && (rule.Description != "LevelSequence is overridden" && !rule.Description.Contains("Piece "))))
                     {
                         rule.OnPreGameCreated(_gameContext);
                     }
@@ -358,8 +363,11 @@
             {
                 try
                 {
-                    CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
-                    rule.OnPostGameCreated(_gameContext);
+                    if (!_isReconnect || (_isReconnect && (rule.Description != "LevelSequence is overridden" && !rule.Description.Contains("Piece "))))
+                    {
+                        CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
+                        rule.OnPostGameCreated(_gameContext);
+                    }
                 }
                 catch (Exception e)
                 {
