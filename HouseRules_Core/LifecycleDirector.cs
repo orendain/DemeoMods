@@ -12,9 +12,8 @@
 
     internal static class LifecycleDirector
     {
-        private static float WelcomeMessageDurationSeconds = 30f;
         private const string ModdedRoomPropertyKey = "modded";
-
+        private static float WelcomeMessageDurationSeconds = 30f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
@@ -137,7 +136,7 @@
             MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
 
             _gameId = GameHub.GameID;
-            CoreMod.Logger.Warning($"New game with gameId {_gameId} loaded");
+            CoreMod.Logger.Warning($"New game with gameId {_gameId} started");
             ActivateRuleset();
             OnPreGameCreated();
         }
@@ -167,9 +166,6 @@
                 MelonLoader.MelonLogger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
                 return;
             }
-
-            var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
-            MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
 
             CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
             ActivateRuleset();
