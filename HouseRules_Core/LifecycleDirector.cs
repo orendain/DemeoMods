@@ -172,12 +172,10 @@
             }
 
             CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
+            GameUI.ShowCameraMessage(RulesetActiveMessage(), 10f);
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
-            WelcomeMessageDurationSeconds = 10f;
-            ShowWelcomeMessage();
-            WelcomeMessageDurationSeconds = 30f;
             _isReconnect = false;
         }
 
@@ -221,9 +219,18 @@
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
-            MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
-            _isReconnect = true;
-            DeactivateRuleset();
+            if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
+            {
+                MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
+                _isReconnect = true;
+                DeactivateRuleset();
+            }
+            else
+            {
+                MelonLoader.MelonLogger.Warning($"<- Manually disconnected from game {GameHub.GameID} ->");
+                _isReconnect = false;
+                DeactivateRuleset();
+            }
         }
 
 
