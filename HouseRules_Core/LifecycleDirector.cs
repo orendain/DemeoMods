@@ -43,6 +43,12 @@
 
             harmony.Patch(
                 original: AccessTools
+                    .Inner(typeof(GameStateMachine), "JoiningGameState").GetTypeInfo()
+                    .GetDeclaredMethod("OnJoinedRoom"),
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(JoiningGameState_OnJoinedRoom_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools
                     .Inner(typeof(GameStateMachine), "PlayingState").GetTypeInfo()
                     .GetDeclaredMethod("OnMasterClientChanged"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(PlayingGameState_OnMasterClientChanged_Prefix)));
@@ -144,16 +150,33 @@
             OnPreGameCreated();
         }
 
-        private static void PlayingGameState_OnMasterClientChanged_Prefix()
+        private static void JoiningGameState_OnJoinedRoom_Prefix()
         {
-            CoreMod.Logger.Warning("Master Client changed...");
-            if (!GameStateMachine.IsMasterClient)
+            if (HR.SelectedRuleset == Ruleset.None)
             {
-                CoreMod.Logger.Warning("I'm *NOT* the Master Client yet...");
                 return;
             }
 
-            CoreMod.Logger.Warning("I'm the Master Client now!");
+            if (_gameContext.gameStateMachine.goBackToMenuState)
+            {
+                return;
+            }
+
+            if (_isReconnect && _gameId != GameHub.GameID)
+            {
+                _isReconnect = false;
+                IsRulesetActive = true;
+                DeactivateRuleset();
+            }
+        }
+
+        private static void PlayingGameState_OnMasterClientChanged_Prefix()
+        {
+            if (!GameStateMachine.IsMasterClient)
+            {
+                return;
+            }
+
             if (HR.SelectedRuleset == Ruleset.None)
             {
                 return;
@@ -222,17 +245,25 @@
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix(BoardgameActionOnLocalPlayerDisconnect.DisconnectContext context)
         {
-            if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
+            if (HR.SelectedRuleset == Ruleset.None)
             {
-                CoreMod.Logger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
-                _isReconnect = true;
-                DeactivateRuleset();
+                return;
             }
-            else
+
+            if (GameStateMachine.IsMasterClient)
             {
-                CoreMod.Logger.Warning($"<- MANUALLY disconnected from game {GameHub.GameID} ->");
-                _isReconnect = false;
-                DeactivateRuleset();
+                if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
+                {
+                    CoreMod.Logger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
+                    _isReconnect = true;
+                    DeactivateRuleset();
+                }
+                else
+                {
+                    CoreMod.Logger.Warning($"<- MANUALLY disconnected from game {GameHub.GameID} ->");
+                    _isReconnect = true; // Maybe to rejoin because Host character died?
+                    DeactivateRuleset();
+                }
             }
         }
 
