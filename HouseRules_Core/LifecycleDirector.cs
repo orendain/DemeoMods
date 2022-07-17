@@ -138,6 +138,7 @@
 
             _gameId = GameHub.GameID;
             CoreMod.Logger.Warning($"New game with gameId {_gameId} started");
+            _isReconnect = false;
             ActivateRuleset();
             OnPreGameCreated();
         }
