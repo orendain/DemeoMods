@@ -207,6 +207,7 @@
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
             _gameId = GameHub.GameID;
+            _isReconnect = false;
             ActivateRuleset();
             _isCreatingGame = true;
             OnPreGameCreated();
@@ -215,6 +216,7 @@
         private static void GameStateMachine_EndGame_Prefix()
         {
             _gameId = 0;
+            _isReconnect = false;
             DeactivateRuleset();
         }
 
