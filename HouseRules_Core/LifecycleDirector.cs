@@ -206,6 +206,7 @@
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
+            _gameId = GameHub.GameID;
             ActivateRuleset();
             _isCreatingGame = true;
             OnPreGameCreated();
