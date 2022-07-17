@@ -5,6 +5,7 @@
     using System.Reflection;
     using System.Text;
     using Boardgame;
+    using Boardgame.BoardgameActions;
     using Boardgame.Networking;
     using HarmonyLib;
     using HouseRules.Types;
@@ -13,7 +14,7 @@
     internal static class LifecycleDirector
     {
         private const string ModdedRoomPropertyKey = "modded";
-        private static float WelcomeMessageDurationSeconds = 30f;
+        private const float WelcomeMessageDurationSeconds = 30f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
@@ -145,14 +146,14 @@
 
         private static void PlayingGameState_OnMasterClientChanged_Prefix()
         {
-            MelonLoader.MelonLogger.Warning("Master Client changed...");
+            CoreMod.Logger.Warning("Master Client changed...");
             if (!GameStateMachine.IsMasterClient)
             {
-                MelonLoader.MelonLogger.Warning("I'm *NOT* the Master Client yet...");
+                CoreMod.Logger.Warning("I'm *NOT* the Master Client yet...");
                 return;
             }
 
-            MelonLoader.MelonLogger.Warning("I'm the Master Client now!");
+            CoreMod.Logger.Warning("I'm the Master Client now!");
             if (HR.SelectedRuleset == Ruleset.None)
             {
                 return;
@@ -165,7 +166,7 @@
 
             if (_gameId != GameHub.GameID)
             {
-                MelonLoader.MelonLogger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
+                CoreMod.Logger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
                 _isReconnect = false;
                 DeactivateRuleset();
                 return;
@@ -217,22 +218,21 @@
             DeactivateRuleset();
         }
 
-        private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
+        private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix(BoardgameActionOnLocalPlayerDisconnect.DisconnectContext context)
         {
             if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
             {
-                MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
+                CoreMod.Logger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
                 _isReconnect = true;
                 DeactivateRuleset();
             }
             else
             {
-                MelonLoader.MelonLogger.Warning($"<- Manually disconnected from game {GameHub.GameID} ->");
+                CoreMod.Logger.Warning($"<- MANUALLY disconnected from game {GameHub.GameID} ->");
                 _isReconnect = false;
                 DeactivateRuleset();
             }
         }
-
 
         /// <summary>
         /// Add properties to the room to indicate its modded nature.
@@ -257,7 +257,6 @@
             newOptions[0] = ModdedRoomPropertyKey;
             roomOptions.CustomRoomPropertiesForLobby.CopyTo(newOptions, 1);
             roomOptions.CustomRoomPropertiesForLobby = newOptions;
-
             roomOptions.CustomRoomProperties.Add(ModdedRoomPropertyKey, true);
         }
 
@@ -282,7 +281,7 @@
 
             IsRulesetActive = true;
 
-            CoreMod.Logger.Msg($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            CoreMod.Logger.Warning($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
@@ -312,7 +311,11 @@
             {
                 try
                 {
-                    if (!_isReconnect || (_isReconnect && !rule.Description.Contains("Piece ")))
+                    if (_isReconnect && (rule.Description.StartsWith("Piece ") && !rule.Description.Contains(" is ")))
+                    {
+                        continue;
+                    }
+                    else
                     {
                         CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
                         rule.OnDeactivate(_gameContext);
@@ -342,9 +345,13 @@
             {
                 try
                 {
-                    CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
-                    if (!_isReconnect || (_isReconnect && (rule.Description != "LevelSequence is overridden" && !rule.Description.Contains("Piece "))))
+                    if (_isReconnect && (rule.Description.StartsWith("LevelSequence ") || (rule.Description.StartsWith("Piece ") && !rule.Description.Contains(" is "))))
                     {
+                        continue;
+                    }
+                    else
+                    {
+                        CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
                         rule.OnPreGameCreated(_gameContext);
                     }
                 }
@@ -372,7 +379,11 @@
             {
                 try
                 {
-                    if (!_isReconnect || (_isReconnect && (rule.Description != "LevelSequence is overridden" && !rule.Description.Contains("Piece "))))
+                    if (_isReconnect && (rule.Description.StartsWith("LevelSequence ") || (rule.Description.StartsWith("Piece ") && !rule.Description.Contains(" is "))))
+                    {
+                        continue;
+                    }
+                    else
                     {
                         CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
                         rule.OnPostGameCreated(_gameContext);
