@@ -5,6 +5,7 @@
     using System.Reflection;
     using System.Text;
     using Boardgame;
+    using Boardgame.BoardgameActions;
     using Boardgame.Networking;
     using HarmonyLib;
     using HouseRules.Types;
@@ -13,7 +14,7 @@
     internal static class LifecycleDirector
     {
         private const string ModdedRoomPropertyKey = "modded";
-        private static float welcomeMessageDurationSeconds = 10f;
+        private const float WelcomeMessageDurationSeconds = 10f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
@@ -39,6 +40,12 @@
                     .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
                     .GetDeclaredMethod("OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools
+                    .Inner(typeof(GameStateMachine), "JoiningGameState").GetTypeInfo()
+                    .GetDeclaredMethod("OnJoinedRoom"),
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(JoiningGameState_OnJoinedRoom_Prefix)));
 
             harmony.Patch(
                 original: AccessTools
@@ -138,20 +145,38 @@
 
             _gameId = GameHub.GameID;
             CoreMod.Logger.Warning($"New game with gameId {_gameId} started");
+            _isReconnect = false;
             ActivateRuleset();
             OnPreGameCreated();
         }
 
-        private static void PlayingGameState_OnMasterClientChanged_Prefix()
+        private static void JoiningGameState_OnJoinedRoom_Prefix()
         {
-            MelonLoader.MelonLogger.Warning("Master Client changed...");
-            if (!GameStateMachine.IsMasterClient)
+            if (HR.SelectedRuleset == Ruleset.None)
             {
-                MelonLoader.MelonLogger.Warning("I'm *NOT* the Master Client yet...");
                 return;
             }
 
-            MelonLoader.MelonLogger.Warning("I'm the Master Client now!");
+            if (_gameContext.gameStateMachine.goBackToMenuState)
+            {
+                return;
+            }
+
+            if (_isReconnect && _gameId != GameHub.GameID)
+            {
+                _isReconnect = false;
+                IsRulesetActive = true;
+                DeactivateRuleset();
+            }
+        }
+
+        private static void PlayingGameState_OnMasterClientChanged_Prefix()
+        {
+            if (!GameStateMachine.IsMasterClient)
+            {
+                return;
+            }
+
             if (HR.SelectedRuleset == Ruleset.None)
             {
                 return;
@@ -164,17 +189,17 @@
 
             if (_gameId != GameHub.GameID)
             {
-                MelonLoader.MelonLogger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
+                CoreMod.Logger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
                 _isReconnect = false;
                 DeactivateRuleset();
                 return;
             }
 
-            MelonLoader.MelonLogger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
+            CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
+            GameUI.ShowCameraMessage(RulesetActiveMessage(), 10f);
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
-            ShowWelcomeMessage();
             _isReconnect = false;
         }
 
@@ -204,6 +229,8 @@
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
+            _gameId = GameHub.GameID;
+            _isReconnect = false;
             ActivateRuleset();
             _isCreatingGame = true;
             OnPreGameCreated();
@@ -212,14 +239,32 @@
         private static void GameStateMachine_EndGame_Prefix()
         {
             _gameId = 0;
+            _isReconnect = false;
             DeactivateRuleset();
         }
 
-        private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
+        private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix(BoardgameActionOnLocalPlayerDisconnect.DisconnectContext context)
         {
-            MelonLoader.MelonLogger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
-            _isReconnect = true;
-            DeactivateRuleset();
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return;
+            }
+
+            if (GameStateMachine.IsMasterClient)
+            {
+                if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
+                {
+                    CoreMod.Logger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
+                    _isReconnect = true;
+                    DeactivateRuleset();
+                }
+                else
+                {
+                    CoreMod.Logger.Warning($"<- MANUALLY disconnected from game {GameHub.GameID} ->");
+                    _isReconnect = true; // Maybe to rejoin because Host character died?
+                    DeactivateRuleset();
+                }
+            }
         }
 
         /// <summary>
@@ -245,7 +290,6 @@
             newOptions[0] = ModdedRoomPropertyKey;
             roomOptions.CustomRoomPropertiesForLobby.CopyTo(newOptions, 1);
             roomOptions.CustomRoomPropertiesForLobby = newOptions;
-
             roomOptions.CustomRoomProperties.Add(ModdedRoomPropertyKey, true);
         }
 
@@ -270,7 +314,7 @@
 
             IsRulesetActive = true;
 
-            MelonLoader.MelonLogger.Warning($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            CoreMod.Logger.Warning($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
@@ -300,7 +344,11 @@
             {
                 try
                 {
-                    if (!_isReconnect || (_isReconnect && !rule.Description.Contains("Piece ")))
+                    if (_isReconnect && (rule.Description.StartsWith("Piece ") && !rule.Description.Contains(" is ")))
+                    {
+                        continue;
+                    }
+                    else
                     {
                         CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
                         rule.OnDeactivate(_gameContext);
@@ -330,9 +378,13 @@
             {
                 try
                 {
-                    CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
-                    if (!_isReconnect || (_isReconnect && (rule.Description != "LevelSequence is overridden" && !rule.Description.Contains("Piece "))))
+                    if (_isReconnect && (rule.Description.StartsWith("LevelSequence ") || (rule.Description.StartsWith("Piece ") && !rule.Description.Contains(" is "))))
                     {
+                        continue;
+                    }
+                    else
+                    {
+                        CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
                         rule.OnPreGameCreated(_gameContext);
                     }
                 }
@@ -360,7 +412,11 @@
             {
                 try
                 {
-                    if (!_isReconnect || (_isReconnect && (rule.Description != "LevelSequence is overridden" && !rule.Description.Contains("Piece "))))
+                    if (_isReconnect && (rule.Description.StartsWith("LevelSequence ") || (rule.Description.StartsWith("Piece ") && !rule.Description.Contains(" is "))))
+                    {
+                        continue;
+                    }
+                    else
                     {
                         CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
                         rule.OnPostGameCreated(_gameContext);
@@ -383,11 +439,11 @@
 
             if (!IsRulesetActive)
             {
-                GameUI.ShowCameraMessage(NotSafeForMultiplayerMessage(), welcomeMessageDurationSeconds);
+                GameUI.ShowCameraMessage(NotSafeForMultiplayerMessage(), WelcomeMessageDurationSeconds);
                 return;
             }
 
-            GameUI.ShowCameraMessage(RulesetActiveMessage(), welcomeMessageDurationSeconds);
+            GameUI.ShowCameraMessage(RulesetActiveMessage(), WelcomeMessageDurationSeconds);
         }
 
         private static string NotSafeForMultiplayerMessage()
