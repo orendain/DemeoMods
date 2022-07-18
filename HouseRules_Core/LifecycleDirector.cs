@@ -344,7 +344,8 @@
             {
                 try
                 {
-                    if (_isReconnect && rule is IDisableOnReconnect)
+                    var isDisabled = rule is IDisableOnReconnect;
+                    if (_isReconnect && isDisabled)
                     {
                         continue;
                     }
@@ -378,7 +379,8 @@
             {
                 try
                 {
-                    if (_isReconnect && rule is IDisableOnReconnect)
+                    var isDisabled = rule is IDisableOnReconnect;
+                    if (_isReconnect && isDisabled)
                     {
                         continue;
                     }
@@ -412,15 +414,8 @@
             {
                 try
                 {
-                    if (_isReconnect && rule is IDisableOnReconnect)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
-                        rule.OnPostGameCreated(_gameContext);
-                    }
+                    CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
+                    rule.OnPostGameCreated(_gameContext);
                 }
                 catch (Exception e)
                 {
