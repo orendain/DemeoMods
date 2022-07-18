@@ -344,7 +344,11 @@
             {
                 try
                 {
-                    if (_isReconnect && !(rule is IDisableOnReconnect))
+                    if (_isReconnect && rule is IDisableOnReconnect)
+                    {
+                        continue;
+                    }
+                    else
                     {
                         CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
                         rule.OnDeactivate(_gameContext);
@@ -374,7 +378,11 @@
             {
                 try
                 {
-                    if (_isReconnect && !(rule is IDisableOnReconnect))
+                    if (_isReconnect && rule is IDisableOnReconnect)
+                    {
+                        continue;
+                    }
+                    else
                     {
                         CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
                         rule.OnPreGameCreated(_gameContext);
@@ -404,7 +412,11 @@
             {
                 try
                 {
-                    if (_isReconnect && !(rule is IDisableOnReconnect))
+                    if (_isReconnect && rule is IDisableOnReconnect)
+                    {
+                        continue;
+                    }
+                    else
                     {
                         CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
                         rule.OnPostGameCreated(_gameContext);
