@@ -9,7 +9,7 @@
     using HouseRules.Types;
 
     public sealed class PieceImmunityListAdjustedRule : Rule,
-        IConfigWritable<Dictionary<BoardPieceId, List<EffectStateType>>>, IMultiplayerSafe
+        IConfigWritable<Dictionary<BoardPieceId, List<EffectStateType>>>, IMultiplayerSafe, IDisableOnReconnect
     {
         public override string Description => "Piece immunities are adjusted";
 
@@ -21,7 +21,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PieceImmunityListAdjustedRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Dict of piece name and List<EffectStateType>
+        /// <param name="adjustments">Dict of piece name and List.<EffectStateType>
         /// Replaces original settings with new list.</param>
         public PieceImmunityListAdjustedRule(Dictionary<BoardPieceId, List<EffectStateType>> adjustments)
         {

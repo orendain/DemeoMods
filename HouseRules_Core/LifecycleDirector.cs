@@ -344,11 +344,7 @@
             {
                 try
                 {
-                    if (_isReconnect && (rule.Description.StartsWith("Piece ") && !rule.Description.Contains(" is ")))
-                    {
-                        continue;
-                    }
-                    else
+                    if (_isReconnect && !(rule is IDisableOnReconnect))
                     {
                         CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
                         rule.OnDeactivate(_gameContext);
@@ -378,11 +374,7 @@
             {
                 try
                 {
-                    if (_isReconnect && (rule.Description.StartsWith("LevelSequence ") || (rule.Description.StartsWith("Piece ") && !rule.Description.Contains(" is "))))
-                    {
-                        continue;
-                    }
-                    else
+                    if (_isReconnect && !(rule is IDisableOnReconnect))
                     {
                         CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
                         rule.OnPreGameCreated(_gameContext);
@@ -412,11 +404,7 @@
             {
                 try
                 {
-                    if (_isReconnect && (rule.Description.StartsWith("LevelSequence ") || (rule.Description.StartsWith("Piece ") && !rule.Description.Contains(" is "))))
-                    {
-                        continue;
-                    }
-                    else
+                    if (_isReconnect && !(rule is IDisableOnReconnect))
                     {
                         CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
                         rule.OnPostGameCreated(_gameContext);
