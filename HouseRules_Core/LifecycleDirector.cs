@@ -152,6 +152,11 @@
 
         private static void JoiningGameState_OnJoinedRoom_Prefix()
         {
+            if (!_isReconnect)
+            {
+                return;
+            }
+
             if (HR.SelectedRuleset == Ruleset.None)
             {
                 return;
@@ -162,8 +167,9 @@
                 return;
             }
 
-            if (_isReconnect && _gameId != GameHub.GameID)
+            if (_gameId != GameHub.GameID)
             {
+                CoreMod.Logger.Warning($"Previous disconnected gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
                 _isReconnect = false;
                 IsRulesetActive = true;
                 DeactivateRuleset();
@@ -172,6 +178,11 @@
 
         private static void PlayingGameState_OnMasterClientChanged_Prefix()
         {
+            if (!_isReconnect)
+            {
+                return;
+            }
+
             if (!GameStateMachine.IsMasterClient)
             {
                 return;
@@ -189,14 +200,15 @@
 
             if (_gameId != GameHub.GameID)
             {
-                CoreMod.Logger.Warning($"Previous gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
+                CoreMod.Logger.Warning("This message should never be seen...");
                 _isReconnect = false;
+                IsRulesetActive = true;
                 DeactivateRuleset();
                 return;
             }
 
             CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
-            GameUI.ShowCameraMessage("Reconnected: Mod and RuleSet are resuming...", 10f);
+            GameUI.ShowCameraMessage("Reconnected as Host! Mod and RuleSet are resuming...", 10f);
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
@@ -230,7 +242,6 @@
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
             _gameId = GameHub.GameID;
-            _isReconnect = false;
             ActivateRuleset();
             _isCreatingGame = true;
             OnPreGameCreated();
@@ -250,20 +261,22 @@
                 return;
             }
 
-            if (GameStateMachine.IsMasterClient)
+            if (!GameStateMachine.IsMasterClient)
             {
-                if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
-                {
-                    CoreMod.Logger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
-                    _isReconnect = true;
-                    DeactivateRuleset();
-                }
-                else
-                {
-                    CoreMod.Logger.Warning($"<- MANUALLY disconnected from game {GameHub.GameID} ->");
-                    _isReconnect = true; // Change this to false once things are confirmed working...
-                    DeactivateRuleset();
-                }
+                return;
+            }
+
+            if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
+            {
+                CoreMod.Logger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
+                _isReconnect = true;
+                DeactivateRuleset();
+            }
+            else
+            {
+                CoreMod.Logger.Warning($"<- MANUALLY disconnected from game {GameHub.GameID} ->");
+                _isReconnect = true; // Change this to false once things are confirmed working...
+                DeactivateRuleset();
             }
         }
 
