@@ -9,6 +9,7 @@
     using Boardgame.Networking;
     using HarmonyLib;
     using HouseRules.Types;
+    using Photon.Pun;
     using Photon.Realtime;
 
     internal static class LifecycleDirector
@@ -18,13 +19,18 @@
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
-        private static long _gameId;
         private static bool _isReconnect = false;
+        private static string roomCode;
+        private static string lastCode;
 
         internal static bool IsRulesetActive { get; private set; }
 
         internal static void Patch(Harmony harmony)
         {
+            harmony.Patch(
+                original: AccessTools.Method(typeof(GameStateMachine), "OnRoomJoined"),
+                postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(GameStateMachine_OnRoomJoined_Postfix)));
+
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
                 postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(GameStartup_InitializeGame_Postfix)));
@@ -40,12 +46,6 @@
                     .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
                     .GetDeclaredMethod("OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
-
-            harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "JoiningGameState").GetTypeInfo()
-                    .GetDeclaredMethod("OnJoinedRoom"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(JoiningGameState_OnJoinedRoom_Prefix)));
 
             harmony.Patch(
                 original: AccessTools
@@ -82,6 +82,22 @@
         {
             var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
             _gameContext = gameContext;
+        }
+
+        private static void GameStateMachine_OnRoomJoined_Postfix()
+        {
+            if (!_isReconnect)
+            {
+                return;
+            }
+
+            lastCode = PhotonNetwork.CurrentRoom.Name;
+            if (lastCode != roomCode)
+            {
+                CoreMod.Logger.Warning($"Room {lastCode} doesn't match original room {roomCode}. Deactivating ruleset reconnection!");
+                _isReconnect = false;
+                DeactivateRuleset();
+            }
         }
 
         private static void CreatingGameState_TryCreateRoom_Prefix()
@@ -143,37 +159,11 @@
             var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
 
-            _gameId = GameHub.GameID;
-            CoreMod.Logger.Warning($"New game with gameId {_gameId} started");
             _isReconnect = false;
+            roomCode = PhotonNetwork.CurrentRoom.Name;
+            CoreMod.Logger.Warning($"New game in room {roomCode} started");
             ActivateRuleset();
             OnPreGameCreated();
-        }
-
-        private static void JoiningGameState_OnJoinedRoom_Prefix()
-        {
-            if (!_isReconnect)
-            {
-                return;
-            }
-
-            if (HR.SelectedRuleset == Ruleset.None)
-            {
-                return;
-            }
-
-            if (_gameContext.gameStateMachine.goBackToMenuState)
-            {
-                return;
-            }
-
-            if (_gameId != GameHub.GameID)
-            {
-                CoreMod.Logger.Warning($"Previous disconnected gameId {_gameId} doesn't match this gameId {GameHub.GameID}");
-                _isReconnect = false;
-                IsRulesetActive = true;
-                DeactivateRuleset();
-            }
         }
 
         private static void PlayingGameState_OnMasterClientChanged_Prefix()
@@ -198,17 +188,8 @@
                 return;
             }
 
-            if (_gameId != GameHub.GameID)
-            {
-                CoreMod.Logger.Warning("This message should never be seen...");
-                _isReconnect = false;
-                IsRulesetActive = true;
-                DeactivateRuleset();
-                return;
-            }
+            CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from room {roomCode} --->");
 
-            CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
-            GameUI.ShowCameraMessage("Reconnected as Host! Mod and RuleSet are resuming...", 10f);
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
@@ -241,7 +222,6 @@
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
-            _gameId = GameHub.GameID;
             ActivateRuleset();
             _isCreatingGame = true;
             OnPreGameCreated();
@@ -249,7 +229,6 @@
 
         private static void GameStateMachine_EndGame_Prefix()
         {
-            _gameId = 0;
             _isReconnect = false;
             DeactivateRuleset();
         }
@@ -268,13 +247,13 @@
 
             if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
             {
-                CoreMod.Logger.Warning($"<--- Disconnected from game {GameHub.GameID} --->");
+                CoreMod.Logger.Warning($"<--- Disconnected from room {roomCode} --->");
                 _isReconnect = true;
                 DeactivateRuleset();
             }
             else
             {
-                CoreMod.Logger.Warning($"<- MANUALLY disconnected from game {GameHub.GameID} ->");
+                CoreMod.Logger.Warning($"<- MANUALLY disconnected from room {roomCode} ->");
                 _isReconnect = true; // Change this to false once things are confirmed working...
                 DeactivateRuleset();
             }
@@ -359,7 +338,10 @@
                 return;
             }
 
-            IsRulesetActive = false;
+            if (!_isReconnect)
+            {
+                IsRulesetActive = false;
+            }
 
             CoreMod.Logger.Msg($"Deactivating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
