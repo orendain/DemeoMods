@@ -196,7 +196,7 @@
             }
 
             CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from game {_gameId} --->");
-            GameUI.ShowCameraMessage(RulesetActiveMessage(), 10f);
+            GameUI.ShowCameraMessage("Reconnected: Mod and RuleSet are resuming...", 10f);
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
@@ -261,7 +261,7 @@
                 else
                 {
                     CoreMod.Logger.Warning($"<- MANUALLY disconnected from game {GameHub.GameID} ->");
-                    _isReconnect = true; // Maybe to rejoin because Host character died?
+                    _isReconnect = true; // Change this to false once things are confirmed working...
                     DeactivateRuleset();
                 }
             }
@@ -319,8 +319,17 @@
             {
                 try
                 {
-                    CoreMod.Logger.Msg($"Activating rule type: {rule.GetType()}");
-                    rule.OnActivate(_gameContext);
+                    var isDisabled = rule is IDisableOnReconnect;
+                    if (_isReconnect && isDisabled)
+                    {
+                        CoreMod.Logger.Warning($"Skip activating rule type: {rule.GetType()}");
+                        continue;
+                    }
+                    else
+                    {
+                        CoreMod.Logger.Msg($"Activating rule type: {rule.GetType()}");
+                        rule.OnActivate(_gameContext);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -347,6 +356,7 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (_isReconnect && isDisabled)
                     {
+                        CoreMod.Logger.Warning($"Skip deactivating rule type: {rule.GetType()}");
                         continue;
                     }
                     else
@@ -382,6 +392,7 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (_isReconnect && isDisabled)
                     {
+                        CoreMod.Logger.Warning($"Skip calling OnPreGameCreated for rule type: {rule.GetType()}");
                         continue;
                     }
                     else
@@ -414,8 +425,17 @@
             {
                 try
                 {
-                    CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
-                    rule.OnPostGameCreated(_gameContext);
+                    var isDisabled = rule is IDisableOnReconnect;
+                    if (_isReconnect && isDisabled)
+                    {
+                        CoreMod.Logger.Warning($"Skip calling OnPostGameCreated for rule type: {rule.GetType()}");
+                        continue;
+                    }
+                    else
+                    {
+                        CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
+                        rule.OnPostGameCreated(_gameContext);
+                    }
                 }
                 catch (Exception e)
                 {
