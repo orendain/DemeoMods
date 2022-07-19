@@ -322,7 +322,7 @@
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
                         AbilityKey.PanicPowder,
-                        AbilityKey.Barricade,
+                        AbilityKey.ScrollOfCharm,
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.SwiftnessPotion,
