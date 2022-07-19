@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
-    using Boardgame.Data;
     using Boardgame.BoardEntities;
+    using Boardgame.Data;
     using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
@@ -19,7 +19,8 @@
         private static readonly Random Rnd = new Random();
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;
-        private static bool _isChest = true;
+        private static bool _isPotionStand;
+        private static int _numPlayers;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
 
@@ -67,10 +68,12 @@
                 return;
             }
 
+            _isPotionStand = false;
             Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
             if (whatIsit.type == Interactable.Type.PotionStand)
             {
-                _isChest = false;
+                _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
+                _isPotionStand = true;
             }
         }
 
@@ -88,15 +91,31 @@
                 return;
             }
 
-            if (!_isChest)
+            if (_isPotionStand)
             {
+                // TODO: Add method to allow custom card loot for Potion Stands here
+                if (_numPlayers > 1)
+                {
+                    _numPlayers--;
+                }
+                else
+                {
+                    _isPotionStand = false;
+                }
+
                 return;
             }
 
             var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
-
             var pieceId = Traverse.Create(addCardToPieceEvent).Field<int>("pieceId").Value;
+            var cardSource = Traverse.Create(addCardToPieceEvent).Field<int>("cardSource").Value;
+
+            if (cardSource != (int)MotherTracker.Context.Energy && cardSource != (int)MotherTracker.Context.Chest)
+            {
+                return;
+            }
+
             if (!gameContext.pieceAndTurnController.TryGetPiece(pieceId, out var piece))
             {
                 return;
