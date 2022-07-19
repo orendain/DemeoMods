@@ -76,12 +76,26 @@
                 prefix: new HarmonyMethod(
                     typeof(LifecycleDirector),
                     nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools
+                    .Inner(typeof(GameStateMachine), "ReconnectState").GetTypeInfo()
+                    .GetDeclaredMethod("OnClickLeaveGameAfterReconnect"),
+                postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(ReconnectState_OnClickLeaveGameAfterReconnect_Postfix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
             var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
             _gameContext = gameContext;
+        }
+
+        private static void ReconnectState_OnClickLeaveGameAfterReconnect_Postfix()
+        {
+            // (UNTESTED): Host chose not to reconnect so deactivate all rules
+            _isReconnect = false;
+            DeactivateRuleset();
+            CoreMod.Logger.Warning("Reconnect disabled by Host!");
         }
 
         private static void GameStateMachine_OnRoomJoined_Postfix()
