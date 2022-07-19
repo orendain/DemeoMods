@@ -22,7 +22,6 @@
         private static bool _isReconnect = false;
         private static string roomCode;
         private static string lastCode;
-        private static bool gameOver = false;
 
         internal static bool IsRulesetActive { get; private set; }
 
@@ -162,7 +161,7 @@
 
             _isReconnect = false;
             roomCode = PhotonNetwork.CurrentRoom.Name;
-            CoreMod.Logger.Warning($"New game in room {roomCode} started");
+            CoreMod.Logger.Msg($"New game in room {roomCode} started");
             ActivateRuleset();
             OnPreGameCreated();
         }
@@ -223,7 +222,6 @@
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
-            gameOver = false;
             ActivateRuleset();
             _isCreatingGame = true;
             OnPreGameCreated();
@@ -231,19 +229,12 @@
 
         private static void GameStateMachine_EndGame_Prefix()
         {
-            gameOver = true;
             _isReconnect = false;
             DeactivateRuleset();
         }
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix(BoardgameActionOnLocalPlayerDisconnect.DisconnectContext context)
         {
-            if (gameOver)
-            {
-                gameOver = false;
-                return;
-            }
-            
             if (HR.SelectedRuleset == Ruleset.None)
             {
                 return;
@@ -263,7 +254,7 @@
             else
             {
                 CoreMod.Logger.Warning($"<- MANUALLY disconnected from room {roomCode} ->");
-                _isReconnect = true; // Change this to false once things are confirmed working...
+                _isReconnect = false; // Change this to true only for testing purposes
                 DeactivateRuleset();
             }
         }
