@@ -76,12 +76,26 @@
                 prefix: new HarmonyMethod(
                     typeof(LifecycleDirector),
                     nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools
+                    .Inner(typeof(GameStateMachine), "ReconnectState").GetTypeInfo()
+                    .GetDeclaredMethod("OnClickLeaveGameAfterReconnect"),
+                postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(ReconnectState_OnClickLeaveGameAfterReconnect_Postfix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
             var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
             _gameContext = gameContext;
+        }
+
+        private static void ReconnectState_OnClickLeaveGameAfterReconnect_Postfix()
+        {
+            // (UNTESTED): Host chose not to reconnect so deactivate all reconnection rules
+            _isReconnect = false;
+            DeactivateReconnect();
+            CoreMod.Logger.Warning("Reconnect disabled by Host!");
         }
 
         private static void GameStateMachine_OnRoomJoined_Postfix()
@@ -94,9 +108,9 @@
             lastCode = PhotonNetwork.CurrentRoom.Name;
             if (lastCode != roomCode)
             {
-                CoreMod.Logger.Warning($"Room {lastCode} doesn't match original room {roomCode}. Deactivating ruleset reconnection!");
+                CoreMod.Logger.Warning($"Room {lastCode} doesn't match original room {roomCode}. Deactivating reconnection rules!");
                 _isReconnect = false;
-                DeactivateRuleset();
+                DeactivateReconnect();
             }
         }
 
@@ -159,7 +173,12 @@
             var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
 
-            _isReconnect = false;
+            if (_isReconnect)
+            {
+                _isReconnect = false;
+                DeactivateReconnect();
+            }
+
             roomCode = PhotonNetwork.CurrentRoom.Name;
             CoreMod.Logger.Msg($"New game in room {roomCode} started");
             ActivateRuleset();
@@ -229,8 +248,15 @@
 
         private static void GameStateMachine_EndGame_Prefix()
         {
-            _isReconnect = false;
-            DeactivateRuleset();
+            if (_isReconnect)
+            {
+                _isReconnect = false;
+                DeactivateReconnect();
+            }
+            else
+            {
+                DeactivateRuleset();
+            }
         }
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix(BoardgameActionOnLocalPlayerDisconnect.DisconnectContext context)
@@ -364,6 +390,30 @@
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
                     CoreMod.Logger.Warning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
+                }
+            }
+        }
+
+        private static void DeactivateReconnect()
+        {
+            IsRulesetActive = false;
+
+            CoreMod.Logger.Msg($"Deactivating reconnection: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            foreach (var rule in HR.SelectedRuleset.Rules)
+            {
+                try
+                {
+                    var isDisabled = rule is IDisableOnReconnect;
+                    if (isDisabled)
+                    {
+                        CoreMod.Logger.Msg($"Deactivating reconnection for rule type: {rule.GetType()}");
+                        rule.OnDeactivate(_gameContext);
+                    }
+                }
+                catch (Exception e)
+                {
+                    // TODO(orendain): Consider rolling back or disable rule.
+                    CoreMod.Logger.Warning($"Failed to deactivate reconnection for rule [{rule.GetType()}]: {e}");
                 }
             }
         }

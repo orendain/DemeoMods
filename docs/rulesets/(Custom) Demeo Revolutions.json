@@ -1023,6 +1023,21 @@
           "clearOnNewLevel": false,
           "damageTags": null,
           "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Berserk",
+          "durationTurns": 10,
+          "tickWhen": "Never",
+          "stacks": false,
+          "damagePerTurn": 0
+        },
+        {
+          "effectStateType": "Key",
+          "durationTurns": 10,
+          "tickWhen": "Never",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": true
         }
       ]
     },

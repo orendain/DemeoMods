@@ -593,6 +593,23 @@
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Berserk,
+                    durationTurns = 10,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.Never,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Key,
+                    durationTurns = 10,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = true,
+                    tickWhen = StatusEffectsConfig.TickWhen.Never,
+                },
             });
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
