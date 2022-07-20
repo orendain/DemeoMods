@@ -280,8 +280,15 @@
             else
             {
                 CoreMod.Logger.Warning($"<- MANUALLY disconnected from room {roomCode} ->");
-                _isReconnect = false; // Change this to true only for testing purposes
-                DeactivateRuleset();
+                if (_isReconnect)
+                {
+                    _isReconnect = false;
+                    DeactivateReconnect();
+                }
+                else
+                {
+                    DeactivateRuleset();
+                }
             }
         }
 
