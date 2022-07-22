@@ -374,7 +374,6 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.LuckPotion,
                         AbilityKey.IceImmunePotion,
-                        AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.WaterBottle,
@@ -461,6 +460,7 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
+                        AbilityKey.IceImmunePotion,
                         AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
@@ -593,23 +593,6 @@
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Berserk,
-                    durationTurns = 10,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.Never,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Key,
-                    durationTurns = 10,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = true,
-                    tickWhen = StatusEffectsConfig.TickWhen.Never,
-                },
             });
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -625,8 +608,9 @@
                 { BoardPieceId.ElvenArcher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyArrowSnipe, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
                 { BoardPieceId.TheUnseen, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Zap } },
-                { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.SummonBossMinions, AbilityKey.LightningBolt, AbilityKey.EarthShatter, AbilityKey.ImplosionExplosionRain } },
+                { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.SummonBossMinions, AbilityKey.LightningBolt, AbilityKey.EarthShatter, AbilityKey.EnemyFireball } },
                 { BoardPieceId.BigBoiMutant, new List<AbilityKey> { AbilityKey.EnemyKnockbackMelee, AbilityKey.Shockwave, AbilityKey.LeapHeavy } },
+                { BoardPieceId.GoblinFighter, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyFlashbang } },
             });
 
             var pieceBehaviourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
@@ -640,18 +624,17 @@
                 { BoardPieceId.SilentSentinel, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedSpellCaster } },
                 { BoardPieceId.ElvenArcher, new List<Behaviour> { Behaviour.Patrol, Behaviour.RangedSpellCaster, Behaviour.FollowPlayerRangedAttacker } },
                 { BoardPieceId.TheUnseen, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedSpellCaster } },
+                { BoardPieceId.GoblinFighter, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
             });
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
-                { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Frozen } },
-                { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Stunned } },
-                { BoardPieceId.Verochka, new List<EffectStateType> { EffectStateType.Stunned } },
-                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken } },
+                { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Stunned } },
+                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken, EffectStateType.PlayerPanic } },
                 { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
-                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled } },
-                { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },
-                { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded } },
+                { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
+                { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
             });
 
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -782,8 +765,10 @@
                 { AbilityKey.LeapHeavy, 2 },
                 { AbilityKey.EnemyFrostball, 2 },
                 { AbilityKey.EnemyFireball, 2 },
+                { AbilityKey.EnemyFlashbang, 2 },
             });
 
+            var fixKeyAndBerserk = new FixKeyHolderAndBerserkRule(true);
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
@@ -793,11 +778,11 @@
             var enemyHealthScaledRule = new EnemyHealthScaledRule(2.5f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
-                "ElvenFloor13",
+                "ElvenFloor17",
                 "SewersShopFloor",
-                "SewersFloor12",
+                "SewersFloor11",
                 "ForestShopFloor",
-                "ForestFloor02",
+                "ForestFloor01",
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
@@ -847,6 +832,7 @@
                 abilityBackstabRule,
                 abilityStealthDamageRule,
                 enemyCooldownRule,
+                fixKeyAndBerserk,
                 partyElectricity,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,

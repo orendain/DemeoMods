@@ -810,7 +810,6 @@
           "ScrollTsunami",
           "ScrollElectricity",
           "LuckPotion",
-          "FireImmunePotion",
           "IceImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
@@ -889,6 +888,7 @@
           "ScrollElectricity",
           "MagicPotion",
           "LuckPotion",
+          "IceImmunePotion",
           "FireImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
@@ -1023,21 +1023,6 @@
           "clearOnNewLevel": false,
           "damageTags": null,
           "healPerTurn": 0
-        },
-        {
-          "effectStateType": "Berserk",
-          "durationTurns": 10,
-          "tickWhen": "Never",
-          "stacks": false,
-          "damagePerTurn": 0
-        },
-        {
-          "effectStateType": "Key",
-          "durationTurns": 10,
-          "tickWhen": "Never",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": true
         }
       ]
     },
@@ -1055,8 +1040,9 @@
         "ElvenArcher": [ "EnemyMelee", "EnemyArrowSnipe", "EnemyFrostball" ],
         "ElvenCultist": [ "EnemyMelee", "LeechMelee" ],
         "TheUnseen": [ "EnemyMelee", "Zap" ],
-        "ElvenQueen": [ "SummonBossMinions", "ImplosionExplosionRain", "LightningBolt", "EarthShatter" ],
-        "BigBoiMutant": [ "EnemyKnockbackMelee", "Shockwave", "LeapHeavy" ]
+        "ElvenQueen": [ "SummonBossMinions", "EnemyFireball", "LightningBolt", "EarthShatter" ],
+        "BigBoiMutant": [ "EnemyKnockbackMelee", "Shockwave", "LeapHeavy" ],
+        "GoblinFighter": [ "EnemyMelee", "EnemyFlashbang" ]
       }
     },
     {
@@ -1070,20 +1056,19 @@
         "CultMemberElder": [ "Patrol", "AttackPlayer", "RangedSpellCaster" ],
         "SilentSentinel": [ "Patrol", "AttackPlayer", "RangedSpellCaster" ],
         "ElvenArcher": [ "Patrol", "AttackPlayer", "RangedSpellCaster", "FollowPlayerRangedAttacker" ],
-        "TheUnseen": [ "Patrol", "AttackPlayer", "RangedSpellCaster" ]
+        "TheUnseen": [ "Patrol", "AttackPlayer", "RangedSpellCaster" ],
+        "GoblinFighter": [ "Patrol", "AttackPlayer", "RangedAttackHighPrio" ]
       }
     },
     {
       "Rule": "PieceImmunityListAdjusted",
       "Config": {
-        "HeroSorcerer": [ "Frozen" ],
-        "HeroHunter": [ "Stunned" ],
-        "Verochka": [ "Stunned" ],
-        "HeroGuardian": [ "Weaken" ],
+        "HeroSorcerer": [ "Stunned" ],
+        "HeroGuardian": [ "Weaken", "PlayerPanic" ],
         "HeroBard": [ "Diseased" ],
-        "HeroRogue": [ "Tangled" ],
-        "HeroWarlock": [ "CorruptedRage" ],
-        "WarlockMinion": [ "CorruptedRage" ]
+        "HeroRogue": [ "Tangled", "Blinded" ],
+        "HeroWarlock": [ "CorruptedRage", "Undefined" ],
+        "WarlockMinion": [ "CorruptedRage", "Undefined" ]
       }
     },
     {
@@ -1180,8 +1165,7 @@
     },
     {
       "Rule": "TurnOrderOverridden",
-      "Config":
-      {
+      "Config": {
         "Bard": 15,
         "Guardian": 14,
         "Sorcerer": 13,
@@ -1203,31 +1187,27 @@
     },
     {
       "Rule": "FreeHealOnHit",
-      "Config": 
-      [
+      "Config": [
         "HeroRogue"
       ]
     },
     {
       "Rule": "FreeHealOnCrit",
-      "Config": 
-      [
+      "Config": [
         "HeroBard",
         "HeroRogue"
       ]
     },
     {
       "Rule": "FreeActionPointsOnCrit",
-      "Config": 
-      [
+      "Config": [
         "HeroGuardian",
         "HeroRogue"
       ]
     },
     {
       "Rule": "FreeReplenishablesOnCrit",
-      "Config": 
-      [
+      "Config": [
         "HeroSorcerer",
         "HeroGuardian",
         "HeroBard",
@@ -1238,8 +1218,7 @@
     },
     {
       "Rule": "BackstabConfigOverridden",
-      "Config": 
-      [
+      "Config": [
         "HeroBard",
         "HeroRogue"
       ]
@@ -1255,8 +1234,7 @@
     },
     {
       "Rule": "AbilityStealthDamageOverridden",
-      "Config": 
-      {
+      "Config": {
         "Blink": 4,
         "DiseasedBite": 2,
         "PoisonBomb": 1,
@@ -1266,14 +1244,18 @@
     },
     {
       "Rule": "EnemyCooldownOverridden",
-      "Config": 
-      {
+      "Config": {
         "Zap": 2,
         "LightningBolt": 2,
         "LeapHeavy": 2,
         "EnemyFrostball": 2,
-        "EnemyFireball": 2
+        "EnemyFireball": 2,
+        "EnemyFlashbang": 2
       }
+    },
+    {
+      "Rule": "FixKeyHolderAndBerserk",
+      "Config": true
     },
     {
       "Rule": "PartyElectricityDamageOverridden",
@@ -1305,19 +1287,17 @@
     },
     {
       "Rule": "LevelSequenceOverridden",
-      "Config": 
-      [
-        "ElvenFloor13",
+      "Config": [
+        "ElvenFloor17",
         "SewersShopFloor",
-        "SewersFloor12",
+        "SewersFloor11",
         "ForestShopFloor",
-        "ForestFloor02"
+        "ForestFloor01"
       ]
     },
     {
       "Rule": "LevelPropertiesModified",
-      "Config": 
-      {
+      "Config": {
         "BigGoldPileChance": 30,
         "FloorOneHealingFountains": 1,
         "FloorOnePotionStand": 0,
