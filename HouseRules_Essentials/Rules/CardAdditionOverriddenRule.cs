@@ -111,8 +111,7 @@
 
                 return;
             }
-
-            if (_isWaterBottleChest)
+            else if (_isWaterBottleChest)
             {
                 // TODO: Add method to allow custom card loot for Water Bottle Chests here
                 if (_numPlayers > 1)
