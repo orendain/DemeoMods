@@ -104,13 +104,19 @@
             var newGameType =
                 Traverse.Create(__instance).Field<PostGameControllerBase>("postGameController").Value.gameType;
 
-            if (newGameType == LevelSequence.GameType.Desert)
-            {
-                return true;
-            }
-
             var gsmLevelSequence = gameContext.levelSequenceConfiguration.GetNewLevelSequence(-1, newGameType, LevelSequence.ControlType.OneHero);
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
+
+            if (newGameType == LevelSequence.GameType.Desert)
+            {
+                for (var i = 0; i < _globalAdjustments.Count; i++)
+                {
+                    if (i == _globalAdjustments.Count - 1)
+                    {
+                        _globalAdjustments[i] = "DesertBossFloor01";
+                    }
+                }
+            }
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 _globalAdjustments.Prepend(originalSequence[0]).ToArray();
@@ -128,16 +134,20 @@
                 Traverse.Create(gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
 
-            if (gsmLevelSequence.gameType != LevelSequence.GameType.Desert)
+            if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
             {
-                Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
-                    replacements.Prepend(originalSequence[0]).ToArray();
-                return originalSequence.ToList();
+                for (var i = 0; i < replacements.Count; i++)
+                {
+                    if (i == replacements.Count - 1)
+                    {
+                        replacements[i] = "DesertBossFloor01";
+                    }
+                }
             }
-            else
-            {
-                return originalSequence.ToList();
-            }
+
+            Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
+                replacements.Prepend(originalSequence[0]).ToArray();
+            return originalSequence.ToList();
         }
     }
 }
