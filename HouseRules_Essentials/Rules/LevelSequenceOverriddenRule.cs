@@ -165,7 +165,7 @@
             int rndMap3;
             int newMap;
 
-            EssentialsMod.Logger.Error($"Omap1: {replacements[0]} Oshop1: {replacements[1]} Omap2: {replacements[2]} Oshop2: {replacements[3]} Omap3: {replacements[4]}");
+            EssentialsMod.Logger.Warning($"Omap1: {replacements[0]} Oshop1: {replacements[1]} Omap2: {replacements[2]} Oshop2: {replacements[3]} Omap3: {replacements[4]}");
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
             {
                 rndLevel = 4;
@@ -180,7 +180,7 @@
                     rndMap2 = Random.Range(2, 5);
                 }
 
-                rndMap3 = 1;
+                rndMap3 = 2;
                 while (rndMap3 == rndMap1 || rndMap3 == rndMap2)
                 {
                     rndMap3++;
@@ -344,7 +344,7 @@
                 replacements[3] = "DesertShopFloor";
             }
 
-            EssentialsMod.Logger.Error($"Nmap1: {replacements[0]} Nshop1: {replacements[1]} Nmap2: {replacements[2]} Nshop2: {replacements[3]} Nmap3: {replacements[4]}");
+            EssentialsMod.Logger.Warning($"Nmap1: {replacements[0]} Nshop1: {replacements[1]} Nmap2: {replacements[2]} Nshop2: {replacements[3]} Nmap3: {replacements[4]}");
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 replacements.Prepend(originalSequence[0]).ToArray();
