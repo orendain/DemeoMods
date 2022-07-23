@@ -1067,8 +1067,8 @@
         "HeroGuardian": [ "Weaken", "PlayerPanic" ],
         "HeroBard": [ "Diseased" ],
         "HeroRogue": [ "Tangled", "Blinded" ],
-        "HeroWarlock": [ "CorruptedRage", "Undefined" ],
-        "WarlockMinion": [ "CorruptedRage", "Undefined" ]
+        "HeroWarlock": [ "CorruptedRage" ],
+        "WarlockMinion": [ "CorruptedRage" ]
       }
     },
     {
@@ -1254,7 +1254,7 @@
       }
     },
     {
-      "Rule": "FixKeyHolderAndBerserk",
+      "Rule": "PieceExtraImmunities",
       "Config": true
     },
     {
