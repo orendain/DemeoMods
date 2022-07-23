@@ -8,13 +8,12 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class LevelSequenceOverriddenRule : Rule, IConfigWritable<List<string>>, IPatchable, IMultiplayerSafe
+    public sealed class LevelSequenceOverriddenRule : Rule, IConfigWritable<List<string>>, IPatchable, IMultiplayerSafe, IDisableOnReconnect
     {
         public override string Description => "LevelSequence is overridden";
 
         private static List<string> _globalAdjustments;
         private static bool _isActivated;
-        private static bool _isDesert = false;
         private readonly List<string> _adjustments;
 
         /// <summary>
@@ -69,14 +68,8 @@
                 return true;
             }
 
-            if (_isDesert)
-            {
-                return true;
-            }
-
             if (gameType == LevelSequence.GameType.Desert)
             {
-                _isDesert = true;
                 return true;
             }
 
@@ -107,14 +100,14 @@
                 return true;
             }
 
-            if (_isDesert)
-            {
-                return true;
-            }
-
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var newGameType =
                 Traverse.Create(__instance).Field<PostGameControllerBase>("postGameController").Value.gameType;
+
+            if (newGameType == LevelSequence.GameType.Desert)
+            {
+                return true;
+            }
 
             var gsmLevelSequence = gameContext.levelSequenceConfiguration.GetNewLevelSequence(-1, newGameType, LevelSequence.ControlType.OneHero);
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
@@ -143,7 +136,6 @@
             }
             else
             {
-                _isDesert = true;
                 return originalSequence.ToList();
             }
         }
