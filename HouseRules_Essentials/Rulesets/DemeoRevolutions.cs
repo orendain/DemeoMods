@@ -779,10 +779,12 @@
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
                 "ElvenFloor17",
-                "SewersShopFloor",
+                "SewersFloor08",
                 "SewersFloor11",
-                "ForestShopFloor",
+                "ForestFloor02",
                 "ForestFloor01",
+                "ElvenFloor14",
+                "fixhydra",
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>

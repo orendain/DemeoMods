@@ -14,8 +14,10 @@
         public override string Description => "LevelSequence is overridden";
 
         private static List<string> _globalAdjustments;
+        private static List<string> _randomMaps;
         private static bool _isActivated;
         private readonly List<string> _adjustments;
+        private static bool fixhydra = true;
 
         private readonly List<string> elvenFloors1 = new List<string>
                     { "ElvenFloor14", "ElvenFloor16", "ElvenFloor17", "ElvenFloor13" };
@@ -55,6 +57,7 @@
         protected override void OnActivate(GameContext gameContext)
         {
             _globalAdjustments = _adjustments;
+            _randomMaps = _adjustments;
             _isActivated = true;
         }
 
@@ -89,11 +92,6 @@
             LevelSequence.GameType gameType)
         {
             if (!_isActivated)
-            {
-                return true;
-            }
-
-            if (gameType == LevelSequence.GameType.Desert)
             {
                 return true;
             }
@@ -134,17 +132,14 @@
 
             if (newGameType == LevelSequence.GameType.Desert)
             {
-                for (var i = 0; i < _globalAdjustments.Count; i++)
+                if (fixhydra)
                 {
-                    if (i == _globalAdjustments.Count - 1)
-                    {
-                        _globalAdjustments[i] = "DesertBossFloor01";
-                    }
+                    _randomMaps[4] = "DesertBossFloor01";
                 }
             }
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
-                _globalAdjustments.Prepend(originalSequence[0]).ToArray();
+                _randomMaps.Prepend(originalSequence[0]).ToArray();
             eventQueue.SendEventRequest(new SerializableEventStartNewGame(gsmLevelSequence));
             return false;
         }
@@ -159,13 +154,20 @@
                 Traverse.Create(gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
 
+            if (replacements.Count == 5 || replacements[1].Contains("Shop"))
+            {
+                EssentialsMod.Logger.Warning("User configured specific level sequence loaded");
+                Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
+                replacements.Prepend(originalSequence[0]).ToArray();
+                return originalSequence.ToList();
+            }
+
             int rndLevel = Random.Range(1, 5);
             int rndMap1;
             int rndMap2;
             int rndMap3;
             int newMap;
 
-            EssentialsMod.Logger.Warning($"Omap1: {replacements[0]} Oshop1: {replacements[1]} Omap2: {replacements[2]} Oshop2: {replacements[3]} Omap3: {replacements[4]}");
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
             {
                 rndLevel = 4;
@@ -245,109 +247,113 @@
             if (rndMap1 == 1)
             {
                 newMap = Random.Range(0, elvenFloors1.Count);
-                replacements[0] = elvenFloors1[newMap];
+                _randomMaps[0] = elvenFloors1[newMap];
             }
             else if (rndMap1 == 2)
             {
                 newMap = Random.Range(0, forestFloors1.Count);
-                replacements[0] = forestFloors1[newMap];
+                _randomMaps[0] = forestFloors1[newMap];
             }
             else if (rndMap1 == 3)
             {
                 newMap = Random.Range(0, sewersFloors1.Count);
-                replacements[0] = sewersFloors1[newMap];
+                _randomMaps[0] = sewersFloors1[newMap];
             }
             else
             {
                 newMap = Random.Range(0, desertFloors1.Count);
-                replacements[0] = desertFloors1[newMap];
+                _randomMaps[0] = desertFloors1[newMap];
             }
 
             if (rndMap2 == 1)
             {
                 newMap = Random.Range(0, elvenFloors2.Count);
-                replacements[2] = elvenFloors2[newMap];
+                _randomMaps[2] = elvenFloors2[newMap];
             }
             else if (rndMap2 == 2)
             {
                 newMap = Random.Range(0, forestFloors2.Count);
-                replacements[2] = forestFloors2[newMap];
+                _randomMaps[2] = forestFloors2[newMap];
             }
             else if (rndMap2 == 3)
             {
                 newMap = Random.Range(0, sewersFloors2.Count);
-                replacements[2] = sewersFloors2[newMap];
+                _randomMaps[2] = sewersFloors2[newMap];
             }
             else
             {
                 newMap = Random.Range(0, desertFloors2.Count);
-                replacements[2] = desertFloors2[newMap];
+                _randomMaps[2] = desertFloors2[newMap];
             }
 
             if (rndMap3 == 1)
             {
                 newMap = Random.Range(0, elvenFloors1.Count);
-                replacements[4] = elvenFloors1[newMap];
+                _randomMaps[4] = elvenFloors1[newMap];
             }
             else if (rndMap3 == 2)
             {
                 newMap = Random.Range(0, forestFloors1.Count);
-                replacements[4] = forestFloors1[newMap];
+                _randomMaps[4] = forestFloors1[newMap];
             }
             else if (rndMap3 == 3)
             {
                 newMap = Random.Range(0, sewersFloors1.Count);
-                replacements[4] = sewersFloors1[newMap];
+                _randomMaps[4] = sewersFloors1[newMap];
             }
             else
             {
                 newMap = Random.Range(0, forestFloors1.Count);
-                replacements[4] = desertFloors1[newMap];
+                _randomMaps[4] = desertFloors1[newMap];
             }
 
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
             {
-                replacements[4] = "DesertBossFloor01";
+                if (fixhydra)
+                {
+                    _randomMaps[4] = "DesertBossFloor01";
+                }
             }
 
-            if (replacements[2].Contains("Elven"))
+            if (_randomMaps[2].Contains("Elven"))
             {
-                replacements[1] = "ShopFloor02";
+                _randomMaps[1] = "ShopFloor02";
             }
-            else if (replacements[2].Contains("Forest"))
+            else if (_randomMaps[2].Contains("Forest"))
             {
-                replacements[1] = "ForestShopFloor";
+                _randomMaps[1] = "ForestShopFloor";
             }
-            else if (replacements[2].Contains("Sewer"))
+            else if (_randomMaps[2].Contains("Sewer"))
             {
-                replacements[1] = "SewersShopFloor";
+                _randomMaps[1] = "SewersShopFloor";
             }
-            else if (replacements[2].Contains("Desert"))
+            else if (_randomMaps[2].Contains("Desert"))
             {
-                replacements[1] = "DesertShopFloor";
-            }
-
-            if (replacements[4].Contains("Elven"))
-            {
-                replacements[3] = "ShopFloor02";
-            }
-            else if (replacements[4].Contains("Forest"))
-            {
-                replacements[3] = "ForestShopFloor";
-            }
-            else if (replacements[4].Contains("Sewer"))
-            {
-                replacements[3] = "SewersShopFloor";
-            }
-            else if (replacements[4].Contains("Desert"))
-            {
-                replacements[3] = "DesertShopFloor";
+                _randomMaps[1] = "DesertShopFloor";
             }
 
-            EssentialsMod.Logger.Warning($"Nmap1: {replacements[0]} Nshop1: {replacements[1]} Nmap2: {replacements[2]} Nshop2: {replacements[3]} Nmap3: {replacements[4]}");
+            if (_randomMaps[4].Contains("Elven"))
+            {
+                _randomMaps[3] = "ShopFloor02";
+            }
+            else if (_randomMaps[4].Contains("Forest"))
+            {
+                _randomMaps[3] = "ForestShopFloor";
+            }
+            else if (_randomMaps[4].Contains("Sewer"))
+            {
+                _randomMaps[3] = "SewersShopFloor";
+            }
+            else if (_randomMaps[4].Contains("Desert"))
+            {
+                _randomMaps[3] = "DesertShopFloor";
+            }
+
+            EssentialsMod.Logger.Warning($"Map1: {_randomMaps[0]} Shop1: {_randomMaps[1]} Map2: {_randomMaps[2]} Shop2: {_randomMaps[3]} Map3: {_randomMaps[4]}");
+
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
-                replacements.Prepend(originalSequence[0]).ToArray();
+                _randomMaps.Prepend(originalSequence[0]).ToArray();
             return originalSequence.ToList();
         }
     }
