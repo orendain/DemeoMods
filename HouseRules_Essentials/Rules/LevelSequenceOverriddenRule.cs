@@ -15,9 +15,9 @@
 
         private static List<string> _globalAdjustments;
         private static List<string> _randomMaps;
+        private static bool _fixHydra = false;
         private static bool _isActivated;
         private readonly List<string> _adjustments;
-        private static bool fixhydra = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LevelSequenceOverriddenRule"/> class.
@@ -108,7 +108,7 @@
 
             if (newGameType == LevelSequence.GameType.Desert)
             {
-                if (fixhydra)
+                if (_fixHydra)
                 {
                     EssentialsMod.Logger.Warning("Fix the Hydra!");
                     _randomMaps[4] = "DesertBossFloor01";
@@ -147,13 +147,9 @@
                 if (replacements[replacements.Count - 1] == "fixhydra")
                 {
                     x = 1;
-                    fixhydra = true;
+                    _fixHydra = true;
                     EssentialsMod.Logger.Warning("Fix the Hydra!");
                 }
-            }
-            else
-            {
-                fixhydra = false;
             }
 
             newMap = Random.Range(0, replacements.Count - x);
@@ -170,7 +166,7 @@
                 newMap = Random.Range(0, replacements.Count - x);
             }
 
-            if (fixhydra)
+            if (_fixHydra)
             {
                 replacements[4] = "DesertBossFloor01";
             }
