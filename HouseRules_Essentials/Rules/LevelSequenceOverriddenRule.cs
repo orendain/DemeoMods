@@ -16,8 +16,8 @@
         private static List<string> _globalAdjustments;
         private static List<string> _randomMaps;
         private static bool _isActivated;
+        private static bool _fixHydra = true;
         private readonly List<string> _adjustments;
-        private static bool fixhydra = true;
 
         private readonly List<string> elvenFloors1 = new List<string>
                     { "ElvenFloor14", "ElvenFloor16", "ElvenFloor17", "ElvenFloor13" };
@@ -132,7 +132,7 @@
 
             if (newGameType == LevelSequence.GameType.Desert)
             {
-                if (fixhydra)
+                if (_fixHydra)
                 {
                     _randomMaps[4] = "DesertBossFloor01";
                 }
@@ -309,7 +309,7 @@
 
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
             {
-                if (fixhydra)
+                if (_fixHydra)
                 {
                     _randomMaps[4] = "DesertBossFloor01";
                 }
