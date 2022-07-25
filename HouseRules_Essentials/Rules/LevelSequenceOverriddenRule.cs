@@ -14,9 +14,11 @@
         public override string Description => "LevelSequence is overridden";
 
         private static List<string> _globalAdjustments;
-        private static List<string> _randomMaps;
-        private static bool _isActivated;
+        private static List<string> _randomMaps = new List<string>
+                    { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+
         private static bool _fixHydra = true;
+        private static bool _isActivated;
         private readonly List<string> _adjustments;
 
         private readonly List<string> elvenFloors1 = new List<string>
@@ -57,7 +59,6 @@
         protected override void OnActivate(GameContext gameContext)
         {
             _globalAdjustments = _adjustments;
-            _randomMaps = _adjustments;
             _isActivated = true;
         }
 
