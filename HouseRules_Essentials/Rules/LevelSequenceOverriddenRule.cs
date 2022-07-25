@@ -14,7 +14,9 @@
         public override string Description => "LevelSequence is overridden";
 
         private static List<string> _globalAdjustments;
-        private static List<string> _randomMaps;
+        private static List<string> _randomMaps = new List<string>
+                    { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+
         private static bool _fixHydra = false;
         private static bool _isActivated;
         private readonly List<string> _adjustments;
@@ -33,7 +35,6 @@
         protected override void OnActivate(GameContext gameContext)
         {
             _globalAdjustments = _adjustments;
-            _randomMaps = _adjustments;
             _isActivated = true;
         }
 
