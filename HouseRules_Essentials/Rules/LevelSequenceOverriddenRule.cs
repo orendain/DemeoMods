@@ -176,38 +176,42 @@
                 _randomMaps[4] = replacements[newMap];
             }
 
-            if (_randomMaps[2].Contains("Elven"))
+            switch (_randomMaps[2].Substring(0, 5))
             {
-                _randomMaps[1] = "ShopFloor02";
-            }
-            else if (_randomMaps[2].Contains("Forest"))
-            {
-                _randomMaps[1] = "ForestShopFloor";
-            }
-            else if (_randomMaps[2].Contains("Sewer"))
-            {
-                _randomMaps[1] = "SewersShopFloor";
-            }
-            else if (_randomMaps[2].Contains("Desert"))
-            {
-                _randomMaps[1] = "DesertShopFloor";
+                case "Elven":
+                    _randomMaps[1] = "ShopFloor02";
+                    break;
+
+                case "Fores":
+                    _randomMaps[1] = "ForestShopFloor";
+                    break;
+
+                case "Sewer":
+                    _randomMaps[1] = "SewersShopFloor";
+                    break;
+
+                case "Deser":
+                    _randomMaps[1] = "DesertShopFloor";
+                    break;
             }
 
-            if (_randomMaps[4].Contains("Elven"))
+            switch (_randomMaps[4].Substring(0, 5))
             {
-                _randomMaps[3] = "ShopFloor02";
-            }
-            else if (_randomMaps[4].Contains("Forest"))
-            {
-                _randomMaps[3] = "ForestShopFloor";
-            }
-            else if (_randomMaps[4].Contains("Sewer"))
-            {
-                _randomMaps[3] = "SewersShopFloor";
-            }
-            else if (_randomMaps[4].Contains("Desert"))
-            {
-                _randomMaps[3] = "DesertShopFloor";
+                case "Elven":
+                    _randomMaps[3] = "ShopFloor02";
+                    break;
+
+                case "Fores":
+                    _randomMaps[3] = "ForestShopFloor";
+                    break;
+
+                case "Sewer":
+                    _randomMaps[3] = "SewersShopFloor";
+                    break;
+
+                case "Deser":
+                    _randomMaps[3] = "DesertShopFloor";
+                    break;
             }
 
             EssentialsMod.Logger.Warning($"Map1: {_randomMaps[0]} Shop1: {_randomMaps[1]} Map2: {_randomMaps[2]} Shop2: {_randomMaps[3]} Map3: {_randomMaps[4]}");
