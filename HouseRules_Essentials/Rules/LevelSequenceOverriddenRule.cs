@@ -249,67 +249,73 @@
                 }
             }
 
-            if (rndMap1 == 1)
+            switch (rndMap1)
             {
-                newMap = Random.Range(0, elvenFloors1.Count);
-                _randomMaps[0] = elvenFloors1[newMap];
-            }
-            else if (rndMap1 == 2)
-            {
-                newMap = Random.Range(0, forestFloors1.Count);
-                _randomMaps[0] = forestFloors1[newMap];
-            }
-            else if (rndMap1 == 3)
-            {
-                newMap = Random.Range(0, sewersFloors1.Count);
-                _randomMaps[0] = sewersFloors1[newMap];
-            }
-            else
-            {
-                newMap = Random.Range(0, desertFloors1.Count);
-                _randomMaps[0] = desertFloors1[newMap];
+                case 1:
+                    newMap = Random.Range(0, elvenFloors1.Count);
+                    _randomMaps[0] = elvenFloors1[newMap];
+                    break;
+
+                case 2:
+                    newMap = Random.Range(0, forestFloors1.Count);
+                    _randomMaps[0] = forestFloors1[newMap];
+                    break;
+
+                case 3:
+                    newMap = Random.Range(0, sewersFloors1.Count);
+                    _randomMaps[0] = sewersFloors1[newMap];
+                    break;
+
+                case 4:
+                    newMap = Random.Range(0, desertFloors1.Count);
+                    _randomMaps[0] = desertFloors1[newMap];
+                    break;
             }
 
-            if (rndMap2 == 1)
+            switch (rndMap2)
             {
-                newMap = Random.Range(0, elvenFloors2.Count);
-                _randomMaps[2] = elvenFloors2[newMap];
-            }
-            else if (rndMap2 == 2)
-            {
-                newMap = Random.Range(0, forestFloors2.Count);
-                _randomMaps[2] = forestFloors2[newMap];
-            }
-            else if (rndMap2 == 3)
-            {
-                newMap = Random.Range(0, sewersFloors2.Count);
-                _randomMaps[2] = sewersFloors2[newMap];
-            }
-            else
-            {
-                newMap = Random.Range(0, desertFloors2.Count);
-                _randomMaps[2] = desertFloors2[newMap];
+                case 1:
+                    newMap = Random.Range(0, elvenFloors2.Count);
+                    _randomMaps[2] = elvenFloors1[newMap];
+                    break;
+
+                case 2:
+                    newMap = Random.Range(0, forestFloors2.Count);
+                    _randomMaps[2] = forestFloors1[newMap];
+                    break;
+
+                case 3:
+                    newMap = Random.Range(0, sewersFloors2.Count);
+                    _randomMaps[2] = sewersFloors1[newMap];
+                    break;
+
+                case 4:
+                    newMap = Random.Range(0, desertFloors2.Count);
+                    _randomMaps[2] = desertFloors1[newMap];
+                    break;
             }
 
-            if (rndMap3 == 1)
+            switch (rndMap3)
             {
-                newMap = Random.Range(0, elvenFloors1.Count);
-                _randomMaps[4] = elvenFloors1[newMap];
-            }
-            else if (rndMap3 == 2)
-            {
-                newMap = Random.Range(0, forestFloors1.Count);
-                _randomMaps[4] = forestFloors1[newMap];
-            }
-            else if (rndMap3 == 3)
-            {
-                newMap = Random.Range(0, sewersFloors1.Count);
-                _randomMaps[4] = sewersFloors1[newMap];
-            }
-            else
-            {
-                newMap = Random.Range(0, forestFloors1.Count);
-                _randomMaps[4] = desertFloors1[newMap];
+                case 1:
+                    newMap = Random.Range(0, elvenFloors1.Count);
+                    _randomMaps[4] = elvenFloors1[newMap];
+                    break;
+
+                case 2:
+                    newMap = Random.Range(0, forestFloors1.Count);
+                    _randomMaps[4] = forestFloors1[newMap];
+                    break;
+
+                case 3:
+                    newMap = Random.Range(0, sewersFloors1.Count);
+                    _randomMaps[4] = sewersFloors1[newMap];
+                    break;
+
+                case 4:
+                    newMap = Random.Range(0, desertFloors1.Count);
+                    _randomMaps[4] = desertFloors1[newMap];
+                    break;
             }
 
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
@@ -320,42 +326,45 @@
                 }
             }
 
-            if (_randomMaps[2].Contains("Elven"))
+            switch (_randomMaps[2].Substring(0, 5))
             {
-                _randomMaps[1] = "ShopFloor02";
-            }
-            else if (_randomMaps[2].Contains("Forest"))
-            {
-                _randomMaps[1] = "ForestShopFloor";
-            }
-            else if (_randomMaps[2].Contains("Sewer"))
-            {
-                _randomMaps[1] = "SewersShopFloor";
-            }
-            else if (_randomMaps[2].Contains("Desert"))
-            {
-                _randomMaps[1] = "DesertShopFloor";
+                case "Elven":
+                    _randomMaps[1] = "ShopFloor02";
+                    break;
+
+                case "Fores":
+                    _randomMaps[1] = "ForestShopFloor";
+                    break;
+
+                case "Sewer":
+                    _randomMaps[1] = "SewersShopFloor";
+                    break;
+
+                case "Deser":
+                    _randomMaps[1] = "DesertShopFloor";
+                    break;
             }
 
-            if (_randomMaps[4].Contains("Elven"))
+            switch (_randomMaps[4].Substring(0, 5))
             {
-                _randomMaps[3] = "ShopFloor02";
-            }
-            else if (_randomMaps[4].Contains("Forest"))
-            {
-                _randomMaps[3] = "ForestShopFloor";
-            }
-            else if (_randomMaps[4].Contains("Sewer"))
-            {
-                _randomMaps[3] = "SewersShopFloor";
-            }
-            else if (_randomMaps[4].Contains("Desert"))
-            {
-                _randomMaps[3] = "DesertShopFloor";
+                case "Elven":
+                    _randomMaps[3] = "ShopFloor02";
+                    break;
+
+                case "Fores":
+                    _randomMaps[3] = "ForestShopFloor";
+                    break;
+
+                case "Sewer":
+                    _randomMaps[3] = "SewersShopFloor";
+                    break;
+
+                case "Deser":
+                    _randomMaps[3] = "DesertShopFloor";
+                    break;
             }
 
             EssentialsMod.Logger.Warning($"Map1: {_randomMaps[0]} Shop1: {_randomMaps[1]} Map2: {_randomMaps[2]} Shop2: {_randomMaps[3]} Map3: {_randomMaps[4]}");
-
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 _randomMaps.Prepend(originalSequence[0]).ToArray();
