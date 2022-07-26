@@ -1271,11 +1271,11 @@
     },
     {
       "Rule": "CardEnergyFromAttackMultiplied",
-      "Config": 0.2
+      "Config": 0.334
     },
     {
       "Rule": "CardEnergyFromRecyclingMultiplied",
-      "Config": 0.2
+      "Config": 0.667
     },
     {
       "Rule": "EnemyAttackScaled",
@@ -1289,10 +1289,12 @@
       "Rule": "LevelSequenceOverridden",
       "Config": [
         "ElvenFloor17",
-        "SewersShopFloor",
+        "SewersFloor08",
         "SewersFloor11",
-        "ForestShopFloor",
-        "ForestFloor01"
+        "ForestFloor02",
+        "ForestFloor01",
+        "ElvenFloor14",
+        "fixhydra"
       ]
     },
     {
