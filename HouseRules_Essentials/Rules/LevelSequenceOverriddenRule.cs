@@ -143,14 +143,11 @@
             EssentialsMod.Logger.Warning("Loading randomized level sequence");
             int newMap;
             int x = replacements.Count;
-            if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
+            if (replacements[x - 1].ToLower() == "fixhydra")
             {
-                if (replacements[x - 1] == "fixhydra")
-                {
-                    x--;
-                    _fixHydra = true;
-                    EssentialsMod.Logger.Warning("Fix the Hydra!");
-                }
+                x--;
+                _fixHydra = true;
+                EssentialsMod.Logger.Warning("Fix the Hydra!");
             }
 
             newMap = Random.Range(0, x);
