@@ -22,22 +22,22 @@
         private readonly List<string> _adjustments;
 
         private readonly List<string> elvenFloors1 = new List<string>
-                    { "ElvenFloor14", "ElvenFloor16", "ElvenFloor17", "ElvenFloor13" };
+                    { "ElvenFloor13", "ElvenFloor14", "ElvenFloor16", "ElvenFloor17" };
 
         private readonly List<string> elvenFloors2 = new List<string>
-                    { "ElvenFloor08", "ElvenFloor09", "ElvenFloor12", "ElvenFloor02" };
+                    { "ElvenFloor02", "ElvenFloor03", "ElvenFloor06", "ElvenFloor07" };
 
         private readonly List<string> forestFloors1 = new List<string>
                     { "ForestFloor01", "ForestFloor02", "ForestFloor07", "ForestFloor08" };
 
         private readonly List<string> forestFloors2 = new List<string>
-                    { "ForestFloor03", "ForestFloor06", "ForestFloor09", "ForestFloor05" };
+                    { "ForestFloor03", "ForestFloor06", "ForestFloor07", "ForestFloor09" };
 
         private readonly List<string> sewersFloors1 = new List<string>
-                    { "SewersFloor01", "SewersFloor07", "SewersFloor11", "SewersFloor09" };
+                    { "SewersFloor01", "SewersFloor07", "SewersFloor09", "SewersFloor10" };
 
         private readonly List<string> sewersFloors2 = new List<string>
-                    { "SewersFloor10", "SewersFloor12", "SewersFloor11", "SewersFloor08" };
+                    { "SewersFloor09", "SewersFloor10", "SewersFloor11", "SewersFloor12" };
 
         private readonly List<string> desertFloors1 = new List<string>
                     { "DesertFloor10", "DesertFloor06" };
@@ -172,6 +172,10 @@
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
             {
                 rndLevel = 4;
+                if (replacements[replacements.Count - 1] == "fixhydra")
+                {
+                    _fixHydra = true;
+                }
             }
 
             if (rndLevel == 1)

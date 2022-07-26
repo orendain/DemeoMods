@@ -232,7 +232,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootMage, Property = "StartHealth", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "StartHealth", Value = 25 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeTailBoss, Property = "StartHealth", Value = 25 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 60 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 75 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 50 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 55 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 50 },

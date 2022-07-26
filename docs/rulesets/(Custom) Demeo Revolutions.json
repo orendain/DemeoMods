@@ -548,7 +548,7 @@
         {
           "Piece": "WizardBoss",
           "Property": "StartHealth",
-          "Value": 60
+          "Value": 75
         },
         {
           "Piece": "ElvenQueen",
