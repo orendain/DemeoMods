@@ -1250,7 +1250,8 @@
         "LeapHeavy": 2,
         "EnemyFrostball": 2,
         "EnemyFireball": 2,
-        "EnemyFlashbang": 2
+        "EnemyFlashbang": 2,
+        "Petrify": 2
       }
     },
     {

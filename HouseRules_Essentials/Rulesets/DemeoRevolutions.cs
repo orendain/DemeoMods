@@ -766,6 +766,7 @@
                 { AbilityKey.EnemyFrostball, 2 },
                 { AbilityKey.EnemyFireball, 2 },
                 { AbilityKey.EnemyFlashbang, 2 },
+                { AbilityKey.Petrify, 2 },
             });
 
             var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);

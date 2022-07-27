@@ -138,6 +138,10 @@
                     _randomMaps[4] = "DesertBossFloor01";
                 }
             }
+            else if (_randomMaps[4] == "DesertBossFloor01")
+            {
+                _randomMaps[4] = "DesertFloor10";
+            }
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 _randomMaps.Prepend(originalSequence[0]).ToArray();
@@ -164,9 +168,9 @@
             }
 
             int rndLevel = Random.Range(1, 5);
-            int rndMap1;
-            int rndMap2;
-            int rndMap3;
+            int rndMap1 = 0;
+            int rndMap2 = 0;
+            int rndMap3 = 0;
             int newMap;
 
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
@@ -178,75 +182,75 @@
                 }
             }
 
-            if (rndLevel == 1)
+            switch (rndLevel)
             {
-                rndMap1 = Random.Range(2, 5);
-                rndMap2 = rndMap1;
-                while (rndMap2 == rndMap1)
-                {
-                    rndMap2 = Random.Range(2, 5);
-                }
+                case 1:
+                    rndMap1 = Random.Range(2, 5);
+                    rndMap2 = rndMap1;
+                    while (rndMap2 == rndMap1)
+                    {
+                        rndMap2 = Random.Range(2, 5);
+                    }
 
-                rndMap3 = 2;
-                while (rndMap3 == rndMap1 || rndMap3 == rndMap2)
-                {
-                    rndMap3++;
-                }
-            }
-            else if (rndLevel == 2)
-            {
-                rndMap1 = 2;
-                while (rndMap1 == 2)
-                {
-                    rndMap1 = Random.Range(1, 5);
-                }
+                    rndMap3 = 2;
+                    while (rndMap3 == rndMap1 || rndMap3 == rndMap2)
+                    {
+                        rndMap3++;
+                    }
 
-                rndMap2 = rndMap1;
-                while (rndMap2 == rndMap1 || rndMap2 == 2)
-                {
-                    rndMap2 = Random.Range(1, 5);
-                }
+                    break;
 
-                rndMap3 = 1;
-                while (rndMap3 == rndMap1 || rndMap3 == rndMap2 || rndMap3 == 2)
-                {
-                    rndMap3++;
-                }
-            }
-            else if (rndLevel == 3)
-            {
-                rndMap1 = 3;
-                while (rndMap1 == 3)
-                {
-                    rndMap1 = Random.Range(1, 5);
-                }
+                case 2:
+                    rndMap1 = 2;
+                    while (rndMap1 == 2)
+                    {
+                        rndMap1 = Random.Range(1, 5);
+                    }
 
-                rndMap2 = rndMap1;
-                while (rndMap2 == rndMap1 || rndMap2 == 3)
-                {
-                    rndMap2 = Random.Range(1, 5);
-                }
+                    rndMap2 = rndMap1;
+                    while (rndMap2 == rndMap1 || rndMap2 == 2)
+                    {
+                        rndMap2 = Random.Range(1, 5);
+                    }
 
-                rndMap3 = 1;
-                while (rndMap3 == rndMap1 || rndMap3 == rndMap2 || rndMap3 == 3)
-                {
-                    rndMap3++;
-                }
-            }
-            else
-            {
-                rndMap1 = Random.Range(1, 4);
-                rndMap2 = rndMap1;
-                while (rndMap2 == rndMap1)
-                {
-                    rndMap2 = Random.Range(1, 4);
-                }
+                    break;
 
-                rndMap3 = 1;
-                while (rndMap3 == rndMap1 || rndMap3 == rndMap2 || rndMap3 == 4)
-                {
-                    rndMap3++;
-                }
+                case 3:
+                    rndMap1 = 3;
+                    while (rndMap1 == 3)
+                    {
+                        rndMap1 = Random.Range(1, 5);
+                    }
+
+                    rndMap2 = rndMap1;
+                    while (rndMap2 == rndMap1 || rndMap2 == 3)
+                    {
+                        rndMap2 = Random.Range(1, 5);
+                    }
+
+                    rndMap3 = 1;
+                    while (rndMap3 == rndMap1 || rndMap3 == rndMap2 || rndMap3 == 3)
+                    {
+                        rndMap3++;
+                    }
+
+                    break;
+
+                case 4:
+                    rndMap1 = Random.Range(1, 4);
+                    rndMap2 = rndMap1;
+                    while (rndMap2 == rndMap1)
+                    {
+                        rndMap2 = Random.Range(1, 4);
+                    }
+
+                    rndMap3 = 1;
+                    while (rndMap3 == rndMap1 || rndMap3 == rndMap2 || rndMap3 == 4)
+                    {
+                        rndMap3++;
+                    }
+
+                    break;
             }
 
             switch (rndMap1)
