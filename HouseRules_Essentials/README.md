@@ -31,6 +31,7 @@ HouseRules API.
 - __No Surprises__ :  No surprises in the dark or coming through doors.
 - __Quick and the Dead__ : A mode with a small hand but fast turnaround time on cards means you need to not hesitate.
 - __Flipping Out__ : Coin Flips ONLY! BIG ENEMIES! Heads... or tails?
+- __Potion Commotion__ : Nothing but potions in the cards you get given. Enemies do not respawn.
 ### JSON Rulesets
 
 Rulesets may also be configured as JSON files and stored within the game directory `<GAME_DIR>/UserData/HouseRules/<rulesetname>.json`

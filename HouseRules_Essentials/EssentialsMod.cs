@@ -89,6 +89,7 @@
             HR.Rulebook.Register(BetterSorcererRuleset.Create());
             HR.Rulebook.Register(NoSurprisesRuleset.Create());
             HR.Rulebook.Register(QuickAndDeadRuleset.Create());
+            HR.Rulebook.Register(PotionCommotionRuleset.Create());
         }
     }
 }
