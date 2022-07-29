@@ -92,10 +92,7 @@
 
         private static void ReconnectState_OnClickLeaveGameAfterReconnect_Postfix()
         {
-            // (UNTESTED): Host chose not to reconnect so deactivate all reconnection rules
-            _isReconnect = false;
             DeactivateReconnect();
-            CoreMod.Logger.Warning("Reconnect disabled by Host!");
         }
 
         private static void GameStateMachine_OnRoomJoined_Postfix()
@@ -109,7 +106,6 @@
             if (lastCode != roomCode)
             {
                 CoreMod.Logger.Warning($"Room {lastCode} doesn't match original room {roomCode}. Deactivating reconnection rules!");
-                _isReconnect = false;
                 DeactivateReconnect();
             }
         }
@@ -175,7 +171,6 @@
 
             if (_isReconnect)
             {
-                _isReconnect = false;
                 DeactivateReconnect();
             }
 
@@ -248,15 +243,7 @@
 
         private static void GameStateMachine_EndGame_Prefix()
         {
-            if (_isReconnect)
-            {
-                _isReconnect = false;
-                DeactivateReconnect();
-            }
-            else
-            {
-                DeactivateRuleset();
-            }
+            DeactivateRuleset();
         }
 
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix(BoardgameActionOnLocalPlayerDisconnect.DisconnectContext context)
@@ -279,16 +266,8 @@
             }
             else
             {
-                CoreMod.Logger.Warning($"<- MANUALLY disconnected from room {roomCode} ->");
-                if (_isReconnect)
-                {
-                    _isReconnect = false;
-                    DeactivateReconnect();
-                }
-                else
-                {
-                    DeactivateRuleset();
-                }
+                CoreMod.Logger.Msg($"<- MANUALLY disconnected from room {roomCode} ->");
+                DeactivateReconnect();
             }
         }
 
@@ -347,7 +326,7 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (_isReconnect && isDisabled)
                     {
-                        CoreMod.Logger.Warning($"Skip activating rule type: {rule.GetType()}");
+                        CoreMod.Logger.Msg($"Skip activating rule type: {rule.GetType()}");
                         continue;
                     }
                     else
@@ -384,7 +363,7 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (_isReconnect && isDisabled)
                     {
-                        CoreMod.Logger.Warning($"Skip deactivating rule type: {rule.GetType()}");
+                        CoreMod.Logger.Msg($"Skip deactivating rule type: {rule.GetType()}");
                         continue;
                     }
                     else
@@ -403,9 +382,10 @@
 
         private static void DeactivateReconnect()
         {
+            _isReconnect = false;
             IsRulesetActive = false;
 
-            CoreMod.Logger.Msg($"Deactivating reconnection: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            CoreMod.Logger.Warning($"Deactivating reconnection: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
@@ -444,7 +424,7 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (_isReconnect && isDisabled)
                     {
-                        CoreMod.Logger.Warning($"Skip calling OnPreGameCreated for rule type: {rule.GetType()}");
+                        CoreMod.Logger.Msg($"Skip OnPreGameCreated for rule type: {rule.GetType()}");
                         continue;
                     }
                     else
@@ -480,7 +460,7 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (_isReconnect && isDisabled)
                     {
-                        CoreMod.Logger.Warning($"Skip calling OnPostGameCreated for rule type: {rule.GetType()}");
+                        CoreMod.Logger.Msg($"Skip OnPostGameCreated for rule type: {rule.GetType()}");
                         continue;
                     }
                     else
