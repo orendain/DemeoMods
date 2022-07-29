@@ -9,7 +9,7 @@
     using HouseRules.Types;
 
     public sealed class PieceConfigAdjustedRule : Rule, IConfigWritable<List<PieceConfigAdjustedRule.PieceProperty>>,
-        IMultiplayerSafe
+        IMultiplayerSafe, IDisableOnReconnect
     {
         public override string Description => "Piece configuration is adjusted";
 

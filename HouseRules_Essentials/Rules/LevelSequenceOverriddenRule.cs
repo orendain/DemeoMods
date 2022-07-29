@@ -8,7 +8,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class LevelSequenceOverriddenRule : Rule, IConfigWritable<List<string>>, IPatchable, IMultiplayerSafe
+    public sealed class LevelSequenceOverriddenRule : Rule, IConfigWritable<List<string>>, IPatchable, IMultiplayerSafe, IDisableOnReconnect
     {
         public override string Description => "LevelSequence is overridden";
 
