@@ -54,6 +54,11 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
+            if (source.HasEffectState(EffectStateType.PlayerPanic))
+            {
+                return;
+            }
+
             if (diceResult != Dice.Outcome.Crit)
             {
                 return;

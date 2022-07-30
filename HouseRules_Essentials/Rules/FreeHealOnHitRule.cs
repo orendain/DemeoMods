@@ -54,6 +54,11 @@
                 return;
             }
 
+            if (source.HasEffectState(EffectStateType.PlayerPanic))
+            {
+                return;
+            }
+
             if (diceResult != Dice.Outcome.Hit)
             {
                 return;
