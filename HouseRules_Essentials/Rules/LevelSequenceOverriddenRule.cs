@@ -280,22 +280,22 @@
             {
                 case 1:
                     newMap = Random.Range(0, elvenFloors2.Count);
-                    _randomMaps[2] = elvenFloors1[newMap];
+                    _randomMaps[2] = elvenFloors2[newMap];
                     break;
 
                 case 2:
                     newMap = Random.Range(0, forestFloors2.Count);
-                    _randomMaps[2] = forestFloors1[newMap];
+                    _randomMaps[2] = forestFloors2[newMap];
                     break;
 
                 case 3:
                     newMap = Random.Range(0, sewersFloors2.Count);
-                    _randomMaps[2] = sewersFloors1[newMap];
+                    _randomMaps[2] = sewersFloors2[newMap];
                     break;
 
                 case 4:
                     newMap = Random.Range(0, desertFloors2.Count);
-                    _randomMaps[2] = desertFloors1[newMap];
+                    _randomMaps[2] = desertFloors2[newMap];
                     break;
             }
 
