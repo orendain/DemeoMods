@@ -478,7 +478,7 @@
         {
           "Piece": "WarlockMinion",
           "Property": "StartHealth",
-          "Value": 10
+          "Value": 12
         },
         {
           "Piece": "Barricade",
@@ -513,7 +513,7 @@
         {
           "Piece": "WarlockMinion",
           "Property": "AttackDamage",
-          "Value": 3
+          "Value": 4
         },
         {
           "Piece": "SmiteWard",
@@ -1123,8 +1123,8 @@
     {
       "Rule": "AbilityDamageOverridden",
       "Config": {
-        "Zap": [ 3, 6, 3, 6 ],
-        "LightningBolt": [ 5, 10, 5, 10 ],
+        "Zap": [ 2, 4, 2, 4 ],
+        "LightningBolt": [ 3, 6, 3, 6 ],
         "Overload": [ 2, 4, 2, 4 ],
         "Overcharge": [ 2, 4, 2, 4 ],
         "Fireball": [ 12, 30, 6, 15 ],
@@ -1272,7 +1272,7 @@
     },
     {
       "Rule": "CardEnergyFromAttackMultiplied",
-      "Config": 0.334
+      "Config": 0.25
     },
     {
       "Rule": "CardEnergyFromRecyclingMultiplied",
@@ -1284,7 +1284,7 @@
     },
     {
       "Rule": "EnemyHealthScaled",
-      "Config": 2.5
+      "Config": 2.25
     },
     {
       "Rule": "LevelSequenceOverridden",

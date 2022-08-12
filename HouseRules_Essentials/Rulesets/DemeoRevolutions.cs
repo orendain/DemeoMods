@@ -218,14 +218,14 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 25 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 15 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 10 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 12 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Barricade, Property = "StartHealth", Value = 18 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HealingBeacon, Property = "StartHealth", Value = 13 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 27 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SmiteWard, Property = "StartHealth", Value = 17 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SwordOfAvalon, Property = "StartHealth", Value = 17 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "AttackDamage", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "AttackDamage", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SmiteWard, Property = "AttackDamage", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SwordOfAvalon, Property = "AttackDamage", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Tornado, Property = "ActionPoint", Value = 2 },
@@ -685,8 +685,8 @@
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
-                { AbilityKey.Zap, new List<int> { 3, 6, 3, 6 } },
-                { AbilityKey.LightningBolt, new List<int> { 5, 10, 5, 10 } },
+                { AbilityKey.Zap, new List<int> { 2, 4, 2, 4 } },
+                { AbilityKey.LightningBolt, new List<int> { 3, 6, 3, 6 } },
                 { AbilityKey.Overload, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Overcharge, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Fireball, new List<int> { 12, 30, 6, 15 } },
@@ -773,10 +773,10 @@
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.334f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.25f);
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.667f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.83f);
-            var enemyHealthScaledRule = new EnemyHealthScaledRule(2.5f);
+            var enemyHealthScaledRule = new EnemyHealthScaledRule(2.25f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
                 "ElvenFloor17",
