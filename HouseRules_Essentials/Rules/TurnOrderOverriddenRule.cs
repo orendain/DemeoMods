@@ -119,7 +119,11 @@
 
             if (piece.inventory.HasAbility(AbilityKey.SigataurianJavelin) && MotherbrainGlobalVars.CurrentConfig == GameConfigType.Forest)
             {
-                score += scores.Javelin;
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
+                {
+                    score += scores.Javelin;
+                }
             }
 
             return score;
