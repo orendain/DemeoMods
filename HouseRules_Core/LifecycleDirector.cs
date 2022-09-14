@@ -28,15 +28,11 @@
                 postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(GameStartup_InitializeGame_Postfix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
-                    .GetDeclaredMethod("TryCreateRoom"),
+                original: AccessTools.Method(typeof(CreatingGameState), "TryCreateRoom"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_TryCreateRoom_Prefix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
-                    .GetDeclaredMethod("OnJoinedRoom"),
+                original: AccessTools.Method(typeof(CreatingGameState), "OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
 
             harmony.Patch(
