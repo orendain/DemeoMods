@@ -6,6 +6,7 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
+    using static HouseRules.Essentials.Rules.StartCardsModifiedRule;
 
     public sealed class CardClassRestrictionOverriddenRule : Rule,
         IConfigWritable<Dictionary<AbilityKey, BoardPieceId>>, IMultiplayerSafe
@@ -40,22 +41,15 @@
         private static Dictionary<AbilityKey, BoardPieceId> UpdateExistingCardConfigs(
             Dictionary<AbilityKey, BoardPieceId> cardProperties)
         {
-            var gameConfigCardConfigs = Traverse.Create(typeof(GameDataAPI))
-                .Field<Dictionary<GameConfigType, List<CardConfigDTO>>>("CardConfigDTOlist").Value;
-            var cardConfigs = gameConfigCardConfigs[MotherbrainGlobalVars.CurrentConfig];
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+
+            var cardConfigs = gameContext.gameDataAPI.CardConfig[MotherbrainGlobalVars.CurrentConfig];
             var previousConfigs = new Dictionary<AbilityKey, BoardPieceId>();
 
-            for (var i = 0; i < cardConfigs.Count; i++)
+            foreach (var cardProperty in cardProperties)
             {
-                var cardConfig = cardConfigs[i];
-                if (!cardProperties.ContainsKey(cardConfig.Card))
-                {
-                    continue;
-                }
-
-                previousConfigs.Add(cardConfig.Card, cardConfig.ClassRestriction);
-                cardConfig.ClassRestriction = cardProperties[cardConfig.Card];
-                cardConfigs[i] = cardConfig;
+                previousConfigs.Add(cardConfigs[cardProperty.Key].Card, cardConfigs[cardProperty.Key].ClassRestriction);
+                cardConfigs[cardProperty.Key].ClassRestriction = cardProperty.Value;
             }
 
             return previousConfigs;
