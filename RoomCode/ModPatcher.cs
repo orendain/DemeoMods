@@ -15,9 +15,7 @@
                 prefix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateMachine_GetRandomRoomCode_Prefix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
-                    .GetDeclaredMethod("OnJoinedRoom"),
+                original: AccessTools.Method(typeof(CreatingGameState), "OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(ModPatcher), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
         }
 

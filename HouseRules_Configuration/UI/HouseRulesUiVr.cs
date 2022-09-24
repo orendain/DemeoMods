@@ -25,7 +25,7 @@
                        .FindObjectsOfTypeAll<charactersoundlistener>()
                        .Count(x => x.name == "MenuBox_BindPose") < 2)
             {
-                ConfigurationMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
+                // ConfigurationMod.Logger.Msg("UIVr dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 

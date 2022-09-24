@@ -9,7 +9,7 @@
     using HouseRules.Types;
 
     public sealed class PieceUseWhenKilledOverriddenRule : Rule,
-        IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe
+        IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe, IDisableOnReconnect
     {
         public override string Description => "Piece UseWhenKilled lists are overridden";
 
@@ -49,17 +49,15 @@
         private static Dictionary<BoardPieceId, List<AbilityKey>> ReplaceExistingProperties(
             Dictionary<BoardPieceId, List<AbilityKey>> pieceConfigChanges)
         {
-            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
-                .Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict")
-                .Value;
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var previousProperties = new Dictionary<BoardPieceId, List<AbilityKey>>();
 
             foreach (var item in pieceConfigChanges)
             {
-                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key];
+                var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.UseWhenKilled.ToList();
                 pieceConfigDto.UseWhenKilled = item.Value.ToArray();
-                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
+                gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
 
             return previousProperties;

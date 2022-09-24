@@ -36,21 +36,15 @@
                 postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(GameStartup_InitializeGame_Postfix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
-                    .GetDeclaredMethod("TryCreateRoom"),
+                original: AccessTools.Method(typeof(CreatingGameState), "TryCreateRoom"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_TryCreateRoom_Prefix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
-                    .GetDeclaredMethod("OnJoinedRoom"),
+                original: AccessTools.Method(typeof(CreatingGameState), "OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "PlayingState").GetTypeInfo()
-                    .GetDeclaredMethod("OnMasterClientChanged"),
+                original: AccessTools.Method(typeof(PlayingState), "OnMasterClientChanged"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(PlayingGameState_OnMasterClientChanged_Prefix)));
 
             harmony.Patch(
@@ -63,9 +57,7 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(PostGameControllerBase), "OnPlayAgainClicked"),
-                postfix: new HarmonyMethod(
-                    typeof(LifecycleDirector),
-                    nameof(PostGameControllerBase_OnPlayAgainClicked_Postfix)));
+                postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(PostGameControllerBase_OnPlayAgainClicked_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "EndGame"),
@@ -73,14 +65,10 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(SerializableEventQueue), "DisconnectLocalPlayer"),
-                prefix: new HarmonyMethod(
-                    typeof(LifecycleDirector),
-                    nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "ReconnectState").GetTypeInfo()
-                    .GetDeclaredMethod("OnClickLeaveGameAfterReconnect"),
+                original: AccessTools.Method(typeof(ReconnectState), "OnClickLeaveGameAfterReconnect"),
                 postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(ReconnectState_OnClickLeaveGameAfterReconnect_Postfix)));
         }
 
@@ -117,12 +105,12 @@
                 return;
             }
 
-            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+            /*var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
-            }
+            }*/
 
             var gameStateTraverse = Traverse.Create(_gameContext.gameStateMachine).Field("creatingGameState");
             if (!gameStateTraverse.FieldExists())
@@ -148,12 +136,12 @@
                 return;
             }
 
-            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+            /*var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
-            }
+            }*/
 
             var createdGameFromSave =
                 Traverse.Create(_gameContext.gameStateMachine).Field<bool>("createdGameFromSave").Value;

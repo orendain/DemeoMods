@@ -22,7 +22,7 @@
         {
             while (!NonVrElementCreator.IsReady())
             {
-                ConfigurationMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
+                ConfigurationMod.Logger.Msg("NonVrUI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 

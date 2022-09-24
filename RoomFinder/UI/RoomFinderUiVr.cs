@@ -30,7 +30,7 @@
                        .FindObjectsOfTypeAll<charactersoundlistener>()
                        .Count(x => x.name == "MenuBox_BindPose") < 2)
             {
-                RoomFinderMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
+                RoomFinderMod.Logger.Msg("RoomFinder: UIVr dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 

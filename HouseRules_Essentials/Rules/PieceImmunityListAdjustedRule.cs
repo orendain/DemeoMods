@@ -9,7 +9,7 @@
     using HouseRules.Types;
 
     public sealed class PieceImmunityListAdjustedRule : Rule,
-        IConfigWritable<Dictionary<BoardPieceId, List<EffectStateType>>>, IMultiplayerSafe
+        IConfigWritable<Dictionary<BoardPieceId, List<EffectStateType>>>, IMultiplayerSafe, IDisableOnReconnect
     {
         public override string Description => "Piece immunities are adjusted";
 
@@ -21,7 +21,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PieceImmunityListAdjustedRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Dict of piece name and List<EffectStateType>
+        /// <param name="adjustments">Dict of piece name and List.<EffectStateType>
         /// Replaces original settings with new list.</param>
         public PieceImmunityListAdjustedRule(Dictionary<BoardPieceId, List<EffectStateType>> adjustments)
         {
@@ -44,17 +44,15 @@
         private static Dictionary<BoardPieceId, List<EffectStateType>> ReplaceExistingProperties(
             Dictionary<BoardPieceId, List<EffectStateType>> pieceConfigChanges)
         {
-            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
-                .Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict")
-                .Value;
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var previousProperties = new Dictionary<BoardPieceId, List<EffectStateType>>();
 
             foreach (var item in pieceConfigChanges)
             {
-                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key];
+                var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.ImmuneToStatusEffects.ToList();
                 pieceConfigDto.ImmuneToStatusEffects = item.Value.ToArray();
-                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
+                gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
 
             return previousProperties;

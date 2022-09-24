@@ -41,7 +41,7 @@
             Dictionary<AbilityKey, int> cardProperties)
         {
             var gameConfigCardConfigs = Traverse.Create(typeof(GameDataAPI))
-                .Field<Dictionary<GameConfigType, List<CardConfigDTO>>>("CardConfigDTOlist").Value;
+                .Field<Dictionary<GameConfigType, List<CardConfigData>>>("CardConfigDTOlist").Value;
             var cardConfigs = gameConfigCardConfigs[MotherbrainGlobalVars.CurrentConfig];
             var previousConfigs = new Dictionary<AbilityKey, int>();
 

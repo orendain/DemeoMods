@@ -39,8 +39,8 @@
 
         private static Dictionary<BoardPieceId, List<int>> UpdateSpawnCategories(Dictionary<BoardPieceId, List<int>> spawnModifications)
         {
-            var gameConfigSpawnCategories = Traverse.Create(typeof(GameDataAPI)).Field<Dictionary<GameConfigType, List<SpawnCategoryDTO>>>("SpawnCategoryDTOlist").Value;
-            var spawnCategories = gameConfigSpawnCategories[MotherbrainGlobalVars.CurrentConfig];
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+            var spawnCategories = gameContext.gameDataAPI.SpawnCategory[MotherbrainGlobalVars.CurrentConfig];
             var previousConfigs = new Dictionary<BoardPieceId, List<int>>();
             var bpis = new List<BoardPieceId>();
             foreach (var nap in spawnModifications)
@@ -79,7 +79,7 @@
                         maxPerDeck = false;
                     }
 
-                    spawnCategories[i] = new SpawnCategoryDTO
+                    spawnCategories[i] = new SpawnCategoryData
                     {
                         BoardPieceId = spawnCategories[i].BoardPieceId,
                         EnemyWeight = spawnCategories[i].EnemyWeight,
@@ -96,7 +96,7 @@
                 }
                 else
                 {
-                    spawnCategories[i] = new SpawnCategoryDTO
+                    spawnCategories[i] = new SpawnCategoryData
                     {
                         BoardPieceId = spawnCategories[i].BoardPieceId,
                         EnemyWeight = spawnCategories[i].EnemyWeight,

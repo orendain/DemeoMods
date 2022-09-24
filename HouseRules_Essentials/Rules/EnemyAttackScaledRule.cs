@@ -33,13 +33,13 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.PropertyGetter(typeof(PieceConfig), "AttackDamage"),
+                original: AccessTools.PropertyGetter(typeof(PieceConfigData), "AttackDamage"),
                 postfix: new HarmonyMethod(
                     typeof(EnemyAttackScaledRule),
                     nameof(PieceConfig_AttackDamage_Postfix)));
         }
 
-        private static void PieceConfig_AttackDamage_Postfix(PieceConfig __instance, ref int __result)
+        private static void PieceConfig_AttackDamage_Postfix(PieceConfigData __instance, ref int __result)
         {
             if (!_isActivated)
             {
@@ -53,12 +53,12 @@
 
             if (__result > 2)
             {
-                if (__instance.PowerIndex < 30)
+                if (__instance.PowerIndex < 25)
                 {
                     int range = Random.Range(-1, 2);
                     __result = (int)(__result * _globalMultiplier) + range;
                 }
-                else if (__instance.PowerIndex > 29 && __instance.PowerIndex < 41)
+                else if (__instance.PowerIndex > 24 && __instance.PowerIndex < 41)
                 {
                     int range = Random.Range(0, 2);
                     __result = (int)(__result * _globalMultiplier) - range;

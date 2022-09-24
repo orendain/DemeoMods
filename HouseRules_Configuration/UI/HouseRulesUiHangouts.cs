@@ -23,7 +23,7 @@
             while (!HangoutsElementCreator.IsReady()
                    || !Resources.FindObjectsOfTypeAll<GameObject>().Any(x => x.name == "GroupLaunchTable"))
             {
-                ConfigurationMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
+                //ConfigurationMod.Logger.Msg("HangoutsUI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 

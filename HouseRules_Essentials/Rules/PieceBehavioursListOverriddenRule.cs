@@ -10,7 +10,7 @@
     using Behaviour = DataKeys.Behaviour;
 
     public sealed class PieceBehavioursListOverriddenRule : Rule,
-        IConfigWritable<Dictionary<BoardPieceId, List<Behaviour>>>, IMultiplayerSafe
+        IConfigWritable<Dictionary<BoardPieceId, List<Behaviour>>>, IMultiplayerSafe, IDisableOnReconnect
     {
         public override string Description => "Piece behaviours are adjusted";
 
@@ -45,17 +45,15 @@
         private static Dictionary<BoardPieceId, List<Behaviour>> ReplaceExistingProperties(
             Dictionary<BoardPieceId, List<Behaviour>> pieceConfigChanges)
         {
-            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
-                .Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict")
-                .Value;
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var previousProperties = new Dictionary<BoardPieceId, List<Behaviour>>();
 
             foreach (var item in pieceConfigChanges)
             {
-                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key];
+                var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.Behaviours.ToList();
                 pieceConfigDto.Behaviours = item.Value.ToArray();
-                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
+                gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
 
             return previousProperties;

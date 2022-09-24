@@ -7,6 +7,8 @@ namespace HouseRules.Essentials.Rules
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
+    using static Boardgame.BoardEntities.Piece;
+    using static Bowser.PaintingRoom.PaintingRoomProfiling;
 
     public sealed class FreeReplenishablesOnCritRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
@@ -71,17 +73,7 @@ namespace HouseRules.Essentials.Rules
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
             if (source.boardPieceId == BoardPieceId.HeroRogue)
             {
-                int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
-                if (currentST > 0)
-                {
-                    source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
-                    source.RestoreReplenishableAbilities(source.effectSink.GetActiveStatusEffects());
-                    source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
-                    source.EnableEffectState(EffectStateType.Stealthed);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
-                    source.inventory.AddGold(10);
-                    return;
-                }
+                source.RestoreReplenishableAbilities();
             }
             else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
             {
@@ -94,25 +86,8 @@ namespace HouseRules.Essentials.Rules
                         abilityZ.effectsPreventingUse.Clear();
                         source.inventory.RemoveDisableCooldownFlags();
                         source.inventory.AddGold(10);
-                        if (source.inventory.HasAbility(AbilityKey.Electricity, includeIsReplenishing: false))
-                        {
-                            source.RestoreReplenishableAbilities(source.effectSink.GetActiveStatusEffects());
-                            return;
-                        }
-                        else
-                        {
-                            source.inventory.RestoreReplenishables(source, source.effectSink.GetActiveStatusEffects());
-                            for (int i = 0; i < source.inventory.Items.Count; i++)
-                            {
-                                if (source.inventory.Items[i].abilityKey == AbilityKey.Electricity)
-                                {
-                                    source.inventory.ExhaustReplenishableItem(i);
-                                    break;
-                                }
-                            }
-
-                            return;
-                        }
+                        source.RestoreReplenishableAbilities();
+                        return;
                     }
                     else
                     {
@@ -123,7 +98,7 @@ namespace HouseRules.Essentials.Rules
             }
 
             source.inventory.AddGold(10);
-            source.RestoreReplenishableAbilities(source.effectSink.GetActiveStatusEffects());
+            source.RestoreReplenishableAbilities();
         }
     }
 }

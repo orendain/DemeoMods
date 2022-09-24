@@ -23,7 +23,7 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (MelonUtils.CurrentGameAttribute.Name == DemeoPCEditionString)
+            if (MotherbrainGlobalVars.IsRunningOnDesktop)
             {
                 if (buildIndex != LobbySceneIndex)
                 {
