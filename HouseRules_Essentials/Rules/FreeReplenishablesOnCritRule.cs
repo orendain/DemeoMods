@@ -73,7 +73,62 @@ namespace HouseRules.Essentials.Rules
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
             if (source.boardPieceId == BoardPieceId.HeroRogue)
             {
-                source.RestoreReplenishableAbilities();
+                source.inventory.AddGold(10);
+                int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
+                AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var abilityS);
+                abilityS.effectsPreventingUse.Clear();
+                source.inventory.RemoveDisableCooldownFlags();
+                if (currentST > 0)
+                {
+                    source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
+                    source.RestoreReplenishableAbilities();
+                    source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
+                    source.EnableEffectState(EffectStateType.Stealthed);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
+                    if (source.inventory.HasAbility(AbilityKey.DiseasedBite, includeIsReplenishing: false, includeIsDisabled: false))
+                    {
+                        source.RestoreReplenishableAbilities();
+                        return;
+                    }
+                    else
+                    {
+                        source.RestoreReplenishableAbilities();
+                        source.RestoreReplenishableAbilities();
+                        for (int i = 0; i < source.inventory.Items.Count; i++)
+                        {
+                            if (source.inventory.Items[i].abilityKey == AbilityKey.DiseasedBite)
+                            {
+                                source.inventory.ExhaustReplenishableItem(i);
+                                break;
+                            }
+                        }
+
+                        return;
+                    }
+                }
+                else
+                {
+                    if (source.inventory.HasAbility(AbilityKey.DiseasedBite, includeIsReplenishing: false, includeIsDisabled: false))
+                    {
+                        source.RestoreReplenishableAbilities();
+                        return;
+                    }
+                    else
+                    {
+                        source.RestoreReplenishableAbilities();
+                        source.RestoreReplenishableAbilities();
+                        for (int i = 0; i < source.inventory.Items.Count; i++)
+                        {
+                            if (source.inventory.Items[i].abilityKey == AbilityKey.DiseasedBite)
+                            {
+                                source.inventory.ExhaustReplenishableItem(i);
+                                break;
+                            }
+                        }
+
+                        return;
+                    }
+                }
             }
             else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
             {
@@ -86,8 +141,26 @@ namespace HouseRules.Essentials.Rules
                         abilityZ.effectsPreventingUse.Clear();
                         source.inventory.RemoveDisableCooldownFlags();
                         source.inventory.AddGold(10);
-                        source.RestoreReplenishableAbilities();
-                        return;
+
+                        if (source.inventory.HasAbility(AbilityKey.Electricity, includeIsReplenishing: false, includeIsDisabled: false))
+                        {
+                            source.RestoreReplenishableAbilities();
+                            return;
+                        }
+                        else
+                        {
+                            source.RestoreReplenishableAbilities();
+                            for (int i = 0; i < source.inventory.Items.Count; i++)
+                            {
+                                if (source.inventory.Items[i].abilityKey == AbilityKey.Electricity)
+                                {
+                                    source.inventory.ExhaustReplenishableItem(i);
+                                    break;
+                                }
+                            }
+
+                            return;
+                        }
                     }
                     else
                     {
@@ -99,6 +172,6 @@ namespace HouseRules.Essentials.Rules
 
             source.inventory.AddGold(10);
             source.RestoreReplenishableAbilities();
-        }
+         }
     }
 }
