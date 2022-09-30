@@ -32,13 +32,13 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.PropertyGetter(typeof(PieceConfig), "AttackDamage"),
+                original: AccessTools.PropertyGetter(typeof(PieceConfigData), "AttackDamage"),
                 postfix: new HarmonyMethod(
                     typeof(EnemyAttackScaledRule),
                     nameof(PieceConfig_AttackDamage_Postfix)));
         }
 
-        private static void PieceConfig_AttackDamage_Postfix(PieceConfig __instance, ref int __result)
+        private static void PieceConfig_AttackDamage_Postfix(PieceConfigData __instance, ref int __result)
         {
             if (!_isActivated)
             {

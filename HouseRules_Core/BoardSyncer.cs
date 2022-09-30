@@ -64,6 +64,13 @@
                 postfix: new HarmonyMethod(
                     typeof(BoardSyncer),
                     nameof(EffectSink_AddStatusEffect_Postfix)));
+
+            // Workaround for a bug in Demeo v1.21 affecting board syncing. Can be removed after next Demeo patch is released as it includes fix from RG.
+            harmony.Patch(
+                original: AccessTools.Method(typeof(Piece), "ForceSyncState"),
+                prefix: new HarmonyMethod(
+                typeof(BoardSyncer),
+                nameof(Piece_ForceSyncState_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -107,6 +114,12 @@
             {
                 _isSyncScheduled = true;
             }
+        }
+
+        private static bool Piece_ForceSyncState_Prefix(BoardModel boardModel, ref Piece __instance)
+        {
+            __instance.ReregisterPieceVisualStateHandlers();
+            return true;
         }
 
         private static bool CanRepresentNewSpawn(SerializableEvent serializableEvent)

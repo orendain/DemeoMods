@@ -23,7 +23,7 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.PropertyGetter(typeof(PieceConfig), "CanOpenDoor"),
+                original: AccessTools.PropertyGetter(typeof(PieceConfigData), "CanOpenDoor"),
                 prefix: new HarmonyMethod(
                     typeof(EnemyDoorOpeningDisabledRule),
                     nameof(PieceConfig_CanOpenDoor_Prefix)));

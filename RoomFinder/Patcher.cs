@@ -3,6 +3,7 @@
     using System.Reflection;
     using Boardgame;
     using HarmonyLib;
+    using static UnityEngine.UI.Image;
 
     internal static class Patcher
     {
@@ -11,17 +12,12 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
                 postfix: new HarmonyMethod(typeof(Patcher), nameof(GameStartup_InitializeGame_Postfix)));
-
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "MatchMakingState").GetTypeInfo()
-                    .GetDeclaredMethod("OnRoomListUpdated"),
+                original: AccessTools.Method(typeof(MatchMakingState), "OnRoomListUpdated"),
                 postfix: new HarmonyMethod(typeof(Patcher), nameof(MatchMakingState_OnRoomListUpdated_Postfix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "MatchMakingState").GetTypeInfo()
-                    .GetDeclaredMethod("FindGame"),
+                original: AccessTools.Method(typeof(MatchMakingState), "FindGame"),
                 prefix: new HarmonyMethod(typeof(Patcher), nameof(MatchMakingState_FindGame_Prefix)));
         }
 
