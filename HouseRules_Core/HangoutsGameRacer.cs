@@ -51,9 +51,7 @@
                 prefix: new HarmonyMethod(typeof(HangoutsGameRacer), nameof(SocialProviderParea_Constructor_Prefix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
-                    .GetDeclaredMethod("OnJoinedRoom"),
+                original: AccessTools.Method(typeof(CreatingGameState), "OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(HangoutsGameRacer), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
 
             harmony.Patch(
