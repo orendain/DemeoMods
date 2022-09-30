@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.7.0-roomfinder](https://github.com/orendain/demeomods/tree/HEAD)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.6.0-roomfinder...HEAD)
+
+- Ensure compatability with v1.20 [\#417](https://github.com/orendain/DemeoMods/pull/417)
+
 ## [v1.6.0-roomfinder](https://github.com/orendain/demeomods/tree/v1.6.0-roomfinder) (2022-07-09)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.5.0-roomfinder...v1.6.0-roomfinder)
@@ -48,6 +54,8 @@
 - Update RoomFinder UI with knowledge of updated Common UI library. [\#168](https://github.com/orendain/DemeoMods/pull/168)
 - Perform maintenance on RoomFinder. [\#158](https://github.com/orendain/DemeoMods/pull/158)
 - Remove patching and state in common module. [\#139](https://github.com/orendain/DemeoMods/pull/139)
+
+
 
 ## [v1.3.0-roomfinder](https://github.com/orendain/demeomods/tree/v1.3.0-roomfinder) (2022-01-09)
 
