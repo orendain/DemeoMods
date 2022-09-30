@@ -49,12 +49,12 @@
             }
         }
 
-        private void ModifyDreadMode(ref DreadLevelsDTO dreadLevelDto)
+        private void ModifyDreadMode(ref DreadLevelsData dreadLevel)
         {
             foreach (var modification in _levelProperties)
             {
-                AccessTools.StructFieldRefAccess<DreadLevelsDTO, int>(ref dreadLevelDto, modification.Key) =
-                    modification.Value;
+                AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                   modification.Value;
             }
         }
     }

@@ -34,13 +34,13 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.PropertyGetter(typeof(PieceConfig), "StartHealth"),
+                original: AccessTools.PropertyGetter(typeof(PieceConfigData), "StartHealth"),
                 postfix: new HarmonyMethod(
                     typeof(EnemyHealthScaledRule),
                     nameof(PieceConfig_StartHealth_Postfix)));
         }
 
-        private static void PieceConfig_StartHealth_Postfix(PieceConfig __instance, ref int __result)
+        private static void PieceConfig_StartHealth_Postfix(PieceConfigData __instance, ref int __result)
         {
             if (!_isActivated)
             {
