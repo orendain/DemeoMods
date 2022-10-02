@@ -71,7 +71,7 @@ namespace HouseRules.Essentials.Rules
             }
 
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-            if (source.boardPieceId == BoardPieceId.HeroRogue)
+            /*if (source.boardPieceId == BoardPieceId.HeroRogue)
             {
                 source.inventory.AddGold(10);
                 int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
@@ -128,6 +128,30 @@ namespace HouseRules.Essentials.Rules
 
                         return;
                     }
+                }
+            }*/
+            if (source.boardPieceId == BoardPieceId.HeroRogue)
+            {
+                int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
+                if (currentST > 0)
+                {
+                    source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
+                    source.RestoreReplenishableAbilities();
+                    source.RestoreReplenishableAbilities();
+                    for (int i = 0; i < source.inventory.Items.Count; i++)
+                    {
+                        if (source.inventory.Items[i].abilityKey == AbilityKey.DiseasedBite)
+                        {
+                            source.inventory.ExhaustReplenishableItem(i);
+                            break;
+                        }
+                    }
+
+                    source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
+                    source.EnableEffectState(EffectStateType.Stealthed);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
+                    source.inventory.AddGold(10);
+                    return;
                 }
             }
             else if (source.boardPieceId == BoardPieceId.HeroSorcerer)

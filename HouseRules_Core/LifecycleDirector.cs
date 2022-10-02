@@ -255,7 +255,7 @@
             else
             {
                 CoreMod.Logger.Msg($"<- MANUALLY disconnected from room {roomCode} ->");
-                DeactivateReconnect();
+                DeactivateRuleset();
             }
         }
 
@@ -374,6 +374,7 @@
             IsRulesetActive = false;
 
             CoreMod.Logger.Warning($"Deactivating reconnection: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try

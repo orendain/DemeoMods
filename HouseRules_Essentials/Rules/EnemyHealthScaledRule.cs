@@ -45,14 +45,17 @@
         {
             if (!_isActivated)
             {
+                MelonLoader.MelonLogger.Msg("Not activated!?");
                 return;
             }
 
             if (!__instance.HasPieceType(PieceType.Enemy))
             {
+                MelonLoader.MelonLogger.Msg("Non-enemy...");
                 return;
             }
 
+            MelonLoader.MelonLogger.Warning($"{__instance.GetDebugData()}");
             if (__instance.PowerIndex < 41)
             {
                 float range = Random.Range(0.75f, 1.0f);
