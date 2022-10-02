@@ -199,11 +199,12 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 9 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "AttackDamage", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "AttackDamage", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "CriticalHitDamage", Value = 7 },
+                //new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "AttackDamage", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "AttackDamage", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "CriticalHitDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "CriticalHitDamage", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 9 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 11 },
+                //new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 9 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 9 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 7 },
                 /*new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
@@ -362,7 +363,6 @@
                         AbilityKey.RepeatingBallista,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.LuckPotion,
@@ -404,7 +404,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.LuckPotion,
@@ -445,7 +444,6 @@
                         AbilityKey.StrengthPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.LuckPotion,
@@ -490,7 +488,6 @@
                         AbilityKey.StrengthPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.LuckPotion,
@@ -531,7 +528,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.MagicPotion,
@@ -573,7 +569,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.VigorPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.MagicPotion,
@@ -737,10 +732,10 @@
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
             {
-                //{ AbilityKey.HealingPotion, 5 },
-                //{ AbilityKey.Rejuvenation, 10 },
+                { AbilityKey.HealingPotion, 5 },
+                { AbilityKey.Rejuvenation, 10 },
                 { AbilityKey.AltarHeal, 10 },
-                //{ AbilityKey.TurretHealProjectile, 5 },
+                { AbilityKey.TurretHealProjectile, 2 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
@@ -759,8 +754,11 @@
                 { AbilityKey.EnemyFlashbang, 1 },
             });
 
-            /*var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
+            var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
+                { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
+                { AbilityKey.ShatteringVoice, new List<int> { 4, 9, 4, 9 } },
+                /*{ AbilityKey.EnemyFireball, new List<int> { 7, 7, 7, 7 } },
                 { AbilityKey.Zap, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.LightningBolt, new List<int> { 3, 6, 3, 6 } },
                 { AbilityKey.Overload, new List<int> { 2, 4, 2, 4 } },
@@ -776,13 +774,10 @@
                 { AbilityKey.PoisonedTip, new List<int> { 6, 16, 6, 16 } },
                 { AbilityKey.HailOfArrows, new List<int> { 6, 16, 6, 16 } },
                 { AbilityKey.Arrow, new List<int> { 4, 12, 4, 12 } },
-                { AbilityKey.EnemyFireball, new List<int> { 7, 7, 7, 7 } },
                 { AbilityKey.EnemyFrostball, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.Electricity, new List<int> { 3, 6, 1, 2 } },
                 { AbilityKey.TurretDamageProjectile, new List<int> { 3, 3, 3, 3 } },
                 { AbilityKey.TurretHighDamageProjectile, new List<int> { 6, 6, 3, 3 } },
-                { AbilityKey.PiercingVoice, new List<int> { 3, 6, 3, 6 } },
-                { AbilityKey.ShatteringVoice, new List<int> { 6, 12, 6, 12 } },
                 { AbilityKey.MinionCharge, new List<int> { 4, 9, 4, 9 } },
                 { AbilityKey.MissileSwarm, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.MagicMissile, new List<int> { 2, 5, 2, 5 } },
@@ -798,8 +793,8 @@
                 { AbilityKey.Leap, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.Shockwave, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.Tsunami, new List<int> { 5, 5, 5, 5 } },
-                { AbilityKey.ScrollTsunami, new List<int> { 5, 5, 5, 5 } },
-            });*/
+                { AbilityKey.ScrollTsunami, new List<int> { 5, 5, 5, 5 } },*/
+            });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
             { Bard = 15, Guardian = 14, Sorcerer = 13, Warlock = 12, Hunter = 11, Assassin = 10, Downed = -6, Javelin = 12 });
@@ -827,10 +822,10 @@
 
             var abilityStealthDamageRule = new AbilityStealthDamageOverriddenRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.Blink, 4 },
+                { AbilityKey.Blink, 3 },
                 { AbilityKey.DiseasedBite, 2 },
                 { AbilityKey.PoisonBomb, 1 },
-                { AbilityKey.CursedDagger, 3 },
+                { AbilityKey.CursedDagger, 2 },
                 { AbilityKey.PlayerMelee, 2 },
             });
 
@@ -849,8 +844,8 @@
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.25f);
-            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.5f);
+            //var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.25f);
+            //var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.5f);
             //var enemyAttackScaledRule = new EnemyAttackScaledRule(1.83f);
             //var enemyHealthScaledRule = new EnemyHealthScaledRule(2.334f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
@@ -871,12 +866,12 @@
                 { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
-                { "FloorOneGoldMaxAmount", 400 },
+                { "FloorOneGoldMaxAmount", 500 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
                 { "FloorTwoLootChests", 3 },
-                { "FloorTwoGoldMaxAmount", 500 },
+                { "FloorTwoGoldMaxAmount", 600 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
@@ -915,8 +910,8 @@
                 partyElectricity,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
-                cardEnergyFromAttackRule,
-                cardEnergyFromRecyclingRule,
+                //cardEnergyFromAttackRule,
+                //cardEnergyFromRecyclingRule,
                 //enemyAttackScaledRule,
                 //enemyHealthScaledRule,
                 levelSequenceOverriddenRule,
