@@ -127,7 +127,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BlockAbilities, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFrostball, ReplenishFrequency = 2 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFlashbang, ReplenishFrequency = 3 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -199,15 +199,17 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 9 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "AttackDamage", Value = 1 },
-                //new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "AttackDamage", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "CriticalHitDamage", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "AttackDamage", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "CriticalHitDamage", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "CriticalHitDamage", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "CriticalHitDamage", Value = 3 },
-                //new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 9 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 9 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 7 },
-                /*new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
+                /*new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 35 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "MoveRange", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 7 },
@@ -397,7 +399,6 @@
                         AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
-                        AbilityKey.PanicPowder,
                         AbilityKey.ScrollOfCharm,
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
@@ -727,7 +728,6 @@
                 { AbilityKey.MinionCharge, false },
                 { AbilityKey.SpawnRandomLamp, false },
                 { AbilityKey.SpellPowerPotion, false },
-                { AbilityKey.EnemyFlashbang, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -751,13 +751,14 @@
                 { AbilityKey.PoisonGas, 1 },
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.BlockAbilities, 1 },
-                { AbilityKey.EnemyFlashbang, 1 },
+                //{ AbilityKey.EnemyFlashbang, 1 },
             });
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.ShatteringVoice, new List<int> { 4, 9, 4, 9 } },
+                { AbilityKey.Arrow, new List<int> { 3, 9, 3, 9 } },
                 /*{ AbilityKey.EnemyFireball, new List<int> { 7, 7, 7, 7 } },
                 { AbilityKey.Zap, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.LightningBolt, new List<int> { 3, 6, 3, 6 } },
@@ -804,7 +805,7 @@
                 { BoardPieceId.HeroHunter, AbilityKey.Bone },
                 { BoardPieceId.HeroSorcerer, AbilityKey.WaterBottle },
                 { BoardPieceId.HeroWarlock, AbilityKey.SpellPowerPotion },
-                { BoardPieceId.HeroBard, AbilityKey.EnemyFlashbang },
+                { BoardPieceId.HeroBard, AbilityKey.PanicPowder },
             });
 
             var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue });
@@ -844,8 +845,8 @@
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            //var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.25f);
-            //var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.5f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.75f);
+            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.66f);
             //var enemyAttackScaledRule = new EnemyAttackScaledRule(1.83f);
             //var enemyHealthScaledRule = new EnemyHealthScaledRule(2.334f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
@@ -910,8 +911,8 @@
                 partyElectricity,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
-                //cardEnergyFromAttackRule,
-                //cardEnergyFromRecyclingRule,
+                cardEnergyFromAttackRule,
+                cardEnergyFromRecyclingRule,
                 //enemyAttackScaledRule,
                 //enemyHealthScaledRule,
                 levelSequenceOverriddenRule,
