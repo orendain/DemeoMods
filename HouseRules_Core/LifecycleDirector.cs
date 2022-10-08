@@ -224,6 +224,13 @@
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
+            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+                .Field<CreateGameMode>("createGameMode").Value;
+            if (createGameMode != CreateGameMode.Private)
+            {
+                return;
+            }
+
             ActivateRuleset();
             _isCreatingGame = true;
             OnPreGameCreated();
