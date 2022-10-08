@@ -105,12 +105,12 @@
                 return;
             }
 
-            /*var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
-            }*/
+            }
 
             var gameStateTraverse = Traverse.Create(_gameContext.gameStateMachine).Field("creatingGameState");
             if (!gameStateTraverse.FieldExists())
@@ -136,12 +136,12 @@
                 return;
             }
 
-            /*var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
                 .Field<CreateGameMode>("createGameMode").Value;
             if (createGameMode != CreateGameMode.Private)
             {
                 return;
-            }*/
+            }
 
             var createdGameFromSave =
                 Traverse.Create(_gameContext.gameStateMachine).Field<bool>("createdGameFromSave").Value;
