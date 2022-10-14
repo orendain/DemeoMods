@@ -97,11 +97,11 @@ namespace HouseRules.Essentials.Rules
                         source.effectSink.RemoveStatusEffect(EffectStateType.Discharge);
                         abilityZ.effectsPreventingUse.Clear();
                         source.inventory.RemoveDisableCooldownFlags();
-                        source.inventory.AddGold(10);
 
                         if (source.inventory.HasAbility(AbilityKey.Electricity, includeIsReplenishing: false, includeIsDisabled: false))
                         {
                             source.RestoreReplenishableAbilities();
+                            source.inventory.AddGold(10);
                             return;
                         }
                         else
@@ -112,6 +112,8 @@ namespace HouseRules.Essentials.Rules
                                 if (source.inventory.Items[i].abilityKey == AbilityKey.Electricity)
                                 {
                                     source.inventory.ExhaustReplenishableItem(i);
+                                    source.inventory.AddGold(10);
+                                    Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                                     break;
                                 }
                             }

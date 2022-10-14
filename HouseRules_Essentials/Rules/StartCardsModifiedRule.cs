@@ -67,12 +67,11 @@
             {
                 Inventory.Item value = piece.inventory.Items[i];
                 int targetRefresh = 1;
+                var countdown = (value.flags >> 4) & 7;
                 if (value.abilityKey == AbilityKey.DiseasedBite || value.abilityKey == AbilityKey.EnemyFlashbang)
                 {
                     targetRefresh = 2;
                 }
-
-                var countdown = (value.flags >> 4) & 7;
 
                 if (piece.inventory.Items[i].IsReplenishing)
                 {
@@ -126,8 +125,9 @@
                         value.flags &= 911; // Zero only the countdown bits using a bitmask
                         value.flags |= countdown << 4; // OR with countdown to set them again.
                         piece.inventory.Items[i] = value;
-                        Traverse.Create(piece.inventory.Items).Property<bool>("needSync").Value = true;
                     }
+
+                    Traverse.Create(piece.inventory.Items).Property<bool>("needSync").Value = true;
                 }
             }
 

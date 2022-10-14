@@ -53,7 +53,7 @@
                     typeof(BoardSyncer),
                     nameof(SerializableEventQueue_SendResponseEvent_Postfix)));
 
-            /*harmony.Patch(
+            harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "IsImmuneToStatusEffect"),
                 postfix: new HarmonyMethod(
                     typeof(BoardSyncer),
@@ -63,14 +63,14 @@
                 original: AccessTools.Method(typeof(EffectSink), "AddStatusEffect"),
                 postfix: new HarmonyMethod(
                     typeof(BoardSyncer),
-                    nameof(EffectSink_AddStatusEffect_Postfix)));*/
+                    nameof(EffectSink_AddStatusEffect_Postfix)));
 
             // Workaround for a bug in Demeo v1.21 affecting board syncing. Can be removed after next Demeo patch is released as it includes fix from RG.
-            /*harmony.Patch(
+            harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "ForceSyncState"),
                 prefix: new HarmonyMethod(
                     typeof(BoardSyncer),
-                    nameof(Piece_ForceSyncState_Prefix)));*/
+                    nameof(Piece_ForceSyncState_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -98,13 +98,18 @@
             }
         }
 
-        /*private static void Piece_IsImmuneToStatusEffect_Postfix()
+        private static bool Piece_ForceSyncState_Prefix(BoardModel boardModel, ref Piece __instance)
+        {
+            __instance.ReregisterPieceVisualStateHandlers();
+            return true;
+        }
+
+        private static void Piece_IsImmuneToStatusEffect_Postfix()
         {
             var isEffectImmunityCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (isEffectImmunityCheckRequired)
             {
-                //MelonLoader.MelonLogger.Msg("ImmunityToStatusEffect");
-                //_isSyncScheduled = true;
+                _isSyncScheduled = true;
             }
         }
 
@@ -113,37 +118,26 @@
             var isEffectDataCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
             if (isEffectDataCheckRequired)
             {
-                //MelonLoader.MelonLogger.Msg("StatusEffect");
-                //_isSyncScheduled = true;
+                _isSyncScheduled = true;
             }
-        }*/
-
-        /*private static bool Piece_ForceSyncState_Prefix(BoardModel boardModel, ref Piece __instance)
-        {
-            __instance.ReregisterPieceVisualStateHandlers();
-            return true;
-        }*/
+        }
 
         private static bool CanRepresentNewSpawn(SerializableEvent serializableEvent)
         {
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.UpdateFogAndSpawn:
-                    MelonLoader.MelonLogger.Msg("UpdateFogAndSpawn");
                     return true;
-                /*case SerializableEvent.Type.SpawnPiece:
-                    MelonLoader.MelonLogger.Msg("SpawnPiece");
+                case SerializableEvent.Type.SpawnPiece:
                     return true;
                 case SerializableEvent.Type.SetBoardPieceID:
-                    MelonLoader.MelonLogger.Msg("SetBoardPieceID");
                     return true;
                 case SerializableEvent.Type.SlimeFusion:
-                    MelonLoader.MelonLogger.Msg("SlimeFusion");
-                    return true;*/
+                    return true;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
-                /*case SerializableEvent.Type.PieceDied:
-                    return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);*/
+                case SerializableEvent.Type.PieceDied:
+                    return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
                 default:
                     return false;
             }
@@ -155,62 +149,45 @@
             switch (abilityKey)
             {
                 case AbilityKey.SummonElemental:
-                    MelonLoader.MelonLogger.Msg("SummonElemental");
                     return true;
                 case AbilityKey.SummonBossMinions:
-                    MelonLoader.MelonLogger.Msg("SummonBossMinions");
                     return true;
                 case AbilityKey.BeastWhisperer:
-                    MelonLoader.MelonLogger.Msg("BeastWhisperer");
                     return true;
                 case AbilityKey.HurricaneAnthem:
-                    MelonLoader.MelonLogger.Msg("HurricaneAnthem");
                     return true;
                 case AbilityKey.Lure:
-                    MelonLoader.MelonLogger.Msg("Lure");
                     return true;
                 case AbilityKey.BoobyTrap:
-                    MelonLoader.MelonLogger.Msg("BoobyTrap");
                     return true;
                 case AbilityKey.DetectEnemies:
-                    MelonLoader.MelonLogger.Msg("DetectEnemies");
                     return true;
                 case AbilityKey.RepeatingBallista:
-                    MelonLoader.MelonLogger.Msg("RepeatingBallista");
                     return true;
                 case AbilityKey.TheBehemoth:
-                    MelonLoader.MelonLogger.Msg("TheBehemoth");
                     return true;
                 case AbilityKey.HealingWard:
-                    MelonLoader.MelonLogger.Msg("HealingWard");
                     return true;
                 case AbilityKey.RaiseRoots:
-                    MelonLoader.MelonLogger.Msg("RaiseRoots");
                     return true;
                 case AbilityKey.CallCompanion:
-                    MelonLoader.MelonLogger.Msg("CallCompanion");
                     return true;
                 case AbilityKey.DigRatsNest:
-                    MelonLoader.MelonLogger.Msg("DigRatsNest");
                     return true;
                 case AbilityKey.Barricade:
-                    MelonLoader.MelonLogger.Msg("Barricade");
                     return true;
                 case AbilityKey.MagicBarrier:
-                    MelonLoader.MelonLogger.Msg("MagicBarrier");
                     return true;
             }
 
             var abilityName = abilityKey.ToString();
             var isSpawnAbility = abilityName.Contains("Spawn");
             var isLampAbility = abilityName.Contains("Lamp");
-            MelonLoader.MelonLogger.Msg($"{isSpawnAbility} or {isLampAbility}");
-
-            //return isSpawnAbility || isLampAbility;
-            return false;
+ 
+            return isSpawnAbility || isLampAbility;
         }
 
-        /*private static bool CanRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
+        private static bool CanRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
         {
             foreach (var pieceId in pieceDiedEvent.deadPieces)
             {
@@ -221,13 +198,12 @@
 
                 if (piece.boardPieceId == BoardPieceId.SpiderEgg)
                 {
-                    MelonLoader.MelonLogger.Msg("SpiderEgg");
                     return true;
                 }
             }
 
             return false;
-        }*/
+        }
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
@@ -242,7 +218,6 @@
         private static void SyncBoard()
         {
             _isSyncScheduled = false;
-            MelonLoader.MelonLogger.Msg("Board Sync!");
             //_gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
