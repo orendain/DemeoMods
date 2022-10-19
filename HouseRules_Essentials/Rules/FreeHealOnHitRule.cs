@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Tracing;
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
@@ -49,6 +50,30 @@
                 return;
             }
 
+            if (source.boardPieceId == BoardPieceId.WarlockMinion)
+            {
+                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
+                if (damageResist < 1)
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
+                }
+
+                float maxHealth = source.GetMaxHealth();
+                if (source.boardPieceId == BoardPieceId.WarlockMinion)
+                {
+                    maxHealth /= 2;
+                    if (source.GetHealth() < maxHealth)
+                    {
+                        source.EnableEffectState(EffectStateType.Frenzy);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
+                    }
+                    else
+                    {
+                        source.DisableEffectState(EffectStateType.Frenzy);
+                    }
+                }
+            }
+
             if (!source.IsPlayer())
             {
                 return;
@@ -67,7 +92,34 @@
             int chance = Random.Range(1, 101);
             if (_globalAdjustments.Contains(source.boardPieceId))
             {
-                if (chance > 95)
+                int chance2 = Random.Range(1, 101);
+                if (source.boardPieceId == BoardPieceId.HeroRogue)
+                {
+                    if (chance > 98 && chance2 > 50)
+                    {
+                        source.effectSink.Heal(2);
+                        source.AnimateWobble();
+                    }
+                    else if (chance2 > 50)
+                    {
+                        source.effectSink.Heal(1);
+                        source.AnimateWobble();
+                    }
+                }
+                else if (source.boardPieceId == BoardPieceId.HeroBard)
+                {
+                    if (chance > 98 && chance2 > 66)
+                    {
+                        source.effectSink.Heal(2);
+                        source.AnimateWobble();
+                    }
+                    else if (chance2 > 66)
+                    {
+                        source.effectSink.Heal(1);
+                        source.AnimateWobble();
+                    }
+                }
+                else if (chance > 98)
                 {
                     source.effectSink.Heal(2);
                     source.AnimateWobble();
@@ -77,19 +129,10 @@
                     source.effectSink.Heal(1);
                 }
             }
-            else if (chance > 95)
+            else if (chance > 98)
             {
                 source.effectSink.Heal(1);
                 source.AnimateWobble();
-            }
-
-            if (source.boardPieceId == BoardPieceId.HeroGuardian)
-            {
-                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
-                if (damageResist < 1)
-                {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-                }
             }
         }
     }

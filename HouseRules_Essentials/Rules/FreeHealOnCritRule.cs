@@ -65,11 +65,13 @@ namespace HouseRules.Essentials.Rules
             }
 
             int chance = Random.Range(1, 101);
-            if (chance > 95)
+            int chance2 = Random.Range(1, 101);
+
+            if (_globalAdjustments.Contains(source.boardPieceId))
             {
-                if (_globalAdjustments.Contains(source.boardPieceId))
+                if (source.boardPieceId == BoardPieceId.HeroWarlock)
                 {
-                    if (source.boardPieceId == BoardPieceId.HeroRogue)
+                    if (chance > 98)
                     {
                         source.effectSink.Heal(3);
                         source.AnimateWobble();
@@ -77,24 +79,56 @@ namespace HouseRules.Essentials.Rules
                     else
                     {
                         source.effectSink.Heal(2);
+                    }
+                }
+                else if (source.boardPieceId == BoardPieceId.HeroRogue)
+                {
+                    if (chance > 98 && chance2 > 50)
+                    {
+                        source.effectSink.Heal(3);
+                        source.AnimateWobble();
+                    }
+                    else if (chance2 > 50)
+                    {
+                        source.effectSink.Heal(2);
+                        source.AnimateWobble();
+                    }
+                    else
+                    {
+                        source.effectSink.Heal(1);
+                        source.AnimateWobble();
+                    }
+                }
+                else if (source.boardPieceId == BoardPieceId.HeroBard)
+                {
+                    if (chance > 98 && chance2 > 66)
+                    {
+                        source.effectSink.Heal(3);
+                        source.AnimateWobble();
+                    }
+                    else if (chance2 > 66)
+                    {
+                        source.effectSink.Heal(2);
+                        source.AnimateWobble();
+                    }
+                    else
+                    {
+                        source.effectSink.Heal(1);
                         source.AnimateWobble();
                     }
                 }
                 else
                 {
-                    source.effectSink.Heal(1);
-                    source.AnimateWobble();
-                }
-            }
-            else if (_globalAdjustments.Contains(source.boardPieceId))
-            {
-                if (source.boardPieceId == BoardPieceId.HeroRogue)
-                {
-                    source.effectSink.Heal(2);
-                }
-                else
-                {
-                    source.effectSink.Heal(1);
+                    if (chance > 98)
+                    {
+                        source.effectSink.Heal(2);
+                        source.AnimateWobble();
+                    }
+                    else
+                    {
+                        source.effectSink.Heal(1);
+                        source.AnimateWobble();
+                    }
                 }
             }
         }

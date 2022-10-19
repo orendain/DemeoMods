@@ -86,6 +86,13 @@ namespace HouseRules.Essentials.Rules
                     source.inventory.AddGold(10);
                     return;
                 }
+                else
+                {
+                    source.RestoreReplenishableAbilities();
+                    source.RestoreReplenishableAbilities();
+                    source.inventory.AddGold(10);
+                    return;
+                }
             }
             else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
             {

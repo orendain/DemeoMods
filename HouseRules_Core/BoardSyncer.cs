@@ -87,6 +87,7 @@
             }
 
             var isNewPieceCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
+
             if (!_isSyncScheduled && isNewPieceCheckRequired && CanRepresentNewSpawn(serializableEvent))
             {
                 _isSyncScheduled = true;
@@ -218,6 +219,7 @@
         private static void SyncBoard()
         {
             _isSyncScheduled = false;
+            //CoreMod.Logger.Msg("Sync");
             //_gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }

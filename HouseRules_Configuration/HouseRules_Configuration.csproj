@@ -88,5 +88,7 @@
   <Target Name="CopyToModsDir" AfterTargets="Build">
     <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoVrDir)\Mods" />
     <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoPcDir)\Mods" />
+    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusVrDir)\Mods" />
+    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusPcDir)\Mods" />
   </Target>
 </Project>

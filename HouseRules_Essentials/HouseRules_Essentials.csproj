@@ -65,7 +65,6 @@
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />
     <Compile Include="Rules\CourageShantyAddsHPRule.cs" />
     <Compile Include="Rules\FreeActionPointsOnCritRule.cs" />
-    <Compile Include="Rules\FreeActionPointsOnKill.cs" />
     <Compile Include="Rules\FreeHealOnCritRule.cs" />
     <Compile Include="Rules\FreeHealOnHitRule.cs" />
     <Compile Include="Rules\FreeReplenishablesOnCritRule.cs" />
@@ -138,5 +137,7 @@
   <Target Name="CopyToModsDir" AfterTargets="Build">
     <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoVrDir)\Mods" />
     <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoPcDir)\Mods" />
+    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusVrDir)\Mods" />
+    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusPcDir)\Mods" />
   </Target>
 </Project>

@@ -194,10 +194,10 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 7 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 10 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 8 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 9 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 7 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "AttackDamage", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "CriticalHitDamage", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "AttackDamage", Value = 1 },
@@ -205,8 +205,8 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "CriticalHitDamage", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 8 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 9 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 7 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
                 /*new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
@@ -371,6 +371,7 @@
                         AbilityKey.IceImmunePotion,
                         AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
+                        AbilityKey.DamageResistPotion,
                         AbilityKey.WaterBottle,
                         AbilityKey.HealingWard,
                         AbilityKey.WhirlwindAttack,
@@ -598,7 +599,7 @@
                 },
             });
 
-            var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
+            /*var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
             {
                 new StatusEffectData
                 {
@@ -665,7 +666,7 @@
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
-            });
+            });*/
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
@@ -733,8 +734,8 @@
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.HealingPotion, 5 },
-                { AbilityKey.Rejuvenation, 10 },
-                { AbilityKey.AltarHeal, 10 },
+                { AbilityKey.Rejuvenation, 8 },
+                { AbilityKey.AltarHeal, 8 },
                 { AbilityKey.TurretHealProjectile, 2 },
             });
 
@@ -747,7 +748,7 @@
                 //{ AbilityKey.PoisonBomb, 1 },
                 { AbilityKey.WarCry, 1 },
                 { AbilityKey.WhirlwindAttack, 1 },
-                { AbilityKey.Deflect, 2 },
+                //{ AbilityKey.Deflect, 2 },
                 //{ AbilityKey.PoisonGas, 1 },
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.BlockAbilities, 1 },
@@ -757,7 +758,7 @@
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
-                { AbilityKey.ShatteringVoice, new List<int> { 4, 9, 4, 9 } },
+                { AbilityKey.ShatteringVoice, new List<int> { 4, 8, 4, 8 } },
                 { AbilityKey.Arrow, new List<int> { 3, 9, 3, 9 } },
                 /*{ AbilityKey.EnemyFireball, new List<int> { 7, 7, 7, 7 } },
                 { AbilityKey.Zap, new List<int> { 2, 4, 2, 4 } },
@@ -808,8 +809,8 @@
                 { BoardPieceId.HeroBard, AbilityKey.PanicPowder },
             });
 
-            var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue });
-            var freeHealOnCritRule = new FreeHealOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
+            var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue, BoardPieceId.HeroWarlock, BoardPieceId.HeroBard });
+            var freeHealOnCritRule = new FreeHealOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroRogue, BoardPieceId.HeroWarlock, BoardPieceId.HeroBard });
             var freeActionPointsOnCritRule = new FreeActionPointsOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroGuardian, BoardPieceId.HeroRogue });
             var freeRepleishablesOnCritRule = new FreeReplenishablesOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue, BoardPieceId.HeroGuardian, BoardPieceId.HeroSorcerer, BoardPieceId.HeroHunter, BoardPieceId.HeroWarlock });
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
@@ -823,11 +824,11 @@
 
             var abilityStealthDamageRule = new AbilityStealthDamageOverriddenRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.Blink, 3 },
-                { AbilityKey.DiseasedBite, 2 },
+                { AbilityKey.Blink, 2 },
+                { AbilityKey.DiseasedBite, 1 },
                 { AbilityKey.PoisonBomb, 1 },
                 { AbilityKey.CursedDagger, 2 },
-                { AbilityKey.PlayerMelee, 2 },
+                { AbilityKey.PlayerMelee, 1 },
             });
 
             var enemyCooldownRule = new EnemyCooldownOverriddenRule(new Dictionary<AbilityKey, int>
@@ -888,7 +889,7 @@
                 startingCardsRule,
                 piecesAdjustedRule,
                 allowedCardsRule,
-                statusEffectRule,
+                //statusEffectRule,
                 pieceAbilityRule,
                 pieceBehaviourListRule,
                 pieceImmunityRule,
