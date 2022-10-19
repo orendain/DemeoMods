@@ -58,6 +58,11 @@
                     target.piece.effectSink.SubtractHealth(0);
                     return false;
                 }
+                else if (target.piece.characterClass == CharacterClass.Bard && damage.HasTag(DamageTag.Poison))
+                {
+                    target.piece.effectSink.SubtractHealth(0);
+                    return false;
+                }
             }
 
             if (target.piece.IsBot())

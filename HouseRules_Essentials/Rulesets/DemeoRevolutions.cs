@@ -704,7 +704,7 @@
             {
                 { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Stunned } },
                 { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken } },
-                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
+                //{ BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },
                 { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage } },
