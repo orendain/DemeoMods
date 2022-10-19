@@ -206,7 +206,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "CriticalHitDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 7 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 7 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
                 /*new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
@@ -759,7 +759,7 @@
             {
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.ShatteringVoice, new List<int> { 4, 8, 4, 8 } },
-                { AbilityKey.Arrow, new List<int> { 3, 9, 3, 9 } },
+                { AbilityKey.Arrow, new List<int> { 3, 8, 3, 8 } },
                 /*{ AbilityKey.EnemyFireball, new List<int> { 7, 7, 7, 7 } },
                 { AbilityKey.Zap, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.LightningBolt, new List<int> { 3, 6, 3, 6 } },
