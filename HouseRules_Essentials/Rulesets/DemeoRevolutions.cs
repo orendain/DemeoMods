@@ -754,9 +754,9 @@
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
-                { AbilityKey.ShatteringVoice, new List<int> { 4, 8, 4, 8 } },
                 { AbilityKey.Arrow, new List<int> { 3, 8, 3, 8 } },
-                /*{ AbilityKey.EnemyFireball, new List<int> { 7, 7, 7, 7 } },
+                /*{ AbilityKey.ShatteringVoice, new List<int> { 4, 8, 4, 8 } },
+                { AbilityKey.EnemyFireball, new List<int> { 7, 7, 7, 7 } },
                 { AbilityKey.Zap, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.LightningBolt, new List<int> { 3, 6, 3, 6 } },
                 { AbilityKey.Overload, new List<int> { 2, 4, 2, 4 } },

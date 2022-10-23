@@ -69,19 +69,7 @@ namespace HouseRules.Essentials.Rules
 
             if (_globalAdjustments.Contains(source.boardPieceId))
             {
-                if (source.boardPieceId == BoardPieceId.HeroWarlock)
-                {
-                    if (chance > 98)
-                    {
-                        source.effectSink.Heal(3);
-                        source.AnimateWobble();
-                    }
-                    else
-                    {
-                        source.effectSink.Heal(2);
-                    }
-                }
-                else if (source.boardPieceId == BoardPieceId.HeroRogue)
+                if (source.boardPieceId == BoardPieceId.HeroRogue)
                 {
                     if (chance > 98 && chance2 > 50)
                     {
