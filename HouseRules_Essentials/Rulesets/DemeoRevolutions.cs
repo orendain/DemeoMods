@@ -209,6 +209,10 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 6 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "MoveRange", Value = 30 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "ActionPoint", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 8 },
                 /*new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 35 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "MoveRange", Value = 3 },
@@ -220,8 +224,6 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "AttackDamage", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 59 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 15 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 12 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Barricade, Property = "StartHealth", Value = 18 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HealingBeacon, Property = "StartHealth", Value = 13 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 27 },
@@ -385,7 +387,6 @@
                         AbilityKey.TheBehemoth,
                         AbilityKey.PiercingThrow,
                         AbilityKey.Charge,
-                        AbilityKey.HealingWard,
                         AbilityKey.WhirlwindAttack,
                         AbilityKey.WarCry,
                         AbilityKey.TheBehemoth,
@@ -428,7 +429,6 @@
                         AbilityKey.HurricaneAnthem,
                         AbilityKey.SongOfRecovery,
                         AbilityKey.SongOfResilience,
-                        AbilityKey.BlockAbilities,
                         AbilityKey.PiercingVoice,
                         AbilityKey.ShatteringVoice,
                         AbilityKey.HurricaneAnthem,
@@ -471,7 +471,6 @@
                         AbilityKey.BeastWhisperer,
                         AbilityKey.HailOfArrows,
                         AbilityKey.CallCompanion,
-                        AbilityKey.PoisonedTip,
                         AbilityKey.HuntersMark,
                         AbilityKey.Lure,
                     }
@@ -514,7 +513,6 @@
                         AbilityKey.PoisonBomb,
                         AbilityKey.CoinFlip,
                         AbilityKey.CursedDagger,
-                        AbilityKey.BoobyTrap,
                         AbilityKey.FlashBomb,
                     }
                 },
@@ -542,7 +540,6 @@
                         AbilityKey.Fireball,
                         AbilityKey.Freeze,
                         AbilityKey.MagicShield,
-                        AbilityKey.MagicBarrier,
                         AbilityKey.Vortex,
                         AbilityKey.Banish,
                         AbilityKey.Fireball,
@@ -584,7 +581,6 @@
                         AbilityKey.GuidingLight,
                         AbilityKey.Implode,
                         AbilityKey.MissileSwarm,
-                        AbilityKey.Portal,
                         AbilityKey.Deflect,
                         AbilityKey.GuidingLight,
                         AbilityKey.Implode,
@@ -824,11 +820,9 @@
 
             var abilityStealthDamageRule = new AbilityStealthDamageOverriddenRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.Blink, 2 },
                 { AbilityKey.DiseasedBite, 1 },
                 { AbilityKey.PoisonBomb, 1 },
-                { AbilityKey.CursedDagger, 2 },
-                { AbilityKey.PlayerMelee, 1 },
+                { AbilityKey.PlayerMelee, 2 },
             });
 
             var enemyCooldownRule = new EnemyCooldownOverriddenRule(new Dictionary<AbilityKey, int>
