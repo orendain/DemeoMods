@@ -211,7 +211,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "MoveRange", Value = 10 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "ActionPoint", Value = 6 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "ActionPoint", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 8 },
                 /*new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 35 },
@@ -732,6 +732,7 @@
                 { AbilityKey.HealingPotion, 5 },
                 { AbilityKey.Rejuvenation, 8 },
                 { AbilityKey.AltarHeal, 8 },
+                { AbilityKey.WaterBottle, 2 },
                 { AbilityKey.TurretHealProjectile, 2 },
             });
 
@@ -795,7 +796,7 @@
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
-            { Bard = 15, Guardian = 14, Sorcerer = 13, Warlock = 12, Hunter = 11, Assassin = 10, Downed = -6, Javelin = 12 });
+            { Bard = 15, Warlock = 14, Guardian = 13, Sorcerer = 12, Hunter = 11, Assassin = 10, Downed = -6, Javelin = 12 });
 
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {
