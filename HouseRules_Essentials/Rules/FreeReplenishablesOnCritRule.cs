@@ -8,8 +8,6 @@ namespace HouseRules.Essentials.Rules
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using static Boardgame.BoardEntities.Piece;
-    using static Bowser.PaintingRoom.PaintingRoomProfiling;
 
     public sealed class FreeReplenishablesOnCritRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
@@ -71,8 +69,14 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
+            bool isLast = false;
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-            if (source.boardPieceId == BoardPieceId.HeroRogue)
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+            if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
+            {
+                isLast = true;
+            }
+                if (source.boardPieceId == BoardPieceId.HeroRogue)
             {
                 int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
                 if (currentST > 0)
@@ -83,14 +87,30 @@ namespace HouseRules.Essentials.Rules
                     source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
                     source.EnableEffectState(EffectStateType.Stealthed);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
-                    source.inventory.AddGold(10);
+                    if (isLast)
+                    {
+                        source.effectSink.Heal(1);
+                    }
+                    else
+                    {
+                        source.inventory.AddGold(10);
+                    }
+
                     return;
                 }
                 else
                 {
                     source.RestoreReplenishableAbilities();
                     source.RestoreReplenishableAbilities();
-                    source.inventory.AddGold(10);
+                    if (isLast)
+                    {
+                        source.effectSink.Heal(1);
+                    }
+                    else
+                    {
+                        source.inventory.AddGold(10);
+                    }
+
                     return;
                 }
             }
@@ -108,7 +128,15 @@ namespace HouseRules.Essentials.Rules
                         if (source.inventory.HasAbility(AbilityKey.Electricity, includeIsReplenishing: false, includeIsDisabled: false))
                         {
                             source.RestoreReplenishableAbilities();
-                            source.inventory.AddGold(10);
+                            if (isLast)
+                            {
+                                source.effectSink.Heal(1);
+                            }
+                            else
+                            {
+                                source.inventory.AddGold(10);
+                            }
+
                             return;
                         }
                         else
@@ -119,7 +147,15 @@ namespace HouseRules.Essentials.Rules
                                 if (source.inventory.Items[i].abilityKey == AbilityKey.Electricity)
                                 {
                                     source.inventory.ExhaustReplenishableItem(i);
-                                    source.inventory.AddGold(10);
+                                    if (isLast)
+                                    {
+                                        source.effectSink.Heal(1);
+                                    }
+                                    else
+                                    {
+                                        source.inventory.AddGold(10);
+                                    }
+
                                     Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                                     break;
                                 }
@@ -130,13 +166,29 @@ namespace HouseRules.Essentials.Rules
                     }
                     else
                     {
-                        source.inventory.AddGold(10);
+                        if (isLast)
+                        {
+                            source.effectSink.Heal(1);
+                        }
+                        else
+                        {
+                            source.inventory.AddGold(10);
+                        }
+
                         return;
                     }
                 }
             }
 
-            source.inventory.AddGold(10);
+            if (isLast)
+            {
+                source.effectSink.Heal(1);
+            }
+            else
+            {
+                source.inventory.AddGold(10);
+            }
+
             source.RestoreReplenishableAbilities();
          }
     }
