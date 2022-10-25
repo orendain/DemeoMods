@@ -238,7 +238,7 @@
 
             var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
             {
-                { BoardPieceId.Spider, new List<PieceType> { PieceType.Enemy, PieceType.Thief, PieceType.Canine } },
+                { BoardPieceId.Spider, new List<PieceType> { PieceType.Thief, PieceType.Canine } },
             });
 
             var cardClassRestrictionRule = new CardClassRestrictionOverriddenRule(new Dictionary<AbilityKey, BoardPieceId>
