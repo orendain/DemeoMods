@@ -57,10 +57,10 @@
             var attackTargetType = Traverse.Create(__instance)
                 .Method("GetAttackTargetType", __instance.piece)
                 .GetValue<PieceType>();
-            /*if (attackTargetType != PieceType.Enemy)
+            if (__instance.piece.HasPieceType(PieceType.Player) || __instance.piece.HasPieceType(PieceType.Bot))
             {
                 return true;
-            }*/
+            }
 
             var enemyPieces = __instance.pieceAndTurnController.GetTeamPieces(Boardgame.BoardEntities.Team.Two);
             var markedEnemies = enemyPieces.FindAll(p => p.HasEffectState(EffectStateType.MarkOfAvalon));
