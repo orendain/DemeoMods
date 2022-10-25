@@ -57,7 +57,7 @@
             var attackTargetType = Traverse.Create(__instance)
                 .Method("GetAttackTargetType", __instance.piece)
                 .GetValue<PieceType>();
-            if (__instance.HasPieceType(PieceType.Player) || __instance.HasPieceType(PieceType.Bot))
+            if (__instance.piece.HasPieceType(PieceType.Player) || __instance.piece.HasPieceType(PieceType.Bot))
             {
                 return true;
             }
