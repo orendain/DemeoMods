@@ -47,7 +47,7 @@
                 return;
             }
 
-            if (!__instance.HasPieceType(PieceType.Enemy))
+            if (__instance.HasPieceType(PieceType.Player) || __instance.HasPieceType(PieceType.Bot))
             {
                 return;
             }
