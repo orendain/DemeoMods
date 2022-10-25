@@ -52,34 +52,26 @@
 
             if (source.boardPieceId == BoardPieceId.WarlockMinion)
             {
+                float maxHealth = source.GetMaxHealth();
                 source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
                 if (damageResist < 1)
                 {
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
                 }
 
-                float maxHealth = source.GetMaxHealth();
-                if (source.boardPieceId == BoardPieceId.WarlockMinion)
+                maxHealth /= 2;
+                if (source.GetHealth() < maxHealth)
                 {
-                    maxHealth /= 2;
-                    if (source.GetHealth() < maxHealth)
-                    {
-                        source.EnableEffectState(EffectStateType.Frenzy);
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
-                    }
-                    else
-                    {
-                        source.DisableEffectState(EffectStateType.Frenzy);
-                    }
+                    source.EnableEffectState(EffectStateType.Frenzy);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
+                }
+                else
+                {
+                    source.DisableEffectState(EffectStateType.Frenzy);
                 }
             }
 
             if (!source.IsPlayer())
-            {
-                return;
-            }
-
-            if (source.HasEffectState(EffectStateType.PlayerPanic))
             {
                 return;
             }

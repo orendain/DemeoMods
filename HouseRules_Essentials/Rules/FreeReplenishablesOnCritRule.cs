@@ -54,11 +54,6 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (source.HasEffectState(EffectStateType.PlayerPanic))
-            {
-                return;
-            }
-
             if (diceResult != Dice.Outcome.Crit)
             {
                 return;
@@ -76,7 +71,8 @@ namespace HouseRules.Essentials.Rules
             {
                 isLast = true;
             }
-                if (source.boardPieceId == BoardPieceId.HeroRogue)
+
+            if (source.boardPieceId == BoardPieceId.HeroRogue)
             {
                 int currentST = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Stealthed);
                 if (currentST > 0)

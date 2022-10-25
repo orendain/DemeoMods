@@ -49,8 +49,8 @@
                 return;
             }
 
-            if (!__instance.HasPieceType(PieceType.Enemy))
-            {
+            if (__instance.HasPieceType(PieceType.Player) || __instance.HasPieceType(PieceType.Bot))
+                {
                 MelonLoader.MelonLogger.Msg("Non-enemy...");
                 return;
             }
