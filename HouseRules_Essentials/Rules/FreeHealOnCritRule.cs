@@ -1,5 +1,6 @@
 namespace HouseRules.Essentials.Rules
 {
+    using System.Collections;
     using System.Collections.Generic;
     using Boardgame;
     using Boardgame.BoardEntities;
@@ -61,6 +62,7 @@ namespace HouseRules.Essentials.Rules
 
             int chance = Random.Range(1, 101);
             int chance2 = Random.Range(1, 101);
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
 
             if (_globalAdjustments.Contains(source.boardPieceId))
             {
@@ -113,6 +115,15 @@ namespace HouseRules.Essentials.Rules
                         source.AnimateWobble();
                     }
                 }
+            }
+
+            if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
+            {
+                source.effectSink.Heal(1);
+            }
+            else
+            {
+                source.inventory.AddGold(10);
             }
         }
     }

@@ -13,6 +13,24 @@
 
         private const int DefaultDreadLevel = 1;
         private readonly Dictionary<string, int> _levelProperties;
+        private readonly Dictionary<string, int> _ratKing = new Dictionary<string, int>
+        {
+                { "BigGoldPileChance", 30 },
+                { "FloorOneHealingFountains", 1 },
+                { "FloorOnePotionStand", 1 },
+                { "FloorOneMerchant", 1 },
+                { "FloorOneLootChests", 3 },
+                { "FloorOneGoldMaxAmount", 750 },
+                { "FloorTwoHealingFountains", 2 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoMerchant", 1 },
+                { "FloorTwoLootChests", 5 },
+                { "FloorTwoGoldMaxAmount", 1000 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreePotionStand", 1 },
+                { "FloorThreeMerchant", 1 },
+                { "FloorThreeLootChests", 4 },
+        };
 
         public LevelPropertiesModifiedRule(Dictionary<string, int> levelProperties)
         {
@@ -51,10 +69,21 @@
 
         private void ModifyDreadMode(ref DreadLevelsData dreadLevel)
         {
-            foreach (var modification in _levelProperties)
+            if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
             {
-                AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
-                   modification.Value;
+                foreach (var modification in _ratKing)
+                {
+                    AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                       modification.Value;
+                }
+            }
+            else
+            {
+                foreach (var modification in _levelProperties)
+                {
+                    AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                       modification.Value;
+                }
             }
         }
     }
