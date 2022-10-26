@@ -1,8 +1,22 @@
 # Changelog
 
-## [v1.4.0-houserules](https://github.com/orendain/demeomods/tree/v1.4.0-houserules) (2022-06-22)
+## [Unreleased](https://github.com/orendain/DemeoMods/tree/HEAD)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-houserules...v1.4.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.5.0-houserules...HEAD)
+
+**Merged pull requests:**
+
+- Allow people to mod again! [\#426](https://github.com/orendain/DemeoMods/pull/426)
+- Fix exploit to run public games [\#422](https://github.com/orendain/DemeoMods/pull/422)
+- V1.20 & 1.21 houserules fixes [\#418](https://github.com/orendain/DemeoMods/pull/418)
+
+## [v1.5.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.5.0-houserules) (2022-10-26)
+
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.4.0-houserules...v1.5.0-houserules)
+
+## [v1.4.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.4.0-houserules) (2022-06-22)
+
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.3.0-houserules...v1.4.0-houserules)
 
 **Features/Enhancements:**
 
@@ -18,32 +32,32 @@
 
 **Chores:**
 
-- V1.16 compatibility [\#349](https://github.com/orendain/DemeoMods/pull/349)
-- WIP - V1.15 compatibility [\#344](https://github.com/orendain/DemeoMods/pull/344)
+- Update for V1.16 compatibility [\#349](https://github.com/orendain/DemeoMods/pull/349)
+- Update HouseRules for V1.15 compatibility. [\#344](https://github.com/orendain/DemeoMods/pull/344)
 - Apply maintenance across HouseRules: fix typos, apply auto-formatting, reduce nesting. [\#341](https://github.com/orendain/DemeoMods/pull/341)
 - Perform maintenance on HouseRules modules. [\#312](https://github.com/orendain/DemeoMods/pull/312)
 
-## [v1.3.0-houserules](https://github.com/orendain/demeomods/tree/v1.3.0-houserules) (2022-04-17)
+## [v1.3.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.3.0-houserules) (2022-04-17)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-houserules...v1.3.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.2.0-houserules...v1.3.0-houserules)
 
 **Features/Enhancements:**
 
 - Check if a new release of HouseRules is available during game startup. [\#292](https://github.com/orendain/DemeoMods/pull/292)
 - Support loading rulesets when loading a save. [\#274](https://github.com/orendain/DemeoMods/pull/274)
 
-## [v1.2.0-houserules](https://github.com/orendain/demeomods/tree/v1.2.0-houserules) (2022-03-31)
+## [v1.2.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.2.0-houserules) (2022-03-31)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/v1.1.0-houserules...v1.2.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.1.0-houserules...v1.2.0-houserules)
 
 **Features/Enhancements:**
 
 - Enable HangoutsGameRacer optimizations only when a ruleset is selected and for non-table hosts. [\#269](https://github.com/orendain/DemeoMods/pull/269)
 - Enable HouseRules users to race through the Hangout game starting procedure. [\#267](https://github.com/orendain/DemeoMods/pull/267)
 
-## [v1.1.0-houserules](https://github.com/orendain/demeomods/tree/v1.1.0-houserules) (2022-03-21)
+## [v1.1.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.1.0-houserules) (2022-03-21)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/v1.0.0-houserules...v1.1.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.0.0-houserules...v1.1.0-houserules)
 
 **Features/Enhancements:**
 
@@ -62,9 +76,9 @@
 - Move board syncing functionality to its own class. [\#237](https://github.com/orendain/DemeoMods/pull/237)
 - Move images and rulesets to sub-directories to prepare for bundling rulesets with releases. [\#232](https://github.com/orendain/DemeoMods/pull/232)
 
-## [v1.0.0-houserules](https://github.com/orendain/demeomods/tree/v1.0.0-houserules) (2022-02-21)
+## [v1.0.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.0.0-houserules) (2022-02-21)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/faa2e50c1fdc985e4bf0383f16ef8980eb1580b9...v1.0.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/faa2e50c1fdc985e4bf0383f16ef8980eb1580b9...v1.0.0-houserules)
 
 **Features/Enhancements:**
 
