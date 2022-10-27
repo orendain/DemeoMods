@@ -24,12 +24,12 @@
                 { "FloorTwoHealingFountains", 2 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
-                { "FloorTwoLootChests", 5 },
+                { "FloorTwoLootChests", 4 },
                 { "FloorTwoGoldMaxAmount", 1000 },
                 { "FloorThreeHealingFountains", 1 },
-                { "FloorThreePotionStand", 1 },
+                { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 1 },
-                { "FloorThreeLootChests", 4 },
+                { "FloorThreeLootChests", 3 },
         };
 
         public LevelPropertiesModifiedRule(Dictionary<string, int> levelProperties)
