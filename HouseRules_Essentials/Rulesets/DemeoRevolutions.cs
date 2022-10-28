@@ -228,7 +228,6 @@
                         AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
-                        AbilityKey.ScrollOfCharm,
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.SwiftnessPotion,
@@ -242,6 +241,7 @@
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.WaterBottle,
+                        AbilityKey.ScrollOfCharm,
                         AbilityKey.SongOfRecovery,
                         AbilityKey.SongOfResilience,
                         AbilityKey.BlockAbilities,
@@ -249,11 +249,13 @@
                         AbilityKey.ShatteringVoice,
                         AbilityKey.HurricaneAnthem,
                         AbilityKey.SongOfRecovery,
+                        AbilityKey.ScrollOfCharm,
                         AbilityKey.SongOfResilience,
                         AbilityKey.BlockAbilities,
                         AbilityKey.PiercingVoice,
                         AbilityKey.ShatteringVoice,
                         AbilityKey.HurricaneAnthem,
+                        AbilityKey.ScrollOfCharm,
                         AbilityKey.SongOfRecovery,
                         AbilityKey.SongOfResilience,
                         AbilityKey.PiercingVoice,
@@ -294,7 +296,6 @@
                         AbilityKey.PoisonedTip,
                         AbilityKey.HuntersMark,
                         AbilityKey.Lure,
-                        AbilityKey.ScrollOfCharm,
                         AbilityKey.BeastWhisperer,
                         AbilityKey.HailOfArrows,
                         AbilityKey.CallCompanion,
@@ -458,7 +459,7 @@
             {
                 { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Stunned } },
                 { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken } },
-                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },
                 { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage } },
             });
@@ -524,7 +525,6 @@
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
             var abilityBackstabRule = new AbilityBackstabAdjustedRule(new Dictionary<AbilityKey, bool>
             {
-                { AbilityKey.PoisonBomb, true },
                 { AbilityKey.PiercingVoice, true },
                 { AbilityKey.ShatteringVoice, true },
                 { AbilityKey.DiseasedBite, true },
