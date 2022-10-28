@@ -77,12 +77,14 @@ namespace HouseRules.Essentials.Rules
                     source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
                     source.EnableEffectState(EffectStateType.Stealthed);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
+                    Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                     return;
                 }
                 else
                 {
                     source.RestoreReplenishableAbilities();
                     source.RestoreReplenishableAbilities();
+                    Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                     return;
                 }
             }
@@ -100,6 +102,7 @@ namespace HouseRules.Essentials.Rules
                         if (source.inventory.HasAbility(AbilityKey.Electricity, includeIsReplenishing: false, includeIsDisabled: false))
                         {
                             source.RestoreReplenishableAbilities();
+                            Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                             return;
                         }
                         else
@@ -110,11 +113,11 @@ namespace HouseRules.Essentials.Rules
                                 if (source.inventory.Items[i].abilityKey == AbilityKey.Electricity)
                                 {
                                     source.inventory.ExhaustReplenishableItem(i);
-                                    Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                                     break;
                                 }
                             }
 
+                            Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                             return;
                         }
                     }
@@ -126,6 +129,7 @@ namespace HouseRules.Essentials.Rules
             }
 
             source.RestoreReplenishableAbilities();
-         }
+            Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
+        }
     }
 }
