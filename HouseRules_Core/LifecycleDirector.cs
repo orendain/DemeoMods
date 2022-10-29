@@ -255,13 +255,14 @@
 
             if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
             {
-                CoreMod.Logger.Warning($"<--- Disconnected from room {roomCode} --->");
+                CoreMod.Logger.Warning($"<- Disconnected from room {roomCode} ->");
                 _isReconnect = true;
                 DeactivateRuleset();
             }
             else
             {
                 CoreMod.Logger.Msg($"<- MANUALLY disconnected from room {roomCode} ->");
+                _isReconnect = true;
                 DeactivateRuleset();
             }
         }
