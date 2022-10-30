@@ -98,6 +98,10 @@
           {
             "Card": "MagicMissile",
             "ReplenishFrequency": 1
+          },
+          {
+            "Card": "DivineLight",
+            "ReplenishFrequency": 1
           }
         ],
         "HeroBard": [
@@ -132,6 +136,10 @@
           {
             "Card": "EnemyFrostball",
             "ReplenishFrequency": 2
+          },
+          {
+            "Card": "DivineLight",
+            "ReplenishFrequency": 1
           }
         ],
         "HeroGuardian": [
@@ -165,6 +173,10 @@
           },
           {
             "Card": "ReplenishArmor",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "DivineLight",
             "ReplenishFrequency": 1
           }
         ],
@@ -200,6 +212,10 @@
           {
             "Card": "EnemyFireball",
             "ReplenishFrequency": 1
+          },
+          {
+            "Card": "DivineLight",
+            "ReplenishFrequency": 1
           }
         ],
         "HeroRogue": [
@@ -234,6 +250,10 @@
           {
             "Card": "DiseasedBite",
             "ReplenishFrequency": 2
+          },
+          {
+            "Card": "DivineLight",
+            "ReplenishFrequency": 1
           }
         ],
         "HeroSorcerer": [
@@ -267,6 +287,10 @@
           },
           {
             "Card": "Electricity",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "DivineLight",
             "ReplenishFrequency": 1
           }
         ]
