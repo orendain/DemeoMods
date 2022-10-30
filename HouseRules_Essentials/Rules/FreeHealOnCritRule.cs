@@ -62,7 +62,13 @@ namespace HouseRules.Essentials.Rules
 
             int chance = Random.Range(1, 101);
             int chance2 = Random.Range(1, 101);
+            int addHeal = 0;
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+            source.inventory.AddGold(10);
+            if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
+            {
+                addHeal++;
+            }
 
             if (_globalAdjustments.Contains(source.boardPieceId))
             {
@@ -70,17 +76,20 @@ namespace HouseRules.Essentials.Rules
                 {
                     if (chance > 98 && chance2 > 50)
                     {
-                        source.effectSink.Heal(3);
+                        addHeal += 3;
+                        source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
                     else if (chance2 > 50)
                     {
-                        source.effectSink.Heal(2);
+                        addHeal += 2;
+                        source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
                     else
                     {
-                        source.effectSink.Heal(1);
+                        addHeal++;
+                        source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
                 }
@@ -88,17 +97,20 @@ namespace HouseRules.Essentials.Rules
                 {
                     if (chance > 98 && chance2 > 66)
                     {
-                        source.effectSink.Heal(3);
+                        addHeal += 3;
+                        source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
                     else if (chance2 > 66)
                     {
-                        source.effectSink.Heal(2);
+                        addHeal += 2;
+                        source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
                     else
                     {
-                        source.effectSink.Heal(1);
+                        addHeal++;
+                        source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
                 }
@@ -106,24 +118,20 @@ namespace HouseRules.Essentials.Rules
                 {
                     if (chance > 98)
                     {
-                        source.effectSink.Heal(2);
+                        addHeal += 2;
+                        source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
                     else
                     {
-                        source.effectSink.Heal(1);
-                        source.AnimateWobble();
+                        addHeal++;
+                        source.effectSink.Heal(addHeal);
                     }
                 }
             }
-
-            if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
-            {
-                source.effectSink.Heal(1);
-            }
             else
             {
-                source.inventory.AddGold(10);
+                source.effectSink.Heal(addHeal);
             }
         }
     }

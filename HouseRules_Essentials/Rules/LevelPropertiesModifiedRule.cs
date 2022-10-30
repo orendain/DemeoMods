@@ -20,16 +20,16 @@
                 { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 1 },
                 { "FloorOneLootChests", 3 },
-                { "FloorOneGoldMaxAmount", 750 },
+                { "FloorOneGoldMaxAmount", 700 },
                 { "FloorTwoHealingFountains", 2 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
-                { "FloorTwoLootChests", 4 },
-                { "FloorTwoGoldMaxAmount", 1000 },
+                { "FloorTwoLootChests", 3 },
+                { "FloorTwoGoldMaxAmount", 900 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
-                { "FloorThreeMerchant", 1 },
-                { "FloorThreeLootChests", 3 },
+                { "FloorThreeMerchant", 0 },
+                { "FloorThreeLootChests", 2 },
         };
 
         public LevelPropertiesModifiedRule(Dictionary<string, int> levelProperties)
