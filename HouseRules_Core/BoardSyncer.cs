@@ -201,7 +201,7 @@
         private static void SyncBoard()
         {
             _isSyncScheduled = false;
-            // _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
+            _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
 }
