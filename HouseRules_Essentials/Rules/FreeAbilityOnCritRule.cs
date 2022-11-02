@@ -64,10 +64,42 @@
                 return;
             }
 
+            if (source.boardPieceId == BoardPieceId.HeroBard)
+            {
+                if (source.HasEffectState(EffectStateType.Fearless))
+                {
+                    source.EnableEffectState(EffectStateType.Fearless);
+                }
+                else if (source.HasEffectState(EffectStateType.Heroic))
+                {
+                    source.DisableEffectState(EffectStateType.Heroic);
+                    source.EnableEffectState(EffectStateType.Fearless);
+                }
+                else if (source.HasEffectState(EffectStateType.Courageous))
+                {
+                    source.DisableEffectState(EffectStateType.Courageous);
+                    source.EnableEffectState(EffectStateType.Heroic);
+                }
+                else
+                {
+                    source.EnableEffectState(EffectStateType.Courageous);
+                }
+            }
+
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
             if (currentAP > 0)
             {
                 return;
+            }
+
+            if (source.boardPieceId == BoardPieceId.HeroWarlock)
+            {
+                source.EnableEffectState(EffectStateType.SpellPower);
+            }
+
+            if (source.boardPieceId == BoardPieceId.HeroSorcerer)
+            {
+                source.EnableEffectState(EffectStateType.Overcharge);
             }
 
             source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);

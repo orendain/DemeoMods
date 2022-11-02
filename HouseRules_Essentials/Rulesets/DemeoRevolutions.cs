@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using DataKeys;
-    using Harmony;
+    using global::Types;
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
 
@@ -181,6 +181,10 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "MoveRange", Value = 10 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Barricade, Property = "StartHealth", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 12 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 1 },
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 75 },
             });
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -367,7 +371,6 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
-                        AbilityKey.IceImmunePotion,
                         AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
@@ -430,6 +433,55 @@
                 },
             });
 
+            var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
+            {
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.TorchPlayer,
+                    durationTurns = 20,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.FireImmunity,
+                    durationTurns = 12,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.IceImmunity,
+                    durationTurns = 12,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Invulnerable3,
+                    durationTurns = 2,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.MarkOfAvalon,
+                    durationTurns = 2,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+            });
+
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.EnemyJavelin } },
@@ -465,8 +517,11 @@
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
                 { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Stunned } },
+                { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Frozen } },
+                { BoardPieceId.Verochka, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken } },
-                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled } },
+                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },
                 { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage } },
             });
@@ -498,19 +553,9 @@
                 { AbilityKey.TurretHealProjectile, 2 },
             });
 
-            var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
-            {
-                { AbilityKey.SongOfRecovery, 2 },
-                { AbilityKey.SongOfResilience, 2 },
-                { AbilityKey.FlashBomb, 1 },
-                { AbilityKey.WarCry, 1 },
-                { AbilityKey.WhirlwindAttack, 1 },
-                { AbilityKey.BlindingLight, 1 },
-                { AbilityKey.BlockAbilities, 1 },
-            });
-
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
+                { AbilityKey.ShatteringVoice, new List<int> { 3, 6, 3, 6 } },
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Arrow, new List<int> { 3, 8, 3, 8 } },
             });
@@ -526,7 +571,7 @@
                 { BoardPieceId.HeroBard, AbilityKey.PanicPowder },
             });
 
-            var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue, BoardPieceId.HeroWarlock, BoardPieceId.HeroBard });
+            var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue, BoardPieceId.HeroWarlock });
             var freeHealOnCritRule = new FreeHealOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroRogue, BoardPieceId.HeroWarlock, BoardPieceId.HeroBard });
             var freeActionPointsOnCritRule = new FreeActionPointsOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroGuardian, BoardPieceId.HeroRogue });
             var freeRepleishablesOnCritRule = new FreeReplenishablesOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue, BoardPieceId.HeroGuardian, BoardPieceId.HeroSorcerer, BoardPieceId.HeroHunter, BoardPieceId.HeroWarlock });
@@ -556,6 +601,18 @@
                 { AbilityKey.Petrify, 2 },
             });
 
+            var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
+            {
+                { AbilityKey.SongOfRecovery, 2 },
+                { AbilityKey.SongOfResilience, 2 },
+                { AbilityKey.FlashBomb, 1 },
+                { AbilityKey.WarCry, 1 },
+                { AbilityKey.WhirlwindAttack, 1 },
+                { AbilityKey.Deflect, 2 },
+                { AbilityKey.BlindingLight, 1 },
+                { AbilityKey.BlockAbilities, 1 },
+            });
+
             var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
@@ -575,20 +632,17 @@
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
-                { "AdditionalPileChance", 0 },
-                { "BigGoldPileChance", 0 },
-                { "StandardGoldPileAmountMin", 69 },
-                { "StandardGoldPileAmountMax", 69 },
+                { "BigGoldPileChance", 30 },
                 { "FloorOneHealingFountains", 1 },
                 { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
-                { "FloorOneGoldMaxAmount", 500 },
+                { "FloorOneGoldMaxAmount", 400 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
                 { "FloorTwoLootChests", 3 },
-                { "FloorTwoGoldMaxAmount", 600 },
+                { "FloorTwoGoldMaxAmount", 500 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
@@ -602,13 +656,13 @@
                 startingCardsRule,
                 piecesAdjustedRule,
                 allowedCardsRule,
+                statusEffectRule,
                 pieceAbilityRule,
                 pieceBehaviourListRule,
                 pieceImmunityRule,
                 pieceUseWhenKilledRule,
                 abilityActionCostRule,
                 abilityHealOverriddenRule,
-                aoeAdjustedRule,
                 backstabConfigRule,
                 turnOrderRule,
                 freeHealOnHitRule,
@@ -619,6 +673,7 @@
                 abilityBackstabRule,
                 abilityStealthDamageRule,
                 enemyCooldownRule,
+                aoeAdjustedRule,
                 pieceExtraImmunities,
                 partyElectricity,
                 petsFocusHuntersMarkRule,

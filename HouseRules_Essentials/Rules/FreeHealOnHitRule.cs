@@ -50,6 +50,22 @@
                 return;
             }
 
+            if (source.boardPieceId == BoardPieceId.ElvenQueen)
+            {
+                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
+                if (damageResist < 1)
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
+                    source.EnableEffectState(EffectStateType.Courageous);
+                }
+                else if (!source.HasEffectState(EffectStateType.Courageous))
+                {
+                    source.EnableEffectState(EffectStateType.Courageous);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 2);
+                }
+
+            }
+
             if (source.boardPieceId == BoardPieceId.WarlockMinion)
             {
                 float maxHealth = source.GetMaxHealth();
@@ -93,19 +109,6 @@
                         source.AnimateWobble();
                     }
                     else if (chance2 > 50)
-                    {
-                        source.effectSink.Heal(1);
-                        source.AnimateWobble();
-                    }
-                }
-                else if (source.boardPieceId == BoardPieceId.HeroBard)
-                {
-                    if (chance > 98 && chance2 > 66)
-                    {
-                        source.effectSink.Heal(2);
-                        source.AnimateWobble();
-                    }
-                    else if (chance2 > 66)
                     {
                         source.effectSink.Heal(1);
                         source.AnimateWobble();

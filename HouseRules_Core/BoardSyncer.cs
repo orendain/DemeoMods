@@ -219,8 +219,7 @@
         private static void SyncBoard()
         {
             _isSyncScheduled = false;
-            // CoreMod.Logger.Msg("Sync");
-            // _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
+            _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
 }
