@@ -87,6 +87,11 @@
             }
 
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
+            if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge) && currentAP > 0)
+            {
+                source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
+            }
+
             if (currentAP > 0)
             {
                 return;

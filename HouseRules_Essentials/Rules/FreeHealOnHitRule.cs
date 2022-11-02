@@ -50,20 +50,49 @@
                 return;
             }
 
+            // Elven Queen boss fight is now (up to) 4 phases!
             if (source.boardPieceId == BoardPieceId.ElvenQueen)
             {
                 source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
                 if (damageResist < 1)
                 {
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-                    source.EnableEffectState(EffectStateType.Courageous);
+                    source.EnableEffectState(EffectStateType.Deflect);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
+                    source.EnableEffectState(EffectStateType.ExtraEnergy);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, 2);
                 }
-                else if (!source.HasEffectState(EffectStateType.Courageous))
+                else if (source.GetHealth() > 40 && !source.HasEffectState(EffectStateType.ExtraEnergy))
                 {
-                    source.EnableEffectState(EffectStateType.Courageous);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 2);
+                    source.EnableEffectState(EffectStateType.Deflect);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
+                    source.EnableEffectState(EffectStateType.ExtraEnergy);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, 2);
                 }
-
+                else if (source.GetHealth() > 20 && source.GetHealth() < 41 && !source.HasEffectState(EffectStateType.ExtraEnergy))
+                {
+                    source.DisableEffectState(EffectStateType.Deflect);
+                    source.EnableEffectState(EffectStateType.Courageous);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 1);
+                    source.EnableEffectState(EffectStateType.ExtraEnergy);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, 2);
+                }
+                else if (source.GetHealth() < 21 && !source.HasEffectState(EffectStateType.ExtraEnergy))
+                {
+                    source.DisableEffectState(EffectStateType.Courageous);
+                    source.EnableEffectState(EffectStateType.MagicShield1);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield1, 1);
+                    source.EnableEffectState(EffectStateType.ExtraEnergy);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, 2);
+                }
+                else if (source.GetHealth() < 11 && !source.HasEffectState(EffectStateType.Courageous))
+                {
+                    source.DisableEffectState(EffectStateType.ExtraEnergy);
+                    source.EnableEffectState(EffectStateType.MagicShield1);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield1, 9);
+                    source.EnableEffectState(EffectStateType.Courageous);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 9);
+                }
             }
 
             if (source.boardPieceId == BoardPieceId.WarlockMinion)
