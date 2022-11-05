@@ -55,43 +55,70 @@
             if (source.boardPieceId == BoardPieceId.ElvenQueen)
             {
                 source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
-                if (phase == 0 && damageResist < 1)
+                if (damageResist < 1)
                 {
-                    phase = 1;
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
                 }
 
-                if (source.GetHealth() < 21 && (!source.HasEffectState(EffectStateType.Courageous) || phase == 3))
+                if (source.GetHealth() < 21)
                 {
-                    phase = 4;
-                    source.DisableEffectState(EffectStateType.ExtraEnergy);
+                    source.DisableEffectState(EffectStateType.Overcharge);
+                    source.DisableEffectState(EffectStateType.HealingSong);
+                    source.DisableEffectState(EffectStateType.FireImmunity);
                     source.EnableEffectState(EffectStateType.MagicShield);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 9);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 69);
                     source.EnableEffectState(EffectStateType.Courageous);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 9);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 69);
                 }
-                else if (source.GetHealth() < 41 && (!source.HasEffectState(EffectStateType.ExtraEnergy) || phase == 2))
+                else
                 {
-                    phase = 3;
-                    source.EnableEffectState(EffectStateType.MagicShield1);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield1, 1);
-                    source.EnableEffectState(EffectStateType.ExtraEnergy);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, 2);
-                }
-                else if (source.GetHealth() < 60 && (!source.HasEffectState(EffectStateType.ExtraEnergy) || phase == 1))
-                {
-                    phase = 2;
-                    source.EnableEffectState(EffectStateType.Courageous);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 1);
-                    source.EnableEffectState(EffectStateType.ExtraEnergy);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, 2);
-                }
-                else if (source.GetHealth() > 59 && !source.HasEffectState(EffectStateType.ExtraEnergy))
-                {
-                    source.EnableEffectState(EffectStateType.Deflect);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 1);
-                    source.EnableEffectState(EffectStateType.ExtraEnergy);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, 2);
+                    int nextPhase = 3;
+                    if (source.GetHealth() > 59)
+                    {
+                        nextPhase = Random.Range(3, 7);
+                    }
+                    else if (source.GetHealth() < 40)
+                    {
+                        nextPhase = Random.Range(1, 7);
+                    }
+                    else
+                    {
+                        nextPhase = Random.Range(4, 7);
+                    }
+
+                    while (nextPhase == phase)
+                    {
+                        nextPhase = Random.Range(1, 7);
+                    }
+
+                    phase = nextPhase;
+                    switch (nextPhase)
+                    {
+                        case 1:
+                            source.EnableEffectState(EffectStateType.MagicShield1);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield1, 1);
+                            break;
+                        case 2:
+                            source.EnableEffectState(EffectStateType.Courageous);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 2);
+                            break;
+                        case 3:
+                            source.EnableEffectState(EffectStateType.Deflect);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 1);
+                            break;
+                        case 4:
+                            source.EnableEffectState(EffectStateType.FireImmunity);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 2);
+                            break;
+                        case 5:
+                            source.EnableEffectState(EffectStateType.HealingSong);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.HealingSong, 2);
+                            break;
+                        case 6:
+                            source.EnableEffectState(EffectStateType.Overcharge);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.Overcharge, 2);
+                            break;
+                    }
                 }
             }
 

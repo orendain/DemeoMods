@@ -5,6 +5,7 @@
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
+    using Boardgame.Testing;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -66,15 +67,19 @@
             for (int i = 0; i < piece.inventory.Items.Count; i++)
             {
                 Inventory.Item value = piece.inventory.Items[i];
-                int targetRefresh = 1;
-                var countdown = (value.flags >> 4) & 7;
-                if (value.abilityKey == AbilityKey.DiseasedBite || value.abilityKey == AbilityKey.EnemyFlashbang)
-                {
-                    targetRefresh = 2;
-                }
 
                 if (piece.inventory.Items[i].IsReplenishing)
                 {
+                    if (value.abilityKey == AbilityKey.DiseasedBite || value.abilityKey == AbilityKey.God || value.abilityKey == AbilityKey.EnemyFlashbang)
+                    {
+                        if (value.replenishCooldown < 0)
+                        {
+                            value.replenishCooldown = 1;
+                            piece.inventory.Items[i] = value;
+                        }
+                    }
+
+                    // EssentialsMod.Logger.Warning($"Refresh -> {value.abilityKey} - {value.replenishCooldown}");
                     bool skipReplenishing = false;
                     if (!AbilityFactory.TryGetAbility(value.abilityKey, out Ability ability))
                     {
@@ -88,6 +93,7 @@
                         if (piece.HasEffectState(ability.effectsPreventingReplenished[j]))
                         {
                             skipReplenishing = true;
+                            break;
                         }
 
                         j++;
@@ -95,39 +101,23 @@
 
                     if (!skipReplenishing)
                     {
-                        // If countdown was zero when we got called, then we need to set it.
-                        if (countdown == 0)
+                        if (value.replenishCooldown > 0)
                         {
-                            if (piece.inventory.Items[i].abilityKey != AbilityKey.Sneak)
-                            {
-                                countdown = targetRefresh;
-                            }
-                            else
-                            {
-                                // set delay for sneak cooldown
-                                countdown = 5;
-                            }
+                            value.replenishCooldown -= 1;
+                            piece.inventory.Items[i] = value;
+                            piece.AddGold(0);
+                            // Traverse.Create(piece.inventory.Items).Property<bool>("needSync").Value = true;
                         }
-                        else if (countdown == 4)
+                        else
                         {
-                            // cooldown sneak on 2nd turn
-                            countdown = 1;
-                        }
-
-                        // If we reached our desired turn count we can unset isReplenishing and return true
-                        if (countdown == 1)
-                        {
+                            // If we reached our desired turn count we can unset isReplenishing and return true
                             value.flags &= -3; // unsets isReplenishing (bit1 ) allowing card to be used again.
+                            piece.inventory.Items[i] = value;
                             __result = true;
+                            piece.AddGold(0);
+                            // Traverse.Create(piece.inventory.Items).Property<bool>("needSync").Value = true;
                         }
-
-                        countdown -= 1;
-                        value.flags &= 911; // Zero only the countdown bits using a bitmask
-                        value.flags |= countdown << 4; // OR with countdown to set them again.
-                        piece.inventory.Items[i] = value;
                     }
-
-                    Traverse.Create(piece.inventory.Items).Property<bool>("needSync").Value = true;
                 }
             }
 
@@ -162,15 +152,11 @@
                 // 1 : isReplenishing
                 // 2 : abilityDisabledOnStatusEffect
                 // 3 : disableCooldown
-                // 4-6 : ReplenishCounter - 3-bit range used by RestoreReplenishables for counting rounds.
-                // 7-9 : ReplenishFrequency - 3-bit number, user-configured target.
                 int flags = 0;
                 if (card.ReplenishFrequency > 0)
                 {
                     Traverse.Create(inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                     flags = 1;
-                    int refreshFrequency = (card.ReplenishFrequency > 7) ? 7 : card.ReplenishFrequency; // Limit to max of 7 turns.
-                    flags |= refreshFrequency << 7; // logical or with refreshFrequency shifted 7 bits to the left to become ReplenishFrequency bits 7-9
                 }
 
                 inventory.Items.Add(new Inventory.Item
