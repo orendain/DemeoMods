@@ -59,7 +59,7 @@
                 {
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
                     source.EnableEffectState(EffectStateType.Deflect);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 1);
                 }
 
                 if (source.GetHealth() < 21)
