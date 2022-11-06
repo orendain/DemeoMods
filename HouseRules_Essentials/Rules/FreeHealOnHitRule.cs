@@ -100,7 +100,7 @@
                     {
                         case 1:
                             source.EnableEffectState(EffectStateType.Deflect);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 1);
                             break;
                         case 2:
                             source.EnableEffectState(EffectStateType.MagicShield1);
