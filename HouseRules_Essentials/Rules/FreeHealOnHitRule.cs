@@ -44,11 +44,33 @@
                     nameof(Ability_GenerateAttackDamage_Postfix)));
         }
 
-        private static void Ability_GenerateAttackDamage_Postfix(Piece source, Dice.Outcome diceResult)
+        private static void Ability_GenerateAttackDamage_Postfix(Piece source, Piece mainTarget, Dice.Outcome diceResult)
         {
             if (!_isActivated)
             {
                 return;
+            }
+
+            // Serpent Lord targetted
+            if ((source.IsPlayer() || source.IsBot()) && mainTarget != null && mainTarget.boardPieceId == BoardPieceId.WizardBoss)
+            {
+                if (mainTarget.HasEffectState(EffectStateType.Invisible))
+                {
+                    mainTarget.EnableEffectState(EffectStateType.Invulnerable1);
+                }
+            }
+
+            // Serpent Lord boss fight begins
+            if (source.boardPieceId == BoardPieceId.WizardBoss)
+            {
+                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
+                if (damageResist < 1)
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
+                    source.DisableEffectState(EffectStateType.Invulnerable1);
+                    source.DisableEffectState(EffectStateType.Berserk);
+                    source.effectSink.Heal(100);
+                }
             }
 
             // Elven Queen boss fight
