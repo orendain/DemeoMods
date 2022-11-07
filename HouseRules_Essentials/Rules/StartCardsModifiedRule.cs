@@ -5,7 +5,6 @@
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
-    using Boardgame.Testing;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -68,18 +67,18 @@
             {
                 Inventory.Item value = piece.inventory.Items[i];
 
-                if (piece.inventory.Items[i].IsReplenishing)
+                if (value.IsReplenishing)
                 {
-                    if (value.abilityKey == AbilityKey.DiseasedBite || value.abilityKey == AbilityKey.God || value.abilityKey == AbilityKey.EnemyFlashbang)
+                    // Bypass problem with replenishCooldown somehow being set to -1 by Demeo
+                    foreach (var card in _globalHeroStartCards[piece.boardPieceId])
                     {
-                        if (value.replenishCooldown < 0)
+                        if (value.abilityKey == card.Card && card.ReplenishFrequency > 1 && value.replenishCooldown < 0)
                         {
-                            value.replenishCooldown = 1;
+                            value.replenishCooldown = card.ReplenishFrequency - 1;
                             piece.inventory.Items[i] = value;
                         }
                     }
 
-                    // EssentialsMod.Logger.Warning($"Refresh -> {value.abilityKey} - {value.replenishCooldown}");
                     bool skipReplenishing = false;
                     if (!AbilityFactory.TryGetAbility(value.abilityKey, out Ability ability))
                     {
@@ -105,6 +104,7 @@
                         {
                             value.replenishCooldown -= 1;
                             piece.inventory.Items[i] = value;
+                            // Force inventory sync to clients
                             piece.AddGold(0);
                             // Traverse.Create(piece.inventory.Items).Property<bool>("needSync").Value = true;
                         }
@@ -114,6 +114,7 @@
                             value.flags &= -3; // unsets isReplenishing (bit1 ) allowing card to be used again.
                             piece.inventory.Items[i] = value;
                             __result = true;
+                            // Force inventory sync to clients
                             piece.AddGold(0);
                             // Traverse.Create(piece.inventory.Items).Property<bool>("needSync").Value = true;
                         }
