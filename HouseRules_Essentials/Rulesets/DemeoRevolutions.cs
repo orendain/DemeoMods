@@ -15,7 +15,7 @@
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
-                { BoardPieceId.ScarabSandPile, new List<int> { 0, 1, 2 } },
+                { BoardPieceId.ScarabSandPile, new List<int> { 1, 0, 1 } },
                 { BoardPieceId.LargeCorruption, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileArcher, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileMutantWizard, new List<int> { 3, 1, 1 } },
@@ -179,11 +179,13 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "MoveRange", Value = 10 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "ActionPoint", Value = 3 },
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "DamageResist", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Barricade, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 12 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 67 },
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "DamageResist", Value = 1 },
             });
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -288,7 +290,7 @@
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.LuckPotion,
-                        AbilityKey.IceImmunePotion,
+                        AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.WaterBottle,
@@ -521,8 +523,8 @@
                 { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken } },
                 { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded } },
-                { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },
-                { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage } },
+                { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
+                { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
             });
 
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -541,7 +543,7 @@
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.MinionCharge, false },
                 { AbilityKey.SpellPowerPotion, false },
-                { AbilityKey.Bandage, false },
+                { AbilityKey.DivineLight, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -585,7 +587,7 @@
 
             var abilityStealthDamageRule = new AbilityStealthDamageOverriddenRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.DiseasedBite, 1 },
+                { AbilityKey.DiseasedBite, 2 },
                 { AbilityKey.PoisonBomb, 1 },
                 { AbilityKey.PlayerMelee, 2 },
             });
@@ -613,7 +615,7 @@
                 { AbilityKey.BlockAbilities, 1 },
             });
 
-            var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
+            // var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
@@ -637,12 +639,12 @@
                 { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
-                { "FloorOneGoldMaxAmount", 400 },
+                { "FloorOneGoldMaxAmount", 450 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
                 { "FloorTwoLootChests", 3 },
-                { "FloorTwoGoldMaxAmount", 500 },
+                { "FloorTwoGoldMaxAmount", 550 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
@@ -674,7 +676,7 @@
                 abilityStealthDamageRule,
                 enemyCooldownRule,
                 aoeAdjustedRule,
-                pieceExtraImmunities,
+                abilityDamageRule,
                 partyElectricity,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,

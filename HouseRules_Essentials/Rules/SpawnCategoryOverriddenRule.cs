@@ -60,7 +60,7 @@
                     };
 
                     bool canHoldKey;
-                    if (spawnCategories[i].BoardPieceId == BoardPieceId.GeneralRonthian)
+                    if (spawnCategories[i].BoardPieceId == BoardPieceId.GeneralRonthian || spawnCategories[i].BoardPieceId == BoardPieceId.ScabRat)
                     {
                         canHoldKey = false;
                     }
