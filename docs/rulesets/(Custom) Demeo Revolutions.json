@@ -5,7 +5,7 @@
     {
       "Rule": "SpawnCategoryOverridden",
       "Config": {
-        "ScarabSandPile": [ 0, 1, 2 ],
+        "ScarabSandPile": [ 1, 0, 1 ],
         "LargeCorruption": [ 3, 1, 1 ],
         "ReptileArcher": [ 3, 1, 1 ],
         "ReptileMutantWizard": [ 3, 1, 1 ],
@@ -134,7 +134,7 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "EnemyFrostball",
+            "Card": "EnemyFlashBang",
             "ReplenishFrequency": 2
           },
           {
@@ -408,6 +408,26 @@
           "Piece": "Verochka",
           "Property": "StartHealth",
           "Value": 8
+        },
+        {
+          "Piece": "Barricade",
+          "Property": "StartHealth",
+          "Value": 8
+        },
+        {
+          "Piece": "Lure",
+          "Property": "StartHealth",
+          "Value": 12
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "BarkArmor",
+          "Value": 1
+        },
+        {
+          "Piece": "ElvenQueen",
+          "Property": "StartHealth",
+          "Value": 67
         }
       ]
     },
@@ -416,11 +436,9 @@
       "Config": {
         "HeroGuardian": [
           "Bone",
-          "WebBomb",
           "Regroup",
           "OneMoreThing",
           "PanicPowder",
-          "Barricade",
           "BottleOfLye",
           "Teleportation",
           "StrengthPotion",
@@ -458,6 +476,7 @@
         "HeroBard": [
           "Bone",
           "WebBomb",
+          "Barricade",
           "Regroup",
           "OneMoreThing",
           "PanicPowder",
@@ -495,10 +514,8 @@
           "HurricaneAnthem"
         ],
         "HeroHunter": [
-          "WebBomb",
           "RepeatingBallista",
           "PanicPowder",
-          "Barricade",
           "BottleOfLye",
           "Teleportation",
           "StrengthPotion",
@@ -539,7 +556,6 @@
           "Regroup",
           "OneMoreThing",
           "PanicPowder",
-          "Barricade",
           "BottleOfLye",
           "Teleportation",
           "StrengthPotion",
@@ -646,6 +662,61 @@
       }
     },
     {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "TorchPlayer",
+          "durationTurns": 20,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "FireImmunity",
+          "durationTurns": 12,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "IceImmunity",
+          "durationTurns": 12,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "Invulnerable3",
+          "durationTurns": 2,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
+        },
+        {
+          "effectStateType": "MarkOfAvalon",
+          "durationTurns": 2,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": true,
+          "damageTags": null,
+          "healPerTurn": 0
+        }
+      ]
+    },
+    {
       "Rule": "PieceAbilityListOverridden",
       "Config": {
         "EarthElemental": [ "EnemyMelee", "EnemyKnockbackMelee", "EarthShatter", "EnemyJavelin" ],
@@ -684,9 +755,10 @@
       "Config": {
         "HeroSorcerer": [ "Stunned" ],
         "HeroGuardian": [ "Weaken" ],
+        "HeroHunter":  [ "Frozen" ],
         "HeroRogue": [ "Tangled", "Blinded" ],
-        "HeroWarlock": [ "CorruptedRage" ],
-        "WarlockMinion": [ "CorruptedRage" ]
+        "HeroWarlock": [ "CorruptedRage", "Undefined" ],
+        "WarlockMinion": [ "CorruptedRage", "Undefined" ]
       }
     },
     {
@@ -706,7 +778,8 @@
         "Arrow": false,
         "MinionCharge": false,
         "SpellPowerPotion": false,
-        "EnemyFlashbang": false
+        "EnemyFlashbang": false,
+        "DivineLight": false
       }
     },
     {
@@ -715,7 +788,7 @@
         "HealingPotion": 5,
         "Rejuvenation": 8,
         "AltarHeal": 8,
-        "WaterBottle":  2,
+        "WaterBottle": 2,
         "TurretHealProjectile": 2
       }
     },
@@ -724,6 +797,7 @@
       "Config": {
         "SongOfRecovery": 2,
         "SongOfResilience": 2,
+        "Deflect": 2,
         "FlashBomb": 1,
         "WarCry": 1,
         "WhirlwindAttack": 1,
@@ -734,6 +808,7 @@
     {
       "Rule": "AbilityDamageOverridden",
       "Config": {
+        "ShatteringVoice": [ 3, 6, 3, 6 ],
         "PiercingVoice": [ 2, 4, 2, 4 ],
         "Arrow": [ 3, 8, 3, 8 ]
       }
@@ -764,15 +839,13 @@
       "Rule": "FreeHealOnHit",
       "Config": [
         "HeroWarlock",
-        "HeroRogue",
-        "HeroBard"
+        "HeroRogue"
       ]
     },
     {
       "Rule": "FreeHealOnCrit",
       "Config": [
         "HeroWarlock",
-        "HeroBard",
         "HeroRogue"
       ]
     },
@@ -813,7 +886,7 @@
     {
       "Rule": "AbilityStealthDamageOverridden",
       "Config": {
-        "DiseasedBite": 1,
+        "DiseasedBite": 2,
         "PoisonBomb": 1,
         "PlayerMelee": 2
       }
@@ -831,10 +904,6 @@
       }
     },
     {
-      "Rule": "PieceExtraImmunities",
-      "Config": true
-    },
-    {
       "Rule": "PartyElectricityDamageOverridden",
       "Config": true
     },
@@ -848,11 +917,11 @@
     },
     {
       "Rule": "CardEnergyFromAttackMultiplied",
-      "Config": 0.25
+      "Config": 0.75
     },
     {
       "Rule": "CardEnergyFromRecyclingMultiplied",
-      "Config": 0.5
+      "Config": 0.67
     },
     {
       "Rule": "LevelSequenceOverridden",
@@ -874,12 +943,12 @@
         "FloorOnePotionStand": 0,
         "FloorOneMerchant": 0,
         "FloorOneLootChests": 2,
-        "FloorOneGoldMaxAmount": 500,
+        "FloorOneGoldMaxAmount": 450,
         "FloorTwoHealingFountains": 1,
         "FloorTwoPotionStand": 1,
         "FloorTwoMerchant": 1,
         "FloorTwoLootChests": 3,
-        "FloorTwoGoldMaxAmount": 600,
+        "FloorTwoGoldMaxAmount": 550,
         "FloorThreeHealingFountains": 1,
         "FloorThreePotionStand": 0,
         "FloorThreeMerchant": 0,

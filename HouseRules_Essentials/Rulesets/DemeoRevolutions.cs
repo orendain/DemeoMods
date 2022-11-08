@@ -194,11 +194,9 @@
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
                         AbilityKey.Bone,
-                        AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
                         AbilityKey.PanicPowder,
-                        AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
@@ -237,6 +235,7 @@
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
                         AbilityKey.Bone,
+                        AbilityKey.Barricade,
                         AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
@@ -278,10 +277,8 @@
                 {
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
-                        AbilityKey.WebBomb,
                         AbilityKey.RepeatingBallista,
                         AbilityKey.PanicPowder,
-                        AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
@@ -319,11 +316,9 @@
                     BoardPieceId.HeroRogue, new List<AbilityKey>
                     {
                         AbilityKey.Bone,
-                        AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
                         AbilityKey.PanicPowder,
-                        AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
@@ -399,10 +394,10 @@
                     {
                         AbilityKey.Bone,
                         AbilityKey.WebBomb,
+                        AbilityKey.Barricade,
                         AbilityKey.RepeatingBallista,
                         AbilityKey.Regroup,
                         AbilityKey.PanicPowder,
-                        AbilityKey.Barricade,
                         AbilityKey.BottleOfLye,
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.HeavensFury,
