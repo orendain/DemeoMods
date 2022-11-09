@@ -160,6 +160,12 @@
                     flags = 1;
                 }
 
+                // Only add Torch in Rat King adventure
+                if (MotherbrainGlobalVars.CurrentConfig != GameConfigType.Sewers && card.Card == AbilityKey.Torch)
+                {
+                    continue;
+                }
+
                 inventory.Items.Add(new Inventory.Item
                 {
                     abilityKey = card.Card,
