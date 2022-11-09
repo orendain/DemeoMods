@@ -178,6 +178,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 17 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "MoveRange", Value = 10 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "ActionPoint", Value = 3 },
@@ -197,6 +198,7 @@
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
                         AbilityKey.Bone,
+                        AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
                         AbilityKey.PanicPowder,
@@ -204,7 +206,6 @@
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
-                        AbilityKey.RepeatingBallista,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
@@ -265,7 +266,6 @@
                         AbilityKey.SongOfRecovery,
                         AbilityKey.ScrollOfCharm,
                         AbilityKey.SongOfResilience,
-                        AbilityKey.BlockAbilities,
                         AbilityKey.PiercingVoice,
                         AbilityKey.ShatteringVoice,
                         AbilityKey.HurricaneAnthem,
@@ -345,7 +345,6 @@
                         AbilityKey.PoisonBomb,
                         AbilityKey.CoinFlip,
                         AbilityKey.CursedDagger,
-                        AbilityKey.BoobyTrap,
                         AbilityKey.FlashBomb,
                         AbilityKey.Blink,
                         AbilityKey.PoisonBomb,
@@ -387,7 +386,6 @@
                         AbilityKey.Banish,
                         AbilityKey.Fireball,
                         AbilityKey.Freeze,
-                        AbilityKey.MagicShield,
                         AbilityKey.MagicBarrier,
                         AbilityKey.Vortex,
                     }
@@ -425,7 +423,6 @@
                         AbilityKey.Portal,
                         AbilityKey.Deflect,
                         AbilityKey.GuidingLight,
-                        AbilityKey.Implode,
                         AbilityKey.MissileSwarm,
                         AbilityKey.Portal,
                     }

@@ -436,6 +436,7 @@
       "Config": {
         "HeroGuardian": [
           "Bone",
+          "WebBomb",
           "Regroup",
           "OneMoreThing",
           "PanicPowder",
@@ -443,7 +444,6 @@
           "Teleportation",
           "StrengthPotion",
           "SwiftnessPotion",
-          "RepeatingBallista",
           "HeavensFury",
           "HealingPotion",
           "VigorPotion",
@@ -480,7 +480,6 @@
           "Regroup",
           "OneMoreThing",
           "PanicPowder",
-          "ScrollOfCharm",
           "BottleOfLye",
           "Teleportation",
           "SwiftnessPotion",
@@ -495,18 +494,20 @@
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
+          "ScrollOfCharm",
           "SongOfRecovery",
           "SongOfResilience",
           "BlockAbilities",
           "PiercingVoice",
           "ShatteringVoice",
           "HurricaneAnthem",
+          "ScrollOfCharm",
           "SongOfRecovery",
           "SongOfResilience",
-          "BlockAbilities",
           "PiercingVoice",
           "ShatteringVoice",
           "HurricaneAnthem",
+          "ScrollOfCharm",
           "SongOfRecovery",
           "SongOfResilience",
           "PiercingVoice",
@@ -574,7 +575,6 @@
           "PoisonBomb",
           "CoinFlip",
           "CursedDagger",
-          "BoobyTrap",
           "Blink",
           "PoisonBomb",
           "CoinFlip",
@@ -620,7 +620,6 @@
           "Banish",
           "Fireball",
           "Freeze",
-          "MagicBarrier",
           "Vortex"
         ],
         "HeroWarlock": [
@@ -656,7 +655,6 @@
           "Portal",
           "Deflect",
           "GuidingLight",
-          "Implode",
           "MissileSwarm"
         ]
       }
