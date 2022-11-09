@@ -101,7 +101,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "Zap": true,
       "Arrow": true,
       "PiercingArrow": true,
-      "PoisonTip": true,
+      "PoisonedTip": true,
       "Fireball": true,
       "Freeze": true,
     }
@@ -425,19 +425,19 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "LampTypesOverridden",
     "Config": {
-      "Floor1Lamps": [
+      "1": [
         "OilLamp",
         "OilLamp",
         "OilLamp",
         "VortexLamp"
       ],
-      "Floor2Lamps": [
+      "2": [
         "GasLamp",
         "GasLamp",
         "GasLamp",
         "VortexLamp"
       ],
-      "Floor3Lamps": [
+      "3": [
         "IceLamp",
         "IceLamp",
         "IceLamp",
