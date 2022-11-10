@@ -491,7 +491,7 @@
                 { BoardPieceId.ElvenArcher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyArrowSnipe, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
                 { BoardPieceId.TheUnseen, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Zap } },
-                { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.SummonBossMinions, AbilityKey.LightningBolt, AbilityKey.EarthShatter, AbilityKey.EnemyFireball } },
+                { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.SummonBossMinions, AbilityKey.LightningBolt, AbilityKey.Shockwave, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.BigBoiMutant, new List<AbilityKey> { AbilityKey.EnemyKnockbackMelee, AbilityKey.Shockwave, AbilityKey.LeapHeavy } },
                 { BoardPieceId.GoblinFighter, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyFlashbang } },
             });
@@ -590,9 +590,10 @@
             var enemyCooldownRule = new EnemyCooldownOverriddenRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.Zap, 2 },
-                { AbilityKey.LightningBolt, 2 },
+                { AbilityKey.LightningBolt, 4 },
                 { AbilityKey.LeapHeavy, 2 },
-                { AbilityKey.EnemyFrostball, 2 },
+                { AbilityKey.EnemyFrostball, 4 },
+                { AbilityKey.Shockwave, 4 },
                 { AbilityKey.EnemyFireball, 2 },
                 { AbilityKey.EnemyFlashbang, 2 },
                 { AbilityKey.Petrify, 2 },
