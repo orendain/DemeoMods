@@ -5,6 +5,7 @@ namespace HouseRules.Essentials.Rules
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
     using Boardgame.BoardEntities.AI;
+    using Boardgame.Cards;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -54,6 +55,32 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
+            // Change Frost Arrow back into Fire Arrow if used
+            if (source.boardPieceId == BoardPieceId.HeroHunter)
+            {
+                if (source.inventory.HasAbility(AbilityKey.EnemyFrostball))
+                {
+                    for (int i = 0; i < source.inventory.Items.Count; i++)
+                    {
+                        Inventory.Item value = source.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.EnemyFrostball && value.IsReplenishing)
+                        {
+                            source.inventory.Items.Remove(value);
+                            source.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.EnemyFireball,
+                                flags = 1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            source.inventory.ExhaustReplenishableItem(i);
+                            source.AddGold(0);
+                            break;
+                        }
+                    }
+                }
+            }
+
             if (diceResult != Dice.Outcome.Crit)
             {
                 return;
@@ -77,14 +104,13 @@ namespace HouseRules.Essentials.Rules
                     source.effectSink.AddStatusEffect(EffectStateType.Stealthed, currentST);
                     source.EnableEffectState(EffectStateType.Stealthed);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Stealthed, currentST);
-                    Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
+                    source.AddGold(0);
                     return;
                 }
                 else
                 {
                     source.RestoreReplenishableAbilities();
                     source.RestoreReplenishableAbilities();
-                    Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                     return;
                 }
             }
@@ -102,7 +128,6 @@ namespace HouseRules.Essentials.Rules
                         if (source.inventory.HasAbility(AbilityKey.Electricity, includeIsReplenishing: false, includeIsDisabled: false))
                         {
                             source.RestoreReplenishableAbilities();
-                            Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                             return;
                         }
                         else
@@ -113,11 +138,11 @@ namespace HouseRules.Essentials.Rules
                                 if (source.inventory.Items[i].abilityKey == AbilityKey.Electricity)
                                 {
                                     source.inventory.ExhaustReplenishableItem(i);
+                                    source.AddGold(0);
                                     break;
                                 }
                             }
 
-                            Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
                             return;
                         }
                     }
@@ -127,9 +152,59 @@ namespace HouseRules.Essentials.Rules
                     }
                 }
             }
+            else if (source.boardPieceId == BoardPieceId.HeroHunter)
+            {
+                if (currentAP > 0)
+                {
+                    if (source.inventory.HasAbility(AbilityKey.EnemyFireball, includeIsReplenishing: false, includeIsDisabled: false))
+                    {
+                        source.RestoreReplenishableAbilities();
+                        return;
+                    }
+                    else
+                    {
+                        source.RestoreReplenishableAbilities();
+                        for (int i = 0; i < source.inventory.Items.Count; i++)
+                        {
+                            if (source.inventory.Items[i].abilityKey == AbilityKey.EnemyFireball)
+                            {
+                                source.inventory.ExhaustReplenishableItem(i);
+                                source.AddGold(0);
+                                break;
+                            }
+                        }
+
+                        return;
+                    }
+                }
+                else
+                {
+                    source.RestoreReplenishableAbilities();
+                    for (int i = 0; i < source.inventory.Items.Count; i++)
+                    {
+                        Inventory.Item value = source.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.EnemyFireball)
+                        {
+                            source.inventory.Items.Remove(value);
+                            source.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.EnemyFrostball,
+                                flags = 1,
+                                originalOwner = -1,
+                                replenishCooldown = 6,
+                            });
+                            source.EnableEffectState(EffectStateType.FireImmunity);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                            source.AddGold(0);
+                            break;
+                        }
+                    }
+
+                    return;
+                }
+            }
 
             source.RestoreReplenishableAbilities();
-            Traverse.Create(source.inventory.Items).Property<bool>("needSync").Value = true;
         }
     }
 }

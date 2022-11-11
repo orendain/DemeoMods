@@ -5,6 +5,7 @@
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
+    using Boardgame.GameplayEffects;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -51,6 +52,12 @@
                 return;
             }
 
+            // Compensate for dead monster hitting player
+            if (!source.IsPlayer() && source.GetHealth() < 1 && mainTarget != null)
+            {
+                mainTarget.effectSink.Heal(2);
+            }
+
             // Serpent Lord targetted
             if ((source.IsPlayer() || source.IsBot()) && mainTarget != null && mainTarget.boardPieceId == BoardPieceId.WizardBoss)
             {
@@ -84,7 +91,7 @@
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 1);
                 }
 
-                if (source.GetHealth() < 16)
+                if (source.GetHealth() < 21)
                 {
                     source.EnableEffectState(EffectStateType.MagicShield1);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield1, 69);
@@ -129,16 +136,16 @@
                             source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield1, 1);
                             break;
                         case 3:
-                            source.EnableEffectState(EffectStateType.Courageous);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 1);
+                            source.EnableEffectState(EffectStateType.FireImmunity);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 1);
                             break;
                         case 4:
                             source.EnableEffectState(EffectStateType.Recovery);
                             source.effectSink.SetStatusEffectDuration(EffectStateType.Recovery, 2);
                             break;
                         case 5:
-                            source.EnableEffectState(EffectStateType.FireImmunity);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 1);
+                            source.EnableEffectState(EffectStateType.Courageous);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 1);
                             break;
                     }
                 }

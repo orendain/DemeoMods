@@ -106,7 +106,6 @@
                             piece.inventory.Items[i] = value;
                             // Force inventory sync to clients
                             piece.AddGold(0);
-                            // Traverse.Create(piece.inventory.Items).Property<bool>("needSync").Value = true;
                         }
                         else
                         {
@@ -116,7 +115,6 @@
                             __result = true;
                             // Force inventory sync to clients
                             piece.AddGold(0);
-                            // Traverse.Create(piece.inventory.Items).Property<bool>("needSync").Value = true;
                         }
                     }
                 }
