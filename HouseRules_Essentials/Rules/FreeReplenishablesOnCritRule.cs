@@ -111,6 +111,7 @@ namespace HouseRules.Essentials.Rules
                 {
                     source.RestoreReplenishableAbilities();
                     source.RestoreReplenishableAbilities();
+                    source.AddGold(0);
                     return;
                 }
             }
