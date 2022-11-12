@@ -64,13 +64,6 @@
                 postfix: new HarmonyMethod(
                     typeof(BoardSyncer),
                     nameof(EffectSink_AddStatusEffect_Postfix)));
-
-            // Workaround for a bug in Demeo v1.21 affecting board syncing. Can be removed after next Demeo patch is released as it includes fix from RG.
-            harmony.Patch(
-                original: AccessTools.Method(typeof(Piece), "ForceSyncState"),
-                prefix: new HarmonyMethod(
-                    typeof(BoardSyncer),
-                    nameof(Piece_ForceSyncState_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -93,16 +86,15 @@
                 _isSyncScheduled = true;
             }
 
-            if (_isSyncScheduled && IsSyncOpportunity(serializableEvent))
+            if (serializableEvent.type == SerializableEvent.Type.EndAction || serializableEvent.type == SerializableEvent.Type.EndTurn)
+            {
+                _isSyncScheduled = true;
+            }
+
+            if (_isSyncScheduled)
             {
                 SyncBoard();
             }
-        }
-
-        private static bool Piece_ForceSyncState_Prefix(BoardModel boardModel, ref Piece __instance)
-        {
-            __instance.ReregisterPieceVisualStateHandlers();
-            return true;
         }
 
         private static void Piece_IsImmuneToStatusEffect_Postfix()
@@ -179,12 +171,15 @@
                     return true;
                 case AbilityKey.MagicBarrier:
                     return true;
+                case AbilityKey.MinionCharge:
+                    return true;
+                case AbilityKey.MinionMelee:
+                    return true;
             }
 
             var abilityName = abilityKey.ToString();
             var isSpawnAbility = abilityName.Contains("Spawn");
             var isLampAbility = abilityName.Contains("Lamp");
- 
             return isSpawnAbility || isLampAbility;
         }
 
@@ -204,16 +199,6 @@
             }
 
             return false;
-        }
-
-        private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
-        {
-            if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
-            {
-                return serializableEvent.type == SerializableEvent.Type.EndTurn;
-            }
-
-            return true;
         }
 
         private static void SyncBoard()
