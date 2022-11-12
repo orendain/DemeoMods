@@ -80,18 +80,12 @@
             }
 
             var isNewPieceCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
-
             if (!_isSyncScheduled && isNewPieceCheckRequired && CanRepresentNewSpawn(serializableEvent))
             {
                 _isSyncScheduled = true;
             }
 
-            if (serializableEvent.type == SerializableEvent.Type.EndAction || serializableEvent.type == SerializableEvent.Type.EndTurn)
-            {
-                _isSyncScheduled = true;
-            }
-
-            if (_isSyncScheduled)
+            if (_isSyncScheduled && IsSyncOpportunity(serializableEvent))
             {
                 SyncBoard();
             }
@@ -119,18 +113,17 @@
         {
             switch (serializableEvent.type)
             {
-                case SerializableEvent.Type.UpdateFogAndSpawn:
-                    return true;
                 case SerializableEvent.Type.SpawnPiece:
-                    return true;
+                case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
-                    return true;
                 case SerializableEvent.Type.SlimeFusion:
                     return true;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
                     return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
+                case SerializableEvent.Type.EndAction:
+                    return _gameContext.pieceAndTurnController.IsPlayersTurn();
                 default:
                     return false;
             }
@@ -142,44 +135,29 @@
             switch (abilityKey)
             {
                 case AbilityKey.SummonElemental:
-                    return true;
                 case AbilityKey.SummonBossMinions:
-                    return true;
                 case AbilityKey.BeastWhisperer:
-                    return true;
                 case AbilityKey.HurricaneAnthem:
-                    return true;
                 case AbilityKey.Lure:
-                    return true;
                 case AbilityKey.BoobyTrap:
-                    return true;
                 case AbilityKey.DetectEnemies:
-                    return true;
                 case AbilityKey.RepeatingBallista:
-                    return true;
                 case AbilityKey.TheBehemoth:
-                    return true;
                 case AbilityKey.HealingWard:
-                    return true;
                 case AbilityKey.RaiseRoots:
-                    return true;
                 case AbilityKey.CallCompanion:
-                    return true;
                 case AbilityKey.DigRatsNest:
-                    return true;
                 case AbilityKey.Barricade:
-                    return true;
-                case AbilityKey.MagicBarrier:
-                    return true;
                 case AbilityKey.MinionCharge:
-                    return true;
                 case AbilityKey.MinionMelee:
+                case AbilityKey.MagicBarrier:
                     return true;
             }
 
             var abilityName = abilityKey.ToString();
             var isSpawnAbility = abilityName.Contains("Spawn");
             var isLampAbility = abilityName.Contains("Lamp");
+
             return isSpawnAbility || isLampAbility;
         }
 
@@ -199,6 +177,17 @@
             }
 
             return false;
+        }
+
+        private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
+        {
+            if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
+
+            {
+                return serializableEvent.type == SerializableEvent.Type.EndTurn;
+            }
+
+            return true;
         }
 
         private static void SyncBoard()
