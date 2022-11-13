@@ -52,12 +52,6 @@
                 return;
             }
 
-            // Compensate for dead monster hitting player
-            if (!source.IsPlayer() && source.GetHealth() < 1 && mainTarget != null)
-            {
-                mainTarget.effectSink.Heal(2);
-            }
-
             // Serpent Lord targetted
             if ((source.IsPlayer() || source.IsBot()) && mainTarget != null && mainTarget.boardPieceId == BoardPieceId.WizardBoss)
             {
@@ -87,11 +81,9 @@
                 if (damageResist < 1)
                 {
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-                    source.EnableEffectState(EffectStateType.Deflect);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 1);
                 }
 
-                if (source.GetHealth() < 21)
+                if (source.GetHealth() < 26)
                 {
                     source.EnableEffectState(EffectStateType.MagicShield1);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield1, 69);

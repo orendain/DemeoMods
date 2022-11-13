@@ -195,7 +195,7 @@ namespace HouseRules.Essentials.Rules
                                 replenishCooldown = 6,
                             });
                             source.EnableEffectState(EffectStateType.FireImmunity);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 7);
                             source.AddGold(0);
                             break;
                         }

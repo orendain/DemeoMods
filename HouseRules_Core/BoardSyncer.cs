@@ -122,8 +122,8 @@
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
                     return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
-                case SerializableEvent.Type.EndAction:
-                    return _gameContext.pieceAndTurnController.IsPlayersTurn();
+                /*case SerializableEvent.Type.EndAction:
+                    return _gameContext.pieceAndTurnController.IsPlayersTurn();*/
                 default:
                     return false;
             }
@@ -148,8 +148,6 @@
                 case AbilityKey.CallCompanion:
                 case AbilityKey.DigRatsNest:
                 case AbilityKey.Barricade:
-                case AbilityKey.MinionCharge:
-                case AbilityKey.MinionMelee:
                 case AbilityKey.MagicBarrier:
                     return true;
             }
