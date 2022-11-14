@@ -79,8 +79,7 @@
                 return;
             }
 
-            var isNewPieceCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
-            if (!_isSyncScheduled && (isNewPieceCheckRequired || CanRepresentNewSpawn(serializableEvent)))
+            if (!_isSyncScheduled && CanRepresentNewSpawn(serializableEvent))
             {
                 _isSyncScheduled = true;
             }
