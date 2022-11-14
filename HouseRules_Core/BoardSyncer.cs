@@ -113,12 +113,10 @@
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.SpawnPiece:
-                case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
                     return true;
                 case SerializableEvent.Type.Interact:
-                    return _gameContext.pieceAndTurnController.IsPlayersTurn();
                 case SerializableEvent.Type.Move:
                     return _gameContext.pieceAndTurnController.IsPlayersTurn();
                 case SerializableEvent.Type.OnAbilityUsed:
@@ -190,7 +188,6 @@
 
         private static void SyncBoard()
         {
-            // CoreMod.Logger.Warning("Sync");
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
