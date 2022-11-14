@@ -149,8 +149,6 @@
                 case AbilityKey.Barricade:
                 case AbilityKey.MagicBarrier:
                     return true;
-                case AbilityKey.Grab:
-                    return !_gameContext.pieceAndTurnController.IsPlayersTurn();
             }
 
             var abilityName = abilityKey.ToString();
