@@ -80,7 +80,7 @@
             }
 
             var isNewPieceCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
-            if (!_isSyncScheduled && isNewPieceCheckRequired && CanRepresentNewSpawn(serializableEvent))
+            if (!_isSyncScheduled && (isNewPieceCheckRequired || CanRepresentNewSpawn(serializableEvent)))
             {
                 _isSyncScheduled = true;
             }
@@ -118,12 +118,14 @@
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
                     return true;
+                case SerializableEvent.Type.Interact:
+                    return _gameContext.pieceAndTurnController.IsPlayersTurn();
+                case SerializableEvent.Type.Move:
+                    return _gameContext.pieceAndTurnController.IsPlayersTurn();
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
                     return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
-                /*case SerializableEvent.Type.EndAction:
-                    return _gameContext.pieceAndTurnController.IsPlayersTurn();*/
                 default:
                     return false;
             }
@@ -134,8 +136,6 @@
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
-                case AbilityKey.SummonElemental:
-                case AbilityKey.SummonBossMinions:
                 case AbilityKey.BeastWhisperer:
                 case AbilityKey.HurricaneAnthem:
                 case AbilityKey.Lure:
@@ -150,13 +150,16 @@
                 case AbilityKey.Barricade:
                 case AbilityKey.MagicBarrier:
                     return true;
+                case AbilityKey.Grab:
+                    return !_gameContext.pieceAndTurnController.IsPlayersTurn();
             }
 
             var abilityName = abilityKey.ToString();
             var isSpawnAbility = abilityName.Contains("Spawn");
             var isLampAbility = abilityName.Contains("Lamp");
+            var isSummonAbility = abilityName.Contains("Summon");
 
-            return isSpawnAbility || isLampAbility;
+            return isSpawnAbility || isLampAbility || isSummonAbility;
         }
 
         private static bool CanRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
@@ -190,6 +193,7 @@
 
         private static void SyncBoard()
         {
+            // CoreMod.Logger.Warning("Sync");
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
