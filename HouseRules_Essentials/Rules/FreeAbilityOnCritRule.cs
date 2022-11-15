@@ -104,6 +104,7 @@
 
             if (source.boardPieceId == BoardPieceId.HeroSorcerer)
             {
+                source.DisableEffectState(EffectStateType.Wet);
                 source.EnableEffectState(EffectStateType.Overcharge);
             }
 

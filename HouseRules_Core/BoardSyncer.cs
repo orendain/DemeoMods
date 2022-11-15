@@ -113,6 +113,8 @@
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.SpawnPiece:
+                case SerializableEvent.Type.UpdateFog:
+                case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
                     return true;
@@ -146,6 +148,10 @@
                 case AbilityKey.DigRatsNest:
                 case AbilityKey.Barricade:
                 case AbilityKey.MagicBarrier:
+                case AbilityKey.LeapHeavy:
+                case AbilityKey.Leap:
+                case AbilityKey.MinionCharge:
+                case AbilityKey.MinionMelee:
                     return true;
             }
 
@@ -188,6 +194,7 @@
 
         private static void SyncBoard()
         {
+            // MelonLoader.MelonLogger.Warning("Sync");
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
