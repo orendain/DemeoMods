@@ -117,10 +117,11 @@
                 case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
-                    return true;
+                case SerializableEvent.Type.NewPlayerJoin:
+                case SerializableEvent.Type.OnMoved:
                 case SerializableEvent.Type.Interact:
                 case SerializableEvent.Type.Move:
-                    return _gameContext.pieceAndTurnController.IsPlayersTurn();
+                    return true;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
@@ -148,10 +149,6 @@
                 case AbilityKey.DigRatsNest:
                 case AbilityKey.Barricade:
                 case AbilityKey.MagicBarrier:
-                case AbilityKey.LeapHeavy:
-                case AbilityKey.Leap:
-                case AbilityKey.MinionCharge:
-                case AbilityKey.MinionMelee:
                     return true;
             }
 
@@ -184,12 +181,22 @@
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
             if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
-
             {
-                return serializableEvent.type == SerializableEvent.Type.EndTurn;
+                if (serializableEvent.type == SerializableEvent.Type.EndTurn)
+                {
+                    return serializableEvent.type == SerializableEvent.Type.EndTurn;
+                }
             }
 
-            return true;
+            switch (serializableEvent.type)
+            {
+                case SerializableEvent.Type.EndAction:
+                case SerializableEvent.Type.CheckReopenCharacterSelect:
+                case SerializableEvent.Type.UpdateGameHub:
+                    return true;
+            }
+
+            return false;
         }
 
         private static void SyncBoard()
