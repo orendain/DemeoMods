@@ -62,10 +62,269 @@
                 return true;
             }
 
+            Inventory.Item value;
+
+            // Change Frost Arrow back into Fire Arrow if used
+            if (piece.boardPieceId == BoardPieceId.HeroHunter)
+            {
+                if (piece.inventory.HasAbility(AbilityKey.EnemyFrostball) && piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity) < 3)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.EnemyFrostball && value.IsReplenishing)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.EnemyFireball,
+                                flags = 1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.inventory.ExhaustReplenishableItem(i);
+                            piece.AddGold(0);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Energy Potion effects per class
+            if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) > 1)
+            {
+                bool hasPower = false;
+                if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.LeapHeavy)
+                        {
+                            hasPower = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasPower)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.LeapHeavy,
+                            flags = 1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+                        piece.AddGold(0);
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.SpawnRandomLamp)
+                        {
+                            hasPower = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasPower)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.SpawnRandomLamp,
+                            flags = 1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+                        piece.AddGold(0);
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.PVPBlink)
+                        {
+                            hasPower = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasPower)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.PVPBlink,
+                            flags = 1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+                        piece.AddGold(0);
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.SpellPowerPotion)
+                        {
+                            hasPower = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasPower)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.SpellPowerPotion,
+                            flags = 1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+                        piece.AddGold(0);
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.FretsOfFire)
+                        {
+                            hasPower = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasPower)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.FretsOfFire,
+                            flags = 1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+                        piece.AddGold(0);
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.Weaken)
+                        {
+                            hasPower = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasPower)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.Weaken,
+                            flags = 1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+                        piece.AddGold(0);
+                    }
+                }
+            }
+            else if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
+            {
+                if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.LeapHeavy)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            piece.AddGold(0);
+                            break;
+                        }
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.SpawnRandomLamp)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            piece.AddGold(0);
+                            break;
+                        }
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.PVPBlink)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            piece.AddGold(0);
+                            break;
+                        }
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.SpellPowerPotion)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            piece.AddGold(0);
+                            break;
+                        }
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.FretsOfFire)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            piece.AddGold(0);
+                            break;
+                        }
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.Weaken)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            piece.AddGold(0);
+                            break;
+                        }
+                    }
+                }
+            }
+
             __result = false;
             for (int i = 0; i < piece.inventory.Items.Count; i++)
             {
-                Inventory.Item value = piece.inventory.Items[i];
+                value = piece.inventory.Items[i];
 
                 if (value.IsReplenishing)
                 {

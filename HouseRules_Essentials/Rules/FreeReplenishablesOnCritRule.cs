@@ -55,34 +55,6 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            Inventory.Item value;
-
-            // Change Frost Arrow back into Fire Arrow if used
-            if (source.boardPieceId == BoardPieceId.HeroHunter)
-            {
-                if (source.inventory.HasAbility(AbilityKey.EnemyFrostball))
-                {
-                    for (int i = 0; i < source.inventory.Items.Count; i++)
-                    {
-                        value = source.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.EnemyFrostball && value.IsReplenishing)
-                        {
-                            source.inventory.Items.Remove(value);
-                            source.inventory.Items.Add(new Inventory.Item
-                            {
-                                abilityKey = AbilityKey.EnemyFireball,
-                                flags = 1,
-                                originalOwner = -1,
-                                replenishCooldown = 1,
-                            });
-                            source.inventory.ExhaustReplenishableItem(i);
-                            source.AddGold(0);
-                            break;
-                        }
-                    }
-                }
-            }
-
             if (diceResult != Dice.Outcome.Crit)
             {
                 return;
@@ -93,6 +65,7 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
+            Inventory.Item value;
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
 
             if (source.boardPieceId == BoardPieceId.HeroRogue)
@@ -103,9 +76,9 @@ namespace HouseRules.Essentials.Rules
                     source.effectSink.RemoveStatusEffect(EffectStateType.Stealthed);
                     for (int i = 0; i < source.inventory.Items.Count; i++)
                     {
-                        if (source.inventory.Items[i].abilityKey == AbilityKey.DiseasedBite)
+                        value = source.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.DiseasedBite)
                         {
-                            value = source.inventory.Items[i];
                             if (value.IsReplenishing)
                             {
                                 if (value.replenishCooldown < 0)
@@ -118,7 +91,14 @@ namespace HouseRules.Essentials.Rules
                                 }
 
                                 source.inventory.Items[i] = value;
-                                break;
+                            }
+                        }
+                        else if (value.abilityKey == AbilityKey.FretsOfFire)
+                        {
+                            if (value.IsReplenishing)
+                            {
+                                value.replenishCooldown = 1;
+                                source.inventory.Items[i] = value;
                             }
                         }
                     }
@@ -134,9 +114,9 @@ namespace HouseRules.Essentials.Rules
                 {
                     for (int i = 0; i < source.inventory.Items.Count; i++)
                     {
-                        if (source.inventory.Items[i].abilityKey == AbilityKey.DiseasedBite)
+                        value = source.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.DiseasedBite)
                         {
-                            value = source.inventory.Items[i];
                             if (value.IsReplenishing)
                             {
                                 if (value.replenishCooldown < 0)
@@ -149,7 +129,14 @@ namespace HouseRules.Essentials.Rules
                                 }
 
                                 source.inventory.Items[i] = value;
-                                break;
+                            }
+                        }
+                        else if (value.abilityKey == AbilityKey.FretsOfFire)
+                        {
+                            if (value.IsReplenishing)
+                            {
+                                value.replenishCooldown = 1;
+                                source.inventory.Items[i] = value;
                             }
                         }
                     }
@@ -161,22 +148,29 @@ namespace HouseRules.Essentials.Rules
             {
                 for (int i = 0; i < source.inventory.Items.Count; i++)
                 {
-                    if (source.inventory.Items[i].abilityKey == AbilityKey.EnemyFlashbang)
+                    value = source.inventory.Items[i];
+                    if (value.abilityKey == AbilityKey.EnemyFlashbang)
                     {
-                        value = source.inventory.Items[i];
                         if (value.IsReplenishing)
                         {
                             if (value.replenishCooldown < 0)
                             {
-                                value.replenishCooldown = 2;
+                                value.replenishCooldown = 3;
                             }
                             else
                             {
-                                value.replenishCooldown++;
+                                value.replenishCooldown += 2;
                             }
 
                             source.inventory.Items[i] = value;
-                            break;
+                        }
+                    }
+                    else if (value.abilityKey == AbilityKey.PVPBlink)
+                    {
+                        if (value.IsReplenishing)
+                        {
+                            value.replenishCooldown = 1;
+                            source.inventory.Items[i] = value;
                         }
                     }
                 }
@@ -186,7 +180,15 @@ namespace HouseRules.Essentials.Rules
                 for (int i = 0; i < source.inventory.Items.Count; i++)
                 {
                     value = source.inventory.Items[i];
-                    if (source.inventory.Items[i].abilityKey == AbilityKey.MagicMissile)
+                    if (value.abilityKey == AbilityKey.MagicMissile)
+                    {
+                        if (value.IsReplenishing)
+                        {
+                            value.replenishCooldown = 1;
+                            source.inventory.Items[i] = value;
+                        }
+                    }
+                    else if (value.abilityKey == AbilityKey.Weaken)
                     {
                         if (value.IsReplenishing)
                         {
@@ -209,14 +211,21 @@ namespace HouseRules.Essentials.Rules
 
                         for (int i = 0; i < source.inventory.Items.Count; i++)
                         {
-                            if (source.inventory.Items[i].abilityKey == AbilityKey.Electricity)
+                            value = source.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.Electricity)
                             {
-                                value = source.inventory.Items[i];
                                 if (value.IsReplenishing)
                                 {
                                     value.replenishCooldown = 1;
                                     source.inventory.Items[i] = value;
-                                    break;
+                                }
+                            }
+                            else if (value.abilityKey == AbilityKey.SpellPowerPotion)
+                            {
+                                if (value.IsReplenishing)
+                                {
+                                    value.replenishCooldown = 1;
+                                    source.inventory.Items[i] = value;
                                 }
                             }
                         }
@@ -227,20 +236,45 @@ namespace HouseRules.Essentials.Rules
                     }
                 }
             }
+            else if (source.boardPieceId == BoardPieceId.HeroGuardian)
+            {
+                if (currentAP > 0)
+                {
+                    for (int i = 0; i < source.inventory.Items.Count; i++)
+                    {
+                        value = source.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.LeapHeavy)
+                        {
+                            if (value.IsReplenishing)
+                            {
+                                value.replenishCooldown = 1;
+                                source.inventory.Items[i] = value;
+                            }
+                        }
+                    }
+                }
+            }
             else if (source.boardPieceId == BoardPieceId.HeroHunter)
             {
                 if (currentAP > 0)
                 {
                     for (int i = 0; i < source.inventory.Items.Count; i++)
                     {
-                        if (source.inventory.Items[i].abilityKey == AbilityKey.EnemyFireball)
+                        value = source.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.EnemyFireball)
                         {
-                            value = source.inventory.Items[i];
                             if (value.IsReplenishing)
                             {
                                 value.replenishCooldown = 1;
                                 source.inventory.Items[i] = value;
-                                break;
+                            }
+                        }
+                        else if (value.abilityKey == AbilityKey.SpawnRandomLamp)
+                        {
+                            if (value.IsReplenishing)
+                            {
+                                value.replenishCooldown = 1;
+                                source.inventory.Items[i] = value;
                             }
                         }
                     }

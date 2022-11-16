@@ -113,13 +113,9 @@
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.SpawnPiece:
-                case SerializableEvent.Type.UpdateFog:
                 case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
-                case SerializableEvent.Type.NewPlayerJoin:
-                case SerializableEvent.Type.OnMoved:
-                case SerializableEvent.Type.Interact:
                 case SerializableEvent.Type.Move:
                     return true;
                 case SerializableEvent.Type.OnAbilityUsed:
@@ -149,6 +145,9 @@
                 case AbilityKey.DigRatsNest:
                 case AbilityKey.Barricade:
                 case AbilityKey.MagicBarrier:
+                case AbilityKey.Grab:
+                case AbilityKey.Leap:
+                case AbilityKey.LeapHeavy:
                     return true;
             }
 
@@ -190,9 +189,12 @@
 
             switch (serializableEvent.type)
             {
+                case SerializableEvent.Type.Interact:
                 case SerializableEvent.Type.EndAction:
                 case SerializableEvent.Type.CheckReopenCharacterSelect:
+                case SerializableEvent.Type.NewPlayerJoin:
                 case SerializableEvent.Type.UpdateGameHub:
+                case SerializableEvent.Type.OnMoved:
                     return true;
             }
 

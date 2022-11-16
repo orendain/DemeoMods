@@ -83,7 +83,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
             };
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
@@ -96,7 +96,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFlashbang, ReplenishFrequency = 2 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -108,7 +108,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WarCry, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grab, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -120,7 +120,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Lure, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -132,7 +132,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.FlashBomb, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 2 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -144,7 +144,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
@@ -232,11 +232,16 @@
                         AbilityKey.TheBehemoth,
                         AbilityKey.PiercingThrow,
                         AbilityKey.Charge,
+                        AbilityKey.WhirlwindAttack,
+                        AbilityKey.WarCry,
+                        AbilityKey.TheBehemoth,
+                        AbilityKey.PiercingThrow,
                     }
                 },
                 {
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
+                        AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
                         AbilityKey.Barricade,
                         AbilityKey.WebBomb,
@@ -273,6 +278,10 @@
                         AbilityKey.SongOfResilience,
                         AbilityKey.PiercingVoice,
                         AbilityKey.ShatteringVoice,
+                        AbilityKey.HurricaneAnthem,
+                        AbilityKey.SongOfRecovery,
+                        AbilityKey.SongOfResilience,
+                        AbilityKey.PiercingVoice,
                         AbilityKey.HurricaneAnthem,
                     }
                 },
@@ -311,6 +320,10 @@
                         AbilityKey.CallCompanion,
                         AbilityKey.HuntersMark,
                         AbilityKey.Lure,
+                        AbilityKey.BeastWhisperer,
+                        AbilityKey.HailOfArrows,
+                        AbilityKey.CallCompanion,
+                        AbilityKey.HuntersMark,
                     }
                 },
                 {
@@ -348,11 +361,16 @@
                         AbilityKey.CoinFlip,
                         AbilityKey.CursedDagger,
                         AbilityKey.FlashBomb,
+                        AbilityKey.Blink,
+                        AbilityKey.PoisonBomb,
+                        AbilityKey.CursedDagger,
+                        AbilityKey.FlashBomb,
                     }
                 },
                 {
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
+                        AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
                         AbilityKey.Regroup,
                         AbilityKey.PanicPowder,
@@ -378,6 +396,11 @@
                         AbilityKey.Fireball,
                         AbilityKey.Freeze,
                         AbilityKey.MagicShield,
+                        AbilityKey.MagicBarrier,
+                        AbilityKey.Vortex,
+                        AbilityKey.Banish,
+                        AbilityKey.Fireball,
+                        AbilityKey.Freeze,
                         AbilityKey.MagicBarrier,
                         AbilityKey.Vortex,
                         AbilityKey.Banish,
@@ -416,6 +439,10 @@
                         AbilityKey.Deflect,
                         AbilityKey.GuidingLight,
                         AbilityKey.Implode,
+                        AbilityKey.MissileSwarm,
+                        AbilityKey.Portal,
+                        AbilityKey.Deflect,
+                        AbilityKey.GuidingLight,
                         AbilityKey.MissileSwarm,
                         AbilityKey.Portal,
                         AbilityKey.Deflect,
@@ -472,6 +499,15 @@
                     stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.ExtraEnergy,
+                    durationTurns = 2,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
             });
 
@@ -534,7 +570,13 @@
                 { AbilityKey.Arrow, false },
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.MinionCharge, false },
+                { AbilityKey.EnemyFrostball, false },
                 { AbilityKey.SpellPowerPotion, false },
+                { AbilityKey.PVPBlink, false },
+                { AbilityKey.Weaken, false },
+                { AbilityKey.LeapHeavy, false },
+                { AbilityKey.SpawnRandomLamp, false },
+                { AbilityKey.FretsOfFire, false },
                 { AbilityKey.DivineLight, false },
             });
 
@@ -552,6 +594,8 @@
                 { AbilityKey.ShatteringVoice, new List<int> { 3, 6, 3, 6 } },
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Arrow, new List<int> { 3, 8, 3, 8 } },
+                { AbilityKey.PVPBlink, new List<int> { 6, 12, 6, 12 } },
+                { AbilityKey.FretsOfFire, new List<int> { 5, 10, 5, 10 } },
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
@@ -582,6 +626,7 @@
                 { AbilityKey.DiseasedBite, 2 },
                 { AbilityKey.PoisonBomb, 1 },
                 { AbilityKey.PlayerMelee, 2 },
+                { AbilityKey.FretsOfFire, 2 },
             });
 
             var enemyCooldownRule = new EnemyCooldownOverriddenRule(new Dictionary<AbilityKey, int>
