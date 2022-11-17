@@ -22,6 +22,8 @@
         private static bool _isPotionStand;
         private static bool _isWaterBottleChest;
         private static int _numPlayers;
+        private static int _numEnergy;
+        private static int _numAlags;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
 
@@ -152,6 +154,51 @@
             }
 
             var replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+            if (replacementAbilityKey == AbilityKey.EnergyPotion)
+            {
+                _numEnergy++;
+                if (_numEnergy > 2)
+                {
+                    while (replacementAbilityKey == AbilityKey.EnergyPotion)
+                    {
+                        replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+                    }
+
+                    if (replacementAbilityKey == AbilityKey.DamageResistPotion)
+                    {
+                        if (_numAlags > 2)
+                        {
+                            while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
+                            {
+                                replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+                            }
+                        }
+                    }
+                }
+            }
+            else if (replacementAbilityKey == AbilityKey.DamageResistPotion)
+            {
+                _numAlags++;
+                if (_numAlags > 2)
+                {
+                    while (replacementAbilityKey == AbilityKey.DamageResistPotion)
+                    {
+                        replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+                    }
+
+                    if (replacementAbilityKey == AbilityKey.EnergyPotion)
+                    {
+                        if (_numEnergy > 2)
+                        {
+                            while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
+                            {
+                                replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+                            }
+                        }
+                    }
+                }
+            }
+
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
         }
     }

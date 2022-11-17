@@ -83,11 +83,11 @@ namespace HouseRules.Essentials.Rules
                             {
                                 if (value.replenishCooldown < 0)
                                 {
-                                    value.replenishCooldown = 3;
+                                    value.replenishCooldown = 2;
                                 }
                                 else
                                 {
-                                    value.replenishCooldown += 2;
+                                    value.replenishCooldown = 1;
                                 }
 
                                 source.inventory.Items[i] = value;
@@ -121,11 +121,11 @@ namespace HouseRules.Essentials.Rules
                             {
                                 if (value.replenishCooldown < 0)
                                 {
-                                    value.replenishCooldown = 3;
+                                    value.replenishCooldown = 2;
                                 }
                                 else
                                 {
-                                    value.replenishCooldown += 2;
+                                    value.replenishCooldown = 1;
                                 }
 
                                 source.inventory.Items[i] = value;
@@ -140,8 +140,6 @@ namespace HouseRules.Essentials.Rules
                             }
                         }
                     }
-
-                    source.RestoreReplenishableAbilities();
                 }
             }
             else if (source.boardPieceId == BoardPieceId.HeroBard)
@@ -155,11 +153,11 @@ namespace HouseRules.Essentials.Rules
                         {
                             if (value.replenishCooldown < 0)
                             {
-                                value.replenishCooldown = 3;
+                                value.replenishCooldown = 2;
                             }
                             else
                             {
-                                value.replenishCooldown += 2;
+                                value.replenishCooldown = 1;
                             }
 
                             source.inventory.Items[i] = value;
@@ -295,11 +293,12 @@ namespace HouseRules.Essentials.Rules
                                 originalOwner = -1,
                                 replenishCooldown = 1,
                             });
-                            source.EnableEffectState(EffectStateType.FireImmunity);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
-                            source.AddGold(0);
-                            break;
                         }
+
+                        source.EnableEffectState(EffectStateType.FireImmunity);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                        source.AddGold(0);
+                        break;
                     }
 
                     return;

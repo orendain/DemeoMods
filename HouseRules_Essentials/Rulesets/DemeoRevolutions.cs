@@ -197,6 +197,7 @@
                 {
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
+                        AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.Regroup,
@@ -288,6 +289,7 @@
                 {
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
+                        AbilityKey.EnergyPotion,
                         AbilityKey.RepeatingBallista,
                         AbilityKey.PanicPowder,
                         AbilityKey.BottleOfLye,
@@ -329,6 +331,7 @@
                 {
                     BoardPieceId.HeroRogue, new List<AbilityKey>
                     {
+                        AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
@@ -406,13 +409,13 @@
                         AbilityKey.Banish,
                         AbilityKey.Fireball,
                         AbilityKey.Freeze,
-                        AbilityKey.MagicBarrier,
                         AbilityKey.Vortex,
                     }
                 },
                 {
                     BoardPieceId.HeroWarlock, new List<AbilityKey>
                     {
+                        AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.Barricade,
@@ -500,15 +503,6 @@
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.ExtraEnergy,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
             });
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -570,7 +564,6 @@
                 { AbilityKey.Arrow, false },
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.MinionCharge, false },
-                { AbilityKey.EnemyFrostball, false },
                 { AbilityKey.SpellPowerPotion, false },
                 { AbilityKey.PVPBlink, false },
                 { AbilityKey.Weaken, false },
@@ -594,8 +587,9 @@
                 { AbilityKey.ShatteringVoice, new List<int> { 3, 6, 3, 6 } },
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Arrow, new List<int> { 3, 8, 3, 8 } },
+                { AbilityKey.Electricity, new List<int> { 3, 5, 1, 2 } },
                 { AbilityKey.PVPBlink, new List<int> { 6, 12, 6, 12 } },
-                { AbilityKey.FretsOfFire, new List<int> { 5, 10, 5, 10 } },
+                { AbilityKey.FretsOfFire, new List<int> { 4, 8, 4, 8 } },
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
