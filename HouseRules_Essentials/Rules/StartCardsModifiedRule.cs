@@ -67,7 +67,7 @@
             // Change Frost Arrow back into Fire Arrow if turns used up
             if (piece.boardPieceId == BoardPieceId.HeroHunter)
             {
-                if (piece.inventory.HasAbility(AbilityKey.EnemyFrostball) && piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity) < 4)
+                if (piece.inventory.HasAbility(AbilityKey.EnemyFrostball) && !piece.HasEffectState(EffectStateType.AbilityBuildUp))
                 {
                     for (int i = 0; i < piece.inventory.Items.Count; i++)
                     {
@@ -91,7 +91,7 @@
             }
 
             // Energy Potion effects per class
-            if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) > 0)
+            if (piece.HasEffectState(EffectStateType.ExtraEnergy))
             {
                 bool hasPower = false;
                 if (piece.boardPieceId == BoardPieceId.HeroGuardian)
@@ -239,7 +239,7 @@
                     }
                 }
             }
-            else if (!piece.HasEffectState(EffectStateType.ExtraEnergy))
+            else
             {
                 if (piece.boardPieceId == BoardPieceId.HeroGuardian)
                 {

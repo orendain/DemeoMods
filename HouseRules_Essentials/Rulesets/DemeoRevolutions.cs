@@ -233,10 +233,6 @@
                         AbilityKey.TheBehemoth,
                         AbilityKey.PiercingThrow,
                         AbilityKey.Charge,
-                        AbilityKey.WhirlwindAttack,
-                        AbilityKey.WarCry,
-                        AbilityKey.TheBehemoth,
-                        AbilityKey.PiercingThrow,
                     }
                 },
                 {
@@ -280,10 +276,6 @@
                         AbilityKey.PiercingVoice,
                         AbilityKey.ShatteringVoice,
                         AbilityKey.HurricaneAnthem,
-                        AbilityKey.SongOfRecovery,
-                        AbilityKey.SongOfResilience,
-                        AbilityKey.PiercingVoice,
-                        AbilityKey.HurricaneAnthem,
                     }
                 },
                 {
@@ -322,10 +314,6 @@
                         AbilityKey.CallCompanion,
                         AbilityKey.HuntersMark,
                         AbilityKey.Lure,
-                        AbilityKey.BeastWhisperer,
-                        AbilityKey.HailOfArrows,
-                        AbilityKey.CallCompanion,
-                        AbilityKey.HuntersMark,
                     }
                 },
                 {
@@ -363,11 +351,6 @@
                         AbilityKey.PoisonBomb,
                         AbilityKey.CoinFlip,
                         AbilityKey.CursedDagger,
-                        AbilityKey.FlashBomb,
-                        AbilityKey.Blink,
-                        AbilityKey.PoisonBomb,
-                        AbilityKey.CursedDagger,
-                        AbilityKey.FlashBomb,
                     }
                 },
                 {
@@ -406,10 +389,6 @@
                         AbilityKey.Freeze,
                         AbilityKey.MagicBarrier,
                         AbilityKey.Vortex,
-                        AbilityKey.Banish,
-                        AbilityKey.Fireball,
-                        AbilityKey.Freeze,
-                        AbilityKey.Vortex,
                     }
                 },
                 {
@@ -442,10 +421,6 @@
                         AbilityKey.Deflect,
                         AbilityKey.GuidingLight,
                         AbilityKey.Implode,
-                        AbilityKey.MissileSwarm,
-                        AbilityKey.Portal,
-                        AbilityKey.Deflect,
-                        AbilityKey.GuidingLight,
                         AbilityKey.MissileSwarm,
                         AbilityKey.Portal,
                         AbilityKey.Deflect,
@@ -502,6 +477,15 @@
                     stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.ExtraEnergy,
+                    durationTurns = 4,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
             });
 

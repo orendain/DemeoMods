@@ -267,6 +267,14 @@ namespace HouseRules.Essentials.Rules
                                 source.inventory.Items[i] = value;
                             }
                         }
+                        else if (value.abilityKey == AbilityKey.EnemyFrostball)
+                        {
+                            if (value.IsReplenishing)
+                            {
+                                value.replenishCooldown = 1;
+                                source.inventory.Items[i] = value;
+                            }
+                        }
                         else if (value.abilityKey == AbilityKey.SpawnRandomLamp)
                         {
                             if (value.IsReplenishing)
@@ -280,6 +288,8 @@ namespace HouseRules.Essentials.Rules
                 else
                 {
                     source.RestoreReplenishableAbilities();
+                    source.EnableEffectState(EffectStateType.AbilityBuildUp);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.AbilityBuildUp, 3);
                     for (int i = 0; i < source.inventory.Items.Count; i++)
                     {
                         value = source.inventory.Items[i];
@@ -293,12 +303,39 @@ namespace HouseRules.Essentials.Rules
                                 originalOwner = -1,
                                 replenishCooldown = 1,
                             });
-                        }
 
-                        source.EnableEffectState(EffectStateType.FireImmunity);
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
-                        source.AddGold(0);
-                        break;
+                            if (!source.HasEffectState(EffectStateType.FireImmunity))
+                            {
+                                source.EnableEffectState(EffectStateType.FireImmunity);
+                                source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                                source.AddGold(0);
+                                break;
+                            }
+                            else
+                            {
+                                int existingFire = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity);
+                                source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, existingFire + 6);
+                                source.AddGold(0);
+                                break;
+                            }
+                        }
+                        else if (value.abilityKey == AbilityKey.EnemyFrostball)
+                        {
+                            if (!source.HasEffectState(EffectStateType.FireImmunity))
+                            {
+                                source.EnableEffectState(EffectStateType.FireImmunity);
+                                source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                                source.AddGold(0);
+                                break;
+                            }
+                            else
+                            {
+                                int existingFire = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity);
+                                source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, existingFire + 6);
+                                source.AddGold(0);
+                                break;
+                            }
+                        }
                     }
 
                     return;

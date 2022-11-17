@@ -96,6 +96,7 @@
             var isEffectImmunityCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (isEffectImmunityCheckRequired)
             {
+                _reason = "ImmunityCheck";
                 _isSyncScheduled = true;
             }
         }
@@ -105,6 +106,7 @@
             var isEffectDataCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
             if (isEffectDataCheckRequired)
             {
+                _reason = "StatusEffect";
                 _isSyncScheduled = true;
             }
         }
@@ -129,11 +131,21 @@
                     _reason = "NewPlayerJoin";
                     return true;
                 case SerializableEvent.Type.Interact:
-                    _reason = "Interact";
-                    return true;
+                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        _reason = "Interact";
+                        return true;
+                    }
+
+                    return false;
                 case SerializableEvent.Type.Pickup:
-                    _reason = "Pickup";
-                    return true;
+                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        _reason = "Pickup";
+                        return true;
+                    }
+
+                    return false;
                 case SerializableEvent.Type.SlimeFusion:
                     _reason = "SlimeFusion";
                     return true;
@@ -233,6 +245,9 @@
                 }
             }
 
+            /*_reason2 = "JustBecause";
+            return true;*/
+
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.EndAction:
@@ -244,6 +259,9 @@
                 case SerializableEvent.Type.UpdateGameHub:
                     _reason2 = "UpdateGameHub";
                     return true;
+                /*case SerializableEvent.Type.EndTurn:
+                    _reason2 = "EndTurn";
+                    return true;*/
             }
 
             return false;
@@ -251,7 +269,7 @@
 
         private static void SyncBoard()
         {
-            // MelonLoader.MelonLogger.Warning($"Sync: [{_reason}] because [{_reason2}]");
+            MelonLoader.MelonLogger.Warning($"Sync: [{_reason}] because [{_reason2}]");
             _reason = null;
             _reason2 = null;
             _isSyncScheduled = false;
