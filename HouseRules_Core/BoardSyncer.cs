@@ -28,7 +28,6 @@
         private static GameContext _gameContext;
         private static bool _isSyncScheduled;
         private static string _reason;
-        private static string _reason2;
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
         /// </summary>
@@ -80,7 +79,9 @@
                 return;
             }
 
-            if (!_isSyncScheduled && CanRepresentNewSpawn(serializableEvent))
+            CoreMod.Logger.Msg("-");
+            var isNewPieceCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.NewPieceModified) > 0;
+            if (!_isSyncScheduled && isNewPieceCheckRequired && CanRepresentNewSpawn(serializableEvent))
             {
                 _isSyncScheduled = true;
             }
@@ -115,11 +116,12 @@
         {
             switch (serializableEvent.type)
             {
+                case SerializableEvent.Type.RearrangeTurnQueue:
+                    // Player piece out of sync fix (Grab, etc.)
+                    _reason = "RearrangeTurnQueue";
+                    return true;
                 case SerializableEvent.Type.SpawnPiece:
                     _reason = "SpawnPiece";
-                    return true;
-                case SerializableEvent.Type.SpawnDice:
-                    _reason = "SpawnDice";
                     return true;
                 case SerializableEvent.Type.UpdateFogAndSpawn:
                     _reason = "UpdateFogAndSpawn";
@@ -127,44 +129,9 @@
                 case SerializableEvent.Type.SetBoardPieceID:
                     _reason = "SetBoardPieceID";
                     return true;
-                case SerializableEvent.Type.NewPlayerJoin:
-                    _reason = "NewPlayerJoin";
-                    return true;
-                case SerializableEvent.Type.Interact:
-                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
-                    {
-                        _reason = "Interact";
-                        return true;
-                    }
-
-                    return false;
-                case SerializableEvent.Type.Pickup:
-                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
-                    {
-                        _reason = "Pickup";
-                        return true;
-                    }
-
-                    return false;
                 case SerializableEvent.Type.SlimeFusion:
                     _reason = "SlimeFusion";
                     return true;
-                case SerializableEvent.Type.OnMoved:
-                    if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
-                    {
-                        _reason = "OnMoved";
-                        return true;
-                    }
-
-                    return false;
-                case SerializableEvent.Type.Move:
-                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
-                    {
-                        _reason = "Moved";
-                        return true;
-                    }
-
-                    return false;
                 case SerializableEvent.Type.OnAbilityUsed:
                     if (CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent))
                     {
@@ -182,6 +149,8 @@
 
                     return false;
                 default:
+                    string whatUp = serializableEvent.ToString();
+                    CoreMod.Logger.Msg($"--> {whatUp}");
                     return false;
             }
         }
@@ -240,38 +209,26 @@
             {
                 if (serializableEvent.type == SerializableEvent.Type.EndTurn)
                 {
-                    _reason2 = "EndTurn";
                     return true;
                 }
             }
 
-            /*_reason2 = "JustBecause";
-            return true;*/
-
-            switch (serializableEvent.type)
+            // Darkness Fix
+            if (_reason == "StatusEffect" || _reason == "ImmunityCheck")
             {
-                case SerializableEvent.Type.EndAction:
-                    _reason2 = "EndAction";
-                    return _gameContext.pieceAndTurnController.IsPlayersTurn();
-                case SerializableEvent.Type.CheckReopenCharacterSelect:
-                    _reason2 = "CheckReopenCharacterSelect";
-                    return true;
-                case SerializableEvent.Type.UpdateGameHub:
-                    _reason2 = "UpdateGameHub";
-                    return true;
-                /*case SerializableEvent.Type.EndTurn:
-                    _reason2 = "EndTurn";
-                    return true;*/
+                if (serializableEvent.type != SerializableEvent.Type.EndAction)
+                {
+                    return false;
+                }
             }
 
-            return false;
+            return true;
         }
 
         private static void SyncBoard()
         {
-            MelonLoader.MelonLogger.Warning($"Sync: [{_reason}] because [{_reason2}]");
+            CoreMod.Logger.Msg($"Sync: <<<<<[{_reason}]>>>>> ");
             _reason = null;
-            _reason2 = null;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
