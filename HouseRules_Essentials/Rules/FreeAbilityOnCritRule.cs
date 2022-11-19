@@ -101,11 +101,58 @@
             {
                 source.EnableEffectState(EffectStateType.SpellPower);
             }
-
-            if (source.boardPieceId == BoardPieceId.HeroSorcerer)
+            else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
             {
                 source.DisableEffectState(EffectStateType.Wet);
                 source.EnableEffectState(EffectStateType.Overcharge);
+            }
+            else if (source.boardPieceId == BoardPieceId.HeroHunter)
+            {
+                Inventory.Item value;
+                bool hasPower = false;
+                for (int i = 0; i < source.inventory.Items.Count; i++)
+                {
+                    value = source.inventory.Items[i];
+                    if (value.abilityKey == AbilityKey.EnemyFrostball)
+                    {
+                        hasPower = true;
+                        break;
+                    }
+                }
+
+                if (hasPower)
+                {
+                    if (!source.HasEffectState(EffectStateType.FireImmunity))
+                    {
+                        source.EnableEffectState(EffectStateType.FireImmunity);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                    }
+                    else
+                    {
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity + 6));
+                    }
+                }
+                else
+                {
+                    source.inventory.Items.Add(new Inventory.Item
+                    {
+                        abilityKey = AbilityKey.EnemyFrostball,
+                        flags = 1,
+                        originalOwner = -1,
+                        replenishCooldown = 1,
+                    });
+
+                    source.AddGold(0);
+                    if (!source.HasEffectState(EffectStateType.FireImmunity))
+                    {
+                        source.EnableEffectState(EffectStateType.FireImmunity);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                    }
+                    else
+                    {
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity + 6));
+                    }
+                }
             }
 
             source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);

@@ -64,26 +64,34 @@
 
             Inventory.Item value;
 
-            // Change Frost Arrow back into Fire Arrow if turns used up
+            // Remove Frost Arrow if used
             if (piece.boardPieceId == BoardPieceId.HeroHunter)
             {
-                if (piece.inventory.HasAbility(AbilityKey.EnemyFrostball) && !piece.HasEffectState(EffectStateType.AbilityBuildUp))
+                if (piece.inventory.HasAbility(AbilityKey.EnemyFrostball))
                 {
                     for (int i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
                         if (value.abilityKey == AbilityKey.EnemyFrostball)
                         {
-                            piece.inventory.Items.Remove(value);
-                            piece.inventory.Items.Add(new Inventory.Item
+                            if (value.IsReplenishing)
                             {
-                                abilityKey = AbilityKey.EnemyFireball,
-                                flags = 1,
-                                originalOwner = -1,
-                                replenishCooldown = 1,
-                            });
-                            piece.inventory.ExhaustReplenishableItem(i);
-                            piece.AddGold(0);
+                                piece.inventory.Items.Remove(value);
+                                piece.AddGold(0);
+                                if (piece.HasEffectState(EffectStateType.FireImmunity))
+                                {
+                                    int fireImm = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity);
+                                    if (fireImm > 5)
+                                    {
+                                        piece.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, fireImm - 5);
+                                    }
+                                    else
+                                    {
+                                        piece.DisableEffectState(EffectStateType.FireImmunity);
+                                    }
+                                }
+                            }
+
                             break;
                         }
                     }
@@ -102,6 +110,11 @@
                         if (value.abilityKey == AbilityKey.LeapHeavy)
                         {
                             hasPower = true;
+                            if (!value.IsReplenishing)
+                            {
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                            }
+
                             break;
                         }
                     }
@@ -126,6 +139,11 @@
                         if (value.abilityKey == AbilityKey.SpawnRandomLamp)
                         {
                             hasPower = true;
+                            if (!value.IsReplenishing)
+                            {
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                            }
+
                             break;
                         }
                     }
@@ -150,6 +168,11 @@
                         if (value.abilityKey == AbilityKey.PVPBlink)
                         {
                             hasPower = true;
+                            if (!value.IsReplenishing)
+                            {
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                            }
+
                             break;
                         }
                     }
@@ -174,6 +197,11 @@
                         if (value.abilityKey == AbilityKey.SpellPowerPotion)
                         {
                             hasPower = true;
+                            if (!value.IsReplenishing)
+                            {
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                            }
+
                             break;
                         }
                     }
@@ -198,6 +226,11 @@
                         if (value.abilityKey == AbilityKey.FretsOfFire)
                         {
                             hasPower = true;
+                            if (!value.IsReplenishing)
+                            {
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                            }
+
                             break;
                         }
                     }
@@ -222,6 +255,11 @@
                         if (value.abilityKey == AbilityKey.Weaken)
                         {
                             hasPower = true;
+                            if (!value.IsReplenishing)
+                            {
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                            }
+
                             break;
                         }
                     }
