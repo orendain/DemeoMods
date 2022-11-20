@@ -99,6 +99,7 @@
             }
 
             // Energy Potion effects per class
+            bool hasEnergy = true;
             if (piece.HasEffectState(EffectStateType.ExtraEnergy))
             {
                 bool hasPower = false;
@@ -110,9 +111,14 @@
                         if (value.abilityKey == AbilityKey.LeapHeavy)
                         {
                             hasPower = true;
-                            if (!value.IsReplenishing)
+                            if (value.IsReplenishing)
                             {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
+                                if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
+                                {
+                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                    hasEnergy = false;
+                                }
                             }
 
                             break;
@@ -139,9 +145,14 @@
                         if (value.abilityKey == AbilityKey.SpawnRandomLamp)
                         {
                             hasPower = true;
-                            if (!value.IsReplenishing)
+                            if (value.IsReplenishing)
                             {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
+                                if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
+                                {
+                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                    hasEnergy = false;
+                                }
                             }
 
                             break;
@@ -168,9 +179,14 @@
                         if (value.abilityKey == AbilityKey.PVPBlink)
                         {
                             hasPower = true;
-                            if (!value.IsReplenishing)
+                            if (value.IsReplenishing)
                             {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
+                                if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
+                                {
+                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                    hasEnergy = false;
+                                }
                             }
 
                             break;
@@ -197,9 +213,14 @@
                         if (value.abilityKey == AbilityKey.SpellPowerPotion)
                         {
                             hasPower = true;
-                            if (!value.IsReplenishing)
+                            if (value.IsReplenishing)
                             {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
+                                if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
+                                {
+                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                    hasEnergy = false;
+                                }
                             }
 
                             break;
@@ -226,9 +247,14 @@
                         if (value.abilityKey == AbilityKey.FretsOfFire)
                         {
                             hasPower = true;
-                            if (!value.IsReplenishing)
+                            if (value.IsReplenishing)
                             {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
+                                if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
+                                {
+                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                    hasEnergy = false;
+                                }
                             }
 
                             break;
@@ -255,9 +281,14 @@
                         if (value.abilityKey == AbilityKey.Weaken)
                         {
                             hasPower = true;
-                            if (!value.IsReplenishing)
+                            if (value.IsReplenishing)
                             {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) + 1);
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
+                                if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
+                                {
+                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                    hasEnergy = false;
+                                }
                             }
 
                             break;
@@ -277,7 +308,8 @@
                     }
                 }
             }
-            else
+
+            if (hasEnergy == false)
             {
                 if (piece.boardPieceId == BoardPieceId.HeroGuardian)
                 {

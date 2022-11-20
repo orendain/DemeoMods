@@ -40,6 +40,7 @@
                 { BoardPieceId.ScabRat, new List<int> { 4, 1, 1 } },
                 { BoardPieceId.Spider, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.Rat, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.PoisonousRat, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.TheUnheard, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.Slimeling, new List<int> { 4, 1, 1 } },
                 { BoardPieceId.Thug, new List<int> { 4, 1, 1 } },
@@ -481,11 +482,11 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.ExtraEnergy,
-                    durationTurns = 4,
+                    durationTurns = 3,
                     damagePerTurn = 0,
-                    stacks = false,
+                    stacks = true,
                     clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                    tickWhen = StatusEffectsConfig.TickWhen.Never,
                 },
             });
 
