@@ -166,7 +166,7 @@
 
                     if (replacementAbilityKey == AbilityKey.DamageResistPotion)
                     {
-                        if (_numAlags > 2)
+                        if (_numAlags > 3)
                         {
                             while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
                             {
@@ -179,7 +179,7 @@
             else if (replacementAbilityKey == AbilityKey.DamageResistPotion)
             {
                 _numAlags++;
-                if (_numAlags > 2)
+                if (_numAlags > 3)
                 {
                     while (replacementAbilityKey == AbilityKey.DamageResistPotion)
                     {

@@ -484,7 +484,7 @@
                     effectStateType = EffectStateType.ExtraEnergy,
                     durationTurns = 3,
                     damagePerTurn = 0,
-                    stacks = true,
+                    stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.Never,
                 },
@@ -605,7 +605,7 @@
                 { AbilityKey.DiseasedBite, 2 },
                 { AbilityKey.PoisonBomb, 1 },
                 { AbilityKey.PlayerMelee, 2 },
-                { AbilityKey.FretsOfFire, 2 },
+                { AbilityKey.FretsOfFire, 1 },
             });
 
             var enemyCooldownRule = new EnemyCooldownOverriddenRule(new Dictionary<AbilityKey, int>

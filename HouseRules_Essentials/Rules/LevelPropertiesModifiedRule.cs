@@ -27,7 +27,7 @@
                 { "FloorTwoGoldMaxAmount", 650 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
-                { "FloorThreeMerchant", 0 },
+                { "FloorThreeMerchant", 1 },
                 { "FloorThreeLootChests", 2 },
         };
 

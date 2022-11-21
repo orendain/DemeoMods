@@ -99,7 +99,6 @@
             }
 
             // Energy Potion effects per class
-            bool hasEnergy = true;
             if (piece.HasEffectState(EffectStateType.ExtraEnergy))
             {
                 bool hasPower = false;
@@ -117,7 +116,8 @@
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    hasEnergy = false;
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
                                 }
                             }
 
@@ -151,7 +151,8 @@
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    hasEnergy = false;
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
                                 }
                             }
 
@@ -185,7 +186,8 @@
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    hasEnergy = false;
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
                                 }
                             }
 
@@ -219,7 +221,8 @@
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    hasEnergy = false;
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
                                 }
                             }
 
@@ -253,7 +256,8 @@
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    hasEnergy = false;
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
                                 }
                             }
 
@@ -287,7 +291,8 @@
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    hasEnergy = false;
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
                                 }
                             }
 
@@ -305,88 +310,6 @@
                             replenishCooldown = 1,
                         });
                         piece.AddGold(0);
-                    }
-                }
-            }
-
-            if (hasEnergy == false)
-            {
-                if (piece.boardPieceId == BoardPieceId.HeroGuardian)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.LeapHeavy)
-                        {
-                            piece.inventory.Items.Remove(value);
-                            piece.AddGold(0);
-                            break;
-                        }
-                    }
-                }
-                else if (piece.boardPieceId == BoardPieceId.HeroHunter)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.SpawnRandomLamp)
-                        {
-                            piece.inventory.Items.Remove(value);
-                            piece.AddGold(0);
-                            break;
-                        }
-                    }
-                }
-                else if (piece.boardPieceId == BoardPieceId.HeroBard)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.PVPBlink)
-                        {
-                            piece.inventory.Items.Remove(value);
-                            piece.AddGold(0);
-                            break;
-                        }
-                    }
-                }
-                else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.SpellPowerPotion)
-                        {
-                            piece.inventory.Items.Remove(value);
-                            piece.AddGold(0);
-                            break;
-                        }
-                    }
-                }
-                else if (piece.boardPieceId == BoardPieceId.HeroRogue)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.FretsOfFire)
-                        {
-                            piece.inventory.Items.Remove(value);
-                            piece.AddGold(0);
-                            break;
-                        }
-                    }
-                }
-                else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.Weaken)
-                        {
-                            piece.inventory.Items.Remove(value);
-                            piece.AddGold(0);
-                            break;
-                        }
                     }
                 }
             }

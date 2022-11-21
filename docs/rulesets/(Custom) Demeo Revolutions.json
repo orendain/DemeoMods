@@ -5,7 +5,7 @@
     {
       "Rule": "SpawnCategoryOverridden",
       "Config": {
-        "ScarabSandPile": [ 1, 0, 1 ],
+        "ScarabSandPile": [ 0, 1, 1 ],
         "LargeCorruption": [ 3, 1, 1 ],
         "ReptileArcher": [ 3, 1, 1 ],
         "ReptileMutantWizard": [ 3, 1, 1 ],
@@ -29,6 +29,7 @@
         "RootBeast": [ 4, 2, 1 ],
         "ScabRat": [ 4, 1, 1 ],
         "Spider": [ 4, 2, 1 ],
+        "PoisonousRat": [ 3, 1, 1 ],
         "Rat": [ 4, 2, 1 ],
         "TheUnheard": [ 4, 2, 1 ],
         "Slimeling": [ 4, 1, 1 ],
@@ -421,6 +422,11 @@
         },
         {
           "Piece": "Wyvern",
+          "Property": "StartHealth",
+          "Value": 25
+        },
+        {
+          "Piece": "Wyvern",
           "Property": "BarkArmor",
           "Value": 1
         },
@@ -435,6 +441,7 @@
       "Rule": "CardAdditionOverridden",
       "Config": {
         "HeroGuardian": [
+          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Regroup",
@@ -458,7 +465,6 @@
           "HealingWard",
           "WhirlwindAttack",
           "WarCry",
-          "TheBehemoth",
           "PiercingThrow",
           "Charge",
           "HealingWard",
@@ -474,6 +480,7 @@
           "Charge"
         ],
         "HeroBard": [
+          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -515,6 +522,7 @@
           "HurricaneAnthem"
         ],
         "HeroHunter": [
+          "EnergyPotion",
           "RepeatingBallista",
           "PanicPowder",
           "BottleOfLye",
@@ -552,6 +560,7 @@
           "Lure"
         ],
         "HeroRogue": [
+          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Regroup",
@@ -573,7 +582,6 @@
           "WaterBottle",
           "Blink",
           "PoisonBomb",
-          "CoinFlip",
           "CursedDagger",
           "Blink",
           "PoisonBomb",
@@ -586,6 +594,7 @@
           "BoobyTrap"
         ],
         "HeroSorcerer": [
+          "EnergyPotion",
           "Bone",
           "Regroup",
           "PanicPowder",
@@ -623,6 +632,7 @@
           "Vortex"
         ],
         "HeroWarlock": [
+          "EnergyPotion",
           "Bone",
           "WebBomb",
           "RepeatingBallista",
@@ -711,6 +721,16 @@
           "clearOnNewLevel": true,
           "damageTags": null,
           "healPerTurn": 0
+        },
+        {
+          "effectStateType": "ExtraEnergy",
+          "durationTurns": 4,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0
         }
       ]
     },
@@ -753,7 +773,8 @@
       "Config": {
         "HeroSorcerer": [ "Stunned" ],
         "HeroGuardian": [ "Weaken" ],
-        "HeroHunter":  [ "Frozen" ],
+        "HeroHunter": [ "Frozen" ],
+        "Verochka": [ "Frozen" ],
         "HeroRogue": [ "Tangled", "Blinded" ],
         "HeroWarlock": [ "CorruptedRage", "Undefined" ],
         "WarlockMinion": [ "CorruptedRage", "Undefined" ]
@@ -777,6 +798,11 @@
         "MinionCharge": false,
         "SpellPowerPotion": false,
         "EnemyFlashbang": false,
+        "PVPBlink": false,
+        "LeapHeavy": false,
+        "SpawnRandomLamp": false,
+        "Weaken": false,
+        "FrestOfFire": false,
         "DivineLight": false
       }
     },
@@ -808,7 +834,10 @@
       "Config": {
         "ShatteringVoice": [ 3, 6, 3, 6 ],
         "PiercingVoice": [ 2, 4, 2, 4 ],
-        "Arrow": [ 3, 8, 3, 8 ]
+        "Arrow": [ 3, 8, 3, 8 ],
+        "Electricity":  [ 3, 5, 1, 2 ],
+        "PVPBlink": [ 6, 12, 6, 12 ],
+        "FretsOfFire":  [ 4, 8, 4, 8 ]
       }
     },
     {
@@ -875,7 +904,6 @@
     {
       "Rule": "AbilityBackstabAdjusted",
       "Config": {
-        "PoisonBomb": true,
         "PiercingVoice": true,
         "ShatteringVoice": true,
         "DiseasedBite": true
@@ -886,7 +914,8 @@
       "Config": {
         "DiseasedBite": 2,
         "PoisonBomb": 1,
-        "PlayerMelee": 2
+        "PlayerMelee": 2,
+        "FretsOfFire":  1
       }
     },
     {
