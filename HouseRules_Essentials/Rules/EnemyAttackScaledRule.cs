@@ -45,7 +45,7 @@
                 return;
             }
 
-            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot))
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.PieceName.Contains("Lamp"))
             {
                 return;
             }
