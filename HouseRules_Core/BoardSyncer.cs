@@ -119,7 +119,7 @@
                     // Player piece out of sync fix (Grab, etc.)
                     _reason = "RearrangeTurnQueue";
                     return true;
-                /*case SerializableEvent.Type.Move:
+                case SerializableEvent.Type.Move:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
                         _reason = "Move";
@@ -134,7 +134,7 @@
                         return true;
                     }
 
-                    return false;*/
+                    return false;
                 case SerializableEvent.Type.SpawnPiece:
                     _reason = "SpawnPiece";
                     return true;
@@ -228,14 +228,14 @@
                 }
             }
 
-            /* Darkness/FogOfWar Fix
+            // Player goes out of sync fix
             if (_reason == "StatusEffect" || _reason == "ImmunityCheck" || _reason == "Move" || _reason == "Interact")
             {
                 if (serializableEvent.type != SerializableEvent.Type.EndAction)
                 {
                     return false;
                 }
-            }*/
+            }
 
             return true;
         }
