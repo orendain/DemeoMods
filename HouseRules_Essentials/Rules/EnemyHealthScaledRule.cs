@@ -47,11 +47,17 @@
                 return;
             }
 
+            if (config.PieceName.Contains("HRH_"))
+            {
+                return;
+            }
+
             if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
             {
                 return;
             }
 
+            config.PieceName = "HRH_" + config.PieceName;
             config.StartHealth = (int)(config.StartHealth * _globalMultiplier);
         }
     }

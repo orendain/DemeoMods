@@ -45,11 +45,17 @@
                 return;
             }
 
+            if (config.PieceName.Contains("HRA_"))
+            {
+                return;
+            }
+
             if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
             {
                 return;
             }
 
+            config.PieceName = "HRA_" + config.PieceName;
             config.AttackDamage = (int)(config.AttackDamage * _globalMultiplier);
         }
     }
