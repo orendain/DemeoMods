@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using Boardgame;
+    using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
