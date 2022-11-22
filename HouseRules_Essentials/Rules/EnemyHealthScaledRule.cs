@@ -1,6 +1,8 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using Boardgame;
+    using Boardgame.BoardEntities;
+    using Boardgame.NonVR.Ui;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -35,36 +37,37 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.PropertyGetter(typeof(PieceConfigData), "StartHealth"),
-                postfix: new HarmonyMethod(
+                original: AccessTools.Method(typeof(Piece), "CreatePiece"),
+                prefix: new HarmonyMethod(
                     typeof(EnemyHealthScaledRule),
-                    nameof(PieceConfig_StartHealth_Postfix)));
+                    nameof(CreatePiece_StartHealth_Prefix)));
         }
 
-        private static void PieceConfig_StartHealth_Postfix(PieceConfigData __instance, ref int __result)
+        private static void CreatePiece_StartHealth_Prefix(PieceConfigData config)
         {
             if (!_isActivated)
             {
-                MelonLoader.MelonLogger.Msg("Not activated!?");
                 return;
             }
 
-            if (__instance.HasPieceType(PieceType.Player) || __instance.HasPieceType(PieceType.Bot))
-                {
-                MelonLoader.MelonLogger.Msg("Non-enemy...");
+            if (config.PieceName.Contains("HRH_"))
+            {
                 return;
             }
 
-            MelonLoader.MelonLogger.Warning($"{__instance.GetDebugData()}");
-            if (__instance.PowerIndex < 41)
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
             {
-                float range = Random.Range(0.75f, 1.0f);
-                __result = (int)((__result * _globalMultiplier) * range);
+                return;
             }
-            else
+
+            if (config.PowerIndex > 40 || config.StartHealth < 3)
             {
-                __result = (int)(__result * _globalMultiplier);
+                return;
             }
+
+            config.PieceName = "HRH_" + config.PieceName;
+            float range = Random.Range(0.85f, 1.15f);
+            config.StartHealth = (int)(config.StartHealth * _globalMultiplier * range);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using Boardgame;
+    using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -33,45 +34,37 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.PropertyGetter(typeof(PieceConfigData), "AttackDamage"),
-                postfix: new HarmonyMethod(
+                original: AccessTools.Method(typeof(Piece), "CreatePiece"),
+                prefix: new HarmonyMethod(
                     typeof(EnemyAttackScaledRule),
-                    nameof(PieceConfig_AttackDamage_Postfix)));
+                    nameof(CreatePiece_AttackDamage_Prefix)));
         }
 
-        private static void PieceConfig_AttackDamage_Postfix(PieceConfigData __instance, ref int __result)
+        private static void CreatePiece_AttackDamage_Prefix(PieceConfigData config)
         {
             if (!_isActivated)
             {
                 return;
             }
 
-            if (__instance.HasPieceType(PieceType.Player) || __instance.HasPieceType(PieceType.Bot))
+            if (config.PieceName.Contains("HRA_"))
             {
                 return;
             }
 
-            if (__result > 2)
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
             {
-                if (__instance.PowerIndex < 25)
-                {
-                    int range = Random.Range(-1, 2);
-                    __result = (int)(__result * _globalMultiplier) + range;
-                }
-                else if (__instance.PowerIndex > 24 && __instance.PowerIndex < 41)
-                {
-                    int range = Random.Range(0, 2);
-                    __result = (int)(__result * _globalMultiplier) - range;
-                }
-                else
-                {
-                    __result = (int)(__result * _globalMultiplier);
-                }
+                return;
             }
-            else
+
+            if (config.AttackDamage < 3 || config.AttackDamage > 4)
             {
-                __result = (int)(__result * _globalMultiplier);
+                return;
             }
+
+            config.PieceName = "HRA_" + config.PieceName;
+            int range = Random.Range(0, 2);
+            config.AttackDamage = (int)(config.AttackDamage * _globalMultiplier) + range;
         }
     }
 }

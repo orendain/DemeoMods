@@ -638,6 +638,8 @@
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.75f);
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.66f);
+            var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
+            var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
                 "ElvenFloor17",
@@ -699,6 +701,8 @@
                 enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,
                 cardEnergyFromRecyclingRule,
+                enemyHealthScaledRule,
+                enemyAttackScaledRule,
                 levelSequenceOverriddenRule,
                 levelPropertiesRule);
         }
