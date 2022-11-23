@@ -63,24 +63,13 @@
 
             var cardEnergyRule = new CardEnergyFromAttackMultipliedRule(1.5f);
 
-            var freeAbilityOnCrit = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
-            {
-                { BoardPieceId.HeroBard, AbilityKey.Sneak },
-                { BoardPieceId.HeroGuardian, AbilityKey.Sneak },
-                { BoardPieceId.HeroHunter, AbilityKey.Sneak },
-                { BoardPieceId.HeroRogue, AbilityKey.Sneak },
-                { BoardPieceId.HeroSorcerer, AbilityKey.Sneak },
-                { BoardPieceId.HeroWarlock, AbilityKey.Sneak },
-            });
-
             return Ruleset.NewInstance(
                 name,
                 description,
                 allowedCardsRule,
                 abilityActionCostRule,
                 enemyRespanDisabled,
-                cardEnergyRule,
-                freeAbilityOnCrit);
+                cardEnergyRule);
         }
     }
 }
