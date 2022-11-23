@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using Boardgame;
+    using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -34,25 +35,31 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.PropertyGetter(typeof(PieceConfigData), "StartHealth"),
-                postfix: new HarmonyMethod(
+                original: AccessTools.Method(typeof(Piece), "CreatePiece"),
+                prefix: new HarmonyMethod(
                     typeof(EnemyHealthScaledRule),
-                    nameof(PieceConfig_StartHealth_Postfix)));
+                    nameof(CreatePiece_StartHealth_Prefix)));
         }
 
-        private static void PieceConfig_StartHealth_Postfix(PieceConfigData __instance, ref int __result)
+        private static void CreatePiece_StartHealth_Prefix(PieceConfigData config)
         {
             if (!_isActivated)
             {
                 return;
             }
 
-            if (__instance.HasPieceType(PieceType.Player) || __instance.HasPieceType(PieceType.Bot))
+            if (config.PieceName.Contains("HRH_"))
             {
                 return;
             }
 
-            __result = (int)(__result * _globalMultiplier);
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
+            {
+                return;
+            }
+
+            config.PieceName = "HRH_" + config.PieceName;
+            config.StartHealth = (int)(config.StartHealth * _globalMultiplier);
         }
     }
 }
