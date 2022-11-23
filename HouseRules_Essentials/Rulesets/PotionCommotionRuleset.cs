@@ -16,7 +16,6 @@ namespace HouseRules.Essentials.Rulesets
             {
                 AbilityKey.AdamantPotion,
                 AbilityKey.BottleOfLye,
-                AbilityKey.DamageResistPotion,
                 AbilityKey.ExtraActionPotion,
                 AbilityKey.FireImmunePotion,
                 AbilityKey.HealingPotion,
@@ -43,6 +42,8 @@ namespace HouseRules.Essentials.Rulesets
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Zap, false },
+                { AbilityKey.Overcharge, false },
+                { AbilityKey.LightningBolt, false },
             });
 
             var enemyRespanDisabled = new EnemyRespawnDisabledRule(true);
