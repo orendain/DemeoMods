@@ -85,7 +85,7 @@
 
                 if (source.GetHealth() < (source.GetMaxHealth() / 3.2))
                 {
-                    source.EnableEffectState(EffectStateType.MagicShield1);
+                    source.EnableEffectState(EffectStateType.MagicShield);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 69);
                     source.EnableEffectState(EffectStateType.Courageous);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 69);
@@ -124,7 +124,7 @@
                             source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 1);
                             break;
                         case 2:
-                            source.EnableEffectState(EffectStateType.MagicShield1);
+                            source.EnableEffectState(EffectStateType.MagicShield);
                             source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 1);
                             break;
                         case 3:
