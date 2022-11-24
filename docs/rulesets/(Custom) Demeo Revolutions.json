@@ -453,9 +453,8 @@
           "SwiftnessPotion",
           "HeavensFury",
           "HealingPotion",
-          "VigorPotion",
-          "ScrollTsunami",
           "ScrollElectricity",
+          "ScrollTsunami",
           "LuckPotion",
           "IceImmunePotion",
           "FireImmunePotion",
@@ -486,14 +485,12 @@
           "Barricade",
           "Regroup",
           "OneMoreThing",
-          "PanicPowder",
           "BottleOfLye",
           "Teleportation",
           "SwiftnessPotion",
           "HeavensFury",
           "HealingPotion",
-          "VigorPotion",
-          "ScrollTsunami",
+          "MagicPotion",
           "ScrollElectricity",
           "LuckPotion",
           "FireImmunePotion",
@@ -522,6 +519,7 @@
           "HurricaneAnthem"
         ],
         "HeroHunter": [
+          "Regroup",
           "EnergyPotion",
           "RepeatingBallista",
           "PanicPowder",
@@ -530,11 +528,10 @@
           "StrengthPotion",
           "HeavensFury",
           "HealingPotion",
-          "VigorPotion",
           "ScrollTsunami",
           "ScrollElectricity",
           "LuckPotion",
-          "IceImmunePotion",
+          "FireImmunePotion",
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
@@ -571,8 +568,6 @@
           "StrengthPotion",
           "HeavensFury",
           "HealingPotion",
-          "VigorPotion",
-          "ScrollTsunami",
           "ScrollElectricity",
           "LuckPotion",
           "FireImmunePotion",
@@ -604,7 +599,6 @@
           "SwiftnessPotion",
           "HeavensFury",
           "HealingPotion",
-          "VigorPotion",
           "ScrollTsunami",
           "ScrollElectricity",
           "MagicPotion",
@@ -643,8 +637,6 @@
           "SwiftnessPotion",
           "HeavensFury",
           "HealingPotion",
-          "VigorPotion",
-          "ScrollTsunami",
           "ScrollElectricity",
           "MagicPotion",
           "LuckPotion",
@@ -835,9 +827,9 @@
         "ShatteringVoice": [ 3, 6, 3, 6 ],
         "PiercingVoice": [ 2, 4, 2, 4 ],
         "Arrow": [ 3, 8, 3, 8 ],
-        "Electricity":  [ 3, 5, 1, 2 ],
+        "Electricity": [ 3, 5, 1, 2 ],
         "PVPBlink": [ 6, 12, 6, 12 ],
-        "FretsOfFire":  [ 4, 8, 4, 8 ]
+        "FretsOfFire": [ 4, 8, 4, 8 ]
       }
     },
     {
@@ -915,7 +907,7 @@
         "DiseasedBite": 2,
         "PoisonBomb": 1,
         "PlayerMelee": 2,
-        "FretsOfFire":  1
+        "FretsOfFire": 1
       }
     },
     {
@@ -949,6 +941,14 @@
     {
       "Rule": "CardEnergyFromRecyclingMultiplied",
       "Config": 0.67
+    },
+    {
+      "Rule": "EnemyHealthScaledRule",
+      "Config": 1.0
+    },
+    {
+      "Rule": "EnemyAttackScaledRule",
+      "Config": 1.0
     },
     {
       "Rule": "LevelSequenceOverridden",

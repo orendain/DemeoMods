@@ -251,7 +251,7 @@
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
-                        AbilityKey.ScrollTsunami,
+                        AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.IceImmunePotion,
                         AbilityKey.FireImmunePotion,
@@ -282,6 +282,7 @@
                 {
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
+                        AbilityKey.Regroup,
                         AbilityKey.EnergyPotion,
                         AbilityKey.RepeatingBallista,
                         AbilityKey.PanicPowder,
@@ -291,8 +292,8 @@
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
-                        AbilityKey.ScrollTsunami,
                         AbilityKey.LuckPotion,
+                        AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.WaterBottle,
@@ -322,6 +323,7 @@
                     {
                         AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
+                        AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
                         AbilityKey.PanicPowder,
@@ -371,6 +373,7 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
+                        AbilityKey.IceImmunePotion,
                         AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
@@ -407,7 +410,6 @@
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
-                        AbilityKey.ScrollTsunami,
                         AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.IceImmunePotion,

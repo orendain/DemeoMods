@@ -83,7 +83,7 @@
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
                 }
 
-                if (source.GetHealth() < 26)
+                if (source.GetHealth() < (source.GetMaxHealth() / 3.2))
                 {
                     source.EnableEffectState(EffectStateType.MagicShield1);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 69);
@@ -95,11 +95,11 @@
                     int nextPhase;
                     int low = 1;
                     int high = 6;
-                    if (source.GetHealth() > 59)
+                    if (source.GetHealth() > (source.GetMaxHealth() * 0.75))
                     {
                         nextPhase = Random.Range(1, 6);
                     }
-                    else if (source.GetHealth() < 40)
+                    else if (source.GetHealth() < (source.GetMaxHealth() / 2))
                     {
                         low = 2;
                         high = 4;
