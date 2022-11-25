@@ -115,10 +115,10 @@
         {
             switch (serializableEvent.type)
             {
-                case SerializableEvent.Type.RearrangeTurnQueue:
+                /*case SerializableEvent.Type.RearrangeTurnQueue:
                     // Player piece out of sync fix (Grab, etc.)
                     _reason = "RearrangeTurnQueue";
-                    return true;
+                    return true;*/
                 case SerializableEvent.Type.Move:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
@@ -130,7 +130,15 @@
                 case SerializableEvent.Type.Interact:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
-                        _reason = "Interact";
+                        _reason = "Move_Interact";
+                        return true;
+                    }
+
+                    return false;
+                case SerializableEvent.Type.OnMoved:
+                    if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        _reason = "OnMoved";
                         return true;
                     }
 
@@ -189,6 +197,15 @@
                 case AbilityKey.Barricade:
                 case AbilityKey.MagicBarrier:
                     return true;
+                case AbilityKey.Leap:
+                    _reason = "Move_Leap";
+                    return true;
+                case AbilityKey.LeapHeavy:
+                    _reason = "Move_LeapHeavy";
+                    return true;
+                case AbilityKey.DivineLight:
+                    CoreMod.Logger.Warning("[DIVINELIGHT]");
+                    return false;
             }
 
             var abilityName = abilityKey.ToString();
@@ -228,13 +245,22 @@
                 }
             }
 
-            // Player goes out of sync fix
-            if (_reason == "StatusEffect" || _reason == "ImmunityCheck" || _reason == "Move" || _reason == "Interact")
+            // Fix for darkness and/or character/enemy vanishing after moving/being grabbed/jumping
+            if (_reason.Contains("Move"))
             {
                 if (serializableEvent.type != SerializableEvent.Type.EndAction)
                 {
                     return false;
                 }
+                else
+                {
+                    CoreMod.Logger.Msg($"Sent: UpdateFog because of [{_reason}]");
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    _reason = null;
+                    _isSyncScheduled = false;
+                    return false;
+                }
+
             }
 
             return true;
@@ -242,7 +268,7 @@
 
         private static void SyncBoard()
         {
-            // CoreMod.Logger.Msg($"Sync: <<<<<[{_reason}]>>>>> ");
+            CoreMod.Logger.Msg($"Sync: <<<<<[{_reason}]>>>>> ");
             _reason = null;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());

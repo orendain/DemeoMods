@@ -57,7 +57,7 @@
                 return;
             }
 
-            if (config.AttackDamage < 3 || config.AttackDamage > 4)
+            if (config.AttackDamage < 3 || config.PowerIndex > 40)
             {
                 return;
             }

@@ -60,7 +60,7 @@
                 return;
             }
 
-            if (config.PowerIndex > 40 || config.StartHealth < 3)
+            if (config.StartHealth < 3 || config.PowerIndex > 40)
             {
                 return;
             }
