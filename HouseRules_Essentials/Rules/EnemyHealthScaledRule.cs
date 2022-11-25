@@ -60,13 +60,13 @@
                 return;
             }
 
-            if (config.StartHealth < 3 || config.PowerIndex > 40)
+            if (config.StartHealth < 4 || config.PowerIndex > 40)
             {
                 return;
             }
 
             config.PieceName = "HRH_" + config.PieceName;
-            float range = Random.Range(0.85f, 1.15f);
+            float range = Random.Range(0.75f, 1.25f);
             config.StartHealth = (int)(config.StartHealth * _globalMultiplier * range);
         }
     }

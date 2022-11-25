@@ -63,7 +63,7 @@
             }
 
             config.PieceName = "HRA_" + config.PieceName;
-            int range = Random.Range(0, 2);
+            int range = Random.Range(-1, 1);
             config.AttackDamage = (int)(config.AttackDamage * _globalMultiplier) + range;
         }
     }

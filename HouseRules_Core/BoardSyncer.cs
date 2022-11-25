@@ -173,7 +173,7 @@
                     return false;
                 default:
                     string whatUp = serializableEvent.ToString();
-                    CoreMod.Logger.Msg($"--> {whatUp}");
+                    // CoreMod.Logger.Msg($"--> {whatUp}");
                     return false;
             }
         }
@@ -254,7 +254,7 @@
                 }
                 else
                 {
-                    CoreMod.Logger.Msg($"Sent: UpdateFog because of [{_reason}]");
+                    // CoreMod.Logger.Msg($"Sent: UpdateFog because of [{_reason}]");
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                     _reason = null;
                     _isSyncScheduled = false;
@@ -268,7 +268,7 @@
 
         private static void SyncBoard()
         {
-            CoreMod.Logger.Msg($"Sync: <<<<<[{_reason}]>>>>> ");
+            // CoreMod.Logger.Msg($"Sync: <<<<<[{_reason}]>>>>> ");
             _reason = null;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
