@@ -27,7 +27,9 @@
     {
         private static GameContext _gameContext;
         private static bool _isSyncScheduled;
-        private static string _reason;
+        private static bool _isMove;
+        private static bool _isStateChange;
+
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
         /// </summary>
@@ -96,7 +98,7 @@
             var isEffectImmunityCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (isEffectImmunityCheckRequired)
             {
-                _reason = "ImmunityCheck";
+                _isStateChange = true;
                 _isSyncScheduled = true;
             }
         }
@@ -106,7 +108,7 @@
             var isEffectDataCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
             if (isEffectDataCheckRequired)
             {
-                _reason = "StatusEffect";
+                _isStateChange = true;
                 _isSyncScheduled = true;
             }
         }
@@ -115,62 +117,28 @@
         {
             switch (serializableEvent.type)
             {
-                /*case SerializableEvent.Type.RearrangeTurnQueue:
-                    // Player piece out of sync fix (Grab, etc.)
-                    _reason = "RearrangeTurnQueue";
-                    return true;*/
-                case SerializableEvent.Type.Move:
-                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
-                    {
-                        _reason = "Move";
-                        return true;
-                    }
-
+                case SerializableEvent.Type.CheckReopenCharacterSelect:
+                    // CoreMod.Logger.Msg("New player viewing game fix...");
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                     return false;
+                case SerializableEvent.Type.Move:
                 case SerializableEvent.Type.Interact:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
-                        _reason = "Move_Interact";
-                        return true;
-                    }
-
-                    return false;
-                case SerializableEvent.Type.OnMoved:
-                    if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
-                    {
-                        _reason = "OnMoved";
+                        _isMove = true;
                         return true;
                     }
 
                     return false;
                 case SerializableEvent.Type.SpawnPiece:
-                    _reason = "SpawnPiece";
-                    return true;
                 case SerializableEvent.Type.UpdateFogAndSpawn:
-                    _reason = "UpdateFogAndSpawn";
-                    return true;
                 case SerializableEvent.Type.SetBoardPieceID:
-                    _reason = "SetBoardPieceID";
-                    return true;
                 case SerializableEvent.Type.SlimeFusion:
-                    _reason = "SlimeFusion";
                     return true;
                 case SerializableEvent.Type.OnAbilityUsed:
-                    if (CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent))
-                    {
-                        _reason = "OnAbilityUsed";
-                        return true;
-                    }
-
-                    return false;
+                    return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
-                    if (CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent))
-                    {
-                        _reason = "PieceDied";
-                        return true;
-                    }
-
-                    return false;
+                    return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
                 default:
                     string whatUp = serializableEvent.ToString();
                     // CoreMod.Logger.Msg($"--> {whatUp}");
@@ -183,6 +151,21 @@
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
+                /*case AbilityKey.DivineLight:
+                    CoreMod.Logger.Msg("[DIVINE_LIGHT_USED]");
+                    return false;*/
+                case AbilityKey.Grab:
+                    if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        _isMove = true;
+                        return true;
+                    }
+
+                    return false;
+                case AbilityKey.Leap:
+                case AbilityKey.LeapHeavy:
+                    _isMove = true;
+                    return true;
                 case AbilityKey.BeastWhisperer:
                 case AbilityKey.HurricaneAnthem:
                 case AbilityKey.Lure:
@@ -197,15 +180,6 @@
                 case AbilityKey.Barricade:
                 case AbilityKey.MagicBarrier:
                     return true;
-                case AbilityKey.Leap:
-                    _reason = "Move_Leap";
-                    return true;
-                case AbilityKey.LeapHeavy:
-                    _reason = "Move_LeapHeavy";
-                    return true;
-                case AbilityKey.DivineLight:
-                    CoreMod.Logger.Warning("[DIVINELIGHT]");
-                    return false;
             }
 
             var abilityName = abilityKey.ToString();
@@ -227,7 +201,6 @@
 
                 if (piece.boardPieceId == BoardPieceId.SpiderEgg)
                 {
-                    _reason = "SpiderEgg died";
                     return true;
                 }
             }
@@ -237,16 +210,7 @@
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
-            if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
-            {
-                if (serializableEvent.type == SerializableEvent.Type.EndTurn)
-                {
-                    return true;
-                }
-            }
-
-            // Fix for darkness and/or character/enemy vanishing after moving/being grabbed/jumping
-            if (_reason.Contains("Move"))
+            if (_isStateChange)
             {
                 if (serializableEvent.type != SerializableEvent.Type.EndAction)
                 {
@@ -254,13 +218,30 @@
                 }
                 else
                 {
-                    // CoreMod.Logger.Msg($"Sent: UpdateFog because of [{_reason}]");
+                    // CoreMod.Logger.Msg("STATE_CHANGE_RECOVERY");
+                    _isStateChange = false;
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
-                    _reason = null;
-                    _isSyncScheduled = false;
+                    return true;
+                }
+            }
+            else if (_isMove)
+            {
+                if (serializableEvent.type != SerializableEvent.Type.OnMoved)
+                {
                     return false;
                 }
-
+                else
+                {
+                    // CoreMod.Logger.Msg("MOVE_CHANGE_NO_RECOVERY");
+                    _isMove = false;
+                    _isSyncScheduled = false;
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    return false;
+                }
+            }
+            else if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
+            {
+                return serializableEvent.type == SerializableEvent.Type.EndTurn;
             }
 
             return true;
@@ -268,8 +249,7 @@
 
         private static void SyncBoard()
         {
-            // CoreMod.Logger.Msg($"Sync: <<<<<[{_reason}]>>>>> ");
-            _reason = null;
+            // CoreMod.Logger.Msg("<<<RECOVERY>>>");
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }

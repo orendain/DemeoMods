@@ -28,7 +28,7 @@
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 1 },
-                { "FloorThreeLootChests", 2 },
+                { "FloorThreeLootChests", 1 },
         };
 
         public LevelPropertiesModifiedRule(Dictionary<string, int> levelProperties)

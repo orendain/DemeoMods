@@ -47,12 +47,15 @@
                 return;
             }
 
+            int range;
             if (config.PieceName.Contains("HRA_"))
             {
+                range = Random.Range(-1, 1);
+                config.AttackDamage = (int)(config.CriticalHitDamageOLD * _globalMultiplier) + range;
                 return;
             }
 
-            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || !config.HasPieceType(PieceType.Creature))
             {
                 return;
             }
@@ -63,7 +66,8 @@
             }
 
             config.PieceName = "HRA_" + config.PieceName;
-            int range = Random.Range(-1, 1);
+            config.CriticalHitDamageOLD = config.AttackDamage;
+            range = Random.Range(-1, 1);
             config.AttackDamage = (int)(config.AttackDamage * _globalMultiplier) + range;
         }
     }

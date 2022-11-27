@@ -50,12 +50,15 @@
                 return;
             }
 
+            float range;
             if (config.PieceName.Contains("HRH_"))
             {
+                range = Random.Range(0.75f, 1.25f);
+                config.StartHealth = (int)(config.CriticalHitDamage * _globalMultiplier * range);
                 return;
             }
 
-            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || !config.HasPieceType(PieceType.Creature))
             {
                 return;
             }
@@ -65,8 +68,10 @@
                 return;
             }
 
+            EssentialsMod.Logger.Msg($"{config.PieceName}");
             config.PieceName = "HRH_" + config.PieceName;
-            float range = Random.Range(0.75f, 1.25f);
+            config.CriticalHitDamage = config.StartHealth;
+            range = Random.Range(0.75f, 1.25f);
             config.StartHealth = (int)(config.StartHealth * _globalMultiplier * range);
         }
     }

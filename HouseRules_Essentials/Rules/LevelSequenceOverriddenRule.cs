@@ -22,10 +22,10 @@
         private readonly List<string> _adjustments;
 
         private readonly List<string> elvenFloors1 = new List<string>
-                    { "ElvenFloor13", "ElvenFloor14", "ElvenFloor16", "ElvenFloor17" };
+                    { "ElvenFloor01", "ElvenFloor04", "ElvenFloor13", "ElvenFloor14", "ElvenFloor16", "ElvenFloor17" };
 
         private readonly List<string> elvenFloors2 = new List<string>
-                    { "ElvenFloor02", "ElvenFloor03", "ElvenFloor06", "ElvenFloor07" };
+                    { "ElvenFloor02", "ElvenFloor03", "ElvenFloor06", "ElvenFloor07", "ElvenFloor08", "ElvenFloor13", "ElvenFloor17" };
 
         private readonly List<string> forestFloors1 = new List<string>
                     { "ForestFloor01", "ForestFloor02", "ForestFloor07", "ForestFloor08" };
@@ -37,13 +37,13 @@
                     { "SewersFloor01", "SewersFloor07", "SewersFloor09", "SewersFloor10" };
 
         private readonly List<string> sewersFloors2 = new List<string>
-                    { "SewersFloor09", "SewersFloor10", "SewersFloor11", "SewersFloor12" };
+                    { "SewersFloor08", "SewersFloor09", "SewersFloor10", "SewersFloor11", "SewersFloor12" };
 
         private readonly List<string> desertFloors1 = new List<string>
                     { "DesertFloor10", "DesertFloor06" };
 
         private readonly List<string> desertFloors2 = new List<string>
-                    { "DesertFloor02", "DesertFloor08", "DesertFloor09" };
+                    { "DesertFloor02", "DesertFloor08", "DesertFloor09", "DesertFloor06" };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LevelSequenceOverriddenRule"/> class.
