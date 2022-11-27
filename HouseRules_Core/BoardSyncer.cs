@@ -28,6 +28,7 @@
         private static GameContext _gameContext;
         private static bool _isSyncScheduled;
         private static bool _isMove;
+        private static bool _isGrab;
         private static bool _isStateChange;
 
         /// <summary>
@@ -140,8 +141,8 @@
                 case SerializableEvent.Type.PieceDied:
                     return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
                 default:
-                    string whatUp = serializableEvent.ToString();
-                    // CoreMod.Logger.Msg($"--> {whatUp}");
+                    /*string whatUp = serializableEvent.ToString();
+                    CoreMod.Logger.Msg($"--> {whatUp}");*/
                     return false;
             }
         }
@@ -155,13 +156,8 @@
                     CoreMod.Logger.Msg("[DIVINE_LIGHT_USED]");
                     return false;*/
                 case AbilityKey.Grab:
-                    if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
-                    {
-                        _isMove = true;
-                        return true;
-                    }
-
-                    return false;
+                    _isGrab = true;
+                    return true;
                 case AbilityKey.Leap:
                 case AbilityKey.LeapHeavy:
                     _isMove = true;
@@ -210,21 +206,7 @@
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
-            if (_isStateChange)
-            {
-                if (serializableEvent.type != SerializableEvent.Type.EndAction)
-                {
-                    return false;
-                }
-                else
-                {
-                    // CoreMod.Logger.Msg("STATE_CHANGE_RECOVERY");
-                    _isStateChange = false;
-                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
-                    return true;
-                }
-            }
-            else if (_isMove)
+            if (_isGrab)
             {
                 if (serializableEvent.type != SerializableEvent.Type.OnMoved)
                 {
@@ -232,24 +214,58 @@
                 }
                 else
                 {
-                    // CoreMod.Logger.Msg("MOVE_CHANGE_NO_RECOVERY");
+                    // CoreMod.Logger.Msg("SYNC: Grab (NO RECOVERY)");
+                    _isGrab = false;
+                    _isSyncScheduled = false;
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    return false;
+                }
+            }
+            else if (_isMove)
+            {
+                if (serializableEvent.type != SerializableEvent.Type.EndAction)
+                {
+                    return false;
+                }
+                else
+                {
+                    // CoreMod.Logger.Msg("SYNC: EndAction (Move)");
                     _isMove = false;
                     _isSyncScheduled = false;
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                     return false;
                 }
             }
+            else if (_isStateChange)
+            {
+                if (serializableEvent.type != SerializableEvent.Type.EndAction)
+                {
+                    return false;
+                }
+                else
+                {
+                    // CoreMod.Logger.Msg("SYNC: EndAction (StateChange)");
+                    _isStateChange = false;
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    return true;
+                }
+            }
             else if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
             {
-                return serializableEvent.type == SerializableEvent.Type.EndTurn;
+                if (serializableEvent.type == SerializableEvent.Type.EndTurn)
+                {
+                    // CoreMod.Logger.Msg("SYNC: Enemy EndTurn");
+                    return true;
+                }
             }
 
+            // CoreMod.Logger.Msg("<<< Normal >>>");
             return true;
         }
 
         private static void SyncBoard()
         {
-            // CoreMod.Logger.Msg("<<<RECOVERY>>>");
+            // CoreMod.Logger.Msg("<<< RECOVERY >>>");
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }

@@ -443,7 +443,7 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
                 new StatusEffectData
                 {
