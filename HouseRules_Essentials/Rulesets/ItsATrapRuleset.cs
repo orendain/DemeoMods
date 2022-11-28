@@ -203,7 +203,7 @@
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
-                { "FloorOneHealingFountains", 0 },
+                { "FloorOneHealingFountains", 1 },
                 { "FloorOneLootChests", 11 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoLootChests", 14 },
@@ -238,7 +238,7 @@
                     BoardPieceId.VortexLamp,
                     BoardPieceId.OilLamp,
                     BoardPieceId.OilLamp,
-                    BoardPieceId.HealingBeacon,
+                    BoardPieceId.GasLamp,
                 }
                 },
                 {
@@ -253,7 +253,7 @@
                     BoardPieceId.GasLamp,
                     BoardPieceId.OilLamp,
                     BoardPieceId.OilLamp,
-                    BoardPieceId.HealingBeacon,
+                    BoardPieceId.OilLamp,
                 }
                 },
                 {
@@ -265,16 +265,9 @@
                     BoardPieceId.OilLamp,
                     BoardPieceId.IceLamp,
                     BoardPieceId.VortexLamp,
-                    BoardPieceId.HealingBeacon,
+                    BoardPieceId.IceLamp,
                 }
                 },
-            });
-
-            var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
-            {
-                { BoardPieceId.Torch, new List<PieceType> { PieceType.Prop, PieceType.UpdateFogOfWar, PieceType.ShowNameplate } },
-                { BoardPieceId.EyeOfAvalon, new List<PieceType> { PieceType.Prop, PieceType.UpdateFogOfWar, PieceType.Immovable, PieceType.ShowHealthbar, PieceType.ShowNameplate } },
-                { BoardPieceId.HealingBeacon, new List<PieceType> { PieceType.Prop, PieceType.Bot, PieceType.ShowNameplate } },
             });
 
             var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
@@ -295,6 +288,7 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
+                    applyAfterDissipate = EffectStateType.Diseased,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
                 new StatusEffectData
@@ -304,6 +298,7 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
+                    applyAfterDissipate = EffectStateType.Diseased,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
                 new StatusEffectData
@@ -313,33 +308,7 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Courageous,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Fearless,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Heroic,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
+                    applyAfterDissipate = EffectStateType.Diseased,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
             });
@@ -362,7 +331,6 @@
                 lampTypesRule,
                 levelPropertiesRule,
                 piecesAdjustedRule,
-                piecePieceTypeRule,
                 startingCardsRule,
                 statusEffectRule,
                 tileEffectDuration,
