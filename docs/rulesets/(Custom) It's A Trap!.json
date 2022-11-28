@@ -120,7 +120,7 @@
           "VortexLamp",
           "OilLamp",
           "OilLamp",
-          "HealingBeacon"
+          "GasLamp"
         ],
         "2": [
           "GasLamp",
@@ -132,7 +132,7 @@
           "GasLamp",
           "OilLamp",
           "OilLamp",
-          "HealingBeacon"
+          "OilLamp"
         ],
         "3": [
           "OilLamp",
@@ -141,14 +141,14 @@
           "OilLamp",
           "IceLamp",
           "VortexLamp",
-          "HealingBeacon"
+          "IceLamp"
         ]
       }
     },
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
-        "FloorOneHealingFountains": 0,
+        "FloorOneHealingFountains": 1,
         "FloorOneLootChests": 11,
         "FloorTwoHealingFountains": 1,
         "FloorTwoLootChests": 14,
@@ -197,28 +197,6 @@
           "Value": 40.0
         }
       ]
-    },
-    {
-      "Rule": "PiecePieceTypeListOverridden",
-      "Config": {
-        "Torch": [
-          "Prop",
-          "UpdateFogOfWar",
-          "ShowNameplate"
-        ],
-        "EyeOfAvalon": [
-          "Prop",
-          "UpdateFogOfWar",
-          "Immovable",
-          "ShowHealthbar",
-          "ShowNameplate"
-        ],
-        "HealingBeacon": [
-          "Prop",
-          "Bot",
-          "ShowNameplate"
-        ]
-      }
     },
     {
       "Rule": "StartCardsModified",
@@ -399,54 +377,6 @@
         {
           "effectStateType": "Stealthed",
           "durationTurns": 5,
-          "tickWhen": "StartTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "Courageous",
-          "durationTurns": 2,
-          "tickWhen": "StartTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "Fearless",
-          "durationTurns": 2,
-          "tickWhen": "StartTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "Heroic",
-          "durationTurns": 2,
           "tickWhen": "StartTurn",
           "stacks": false,
           "damagePerTurn": 0,
