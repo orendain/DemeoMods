@@ -27,6 +27,9 @@
     {
         private static GameContext _gameContext;
         private static bool _isSyncScheduled;
+        private static bool _isMove;
+        private static bool _isGrab;
+        private static bool _isStateChange;
 
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
@@ -64,13 +67,6 @@
                 postfix: new HarmonyMethod(
                     typeof(BoardSyncer),
                     nameof(EffectSink_AddStatusEffect_Postfix)));
-
-            // Workaround for a bug in Demeo v1.21 affecting board syncing. Can be removed after next Demeo patch is released as it includes fix from RG.
-            harmony.Patch(
-                original: AccessTools.Method(typeof(Piece), "ForceSyncState"),
-                prefix: new HarmonyMethod(
-                typeof(BoardSyncer),
-                nameof(Piece_ForceSyncState_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -103,6 +99,7 @@
             var isEffectImmunityCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (isEffectImmunityCheckRequired)
             {
+                _isStateChange = true;
                 _isSyncScheduled = true;
             }
         }
@@ -112,20 +109,24 @@
             var isEffectDataCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
             if (isEffectDataCheckRequired)
             {
+                _isStateChange = true;
                 _isSyncScheduled = true;
             }
-        }
-
-        private static bool Piece_ForceSyncState_Prefix(BoardModel boardModel, ref Piece __instance)
-        {
-            __instance.ReregisterPieceVisualStateHandlers();
-            return true;
         }
 
         private static bool CanRepresentNewSpawn(SerializableEvent serializableEvent)
         {
             switch (serializableEvent.type)
             {
+                case SerializableEvent.Type.Move:
+                case SerializableEvent.Type.Interact:
+                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        _isMove = true;
+                        return true;
+                    }
+
+                    return false;
                 case SerializableEvent.Type.SpawnPiece:
                 case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
@@ -145,8 +146,13 @@
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
-                case AbilityKey.SummonElemental:
-                case AbilityKey.SummonBossMinions:
+                case AbilityKey.Grab:
+                    _isGrab = true;
+                    return true;
+                case AbilityKey.Leap:
+                case AbilityKey.LeapHeavy:
+                    _isMove = true;
+                    return true;
                 case AbilityKey.BeastWhisperer:
                 case AbilityKey.HurricaneAnthem:
                 case AbilityKey.Lure:
@@ -166,8 +172,9 @@
             var abilityName = abilityKey.ToString();
             var isSpawnAbility = abilityName.Contains("Spawn");
             var isLampAbility = abilityName.Contains("Lamp");
+            var isSummonAbility = abilityName.Contains("Summon");
 
-            return isSpawnAbility || isLampAbility;
+            return isSpawnAbility || isLampAbility || isSummonAbility;
         }
 
         private static bool CanRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
@@ -190,7 +197,48 @@
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
-            if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
+            if (_isGrab)
+            {
+                if (serializableEvent.type != SerializableEvent.Type.OnMoved)
+                {
+                    return false;
+                }
+                else
+                {
+                    _isGrab = false;
+                    _isSyncScheduled = false;
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    return false;
+                }
+            }
+            else if (_isMove)
+            {
+                if (serializableEvent.type != SerializableEvent.Type.EndAction)
+                {
+                    return false;
+                }
+                else
+                {
+                    _isMove = false;
+                    _isSyncScheduled = false;
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    return false;
+                }
+            }
+            else if (_isStateChange)
+            {
+                if (serializableEvent.type != SerializableEvent.Type.EndAction)
+                {
+                    return false;
+                }
+                else
+                {
+                    _isStateChange = false;
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    return true;
+                }
+            }
+            else if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
             {
                 return serializableEvent.type == SerializableEvent.Type.EndTurn;
             }
