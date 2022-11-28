@@ -119,7 +119,7 @@
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.CheckReopenCharacterSelect:
-                    // CoreMod.Logger.Msg("New player viewing game fix...");
+                    CoreMod.Logger.Msg("New player viewing game fix...");
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                     return false;
                 case SerializableEvent.Type.Move:
@@ -141,8 +141,8 @@
                 case SerializableEvent.Type.PieceDied:
                     return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
                 default:
-                    /*string whatUp = serializableEvent.ToString();
-                    CoreMod.Logger.Msg($"--> {whatUp}");*/
+                    string whatUp = serializableEvent.ToString();
+                    CoreMod.Logger.Msg($"--> {whatUp}");
                     return false;
             }
         }
@@ -214,7 +214,7 @@
                 }
                 else
                 {
-                    // CoreMod.Logger.Msg("SYNC: Grab (NO RECOVERY)");
+                    CoreMod.Logger.Msg("SYNC: Grab (NO RECOVERY)");
                     _isGrab = false;
                     _isSyncScheduled = false;
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
@@ -229,7 +229,7 @@
                 }
                 else
                 {
-                    // CoreMod.Logger.Msg("SYNC: EndAction (Move)");
+                    CoreMod.Logger.Msg("SYNC: EndAction (Move)");
                     _isMove = false;
                     _isSyncScheduled = false;
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
@@ -244,7 +244,7 @@
                 }
                 else
                 {
-                    // CoreMod.Logger.Msg("SYNC: EndAction (StateChange)");
+                    CoreMod.Logger.Msg("SYNC: EndAction (StateChange)");
                     _isStateChange = false;
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                     return true;
@@ -254,18 +254,18 @@
             {
                 if (serializableEvent.type == SerializableEvent.Type.EndTurn)
                 {
-                    // CoreMod.Logger.Msg("SYNC: Enemy EndTurn");
+                    CoreMod.Logger.Msg("SYNC: Enemy EndTurn");
                     return true;
                 }
             }
 
-            // CoreMod.Logger.Msg("<<< Normal >>>");
+            CoreMod.Logger.Msg("<<< Normal >>>");
             return true;
         }
 
         private static void SyncBoard()
         {
-            // CoreMod.Logger.Msg("<<< RECOVERY >>>");
+            CoreMod.Logger.Msg("<<< RECOVERY >>>");
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
