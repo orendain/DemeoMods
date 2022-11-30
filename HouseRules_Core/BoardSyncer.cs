@@ -128,7 +128,6 @@
 
                     return false;
                 case SerializableEvent.Type.SpawnPiece:
-                case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
                     return true;
@@ -186,7 +185,7 @@
                     continue;
                 }
 
-                if (piece.boardPieceId == BoardPieceId.SpiderEgg)
+                if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId == BoardPieceId.ScorpionSandPile)
                 {
                     return true;
                 }
@@ -233,7 +232,6 @@
                 }
                 else
                 {
-                    _isStateChange = false;
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                     return true;
                 }
@@ -242,12 +240,15 @@
             {
                 return serializableEvent.type == SerializableEvent.Type.EndTurn;
             }
-
-            return true;
+            else
+            {
+                return true;
+            }
         }
 
         private static void SyncBoard()
         {
+            _isStateChange = false;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
