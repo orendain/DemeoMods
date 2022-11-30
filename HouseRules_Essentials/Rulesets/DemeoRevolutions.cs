@@ -15,11 +15,11 @@
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
-                //{ BoardPieceId.ScarabSandPile, new List<int> { 0, 1, 1 } },
+                { BoardPieceId.ScarabSandPile, new List<int> { 0, 1, 1 } },
                 { BoardPieceId.LargeCorruption, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileArcher, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileMutantWizard, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.SandScorpion, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.SandScorpion, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.ServantOfAlfaragh, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ScorpionSandPile, new List<int> { 3, 2, 1 } },
                 { BoardPieceId.GoldSandPile, new List<int> { 2, 1, 1 } },

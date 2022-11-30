@@ -190,7 +190,7 @@
                     continue;
                 }
 
-                if (piece.boardPieceId == BoardPieceId.SpiderEgg)
+                if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId == BoardPieceId.ScorpionSandPile)
                 {
                     return true;
                 }
