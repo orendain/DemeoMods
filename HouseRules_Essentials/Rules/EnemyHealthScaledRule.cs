@@ -68,7 +68,6 @@
                 return;
             }
 
-            EssentialsMod.Logger.Msg($"{config.PieceName}");
             config.PieceName = "HRH_" + config.PieceName;
             config.CriticalHitDamage = config.StartHealth;
             range = Random.Range(0.75f, 1.25f);

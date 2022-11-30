@@ -11,7 +11,6 @@
         "ReptileMutantWizard": [ 3, 1, 1 ],
         "SandScorpion": [ 4, 1, 1 ],
         "ServantOfAlfaragh": [ 3, 1, 1 ],
-        "ScorpionSandPile": [ 3, 1, 1 ],
         "GoldSandPile": [ 2, 1, 1 ],
         "SmallCorruption": [ 4, 2, 1 ],
         "GeneralRonthian": [ 3, 1, 1 ],
@@ -60,8 +59,7 @@
         "Gorgon": [ 2, 1, 2 ],
         "SilentSentinel": [ 2, 1, 2 ],
         "Wyvern": [ 2, 1, 2 ],
-        "BigBoiMutant": [ 2, 1, 1 ],
-        "EmptySandPile": [ 2, 1, 1 ]
+        "BigBoiMutant": [ 2, 1, 1 ]
       }
     },
     {

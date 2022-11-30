@@ -15,7 +15,7 @@
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
-                { BoardPieceId.ScarabSandPile, new List<int> { 0, 1, 1 } },
+                //{ BoardPieceId.ScarabSandPile, new List<int> { 0, 1, 1 } },
                 { BoardPieceId.LargeCorruption, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileArcher, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileMutantWizard, new List<int> { 3, 1, 1 } },
@@ -71,7 +71,6 @@
                 { BoardPieceId.SilentSentinel, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.Wyvern, new List<int> { 2, 1, 2 } },
                 { BoardPieceId.BigBoiMutant, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.EmptySandPile, new List<int> { 2, 1, 1 } },
             });
 
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>

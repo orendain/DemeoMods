@@ -127,6 +127,7 @@
 
                     if (!hasPower)
                     {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.LeapHeavy,
@@ -162,6 +163,7 @@
 
                     if (!hasPower)
                     {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.SpawnRandomLamp,
@@ -197,6 +199,7 @@
 
                     if (!hasPower)
                     {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.PVPBlink,
@@ -232,6 +235,7 @@
 
                     if (!hasPower)
                     {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.SpellPowerPotion,
@@ -267,6 +271,7 @@
 
                     if (!hasPower)
                     {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.FretsOfFire,
@@ -302,6 +307,7 @@
 
                     if (!hasPower)
                     {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.Weaken,

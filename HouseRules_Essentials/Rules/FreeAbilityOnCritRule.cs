@@ -134,6 +134,7 @@
                 }
                 else
                 {
+                    Traverse.Create(source.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                     source.inventory.Items.Add(new Inventory.Item
                     {
                         abilityKey = AbilityKey.EnemyFrostball,

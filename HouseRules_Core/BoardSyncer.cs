@@ -116,29 +116,31 @@
 
         private static bool CanRepresentNewSpawn(SerializableEvent serializableEvent)
         {
+            string whatUp = serializableEvent.ToString();
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.Move:
                 case SerializableEvent.Type.Interact:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
+                        // CoreMod.Logger.Msg($"<<>> {whatUp}");
                         _isMove = true;
                         return true;
                     }
 
+                    // CoreMod.Logger.Msg($"---- {whatUp}");
                     return false;
                 case SerializableEvent.Type.SpawnPiece:
-                case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
+                    // CoreMod.Logger.Msg($"<<>> {whatUp}");
                     return true;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
                     return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
                 default:
-                    /*string whatUp = serializableEvent.ToString();
-                    CoreMod.Logger.Msg($"--> {whatUp}");*/
+                    // CoreMod.Logger.Msg($"---- {whatUp}");
                     return false;
             }
         }
@@ -148,9 +150,6 @@
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
-                /*case AbilityKey.DivineLight:
-                    CoreMod.Logger.Msg("[DIVINE_LIGHT_USED]");
-                    return false;*/
                 case AbilityKey.Grab:
                     _isGrab = true;
                     return true;
@@ -210,7 +209,7 @@
                 }
                 else
                 {
-                    // CoreMod.Logger.Msg("SYNC: Grab (NO RECOVERY)");
+                    // CoreMod.Logger.Msg("FOG: Grab (OnMoved)");
                     _isGrab = false;
                     _isSyncScheduled = false;
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
@@ -225,7 +224,7 @@
                 }
                 else
                 {
-                    // CoreMod.Logger.Msg("SYNC: EndAction (Move)");
+                    // CoreMod.Logger.Msg("FOG: EndAction (Move)");
                     _isMove = false;
                     _isSyncScheduled = false;
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
@@ -241,7 +240,6 @@
                 else
                 {
                     // CoreMod.Logger.Msg("SYNC: EndAction (StateChange)");
-                    _isStateChange = false;
                     _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                     return true;
                 }
@@ -250,7 +248,7 @@
             {
                 if (serializableEvent.type == SerializableEvent.Type.EndTurn)
                 {
-                    // CoreMod.Logger.Msg("SYNC: Enemy EndTurn");
+                    // CoreMod.Logger.Msg("SYNC: Enemies EndTurn");
                     return true;
                 }
                 else
@@ -258,14 +256,17 @@
                     return false;
                 }
             }
-
-            // CoreMod.Logger.Msg("<<< Normal >>>");
-            return true;
+            else
+            {
+                // CoreMod.Logger.Msg($">>> Normal Sync <<<");
+                return true;
+            }
         }
 
         private static void SyncBoard()
         {
-            // CoreMod.Logger.Msg("<<< RECOVERY >>>");
+            // CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
+            _isStateChange = false;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
