@@ -118,6 +118,9 @@
         {
             switch (serializableEvent.type)
             {
+                case SerializableEvent.Type.UpdateGameHub:
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    return true;
                 case SerializableEvent.Type.Move:
                 case SerializableEvent.Type.Interact:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
@@ -148,6 +151,10 @@
                 case AbilityKey.Grab:
                     _isGrab = true;
                     return true;
+                case AbilityKey.DetectEnemies:
+                    _isStateChange = true;
+                    return true;
+                case AbilityKey.RevealPath:
                 case AbilityKey.Leap:
                 case AbilityKey.LeapHeavy:
                     _isMove = true;
@@ -156,7 +163,6 @@
                 case AbilityKey.HurricaneAnthem:
                 case AbilityKey.Lure:
                 case AbilityKey.BoobyTrap:
-                case AbilityKey.DetectEnemies:
                 case AbilityKey.RepeatingBallista:
                 case AbilityKey.TheBehemoth:
                 case AbilityKey.HealingWard:
