@@ -411,7 +411,7 @@
           "ElvenMystic": 3,
           "Sigataur": 2
         },
-        "KeyHolderFloor1": "CavetrollBoss",
+        "KeyHolderFloor1": "Cavetroll",
         "KeyHolderFloor2": "Sigataur",
         "Boss": "Gorgon"
       }
@@ -445,16 +445,6 @@
           "Patrol",
           "FleeToFOW",
           "ChargeMove"
-        ]
-      }
-    },
-    {
-      "Rule": "PiecePieceTypeListOverridden",
-      "Config": {
-        "Spider": [
-          "Enemy",
-          "Thief",
-          "Canine"
         ]
       }
     },
