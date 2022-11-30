@@ -135,31 +135,26 @@
                 { AbilityKey.Sneak, false },
             });
 
-            var ints = new Dictionary<string, int>
+            var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "FloorOneGoldMaxAmount", 1200 },
                 { "FloorOneHealingFountains", 2 },
-                { "FloorOneLootChests", 12 },
-                { "FloorOneClassCardChests", 8 },
+                { "FloorOneLootChests", 20 },
                 { "FloorTwoHealingFountains", 3 },
                 { "FloorTwoLootChests", 9 },
                 { "FloorTwoGoldMaxAmount", 1500 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 0 },
-            };
-
-            var levelPropertiesRule = new LevelPropertiesModifiedRule(ints);
-
-            var heroImmunities = new List<EffectStateType> { EffectStateType.Diseased };
+            });
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
-                { BoardPieceId.HeroBard, heroImmunities },
-                { BoardPieceId.HeroGuardian, heroImmunities },
-                { BoardPieceId.HeroHunter, heroImmunities },
-                { BoardPieceId.HeroRogue, heroImmunities },
-                { BoardPieceId.HeroSorcerer, heroImmunities },
-                { BoardPieceId.HeroWarlock, heroImmunities },
+                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.Verochka, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.RatKing, new List<EffectStateType> { EffectStateType.Petrified, EffectStateType.Stunned, EffectStateType.Panic, EffectStateType.Frozen, EffectStateType.Disoriented, EffectStateType.Confused } },
                 { BoardPieceId.ElvenQueen, new List<EffectStateType> { EffectStateType.Petrified, EffectStateType.Stunned, EffectStateType.Disoriented, EffectStateType.Confused } },
@@ -218,7 +213,7 @@
                 EntranceDeckFloor2 = entranceDeckFloor2,
                 ExitDeckFloor2 = exitDeckFloor2,
                 BossDeck = bossDeck,
-                KeyHolderFloor1 = BoardPieceId.CavetrollBoss,
+                KeyHolderFloor1 = BoardPieceId.Cavetroll,
                 KeyHolderFloor2 = BoardPieceId.Sigataur,
                 Boss = BoardPieceId.Gorgon,
             };
@@ -234,11 +229,6 @@
             var pieceBehaviorsRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
             {
                 { BoardPieceId.Spider, new List<Behaviour> { Behaviour.AttackAndRetreat, Behaviour.Patrol, Behaviour.FleeToFOW, Behaviour.ChargeMove } },
-            });
-
-            var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
-            {
-                { BoardPieceId.Spider, new List<PieceType> { PieceType.Thief, PieceType.Canine } },
             });
 
             var cardClassRestrictionRule = new CardClassRestrictionOverriddenRule(new Dictionary<AbilityKey, BoardPieceId>
@@ -316,7 +306,6 @@
                 monsterDeckRule,
                 pieceAbilityRule,
                 pieceBehaviorsRule,
-                piecePieceTypeRule,
                 cardClassRestrictionRule,
                 enemyRespawnRule,
                 pieceUseWhenKilledRule,

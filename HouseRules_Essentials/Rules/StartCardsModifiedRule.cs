@@ -76,6 +76,7 @@
                         {
                             if (value.IsReplenishing)
                             {
+                                Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                 piece.inventory.Items.Remove(value);
                                 piece.AddGold(0);
                                 if (piece.HasEffectState(EffectStateType.FireImmunity))
@@ -115,6 +116,7 @@
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                     piece.inventory.Items.Remove(value);
                                     piece.AddGold(0);
@@ -143,7 +145,6 @@
                     for (int i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.SpawnRandomLamp)
                         {
                             hasPower = true;
                             if (value.IsReplenishing)
@@ -151,6 +152,7 @@
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                     piece.inventory.Items.Remove(value);
                                     piece.AddGold(0);
@@ -187,6 +189,7 @@
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                     piece.inventory.Items.Remove(value);
                                     piece.AddGold(0);
@@ -223,6 +226,7 @@
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                     piece.inventory.Items.Remove(value);
                                     piece.AddGold(0);
@@ -259,6 +263,7 @@
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                     piece.inventory.Items.Remove(value);
                                     piece.AddGold(0);
@@ -295,6 +300,7 @@
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) - 1);
                                 if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy) < 1)
                                 {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                     piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                     piece.inventory.Items.Remove(value);
                                     piece.AddGold(0);

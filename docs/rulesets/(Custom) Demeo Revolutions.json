@@ -5,11 +5,12 @@
     {
       "Rule": "SpawnCategoryOverridden",
       "Config": {
+        "ScorpionSandPile": [ 3, 2, 1 ],
         "ScarabSandPile": [ 0, 1, 1 ],
         "LargeCorruption": [ 3, 1, 1 ],
         "ReptileArcher": [ 3, 1, 1 ],
         "ReptileMutantWizard": [ 3, 1, 1 ],
-        "SandScorpion": [ 4, 1, 1 ],
+        "SandScorpion": [ 2, 1, 1 ],
         "ServantOfAlfaragh": [ 3, 1, 1 ],
         "GoldSandPile": [ 2, 1, 1 ],
         "SmallCorruption": [ 4, 2, 1 ],

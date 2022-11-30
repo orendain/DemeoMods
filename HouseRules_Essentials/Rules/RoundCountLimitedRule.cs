@@ -2,7 +2,6 @@
 {
     using Boardgame;
     using Boardgame.SerializableEvents;
-    using Boardgame.TurnOrder;
     using HarmonyLib;
     using HouseRules.Types;
 
@@ -14,7 +13,7 @@
         private static int _globalRoundLimit;
         private static int _globalRoundsPlayed;
         private static bool _isActivated;
-
+        private static GameContext _gameContext;
         private readonly int _roundLimit;
 
         public RoundCountLimitedRule(int roundLimit)
@@ -36,16 +35,21 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
+                original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
+                postfix: new HarmonyMethod(typeof(RoundCountLimitedRule), nameof(GameStartup_InitializeGame_Postfix)));
+
+            harmony.Patch(
                 original: AccessTools.Method(typeof(SerializableEventQueue), "RespondToRequest"),
                 postfix: new HarmonyMethod(
                     typeof(RoundCountLimitedRule),
                     nameof(SerializableEventQueue_RespondToRequest_Postfix)));
+        }
 
-            harmony.Patch(
-                original: AccessTools.Method(typeof(PieceAndTurnController), "EndCurrentTurn"),
-                prefix: new HarmonyMethod(
-                    typeof(RoundCountLimitedRule),
-                    nameof(PieceAndTurnController_EndCurrentTurn_Prefix)));
+
+        private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
+        {
+            var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
+            _gameContext = gameContext;
         }
 
         private static void SerializableEventQueue_RespondToRequest_Postfix(SerializableEvent request)
@@ -55,34 +59,28 @@
                 return;
             }
 
-            if (request.type != SerializableEvent.Type.StartRound)
+            if (request.type == SerializableEvent.Type.StartRound)
             {
+                ShowRoundsLeft();
                 return;
             }
 
-            ShowRoundsLeft();
-        }
-
-        private static void PieceAndTurnController_EndCurrentTurn_Prefix(PieceAndTurnController __instance)
-        {
-            if (!_isActivated)
+            if (request.type == SerializableEvent.Type.EndRound)
             {
+                EssentialsMod.Logger.Msg("Next turn!");
+                _globalRoundsPlayed += 1;
+                if (_globalRoundsPlayed < _globalRoundLimit)
+                {
+                    EssentialsMod.Logger.Msg($"<--- {_globalRoundLimit - _globalRoundsPlayed} turns left --->");
+                    return;
+                }
+
+                EssentialsMod.Logger.Msg("EVERYONE DIES NOW!");
+                _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventEndGame());
                 return;
             }
 
-            var turnQueue = Traverse.Create(__instance).Field<TurnQueue>("turnQueue").Value;
-            if (!turnQueue.CurrentPieceIsLastInTurnOrder())
-            {
-                return;
-            }
-
-            _globalRoundsPlayed += 1;
-            if (_globalRoundsPlayed < _globalRoundLimit)
-            {
-                return;
-            }
-
-            DownAllPlayers(__instance);
+            return;
         }
 
         private static void ShowRoundsLeft()
@@ -91,11 +89,6 @@
             GameUI.ShowCameraMessage(
                 $"You have {roundsLeft} rounds left to escape...",
                 RoundsLeftMessageDurationSeconds);
-        }
-
-        private static void DownAllPlayers(PieceAndTurnController pieceAndTurnController)
-        {
-            pieceAndTurnController.GetPlayerPieces().Do(p => p.SetIsDowned(true, pieceAndTurnController));
         }
     }
 }
