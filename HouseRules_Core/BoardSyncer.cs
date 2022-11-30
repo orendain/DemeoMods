@@ -154,7 +154,7 @@
                 case AbilityKey.DetectEnemies:
                     _isStateChange = true;
                     return true;
-                case AbilityKey.RevealPath
+                case AbilityKey.RevealPath:
                 case AbilityKey.Leap:
                 case AbilityKey.LeapHeavy:
                     _isMove = true;
