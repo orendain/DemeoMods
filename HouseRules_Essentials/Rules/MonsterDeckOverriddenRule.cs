@@ -1,6 +1,5 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
-    using System;
     using System.Collections.Generic;
     using Boardgame;
     using Boardgame.AIDirector;
@@ -89,7 +88,7 @@
             return mySubDeck;
         }
 
-        private static bool AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix(ref MonsterDeck __result, int floorIndex, IRnd rng, LevelSequence.GameType gameType)
+        private static bool AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix(ref MonsterDeck __result, int floorIndex, IRnd rng)
         {
             if (!_isActivated)
             {
@@ -126,7 +125,7 @@
             return false; // We returned an user-adjusted config.
         }
 
-        private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorContext context, IRnd rng, ref TransientBoardState boardState)
+        private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorContext context, ref TransientBoardState boardState)
         {
             if (!_isActivated)
             {
@@ -148,8 +147,6 @@
                 }
             }
 
-            IntPoint2D intPoint2D = IntPoint2D.Invalid;
-            IntPoint2D keyHolderPosition = IntPoint2D.Invalid;
             int num = 0;
             for (int j = 0; j < list.Count; j++)
             {
@@ -157,12 +154,6 @@
                 if (spawnZone4.NumStepsToExit >= AIDirectorConfig.KeyHolderMinDistanceToExit && spawnZone4.NumStepsToExit <= AIDirectorConfig.KeyHolderMaxDistanceToExit && spawnZone4.numStepsToEntrance >= AIDirectorConfig.KeyHolderMinDistanceToEntrance)
                 {
                     List<IntPoint2D> allFreeTiles = spawnZone4.GetAllFreeTiles(ref boardState);
-                    if (allFreeTiles.Count > 0 && intPoint2D == IntPoint2D.Invalid)
-                    {
-                        intPoint2D = rng.RandomElement<IntPoint2D>(allFreeTiles);
-                        keyHolderPosition = intPoint2D;
-                    }
-
                     if (allFreeTiles.Count > 2)
                     {
                         spawnZone = spawnZone4;
@@ -194,11 +185,6 @@
             if (spawnZone == null && spawnZone2 != null)
             {
                 spawnZone = spawnZone2;
-            }
-
-            if (spawnZone != null)
-            {
-                keyHolderPosition = rng.RandomElement<IntPoint2D>(spawnZone.GetAllFreeTiles(ref boardState));
             }
 
             if (spawnZone == null)
