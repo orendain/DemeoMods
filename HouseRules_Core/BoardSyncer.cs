@@ -212,7 +212,7 @@
                 {
                     _isGrab = false;
                     _isSyncScheduled = false;
-                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFogAndSpawn());
                     return false;
                 }
             }
@@ -226,7 +226,7 @@
                 {
                     _isMove = false;
                     _isSyncScheduled = false;
-                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFogAndSpawn());
                     return false;
                 }
             }

@@ -136,13 +136,13 @@
 
             var inventory = CreateInventory(spawnSettings.boardPieceId);
             Traverse.Create(spawnSettings).Property<Inventory>("Inventory").Value = inventory;
-            Traverse.Create(spawnSettings).Property<bool>("SetInventory").Value = true;
+            Traverse.Create(spawnSettings).Property<bool>("HasInventory").Value = true;
         }
 
         private static Inventory CreateInventory(BoardPieceId boardPieceId)
         {
             var inventory = new Inventory();
-
+            EssentialsMod.Logger.Warning($"StartCardsModified - > {boardPieceId}");
             foreach (var card in _globalHeroStartCards[boardPieceId])
             {
                 // flag bits
