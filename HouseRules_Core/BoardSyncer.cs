@@ -27,7 +27,8 @@
     {
         private static GameContext _gameContext;
         private static bool _isSyncScheduled;
-        private static bool _isMoveOrStateChange;
+        private static bool _isMove;
+        private static bool _isStateChange;
         private static bool _onMoved;
         private static bool _ignoreOnMoved;
 
@@ -99,7 +100,7 @@
             var isEffectImmunityCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (isEffectImmunityCheckRequired)
             {
-                _isMoveOrStateChange = true;
+                _isStateChange = true;
                 _isSyncScheduled = true;
             }
         }
@@ -109,7 +110,7 @@
             var isEffectDataCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
             if (isEffectDataCheckRequired)
             {
-                _isMoveOrStateChange = true;
+                _isStateChange = true;
                 _isSyncScheduled = true;
             }
         }
@@ -120,11 +121,6 @@
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.OnMoved:
-                    if (_ignoreOnMoved || _onMoved)
-                    {
-                        return false;
-                    }
-
                     var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
                     if (pieceId > 0 && _gameContext.pieceAndTurnController.IsPlayerControlled(pieceId))
                     {
@@ -133,13 +129,14 @@
                         return true;
                     }
 
+                    CoreMod.Logger.Msg($"---- {whatUp}");
                     return false;
                 case SerializableEvent.Type.Move:
                 case SerializableEvent.Type.Interact:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
                         CoreMod.Logger.Msg($"<<>> {whatUp}");
-                        _isMoveOrStateChange = true;
+                        _isMove = true;
                         return true;
                     }
 
@@ -171,7 +168,7 @@
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
                         _ignoreOnMoved = true;
-                        return false;
+                        return true;
                     }
 
                     return true;
@@ -223,16 +220,34 @@
             string whatUp = serializableEvent.ToString();
             CoreMod.Logger.Msg($"==== {whatUp}");
 
-            if (_onMoved && serializableEvent.type == SerializableEvent.Type.EndAction)
+            if (_ignoreOnMoved)
+            {
+                if (serializableEvent.type == SerializableEvent.Type.EndAction)
+                {
+                    _ignoreOnMoved = false;
+                    if (_isMove || _isStateChange)
+                    {
+                        CoreMod.Logger.Msg("([_ignoreOnMoved] Move or State Change) EndAction");
+                        return true;
+                    }
+
+                    _isSyncScheduled = false;
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (_onMoved && serializableEvent.type == SerializableEvent.Type.OnMoved)
             {
                 _onMoved = false;
-                _ignoreOnMoved = false;
                 _isSyncScheduled = false;
                 _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                 return false;
             }
 
-            if (_isMoveOrStateChange && serializableEvent.type == SerializableEvent.Type.EndAction)
+            if ((_isMove || _isStateChange) && serializableEvent.type == SerializableEvent.Type.EndAction)
             {
                 CoreMod.Logger.Msg("(Move or State Change) EndAction");
                 return true;
@@ -251,7 +266,7 @@
                 }
             }
 
-            if (!_isMoveOrStateChange && !_onMoved)
+            if (!_isMove && !_isStateChange && !_onMoved)
             {
                 return true;
             }
@@ -264,7 +279,8 @@
         private static void SyncBoard()
         {
             CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
-            _isMoveOrStateChange = false;
+            _isMove = false;
+            _isStateChange = false;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFogAndSpawn());
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
