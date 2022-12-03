@@ -55,11 +55,11 @@
                 prefix: new HarmonyMethod(
                     typeof(MonsterDeckOverriddenRule),
                     nameof(AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix)));
-            harmony.Patch(
+            /*harmony.Patch(
                 original: AccessTools.Method(typeof(AIDirectorController2), "SpawnBossAndMinions"),
                 prefix: new HarmonyMethod(
                     typeof(MonsterDeckOverriddenRule),
-                    nameof(AIDirectorController2_SpawnBossAndMinions_Prefix)));
+                    nameof(AIDirectorController2_SpawnBossAndMinions_Prefix)));*/
         }
 
         private static List<MonsterDeck.MonsterDeckEntry> CreateSubDeck(Dictionary<BoardPieceId, int> subdeck)
@@ -125,7 +125,7 @@
             return false; // We returned an user-adjusted config.
         }
 
-        private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorContext context, ref TransientBoardState boardState)
+        /*private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorContext context, ref TransientBoardState boardState)
         {
             if (!_isActivated)
             {
@@ -195,6 +195,6 @@
             PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, Team.Two);
             context.spawner.SpawnPiece(context, spawnSettings, ref boardState);
             return false; // We returned an user-adjusted config.
-        }
+        }*/
     }
 }
