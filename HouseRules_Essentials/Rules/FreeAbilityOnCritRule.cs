@@ -64,94 +64,97 @@
                 return;
             }
 
-            if (source.boardPieceId == BoardPieceId.HeroBard)
+            if (HR.SelectedRuleset.Name == "Demeo Revolutions")
             {
-                if (source.HasEffectState(EffectStateType.Fearless))
+                if (source.boardPieceId == BoardPieceId.HeroBard)
                 {
-                    source.EnableEffectState(EffectStateType.Fearless);
-                }
-                else if (source.HasEffectState(EffectStateType.Heroic))
-                {
-                    source.DisableEffectState(EffectStateType.Heroic);
-                    source.EnableEffectState(EffectStateType.Fearless);
-                }
-                else if (source.HasEffectState(EffectStateType.Courageous))
-                {
-                    source.DisableEffectState(EffectStateType.Courageous);
-                    source.EnableEffectState(EffectStateType.Heroic);
-                }
-                else
-                {
-                    source.EnableEffectState(EffectStateType.Courageous);
-                }
-            }
-
-            source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-            if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge) && currentAP > 0)
-            {
-                source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
-            }
-
-            if (currentAP > 0)
-            {
-                return;
-            }
-
-            if (source.boardPieceId == BoardPieceId.HeroWarlock)
-            {
-                source.EnableEffectState(EffectStateType.SpellPower);
-            }
-            else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
-            {
-                source.DisableEffectState(EffectStateType.Wet);
-                source.EnableEffectState(EffectStateType.Overcharge);
-            }
-            else if (source.boardPieceId == BoardPieceId.HeroHunter)
-            {
-                Inventory.Item value;
-                bool hasPower = false;
-                for (int i = 0; i < source.inventory.Items.Count; i++)
-                {
-                    value = source.inventory.Items[i];
-                    if (value.abilityKey == AbilityKey.EnemyFrostball)
+                    if (source.HasEffectState(EffectStateType.Fearless))
                     {
-                        hasPower = true;
-                        break;
+                        source.EnableEffectState(EffectStateType.Fearless);
                     }
-                }
-
-                if (hasPower)
-                {
-                    if (!source.HasEffectState(EffectStateType.FireImmunity))
+                    else if (source.HasEffectState(EffectStateType.Heroic))
                     {
-                        source.EnableEffectState(EffectStateType.FireImmunity);
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                        source.DisableEffectState(EffectStateType.Heroic);
+                        source.EnableEffectState(EffectStateType.Fearless);
+                    }
+                    else if (source.HasEffectState(EffectStateType.Courageous))
+                    {
+                        source.DisableEffectState(EffectStateType.Courageous);
+                        source.EnableEffectState(EffectStateType.Heroic);
                     }
                     else
                     {
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity) + 6);
+                        source.EnableEffectState(EffectStateType.Courageous);
                     }
                 }
-                else
-                {
-                    Traverse.Create(source.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                    source.inventory.Items.Add(new Inventory.Item
-                    {
-                        abilityKey = AbilityKey.EnemyFrostball,
-                        flags = 1,
-                        originalOwner = -1,
-                        replenishCooldown = 1,
-                    });
 
-                    source.AddGold(0);
-                    if (!source.HasEffectState(EffectStateType.FireImmunity))
+                source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
+                if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge) && currentAP > 0)
+                {
+                    source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
+                }
+
+                if (currentAP > 0)
+                {
+                    return;
+                }
+
+                if (source.boardPieceId == BoardPieceId.HeroWarlock)
+                {
+                    source.EnableEffectState(EffectStateType.SpellPower);
+                }
+                else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
+                {
+                    source.DisableEffectState(EffectStateType.Wet);
+                    source.EnableEffectState(EffectStateType.Overcharge);
+                }
+                else if (source.boardPieceId == BoardPieceId.HeroHunter)
+                {
+                    Inventory.Item value;
+                    bool hasPower = false;
+                    for (int i = 0; i < source.inventory.Items.Count; i++)
                     {
-                        source.EnableEffectState(EffectStateType.FireImmunity);
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                        value = source.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.EnemyFrostball)
+                        {
+                            hasPower = true;
+                            break;
+                        }
+                    }
+
+                    if (hasPower)
+                    {
+                        if (!source.HasEffectState(EffectStateType.FireImmunity))
+                        {
+                            source.EnableEffectState(EffectStateType.FireImmunity);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                        }
+                        else
+                        {
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity) + 6);
+                        }
                     }
                     else
                     {
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity) + 6);
+                        Traverse.Create(source.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        source.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.EnemyFrostball,
+                            flags = 1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+
+                        source.AddGold(0);
+                        if (!source.HasEffectState(EffectStateType.FireImmunity))
+                        {
+                            source.EnableEffectState(EffectStateType.FireImmunity);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 6);
+                        }
+                        else
+                        {
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity) + 6);
+                        }
                     }
                 }
             }

@@ -100,6 +100,7 @@
             var isEffectImmunityCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (isEffectImmunityCheckRequired)
             {
+                // CoreMod.Logger.Msg("(StateChange) Immunity");
                 _isStateChange = true;
                 _isSyncScheduled = true;
             }
@@ -110,6 +111,7 @@
             var isEffectDataCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
             if (isEffectDataCheckRequired)
             {
+                // CoreMod.Logger.Msg("(StateChange) Effect");
                 _isStateChange = true;
                 _isSyncScheduled = true;
             }
@@ -124,36 +126,38 @@
                     var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
                     if (pieceId > 0 && _gameContext.pieceAndTurnController.IsPlayerControlled(pieceId))
                     {
-                        CoreMod.Logger.Msg("(OnMoved)");
+                        // CoreMod.Logger.Msg("(OnMoved) Player");
                         _onMoved = true;
                         return true;
                     }
 
-                    CoreMod.Logger.Msg($"---- {whatUp}");
+                    // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
                 case SerializableEvent.Type.Move:
                 case SerializableEvent.Type.Interact:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
-                        CoreMod.Logger.Msg($"<<>> {whatUp}");
+                        // CoreMod.Logger.Msg("(Move) Player");
+                        // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
                         _isMove = true;
                         return true;
                     }
 
-                    CoreMod.Logger.Msg($"---- {whatUp}");
+                    // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
                 case SerializableEvent.Type.NewPlayerJoin:
                 case SerializableEvent.Type.SpawnPiece:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
-                    CoreMod.Logger.Msg($"<<>> {whatUp}");
+                    // CoreMod.Logger.Msg("(BoardPiece) New Piece/Player");
+                    // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
                     return true;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
                     return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
                 default:
-                    CoreMod.Logger.Msg($"---- {whatUp}");
+                    // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
             }
         }
@@ -163,15 +167,32 @@
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
-                // case AbilityKey.Grab:
+                case AbilityKey.Grab:
                 case AbilityKey.WhirlwindAttack:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
+                        // CoreMod.Logger.Msg("(Whirlwind) Player");
                         _ignoreOnMoved = true;
                         return true;
                     }
 
+                    // CoreMod.Logger.Msg("(Whirlwind) Enemy");
+                    _onMoved = true;
                     return true;
+                case AbilityKey.Tsunami:
+                case AbilityKey.ScrollTsunami:
+                case AbilityKey.AcidSpit:
+                case AbilityKey.Corrupt:
+                case AbilityKey.CorruptOneTurn:
+                case AbilityKey.DiseasedBite:
+                case AbilityKey.GasLamp:
+                case AbilityKey.PoisonGas:
+                case AbilityKey.PoisonBomb:
+                case AbilityKey.Petrify:
+                case AbilityKey.Freeze:
+                case AbilityKey.IceExplosion:
+                case AbilityKey.LightningBolt:
+                case AbilityKey.Zap:
                 case AbilityKey.RevealPath:
                 case AbilityKey.DetectEnemies:
                 case AbilityKey.BeastWhisperer:
@@ -186,6 +207,7 @@
                 case AbilityKey.DigRatsNest:
                 case AbilityKey.Barricade:
                 case AbilityKey.MagicBarrier:
+                    // CoreMod.Logger.Msg("(Ability) Spawn/Effect");
                     return true;
             }
 
@@ -194,7 +216,13 @@
             var isLampAbility = abilityName.Contains("Lamp");
             var isSummonAbility = abilityName.Contains("Summon");
 
-            return isSpawnAbility || isLampAbility || isSummonAbility;
+            if (isSpawnAbility || isLampAbility || isSummonAbility)
+            {
+                // CoreMod.Logger.Msg("(Summon) Creature/Lamp");
+                return true;
+            }
+
+            return false;
         }
 
         private static bool CanRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
@@ -208,6 +236,7 @@
 
                 if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId == BoardPieceId.ScorpionSandPile)
                 {
+                    // CoreMod.Logger.Msg("(Died) SpiderEgg/SandPile");
                     return true;
                 }
             }
@@ -218,38 +247,38 @@
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
             string whatUp = serializableEvent.ToString();
-            CoreMod.Logger.Msg($"==== {whatUp}");
+            // CoreMod.Logger.Msg($"=SYNC= {whatUp}");
 
             if (_ignoreOnMoved)
             {
                 if (serializableEvent.type == SerializableEvent.Type.EndAction)
                 {
+                    // CoreMod.Logger.Msg("(Whirlwind) EndAction");
                     _ignoreOnMoved = false;
                     if (_isMove || _isStateChange)
                     {
-                        CoreMod.Logger.Msg("([_ignoreOnMoved] Move or State Change) EndAction");
+                        // CoreMod.Logger.Msg("(Whirlwind) StateChange");
                         return true;
                     }
 
                     _isSyncScheduled = false;
                     return false;
                 }
-                else
-                {
-                    return false;
-                }
+
+                return false;
             }
             else if (_onMoved && serializableEvent.type == SerializableEvent.Type.OnMoved)
             {
+                // CoreMod.Logger.Msg("(OnMoved) Player");
                 _onMoved = false;
                 _isSyncScheduled = false;
                 _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                 return false;
             }
 
-            if ((_isMove || _isStateChange) && serializableEvent.type == SerializableEvent.Type.EndAction)
+            if ((_isMove || _isStateChange) && (serializableEvent.type == SerializableEvent.Type.EndAction || serializableEvent.type == SerializableEvent.Type.EndTurn))
             {
-                CoreMod.Logger.Msg("(Move or State Change) EndAction");
+                // CoreMod.Logger.Msg("(Move/StateChange) EndAction/EndTurn");
                 return true;
             }
 
@@ -257,28 +286,25 @@
             {
                 if (serializableEvent.type == SerializableEvent.Type.EndTurn)
                 {
-                    CoreMod.Logger.Msg("(Enemies) EndTurn");
+                    // CoreMod.Logger.Msg("(Enemies) EndTurn");
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+
+                return false;
             }
 
             if (!_isMove && !_isStateChange && !_onMoved)
             {
+                // CoreMod.Logger.Msg("(Default Recovery) Not Move/OnMoved/StateChange");
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         private static void SyncBoard()
         {
-            CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
+            // CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
             _isMove = false;
             _isStateChange = false;
             _isSyncScheduled = false;
