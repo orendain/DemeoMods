@@ -64,7 +64,7 @@
                 return;
             }
 
-            if (HR.SelectedRuleset.Name == "Demeo Revolutions")
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 if (source.boardPieceId == BoardPieceId.HeroBard)
                 {
