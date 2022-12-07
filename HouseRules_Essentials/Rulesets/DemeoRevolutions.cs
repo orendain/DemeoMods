@@ -15,80 +15,78 @@
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
+                { BoardPieceId.EarthElemental, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.Sigataur, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.GiantSlime, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.FireElemental, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.ElvenMarauder, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.IceElemental, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.GiantSpider, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.Mimic, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.Cavetroll, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.RootGolem, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.Brookmare, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.Gorgon, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.SilentSentinel, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.Wyvern, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.BigBoiMutant, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.ScarabSandPile, new List<int> { 0, 1, 1 } },
                 { BoardPieceId.LargeCorruption, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileArcher, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileMutantWizard, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.SandScorpion, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.SandScorpion, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ServantOfAlfaragh, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.ScorpionSandPile, new List<int> { 3, 2, 1 } },
                 { BoardPieceId.GoldSandPile, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.SmallCorruption, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.SmallCorruption, new List<int> { 3, 2, 1 } },
                 { BoardPieceId.GeneralRonthian, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.TheUnseen, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.ElvenArcher, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.ElvenArcher, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ElvenHound, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.RootHound, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.TheUnspoken, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.ElvenCultist, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.Bandit, new List<int> { 4, 1, 1 } },
-                { BoardPieceId.DruidArcher, new List<int> { 4, 2, 1 } },
+                { BoardPieceId.RootHound, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.TheUnspoken, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.ElvenCultist, new List<int> { 2, 2, 1 } },
+                { BoardPieceId.Bandit, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.DruidArcher, new List<int> { 3, 2, 1 } },
                 { BoardPieceId.DruidHoundMaster, new List<int> { 4, 1, 1 } },
-                { BoardPieceId.GoblinChieftan, new List<int> { 4, 1, 1 } },
-                { BoardPieceId.GoblinMadUn, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.GoblinChieftan, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.GoblinMadUn, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.RootBeast, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.ScabRat, new List<int> { 4, 1, 1 } },
-                { BoardPieceId.Spider, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.Rat, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.PoisonousRat, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.ScabRat, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.Spider, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.Rat, new List<int> { 3, 2, 1 } },
                 { BoardPieceId.TheUnheard, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.Slimeling, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.Slimeling, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.Thug, new List<int> { 4, 1, 1 } },
                 { BoardPieceId.ElvenMystic, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.ElvenPriest, new List<int> { 4, 1, 1 } },
                 { BoardPieceId.ElvenSkirmisher, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.GoblinFighter, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.GoblinRanger, new List<int> { 4, 2, 1 } },
-                { BoardPieceId.SpiderEgg, new List<int> { 4, 1, 1 } },
-                { BoardPieceId.SporeFungus, new List<int> { 4, 1, 1 } },
-                { BoardPieceId.RatNest, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.GoblinFighter, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.GoblinRanger, new List<int> { 3, 2, 1 } },
+                { BoardPieceId.SpiderEgg, new List<int> { 3, 1, 1 } },
+                { BoardPieceId.SporeFungus, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.RatNest, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.CultMemberElder, new List<int> { 4, 1, 1 } },
                 { BoardPieceId.RootMage, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.KillerBee, new List<int> { 4, 1, 1 } },
                 { BoardPieceId.ChestGoblin, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.EarthElemental, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.Sigataur, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.GiantSlime, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.FireElemental, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.ElvenMarauder, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.IceElemental, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.GiantSpider, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.Mimic, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.Cavetroll, new List<int> { 2, 1, 2 } },
-                { BoardPieceId.RootGolem, new List<int> { 2, 1, 2 } },
-                { BoardPieceId.Brookmare, new List<int> { 2, 1, 2 } },
-                { BoardPieceId.Gorgon, new List<int> { 2, 1, 2 } },
-                { BoardPieceId.SilentSentinel, new List<int> { 2, 1, 2 } },
-                { BoardPieceId.Wyvern, new List<int> { 2, 1, 2 } },
-                { BoardPieceId.BigBoiMutant, new List<int> { 2, 1, 1 } },
+                // { BoardPieceId.PoisonousRat, new List<int> { 3, 1, 1 } },
+                // { BoardPieceId.ScorpionSandPile, new List<int> { 3, 2, 1 } },
             });
 
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implode, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MissileSwarm, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Deflect, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
             };
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFlashbang, ReplenishFrequency = 2 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 0 },
@@ -96,23 +94,21 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ShatteringVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFlashbang, ReplenishFrequency = 2 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grab, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WhirlwindAttack, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingThrow, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Charge, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WarCry, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grab, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HailOfArrows, ReplenishFrequency = 0 },
@@ -120,11 +116,10 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CallCompanion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Lure, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 1 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 2 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, ReplenishFrequency = 0 },
@@ -132,11 +127,10 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CursedDagger, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.FlashBomb, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 2 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
@@ -144,7 +138,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DivineLight, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
@@ -179,17 +173,15 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 17 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "MoveRange", Value = 10 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "ActionPoint", Value = 3 },
-                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "DamageResist", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Barricade, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 12 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 67 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 25 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 1 },
-                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "DamageResist", Value = 1 },
             });
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -485,7 +477,7 @@
                     effectStateType = EffectStateType.ExtraEnergy,
                     durationTurns = 3,
                     damagePerTurn = 0,
-                    stacks = true,
+                    stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.Never,
                 },
@@ -535,6 +527,16 @@
                 { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
             });
 
+            var applyEffectOnHitRule = new ApplyEffectOnHitAdjustedRule(new Dictionary<BoardPieceId, EffectStateType>
+            {
+                { BoardPieceId.HealingBeacon, EffectStateType.Diseased },
+                { BoardPieceId.EyeOfAvalon, EffectStateType.Wet },
+                { BoardPieceId.Lure, EffectStateType.Thorns },
+                { BoardPieceId.SmiteWard, EffectStateType.AbilityBlocked },
+                { BoardPieceId.Verochka, EffectStateType.MarkOfAvalon },
+                { BoardPieceId.WarlockMinion, EffectStateType.ExposeEnergy },
+            });
+
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods, AbilityKey.DropChest } },
@@ -556,7 +558,6 @@
                 { AbilityKey.LeapHeavy, false },
                 { AbilityKey.SpawnRandomLamp, false },
                 { AbilityKey.FretsOfFire, false },
-                { AbilityKey.DivineLight, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -568,7 +569,7 @@
                 { AbilityKey.TurretHealProjectile, 2 },
             });
 
-            var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
+            var abilityDamageAllRule = new AbilityDamageAllOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
                 { AbilityKey.ShatteringVoice, new List<int> { 3, 6, 3, 6 } },
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
@@ -682,6 +683,7 @@
                 pieceAbilityRule,
                 pieceBehaviourListRule,
                 pieceImmunityRule,
+                applyEffectOnHitRule,
                 pieceUseWhenKilledRule,
                 abilityActionCostRule,
                 abilityHealOverriddenRule,
@@ -696,7 +698,7 @@
                 abilityStealthDamageRule,
                 enemyCooldownRule,
                 aoeAdjustedRule,
-                abilityDamageRule,
+                abilityDamageAllRule,
                 partyElectricity,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,

@@ -7,7 +7,7 @@
     using DataKeys;
     using HouseRules.Types;
 
-    public sealed class AbilityDamageOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<int>>>, IMultiplayerSafe
+    public sealed class AbilityDamageAllOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<int>>>, IMultiplayerSafe
     {
         public override string Description => "Ability damage values are overridden";
 
@@ -15,11 +15,11 @@
         private Dictionary<AbilityKey, List<int>> _originals;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AbilityDamageOverriddenRule"/> class.
+        /// Initializes a new instance of the <see cref="AbilityDamageAllOverriddenRule"/> class.
         /// </summary>
         /// <param name="adjustments">KV pairs of AbilityKeys and list of targetDamage and critDamage
         /// to replace default values.</param>
-        public AbilityDamageOverriddenRule(Dictionary<AbilityKey, List<int>> adjustments)
+        public AbilityDamageAllOverriddenRule(Dictionary<AbilityKey, List<int>> adjustments)
         {
             _adjustments = adjustments;
             _originals = new Dictionary<AbilityKey, List<int>>();
@@ -51,9 +51,11 @@
                 }
 
                 originals[replacement.Key] = new List<int>
-                    { ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage };
+                    { ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage, ability.abilityDamage.splashDamage, ability.abilityDamage.critSplashDamage };
                 ability.abilityDamage.targetDamage = replacement.Value[0];
                 ability.abilityDamage.critDamage = replacement.Value[1];
+                ability.abilityDamage.splashDamage = replacement.Value[2];
+                ability.abilityDamage.critSplashDamage = replacement.Value[3];
             }
 
             return originals;

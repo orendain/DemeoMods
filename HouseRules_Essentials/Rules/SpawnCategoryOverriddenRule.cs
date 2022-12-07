@@ -59,34 +59,14 @@
                         spawnCategories[i].FirstAllowedLevelIndex,
                     };
 
-                    bool canHoldKey;
-                    if (spawnCategories[i].BoardPieceId == BoardPieceId.GeneralRonthian || spawnCategories[i].BoardPieceId == BoardPieceId.ScabRat)
-                    {
-                        canHoldKey = false;
-                    }
-                    else
-                    {
-                        canHoldKey = spawnCategories[i].IsAllowedKeyholder;
-                    }
-
-                    bool maxPerDeck;
-                    if (spawnCategories[i].BoardPieceId == BoardPieceId.ScarabSandPile)
-                    {
-                        maxPerDeck = true;
-                    }
-                    else
-                    {
-                        maxPerDeck = false;
-                    }
-
                     spawnCategories[i] = new SpawnCategoryData
                     {
                         BoardPieceId = spawnCategories[i].BoardPieceId,
                         EnemyWeight = spawnCategories[i].EnemyWeight,
                         IsSpawningEnabled = true,
-                        IsAllowedKeyholder = canHoldKey,
+                        IsAllowedKeyholder = spawnCategories[i].IsAllowedKeyholder,
                         IsBossSynergyUnit = spawnCategories[i].IsBossSynergyUnit,
-                        OverrideDefaultMaxPerDeckBehaviour = maxPerDeck,
+                        OverrideDefaultMaxPerDeckBehaviour = true,
                         MaxPerDeck = spawnModifications[spawnCategories[i].BoardPieceId][0],
                         PreFill = spawnModifications[spawnCategories[i].BoardPieceId][1],
                         FirstAllowedLevelIndex = spawnModifications[spawnCategories[i].BoardPieceId][2],
@@ -107,7 +87,7 @@
                         MaxPerDeck = 0,
                         PreFill = 0,
                         FirstAllowedLevelIndex = 4,
-                        IsRedrawEnabled = true,
+                        IsRedrawEnabled = false,
                         IsPriorityUnit = false,
                     };
                 }

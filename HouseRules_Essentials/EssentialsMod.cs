@@ -19,11 +19,13 @@
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityBackstabAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityBreaksStealthAdjustedRule));
+            HR.Rulebook.Register(typeof(AbilityDamageAllOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityDamageOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityHealOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
             HR.Rulebook.Register(typeof(AbilityStealthDamageOverriddenRule));
+            HR.Rulebook.Register(typeof(ApplyEffectOnHitAdjustedRule));
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
             HR.Rulebook.Register(typeof(CourageShantyAddsHpRule));
             HR.Rulebook.Register(typeof(CardAdditionOverriddenRule));

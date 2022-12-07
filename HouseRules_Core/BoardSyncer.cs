@@ -30,6 +30,7 @@
         private static bool _updateNewPlayer;
         private static bool _isMove;
         private static bool _isGrab;
+        private static bool _skipOnMoved;
 
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
@@ -136,21 +137,22 @@
                     // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
                 case SerializableEvent.Type.OnMoved:
-                    if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    if (_skipOnMoved)
                     {
-                        var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
-                        if (pieceId > 0 && _gameContext.pieceAndTurnController.IsPlayerControlled(pieceId))
-                        {
-                            // CoreMod.Logger.Msg("(OnMoved) Player");
-                            // CoreMod.Logger.Msg($"------ {whatUp}");
-                            _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
-                            return true;
-                        }
-
                         // CoreMod.Logger.Msg($"------ {whatUp}");
                         return false;
                     }
 
+                    var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
+                    if (pieceId > 0 && _gameContext.pieceAndTurnController.IsPlayerControlled(pieceId))
+                    {
+                        // CoreMod.Logger.Msg("(OnMoved) Player Moved/Grabbed");
+                        // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
+                        _isGrab = true;
+                        return true;
+                    }
+
+                    // _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFogAndSpawn());
                     // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
                 case SerializableEvent.Type.Move:
@@ -165,20 +167,22 @@
 
                     // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
+                case SerializableEvent.Type.Emerge:
                 case SerializableEvent.Type.SpawnPiece:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
-                    // CoreMod.Logger.Msg("(BoardPiece) New Piece/Player");
+                    // CoreMod.Logger.Msg("(SpawnEvent) New Piece/Player");
                     // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
                     return true;
                 case SerializableEvent.Type.EndAction:
                 case SerializableEvent.Type.EndTurn:
+                    _skipOnMoved = false;
                     if (_isGrab)
                     {
-                        // CoreMod.Logger.Msg("(Grabbed) Grab Fog Update");
+                        // CoreMod.Logger.Msg("(Grabbed) EndAction/EndTurn");
                         // CoreMod.Logger.Msg($"------ {whatUp}");
                         _isGrab = false;
-                        _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                        _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFogAndSpawn());
                         return false;
                     }
 
@@ -197,10 +201,6 @@
 
                     // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
-                case SerializableEvent.Type.UpdateFogAndSpawn:
-                    // CoreMod.Logger.Msg("(UpdateFogAndSpawn) FogAndSpawn");
-                    // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
-                    return true;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
@@ -216,24 +216,24 @@
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
-                /*case AbilityKey.Tsunami:
-                case AbilityKey.ScrollTsunami:
-                case AbilityKey.AcidSpit:
-                case AbilityKey.Corrupt:
-                case AbilityKey.CorruptOneTurn:
-                case AbilityKey.DiseasedBite:
-                case AbilityKey.GasLamp:
-                case AbilityKey.PoisonGas:
-                case AbilityKey.PoisonBomb:
-                case AbilityKey.Petrify:
-                case AbilityKey.Freeze:
-                case AbilityKey.IceExplosion:
-                case AbilityKey.LightningBolt:
-                case AbilityKey.Zap:*/
+                case AbilityKey.TeleportLamp:
+                    _skipOnMoved = true;
+                    return false;
+                case AbilityKey.Vortex:
+                case AbilityKey.VortexLamp:
+                case AbilityKey.LeapHeavy:
+                case AbilityKey.WhirlwindAttack:
+                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        _skipOnMoved = true;
+                        return false;
+                    }
+
+                    return false;
                 case AbilityKey.Grab:
                     if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
-                        // CoreMod.Logger.Msg("(EnemyAbility) Grab");
+                        // CoreMod.Logger.Msg("(Ability) Player Grabbed");
                         _isGrab = true;
                         return false;
                     }
@@ -294,15 +294,7 @@
         {
             if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
             {
-                if (serializableEvent.type == SerializableEvent.Type.EndTurn)
-                {
-                    // CoreMod.Logger.Msg("(Enemies) EndTurn");
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return serializableEvent.type == SerializableEvent.Type.EndTurn;
             }
 
             return true;
@@ -314,9 +306,8 @@
             _isMove = false;
             _isGrab = false;
             _isSyncScheduled = false;
-            // _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
-            _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+            _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFogAndSpawn());
         }
     }
 }

@@ -171,7 +171,6 @@
             int rndMap1 = 0;
             int rndMap2 = 0;
             int rndMap3 = 0;
-            int newMap = 0;
 
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
             {
@@ -261,6 +260,7 @@
 
             EssentialsMod.Logger.Warning($"{rndMap1}, {rndMap2}, {rndMap3}");
 
+            int newMap;
             switch (rndMap1)
             {
                 case 1:

@@ -53,7 +53,7 @@
             float range;
             if (config.PieceName.Contains("HRH_"))
             {
-                range = Random.Range(0.75f, 1.25f);
+                range = Random.Range(0.85f, 1.15f);
                 config.StartHealth = (int)(config.CriticalHitDamage * _globalMultiplier * range);
                 return;
             }
