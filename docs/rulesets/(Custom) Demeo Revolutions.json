@@ -3,6 +3,146 @@
   "Description": "Everything that has a beginning has an end.",
   "Rules": [
     {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        {
+          "Piece": "HeroHunter",
+          "Property": "MoveRange",
+          "Value": 5
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "MoveRange",
+          "Value": 5
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "StartHealth",
+          "Value": 7
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartHealth",
+          "Value": 8
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "StartHealth",
+          "Value": 7
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "StartHealth",
+          "Value": 8
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "StartHealth",
+          "Value": 6
+        },
+        {
+          "Piece": "HeroWarlock",
+          "Property": "StartHealth",
+          "Value": 6
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "AttackDamage",
+          "Value": 1
+        },
+        {
+          "Piece": "HeroWarlock",
+          "Property": "AttackDamage",
+          "Value": 1
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "AttackDamage",
+          "Value": 2
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "CriticalHitDamage",
+          "Value": 5
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "CriticalHitDamage",
+          "Value": 3
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "CriticalHitDamage",
+          "Value": 7
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "CriticalHitDamage",
+          "Value": 8
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "AttackDamage",
+          "Value": 2
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "CriticalHitDamage",
+          "Value": 5
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.99
+        },
+        {
+          "Piece": "WarlockMinion",
+          "Property": "StartHealth",
+          "Value": 6
+        },
+        {
+          "Piece": "WarlockMinion",
+          "Property": "MoveRange",
+          "Value": 10
+        },
+        {
+          "Piece": "WarlockMinion",
+          "Property": "ActionPoint",
+          "Value": 3
+        },
+        {
+          "Piece": "Verochka",
+          "Property": "StartHealth",
+          "Value": 8
+        },
+        {
+          "Piece": "Barricade",
+          "Property": "StartHealth",
+          "Value": 8
+        },
+        {
+          "Piece": "Lure",
+          "Property": "StartHealth",
+          "Value": 12
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "StartHealth",
+          "Value": 25
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "BarkArmor",
+          "Value": 1
+        },
+        {
+          "Piece": "ElvenQueen",
+          "Property": "StartHealth",
+          "Value": 67
+        }
+      ]
+    },
+    /*{
       "Rule": "SpawnCategoryOverridden",
       "Config": {
         "ScarabSandPile": [ 1, 1, 1 ],
@@ -61,6 +201,244 @@
         "Wyvern": [ 2, 1, 2 ],
         "BigBoiMutant": [ 2, 1, 1 ],
         "EmptySandPile": [ 3, 1, 1 ]
+      }
+    },*/
+    {
+      "Rule": "MyMonsterDeckOverridden",
+      "Config": {
+        "EntranceDeckFloor1": {
+          "LargeCorruption": 1,
+          "ReptileArcher": 1,
+          "SandScorpion": 1,
+          "ServantOfAlfaragh": 1,
+          "GoldSandPile": 1,
+          "SmallCorruption": 1,
+          "GeneralRonthian": 1,
+          "TheUnseen": 2,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 1,
+          "TheUnspoken": 1,
+          "Bandit": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 1,
+          "ScabRat": 1,
+          "Spider": 1,
+          "Rat": 1,
+          "TheUnheard": 2,
+          "Slimeling": 2,
+          "Thug": 2,
+          "ElvenMystic": 1,
+          "ElvenPriest": 1,
+          "ElvenSkirmisher": 1,
+          "GoblinFighter": 1,
+          "GoblinRanger": 1,
+          "SpiderEgg": 1,
+          "SporeFungus": 1,
+          "RatNest": 1,
+          "CultMemberElder": 1,
+          "RootMage": 1,
+          "KillerBee": 2,
+          "ChestGoblin": 1,
+          "EarthElemental": 1,
+          "Sigataur": 1,
+          "GiantSlime": 1,
+          "FireElemental": 2,
+          "ElvenMarauder": 2,
+          "IceElemental": 2,
+          "GiantSpider": 2,
+          "Cavetroll": 1,
+          "RootGolem": 1,
+          "Brookmare": 1,
+          "Gorgon": 1,
+          "SilentSentinel": 1,
+          "BigBoiMutant": 1,
+          "ReptileMutantWizard": 1
+        },
+        "ExitDeckFloor1": {
+          "ReptileArcher": 1,
+          "ServantOfAlfaragh": 1,
+          "SmallCorruption": 1,
+          "GeneralRonthian": 1,
+          "TheUnseen": 1,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 1,
+          "TheUnspoken": 1,
+          "Bandit": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 1,
+          "ScabRat": 1,
+          "TheUnheard": 1,
+          "Slimeling": 1,
+          "Thug": 1,
+          "ElvenMystic": 1,
+          "ElvenPriest": 1,
+          "ElvenSkirmisher": 1,
+          "GoblinRanger": 1,
+          "CultMemberElder": 1,
+          "RootMage": 1,
+          "KillerBee": 2,
+          "ChestGoblin": 1,
+          "EarthElemental": 1,
+          "Sigataur": 1,
+          "GiantSlime": 2,
+          "FireElemental": 2,
+          "ElvenMarauder": 2,
+          "IceElemental": 2,
+          "GiantSpider": 1,
+          "Cavetroll": 1,
+          "RootGolem": 1,
+          "Brookmare": 1,
+          "Gorgon": 1,
+          "SilentSentinel": 1,
+          "BigBoiMutant": 1,
+          "ReptileMutantWizard": 1
+        },
+        "EntranceDeckFloor2": {
+          "LargeCorruption": 1,
+          "ReptileArcher": 1,
+          "SandScorpion": 1,
+          "ServantOfAlfaragh": 1,
+          "GoldSandPile": 1,
+          "SmallCorruption": 1,
+          "GeneralRonthian": 1,
+          "TheUnseen": 2,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 1,
+          "TheUnspoken": 1,
+          "Bandit": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 1,
+          "ScabRat": 1,
+          "Spider": 1,
+          "Rat": 1,
+          "TheUnheard": 2,
+          "Slimeling": 2,
+          "Thug": 1,
+          "ElvenMystic": 1,
+          "ElvenPriest": 1,
+          "ElvenSkirmisher": 1,
+          "GoblinFighter": 1,
+          "GoblinRanger": 1,
+          "SpiderEgg": 1,
+          "SporeFungus": 1,
+          "RatNest": 1,
+          "CultMemberElder": 1,
+          "RootMage": 1,
+          "KillerBee": 2,
+          "ChestGoblin": 1,
+          "EarthElemental": 1,
+          "Sigataur": 1,
+          "GiantSlime": 1,
+          "FireElemental": 2,
+          "ElvenMarauder": 2,
+          "IceElemental": 2,
+          "GiantSpider": 2,
+          "Cavetroll": 1,
+          "RootGolem": 1,
+          "Brookmare": 1,
+          "Gorgon": 1,
+          "SilentSentinel": 1,
+          "BigBoiMutant": 1,
+          "ReptileMutantWizard": 1
+        },
+        "ExitDeckFloor2": {
+          "ScarabSandPile": 1,
+          "ReptileArcher": 1,
+          "ServantOfAlfaragh": 1,
+          "SmallCorruption": 1,
+          "GeneralRonthian": 1,
+          "TheUnseen": 2,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 1,
+          "TheUnspoken": 1,
+          "Bandit": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 1,
+          "ScabRat": 1,
+          "TheUnheard": 2,
+          "Slimeling": 2,
+          "Thug": 1,
+          "ElvenMystic": 1,
+          "ElvenPriest": 1,
+          "ElvenSkirmisher": 1,
+          "GoblinFighter": 1,
+          "GoblinRanger": 1,
+          "CultMemberElder": 1,
+          "RootMage": 1,
+          "KillerBee": 1,
+          "EarthElemental": 1,
+          "Sigataur": 1,
+          "GiantSlime": 2,
+          "FireElemental": 2,
+          "ElvenMarauder": 2,
+          "IceElemental": 2,
+          "GiantSpider": 1,
+          "Cavetroll": 1,
+          "RootGolem": 1,
+          "Brookmare": 1,
+          "Gorgon": 1,
+          "SilentSentinel": 1,
+          "BigBoiMutant": 1,
+          "ReptileMutantWizard": 1
+        },
+        "BossDeck": {
+          "ReptileArcher": 1,
+          "ServantOfAlfaragh": 1,
+          "GeneralRonthian": 1,
+          "TheUnseen": 2,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 1,
+          "TheUnspoken": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 1,
+          "ScabRat": 1,
+          "Rat": 1,
+          "TheUnheard": 1,
+          "Slimeling": 1,
+          "Thug": 1,
+          "ElvenMystic": 1,
+          "ElvenPriest": 1,
+          "ElvenSkirmisher": 1,
+          "CultMemberElder": 1,
+          "RootMage": 1,
+          "KillerBee": 1,
+          "EarthElemental": 1,
+          "Sigataur": 1,
+          "GiantSlime": 1,
+          "FireElemental": 2,
+          "ElvenMarauder": 2,
+          "IceElemental": 2,
+          "GiantSpider": 1,
+          "Cavetroll": 1,
+          "RootGolem": 1,
+          "Brookmare": 1,
+          "Gorgon": 1,
+          "SilentSentinel": 1,
+          "BigBoiMutant": 1,
+          "ReptileMutantWizard": 1
+        },
+        "KeyHolderFloor1": "Mimic",
+        "KeyHolderFloor2": "Wyvern"
       }
     },
     {
@@ -271,146 +649,6 @@
           }
         ]
       }
-    },
-    {
-      "Rule": "PieceConfigAdjusted",
-      "Config": [
-        {
-          "Piece": "HeroHunter",
-          "Property": "MoveRange",
-          "Value": 5
-        },
-        {
-          "Piece": "HeroRogue",
-          "Property": "MoveRange",
-          "Value": 5
-        },
-        {
-          "Piece": "HeroBard",
-          "Property": "StartHealth",
-          "Value": 7
-        },
-        {
-          "Piece": "HeroGuardian",
-          "Property": "StartHealth",
-          "Value": 8
-        },
-        {
-          "Piece": "HeroRogue",
-          "Property": "StartHealth",
-          "Value": 7
-        },
-        {
-          "Piece": "HeroHunter",
-          "Property": "StartHealth",
-          "Value": 8
-        },
-        {
-          "Piece": "HeroSorcerer",
-          "Property": "StartHealth",
-          "Value": 6
-        },
-        {
-          "Piece": "HeroWarlock",
-          "Property": "StartHealth",
-          "Value": 6
-        },
-        {
-          "Piece": "HeroSorcerer",
-          "Property": "AttackDamage",
-          "Value": 1
-        },
-        {
-          "Piece": "HeroWarlock",
-          "Property": "AttackDamage",
-          "Value": 1
-        },
-        {
-          "Piece": "HeroBard",
-          "Property": "AttackDamage",
-          "Value": 2
-        },
-        {
-          "Piece": "HeroBard",
-          "Property": "CriticalHitDamage",
-          "Value": 5
-        },
-        {
-          "Piece": "HeroSorcerer",
-          "Property": "CriticalHitDamage",
-          "Value": 3
-        },
-        {
-          "Piece": "HeroGuardian",
-          "Property": "CriticalHitDamage",
-          "Value": 7
-        },
-        {
-          "Piece": "HeroRogue",
-          "Property": "CriticalHitDamage",
-          "Value": 8
-        },
-        {
-          "Piece": "HeroHunter",
-          "Property": "AttackDamage",
-          "Value": 2
-        },
-        {
-          "Piece": "HeroHunter",
-          "Property": "CriticalHitDamage",
-          "Value": 5
-        },
-        {
-          "Piece": "Mimic",
-          "Property": "BerserkBelowHealth",
-          "Value": 0.99
-        },
-        {
-          "Piece": "WarlockMinion",
-          "Property": "StartHealth",
-          "Value": 6
-        },
-        {
-          "Piece": "WarlockMinion",
-          "Property": "MoveRange",
-          "Value": 10
-        },
-        {
-          "Piece": "WarlockMinion",
-          "Property": "ActionPoint",
-          "Value": 3
-        },
-        {
-          "Piece": "Verochka",
-          "Property": "StartHealth",
-          "Value": 8
-        },
-        {
-          "Piece": "Barricade",
-          "Property": "StartHealth",
-          "Value": 8
-        },
-        {
-          "Piece": "Lure",
-          "Property": "StartHealth",
-          "Value": 12
-        },
-        {
-          "Piece": "Wyvern",
-          "Property": "StartHealth",
-          "Value": 25
-        },
-        {
-          "Piece": "Wyvern",
-          "Property": "BarkArmor",
-          "Value": 1
-        },
-        {
-          "Piece": "ElvenQueen",
-          "Property": "StartHealth",
-          "Value": 67
-        }
-      ]
     },
     {
       "Rule": "CardAdditionOverridden",

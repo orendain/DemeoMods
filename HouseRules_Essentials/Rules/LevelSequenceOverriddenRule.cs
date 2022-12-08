@@ -25,7 +25,7 @@
                     { "ElvenFloor01", "ElvenFloor04", "ElvenFloor13", "ElvenFloor14", "ElvenFloor16", "ElvenFloor17" };
 
         private readonly List<string> elvenFloors2 = new List<string>
-                    { "ElvenFloor02", "ElvenFloor03", "ElvenFloor06", "ElvenFloor07", "ElvenFloor08", "ElvenFloor13", "ElvenFloor17" };
+                    { "ElvenFloor02", "ElvenFloor03", "ElvenFloor06", "ElvenFloor07", "ElvenFloor08", "ElvenFloor10", "ElvenFloor11" };
 
         private readonly List<string> forestFloors1 = new List<string>
                     { "ForestFloor01", "ForestFloor02", "ForestFloor07", "ForestFloor08" };
@@ -43,7 +43,7 @@
                     { "DesertFloor10", "DesertFloor06" };
 
         private readonly List<string> desertFloors2 = new List<string>
-                    { "DesertFloor02", "DesertFloor08", "DesertFloor09", "DesertFloor06" };
+                    { "DesertFloor02", "DesertFloor08", "DesertFloor09", "DesertFloor06", "DesertFloor10" };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LevelSequenceOverriddenRule"/> class.
@@ -258,33 +258,27 @@
                     break;
             }
 
-            EssentialsMod.Logger.Warning($"{rndMap1}, {rndMap2}, {rndMap3}");
-
             int newMap;
             switch (rndMap1)
             {
                 case 1:
                     newMap = Random.Range(0, elvenFloors1.Count);
                     _randomMaps[0] = elvenFloors1[newMap];
-                    EssentialsMod.Logger.Warning($"ElvenF1 = {newMap}");
                     break;
 
                 case 2:
                     newMap = Random.Range(0, forestFloors1.Count);
                     _randomMaps[0] = forestFloors1[newMap];
-                    EssentialsMod.Logger.Warning($"ForestF1 = {newMap}");
                     break;
 
                 case 3:
                     newMap = Random.Range(0, sewersFloors1.Count);
                     _randomMaps[0] = sewersFloors1[newMap];
-                    EssentialsMod.Logger.Warning($"SewersF1 = {newMap}");
                     break;
 
                 case 4:
                     newMap = Random.Range(0, desertFloors1.Count);
                     _randomMaps[0] = desertFloors1[newMap];
-                    EssentialsMod.Logger.Warning($"DesertF1 = {newMap}");
                     break;
             }
 
@@ -293,52 +287,52 @@
                 case 1:
                     newMap = Random.Range(0, elvenFloors2.Count);
                     _randomMaps[2] = elvenFloors2[newMap];
-                    EssentialsMod.Logger.Warning($"ElvenF2 = {newMap}");
                     break;
 
                 case 2:
                     newMap = Random.Range(0, forestFloors2.Count);
                     _randomMaps[2] = forestFloors2[newMap];
-                    EssentialsMod.Logger.Warning($"ForestF2 = {newMap}");
                     break;
 
                 case 3:
                     newMap = Random.Range(0, sewersFloors2.Count);
                     _randomMaps[2] = sewersFloors2[newMap];
-                    EssentialsMod.Logger.Warning($"SewersF2 = {newMap}");
                     break;
 
                 case 4:
                     newMap = Random.Range(0, desertFloors2.Count);
                     _randomMaps[2] = desertFloors2[newMap];
-                    EssentialsMod.Logger.Warning($"DesertF2 = {newMap}");
                     break;
             }
 
             switch (rndMap3)
             {
                 case 1:
-                    newMap = Random.Range(0, elvenFloors1.Count);
-                    _randomMaps[4] = elvenFloors1[newMap];
-                    EssentialsMod.Logger.Warning($"ElvenF3 = {newMap}");
+                    newMap = Random.Range(0, elvenFloors1.Count + 1);
+                    if (newMap == elvenFloors1.Count)
+                    {
+                        _randomMaps[4] = "ElvenFloor09";
+                    }
+                    else
+                    {
+                        _randomMaps[4] = elvenFloors1[newMap];
+                    }
+
                     break;
 
                 case 2:
                     newMap = Random.Range(0, forestFloors1.Count);
                     _randomMaps[4] = forestFloors1[newMap];
-                    EssentialsMod.Logger.Warning($"ForestF3 = {newMap}");
                     break;
 
                 case 3:
                     newMap = Random.Range(0, sewersFloors1.Count);
                     _randomMaps[4] = sewersFloors1[newMap];
-                    EssentialsMod.Logger.Warning($"SewersF3 = {newMap}");
                     break;
 
                 case 4:
                     newMap = Random.Range(0, desertFloors1.Count);
                     _randomMaps[4] = desertFloors1[newMap];
-                    EssentialsMod.Logger.Warning($"DesertF3 = {newMap}");
                     break;
             }
 

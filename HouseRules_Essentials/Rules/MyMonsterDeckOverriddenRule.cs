@@ -7,17 +7,16 @@
     using HouseRules.Types;
     using Utils;
 
-    public sealed class MyMonsterDeckOverriddenRule : Rule, IConfigWritable<MyMonsterDeckOverriddenRule.DeckConfig>, IPatchable, IMultiplayerSafe
+    public sealed class MyMonsterDeckOverriddenRule : Rule, IConfigWritable<MyMonsterDeckOverriddenRule.MyDeckConfig>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "My MonsterDeck creation is overriden";
 
-        private static DeckConfig _globalAdjustments;
+        private static MyDeckConfig _globalAdjustments;
         private static bool _isActivated;
-        private static bool _isScarabDeck;
 
-        private readonly DeckConfig _adjustments;
+        private readonly MyDeckConfig _adjustments;
 
-        public struct DeckConfig
+        public struct MyDeckConfig
         {
             public Dictionary<BoardPieceId, int> EntranceDeckFloor1;
             public Dictionary<BoardPieceId, int> ExitDeckFloor1;
@@ -26,15 +25,14 @@
             public Dictionary<BoardPieceId, int> BossDeck;
             public BoardPieceId KeyHolderFloor1;
             public BoardPieceId KeyHolderFloor2;
-            public BoardPieceId Boss;
         }
 
-        public MyMonsterDeckOverriddenRule(DeckConfig adjustments)
+        public MyMonsterDeckOverriddenRule(MyDeckConfig adjustments)
         {
             _adjustments = adjustments;
         }
 
-        public DeckConfig GetConfigObject() => _adjustments;
+        public MyDeckConfig GetConfigObject() => _adjustments;
 
         protected override void OnActivate(GameContext gameContext)
         {
@@ -49,7 +47,7 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(AIDirectorDeckConstructor), "ConstructMonsterDeck"),
                 prefix: new HarmonyMethod(
-                    typeof(MonsterDeckOverriddenRule),
+                    typeof(MyMonsterDeckOverriddenRule),
                     nameof(AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix)));
         }
 
@@ -76,19 +74,6 @@
                 }
             }
 
-            if (_isScarabDeck)
-            {
-                var deckItem = new MonsterDeck.MonsterDeckEntry
-                {
-                    BoardPieceId = BoardPieceId.ScarabSandPile,
-                    enemyWeight = EnemyWeight.Light,
-                    isRedrawEnabled = false,
-                };
-
-                mySubDeck.Add(deckItem);
-                _isScarabDeck = false;
-            }
-
             return mySubDeck;
         }
 
@@ -111,7 +96,6 @@
             else
             {
                 standardDeck = CreateSubDeck(_globalAdjustments.EntranceDeckFloor2);
-                _isScarabDeck = true;
                 spikeDeck = CreateSubDeck(_globalAdjustments.ExitDeckFloor2);
                 keyHolder = new MonsterDeck.MonsterDeckEntry() { BoardPieceId = _globalAdjustments.KeyHolderFloor2, enemyWeight = EnemyWeight.Light, isRedrawEnabled = false };
             }
