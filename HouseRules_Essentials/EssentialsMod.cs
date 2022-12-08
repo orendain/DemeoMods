@@ -53,6 +53,7 @@
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(LevelSequenceOverriddenRule));
             HR.Rulebook.Register(typeof(MonsterDeckOverriddenRule));
+            // HR.Rulebook.Register(typeof(MyMonsterDeckOverriddenRule));
             HR.Rulebook.Register(typeof(PartyElectricityDamageOverriddenRule));
             HR.Rulebook.Register(typeof(PetsFocusHunterMarkRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
@@ -74,6 +75,7 @@
 
         private static void RegisterRulesets()
         {
+            // HR.Rulebook.Register(TESTGAME.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(DemeoRevolutions.Create());
             HR.Rulebook.Register(LuckyDip.Create());

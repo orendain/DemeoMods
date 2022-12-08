@@ -55,7 +55,7 @@
                 return;
             }
 
-            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || !config.HasPieceType(PieceType.Creature))
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.ExplodingLamp) || !config.HasPieceType(PieceType.Creature))
             {
                 return;
             }

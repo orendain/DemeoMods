@@ -5,8 +5,7 @@
     {
       "Rule": "SpawnCategoryOverridden",
       "Config": {
-        "ScorpionSandPile": [ 3, 2, 1 ],
-        "ScarabSandPile": [ 0, 1, 1 ],
+        "ScarabSandPile": [ 1, 1, 1 ],
         "LargeCorruption": [ 3, 1, 1 ],
         "ReptileArcher": [ 3, 1, 1 ],
         "ReptileMutantWizard": [ 3, 1, 1 ],
@@ -60,13 +59,18 @@
         "Gorgon": [ 2, 1, 2 ],
         "SilentSentinel": [ 2, 1, 2 ],
         "Wyvern": [ 2, 1, 2 ],
-        "BigBoiMutant": [ 2, 1, 1 ]
+        "BigBoiMutant": [ 2, 1, 1 ],
+        "EmptySandPile": [ 3, 1, 1 ]
       }
     },
     {
       "Rule": "StartCardsModified",
       "Config": {
         "HeroWarlock": [
+          {
+            "Card": "MinionCharge",
+            "ReplenishFrequency": 1
+          },
           {
             "Card": "Torch",
             "ReplenishFrequency": 0
@@ -88,10 +92,6 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "MinionCharge",
-            "ReplenishFrequency": 1
-          },
-          {
             "Card": "MagicMissile",
             "ReplenishFrequency": 1
           },
@@ -101,6 +101,10 @@
           }
         ],
         "HeroBard": [
+          {
+            "Card": "EnemyFlashBang",
+            "ReplenishFrequency": 2
+          },
           {
             "Card": "Torch",
             "ReplenishFrequency": 0
@@ -128,13 +132,13 @@
           {
             "Card": "CourageShanty",
             "ReplenishFrequency": 1
-          },
-          {
-            "Card": "EnemyFlashBang",
-            "ReplenishFrequency": 2
           }
         ],
         "HeroGuardian": [
+          {
+            "Card": "Grab",
+            "ReplenishFrequency": 1
+          },
           {
             "Card": "Torch",
             "ReplenishFrequency": 0
@@ -160,15 +164,15 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "Grab",
-            "ReplenishFrequency": 1
-          },
-          {
             "Card": "ReplenishArmor",
             "ReplenishFrequency": 1
           }
         ],
         "HeroHunter": [
+          {
+            "Card": "EnemyFireball",
+            "ReplenishFrequency": 1
+          },
           {
             "Card": "Torch",
             "ReplenishFrequency": 0
@@ -196,13 +200,13 @@
           {
             "Card": "Arrow",
             "ReplenishFrequency": 1
-          },
-          {
-            "Card": "EnemyFireball",
-            "ReplenishFrequency": 1
           }
         ],
         "HeroRogue": [
+          {
+            "Card": "DiseasedBite",
+            "ReplenishFrequency": 2
+          },
           {
             "Card": "Torch",
             "ReplenishFrequency": 0
@@ -230,13 +234,13 @@
           {
             "Card": "Sneak",
             "ReplenishFrequency": 1
-          },
-          {
-            "Card": "DiseasedBite",
-            "ReplenishFrequency": 2
           }
         ],
         "HeroSorcerer": [
+          {
+            "Card": "Electricity",
+            "ReplenishFrequency": 1
+          },
           {
             "Card": "Torch",
             "ReplenishFrequency": 0
@@ -263,10 +267,6 @@
           },
           {
             "Card": "Zap",
-            "ReplenishFrequency": 1
-          },
-          {
-            "Card": "Electricity",
             "ReplenishFrequency": 1
           }
         ]
@@ -691,8 +691,8 @@
         },
         {
           "effectStateType": "ExtraEnergy",
-          "durationTurns": 4,
-          "tickWhen": "StartTurn",
+          "durationTurns": 3,
+          "tickWhen": "Never",
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
@@ -748,6 +748,17 @@
       }
     },
     {
+      "Rule": "ApplyEffectOnHitAdjusted",
+      "Config": {
+        "HealingBeacon": "Diseased",
+        "EyeOfAvalon": "Diseased",
+        "Lure": "Thorns",
+        "SmiteWard": "Diseased",
+        "Verochka": "Thorns",
+        "WarlockMinion": "ExposeEnergy"
+      }
+    },
+    {
       "Rule": "PieceUseWhenKilledOverridden",
       "Config": {
         "ChestGoblin": [ "EnemyDropStolenGoods", "DropChest" ],
@@ -758,6 +769,7 @@
       "Rule": "AbilityActionCostAdjusted",
       "Config": {
         "Zap": false,
+        "LightningBolt": false,
         "Sneak": false,
         "Grab": false,
         "CourageShanty": false,
@@ -769,8 +781,7 @@
         "LeapHeavy": false,
         "SpawnRandomLamp": false,
         "Weaken": false,
-        "FrestOfFire": false,
-        "DivineLight": false
+        "FretsOfFire": false
       }
     },
     {
@@ -797,7 +808,7 @@
       }
     },
     {
-      "Rule": "AbilityDamageOverridden",
+      "Rule": "AbilityDamageAllOverridden",
       "Config": {
         "ShatteringVoice": [ 3, 6, 3, 6 ],
         "PiercingVoice": [ 2, 4, 2, 4 ],

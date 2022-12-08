@@ -152,7 +152,6 @@
                         return true;
                     }
 
-                    // _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFogAndSpawn());
                     // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
                 case SerializableEvent.Type.Move:
@@ -171,6 +170,7 @@
                 case SerializableEvent.Type.SpawnPiece:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
+                case SerializableEvent.Type.UpdateFogAndSpawn:
                     // CoreMod.Logger.Msg("(SpawnEvent) New Piece/Player");
                     // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
                     return true;
@@ -182,7 +182,7 @@
                         // CoreMod.Logger.Msg("(Grabbed) EndAction/EndTurn");
                         // CoreMod.Logger.Msg($"------ {whatUp}");
                         _isGrab = false;
-                        _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFogAndSpawn());
+                        _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                         return false;
                     }
 
@@ -306,8 +306,8 @@
             _isMove = false;
             _isGrab = false;
             _isSyncScheduled = false;
+            _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
-            _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFogAndSpawn());
         }
     }
 }
