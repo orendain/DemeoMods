@@ -16,10 +16,10 @@
     {
         public override string Description => "MonsterDeck creation is overriden";
 
-        private static MonsterDeckOverriddenRule.DeckConfig _globalAdjustments;
+        private static DeckConfig _globalAdjustments;
         private static bool _isActivated;
 
-        private readonly MonsterDeckOverriddenRule.DeckConfig _adjustments;
+        private readonly DeckConfig _adjustments;
 
         public struct DeckConfig
         {
@@ -33,12 +33,12 @@
             public BoardPieceId Boss;
         }
 
-        public MonsterDeckOverriddenRule(MonsterDeckOverriddenRule.DeckConfig adjustments)
+        public MonsterDeckOverriddenRule(DeckConfig adjustments)
         {
             _adjustments = adjustments;
         }
 
-        public MonsterDeckOverriddenRule.DeckConfig GetConfigObject() => _adjustments;
+        public DeckConfig GetConfigObject() => _adjustments;
 
         protected override void OnActivate(GameContext gameContext)
         {
@@ -55,11 +55,11 @@
                 prefix: new HarmonyMethod(
                     typeof(MonsterDeckOverriddenRule),
                     nameof(AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix)));
-            /*harmony.Patch(
+            harmony.Patch(
                 original: AccessTools.Method(typeof(AIDirectorController2), "SpawnBossAndMinions"),
                 prefix: new HarmonyMethod(
                     typeof(MonsterDeckOverriddenRule),
-                    nameof(AIDirectorController2_SpawnBossAndMinions_Prefix)));*/
+                    nameof(AIDirectorController2_SpawnBossAndMinions_Prefix)));
         }
 
         private static List<MonsterDeck.MonsterDeckEntry> CreateSubDeck(Dictionary<BoardPieceId, int> subdeck)
@@ -125,7 +125,7 @@
             return false; // We returned an user-adjusted config.
         }
 
-        /*private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorContext context, ref TransientBoardState boardState)
+        private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorContext context, ref TransientBoardState boardState, IRnd rng)
         {
             if (!_isActivated)
             {
@@ -147,6 +147,9 @@
                 }
             }
 
+            IntPoint2D intPoint2D = IntPoint2D.Invalid;
+            IntPoint2D keyHolderPosition = IntPoint2D.Invalid;
+
             int num = 0;
             for (int j = 0; j < list.Count; j++)
             {
@@ -154,6 +157,12 @@
                 if (spawnZone4.NumStepsToExit >= AIDirectorConfig.KeyHolderMinDistanceToExit && spawnZone4.NumStepsToExit <= AIDirectorConfig.KeyHolderMaxDistanceToExit && spawnZone4.numStepsToEntrance >= AIDirectorConfig.KeyHolderMinDistanceToEntrance)
                 {
                     List<IntPoint2D> allFreeTiles = spawnZone4.GetAllFreeTiles(ref boardState);
+                    if (allFreeTiles.Count > 0 && intPoint2D == IntPoint2D.Invalid)
+                    {
+                        intPoint2D = rng.RandomElement(allFreeTiles);
+                        keyHolderPosition = intPoint2D;
+                    }
+
                     if (allFreeTiles.Count > 2)
                     {
                         spawnZone = spawnZone4;
@@ -192,9 +201,9 @@
                 EssentialsMod.Logger.Msg("MD: Could not find a spawn zone to spawn the boss");
             }
 
-            PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, Team.Two);
+            PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, Team.Two).SetSpawnTile(keyHolderPosition).SetRandomRotation(rng).SetHasBloodhound(PieceSpawnSettings.BloodHoundStatus.Enabled).AddEffectState(EffectStateType.AIDirectorAmbientEnemy).AddEffectState(EffectStateType.UnitLeader).AddEffectState(EffectStateType.KeyEndChest);
             context.spawner.SpawnPiece(context, spawnSettings, ref boardState);
             return false; // We returned an user-adjusted config.
-        }*/
+        }
     }
 }
