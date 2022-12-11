@@ -76,8 +76,9 @@ namespace HouseRules.Essentials.Rules
                             value.flags &= -3;
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
-                            break;
                         }
+
+                        break;
                     }
                 }
             }
@@ -93,8 +94,9 @@ namespace HouseRules.Essentials.Rules
                             value.flags &= -3;
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
-                            break;
                         }
+
+                        break;
                     }
                 }
             }
@@ -110,8 +112,9 @@ namespace HouseRules.Essentials.Rules
                             value.flags &= -3;
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
-                            break;
                         }
+
+                        break;
                     }
                 }
             }
@@ -134,8 +137,9 @@ namespace HouseRules.Essentials.Rules
                                 value.flags &= -3;
                                 source.inventory.Items[i] = value;
                                 source.AddGold(0);
-                                break;
                             }
+
+                            break;
                         }
                     }
                 }
@@ -152,8 +156,9 @@ namespace HouseRules.Essentials.Rules
                             value.flags &= -3;
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
-                            break;
                         }
+
+                        break;
                     }
                 }
             }
@@ -169,8 +174,9 @@ namespace HouseRules.Essentials.Rules
                             value.flags &= -3;
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
-                            break;
                         }
+
+                        break;
                     }
                 }
             }

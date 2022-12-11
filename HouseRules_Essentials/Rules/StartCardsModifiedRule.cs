@@ -79,18 +79,6 @@
                                 Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                 piece.inventory.Items.Remove(value);
                                 piece.AddGold(0);
-                                if (piece.HasEffectState(EffectStateType.FireImmunity))
-                                {
-                                    int fireImm = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity);
-                                    if (fireImm > 5)
-                                    {
-                                        piece.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, fireImm - 5);
-                                    }
-                                    else
-                                    {
-                                        piece.DisableEffectState(EffectStateType.FireImmunity);
-                                    }
-                                }
                             }
 
                             break;
@@ -128,6 +116,8 @@
                             }
                             else
                             {
+                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -173,6 +163,8 @@
                             }
                             else
                             {
+                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -218,6 +210,8 @@
                             }
                             else
                             {
+                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -263,6 +257,8 @@
                             }
                             else
                             {
+                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -308,6 +304,8 @@
                             }
                             else
                             {
+                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -353,6 +351,8 @@
                             }
                             else
                             {
+                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
