@@ -8,6 +8,7 @@
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Essentials");
 
+        [System.Obsolete]
         public override void OnApplicationStart()
         {
             RegisterRuleTypes();

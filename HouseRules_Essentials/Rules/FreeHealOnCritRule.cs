@@ -1,6 +1,5 @@
 namespace HouseRules.Essentials.Rules
 {
-    using System.Collections;
     using System.Collections.Generic;
     using Boardgame;
     using Boardgame.BoardEntities;

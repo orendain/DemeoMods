@@ -1,11 +1,9 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
-    using System.Diagnostics.Tracing;
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
-    using Boardgame.GameplayEffects;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -59,6 +57,8 @@
                 {
                     mainTarget.EnableEffectState(EffectStateType.Invulnerable1);
                 }
+
+                return;
             }
 
             // Serpent Lord boss fight begins
@@ -72,6 +72,8 @@
                     source.DisableEffectState(EffectStateType.Berserk);
                     source.effectSink.Heal(100);
                 }
+
+                return;
             }
 
             // Elven Queen boss fight
@@ -141,6 +143,8 @@
                             break;
                     }
                 }
+
+                return;
             }
 
             if (source.boardPieceId == BoardPieceId.WarlockMinion)
@@ -162,6 +166,8 @@
                 {
                     source.DisableEffectState(EffectStateType.Frenzy);
                 }
+
+                return;
             }
 
             if (!source.IsPlayer())

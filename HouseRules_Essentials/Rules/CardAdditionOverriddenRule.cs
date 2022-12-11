@@ -16,7 +16,6 @@
     {
         public override string Description => "Card additions are overridden";
 
-        private static readonly Random Rnd = new Random();
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;
         private static bool _isPotionStand;
@@ -153,7 +152,8 @@
                 return;
             }
 
-            var replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+            Random rand = new Random();
+            var replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
             if (replacementAbilityKey == AbilityKey.EnergyPotion)
             {
                 _numEnergy++;
@@ -161,7 +161,7 @@
                 {
                     while (replacementAbilityKey == AbilityKey.EnergyPotion)
                     {
-                        replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
                     }
 
                     if (replacementAbilityKey == AbilityKey.DamageResistPotion)
@@ -170,7 +170,7 @@
                         {
                             while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
                             {
-                                replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+                                replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
                             }
                         }
                     }
@@ -183,7 +183,7 @@
                 {
                     while (replacementAbilityKey == AbilityKey.DamageResistPotion)
                     {
-                        replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
                     }
 
                     if (replacementAbilityKey == AbilityKey.EnergyPotion)
@@ -192,7 +192,7 @@
                         {
                             while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
                             {
-                                replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+                                replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
                             }
                         }
                     }

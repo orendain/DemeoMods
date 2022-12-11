@@ -417,6 +417,7 @@
                         {
                             value.replenishCooldown -= 1;
                             piece.inventory.Items[i] = value;
+
                             // Force inventory sync to clients
                             piece.AddGold(0);
                         }
@@ -426,6 +427,7 @@
                             value.flags &= -3; // unsets isReplenishing (bit1 ) allowing card to be used again.
                             piece.inventory.Items[i] = value;
                             __result = true;
+
                             // Force inventory sync to clients
                             piece.AddGold(0);
                         }

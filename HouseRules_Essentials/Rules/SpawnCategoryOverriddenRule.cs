@@ -62,7 +62,7 @@
                     spawnCategories[i] = new SpawnCategoryData
                     {
                         BoardPieceId = spawnCategories[i].BoardPieceId,
-                        EnemyWeight = EnemyWeight.Light,// spawnCategories[i].EnemyWeight,
+                        EnemyWeight = EnemyWeight.Light, // spawnCategories[i].EnemyWeight,
                         IsSpawningEnabled = true,
                         IsAllowedKeyholder = spawnCategories[i].IsAllowedKeyholder,
                         IsBossSynergyUnit = spawnCategories[i].IsBossSynergyUnit,

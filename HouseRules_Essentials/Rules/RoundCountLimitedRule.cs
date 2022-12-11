@@ -45,7 +45,6 @@
                     nameof(SerializableEventQueue_RespondToRequest_Postfix)));
         }
 
-
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
             var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;

@@ -23,11 +23,11 @@
                 { "FloorTwoHealingFountains", 2 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
-                { "FloorTwoLootChests", 3 },
+                { "FloorTwoLootChests", 4 },
                 { "FloorTwoGoldMaxAmount", 650 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
-                { "FloorThreeMerchant", 1 },
+                { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 1 },
         };
 

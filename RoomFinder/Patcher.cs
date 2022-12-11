@@ -3,6 +3,7 @@
     using System.Reflection;
     using Boardgame;
     using HarmonyLib;
+    using static UnityEngine.UI.Image;
 
     internal static class Patcher
     {

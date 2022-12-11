@@ -51,6 +51,7 @@
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rulesets\PotionCommotionRuleset.cs" />
+    <Compile Include="Rulesets\TESTGAME.cs" />
     <Compile Include="Rulesets\TheSwirlRuleset.cs" />
     <Compile Include="Rules\AbilityBackstabAdjustedRule.cs" />
     <Compile Include="Rules\AbilityBreaksStealthAdjustedRule.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
     <Compile Include="Rules\CardShopRarityOverriddenRule.cs" />
     <Compile Include="Rules\EnemyCooldownOverriddenRule.cs" />
+    <Compile Include="Rules\MyMonsterDeckOverriddenRule.cs" />
     <Compile Include="Rules\PieceExtraImmunitiesRule.cs" />
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />
     <Compile Include="Rules\CourageShantyAddsHPRule.cs" />
