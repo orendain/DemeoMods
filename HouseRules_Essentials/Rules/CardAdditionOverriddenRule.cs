@@ -16,7 +16,6 @@
     {
         public override string Description => "Card additions are overridden";
 
-        private static readonly Random Rnd = new Random();
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;
         private static bool _isPotionStand;
@@ -151,7 +150,8 @@
                 return;
             }
 
-            var replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+            Random rand = new Random();
+            var replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
         }
     }
