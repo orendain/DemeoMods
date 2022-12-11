@@ -5,6 +5,7 @@
     using System.Text;
     using Boardgame;
     using Boardgame.BoardgameActions;
+    using Boardgame.Networking;
     using HarmonyLib;
     using HouseRules.Types;
     using Photon.Pun;
