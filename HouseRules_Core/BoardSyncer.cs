@@ -30,7 +30,6 @@
         private static bool _updateNewPlayer;
         private static bool _isMove;
         private static bool _isGrab;
-        private static bool _skipOnMoved;
 
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
@@ -129,18 +128,7 @@
 
                     return false;
                 case SerializableEvent.Type.OnMoved:
-                    if (_skipOnMoved)
-                    {
-                        return false;
-                    }
-
-                    var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
-                    if (pieceId > 0 && _gameContext.pieceAndTurnController.IsPlayerControlled(pieceId))
-                    {
-                        _isGrab = true;
-                        return true;
-                    }
-
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                     return false;
                 case SerializableEvent.Type.Move:
                 case SerializableEvent.Type.Interact:
@@ -151,7 +139,6 @@
                     }
 
                     return false;
-                case SerializableEvent.Type.Emerge:
                 case SerializableEvent.Type.SpawnPiece:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
@@ -159,7 +146,6 @@
                     return true;
                 case SerializableEvent.Type.EndAction:
                 case SerializableEvent.Type.EndTurn:
-                    _skipOnMoved = false;
                     if (_isGrab)
                     {
                         _isGrab = false;
@@ -192,20 +178,6 @@
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
-                case AbilityKey.TeleportLamp:
-                    _skipOnMoved = true;
-                    return false;
-                case AbilityKey.Vortex:
-                case AbilityKey.VortexLamp:
-                case AbilityKey.LeapHeavy:
-                case AbilityKey.WhirlwindAttack:
-                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
-                    {
-                        _skipOnMoved = true;
-                        return false;
-                    }
-
-                    return false;
                 case AbilityKey.Grab:
                     if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
