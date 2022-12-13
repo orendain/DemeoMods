@@ -59,11 +59,6 @@
                 return;
             }
 
-            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
-            {
-                return;
-            }
-
             if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 if (source.boardPieceId == BoardPieceId.HeroBard)
@@ -89,7 +84,7 @@
                 }
 
                 source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-                if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge) && currentAP > 0)
+                if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge))
                 {
                     source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
                 }
@@ -99,7 +94,19 @@
                     return;
                 }
 
-                if (source.boardPieceId == BoardPieceId.HeroWarlock)
+                if (source.boardPieceId == BoardPieceId.HeroBard)
+                {
+                    if (!source.HasEffectState(EffectStateType.Deflect))
+                    {
+                        source.EnableEffectState(EffectStateType.Deflect);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
+                    }
+                    else
+                    {
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Deflect) + 2);
+                    }
+                }
+                else if (source.boardPieceId == BoardPieceId.HeroWarlock)
                 {
                     source.EnableEffectState(EffectStateType.SpellPower);
                 }
@@ -157,6 +164,11 @@
                         }
                     }
                 }
+            }
+
+            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
+            {
+                return;
             }
 
             source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);

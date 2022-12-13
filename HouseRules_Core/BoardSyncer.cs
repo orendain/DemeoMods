@@ -3,6 +3,8 @@
     using System;
     using Boardgame;
     using Boardgame.BoardEntities;
+    using Boardgame.BoardEntities.AI;
+    using Boardgame.Data;
     using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
@@ -30,6 +32,7 @@
         private static bool _updateNewPlayer;
         private static bool _isMove;
         private static bool _isGrab;
+        private static Piece _lastGrabbed;
 
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
@@ -116,7 +119,7 @@
 
         private static bool CanRepresentNewSpawn(SerializableEvent serializableEvent)
         {
-            string whatUp = serializableEvent.ToString();
+            // string whatUp = serializableEvent.ToString();
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.NewPlayerJoin:
@@ -136,8 +139,18 @@
                     // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
                 case SerializableEvent.Type.OnMoved:
-                    // CoreMod.Logger.Msg($"------ {whatUp}");
-                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
+                    Piece thisPiece = _gameContext.pieceAndTurnController.GetPiece(pieceId);
+                    if (thisPiece.IsPlayer() && (_lastGrabbed == null || thisPiece != _lastGrabbed))
+                    {
+                        CoreMod.Logger.Msg($"<<OnMoved>> {thisPiece.GetPieceConfig().PieceName} [ID: {pieceId}] IS a player");
+                        _lastGrabbed = null;
+                        _isGrab = true;
+                        return true;
+                    }
+
+                    CoreMod.Logger.Msg($"--OnMoved-- {thisPiece.GetPieceConfig().PieceName} [ID: {pieceId}] is NOT a player or was the last player grabbed");
+                    _lastGrabbed = null;
                     return false;
                 case SerializableEvent.Type.Move:
                 case SerializableEvent.Type.Interact:
@@ -162,8 +175,8 @@
                 case SerializableEvent.Type.EndTurn:
                     if (_isGrab)
                     {
-                        // CoreMod.Logger.Msg("(Grabbed) EndAction/EndTurn");
-                        // CoreMod.Logger.Msg($"------ {whatUp}");
+                        CoreMod.Logger.Msg("<<Grabbed>> EndAction/EndTurn UpdateFog");
+                        // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
                         _isGrab = false;
                         _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
                         return false;
@@ -199,6 +212,23 @@
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
+                case AbilityKey.Grab:
+                    if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        var targetTile = Traverse.Create(onAbilityUsedEvent).Field<IntPoint2D>("targetTile").Value;
+                        Piece wasGrabbed = _gameContext.pieceAndTurnController.FindPieceWithPosition(targetTile);
+                        if (_lastGrabbed.IsPlayer())
+                        {
+                            _isGrab = true;
+                            _lastGrabbed = wasGrabbed;
+                            CoreMod.Logger.Msg($"--Grabbed-- {_lastGrabbed.GetPieceConfig().PieceName} by Enemy");
+                            return false;
+                        }
+
+                        return false;
+                    }
+
+                    return false;
                 case AbilityKey.RevealPath:
                 case AbilityKey.DetectEnemies:
                 case AbilityKey.BeastWhisperer:
@@ -262,12 +292,16 @@
 
         private static void SyncBoard()
         {
-            // CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
             _isMove = false;
-            _isGrab = false;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
-            _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
+            if (!_isGrab)
+            {
+                // CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
+                _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
+            }
+
+            _isGrab = false;
         }
     }
 }
