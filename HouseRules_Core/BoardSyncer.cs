@@ -217,7 +217,7 @@
                     {
                         var targetTile = Traverse.Create(onAbilityUsedEvent).Field<IntPoint2D>("targetTile").Value;
                         Piece wasGrabbed = _gameContext.pieceAndTurnController.FindPieceWithPosition(targetTile);
-                        if (_lastGrabbed.IsPlayer())
+                        if (wasGrabbed.IsPlayer())
                         {
                             _isGrab = true;
                             _lastGrabbed = wasGrabbed;
