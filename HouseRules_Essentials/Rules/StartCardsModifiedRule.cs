@@ -109,7 +109,7 @@
                         else
                         {
                             // If we reached our desired turn count we can unset isReplenishing and return true
-                            value.flags &= -3; // unsets isReplenishing (bit1 ) allowing card to be used again.
+                            value.flags &= (Inventory.ItemFlag)(-3); // unsets isReplenishing (bit1 ) allowing card to be used again.
                             piece.inventory.Items[i] = value;
                             __result = true;
                             // Force inventory sync to clients
@@ -150,17 +150,17 @@
                 // 1 : isReplenishing
                 // 2 : abilityDisabledOnStatusEffect
                 // 3 : disableCooldown
-                int flags = 0;
+                Inventory.ItemFlag flags = 0;
                 if (card.ReplenishFrequency > 0)
                 {
                     Traverse.Create(inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                    flags = 1;
+                    flags = (Inventory.ItemFlag)1;
                 }
 
                 inventory.Items.Add(new Inventory.Item
                 {
                     abilityKey = card.Card,
-                    flags = flags,
+                    flags = (Inventory.ItemFlag)flags,
                     originalOwner = -1,
                     replenishCooldown = card.ReplenishFrequency,
                 });
