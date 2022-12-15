@@ -5,11 +5,13 @@
     using System.Linq;
     using Boardgame;
     using Boardgame.BoardEntities;
+    using Boardgame.BoardEntities.AI;
     using Boardgame.Data;
     using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
+
 
     public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
@@ -42,7 +44,7 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(Interactable), "OnInteraction"),
+                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new Type[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
                 prefix: new HarmonyMethod(
                     typeof(CardAdditionOverriddenRule),
                     nameof(Interactable_OnInteraction_Prefix)));

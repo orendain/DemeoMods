@@ -538,7 +538,7 @@ namespace HouseRules.Essentials.Rulesets
             {
                 { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Petrified } },
-                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken } },
+                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns } },
                 { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },

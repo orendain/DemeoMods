@@ -46,17 +46,17 @@
                 return;
             }
 
-            if (config.PieceName.Contains("HRA_"))
+            if (config.PieceNameLocalizationKey.Contains("HRA_"))
             {
                 return;
             }
 
-            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceNameLocalizationKey.Contains("Lamp"))
             {
                 return;
             }
 
-            config.PieceName = "HRA_" + config.PieceName;
+            config.PieceNameLocalizationKey = "HRA_" + config.PieceNameLocalizationKey;
             config.AttackDamage = (int)(config.AttackDamage * _globalMultiplier);
         }
     }
