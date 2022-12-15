@@ -14,6 +14,16 @@
             const string name = "It's A Trap!";
             const string description = "Everything you need to build devious traps for your enemies, but try not to kill your friends.";
 
+            /*var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
+            };*/
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
@@ -73,6 +83,7 @@
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
+                // { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
                 { BoardPieceId.HeroHunter, hunterCards },
@@ -83,6 +94,24 @@
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
+                /*{
+                    BoardPieceId.HeroBarbarian, new List<AbilityKey>
+                    {
+                        AbilityKey.PoisonBomb,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.OilLamp,
+                        AbilityKey.GasLamp,
+                        AbilityKey.IceLamp,
+                        AbilityKey.Vortex,
+                        AbilityKey.Torch,
+                        AbilityKey.Bone,
+                        AbilityKey.DetectEnemies,
+                        AbilityKey.WebBomb,
+                        AbilityKey.VortexLamp,
+                        AbilityKey.Teleportation,
+                        AbilityKey.DetectEnemies,
+                    }
+                },*/
                 {
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
@@ -192,6 +221,7 @@
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 30 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 30 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 30 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 30 },
@@ -204,11 +234,14 @@
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "FloorOneHealingFountains", 1 },
-                { "FloorOneLootChests", 11 },
+                { "FloorOneLootChests", 9 },
+                { "FloorOnePotionStand", 2 },
                 { "FloorTwoHealingFountains", 1 },
-                { "FloorTwoLootChests", 14 },
+                { "FloorTwoLootChests", 11 },
+                { "FloorTwoPotionStand", 3 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 8 },
+                { "FloorThreePotionStand", 2 },
                 { "FloorOneEndZoneSpikeMaxBudget", 12 },
                 { "PacingSpikeSegmentFloorOneBudget", 12 },
             });
@@ -217,6 +250,9 @@
             {
                 { AbilityKey.StrengthPotion, 1 },
                 { AbilityKey.SwiftnessPotion, 1 },
+                { AbilityKey.DamageResistPotion, 1 },
+                { AbilityKey.VigorPotion, 1 },
+                { AbilityKey.ExtraActionPotion, 1 },
                 { AbilityKey.HealingPotion, 1 },
             });
 

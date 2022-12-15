@@ -47,12 +47,7 @@
             }
 
             // Possibly used in future if there are more resistances needed
-            /*if (target.piece.boardPieceId == BoardPieceId.WarlockMinion && damage.HasTag(DamageTag.Undefined))
-            {
-                target.piece.effectSink.SubtractHealth(0);
-                return false;
-            }
-            else if (target.piece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Fire))
+            /*if (target.piece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Fire))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
@@ -63,17 +58,22 @@
                 return true;
             }
 
-            /*if (target.piece.characterClass == CharacterClass.Warlock && damage.HasTag(DamageTag.Undefined))
+            /*if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian && damage.HasTag(DamageTag.Fire))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
             }
-            else if (target.piece.characterClass == CharacterClass.Hunter && damage.HasTag(DamageTag.Fire))
+            else if (target.piece.boardPieceId == BoardPieceId.HeroWarlock && damage.HasTag(DamageTag.Undefined))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
             }
-            else if (target.piece.characterClass == CharacterClass.Bard && damage.HasTag(DamageTag.Poison))
+            else if (target.piece.boardPieceId == BoardPieceId.HeroHunter && damage.HasTag(DamageTag.Fire))
+            {
+                target.piece.effectSink.SubtractHealth(0);
+                return false;
+            }
+            else if (target.piece.boardPieceId == BoardPieceId.HeroBard && damage.HasTag(DamageTag.Poison))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;

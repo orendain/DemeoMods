@@ -1,7 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rulesets
 {
     using System.Collections.Generic;
-    using Boardgame.Board;
     using DataKeys;
     using global::Types;
     using HouseRules.Essentials.Rules;
@@ -72,6 +71,16 @@
                 { BoardPieceId.SporeFungus, new List<int> { 4, 1, 1 } },
             });
 
+            /*var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 1 },
+            };*/
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
@@ -83,7 +92,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
             };
-
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
@@ -136,6 +144,7 @@
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
+                // { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroWarlock, warlockCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
@@ -149,8 +158,11 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 11 },
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 15 },
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "AttackDamage", Value = 4 },
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "CriticalHitDamage", Value = 11 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 12 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 16 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 13 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 14 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 12 },
@@ -240,6 +252,50 @@
                         AbilityKey.Charge,
                     }
                 },
+                /*{
+                    BoardPieceId.HeroBarbarian, new List<AbilityKey>
+                    {
+                        AbilityKey.Bone,
+                        AbilityKey.WebBomb,
+                        AbilityKey.Regroup,
+                        AbilityKey.Rejuvenation,
+                        AbilityKey.OneMoreThing,
+                        AbilityKey.PanicPowder,
+                        AbilityKey.Barricade,
+                        AbilityKey.BottleOfLye,
+                        AbilityKey.HeavensFury,
+                        AbilityKey.Teleportation,
+                        AbilityKey.SwiftnessPotion,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.VigorPotion,
+                        AbilityKey.ScrollElectricity,
+                        AbilityKey.ScrollTsunami,
+                        AbilityKey.LuckPotion,
+                        AbilityKey.IceImmunePotion,
+                        AbilityKey.FireImmunePotion,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.DamageResistPotion,
+                        AbilityKey.WaterBottle,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                        AbilityKey.,
+                    }
+                },*/
                 {
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
@@ -536,6 +592,7 @@
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
+                // { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType. } },
                 { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Petrified } },
                 { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken } },
@@ -558,6 +615,7 @@
                 { AbilityKey.Sneak, false },
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.MinionCharge, false },
+                // { AbilityKey., false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -595,6 +653,8 @@
                 { AbilityKey.Arrow, new List<int> { 4, 12, 4, 12 } },
                 { AbilityKey.PiercingVoice, new List<int> { 4, 9, 4, 8 } },
                 { AbilityKey.ShatteringVoice, new List<int> { 7, 15, 7, 14 } },
+                // { AbilityKey., new List<int> { 4, 9, 4, 8 } },
+                // { AbilityKey., new List<int> { 7, 15, 7, 14 } },
             });
 
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });

@@ -15,6 +15,15 @@
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 4 } } });
 
+            /*var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+            };*/
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
@@ -71,6 +80,7 @@
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
+                // { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
                 { BoardPieceId.HeroHunter, hunterCards },
@@ -85,6 +95,10 @@
                 { AbilityKey.ReplenishArmor, 1 },
                 { AbilityKey.StrengthPotion, 1 },
                 { AbilityKey.SwiftnessPotion, 1 },
+                { AbilityKey.VigorPotion, 1 },
+                { AbilityKey.DamageResistPotion, 1 },
+                { AbilityKey.ExtraActionPotion, 1 },
+                { AbilityKey.OneMoreThing, 1 },
                 { AbilityKey.Antitoxin, 1 },
                 { AbilityKey.AdamantPotion, 1 },
                 { AbilityKey.HealingPotion, 1 },
@@ -94,6 +108,8 @@
             {
                 { AbilityKey.StrengthPotion, false },
                 { AbilityKey.SwiftnessPotion, false },
+                { AbilityKey.VigorPotion, false },
+                { AbilityKey.DamageResistPotion, false },
             });
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
@@ -104,7 +120,8 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 15 },
-
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 15 },
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
 
@@ -139,9 +156,11 @@
             {
                 { "FloorOneGoldMaxAmount", 1200 },
                 { "FloorOneHealingFountains", 2 },
-                { "FloorOneLootChests", 20 },
+                { "FloorOneLootChests", 18 },
+                { "FloorOnePotionStand", 2 },
                 { "FloorTwoHealingFountains", 3 },
-                { "FloorTwoLootChests", 9 },
+                { "FloorTwoLootChests", 8 },
+                { "FloorTwoPotionStand", 1 },
                 { "FloorTwoGoldMaxAmount", 1500 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 0 },
@@ -149,6 +168,7 @@
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
+                // { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Diseased } },

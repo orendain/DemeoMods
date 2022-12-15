@@ -64,8 +64,37 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
-        "HeroWarlock":
-        [
+        /*"HeroBarbarian": [
+          {
+            "Card": "Torch",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "",
+            "ReplenishFrequency": 5
+          }
+        ],*/
+        "HeroWarlock": [
           {
             "Card": "Torch",
             "ReplenishFrequency": 0
@@ -258,6 +287,11 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
+        /*{
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 15
+        },*/
         {
           "Piece": "HeroRogue",
           "Property": "MoveRange",
@@ -271,7 +305,7 @@
         {
           "Piece": "HeroGuardian",
           "Property": "StartHealth",
-          "Value": 15
+          "Value": 16
         },
         {
           "Piece": "HeroRogue",
@@ -478,6 +512,47 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
+        /*"HeroBarbarian": [
+          "WebBomb",
+          "Regroup",
+          "Rejuvenation",
+          "OneMoreThing",
+          "PanicPowder",
+          "BottleOfLye",
+          "Teleportation",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "VigorPotion",
+          "ScrollTsunami",
+          "ScrollElectricity",
+          "LuckPotion",
+          "IceImmunePotion",
+          "FireImmunePotion",
+          "ExtraActionPotion",
+          "DamageResistPotion",
+          "WaterBottle",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],*/
         "HeroGuardian": [
           "Bone",
           "Regroup",
@@ -517,8 +592,7 @@
           "PiercingThrow",
           "Charge"
         ],
-        "HeroBard":
-        [
+        "HeroBard": [
           "WebBomb",
           "Regroup",
           "Rejuvenation",
@@ -559,8 +633,7 @@
           "ShatteringVoice",
           "HurricaneAnthem"
         ],
-        "HeroHunter":
-        [
+        "HeroHunter": [
           "BeastWhisperer",
           "WebBomb",
           "RepeatingBallista",
@@ -687,8 +760,7 @@
           "MagicBarrier",
           "Vortex"
         ],
-        "HeroWarlock":
-        [
+        "HeroWarlock": [
           "Bone",
           "PanicPowder",
           "Barricade",
@@ -810,14 +882,15 @@
     },
     {
      "Rule": "PieceImmunityListAdjusted",
-     "Config": {
-       "HeroSorcerer": [ "Frozen" ],
-       "HeroHunter": [ "Petrified" ],
-       "HeroGuardian": [ "Weaken" ],
-       "HeroBard": [ "Diseased" ],
-       "HeroRogue": [ "Tangled"],
-       "HeroWarlock": [ "CorruptedRage"],
-       "WarlockMinion": [ "CorruptedRage"]
+      "Config": {
+        // "HeroBarbarian": [ "" ],
+        "HeroSorcerer": [ "Frozen" ],
+        "HeroHunter": [ "Petrified" ],
+        "HeroGuardian": [ "Weaken" ],
+        "HeroBard": [ "Diseased" ],
+        "HeroRogue": [ "Tangled" ],
+        "HeroWarlock": [ "CorruptedRage" ],
+        "WarlockMinion": [ "CorruptedRage" ]
       }
     },
     {
@@ -839,7 +912,8 @@
         "Grab": false,
         "MinionCharge": false,
         "CourageShanty": false,
-        "Arrow": false
+        "Arrow": false,
+        // "": false
       }
     },
     {

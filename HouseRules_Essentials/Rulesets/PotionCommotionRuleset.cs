@@ -31,6 +31,7 @@ namespace HouseRules.Essentials.Rulesets
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
+                // { BoardPieceId.HeroBarbarian, allowedCards },
                 { BoardPieceId.HeroBard, allowedCards },
                 { BoardPieceId.HeroGuardian, allowedCards },
                 { BoardPieceId.HeroHunter, allowedCards },

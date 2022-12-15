@@ -141,15 +141,14 @@
                 case SerializableEvent.Type.OnMoved:
                     var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
                     Piece thisPiece = _gameContext.pieceAndTurnController.GetPiece(pieceId);
-                    if (thisPiece.IsPlayer() && (_lastGrabbed == null || thisPiece != _lastGrabbed))
+                    if (_lastGrabbed == null || thisPiece != _lastGrabbed)
                     {
-                        CoreMod.Logger.Msg($"<<OnMoved>> {thisPiece.GetPieceConfig().PieceName} [ID: {pieceId}] IS a player");
+                        CoreMod.Logger.Msg($"--OnMoved-- {thisPiece.GetPieceConfig().PieceName} [ID: {pieceId}] needs a Fog Update...");
                         _lastGrabbed = null;
                         _isGrab = true;
                         return true;
                     }
 
-                    CoreMod.Logger.Msg($"--OnMoved-- {thisPiece.GetPieceConfig().PieceName} [ID: {pieceId}] is NOT a player or was the last player grabbed");
                     _lastGrabbed = null;
                     return false;
                 case SerializableEvent.Type.Move:
@@ -175,7 +174,7 @@
                 case SerializableEvent.Type.EndTurn:
                     if (_isGrab)
                     {
-                        CoreMod.Logger.Msg("<<Grabbed>> EndAction/EndTurn UpdateFog");
+                        // CoreMod.Logger.Msg("<<Grabbed>> EndAction/EndTurn UpdateFog");
                         // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
                         _isGrab = false;
                         _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
@@ -221,7 +220,7 @@
                         {
                             _isGrab = true;
                             _lastGrabbed = wasGrabbed;
-                            CoreMod.Logger.Msg($"--Grabbed-- {_lastGrabbed.GetPieceConfig().PieceName} by Enemy");
+                            // CoreMod.Logger.Msg($"--Grabbed-- {_lastGrabbed.GetPieceConfig().PieceName} by Enemy");
                             return false;
                         }
 
@@ -300,8 +299,11 @@
                 // CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
                 _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
             }
-
-            _isGrab = false;
+            else
+            {
+                CoreMod.Logger.Msg("||Grabbed/OnMoved|| FOG UPDATE ONLY (NO RECOVERY)");
+                _isGrab = false;
+            }
         }
     }
 }

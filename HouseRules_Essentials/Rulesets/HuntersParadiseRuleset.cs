@@ -22,6 +22,7 @@
             var startingCardsRule = new StartCardsModifiedRule(
                 new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
                 {
+                    // { BoardPieceId.HeroBarbarian, startCards },
                     { BoardPieceId.HeroBard, startCards },
                     { BoardPieceId.HeroGuardian, startCards },
                     { BoardPieceId.HeroHunter, startCards },
@@ -63,6 +64,7 @@
             };
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
+                // { BoardPieceId.HeroBarbarian, allowedCards },
                 { BoardPieceId.HeroBard, allowedCards },
                 { BoardPieceId.HeroGuardian, allowedCards },
                 { BoardPieceId.HeroHunter, allowedCards },
@@ -74,11 +76,14 @@
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "FloorOneHealingFountains", 6 },
-                { "FloorOneLootChests", 6 },
+                { "FloorOneLootChests", 5 },
+                { "FloorOnePotionStand", 1 },
                 { "FloorTwoHealingFountains", 6 },
-                { "FloorTwoLootChests", 12 },
+                { "FloorTwoLootChests", 10 },
+                { "FloorTwoPotionStand", 2 },
                 { "FloorThreeHealingFountains", 6 },
-                { "FloorThreeLootChests", 12 },
+                { "FloorThreeLootChests", 11 },
+                { "FloorThreePotionStand", 1 },
             });
 
             return Ruleset.NewInstance(

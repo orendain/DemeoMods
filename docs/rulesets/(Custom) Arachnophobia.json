@@ -14,6 +14,36 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
+        /*"HeroBarbarian": [
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "IceLamp",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Sneak",
+            "ReplenishFrequency": 0
+          }
+        ],*/
         "HeroBard": [
           {
             "Card": "HealingPotion",
@@ -179,6 +209,10 @@
         "ReplenishArmor": 1,
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
+        "VigorPotion": 1,
+        "DamageResistPotion": 1,
+        "ExtraActionPotion": 1,
+        "OneMoreThing": 1,
         "Antitoxin": 1,
         "AdamantPotion": 1,
         "HealingPotion": 1
@@ -188,7 +222,9 @@
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
         "StrengthPotion": false,
-        "SwiftnessPotion": false
+        "SwiftnessPotion": false,
+        "VigorPotion": false,
+        "DamageResistPotion": false
       }
     },
     {
@@ -224,6 +260,16 @@
           "Property": "StartHealth",
           "Value": 15.0
         },
+        /*{
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 15.0
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },*/
         {
           "Piece": "HeroBard",
           "Property": "MoveRange",
@@ -307,7 +353,8 @@
         "Zap": false,
         "MagicMissile": false,
         "CourageShanty": false,
-        "Sneak": false
+        "Sneak": false,
+        // "":  false
       }
     },
     {
@@ -327,6 +374,9 @@
     {
       "Rule": "PieceImmunityListAdjusted",
       "Config": {
+        "HeroBarbarian": [
+          "Diseased"
+        ],
         "HeroBard": [
           "Diseased"
         ],

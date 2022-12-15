@@ -1,9 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rulesets
 {
     using System.Collections.Generic;
-    using Boardgame.Board;
     using DataKeys;
-    using global::Types;
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
 
@@ -82,6 +80,17 @@
             };
             var monsterDeckRule = new MonsterDeckOverriddenRule(monsterDeckConfig);
 
+            /*var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CoinFlip, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CoinFlip, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CoinFlip, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CoinFlip, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 1 },
+            };*/
+
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CoinFlip, ReplenishFrequency = 0 },
@@ -151,6 +160,7 @@
 
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
+                // { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroWarlock, warlockCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
@@ -176,6 +186,7 @@
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
+                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartArmor", Value = 0 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "MoveRange", Value = 5 },
@@ -212,6 +223,12 @@
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
+                /*{
+                    BoardPieceId.HeroBarbarian, new List<AbilityKey>
+                    {
+                        AbilityKey.CoinFlip,
+                    }
+                },*/
                 {
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
@@ -239,7 +256,7 @@
                 {
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
-                        AbilityKey.Bone,
+                        AbilityKey.CoinFlip,
                     }
                 },
                 {

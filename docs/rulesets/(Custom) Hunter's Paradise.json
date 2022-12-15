@@ -5,6 +5,20 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
+        /*"HeroBarbarian": [
+          {
+            "Card": "CallCompanion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "SummonElemental",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "HuntersMark",
+            "ReplenishFrequency": 1
+          }
+        ],*/
         "HeroBard": [
           {
             "Card": "CallCompanion",
@@ -129,6 +143,15 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
+        /*"HeroBarbarian": [
+          "CallCompanion",
+          "SummonElemental",
+          "BeastWhisperer",
+          "PiercingVoice",
+          "Bone",
+          "StrengthPotion",
+          "SwiftnessPotion"
+        ],*/
         "HeroBard": [
           "CallCompanion",
           "SummonElemental",
