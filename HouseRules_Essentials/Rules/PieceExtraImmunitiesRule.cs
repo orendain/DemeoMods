@@ -58,10 +58,18 @@
                 return true;
             }
 
-            /*if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian && damage.HasTag(DamageTag.Fire))
+            /*if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian)
             {
-                target.piece.effectSink.SubtractHealth(0);
-                return false;
+                if (damage.HasTag(DamageTag.Fire))
+                {
+                    target.piece.effectSink.SubtractHealth(0);
+                    return false;
+                }
+                else if (damage.HasTag(DamageTag.Electricity))
+                {
+                    target.piece.DisableEffectState(EffectStateType.Wet);
+                    return true;
+                }
             }
             else if (target.piece.boardPieceId == BoardPieceId.HeroWarlock && damage.HasTag(DamageTag.Undefined))
             {

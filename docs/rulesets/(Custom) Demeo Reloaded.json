@@ -291,6 +291,21 @@
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
           "Value": 15
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "AttackDamage",
+          "Value": 5
+        },
+        {
+          "Piece": "HeroRo",
+          "Property": "MoveRange",
+          "Value": 5
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "CriticalHitDamage",
+          "Value": 13
         },*/
         {
           "Piece": "HeroRogue",
@@ -942,18 +957,20 @@
     {
       "Rule": "AbilityDamageOverridden",
       "Config": {
-        "Zap": [3, 8],
-        "Fireball": [12, 30],
-        "Freeze": [7, 15],
-        "WhirlwindAttack": [4, 9],
-        "Charge": [4, 12],
-        "PiercingThrow": [5, 11],
-        "Blink": [7, 19],
-        "CursedDagger": [4, 13],
-        "PoisonedTip": [6, 16],
-        "HailOfArrows": [6, 16],
-        "Arrow": [4, 12],
-        "EnemyFireball": [7, 7]
+        "Zap": [ 3, 8 ],
+        "Fireball": [ 12, 30 ],
+        "Freeze": [ 7, 15 ],
+        "WhirlwindAttack": [ 4, 9 ],
+        "Charge": [ 4, 12 ],
+        "PiercingThrow": [ 5, 11 ],
+        "Blink": [ 7, 19 ],
+        "CursedDagger": [ 4, 13 ],
+        "PoisonedTip": [ 6, 16 ],
+        "HailOfArrows": [ 6, 16 ],
+        "Arrow": [ 4, 12 ],
+        "EnemyFireball": [ 7, 7 ]/*,
+        "": [ ,  ],
+        "": [ ,  ],*/
       }
     },
     {

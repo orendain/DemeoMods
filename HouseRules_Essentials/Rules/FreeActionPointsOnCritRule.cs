@@ -7,6 +7,7 @@ namespace HouseRules.Essentials.Rules
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
+    using UnityEngine;
 
     public sealed class FreeActionPointsOnCritRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
@@ -78,7 +79,7 @@ namespace HouseRules.Essentials.Rules
                 source.EnableEffectState(EffectStateType.Frenzy);
                 source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
             }
-            else
+            else if (source.boardPieceId == BoardPieceId.HeroRogue) // || (source.boardPieceId == BoardPieceId.HeroBarbarian && Random.Range(0, 101) > 75))
             {
                 source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
             }

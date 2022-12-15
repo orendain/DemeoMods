@@ -143,7 +143,7 @@
                     Piece thisPiece = _gameContext.pieceAndTurnController.GetPiece(pieceId);
                     if (_lastGrabbed == null || thisPiece != _lastGrabbed)
                     {
-                        CoreMod.Logger.Msg($"--OnMoved-- {thisPiece.GetPieceConfig().PieceName} [ID: {pieceId}] needs a Fog Update...");
+                        // CoreMod.Logger.Msg($"--OnMoved-- {thisPiece.GetPieceConfig().PieceName} [ID: {pieceId}] needs a Fog Update...");
                         _lastGrabbed = null;
                         _isGrab = true;
                         return true;
@@ -301,7 +301,7 @@
             }
             else
             {
-                CoreMod.Logger.Msg("||Grabbed/OnMoved|| FOG UPDATE ONLY (NO RECOVERY)");
+                // CoreMod.Logger.Msg("||Grabbed/OnMoved|| FOG UPDATE ONLY (NO RECOVERY)");
                 _isGrab = false;
             }
         }

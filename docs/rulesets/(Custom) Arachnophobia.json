@@ -24,7 +24,7 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "IceLamp",
+            "Card": "OilLamp",
             "ReplenishFrequency": 1
           },
           {
@@ -230,6 +230,16 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
+        /*{
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 15.0
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },*/
         {
           "Piece": "HeroBard",
           "Property": "StartHealth",
@@ -260,16 +270,6 @@
           "Property": "StartHealth",
           "Value": 15.0
         },
-        /*{
-          "Piece": "HeroBarbarian",
-          "Property": "StartHealth",
-          "Value": 15.0
-        },
-        {
-          "Piece": "HeroBarbarian",
-          "Property": "MoveRange",
-          "Value": 5.0
-        },*/
         {
           "Piece": "HeroBard",
           "Property": "MoveRange",
@@ -353,8 +353,8 @@
         "Zap": false,
         "MagicMissile": false,
         "CourageShanty": false,
-        "Sneak": false,
-        // "":  false
+        "Sneak": false/*,
+        "":  false*/
       }
     },
     {
@@ -374,9 +374,9 @@
     {
       "Rule": "PieceImmunityListAdjusted",
       "Config": {
-        "HeroBarbarian": [
+        /*"HeroBarbarian": [
           "Diseased"
-        ],
+        ],*/
         "HeroBard": [
           "Diseased"
         ],

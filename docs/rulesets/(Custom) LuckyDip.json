@@ -209,6 +209,11 @@
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
           "Value": 15.0
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "MoveRange",
+          "Value": 5.0
         },*/
         {
           "Piece": "HeroBard",
@@ -302,8 +307,8 @@
       "Config": {
         "Zap": false,
         "CourageShanty": false,
-        "Sneak": false,
-        // "": false
+        "Sneak": false/*,
+        "": false*/
       }
     },
     {
