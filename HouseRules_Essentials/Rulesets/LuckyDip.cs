@@ -148,7 +148,7 @@
                 { BoardPieceId.HeroSorcerer, allowedSorcererCards },
             });
 
-            var bardImmunities = new List<EffectStateType> { EffectStateType.Weaken, EffectStateType.MarkOfAvalon };
+            var bardImmunities = new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns, EffectStateType.MarkOfAvalon };
             var guardianImmunities = new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
             var hunterImmunities = new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Frozen, EffectStateType.Petrified };
             var rogueImmunities = new List<EffectStateType> { EffectStateType.Frozen, EffectStateType.Petrified };
