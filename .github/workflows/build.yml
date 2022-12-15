@@ -26,7 +26,7 @@ jobs:
 
       - name: Prepare
         run: |
-          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/a18488125ab3d34aaca7b39350d4e6119b6371fc/ws.zip
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/69d8617a0eeb247eb43f802f20d00fac0fb94de2/ws.zip
           7z x ws.zip 
 
       - name: Build HouseRules_Core
@@ -68,7 +68,7 @@ jobs:
 
       - name: Prepare
         run: |
-          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/a18488125ab3d34aaca7b39350d4e6119b6371fc/ws.zip
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/69d8617a0eeb247eb43f802f20d00fac0fb94de2/ws.zip
           7z x ws.zip
 
       - name: Build RoomFinder
@@ -95,7 +95,7 @@ jobs:
 
       - name: Prepare
         run: |
-          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/a18488125ab3d34aaca7b39350d4e6119b6371fc/ws.zip
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/69d8617a0eeb247eb43f802f20d00fac0fb94de2/ws.zip
           7z x ws.zip
 
       - name: Build SkipIntro
@@ -122,7 +122,7 @@ jobs:
 
       - name: Prepare
         run: |
-          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/a18488125ab3d34aaca7b39350d4e6119b6371fc/ws.zip
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/69d8617a0eeb247eb43f802f20d00fac0fb94de2/ws.zip
           7z x ws.zip
 
       - name: Build RoomCode
