@@ -1,4 +1,4 @@
-namespace HouseRules.Essentials.Rulesets
+﻿namespace HouseRules.Essentials.Rulesets
 {
     using System.Collections.Generic;
     using DataKeys;
@@ -69,6 +69,7 @@ namespace HouseRules.Essentials.Rulesets
                 { BoardPieceId.RatNest, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.RootMage, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.SporeFungus, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.ElvenSpearman, new List<int> { 4, 1, 1 } },
             });
 
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
@@ -77,8 +78,8 @@ namespace HouseRules.Essentials.Rulesets
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingSmash, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingPush, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WeakeningShout, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingTotem, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TauntingScream, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
@@ -144,7 +145,7 @@ namespace HouseRules.Essentials.Rulesets
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
-                // { BoardPieceId.HeroBarbarian, barbarianCards },
+                { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroWarlock, warlockCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
@@ -277,20 +278,25 @@ namespace HouseRules.Essentials.Rulesets
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.WaterBottle,
-                        AbilityKey.ChargeBarbarian,
-                        AbilityKey.WeakeningShout,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.TauntingScream,
                         AbilityKey.GrapplingPush,
                         AbilityKey.GrapplingSmash,
-                        AbilityKey.ChargeBarbarian,
-                        AbilityKey.WeakeningShout,
+                        AbilityKey.TauntingScream,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.PlayerLeap,
                         AbilityKey.GrapplingPush,
                         AbilityKey.GrapplingSmash,
-                        AbilityKey.ChargeBarbarian,
-                        AbilityKey.WeakeningShout,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.PlayerLeap,
                         AbilityKey.GrapplingPush,
                         AbilityKey.GrapplingSmash,
-                        AbilityKey.ChargeBarbarian,
-                        AbilityKey.WeakeningShout,
+                        AbilityKey.TauntingScream,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.PlayerLeap,
                         AbilityKey.GrapplingPush,
                         AbilityKey.GrapplingSmash,
                     }
@@ -616,7 +622,7 @@ namespace HouseRules.Essentials.Rulesets
                 { AbilityKey.Sneak, false },
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.MinionCharge, false },
-                { AbilityKey.GrapplingTotem, false },
+                { AbilityKey.Grapple, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
