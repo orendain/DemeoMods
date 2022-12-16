@@ -291,6 +291,7 @@
           {
             "Card": "ExplodingLampTotemPlaceholder",
             "ReplenishFrequency": 1
+          },
           {
             "Card": "Grapple",
             "ReplenishFrequency": 1
