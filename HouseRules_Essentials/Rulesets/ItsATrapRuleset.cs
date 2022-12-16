@@ -17,7 +17,8 @@
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingSmash, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
@@ -109,7 +110,6 @@
                         AbilityKey.WebBomb,
                         AbilityKey.VortexLamp,
                         AbilityKey.Teleportation,
-                        AbilityKey.DetectEnemies,
                     }
                 },
                 {
@@ -269,11 +269,11 @@
                     BoardPieceId.GasLamp,
                     BoardPieceId.OilLamp,
                     BoardPieceId.VortexLamp,
-                    BoardPieceId.GasLamp,
+                    BoardPieceId.WaterLamp,
                     BoardPieceId.OilLamp,
                     BoardPieceId.VortexLamp,
                     BoardPieceId.OilLamp,
-                    BoardPieceId.OilLamp,
+                    BoardPieceId.WaterLamp,
                     BoardPieceId.GasLamp,
                 }
                 },
@@ -284,7 +284,7 @@
                     BoardPieceId.GasLamp,
                     BoardPieceId.GasLamp,
                     BoardPieceId.GasLamp,
-                    BoardPieceId.GasLamp,
+                    BoardPieceId.WaterLamp,
                     BoardPieceId.GasLamp,
                     BoardPieceId.GasLamp,
                     BoardPieceId.OilLamp,
@@ -299,7 +299,7 @@
                     BoardPieceId.IceLamp,
                     BoardPieceId.VortexLamp,
                     BoardPieceId.OilLamp,
-                    BoardPieceId.IceLamp,
+                    BoardPieceId.WaterLamp,
                     BoardPieceId.VortexLamp,
                     BoardPieceId.IceLamp,
                 }

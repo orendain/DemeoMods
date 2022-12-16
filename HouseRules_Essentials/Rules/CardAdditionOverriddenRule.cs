@@ -24,6 +24,7 @@
         private static int _numPlayers;
         private static int _numEnergy;
         private static int _numAlags;
+        private static int _numRejuvs;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
 
@@ -192,6 +193,18 @@
                             {
                                 replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
                             }
+
+                            if (replacementAbilityKey == AbilityKey.Rejuvenation)
+                            {
+                                _numRejuvs++;
+                                if (_numRejuvs > 2)
+                                {
+                                    while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
+                                    {
+                                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -213,6 +226,52 @@
                             while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
                             {
                                 replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
+                            }
+
+                            if (replacementAbilityKey == AbilityKey.Rejuvenation)
+                            {
+                                _numRejuvs++;
+                                if (_numRejuvs > 2)
+                                {
+                                    while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
+                                    {
+                                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (replacementAbilityKey == AbilityKey.Rejuvenation)
+            {
+                _numRejuvs++;
+                if (_numRejuvs > 2)
+                {
+                    while (replacementAbilityKey == AbilityKey.Rejuvenation)
+                    {
+                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
+                    }
+
+                    if (replacementAbilityKey == AbilityKey.EnergyPotion)
+                    {
+                        if (_numEnergy > 2)
+                        {
+                            while (replacementAbilityKey == AbilityKey.Rejuvenation || replacementAbilityKey == AbilityKey.EnergyPotion)
+                            {
+                                replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
+                            }
+
+                            if (replacementAbilityKey == AbilityKey.DamageResistPotion)
+                            {
+                                _numAlags++;
+                                if (_numAlags > 3)
+                                {
+                                    while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
+                                    {
+                                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
+                                    }
+                                }
                             }
                         }
                     }

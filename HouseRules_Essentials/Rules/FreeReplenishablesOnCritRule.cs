@@ -4,6 +4,7 @@ namespace HouseRules.Essentials.Rules
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
+    using Boardgame.BoardEntities.AI;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -53,10 +54,10 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (diceResult != Dice.Outcome.Crit)
+            /*if (diceResult != Dice.Outcome.Crit)
             {
                 return;
-            }
+            }*/
 
             if (!_globalAdjustments.Contains(source.boardPieceId))
             {
@@ -91,7 +92,18 @@ namespace HouseRules.Essentials.Rules
                     {
                         if (value.IsReplenishing)
                         {
-                            value.flags &= (Inventory.ItemFlag)(-3);
+                            if (value.replenishCooldown < 0)
+                            {
+                                value.replenishCooldown = 3;
+                                source.inventory.Items[i] = value;
+                            }
+
+                            value.replenishCooldown -= 1;
+                            if (value.replenishCooldown < 1)
+                            {
+                                value.flags &= (Inventory.ItemFlag)(-3);
+                            }
+
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
                         }

@@ -474,6 +474,7 @@
                 {
                     BoardPieceId.HeroBarbarian, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DetectEnemies,
                         AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
@@ -501,12 +502,12 @@
                         AbilityKey.GrapplingPush,
                         AbilityKey.GrapplingSmash,
                         AbilityKey.GrapplingTotem,
-                        AbilityKey.WeakeningShout,
+                        AbilityKey.TauntingScream,
                         AbilityKey.PlayerLeap,
                         AbilityKey.MarkOfVerga,
                         AbilityKey.GrapplingPush,
                         AbilityKey.GrapplingSmash,
-                        AbilityKey.WeakeningShout,
+                        AbilityKey.TauntingScream,
                         AbilityKey.PlayerLeap,
                         AbilityKey.MarkOfVerga,
                         AbilityKey.GrapplingPush,
@@ -559,6 +560,7 @@
                 {
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
                         AbilityKey.Barricade,
@@ -683,6 +685,7 @@
                 {
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DetectEnemies,
                         AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
@@ -724,6 +727,7 @@
                 {
                     BoardPieceId.HeroWarlock, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DetectEnemies,
                         AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
@@ -923,7 +927,6 @@
                 { AbilityKey.ExplodingVortexLamp, false },
                 { AbilityKey.ExplodingWaterLamp, false },
                 { AbilityKey.ExplodingIceLamp, false },
-                { AbilityKey.Net, true },
                 { AbilityKey.ImplosionExplosionRain, false },
             });
 
@@ -1032,9 +1035,12 @@
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
                 { "FloorOneGoldMaxAmount", 450 },
+                { "FloorOneSellswords", 1 },
+                { "FloorOneVillagers", 1 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
+                { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 3 },
                 { "FloorTwoGoldMaxAmount", 550 },
                 { "FloorThreeHealingFountains", 1 },
