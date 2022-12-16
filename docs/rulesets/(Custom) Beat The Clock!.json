@@ -6,6 +6,11 @@
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 200.0
+        },
+        {
           "Piece": "HeroBard",
           "Property": "StartHealth",
           "Value": 200.0

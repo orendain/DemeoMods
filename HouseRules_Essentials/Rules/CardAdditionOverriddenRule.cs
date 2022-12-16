@@ -22,6 +22,7 @@
         private static bool _isActivated;
         private static bool _isPotionStand;
         private static bool _isWaterBottleChest;
+        private static bool _isVortexDustChest;
         private static int _numPlayers;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
@@ -82,6 +83,11 @@
                 _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
                 _isWaterBottleChest = true;
             }
+            else if (whatIsit.type == Interactable.Type.VortexDustChest)
+            {
+                _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
+                _isVortexDustChest = true;
+            }
         }
 
         private static void SerializableEventQueue_RespondToRequest_Prefix(
@@ -115,6 +121,20 @@
             else if (_isWaterBottleChest)
             {
                 // TODO: Add method to allow custom card loot for Water Bottle Chests here
+                if (_numPlayers > 1)
+                {
+                    _numPlayers--;
+                }
+                else
+                {
+                    _isWaterBottleChest = false;
+                }
+
+                return;
+            }
+            else if (_isVortexDustChest)
+            {
+                // TODO: Add method to allow custom card loot for Vortex Dust Chests here
                 if (_numPlayers > 1)
                 {
                     _numPlayers--;
