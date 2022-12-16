@@ -14,7 +14,7 @@
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 5 } } });
 
-            /*var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 1 },
@@ -22,7 +22,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
-            };*/
+            };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
@@ -79,7 +79,7 @@
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
-                // { BoardPieceId.HeroBarbarian, barbarianCards },
+                { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
                 { BoardPieceId.HeroHunter, hunterCards },
                 { BoardPieceId.HeroRogue, assassinCards },
@@ -112,7 +112,7 @@
             };
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                // { BoardPieceId.HeroBarbarian, allowedCards },
+                { BoardPieceId.HeroBarbarian, allowedCards },
                 { BoardPieceId.HeroGuardian, allowedCards },
                 { BoardPieceId.HeroHunter, allowedCards },
                 { BoardPieceId.HeroRogue, allowedCards },
@@ -132,7 +132,7 @@
 
             var backstabPieceConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId>
             {
-                // BoardPieceId.HeroBarbarian,
+                BoardPieceId.HeroBarbarian,
                 BoardPieceId.HeroGuardian,
                 BoardPieceId.HeroSorcerer,
                 BoardPieceId.HeroRogue,
@@ -150,8 +150,8 @@
                 { AbilityKey.Freeze, true },
                 { AbilityKey.Bone, true },
                 { AbilityKey.WhirlwindAttack, true },
-                // { AbilityKey., true },
-                // { AbilityKey., true },
+                { AbilityKey.Grapple, true },
+                { AbilityKey.GrapplingPush, true },
             });
 
             var entranceDeckFloor1 = new Dictionary<BoardPieceId, int>
@@ -246,7 +246,7 @@
 
             var pieceAbilityListOverriddenRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                // { BoardPieceId.HeroBarbarian, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
+                { BoardPieceId.HeroBarbarian, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
                 { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
                 { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
                 { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },

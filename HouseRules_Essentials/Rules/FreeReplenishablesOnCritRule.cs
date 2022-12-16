@@ -73,7 +73,7 @@ namespace HouseRules.Essentials.Rules
                     {
                         if (value.IsReplenishing)
                         {
-                            value.flags &= -3;
+                            value.flags &= (Inventory.ItemFlag)(-3);
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
                         }
@@ -82,16 +82,16 @@ namespace HouseRules.Essentials.Rules
                     }
                 }
             }
-            /*else if (source.boardPieceId == BoardPieceId.HeroBarbarian)
+            else if (source.boardPieceId == BoardPieceId.HeroBarbarian)
             {
                 for (int i = 0; i < source.inventory.Items.Count; i++)
                 {
                     value = source.inventory.Items[i];
-                    if (value.abilityKey == AbilityKey.)
+                    if (value.abilityKey == AbilityKey.Grapple)
                     {
                         if (value.IsReplenishing)
                         {
-                            value.flags &= -3;
+                            value.flags &= (Inventory.ItemFlag)(-3);
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
                         }
@@ -99,7 +99,7 @@ namespace HouseRules.Essentials.Rules
                         break;
                     }
                 }
-            }*/
+            }
             else if (source.boardPieceId == BoardPieceId.HeroBard)
             {
                 for (int i = 0; i < source.inventory.Items.Count; i++)
@@ -109,7 +109,7 @@ namespace HouseRules.Essentials.Rules
                     {
                         if (value.IsReplenishing)
                         {
-                            value.flags &= -3;
+                            value.flags &= (Inventory.ItemFlag)(-3);
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
                         }
@@ -127,7 +127,7 @@ namespace HouseRules.Essentials.Rules
                     {
                         if (value.IsReplenishing)
                         {
-                            value.flags &= -3;
+                            value.flags &= (Inventory.ItemFlag)(-3);
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
                         }
@@ -152,7 +152,7 @@ namespace HouseRules.Essentials.Rules
                         {
                             if (value.IsReplenishing)
                             {
-                                value.flags &= -3;
+                                value.flags &= (Inventory.ItemFlag)(-3);
                                 source.inventory.Items[i] = value;
                                 source.AddGold(0);
                             }
@@ -171,7 +171,7 @@ namespace HouseRules.Essentials.Rules
                     {
                         if (value.IsReplenishing)
                         {
-                            value.flags &= -3;
+                            value.flags = (Inventory.ItemFlag)(-3);
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
                         }
@@ -189,7 +189,7 @@ namespace HouseRules.Essentials.Rules
                     {
                         if (value.IsReplenishing)
                         {
-                            value.flags &= -3;
+                            value.flags &= (Inventory.ItemFlag)(-3);
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
                         }

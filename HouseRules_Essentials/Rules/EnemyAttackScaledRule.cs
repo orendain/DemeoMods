@@ -48,7 +48,7 @@
             }
 
             int range;
-            if (config.PieceName.Contains("HRA_"))
+            if (config.PieceNameLocalizationKey.Contains("HRA_"))
             {
                 range = Random.Range(-1, 1);
                 config.AttackDamage = (int)(config.CriticalHitDamageOLD * _globalMultiplier) + range;
@@ -65,7 +65,7 @@
                 return;
             }
 
-            config.PieceName = "HRA_" + config.PieceName;
+            config.PieceNameLocalizationKey = "HRA_" + config.PieceNameLocalizationKey;
             config.CriticalHitDamageOLD = config.AttackDamage;
             range = Random.Range(-1, 1);
             config.AttackDamage = (int)(config.AttackDamage * _globalMultiplier) + range;

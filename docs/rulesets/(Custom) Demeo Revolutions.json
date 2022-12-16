@@ -5,7 +5,7 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
-        /*{
+        {
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
           "Value": 7
@@ -19,7 +19,7 @@
           "Piece": "HeroBarbarian",
           "Property": "CriticialHitDamage",
           "Value": 9
-        },*/
+        },
         {
           "Piece": "HeroHunter",
           "Property": "MoveRange",
@@ -522,9 +522,9 @@
         {
           "Rule": "StartCardsModified",
           "Config": {
-            /*"HeroBarbarian": [
+            "HeroBarbarian": [
               {
-                "Card": "",
+                "Card": "PlayerLeap",
                 "ReplenishFrequency": 1
               },
               {
@@ -536,26 +536,30 @@
                 "ReplenishFrequency": 0
               },
               {
-                "Card": "",
+                "Card": "GrapplingPush",
                 "ReplenishFrequency": 0
               },
               {
-                "Card": "",
+                "Card": "GrapplingSmash",
                 "ReplenishFrequency": 0
               },
               {
-                "Card": "",
+                "Card": "EmergencyTeleport",
                 "ReplenishFrequency": 0
               },
               {
-                "Card": "",
+                "Card": "ChargeBarbarian",
                 "ReplenishFrequency": 0
               },
               {
-                "Card": "",
+                "Card": "GrapplingTotem",
+                "ReplenishFrequency": 1
+              },
+              {
+                "Card": "Grapple",
                 "ReplenishFrequency": 1
               }
-            ],*/
+            ],
             "HeroWarlock": [
               {
                 "Card": "MinionCharge",
@@ -765,7 +769,7 @@
         {
           "Rule": "CardAdditionOverridden",
           "Config": {
-            /*"HeroBarbarian": [
+            "HeroBarbarian": [
               "EnergyPotion",
               "Bone",
               "WebBomb",
@@ -786,23 +790,19 @@
               "ExtraActionPotion",
               "DamageResistPotion",
               "WaterBottle",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],*/
+              "ChargeBarbarian",
+              "WeakeningShout",
+              "GrapplingPush",
+              "GrapplingSmash",
+              "ChargeBarbarian",
+              "WeakeningShout",
+              "GrapplingPush",
+              "GrapplingSmash",
+              "ChargeBarbarian",
+              "WeakeningShout",
+              "GrapplingPush",
+              "GrapplingSmash"
+            ],
             "HeroGuardian": [
               "EnergyPotion",
               "Bone",
@@ -1126,7 +1126,7 @@
         {
           "Rule": "PieceImmunityListAdjusted",
           "Config": {
-            // "HeroBarbarian": [ "" ],
+            "HeroBarbarian": [ "Netted" ],
             "HeroSorcerer": [ "Stunned" ],
             "HeroGuardian": [ "Weaken" ],
             "HeroHunter": [ "Frozen" ],
@@ -1221,7 +1221,7 @@
             "Guardian": 13,
             "Sorcerer": 12,
             "Hunter": 11,
-            // "Barbarian" 10,
+            "Barbarian" 10,
             "Assassin": 9,
             "Downed": -7,
             "Javelin": 14
@@ -1230,7 +1230,7 @@
         {
           "Rule": "FreeAbilityOnCrit",
           "Config": {
-            // "HeroBarbarian": "",
+            "HeroBarbarian": "",
             "HeroHunter": "Bone",
             "HeroWarlock": "SpellPowerPotion",
             "HeroSorcerer": "WaterBottle",
@@ -1254,7 +1254,7 @@
         {
           "Rule": "FreeActionPointsOnCrit",
           "Config": [
-            // "HeroBarbarian",
+            "HeroBarbarian",
             "HeroGuardian",
             "HeroRogue"
           ]
@@ -1262,7 +1262,7 @@
         {
           "Rule": "FreeReplenishablesOnCrit",
           "Config": [
-            // "HeroBarbarian",
+            "HeroBarbarian",
             "HeroSorcerer",
             "HeroGuardian",
             "HeroBard",
@@ -1308,10 +1308,10 @@
             "Petrify": 2
           }
         },
-        /*{
+        {
           "Rule": "PieceExtraImmunitiesRule",
           "Config": true
-        },*/
+        },
         {
           "Rule": "PartyElectricityDamageOverridden",
           "Config": true

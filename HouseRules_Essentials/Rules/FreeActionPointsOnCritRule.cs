@@ -79,9 +79,14 @@ namespace HouseRules.Essentials.Rules
                 source.EnableEffectState(EffectStateType.Frenzy);
                 source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
             }
-            else if (source.boardPieceId == BoardPieceId.HeroRogue) // || (source.boardPieceId == BoardPieceId.HeroBarbarian && Random.Range(0, 101) > 75))
+            else if (source.boardPieceId == BoardPieceId.HeroRogue || (source.boardPieceId == BoardPieceId.HeroBarbarian && Random.Range(0, 101) > 75))
             {
                 source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                if (currentAP < 1)
+                {
+                    source.EnableEffectState(EffectStateType.Enraged);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Enraged, 1);
+                }
             }
         }
     }

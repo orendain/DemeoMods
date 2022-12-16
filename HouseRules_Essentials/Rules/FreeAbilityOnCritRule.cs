@@ -106,18 +106,6 @@
                         source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Deflect) + 2);
                     }
                 }
-                /*if (source.boardPieceId == BoardPieceId.HeroBarbarian)
-                {
-                    if (!source.HasEffectState(EffectStateType.IceImmunity))
-                    {
-                        source.EnableEffectState(EffectStateType.IceImmunity);
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.IceImmunity, 6);
-                    }
-                    else
-                    {
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.IceImmunity, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.IceImmunity) + 6);
-                    }
-                }*/
                 else if (source.boardPieceId == BoardPieceId.HeroWarlock)
                 {
                     source.EnableEffectState(EffectStateType.SpellPower);
@@ -159,7 +147,7 @@
                         source.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.EnemyFrostball,
-                            flags = 1,
+                            flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,
                         });

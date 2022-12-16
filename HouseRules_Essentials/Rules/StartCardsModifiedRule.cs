@@ -91,7 +91,54 @@
             if (piece.HasEffectState(EffectStateType.ExtraEnergy))
             {
                 bool hasPower = false;
-                if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                {
+                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    {
+                        value = piece.inventory.Items[i];
+                        if (value.abilityKey == AbilityKey.SecondWind)
+                        {
+                            int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
+                            hasPower = true;
+                            if (value.IsReplenishing)
+                            {
+                                howMany -= 1;
+                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                if (howMany < 1)
+                                {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
+                                }
+                            }
+                            else
+                            {
+                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                            }
+
+                            break;
+                        }
+                    }
+
+                    if (!hasPower)
+                    {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.SecondWind,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+                        piece.AddGold(0);
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
                 {
                     for (int i = 0; i < piece.inventory.Items.Count; i++)
                     {
@@ -131,7 +178,7 @@
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.LeapHeavy,
-                            flags = 1,
+                            flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,
                         });
@@ -178,7 +225,7 @@
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.SpawnRandomLamp,
-                            flags = 1,
+                            flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,
                         });
@@ -225,7 +272,7 @@
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.PVPBlink,
-                            flags = 1,
+                            flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,
                         });
@@ -272,7 +319,7 @@
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.SpellPowerPotion,
-                            flags = 1,
+                            flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,
                         });
@@ -319,7 +366,7 @@
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.FretsOfFire,
-                            flags = 1,
+                            flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,
                         });
@@ -366,7 +413,7 @@
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.Weaken,
-                            flags = 1,
+                            flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,
                         });
@@ -424,7 +471,7 @@
                         else
                         {
                             // If we reached our desired turn count we can unset isReplenishing and return true
-                            value.flags &= -3; // unsets isReplenishing (bit1 ) allowing card to be used again.
+                            value.flags &= (Inventory.ItemFlag)(-3); // unsets isReplenishing (bit1 ) allowing card to be used again.
                             piece.inventory.Items[i] = value;
                             __result = true;
 
@@ -466,11 +513,11 @@
                 // 1 : isReplenishing
                 // 2 : abilityDisabledOnStatusEffect
                 // 3 : disableCooldown
-                int flags = 0;
+                Inventory.ItemFlag flags = 0;
                 if (card.ReplenishFrequency > 0)
                 {
                     Traverse.Create(inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                    flags = 1;
+                    flags = (Inventory.ItemFlag)1;
                 }
 
                 // Only add Torch in Rat King adventure

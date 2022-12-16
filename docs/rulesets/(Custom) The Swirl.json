@@ -5,16 +5,16 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
-        /*"HeroBarbarian": [
+        "HeroBarbarian": [
           {
             "Card": "Vortex",
             "ReplenishFrequency": 1
           },
           {
-            "Card": "",
+            "Card": "GrapplingSmash",
             "ReplenishFrequency": 1
           }
-        ],*/
+        ],
         "HeroBard": [
           {
             "Card": "Vortex",
@@ -80,11 +80,11 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
-        /*"HeroBarbarian": [
+        "HeroBarbarian": [
           "PoisonBomb",
           "Fireball",
-          ""
-        ],*/
+          "GrapplingPush"
+        ],
         "HeroBard": [
           "PoisonBomb",
           "Fireball",
@@ -120,11 +120,11 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
-        /*{
+        {
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
           "Value": 50.0
-        },*/
+        },
         {
           "Piece": "HeroBard",
           "Property": "StartHealth",

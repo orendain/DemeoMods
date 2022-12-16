@@ -58,9 +58,9 @@
                 return true;
             }
 
-            /*if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian)
+            if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian)
             {
-                if (damage.HasTag(DamageTag.Fire))
+                if (damage.HasTag(DamageTag.Fire) || damage.HasTag(DamageTag.Acid))
                 {
                     target.piece.effectSink.SubtractHealth(0);
                     return false;
@@ -71,7 +71,8 @@
                     return true;
                 }
             }
-            else if (target.piece.boardPieceId == BoardPieceId.HeroWarlock && damage.HasTag(DamageTag.Undefined))
+
+            /*else if (target.piece.boardPieceId == BoardPieceId.HeroWarlock && damage.HasTag(DamageTag.Undefined))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;

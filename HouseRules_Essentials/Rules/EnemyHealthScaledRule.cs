@@ -51,7 +51,7 @@
             }
 
             float range;
-            if (config.PieceName.Contains("HRH_"))
+            if (config.PieceNameLocalizationKey.Contains("HRH_"))
             {
                 range = Random.Range(0.85f, 1.15f);
                 config.StartHealth = (int)(config.CriticalHitDamage * _globalMultiplier * range);
@@ -68,7 +68,7 @@
                 return;
             }
 
-            config.PieceName = "HRH_" + config.PieceName;
+            config.PieceNameLocalizationKey = "HRH_" + config.PieceNameLocalizationKey;
             config.CriticalHitDamage = config.StartHealth;
             range = Random.Range(0.75f, 1.25f);
             config.StartHealth = (int)(config.StartHealth * _globalMultiplier * range);

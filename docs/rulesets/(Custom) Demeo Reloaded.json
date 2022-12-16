@@ -64,7 +64,7 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
-        /*"HeroBarbarian": [
+        "HeroBarbarian": [
           {
             "Card": "Torch",
             "ReplenishFrequency": 0
@@ -74,26 +74,26 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "",
+            "Card": "GrapplingSmash",
             "ReplenishFrequency": 0
           },
           {
-            "Card": "",
+            "Card": "GrapplingPush",
             "ReplenishFrequency": 0
           },
           {
-            "Card": "",
-            "ReplenishFrequency": 0
-          },
-          {
-            "Card": "",
+            "Card": "GrapplingTotem",
             "ReplenishFrequency": 1
           },
           {
-            "Card": "",
-            "ReplenishFrequency": 5
+            "Card": "Grapple",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "WeakeningShout",
+            "ReplenishFrequency": 0
           }
-        ],*/
+        ],
         "HeroWarlock": [
           {
             "Card": "Torch",
@@ -287,7 +287,7 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
-        /*{
+        {
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
           "Value": 15
@@ -306,7 +306,7 @@
           "Piece": "HeroBarbarian",
           "Property": "CriticalHitDamage",
           "Value": 13
-        },*/
+        },
         {
           "Piece": "HeroRogue",
           "Property": "MoveRange",
@@ -527,7 +527,7 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
-        /*"HeroBarbarian": [
+        "HeroBarbarian": [
           "WebBomb",
           "Regroup",
           "Rejuvenation",
@@ -549,25 +549,19 @@
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],*/
+          "ChargeBarbarian",
+          "WeakeningShout",
+          "GrapplingPush",
+          "GrapplingSmash",
+          "ChargeBarbarian",
+          "WeakeningShout",
+          "GrapplingPush",
+          "GrapplingSmash",
+          "ChargeBarbarian",
+          "WeakeningShout",
+          "GrapplingPush",
+          "GrapplingSmash"
+        ],
         "HeroGuardian": [
           "Bone",
           "Regroup",
@@ -898,7 +892,7 @@
     {
      "Rule": "PieceImmunityListAdjusted",
       "Config": {
-        // "HeroBarbarian": [ "" ],
+        "HeroBarbarian": [ "Netted" ],
         "HeroSorcerer": [ "Frozen" ],
         "HeroHunter": [ "Petrified" ],
         "HeroGuardian": [ "Weaken" ],
@@ -928,7 +922,7 @@
         "MinionCharge": false,
         "CourageShanty": false,
         "Arrow": false,
-        // "": false
+        "GrapplingTotem": false
       }
     },
     {
@@ -968,9 +962,9 @@
         "PoisonedTip": [ 6, 16 ],
         "HailOfArrows": [ 6, 16 ],
         "Arrow": [ 4, 12 ],
-        "EnemyFireball": [ 7, 7 ]/*,
-        "": [ ,  ],
-        "": [ ,  ],*/
+        "EnemyFireball": [ 7, 7 ],
+        "Grapple": [ 4, 11 ],
+        "GrapplingSmash": [ 4, 9 ],
       }
     },
     {

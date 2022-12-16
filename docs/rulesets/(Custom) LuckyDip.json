@@ -14,13 +14,13 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
-        "HeroBard": [
-          /*{
+        "HeroBarbarian": [
+          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
           {
-            "Card": "",
+            "Card": "GrapplingTotem",
             "ReplenishFrequency": 1
           },
           {
@@ -36,10 +36,14 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "",
+            "Card": "GrappleTotem",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "GrapplingSmash",
             "ReplenishFrequency": 0
           }
-        ],*/
+        ],
         "HeroBard": [
           {
             "Card": "HealingPotion",
@@ -205,7 +209,7 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
-        /*{
+        {
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
           "Value": 15.0
@@ -214,7 +218,7 @@
           "Piece": "HeroBarbarian",
           "Property": "MoveRange",
           "Value": 5.0
-        },*/
+        },
         {
           "Piece": "HeroBard",
           "Property": "StartHealth",
@@ -307,8 +311,8 @@
       "Config": {
         "Zap": false,
         "CourageShanty": false,
-        "Sneak": false/*,
-        "": false*/
+        "Sneak": false,
+        "GrapplingTotem": false
       }
     },
     {
@@ -340,10 +344,10 @@
     {
       "Rule": "PieceImmunityListAdjusted",
       "Config": {
-        /*"HeroBarbarian": [
+        "HeroBarbarian": [
           "Frozen",
           "Petrified"
-        ],*/
+        ],
         "HeroBard": [
           "Weaken",
           "MarkOfAvalon"

@@ -15,9 +15,9 @@
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
-                /*new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 7 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "MoveRange", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "CriticalHitDamage", Value = 9 },*/
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "CriticalHitDamage", Value = 9 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 6 },
@@ -126,6 +126,8 @@
 
             var myEntranceDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ElvenSpearman, 1 },
+                { BoardPieceId.SummoningRiftSmall, 1 },
                 { BoardPieceId.LargeCorruption, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.SandScorpion, 1 },
@@ -179,6 +181,7 @@
             };
             var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ElvenSpearman, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
                 { BoardPieceId.SmallCorruption, 1 },
@@ -224,6 +227,8 @@
             };
             var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ElvenSpearman, 1 },
+                { BoardPieceId.SummoningRiftSmall, 1 },
                 { BoardPieceId.LargeCorruption, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.SandScorpion, 2 },
@@ -277,6 +282,7 @@
             };
             var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ElvenSpearman, 1 },
                 { BoardPieceId.ScarabSandPile, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
@@ -375,17 +381,16 @@
             };
             var myMonsterDeckRule = new MyMonsterDeckOverriddenRule(myMonsterDeckConfig);
 
-            /*var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey., ReplenishFrequency = 1 },
-            };*/
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingPush, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingSmash, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ChargeBarbarian, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
+            };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 1 },
@@ -460,12 +465,12 @@
                 { BoardPieceId.HeroHunter, hunterCards },
                 { BoardPieceId.HeroRogue, assassinCards },
                 { BoardPieceId.HeroSorcerer, sorcererCards },
-                // { BoardPieceId.HeroBarbarian, barbarianCards },
+                { BoardPieceId.HeroBarbarian, barbarianCards },
             });
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                /*{
+                {
                     BoardPieceId.HeroBarbarian, new List<AbilityKey>
                     {
                         AbilityKey.DetectEnemies,
@@ -489,24 +494,22 @@
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.WaterBottle,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
-                        AbilityKey.,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.ChargeBarbarian,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingPush,
+                        AbilityKey.GrapplingSmash,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.ChargeBarbarian,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingPush,
+                        AbilityKey.GrapplingSmash,
+                        AbilityKey.ChargeBarbarian,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingPush,
+                        AbilityKey.GrapplingSmash,
                     }
-                },*/
+                },
                 {
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
@@ -843,11 +846,11 @@
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
-                // { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType. } },
+                { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType.Netted } },
                 { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Stunned } },
                 { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.Verochka, new List<EffectStateType> { EffectStateType.Frozen } },
-                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken } },
+                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns } },
                 { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
@@ -888,8 +891,8 @@
                 { AbilityKey.LeapHeavy, false },
                 { AbilityKey.SpawnRandomLamp, false },
                 { AbilityKey.FretsOfFire, false },
-                // { AbilityKey., false },
-                // { AbilityKey., false },
+                { AbilityKey.GrapplingTotem, false },
+                { AbilityKey.GrapplingPush, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -912,12 +915,12 @@
                 // { AbilityKey., new List<int> { , , , } },
             });
 
-            var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
-            { Bard = 15, Warlock = 14, Guardian = 13, Sorcerer = 12, Hunter = 11, /*Barbarian = 10,*/ Assassin = 9, Downed = -6, Javelin = 12 });
+            /*var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
+            { Bard = 15, Warlock = 14, Guardian = 13, Sorcerer = 12, Hunter = 11, Barbarian = 10, Assassin = 9, Downed = -6, Javelin = 14 });*/
 
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {
-                // { BoardPieceId.HeroBarbarian, AbilityKey. },
+                { BoardPieceId.HeroBarbarian, AbilityKey.ArbalestierPoisonTip },
                 { BoardPieceId.HeroHunter, AbilityKey.Bone },
                 { BoardPieceId.HeroSorcerer, AbilityKey.WaterBottle },
                 { BoardPieceId.HeroWarlock, AbilityKey.SpellPowerPotion },
@@ -926,8 +929,8 @@
 
             var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue, BoardPieceId.HeroWarlock });
             var freeHealOnCritRule = new FreeHealOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroRogue, BoardPieceId.HeroWarlock, BoardPieceId.HeroBard });
-            var freeActionPointsOnCritRule = new FreeActionPointsOnCritRule(new List<BoardPieceId> { /*BoardPieceId.HeroBarbarian,*/ BoardPieceId.HeroGuardian, BoardPieceId.HeroRogue });
-            var freeReplenishablesOnCritRule = new FreeReplenishablesOnCritRule(new List<BoardPieceId> { /*BoardPieceId.HeroBarbarian,*/ BoardPieceId.HeroBard, BoardPieceId.HeroRogue, BoardPieceId.HeroGuardian, BoardPieceId.HeroSorcerer, BoardPieceId.HeroHunter, BoardPieceId.HeroWarlock });
+            var freeActionPointsOnCritRule = new FreeActionPointsOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroBarbarian, BoardPieceId.HeroGuardian, BoardPieceId.HeroRogue });
+            var freeReplenishablesOnCritRule = new FreeReplenishablesOnCritRule(new List<BoardPieceId> { BoardPieceId.HeroBarbarian, BoardPieceId.HeroBard, BoardPieceId.HeroRogue, BoardPieceId.HeroGuardian, BoardPieceId.HeroSorcerer, BoardPieceId.HeroHunter, BoardPieceId.HeroWarlock });
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
             var abilityBackstabRule = new AbilityBackstabAdjustedRule(new Dictionary<AbilityKey, bool>
             {
@@ -968,7 +971,7 @@
                 { AbilityKey.BlockAbilities, 1 },
             });
 
-            // var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
+            var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
@@ -1022,7 +1025,7 @@
                 abilityActionCostRule,
                 abilityHealOverriddenRule,
                 backstabConfigRule,
-                turnOrderRule,
+                // turnOrderRule,
                 freeHealOnHitRule,
                 freeHealOnCritRule,
                 freeReplenishablesOnCritRule,
@@ -1034,7 +1037,7 @@
                 aoeAdjustedRule,
                 abilityDamageAllRule,
                 partyElectricity,
-                // pieceExtraImmunities,
+                pieceExtraImmunities,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,

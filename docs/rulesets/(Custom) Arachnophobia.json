@@ -14,13 +14,13 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
-        /*"HeroBarbarian": [
+        "HeroBarbarian": [
           {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
           {
-            "Card": "",
+            "Card": "Grapple",
             "ReplenishFrequency": 1
           },
           {
@@ -28,22 +28,22 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "",
+            "Card": "GrapplingPush",
             "ReplenishFrequency": 0
           },
           {
-            "Card": "",
+            "Card": "GrapplingSmash",
             "ReplenishFrequency": 0
           },
           {
-            "Card": "",
-            "ReplenishFrequency": 0
+            "Card": "GrapplingTotem",
+            "ReplenishFrequency": 1
           },
           {
             "Card": "Sneak",
             "ReplenishFrequency": 0
           }
-        ],*/
+        ],
         "HeroBard": [
           {
             "Card": "HealingPotion",
@@ -230,7 +230,7 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
-        /*{
+        {
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
           "Value": 15.0
@@ -239,7 +239,7 @@
           "Piece": "HeroBarbarian",
           "Property": "MoveRange",
           "Value": 5.0
-        },*/
+        },
         {
           "Piece": "HeroBard",
           "Property": "StartHealth",
@@ -353,8 +353,8 @@
         "Zap": false,
         "MagicMissile": false,
         "CourageShanty": false,
-        "Sneak": false/*,
-        "":  false*/
+        "Sneak": false,
+        "Grapple":  false
       }
     },
     {
@@ -374,9 +374,9 @@
     {
       "Rule": "PieceImmunityListAdjusted",
       "Config": {
-        /*"HeroBarbarian": [
+        "HeroBarbarian": [
           "Diseased"
-        ],*/
+        ],
         "HeroBard": [
           "Diseased"
         ],

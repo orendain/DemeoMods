@@ -11,6 +11,22 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
+        "HeroBarbarian": [
+          "PoisonBomb",
+          "MagicBarrier",
+          "OilLamp",
+          "GasLamp",
+          "IceLamp",
+          "TheBehemoth",
+          "RepeatingBallista",
+          "TheBehemoth",
+          "VortexLamp",
+          "HealingPotion",
+          "Torch",
+          "Sneak",
+          "Bone",
+          "DetectEnemies"
+        ],
         "HeroBard": [
           "PoisonBomb",
           "MagicBarrier",
@@ -105,6 +121,12 @@
       "Config": {
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
+        "Antitoxin": 1,
+        "VigorPotion": 1,
+        "ExtraActionPotion": 1,
+        "DamageResistPotion": 1,
+        "OneMoreThing": 1,
+        "AdamantPotion": 1,
         "HealingPotion": 1
       }
     },
@@ -201,7 +223,40 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
-        "HeroBard": [
+        "HeroBarbarian": [
+          {
+            "Card": "BoobyTrap",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Grapple",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "OilLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GasLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "IceLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Sneak",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "DetectEnemies",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GrappleTotem",
+            "ReplenishFrequency": 1
+          },
+        ],
           {
             "Card": "BoobyTrap",
             "ReplenishFrequency": 1
