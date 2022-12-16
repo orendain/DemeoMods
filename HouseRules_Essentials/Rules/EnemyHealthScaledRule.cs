@@ -48,7 +48,7 @@
                 return;
             }
 
-            if (config.PieceNameLocalizationKey.Contains("HRH_"))
+            if (config.CriticalHitDamage > 0)
             {
                 return;
             }
@@ -58,7 +58,7 @@
                 return;
             }
 
-            config.PieceNameLocalizationKey = "HRH_" + config.PieceNameLocalizationKey;
+            config.CriticalHitDamage = config.StartHealth;
             config.StartHealth = (int)(config.StartHealth * _globalMultiplier);
         }
     }

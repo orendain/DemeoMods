@@ -20,7 +20,7 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "GrapplingTotem",
+            "Card": "ExplodingLampPlaceholder",
             "ReplenishFrequency": 1
           },
           {
@@ -36,7 +36,7 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "GrappleTotem",
+            "Card": "Grapple",
             "ReplenishFrequency": 1
           },
           {
@@ -312,7 +312,7 @@
         "Zap": false,
         "CourageShanty": false,
         "Sneak": false,
-        "GrapplingTotem": false
+        "Grapple": false
       }
     },
     {

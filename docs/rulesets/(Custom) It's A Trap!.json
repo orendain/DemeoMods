@@ -13,19 +13,17 @@
       "Config": {
         "HeroBarbarian": [
           "PoisonBomb",
-          "MagicBarrier",
+          "HealingPotion",
           "OilLamp",
           "GasLamp",
           "IceLamp",
-          "TheBehemoth",
-          "RepeatingBallista",
-          "TheBehemoth",
-          "VortexLamp",
-          "HealingPotion",
+          "Vortex",
           "Torch",
-          "Sneak",
           "Bone",
-          "DetectEnemies"
+          "DetectEnemies",
+          "WebBomb",
+          "VortexLamp",
+          "Teleportation"
         ],
         "HeroBard": [
           "PoisonBomb",
@@ -184,6 +182,11 @@
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
           "Piece": "HeroBard",
           "Property": "StartHealth",
           "Value": 30.0
@@ -233,6 +236,9 @@
             "ReplenishFrequency": 1
           },
           {
+            "Card": "ExplodingLampPlaceholder",
+            "ReplenishFrequency": 1
+          {
             "Card": "OilLamp",
             "ReplenishFrequency": 0
           },
@@ -257,6 +263,7 @@
             "ReplenishFrequency": 1
           },
         ],
+        "HeroBard": [
           {
             "Card": "BoobyTrap",
             "ReplenishFrequency": 1

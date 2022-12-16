@@ -46,7 +46,7 @@
                 return;
             }
 
-            if (config.PieceNameLocalizationKey.Contains("HRA_"))
+            if (config.CriticalHitDamageOLD > 0)
             {
                 return;
             }
@@ -56,7 +56,7 @@
                 return;
             }
 
-            config.PieceNameLocalizationKey = "HRA_" + config.PieceNameLocalizationKey;
+            config.CriticalHitDamageOLD = config.AttackDamage;
             config.AttackDamage = (int)(config.AttackDamage * _globalMultiplier);
         }
     }

@@ -22,6 +22,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingPush, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingSmash, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
             };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
@@ -80,7 +81,7 @@
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
-                // { BoardPieceId.HeroBarbarian, barbarianCards },
+                { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
                 { BoardPieceId.HeroHunter, hunterCards },

@@ -58,7 +58,8 @@
         "KillerBee": [ 4, 2, 1 ],
         "RatNest": [ 4, 1, 1 ],
         "RootMage": [ 4, 2, 1 ],
-        "SporeFungus": [ 4, 1, 1 ]
+        "SporeFungus": [ 4, 1, 1 ],
+        "ElvenSpearman": [ 4, 1, 1 ]
       }
     },
     {
@@ -82,7 +83,7 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "GrapplingTotem",
+            "Card": "ExplodingLampPlaceholder",
             "ReplenishFrequency": 1
           },
           {
@@ -90,7 +91,7 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "WeakeningShout",
+            "Card": "TauntingScream",
             "ReplenishFrequency": 0
           }
         ],
@@ -549,16 +550,18 @@
           "ExtraActionPotion",
           "DamageResistPotion",
           "WaterBottle",
-          "ChargeBarbarian",
-          "WeakeningShout",
+          "PlayerLeap",
+          "TauntingScream",
           "GrapplingPush",
           "GrapplingSmash",
-          "ChargeBarbarian",
-          "WeakeningShout",
+          "MarkOfVerga",
+          "PlayerLeap",
+          "TauntingScream",
           "GrapplingPush",
           "GrapplingSmash",
-          "ChargeBarbarian",
-          "WeakeningShout",
+          "PlayerLeap",
+          "TauntingScream",
+          "MarkOfVerga",
           "GrapplingPush",
           "GrapplingSmash"
         ],
@@ -920,7 +923,7 @@
         "MinionCharge": false,
         "CourageShanty": false,
         "Arrow": false,
-        "GrapplingTotem": false
+        "Grapple": false
       }
     },
     {
