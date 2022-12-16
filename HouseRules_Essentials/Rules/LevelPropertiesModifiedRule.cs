@@ -31,6 +31,30 @@
                 { "FloorThreeLootChests", 1 },
         };
 
+        private readonly Dictionary<string, int> _elvenKing = new Dictionary<string, int>
+        {
+                { "BigGoldPileChance", 30 },
+                { "FloorOneHealingFountains", 2 },
+                { "FloorOnePotionStand", 1 },
+                { "FloorOneMerchant", 0 },
+                { "FloorOneLootChests", 4 },
+                { "FloorOneGoldMaxAmount", 750 },
+                { "FloorOneElvenSummoners", 1 },
+                { "FloorOneSellswords", 1 },
+                { "FloorOneVillagers", 1 },
+                { "FloorTwoHealingFountains", 2 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoMerchant", 1 },
+                { "FloorTwoLootChests", 6 },
+                { "FloorTwoGoldMaxAmount", 850 },
+                { "FloorTwoElvenSummoners", 1 },
+                { "FloorTwoBeggars", 1 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreePotionStand", 0 },
+                { "FloorThreeMerchant", 0 },
+                { "FloorThreeLootChests", 2 },
+        };
+
         public LevelPropertiesModifiedRule(Dictionary<string, int> levelProperties)
         {
             _levelProperties = levelProperties;
@@ -71,6 +95,14 @@
             if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
             {
                 foreach (var modification in _ratKing)
+                {
+                    AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                       modification.Value;
+                }
+            }
+            else if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Town)
+            {
+                foreach (var modification in _elvenKing)
                 {
                     AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
                        modification.Value;

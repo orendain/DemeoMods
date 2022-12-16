@@ -87,7 +87,7 @@ namespace HouseRules.Essentials.Rules
                 for (int i = 0; i < source.inventory.Items.Count; i++)
                 {
                     value = source.inventory.Items[i];
-                    if (value.abilityKey == AbilityKey.Grapple)
+                    if (value.abilityKey == AbilityKey.Net)
                     {
                         if (value.IsReplenishing)
                         {

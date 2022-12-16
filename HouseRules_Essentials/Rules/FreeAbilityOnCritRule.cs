@@ -96,14 +96,14 @@
 
                 if (source.boardPieceId == BoardPieceId.HeroBard)
                 {
-                    if (!source.HasEffectState(EffectStateType.Deflect))
+                    if (!source.HasEffectState(EffectStateType.DeflectionBarrier))
                     {
-                        source.EnableEffectState(EffectStateType.Deflect);
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
+                        source.EnableEffectState(EffectStateType.DeflectionBarrier);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.DeflectionBarrier, 2);
                     }
                     else
                     {
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Deflect) + 2);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.DeflectionBarrier, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.DeflectionBarrier) + 2);
                     }
                 }
                 else if (source.boardPieceId == BoardPieceId.HeroWarlock)

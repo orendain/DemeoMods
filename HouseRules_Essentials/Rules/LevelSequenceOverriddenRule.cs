@@ -17,7 +17,8 @@
         private static List<string> _randomMaps = new List<string>
                     { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
 
-        private static bool _fixHydra = true;
+        private static bool _fixHydra;
+        private static bool _fixKing;
         private static bool _isActivated;
         private readonly List<string> _adjustments;
 
@@ -45,11 +46,11 @@
         private readonly List<string> desertFloors2 = new List<string>
                     { "DesertFloor02", "DesertFloor08", "DesertFloor09", "DesertFloor06", "DesertFloor10" };
 
-        private readonly List<string> newestFloors1 = new List<string>
-                    { "NewestFloor10", "NewestFloor06" };
+        private readonly List<string> townsFloors1 = new List<string>
+                    { "TownsFloor04", "TownsFloor05", "TownsFloor06" };
 
-        private readonly List<string> newestFloors2 = new List<string>
-                    { "NewestFloor02", "NewestFloor08", "NewestFloor09", "NewestFloor06", "NewestFloor10" };
+        private readonly List<string> townsFloors2 = new List<string>
+                    { "TownsFloor01", "TownsFloor02", "TownsFloor03", "TownsFloor08" };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LevelSequenceOverriddenRule"/> class.
@@ -70,7 +71,7 @@
 
         protected override void OnPreGameCreated(GameContext gameContext)
         {
-            ReplaceExistingProperties(_globalAdjustments, elvenFloors1, forestFloors1, sewersFloors1, desertFloors1, newestFloors1, elvenFloors2, forestFloors2, sewersFloors2, desertFloors2, newestFloors2, gameContext);
+            ReplaceExistingProperties(_globalAdjustments, elvenFloors1, forestFloors1, sewersFloors1, desertFloors1, townsFloors1, elvenFloors2, forestFloors2, sewersFloors2, desertFloors2, townsFloors2, gameContext);
         }
 
         private static void Patch(Harmony harmony)
@@ -106,6 +107,7 @@
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var sequenceDefinitions =
                 gameContext.levelSequenceConfiguration.sequenceDefinitions.GetSequenceFromId(gameType, out _);
+
             if (index >= 0 && index < sequenceDefinitions.Length)
             {
                 return true;
@@ -149,6 +151,18 @@
                 _randomMaps[4] = "DesertFloor10";
             }
 
+            if (newGameType == LevelSequence.GameType.Town)
+            {
+                if (_fixKing)
+                {
+                    _randomMaps[4] = "TownsBossFloor01";
+                }
+            }
+            else if (_randomMaps[4] == "TownsBossFloor01")
+            {
+                _randomMaps[4] = "TownsFloor02";
+            }
+
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 _randomMaps.Prepend(originalSequence[0]).ToArray();
             eventQueue.SendEventRequest(new SerializableEventStartNewGame(gsmLevelSequence));
@@ -159,7 +173,7 @@
         /// Replaces LevelSequence levels with predefined list.
         /// </summary>
         /// <returns>List of previous LevelSequence levels that are now replaced.</returns>
-        private static List<string> ReplaceExistingProperties(List<string> replacements, List<string> elvenFloors1, List<string> forestFloors1, List<string> sewersFloors1, List<string> desertFloors1, List<string> newestFloors1, List<string> elvenFloors2, List<string> forestFloors2, List<string> sewersFloors2, List<string> desertFloors2, List<string> newestFloors2, GameContext gameContext)
+        private static List<string> ReplaceExistingProperties(List<string> replacements, List<string> elvenFloors1, List<string> forestFloors1, List<string> sewersFloors1, List<string> desertFloors1, List<string> townsFloors1, List<string> elvenFloors2, List<string> forestFloors2, List<string> sewersFloors2, List<string> desertFloors2, List<string> townsFloors2, GameContext gameContext)
         {
             var gsmLevelSequence =
                 Traverse.Create(gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
@@ -173,7 +187,7 @@
                 return originalSequence.ToList();
             }
 
-            int rndLevel = Random.Range(1, 5); // 6
+            int rndLevel = Random.Range(1, 6);
             int rndMap1 = 0;
             int rndMap2 = 0;
             int rndMap3 = 0;
@@ -181,26 +195,34 @@
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
             {
                 rndLevel = 4;
-                if (replacements[replacements.Count - 1] == "fixhydra")
+                if (replacements[replacements.Count - 2] == "fixhydra")
                 {
                     _fixHydra = true;
+                }
+            }
+            else if (gsmLevelSequence.gameType == LevelSequence.GameType.Town)
+            {
+                rndLevel = 5;
+                if (replacements[replacements.Count - 1] == "fixking")
+                {
+                    _fixKing = true;
                 }
             }
 
             switch (rndLevel)
             {
                 case 1:
-                    rndMap1 = Random.Range(2, 5); // 6
+                    rndMap1 = Random.Range(2, 6);
                     rndMap2 = rndMap1;
                     while (rndMap2 == rndMap1)
                     {
-                        rndMap2 = Random.Range(2, 5); // 6
+                        rndMap2 = Random.Range(2, 6);
                     }
 
-                    rndMap3 = 2;
+                    rndMap3 = Random.Range(2, 6);
                     while (rndMap3 == rndMap1 || rndMap3 == rndMap2)
                     {
-                        rndMap3++;
+                        rndMap3 = Random.Range(2, 6);
                     }
 
                     break;
@@ -209,19 +231,19 @@
                     rndMap1 = 2;
                     while (rndMap1 == 2)
                     {
-                        rndMap1 = Random.Range(1, 5); // 6
+                        rndMap1 = Random.Range(1, 6);
                     }
 
                     rndMap2 = rndMap1;
                     while (rndMap2 == rndMap1 || rndMap2 == 2)
                     {
-                        rndMap2 = Random.Range(1, 5); // 6
+                        rndMap2 = Random.Range(1, 6);
                     }
 
-                    rndMap3 = 1;
+                    rndMap3 = Random.Range(1, 6);
                     while (rndMap3 == rndMap1 || rndMap3 == rndMap2 || rndMap3 == 2)
                     {
-                        rndMap3++;
+                        rndMap3 = Random.Range(1, 6);
                     }
 
                     break;
@@ -230,38 +252,23 @@
                     rndMap1 = 3;
                     while (rndMap1 == 3)
                     {
-                        rndMap1 = Random.Range(1, 5); // 6
+                        rndMap1 = Random.Range(1, 6);
                     }
 
                     rndMap2 = rndMap1;
                     while (rndMap2 == rndMap1 || rndMap2 == 3)
                     {
-                        rndMap2 = Random.Range(1, 5); // 6
+                        rndMap2 = Random.Range(1, 6);
                     }
 
-                    rndMap3 = 1;
+                    rndMap3 = Random.Range(1, 6);
                     while (rndMap3 == rndMap1 || rndMap3 == rndMap2 || rndMap3 == 3)
                     {
-                        rndMap3++;
+                        rndMap3 = Random.Range(1, 6);
                     }
 
                     break;
                 case 4:
-                    rndMap1 = Random.Range(1, 4);
-                    rndMap2 = rndMap1;
-                    while (rndMap2 == rndMap1)
-                    {
-                        rndMap2 = Random.Range(1, 4);
-                    }
-
-                    rndMap3 = 1;
-                    while (rndMap3 == rndMap1 || rndMap3 == rndMap2)
-                    {
-                        rndMap3++;
-                    }
-
-                    break;
-                /*case 4:
                     rndMap1 = 4;
                     while (rndMap1 == 4)
                     {
@@ -274,28 +281,28 @@
                         rndMap2 = Random.Range(1, 6);
                     }
 
-                    rndMap3 = 1;
+                    rndMap3 = Random.Range(1, 6);
                     while (rndMap3 == rndMap1 || rndMap3 == rndMap2 || rndMap3 == 4)
                     {
-                        rndMap3++;
+                        rndMap3 = Random.Range(1, 6);
                     }
 
                     break;
                 case 5:
-                        rndMap1 = Random.Range(1, 5);
-                        rndMap2 = rndMap1;
-                        while (rndMap2 == rndMap1)
-                        {
-                            rndMap2 = Random.Range(1, 5);
-                        }
+                    rndMap1 = Random.Range(1, 5);
+                    rndMap2 = rndMap1;
+                    while (rndMap2 == rndMap1)
+                    {
+                        rndMap2 = Random.Range(1, 5);
+                    }
 
-                        rndMap3 = 1;
-                        while (rndMap3 == rndMap1 || rndMap3 == rndMap2)
-                        {
-                            rndMap3++;
-                        }
+                    rndMap3 = Random.Range(1, 5);
+                    while (rndMap3 == rndMap1 || rndMap3 == rndMap2)
+                    {
+                        rndMap3 = Random.Range(1, 5);
+                    }
 
-                        break;*/
+                    break;
             }
 
             int newMap;
@@ -320,10 +327,10 @@
                     newMap = Random.Range(0, desertFloors1.Count);
                     _randomMaps[0] = desertFloors1[newMap];
                     break;
-                /*case 5:
-                    newMap = Random.Range(0, newestFloors1.Count);
-                    _randomMaps[0] = newestFloors1[newMap];
-                    break;*/
+                case 5:
+                    newMap = Random.Range(0, townsFloors1.Count);
+                    _randomMaps[0] = townsFloors1[newMap];
+                    break;
             }
 
             switch (rndMap2)
@@ -347,10 +354,10 @@
                     newMap = Random.Range(0, desertFloors2.Count);
                     _randomMaps[2] = desertFloors2[newMap];
                     break;
-                /*case 5:
-                    newMap = Random.Range(0, newestFloors2.Count);
-                    _randomMaps[2] = newestFloors2[newMap];
-                    break;*/
+                case 5:
+                    newMap = Random.Range(0, townsFloors2.Count);
+                    _randomMaps[2] = townsFloors2[newMap];
+                    break;
             }
 
             switch (rndMap3)
@@ -382,10 +389,10 @@
                     newMap = Random.Range(0, desertFloors1.Count);
                     _randomMaps[4] = desertFloors1[newMap];
                     break;
-                /*case 5:
-                    newMap = Random.Range(0, newestFloors1.Count);
-                    _randomMaps[4] = newestFloors1[newMap];
-                    break;*/
+                case 5:
+                    newMap = Random.Range(0, townsFloors1.Count);
+                    _randomMaps[4] = townsFloors1[newMap];
+                    break;
             }
 
             if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
@@ -395,51 +402,59 @@
                     _randomMaps[4] = "DesertBossFloor01";
                 }
             }
-
-            switch (_randomMaps[2].Substring(0, 5))
+            else if (gsmLevelSequence.gameType == LevelSequence.GameType.Town)
             {
-                case "Elven":
+                if (_fixKing)
+                {
+                    _randomMaps[4] = "TownsBossFloor01";
+                }
+            }
+
+            switch (_randomMaps[2].Substring(0, 4))
+            {
+                case "Elve":
                     _randomMaps[1] = "ShopFloor02";
                     break;
 
-                case "Fores":
+                case "Fore":
                     _randomMaps[1] = "ForestShopFloor";
                     break;
 
-                case "Sewer":
+                case "Sewe":
                     _randomMaps[1] = "SewersShopFloor";
                     break;
 
-                case "Deser":
+                case "Dese":
                     _randomMaps[1] = "DesertShopFloor";
                     break;
-                /*case "Newes":
-                    _randomMaps[1] = "NewestShopFloor";
-                    break;*/
+                case "Town":
+                    _randomMaps[1] = "TownShopFloor";
+                    break;
             }
 
-            switch (_randomMaps[4].Substring(0, 5))
+            switch (_randomMaps[4].Substring(0, 4))
             {
-                case "Elven":
+                case "Elve":
                     _randomMaps[3] = "ShopFloor02";
                     break;
 
-                case "Fores":
+                case "Fore":
                     _randomMaps[3] = "ForestShopFloor";
                     break;
 
-                case "Sewer":
+                case "Sewe":
                     _randomMaps[3] = "SewersShopFloor";
                     break;
 
-                case "Deser":
+                case "Dese":
                     _randomMaps[3] = "DesertShopFloor";
                     break;
-                /*case "Newes":
-                    _randomMaps[3] = "NewestShopFloor";
-                    break;*/
+                case "Town":
+                    _randomMaps[3] = "TownShopFloor";
+                    break;
             }
 
+            EssentialsMod.Logger.Msg($"Original: {originalSequence[0]} {originalSequence[1]} {originalSequence[2]} {originalSequence[4]} {originalSequence[5]}");
             EssentialsMod.Logger.Warning($"Map1: {_randomMaps[0]} Shop1: {_randomMaps[1]} Map2: {_randomMaps[2]} Shop2: {_randomMaps[3]} Map3: {_randomMaps[4]}");
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =

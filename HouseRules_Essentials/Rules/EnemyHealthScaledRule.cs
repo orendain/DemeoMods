@@ -50,14 +50,6 @@
                 return;
             }
 
-            float range;
-            if (config.PieceNameLocalizationKey.Contains("HRH_"))
-            {
-                range = Random.Range(0.85f, 1.15f);
-                config.StartHealth = (int)(config.CriticalHitDamage * _globalMultiplier * range);
-                return;
-            }
-
             if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Prop) || config.HasPieceType(PieceType.Lure) || !config.HasPieceType(PieceType.Creature))
             {
                 return;
@@ -68,9 +60,14 @@
                 return;
             }
 
-            config.PieceNameLocalizationKey = "HRH_" + config.PieceNameLocalizationKey;
+            float range = Random.Range(0.75f, 1.2f);
+            if (config.CriticalHitDamage > 0)
+            {
+                config.StartHealth = (int)(config.CriticalHitDamage * _globalMultiplier * range);
+                return;
+            }
+
             config.CriticalHitDamage = config.StartHealth;
-            range = Random.Range(0.75f, 1.25f);
             config.StartHealth = (int)(config.StartHealth * _globalMultiplier * range);
         }
     }

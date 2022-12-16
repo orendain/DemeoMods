@@ -149,7 +149,6 @@
                         return true;
                     }
 
-                    _lastGrabbed = null;
                     return false;
                 case SerializableEvent.Type.Move:
                 case SerializableEvent.Type.Interact:

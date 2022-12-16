@@ -282,6 +282,7 @@
           "Rule": "MyMonsterDeckOverridden",
           "Config": {
             "EntranceDeckFloor1": {
+              "ElvenSpearman": 1,
               "LargeCorruption": 1,
               "ReptileArcher": 1,
               "SandScorpion": 1,
@@ -334,6 +335,7 @@
               "ServantOfAlfaragh": 1
             },
             "ExitDeckFloor1": {
+              "ElvenSpearman": 1,
               "ReptileArcher": 1,
               "ReptileMutantWizard": 1,
               "SmallCorruption": 1,
@@ -378,6 +380,7 @@
               "ServantOfAlfaragh": 1
             },
             "EntranceDeckFloor2": {
+              "ElvenSpearman": 1,
               "LargeCorruption": 1,
               "ReptileArcher": 1,
               "SandScorpion": 2,
@@ -430,6 +433,7 @@
               "ServantOfAlfaragh": 1
             },
             "ExitDeckFloor2": {
+              "ElvenSpearman": 1,
               "ScarabSandPile": 1,
               "ReptileArcher": 1,
               "ReptileMutantWizard": 1,
@@ -475,6 +479,7 @@
               "ServantOfAlfaragh": 1
             },
             "BossDeck": {
+              "ElvenSpearman": 1,
               "ReptileArcher": 1,
               "ReptileMutantWizard": 1,
               "GeneralRonthian": 1,
@@ -524,7 +529,7 @@
           "Config": {
             "HeroBarbarian": [
               {
-                "Card": "PlayerLeap",
+                "Card": "Grapple",
                 "ReplenishFrequency": 1
               },
               {
@@ -544,20 +549,20 @@
                 "ReplenishFrequency": 0
               },
               {
-                "Card": "EmergencyTeleport",
-                "ReplenishFrequency": 0
-              },
-              {
-                "Card": "ChargeBarbarian",
-                "ReplenishFrequency": 0
-              },
-              {
                 "Card": "GrapplingTotem",
+                "ReplenishFrequency": 0
+              },
+              {
+                "Card": "PlayerLeap",
+                "ReplenishFrequency": 0
+              },
+              {
+                "Card": "ExplodingLampTotemPlaceholder",
                 "ReplenishFrequency": 1
               },
               {
-                "Card": "Grapple",
-                "ReplenishFrequency": 1
+                "Card": "Net",
+                "ReplenishFrequency": 3
               }
             ],
             "HeroWarlock": [
@@ -784,24 +789,26 @@
               "HealingPotion",
               "ScrollElectricity",
               "ScrollTsunami",
-              "LuckPotion",
               "IceImmunePotion",
               "FireImmunePotion",
               "ExtraActionPotion",
               "DamageResistPotion",
               "WaterBottle",
-              "ChargeBarbarian",
+              "MarkOfVerga",
               "WeakeningShout",
               "GrapplingPush",
               "GrapplingSmash",
-              "ChargeBarbarian",
+              "GrapplingTotem",
+              "PlayerLeap",
               "WeakeningShout",
               "GrapplingPush",
               "GrapplingSmash",
-              "ChargeBarbarian",
+              "GrapplingTotem",
               "WeakeningShout",
               "GrapplingPush",
-              "GrapplingSmash"
+              "GrapplingSmash",
+              "GrapplingTotem",
+              "PlayerLeap"
             ],
             "HeroGuardian": [
               "EnergyPotion",
@@ -1086,6 +1093,16 @@
               "clearOnNewLevel": false,
               "damageTags": null,
               "healPerTurn": 0
+            },
+            {
+              "effectStateType": "Netted",
+              "durationTurns": 1,
+              "tickWhen": "EndTurn",
+              "stacks": false,
+              "damagePerTurn": 0,
+              "clearOnNewLevel": false,
+              "damageTags": null,
+              "healPerTurn": 0
             }
           ]
         },
@@ -1094,9 +1111,9 @@
           "Config": {
             "EarthElemental": [ "EnemyMelee", "EnemyKnockbackMelee", "EarthShatter", "EnemyJavelin" ],
             "Mimic": [ "EnemyMelee", "AcidSpit", "Grab" ],
-            "RootMage": [ "EnemyMelee", "TeleportEnemy" ],
-            "ChestGoblin": [ "EnemyMelee", "EnemyStealGold" ],
-            "KillerBee": [ "EnemyMelee", "ThornPowder" ],
+            "RootMage": [ "EnemyMelee", "TeleportEnemy", "EnemyFlashbang" ],
+            "ChestGoblin": [ "EnemyMelee", "EnemyStealGold", "Net" ],
+            "KillerBee": [ "EnemyMelee", "ThornPowder", "Net" ],
             "CultMemberElder": [ "EnemyMelee", "Weaken", "EnemyFireball" ],
             "Wyvern": [ "EnemyMelee", "DiseasedBite", "LightningBolt", "LeapHeavy" ],
             "SilentSentinel": [ "EnemyMelee", "LeapHeavy", "Grab" ],
@@ -1113,9 +1130,9 @@
           "Config": {
             "EarthElemental": [ "Patrol", "AttackPlayer", "EarthShatter", "RangedAttackHighPrio" ],
             "Mimic": [ "Patrol", "AttackPlayer", "RangedAttackHighPrio" ],
-            "RootMage": [ "Patrol", "AttackPlayer", "CastOnTeam" ],
+            "RootMage": [ "Patrol", "AttackPlayer", "CastOnTeam", "RangedAttackHighPrio" ],
             "KillerBee": [ "Patrol", "AttackPlayer", "RangedAttackHighPrio" ],
-            "ChestGoblin": [ "Patrol", "FollowPlayerMeleeAttacker", "AttackAndRetreat" ],
+            "ChestGoblin": [ "Patrol", "FollowPlayerMeleeAttacker", "AttackAndRetreat", "RangedAttackHighPrio" ],
             "CultMemberElder": [ "Patrol", "AttackPlayer", "RangedSpellCaster" ],
             "SilentSentinel": [ "Patrol", "AttackPlayer", "RangedSpellCaster" ],
             "ElvenArcher": [ "Patrol", "AttackPlayer", "RangedSpellCaster", "FollowPlayerRangedAttacker" ],
@@ -1126,7 +1143,7 @@
         {
           "Rule": "PieceImmunityListAdjusted",
           "Config": {
-            "HeroBarbarian": [ "Netted" ],
+            "HeroBarbarian": [ "Netted", "Petrified" ],
             "HeroSorcerer": [ "Stunned" ],
             "HeroGuardian": [ "Weaken" ],
             "HeroHunter": [ "Frozen" ],
@@ -1173,9 +1190,14 @@
             "LeapHeavy": false,
             "SpawnRandomLamp": false,
             "Weaken": false,
-            "FretsOfFire": false/*,
-            "": false,
-            "": false*/
+            "FretsOfFire": false,
+            "ExplodingGasLamp": false,
+            "ExplodingOilLamp": false,
+            "ExplodingWaterLamp": false,
+            "ExplodingVortexLamp": false,
+            "ExplodingIceLamp": false,
+            "Net": true,
+            "ImplosionExplosionRain": false
           }
         },
         {
@@ -1198,7 +1220,8 @@
             "WarCry": 1,
             "WhirlwindAttack": 1,
             "BlindingLight": 1,
-            "BlockAbilities": 1
+            "BlockAbilities": 1,
+            "GrapplingPush": 1
           }
         },
         {
@@ -1210,7 +1233,7 @@
             "Electricity": [ 3, 5, 1, 2 ],
             "PVPBlink": [ 6, 12, 6, 12 ],
             "FretsOfFire": [ 4, 8, 4, 8 ],
-            // "": [ , , ,  ]
+            "GrapplingPush": [ 2, 4, 2, 4 ]
           }
         },
         {
@@ -1230,7 +1253,6 @@
         {
           "Rule": "FreeAbilityOnCrit",
           "Config": {
-            "HeroBarbarian": "",
             "HeroHunter": "Bone",
             "HeroWarlock": "SpellPowerPotion",
             "HeroSorcerer": "WaterBottle",
@@ -1305,13 +1327,14 @@
             "Shockwave": 3,
             "EnemyFireball": 2,
             "EnemyFlashbang": 2,
-            "Petrify": 2
+            "Petrify": 2,
+            "Net": 2
           }
         },
-        {
+        /*{
           "Rule": "PieceExtraImmunitiesRule",
           "Config": true
-        },
+        },*/
         {
           "Rule": "PartyElectricityDamageOverridden",
           "Config": true
@@ -1349,7 +1372,8 @@
             "ForestFloor02",
             "ForestFloor01",
             "ElvenFloor14",
-            "fixhydra"
+            "fixhydra",
+            "fixking"
           ]
         },
         {

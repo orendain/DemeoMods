@@ -141,6 +141,7 @@
 
             var myEntranceDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ElvenSpearman, 1 },
                 { BoardPieceId.LargeCorruption, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.SandScorpion, 1 },
@@ -176,7 +177,7 @@
                 { BoardPieceId.CultMemberElder, 1 },
                 { BoardPieceId.RootMage, 1 },
                 { BoardPieceId.KillerBee, 2 },
-                { BoardPieceId.ChestGoblin, 1 },
+                { BoardPieceId.ChestGoblin, 6 },
                 { BoardPieceId.EarthElemental, 1 },
                 { BoardPieceId.Sigataur, 1 },
                 { BoardPieceId.ElvenMarauder, 2 },
@@ -194,6 +195,7 @@
             };
             var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ElvenSpearman, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.GeneralRonthian, 1 },
                 { BoardPieceId.SmallCorruption, 1 },
@@ -221,7 +223,7 @@
                 { BoardPieceId.CultMemberElder, 1 },
                 { BoardPieceId.RootMage, 1 },
                 { BoardPieceId.KillerBee, 2 },
-                { BoardPieceId.ChestGoblin, 1 },
+                { BoardPieceId.ChestGoblin, 6 },
                 { BoardPieceId.EarthElemental, 1 },
                 { BoardPieceId.Sigataur, 1 },
                 { BoardPieceId.ElvenMarauder, 2 },
@@ -239,6 +241,7 @@
             };
             var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ElvenSpearman, 1 },
                 { BoardPieceId.LargeCorruption, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.SandScorpion, 2 },
@@ -292,6 +295,7 @@
             };
             var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ElvenSpearman, 1 },
                 { BoardPieceId.ScarabSandPile, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ServantOfAlfaragh, 1 },
@@ -338,6 +342,7 @@
             };
             var myBossDeck = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ElvenSpearman, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ServantOfAlfaragh, 1 },
                 { BoardPieceId.GeneralRonthian, 1 },
@@ -392,17 +397,18 @@
 
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.God, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MarkOfVerga, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnergyPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.RevealPath, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Teleportation, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingPush, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingSmash, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ChargeBarbarian, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.InvisibilityPotion, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Net, ReplenishFrequency = 3 },
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -506,25 +512,28 @@
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
+                        AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
-                        AbilityKey.LuckPotion,
                         AbilityKey.IceImmunePotion,
                         AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.WaterBottle,
-                        AbilityKey.ChargeBarbarian,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.PlayerLeap,
                         AbilityKey.WeakeningShout,
                         AbilityKey.GrapplingPush,
                         AbilityKey.GrapplingSmash,
-                        AbilityKey.ChargeBarbarian,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.MarkOfVerga,
                         AbilityKey.WeakeningShout,
                         AbilityKey.GrapplingPush,
                         AbilityKey.GrapplingSmash,
-                        AbilityKey.ChargeBarbarian,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.MarkOfVerga,
                         AbilityKey.WeakeningShout,
                         AbilityKey.GrapplingPush,
                         AbilityKey.GrapplingSmash,
@@ -543,6 +552,7 @@
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
+                        AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
@@ -583,6 +593,7 @@
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.SwiftnessPotion,
+                        AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
@@ -624,6 +635,7 @@
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
+                        AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
@@ -665,6 +677,7 @@
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
+                        AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
@@ -702,6 +715,7 @@
                         AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.SwiftnessPotion,
+                        AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
                         AbilityKey.ScrollElectricity,
@@ -825,15 +839,33 @@
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.Never,
                 },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Netted,
+                    durationTurns = 1,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Invisibility,
+                    durationTurns = 1,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                },
             });
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.EnemyJavelin } },
                 { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit, AbilityKey.Grab, AbilityKey.LeapHeavy } },
-                { BoardPieceId.RootMage, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportEnemy } },
-                { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold } },
-                { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder } },
+                { BoardPieceId.RootMage, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportEnemy, AbilityKey.EnemyFlashbang } },
+                { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold, AbilityKey.Net } },
+                { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder, AbilityKey.Net } },
                 { BoardPieceId.CultMemberElder, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Weaken, AbilityKey.EnemyFireball } },
                 { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.LightningBolt, AbilityKey.Grab, AbilityKey.LeapHeavy } },
                 { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeapHeavy, AbilityKey.Grab } },
@@ -850,9 +882,9 @@
                 { BoardPieceId.EarthElemental, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.EarthShatter, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.Mimic, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.Wyvern, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.RootMage, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.CastOnTeam } },
+                { BoardPieceId.RootMage, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.CastOnTeam, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.KillerBee, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.ChestGoblin, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackAndRetreat } },
+                { BoardPieceId.ChestGoblin, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackAndRetreat, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.CultMemberElder, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackAndRetreat, Behaviour.RangedSpellCaster } },
                 { BoardPieceId.SilentSentinel, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedSpellCaster } },
                 { BoardPieceId.ElvenArcher, new List<Behaviour> { Behaviour.Patrol, Behaviour.RangedSpellCaster, Behaviour.FollowPlayerRangedAttacker } },
@@ -862,13 +894,13 @@
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
-                { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType.Netted } },
+                { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType.Netted, EffectStateType.Petrified } },
                 { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Stunned } },
                 { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.Verochka, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns } },
                 { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
-                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded, EffectStateType.Netted } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
                 { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
             });
@@ -913,8 +945,13 @@
                 { AbilityKey.WhirlwindAttack, false },
                 { AbilityKey.God, false },
                 { AbilityKey.Teleportation, false },
-                // { AbilityKey., false },
-                // { AbilityKey., false },
+                { AbilityKey.ExplodingGasLamp, false },
+                { AbilityKey.ExplodingOilLamp, false },
+                { AbilityKey.ExplodingVortexLamp, false },
+                { AbilityKey.ExplodingWaterLamp, false },
+                { AbilityKey.ExplodingIceLamp, false },
+                { AbilityKey.Net, true },
+                { AbilityKey.ImplosionExplosionRain, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -936,7 +973,7 @@
                 { AbilityKey.FretsOfFire, new List<int> { 99, 99, 99, 99 } },
                 { AbilityKey.Fireball, new List<int> { 99, 99, 99, 99 } },
                 { AbilityKey.WhirlwindAttack, new List<int> { 99, 99, 99, 99 } },
-                // { AbilityKey., new List<int> { 99, 99, 99, 99 } },
+                { AbilityKey.GrapplingPush, new List<int> { 2, 4, 2, 4 } },
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
@@ -944,7 +981,6 @@
 
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {
-                { BoardPieceId.HeroBarbarian, AbilityKey.ExplodingOilLamp },
                 { BoardPieceId.HeroHunter, AbilityKey.Bone },
                 { BoardPieceId.HeroSorcerer, AbilityKey.WaterBottle },
                 { BoardPieceId.HeroWarlock, AbilityKey.SpellPowerPotion },
@@ -981,6 +1017,7 @@
                 { AbilityKey.EnemyFireball, 2 },
                 { AbilityKey.EnemyFlashbang, 2 },
                 { AbilityKey.Petrify, 2 },
+                { AbilityKey.Net, 2 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
@@ -994,9 +1031,10 @@
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.BlockAbilities, 1 },
                 { AbilityKey.Fireball, 2 },
+                { AbilityKey.GrapplingPush, 1 },
             });
 
-            var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
+            // var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
@@ -1006,13 +1044,14 @@
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
-                "ElvenFloor17",
+                "TownsFloor05",
                 "SewersFloor08",
                 "SewersFloor11",
                 "ForestFloor02",
                 "ForestFloor01",
                 "ElvenFloor14",
                 "fixhydra",
+                "fixking",
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
@@ -1061,7 +1100,7 @@
                 enemyCooldownRule,
                 aoeAdjustedRule,
                 abilityDamageAllRule,
-                pieceExtraImmunities,
+                // pieceExtraImmunities,
                 partyElectricity,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
