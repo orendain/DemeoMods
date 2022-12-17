@@ -183,7 +183,7 @@ namespace HouseRules.Essentials.Rules
                     {
                         if (value.IsReplenishing)
                         {
-                            value.flags = (Inventory.ItemFlag)(-3);
+                            value.flags &= (Inventory.ItemFlag)(-3);
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
                         }
