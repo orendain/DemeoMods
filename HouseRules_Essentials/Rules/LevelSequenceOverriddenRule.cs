@@ -428,7 +428,7 @@
                     _randomMaps[1] = "DesertShopFloor";
                     break;
                 case "Town":
-                    _randomMaps[1] = "TownShopFloor";
+                    _randomMaps[1] = "TownsShopFloor";
                     break;
             }
 
@@ -450,7 +450,7 @@
                     _randomMaps[3] = "DesertShopFloor";
                     break;
                 case "Town":
-                    _randomMaps[3] = "TownShopFloor";
+                    _randomMaps[3] = "TownsShopFloor";
                     break;
             }
 

@@ -54,10 +54,10 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            /*if (diceResult != Dice.Outcome.Crit)
+            if (diceResult != Dice.Outcome.Crit)
             {
                 return;
-            }*/
+            }
 
             if (!_globalAdjustments.Contains(source.boardPieceId))
             {

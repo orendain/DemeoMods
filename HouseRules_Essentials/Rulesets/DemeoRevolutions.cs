@@ -478,11 +478,9 @@
                         AbilityKey.DetectEnemies,
                         AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
-                        AbilityKey.WebBomb,
                         AbilityKey.Regroup,
                         AbilityKey.OneMoreThing,
                         AbilityKey.PanicPowder,
-                        AbilityKey.BottleOfLye,
                         AbilityKey.Teleportation,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
@@ -899,6 +897,7 @@
                 { BoardPieceId.WarlockMinion, EffectStateType.ExposeEnergy },
                 { BoardPieceId.Barricade, EffectStateType.Thorns },
                 { BoardPieceId.EyeOfAvalon, EffectStateType.Confused },
+                { BoardPieceId.GrapplingTotem, EffectStateType.Netted },
             });
 
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -1007,7 +1006,7 @@
                 { AbilityKey.GrapplingPush, 1 },
             });
 
-            // var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
+            var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
             var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
@@ -1035,6 +1034,7 @@
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
                 { "FloorOneGoldMaxAmount", 450 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
                 { "FloorTwoHealingFountains", 1 },
@@ -1043,10 +1043,12 @@
                 { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 3 },
                 { "FloorTwoGoldMaxAmount", 550 },
+                { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 1 },
+                { "FloorThreeElvenSummoners", 0 },
             });
 
             return Ruleset.NewInstance(
@@ -1077,7 +1079,7 @@
                 aoeAdjustedRule,
                 abilityDamageAllRule,
                 partyElectricity,
-                // pieceExtraImmunities,
+                pieceExtraImmunities,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,

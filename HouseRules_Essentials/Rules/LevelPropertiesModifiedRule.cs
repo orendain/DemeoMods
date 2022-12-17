@@ -20,6 +20,7 @@
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
                 { "FloorOneGoldMaxAmount", 550 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
                 { "FloorTwoHealingFountains", 2 },
@@ -28,10 +29,12 @@
                 { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 4 },
                 { "FloorTwoGoldMaxAmount", 650 },
+                { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 1 },
+                { "FloorThreeElvenSummoners", 0 },
         };
 
         private readonly Dictionary<string, int> _elvenKing = new Dictionary<string, int>
@@ -40,22 +43,23 @@
                 { "FloorOneHealingFountains", 2 },
                 { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
-                { "FloorOneLootChests", 4 },
-                { "FloorOneGoldMaxAmount", 750 },
+                { "FloorOneLootChests", 3 },
+                { "FloorOneGoldMaxAmount", 650 },
                 { "FloorOneElvenSummoners", 1 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
                 { "FloorTwoHealingFountains", 2 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
-                { "FloorTwoLootChests", 6 },
-                { "FloorTwoGoldMaxAmount", 850 },
+                { "FloorTwoLootChests", 4 },
+                { "FloorTwoGoldMaxAmount", 750 },
                 { "FloorTwoElvenSummoners", 1 },
                 { "FloorTwoBeggars", 1 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 2 },
+                { "FloorThreeElvenSummoners", 0 },
         };
 
         public LevelPropertiesModifiedRule(Dictionary<string, int> levelProperties)

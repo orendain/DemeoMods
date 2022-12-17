@@ -46,12 +46,11 @@
                 return true;
             }
 
-            // Possibly used in future if there are more resistances needed
-            /*if (target.piece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Fire))
+            if (target.piece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
-            }*/
+            }
 
             if (!target.piece.IsPlayer())
             {
@@ -60,33 +59,30 @@
 
             if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian)
             {
-                if (damage.HasTag(DamageTag.Fire) || damage.HasTag(DamageTag.Acid))
+                if (damage.HasTag(DamageTag.Acid))
                 {
                     target.piece.effectSink.SubtractHealth(0);
                     return false;
                 }
-                else if (damage.HasTag(DamageTag.Electricity))
+            }
+            else if (target.piece.boardPieceId == BoardPieceId.HeroSorcerer)
+            {
+                if (damage.HasTag(DamageTag.Electricity))
                 {
-                    target.piece.DisableEffectState(EffectStateType.Wet);
-                    return true;
+                    target.piece.effectSink.SubtractHealth(0);
+                    return false;
                 }
             }
-
-            /*else if (target.piece.boardPieceId == BoardPieceId.HeroWarlock && damage.HasTag(DamageTag.Undefined))
+            else if (target.piece.boardPieceId == BoardPieceId.HeroHunter && damage.HasTag(DamageTag.Ice))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
             }
-            else if (target.piece.boardPieceId == BoardPieceId.HeroHunter && damage.HasTag(DamageTag.Fire))
+            else if (target.piece.boardPieceId == BoardPieceId.HeroGuardian && damage.HasTag(DamageTag.Fire))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
             }
-            else if (target.piece.boardPieceId == BoardPieceId.HeroBard && damage.HasTag(DamageTag.Poison))
-            {
-                target.piece.effectSink.SubtractHealth(0);
-                return false;
-            }*/
 
             return true;
         }
