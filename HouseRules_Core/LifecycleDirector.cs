@@ -375,7 +375,7 @@
             }
         }
 
-        private static void DeactivateReconnect()
+        public static void DeactivateReconnect()
         {
             _isReconnect = false;
             IsRulesetActive = false;
