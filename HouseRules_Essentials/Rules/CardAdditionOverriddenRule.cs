@@ -141,7 +141,7 @@
                 }
                 else
                 {
-                    _isWaterBottleChest = false;
+                    _isVortexDustChest = false;
                 }
 
                 return;
