@@ -520,10 +520,13 @@
                     flags = (Inventory.ItemFlag)1;
                 }
 
-                // Only add Torch in Rat King adventure
-                if (MotherbrainGlobalVars.CurrentConfig != GameConfigType.Sewers && card.Card == AbilityKey.Torch)
+                if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
                 {
-                    continue;
+                    // Only add Torch in Rat King adventure
+                    if (MotherbrainGlobalVars.CurrentConfig != GameConfigType.Sewers && card.Card == AbilityKey.Torch)
+                    {
+                        continue;
+                    }
                 }
 
                 inventory.Items.Add(new Inventory.Item
