@@ -38,14 +38,15 @@
                     nameof(Inventory_MaxNumberOfCards_Prefix)));
         }
 
-        private static void Inventory_MaxNumberOfCards_Prefix(ref int __result)
+        private static void Inventory_MaxNumberOfCards_Prefix(ref Inventory __instance, ref int __result)
         {
             if (!_isActivated)
             {
                 return;
             }
 
-            __result = _globalLimit;
+            var numReplenishable = Traverse.Create(__instance).Field<int>("numberOfReplenishableCards").Value;
+            __result = _globalLimit + numReplenishable;
         }
     }
 }

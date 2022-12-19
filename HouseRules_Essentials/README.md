@@ -249,16 +249,16 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 #### __CardLimitModified__: Card limit is modified
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
-  - Change the size of the player's card hand from the default 10/11.
+  - Change the size of the player's card hand from the default 9 plus replenishable cards.
   - To configure:
-    - Specify an integer representing the total size of the player's hand.
+    - Specify an integer representing the total size of the player's hand minus replenishable cards.
 
   ###### _Example JSON config for CardLimitModified_
 
   ```json
   {
     "Rule": "CardLimitModified",
-    "Config": 20
+    "Config": 18
   },
   ```
 
