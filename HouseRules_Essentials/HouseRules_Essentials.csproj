@@ -49,6 +49,7 @@
     <Compile Include="Rulesets\LuckyDip.cs" />
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
+    <Compile Include="Rulesets\PotionCommotionRuleset.cs" />
     <Compile Include="Rulesets\TheSwirlRuleset.cs" />
     <Compile Include="Rules\AbilityBackstabAdjustedRule.cs" />
     <Compile Include="Rules\AbilityDamageOverriddenRule.cs" />
