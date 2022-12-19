@@ -131,7 +131,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Only functions for abilities which do heal. (You can't make a Fireball heal).
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
-    - Specify the new integer for healAmount to use..
+    - Specify the new integer for healAmount to use.
 
   ###### _Example JSON config for AbilityHealOverridden_
 
@@ -321,6 +321,27 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "EnemyAttackScaled",
     "Config": 0.85
+  },
+  ```
+
+#### __EnemyCooldownOverridden__: Enemy ability cooldowns are overridden
+  - Lets you set the number of turns before enemies can use specified abilities again.
+  - To configure:
+    - Specify the [AbilityKeys](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify the new integer for cooldown to use.
+
+  ###### _Example JSON config for EnemyDoorOpeningDisabled_
+
+  ```json
+  {
+    "Rule": "EnemyCooldownOverridden",
+    "Config": {
+      "LeapHeavy": 2,
+      "EnemyFrostball": 2,
+      "Shockwave": 3,
+      "EnemyFireball": 2,
+      "EnemyFlashbang": 2
+    }
   },
   ```
 
@@ -823,18 +844,18 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-#### __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
+#### __StatModifiersOverridden__: The additiveBonus parameters of StatModifiers are overridden.
   - There are only six different StatModifiers in the game. They are used by 💪StrengthPotion, 🦶SwiftnessPotion, 🛡️ReplenishArmor, HuntersMark, etc.
   - These modifiers control the power of each corresponding ability.  E.g., by default the stat modifier for SongOfResilience is 5, as it grants 5 units of armor.  
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#boardpieceids) of the ability whose stat modifer should be replaced.
     - Specify an integer representing the new value of the stat modifier.
 
-  ###### _Example JSON config for StatModifiersOverriden_
+  ###### _Example JSON config for StatModifiersOverridden_
 
   ```json
   {
-    "Rule": "StatModifiersOverriden",
+    "Rule": "StatModifiersOverridden",
     "Config": {
       "StrengthPotion": 2,
       "SwiftnessPotion": 2,
@@ -881,7 +902,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-#### __TileEffectDurationOverriden__: Overrides TileEffect durations settings for gas, acid, web etc.
+#### __TileEffectDurationOverridden__: Overrides TileEffect durations settings for gas, acid, web etc.
   - There are five different TileEffects in the game. Gas, Acid, Web, Water and Target.
   - Overriding the durations allows for TileEffects to last for longer or shorter times.
   - It is necessary to specify all five effects in the config for this rule, or they will assume a default duration of 9999 rounds.
@@ -889,11 +910,11 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     - Specify the `TileEfect` (Gas, Acidm etc) of the effect whose duration should be replaced.
     - Specify an integer representing the new duration in turns.
 
-  ###### _Example JSON config for TileEffectDurationOverriden_
+  ###### _Example JSON config for TileEffectDurationOverridden_
 
   ```json
   {
-    "Rule": "TileEffectDurationOverriden",
+    "Rule": "TileEffectDurationOverridden",
     "Config": {
       "Gas": 3,
       "Acid": 4,
