@@ -1,12 +1,16 @@
 # Changelog
 
-## [Unreleased](https://github.com/orendain/DemeoMods/tree/HEAD)
+## [v1.6.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.6.0-houserules) (2022-12-19)
 
-[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.5.0-houserules...HEAD)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.5.0-houserules...v1.6.0-houserules)
 
 **Features/Enhancements:**
 
 - Reposition and resize elements for a cleaner look. [\#400](https://github.com/orendain/DemeoMods/pull/400)
+
+**Fixes:**
+
+- Rulesets should not be exported by default...  [\#451](https://github.com/orendain/DemeoMods/pull/451)
 
 **Chores:**
 
@@ -14,6 +18,7 @@
 
 **Merged pull requests:**
 
+- Update README.md for HouseRules 1.5.0 [\#428](https://github.com/orendain/DemeoMods/pull/428)
 - V1.20 & 1.21 houserules fixes [\#418](https://github.com/orendain/DemeoMods/pull/418)
 
 ## [v1.5.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.5.0-houserules) (2022-10-26)

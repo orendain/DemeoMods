@@ -1,24 +1,39 @@
 # Changelog
 
-## [Unreleased](https://github.com/orendain/DemeoMods/tree/HEAD)
+## [v1.6.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.6.0-houserules) (2022-12-19)
 
-[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.5.0-houserules...HEAD)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.5.0-houserules...v1.6.0-houserules)
 
 **Features/Enhancements:**
 
+- Added missing ruleset to the build [\#450](https://github.com/orendain/DemeoMods/pull/450)
+- New Rule to override enemy cooldowns [\#449](https://github.com/orendain/DemeoMods/pull/449)
+- Add the Barbarian [\#443](https://github.com/orendain/DemeoMods/pull/443)
+- New Potion Commotion ruleset where all card additions are potions. [\#412](https://github.com/orendain/DemeoMods/pull/412)
 - Fix Potion Stands loot [\#401](https://github.com/orendain/DemeoMods/pull/401)
 - New rule for Electricity damage between party members. [\#399](https://github.com/orendain/DemeoMods/pull/399)
 
 **Fixes:**
 
+- Changes CardLimit rule [\#448](https://github.com/orendain/DemeoMods/pull/448)
+- Fix CardAddition bug [\#446](https://github.com/orendain/DemeoMods/pull/446)
+- More ruleset updates [\#444](https://github.com/orendain/DemeoMods/pull/444)
+- Fix missing spawns and MonsterDeck [\#440](https://github.com/orendain/DemeoMods/pull/440)
+- Fix health and Attack scaling [\#433](https://github.com/orendain/DemeoMods/pull/433)
 - Fix the Warlock not having her health increased in the Beat the Clock ruleset. [\#409](https://github.com/orendain/DemeoMods/pull/409)
 - Apply v1.19\_compatibility fixes to HouseRules. [\#398](https://github.com/orendain/DemeoMods/pull/398)
 - Fix for CardAdditionRule not working [\#396](https://github.com/orendain/DemeoMods/pull/396)
 - Fixes Sneak from replenishing immediately after use. [\#394](https://github.com/orendain/DemeoMods/pull/394)
 - Fix issue with shop floor not loading on Demeo Reloaded ruleset. [\#392](https://github.com/orendain/DemeoMods/pull/392)
 
+**Chores:**
+
+- Fixes for 12/1 update [\#439](https://github.com/orendain/DemeoMods/pull/439)
+
 **Merged pull requests:**
 
+- V1.25 fixes [\#442](https://github.com/orendain/DemeoMods/pull/442)
+- Update README.md for HouseRules 1.5.0 [\#428](https://github.com/orendain/DemeoMods/pull/428)
 - Passthrough version fix [\#425](https://github.com/orendain/DemeoMods/pull/425)
 - V1.20 & 1.21 houserules fixes [\#418](https://github.com/orendain/DemeoMods/pull/418)
 
