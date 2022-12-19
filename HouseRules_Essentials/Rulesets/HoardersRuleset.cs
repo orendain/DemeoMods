@@ -7,7 +7,7 @@ namespace HouseRules.Essentials.Rulesets
     {
         internal static Ruleset Create()
         {
-            const string name = "Hoarders";
+            const string name = "Hoarders - Skirmish Only!";
             const string description = "A large hand size but you may not get them fast enough.";
 
             return Ruleset.NewInstance(

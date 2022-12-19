@@ -72,6 +72,7 @@
             HR.Rulebook.Register(HuntersParadiseRuleset.Create());
             HR.Rulebook.Register(DemeoReloaded.Create());
             HR.Rulebook.Register(FlippingOut.Create());
+            HR.Rulebook.Register(HoardersRuleset.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
             HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());
