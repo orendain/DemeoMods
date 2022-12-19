@@ -1,11 +1,18 @@
 # Changelog
 
-## [Unreleased](https://github.com/orendain/DemeoMods/tree/HEAD)
+## [v1.6.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.6.0-houserules) (2022-12-19)
 
-[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.5.0-houserules...HEAD)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.5.0-houserules...v1.6.0-houserules)
+
+**Fixes:**
+
+- Player view fixes [\#437](https://github.com/orendain/DemeoMods/pull/437)
+- Fix a client lockup and some cleanup [\#435](https://github.com/orendain/DemeoMods/pull/435)
 
 **Merged pull requests:**
 
+- V1.25 fixes [\#442](https://github.com/orendain/DemeoMods/pull/442)
+- Update README.md for HouseRules 1.5.0 [\#428](https://github.com/orendain/DemeoMods/pull/428)
 - Allow people to mod again! [\#426](https://github.com/orendain/DemeoMods/pull/426)
 - Fix exploit to run public games [\#422](https://github.com/orendain/DemeoMods/pull/422)
 - V1.20 & 1.21 houserules fixes [\#418](https://github.com/orendain/DemeoMods/pull/418)
