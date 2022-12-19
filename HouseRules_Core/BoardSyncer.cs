@@ -268,7 +268,7 @@
                     continue;
                 }
 
-                if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId == BoardPieceId.ScorpionSandPile)
+                if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId == BoardPieceId.ScorpionSandPile || piece.boardPieceId == BoardPieceId.ScarabSandPile || piece.boardPieceId == BoardPieceId.EmptySandPile || piece.boardPieceId == BoardPieceId.GoldSandPile)
                 {
                     // CoreMod.Logger.Msg("(Died) SpiderEgg/SandPile");
                     return true;

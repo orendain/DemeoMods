@@ -4,6 +4,7 @@
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
+    using Data;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -50,9 +51,15 @@
                 return;
             }
 
-            // Serpent Lord targetted
-            if ((source.IsPlayer() || source.IsBot()) && mainTarget != null && mainTarget.boardPieceId == BoardPieceId.WizardBoss)
+            if ((source.IsPlayer() || source.IsBot() || source.IsWarlockMinion()) && mainTarget != null && mainTarget.boardPieceId == BoardPieceId.WizardBoss)
             {
+                // Serpent Lord boss gets ONE damage resist and is immune to damage while invisible
+                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
+                if (damageResist < 1)
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
+                }
+
                 if (mainTarget.HasEffectState(EffectStateType.Invisible))
                 {
                     mainTarget.EnableEffectState(EffectStateType.Invulnerable1);
@@ -60,104 +67,140 @@
 
                 return;
             }
-
-            // Serpent Lord boss fight begins
-            if (source.boardPieceId == BoardPieceId.WizardBoss)
+            else if (source.IsPlayer())
             {
-                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
-                if (damageResist < 1)
+                if (diceResult != Dice.Outcome.Hit)
                 {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-                    source.DisableEffectState(EffectStateType.Invulnerable1);
-                    source.DisableEffectState(EffectStateType.Berserk);
-                    source.effectSink.Heal(100);
+                    return;
+                }
+
+                int chance = Random.Range(1, 101);
+                if (_globalAdjustments.Contains(source.boardPieceId))
+                {
+                    int chance2 = Random.Range(1, 101);
+                    if (source.boardPieceId == BoardPieceId.HeroRogue)
+                    {
+                        if (chance > 98 && chance2 > 50)
+                        {
+                            source.effectSink.Heal(2);
+                            source.AnimateWobble();
+                        }
+                        else if (chance2 > 50)
+                        {
+                            source.effectSink.Heal(1);
+                            source.AnimateWobble();
+                        }
+                    }
+                    else if (chance > 98)
+                    {
+                        source.effectSink.Heal(2);
+                        source.AnimateWobble();
+                    }
+                    else
+                    {
+                        source.effectSink.Heal(1);
+                    }
+                }
+                else if (chance > 98)
+                {
+                    source.effectSink.Heal(1);
+                    source.AnimateWobble();
                 }
 
                 return;
             }
-
-            // Elven Queen boss fight
-            if (source.boardPieceId == BoardPieceId.ElvenQueen)
+            else if (source.boardPieceId == BoardPieceId.ElvenQueen)
             {
+                // Elven Queen gets ONE damage resist after her first attack and now has 'phases' to make her more challenging
                 source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
                 if (damageResist < 1)
                 {
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
                 }
 
-                if (source.GetHealth() < (source.GetMaxHealth() / 3.2))
+                int nextPhase;
+                int low = 1;
+                int high = 6;
+                if (source.GetHealth() >= (source.GetMaxHealth() / 2))
+                {
+                    nextPhase = Random.Range(1, 6);
+                }
+                else if (source.GetHealth() < (source.GetMaxHealth() / 3))
                 {
                     source.EnableEffectState(EffectStateType.MagicShield);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 69);
                     source.EnableEffectState(EffectStateType.Courageous);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 69);
+                    low = 4;
+                    high = 6;
+                    nextPhase = Random.Range(4, 6);
+                }
+                else if (source.GetHealth() < (source.GetMaxHealth() / 2))
+                {
+                    low = 2;
+                    high = 4;
+                    nextPhase = Random.Range(2, 4);
                 }
                 else
                 {
-                    int nextPhase;
-                    int low = 1;
-                    int high = 6;
-                    if (source.GetHealth() > (source.GetMaxHealth() * 0.75))
-                    {
-                        nextPhase = Random.Range(1, 6);
-                    }
-                    else if (source.GetHealth() < (source.GetMaxHealth() / 2))
-                    {
-                        low = 2;
-                        high = 4;
-                        nextPhase = Random.Range(2, 4);
-                    }
-                    else
-                    {
-                        low = 3;
-                        nextPhase = Random.Range(3, 6);
-                    }
+                    low = 3;
+                    high = 6;
+                    nextPhase = Random.Range(3, 6);
+                }
 
-                    while (nextPhase == phase)
-                    {
-                        nextPhase = Random.Range(low, high);
-                    }
+                while (nextPhase == phase)
+                {
+                    nextPhase = Random.Range(low, high);
+                }
 
-                    phase = nextPhase;
-                    switch (nextPhase)
-                    {
-                        case 1:
-                            source.EnableEffectState(EffectStateType.Deflect);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 1);
-                            break;
-                        case 2:
-                            source.EnableEffectState(EffectStateType.MagicShield);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 1);
-                            break;
-                        case 3:
-                            source.EnableEffectState(EffectStateType.FireImmunity);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 1);
-                            break;
-                        case 4:
-                            source.EnableEffectState(EffectStateType.Recovery);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.Recovery, 2);
-                            break;
-                        case 5:
-                            source.EnableEffectState(EffectStateType.Courageous);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 1);
-                            break;
-                    }
+                phase = nextPhase;
+                switch (nextPhase)
+                {
+                    case 1:
+                        source.EnableEffectState(EffectStateType.Deflect);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 1);
+                        break;
+                    case 2:
+                        source.EnableEffectState(EffectStateType.MagicShield);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 1);
+                        break;
+                    case 3:
+                        source.EnableEffectState(EffectStateType.FireImmunity);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.FireImmunity, 1);
+                        break;
+                    case 4:
+                        source.EnableEffectState(EffectStateType.Recovery);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Recovery, 2);
+                        break;
+                    case 5:
+                        source.EnableEffectState(EffectStateType.Courageous);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 1);
+                        break;
                 }
 
                 return;
             }
-
-            if (source.boardPieceId == BoardPieceId.WarlockMinion)
+            else if (source.boardPieceId == BoardPieceId.MotherCy || source.boardPieceId == BoardPieceId.RootLord || source.boardPieceId == BoardPieceId.BossTown || source.boardPieceId == BoardPieceId.RatKing)
             {
-                float maxHealth = source.GetMaxHealth();
+                // All other bosses also get ONE damage resist after their first attack!
                 source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
                 if (damageResist < 1)
                 {
                     source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
                 }
 
-                maxHealth /= 2;
-                if (source.GetHealth() < maxHealth)
+                return;
+            }
+            else if (source.IsWarlockMinion())
+            {
+                // Cana gets ONE damage resist after her first attack and Frenzy if below half health
+                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
+                if (damageResist < 1)
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
+                }
+
+                if (source.GetHealth() < source.GetMaxHealth() / 2)
                 {
                     source.EnableEffectState(EffectStateType.Frenzy);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
@@ -170,48 +213,7 @@
                 return;
             }
 
-            if (!source.IsPlayer())
-            {
-                return;
-            }
-
-            if (diceResult != Dice.Outcome.Hit)
-            {
-                return;
-            }
-
-            int chance = Random.Range(1, 101);
-            if (_globalAdjustments.Contains(source.boardPieceId))
-            {
-                int chance2 = Random.Range(1, 101);
-                if (source.boardPieceId == BoardPieceId.HeroRogue)
-                {
-                    if (chance > 98 && chance2 > 50)
-                    {
-                        source.effectSink.Heal(2);
-                        source.AnimateWobble();
-                    }
-                    else if (chance2 > 50)
-                    {
-                        source.effectSink.Heal(1);
-                        source.AnimateWobble();
-                    }
-                }
-                else if (chance > 98)
-                {
-                    source.effectSink.Heal(2);
-                    source.AnimateWobble();
-                }
-                else
-                {
-                    source.effectSink.Heal(1);
-                }
-            }
-            else if (chance > 98)
-            {
-                source.effectSink.Heal(1);
-                source.AnimateWobble();
-            }
+            return;
         }
     }
 }
