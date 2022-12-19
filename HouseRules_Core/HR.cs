@@ -18,7 +18,8 @@ namespace HouseRules
         {
             if (IsRulesetActive)
             {
-                throw new InvalidOperationException("May not select a new ruleset while one is currently active.");
+                LifecycleDirector.DeactivateReconnect();
+                // throw new InvalidOperationException("May not select a new ruleset while one is currently active.");
             }
 
             if (Ruleset.None.Name.Equals(ruleset, StringComparison.OrdinalIgnoreCase))
