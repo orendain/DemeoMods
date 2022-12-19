@@ -22,6 +22,7 @@
         public struct Scores
         {
             public int Assassin;
+            public int Barbarian;
             public int Bard;
             public int Guardian;
             public int Hunter;
@@ -92,6 +93,9 @@
 
             switch (piece.boardPieceId)
             {
+                case BoardPieceId.HeroBarbarian:
+                    score += scores.Barbarian;
+                    break;
                 case BoardPieceId.HeroBard:
                     score += scores.Bard;
                     break;

@@ -1,7 +1,6 @@
-namespace HouseRules.Essentials.Rulesets
+﻿namespace HouseRules.Essentials.Rulesets
 {
     using System.Collections.Generic;
-    using Boardgame.Board;
     using DataKeys;
     using global::Types;
     using HouseRules.Essentials.Rules;
@@ -70,8 +69,19 @@ namespace HouseRules.Essentials.Rulesets
                 { BoardPieceId.RatNest, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.RootMage, new List<int> { 4, 2, 1 } },
                 { BoardPieceId.SporeFungus, new List<int> { 4, 1, 1 } },
+                { BoardPieceId.ElvenSpearman, new List<int> { 4, 1, 1 } },
             });
 
+            var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingSmash, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingPush, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TauntingScream, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
+            };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
@@ -83,7 +93,6 @@ namespace HouseRules.Essentials.Rulesets
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
             };
-
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
@@ -91,8 +100,8 @@ namespace HouseRules.Essentials.Rulesets
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ShatteringVoice, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TurretHealProjectile, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -136,6 +145,7 @@ namespace HouseRules.Essentials.Rulesets
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
+                { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroWarlock, warlockCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
@@ -146,11 +156,15 @@ namespace HouseRules.Essentials.Rulesets
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "AttackDamage", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "CriticalHitDamage", Value = 13 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 11 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 12 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 16 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 13 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 14 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 12 },
@@ -238,6 +252,53 @@ namespace HouseRules.Essentials.Rulesets
                         AbilityKey.TheBehemoth,
                         AbilityKey.PiercingThrow,
                         AbilityKey.Charge,
+                    }
+                },
+                {
+                    BoardPieceId.HeroBarbarian, new List<AbilityKey>
+                    {
+                        AbilityKey.Bone,
+                        AbilityKey.WebBomb,
+                        AbilityKey.Regroup,
+                        AbilityKey.Rejuvenation,
+                        AbilityKey.OneMoreThing,
+                        AbilityKey.PanicPowder,
+                        AbilityKey.Barricade,
+                        AbilityKey.BottleOfLye,
+                        AbilityKey.HeavensFury,
+                        AbilityKey.Teleportation,
+                        AbilityKey.SwiftnessPotion,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.VigorPotion,
+                        AbilityKey.ScrollElectricity,
+                        AbilityKey.ScrollTsunami,
+                        AbilityKey.LuckPotion,
+                        AbilityKey.IceImmunePotion,
+                        AbilityKey.FireImmunePotion,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.DamageResistPotion,
+                        AbilityKey.WaterBottle,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.TauntingScream,
+                        AbilityKey.GrapplingPush,
+                        AbilityKey.GrapplingSmash,
+                        AbilityKey.TauntingScream,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.GrapplingPush,
+                        AbilityKey.GrapplingSmash,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.GrapplingPush,
+                        AbilityKey.GrapplingSmash,
+                        AbilityKey.TauntingScream,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.GrapplingPush,
+                        AbilityKey.GrapplingSmash,
                     }
                 },
                 {
@@ -527,18 +588,19 @@ namespace HouseRules.Essentials.Rulesets
 
             var pieceBehaviourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
             {
-                { BoardPieceId.EarthElemental, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.EarthShatter, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.Mimic, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.RootMage, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.CastOnTeam } },
-                { BoardPieceId.KillerBee, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.EarthElemental, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.EarthShatter, Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.Mimic, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.RootMage, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.CastOnTeam } },
+                { BoardPieceId.KillerBee, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.ChestGoblin, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackAndRetreat } },
             });
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
+                { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType.Netted } },
                 { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Petrified } },
-                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken } },
+                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns } },
                 { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },
@@ -554,11 +616,13 @@ namespace HouseRules.Essentials.Rulesets
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Zap, false },
+                { AbilityKey.Overcharge, false },
                 { AbilityKey.LightningBolt, false },
-                { AbilityKey.Sneak, false },
                 { AbilityKey.Grab, false },
+                { AbilityKey.Sneak, false },
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.MinionCharge, false },
+                { AbilityKey.Grapple, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -566,7 +630,7 @@ namespace HouseRules.Essentials.Rulesets
                 { AbilityKey.HealingPotion, 10 },
                 { AbilityKey.Rejuvenation, 10 },
                 { AbilityKey.AltarHeal, 15 },
-                { AbilityKey.TurretHealProjectile, 5 },
+                { AbilityKey.TurretHealProjectile, 4 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
@@ -582,18 +646,22 @@ namespace HouseRules.Essentials.Rulesets
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>>
             {
-                { AbilityKey.Zap, new List<int> { 3, 8 } },
-                { AbilityKey.Fireball, new List<int> { 12, 30 } },
-                { AbilityKey.Freeze, new List<int> { 7, 20 } },
-                { AbilityKey.Vortex, new List<int> { 3, 12 } },
-                { AbilityKey.WhirlwindAttack, new List<int> { 4, 9 } },
-                { AbilityKey.Charge, new List<int> { 4, 12 } },
-                { AbilityKey.PiercingThrow, new List<int> { 5, 11 } },
-                { AbilityKey.Blink, new List<int> { 7, 19 } },
-                { AbilityKey.CursedDagger, new List<int> { 4, 13 } },
-                { AbilityKey.PoisonedTip, new List<int> { 6, 16 } },
-                { AbilityKey.HailOfArrows, new List<int> { 6, 16 } },
-                { AbilityKey.Arrow, new List<int> { 4, 12 } },
+                { AbilityKey.Zap, new List<int> { 3, 8, 3, 8 } },
+                { AbilityKey.Fireball, new List<int> { 12, 30, 7, 15 } },
+                { AbilityKey.Freeze, new List<int> { 7, 20, 7, 20 } },
+                { AbilityKey.Vortex, new List<int> { 3, 12, 2, 5 } },
+                { AbilityKey.WhirlwindAttack, new List<int> { 4, 9, 4, 9 } },
+                { AbilityKey.Charge, new List<int> { 4, 12, 4, 12 } },
+                { AbilityKey.PiercingThrow, new List<int> { 5, 11, 5, 11 } },
+                { AbilityKey.Blink, new List<int> { 7, 19, 7, 19 } },
+                { AbilityKey.CursedDagger, new List<int> { 4, 13, 4, 13 } },
+                { AbilityKey.PoisonedTip, new List<int> { 6, 16, 6, 16 } },
+                { AbilityKey.HailOfArrows, new List<int> { 6, 16, 6, 16 } },
+                { AbilityKey.Arrow, new List<int> { 4, 12, 4, 12 } },
+                { AbilityKey.PiercingVoice, new List<int> { 4, 9, 4, 8 } },
+                { AbilityKey.ShatteringVoice, new List<int> { 7, 15, 7, 14 } },
+                { AbilityKey.Grapple, new List<int> { 4, 11, 4, 11 } },
+                { AbilityKey.GrapplingSmash, new List<int> { 4, 9, 4, 9 } },
             });
 
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId> { BoardPieceId.HeroBard, BoardPieceId.HeroRogue });
@@ -606,9 +674,9 @@ namespace HouseRules.Essentials.Rulesets
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
                 "SewersFloor01",
-                "SewersShopFloor",
-                "ForestFloor02",
                 "ForestShopFloor",
+                "ForestFloor02",
+                "ShopFloor02",
                 "ElvenFloor14",
             });
 
@@ -619,12 +687,12 @@ namespace HouseRules.Essentials.Rulesets
                 { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
-                { "FloorOneGoldMaxAmount", 500 },
+                { "FloorOneGoldMaxAmount", 550 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 0 },
                 { "FloorTwoLootChests", 3 },
-                { "FloorTwoGoldMaxAmount", 600 },
+                { "FloorTwoGoldMaxAmount", 750 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },

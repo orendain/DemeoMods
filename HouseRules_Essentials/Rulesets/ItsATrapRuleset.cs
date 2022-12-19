@@ -14,6 +14,17 @@
             const string name = "It's A Trap!";
             const string description = "Everything you need to build devious traps for your enemies, but try not to kill your friends.";
 
+            var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
+            };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
@@ -73,6 +84,7 @@
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
+                { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
                 { BoardPieceId.HeroHunter, hunterCards },
@@ -83,6 +95,23 @@
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
+                {
+                    BoardPieceId.HeroBarbarian, new List<AbilityKey>
+                    {
+                        AbilityKey.PoisonBomb,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.OilLamp,
+                        AbilityKey.GasLamp,
+                        AbilityKey.IceLamp,
+                        AbilityKey.Vortex,
+                        AbilityKey.Torch,
+                        AbilityKey.Bone,
+                        AbilityKey.DetectEnemies,
+                        AbilityKey.WebBomb,
+                        AbilityKey.VortexLamp,
+                        AbilityKey.Teleportation,
+                    }
+                },
                 {
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
@@ -192,6 +221,7 @@
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 30 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 30 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 30 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 30 },
@@ -203,12 +233,15 @@
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
-                { "FloorOneHealingFountains", 0 },
-                { "FloorOneLootChests", 11 },
+                { "FloorOneHealingFountains", 1 },
+                { "FloorOneLootChests", 9 },
+                { "FloorOnePotionStand", 2 },
                 { "FloorTwoHealingFountains", 1 },
-                { "FloorTwoLootChests", 14 },
+                { "FloorTwoLootChests", 11 },
+                { "FloorTwoPotionStand", 3 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 8 },
+                { "FloorThreePotionStand", 2 },
                 { "FloorOneEndZoneSpikeMaxBudget", 12 },
                 { "PacingSpikeSegmentFloorOneBudget", 12 },
             });
@@ -217,6 +250,9 @@
             {
                 { AbilityKey.StrengthPotion, 1 },
                 { AbilityKey.SwiftnessPotion, 1 },
+                { AbilityKey.DamageResistPotion, 1 },
+                { AbilityKey.VigorPotion, 1 },
+                { AbilityKey.ExtraActionPotion, 1 },
                 { AbilityKey.HealingPotion, 1 },
             });
 
@@ -233,12 +269,12 @@
                     BoardPieceId.GasLamp,
                     BoardPieceId.OilLamp,
                     BoardPieceId.VortexLamp,
-                    BoardPieceId.GasLamp,
+                    BoardPieceId.WaterLamp,
                     BoardPieceId.OilLamp,
                     BoardPieceId.VortexLamp,
                     BoardPieceId.OilLamp,
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.HealingBeacon,
+                    BoardPieceId.WaterLamp,
+                    BoardPieceId.GasLamp,
                 }
                 },
                 {
@@ -248,12 +284,12 @@
                     BoardPieceId.GasLamp,
                     BoardPieceId.GasLamp,
                     BoardPieceId.GasLamp,
-                    BoardPieceId.GasLamp,
+                    BoardPieceId.WaterLamp,
                     BoardPieceId.GasLamp,
                     BoardPieceId.GasLamp,
                     BoardPieceId.OilLamp,
                     BoardPieceId.OilLamp,
-                    BoardPieceId.HealingBeacon,
+                    BoardPieceId.OilLamp,
                 }
                 },
                 {
@@ -263,18 +299,11 @@
                     BoardPieceId.IceLamp,
                     BoardPieceId.VortexLamp,
                     BoardPieceId.OilLamp,
-                    BoardPieceId.IceLamp,
+                    BoardPieceId.WaterLamp,
                     BoardPieceId.VortexLamp,
-                    BoardPieceId.HealingBeacon,
+                    BoardPieceId.IceLamp,
                 }
                 },
-            });
-
-            var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
-            {
-                { BoardPieceId.Torch, new List<PieceType> { PieceType.Prop, PieceType.UpdateFogOfWar, PieceType.ShowNameplate } },
-                { BoardPieceId.EyeOfAvalon, new List<PieceType> { PieceType.Prop, PieceType.UpdateFogOfWar, PieceType.Immovable, PieceType.ShowHealthbar, PieceType.ShowNameplate } },
-                { BoardPieceId.HealingBeacon, new List<PieceType> { PieceType.Prop, PieceType.Bot, PieceType.ShowNameplate } },
             });
 
             var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
@@ -295,6 +324,7 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
+                    applyAfterDissipate = EffectStateType.Diseased,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
                 new StatusEffectData
@@ -304,6 +334,7 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
+                    applyAfterDissipate = EffectStateType.Diseased,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
                 new StatusEffectData
@@ -313,33 +344,7 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Courageous,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Fearless,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Heroic,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
+                    applyAfterDissipate = EffectStateType.Diseased,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
             });
@@ -362,7 +367,6 @@
                 lampTypesRule,
                 levelPropertiesRule,
                 piecesAdjustedRule,
-                piecePieceTypeRule,
                 startingCardsRule,
                 statusEffectRule,
                 tileEffectDuration,

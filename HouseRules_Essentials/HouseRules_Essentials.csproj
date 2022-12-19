@@ -56,6 +56,7 @@
     <Compile Include="Rules\AbilityStealthDamageOverriddenRule.cs" />
     <Compile Include="Rules\AbilityHealOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
+    <Compile Include="Rules\EnemyCooldownOverriddenRule.cs" />
     <Compile Include="Rules\PartyElectricityDamageOverriddenRule.cs" />
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />
     <Compile Include="Rules\CourageShantyAddsHPRule.cs" />

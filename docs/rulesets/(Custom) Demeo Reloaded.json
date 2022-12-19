@@ -5,46 +5,46 @@
     {
       "Rule": "SpawnCategoryOverridden",
       "Config": {
-        "BigBoiMutant": [ 3, 1, 1],
-        "LargeCorruption": [ 3, 1, 1],
-        "ReptileArcher": [ 3, 1, 1],
-        "ReptileMutantWizard": [ 3, 1, 1],
-        "SandScorpion": [ 3, 1, 1],
-        "ServantOfAlfaragh": [ 2, 1, 1],
-        "ScorpionSandPile": [ 3, 1, 1],
-        "EmptySandPile": [ 2, 1, 1],
-        "GoldSandPile": [ 2, 1, 1],
-        "SmallCorruption": [ 4, 1, 1],
-        "GeneralRonthian": [ 2, 1, 1],
+        "BigBoiMutant": [ 3, 1, 1 ],
+        "LargeCorruption": [ 3, 1, 1 ],
+        "ReptileArcher": [ 3, 1, 1 ],
+        "ReptileMutantWizard": [ 3, 1, 1 ],
+        "SandScorpion": [ 3, 1, 1 ],
+        "ServantOfAlfaragh": [ 2, 1, 1 ],
+        "ScorpionSandPile": [ 3, 1, 1 ],
+        "EmptySandPile": [ 2, 1, 1 ],
+        "GoldSandPile": [ 2, 1, 1 ],
+        "SmallCorruption": [ 4, 1, 1 ],
+        "GeneralRonthian": [ 2, 1, 1 ],
         "Wyvern": [ 2, 1, 2 ],
-        "CaveTroll": [ 2, 1, 1],
-        "RootGolem": [ 2, 1, 2],
-        "Brookmare": [ 2, 1, 2],
+        "CaveTroll": [ 2, 1, 1 ],
+        "RootGolem": [ 2, 1, 2 ],
+        "Brookmare": [ 2, 1, 2 ],
         "Gorgon": [ 2, 1, 2 ],
         "SilentSentinel": [ 2, 1, 2 ],
-        "ElvenArcher": [ 4, 1, 1],
-        "ElvenHound": [ 4, 2, 1],
-        "RootHound": [ 4, 2, 1],
-        "TheUnspoken": [ 3, 2, 1],
+        "ElvenArcher": [ 4, 1, 1 ],
+        "ElvenHound": [ 4, 2, 1 ],
+        "RootHound": [ 4, 2, 1 ],
+        "TheUnspoken": [ 3, 2, 1 ],
         "Mimic": [ 2, 1, 1 ],
-        "EarthElemental": [ 2, 1, 1],
-        "Sigataur": [ 2, 1, 1],
+        "EarthElemental": [ 2, 1, 1 ],
+        "Sigataur": [ 2, 1, 1 ],
         "ChestGoblin": [ 2, 1, 1 ],
-        "CultMemberElder": [ 5, 2, 1],
-        "ElvenCultist": [ 3, 2, 1],
-        "SpiderEgg": [ 3, 1, 1],
+        "CultMemberElder": [ 5, 2, 1 ],
+        "ElvenCultist": [ 3, 2, 1 ],
+        "SpiderEgg": [ 3, 1, 1 ],
         "GiantSlime": [ 2, 1, 1 ],
         "FireElemental": [ 3, 1, 1 ],
-        "ElvenMarauder": [ 2, 1, 1],
+        "ElvenMarauder": [ 2, 1, 1 ],
         "IceElemental": [ 2, 1, 1 ],
         "GiantSpider": [ 2, 1, 1 ],
-        "Bandit": [ 3, 2, 1],
-        "DruidArcher": [ 3, 2, 1],
-        "DruidHoundMaster": [ 4, 2, 1],
-        "GoblinChieftan": [ 4, 2, 1],
-        "GoblinMadUn": [ 4, 2, 1],
-        "RootBeast": [ 3, 2, 1],
-        "ScabRat": [ 4, 2, 1],
+        "Bandit": [ 3, 2, 1 ],
+        "DruidArcher": [ 3, 2, 1 ],
+        "DruidHoundMaster": [ 4, 2, 1 ],
+        "GoblinChieftan": [ 4, 2, 1 ],
+        "GoblinMadUn": [ 4, 2, 1 ],
+        "RootBeast": [ 3, 2, 1 ],
+        "ScabRat": [ 4, 2, 1 ],
         "Spider": [ 4, 2, 1 ],
         "Rat": [ 4, 2, 1 ],
         "TheUnheard": [ 4, 1, 2 ],
@@ -54,18 +54,52 @@
         "ElvenPriest": [ 4, 1, 1 ],
         "ElvenSkirmisher": [ 4, 1, 1 ],
         "GoblinFighter": [ 3, 1, 1 ],
-        "GoblinRanger": [3, 1, 1 ],
+        "GoblinRanger": [ 3, 1, 1 ],
         "KillerBee": [ 4, 2, 1 ],
         "RatNest": [ 4, 1, 1 ],
         "RootMage": [ 4, 2, 1 ],
-        "SporeFungus": [ 4, 1, 1 ]
+        "SporeFungus": [ 4, 1, 1 ],
+        "ElvenSpearman": [ 4, 1, 1 ]
       }
     },
     {
       "Rule": "StartCardsModified",
       "Config": {
-        "HeroWarlock":
-        [
+        "HeroBarbarian": [
+          {
+            "Card": "Torch",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GrapplingSmash",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GrapplingPush",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "ExplodingLampPlaceholder",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Grapple",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "TauntingScream",
+            "ReplenishFrequency": 0
+          }
+        ],
+        "HeroWarlock": [
+          {
+            "Card": "Torch",
+            "ReplenishFrequency": 0
+          },
           {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
@@ -181,7 +215,7 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Arrow",
+            "Card": "EnemyFireball",
             "ReplenishFrequency": 1
           }
         ],
@@ -241,6 +275,10 @@
             "ReplenishFrequency": 1
           },
           {
+            "Card": "Overcharge",
+            "ReplenishFrequency": 1
+          },
+          {
             "Card": "Electricity",
             "ReplenishFrequency": 1
           }
@@ -251,9 +289,24 @@
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
-          "Piece": "HeroHunter",
-          "Property": "ActionPoint",
-          "Value": 3
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 15
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "AttackDamage",
+          "Value": 5
+        },
+        {
+          "Piece": "HeroRo",
+          "Property": "MoveRange",
+          "Value": 5
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "CriticalHitDamage",
+          "Value": 13
         },
         {
           "Piece": "HeroRogue",
@@ -268,7 +321,7 @@
         {
           "Piece": "HeroGuardian",
           "Property": "StartHealth",
-          "Value": 15
+          "Value": 16
         },
         {
           "Piece": "HeroRogue",
@@ -475,6 +528,43 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
+        "HeroBarbarian": [
+          "WebBomb",
+          "Regroup",
+          "Rejuvenation",
+          "OneMoreThing",
+          "PanicPowder",
+          "BottleOfLye",
+          "Teleportation",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "VigorPotion",
+          "ScrollTsunami",
+          "ScrollElectricity",
+          "LuckPotion",
+          "IceImmunePotion",
+          "FireImmunePotion",
+          "ExtraActionPotion",
+          "DamageResistPotion",
+          "WaterBottle",
+          "PlayerLeap",
+          "TauntingScream",
+          "GrapplingPush",
+          "GrapplingSmash",
+          "MarkOfVerga",
+          "PlayerLeap",
+          "TauntingScream",
+          "GrapplingPush",
+          "GrapplingSmash",
+          "PlayerLeap",
+          "TauntingScream",
+          "MarkOfVerga",
+          "GrapplingPush",
+          "GrapplingSmash"
+        ],
         "HeroGuardian": [
           "Bone",
           "Regroup",
@@ -514,8 +604,7 @@
           "PiercingThrow",
           "Charge"
         ],
-        "HeroBard":
-        [
+        "HeroBard": [
           "WebBomb",
           "Regroup",
           "Rejuvenation",
@@ -556,8 +645,7 @@
           "ShatteringVoice",
           "HurricaneAnthem"
         ],
-        "HeroHunter":
-        [
+        "HeroHunter": [
           "BeastWhisperer",
           "WebBomb",
           "RepeatingBallista",
@@ -684,8 +772,7 @@
           "MagicBarrier",
           "Vortex"
         ],
-        "HeroWarlock":
-        [
+        "HeroWarlock": [
           "Bone",
           "PanicPowder",
           "Barricade",
@@ -788,7 +875,7 @@
     {
       "Rule": "PieceAbilityListOverridden",
       "Config": {
-        "EarthElemental": [ "EnemyMelee", "EnemyKnockbackMelee" ,"EarthShatter", "EnemyJavelin" ],
+        "EarthElemental": [ "EnemyMelee", "EnemyKnockbackMelee", "EarthShatter", "EnemyJavelin" ],
         "Mimic": [ "EnemyMelee", "AcidSpit" ],
         "RootMage": [ "EnemyMelee", "TeleportEnemy" ],
         "ChestGoblin": [ "EnemyMelee", "EnemyStealGold" ],
@@ -806,41 +893,42 @@
       }
     },
     {
-     "Rule": "PieceImmunityListAdjusted",
-     "Config": {
-       "HeroSorcerer": [ "Frozen" ],
-       "HeroHunter": [ "Petrified" ],
-       "HeroGuardian": [ "Weaken" ],
-       "HeroBard": [ "Diseased" ],
-       "HeroRogue": [ "Tangled"],
-       "HeroWarlock": [ "CorruptedRage"],
-       "WarlockMinion": [ "CorruptedRage"]
+      "Rule": "PieceImmunityListAdjusted",
+      "Config": {
+        "HeroBarbarian": [ "Netted" ],
+        "HeroSorcerer": [ "Frozen" ],
+        "HeroHunter": [ "Petrified" ],
+        "HeroGuardian": [ "Weaken" ],
+        "HeroBard": [ "Diseased" ],
+        "HeroRogue": [ "Tangled" ],
+        "HeroWarlock": [ "CorruptedRage" ],
+        "WarlockMinion": [ "CorruptedRage" ]
       }
     },
     {
       "Rule": "PieceUseWhenKilledOverridden",
-      "Config":
-      {
+      "Config": {
         "ChestGoblin": [ "EnemyDropStolenGoods", "DropChest" ],
         "EarthElemental": [ "Explosion", "DeathDropJavelin" ]
       }
     },
     {
       "Rule": "AbilityActionCostAdjusted",
-      "Config":
-      {
+      "Config": {
         "Zap": false,
         "LightningBolt": false,
+        "Overcharge": false,
         "Sneak": false,
         "Grab": false,
         "MinionCharge": false,
-        "CourageShanty": false
+        "CourageShanty": false,
+        "Arrow": false,
+        "Grapple": false
       }
     },
     {
       "Rule": "AbilityHealOverridden",
-      "Config":
-      {
+      "Config": {
         "HealingPotion": 10,
         "Rejuvenation": 10,
         "AltarHeal": 15,
@@ -849,8 +937,7 @@
     },
     {
       "Rule": "AbilityAoeAdjusted",
-      "Config":
-      {
+      "Config": {
         "SongOfRecovery": 2,
         "SongOfResilience": 2,
         "FlashBomb": 1,
@@ -863,17 +950,20 @@
     {
       "Rule": "AbilityDamageOverridden",
       "Config": {
-        "Zap": [3, 8],
-        "Fireball": [12, 30],
-        "Freeze": [7, 15],
-        "WhirlwindAttack": [4, 9],
-        "Charge": [4, 12],
-        "PiercingThrow": [5, 11],
-        "Blink": [7, 19],
-        "CursedDagger": [4, 13],
-        "PoisonedTip": [6, 16],
-        "HailOfArrows": [6, 16],
-        "Arrow": [4, 12]
+        "Zap": [ 3, 8 ],
+        "Fireball": [ 12, 30 ],
+        "Freeze": [ 7, 15 ],
+        "WhirlwindAttack": [ 4, 9 ],
+        "Charge": [ 4, 12 ],
+        "PiercingThrow": [ 5, 11 ],
+        "Blink": [ 7, 19 ],
+        "CursedDagger": [ 4, 13 ],
+        "PoisonedTip": [ 6, 16 ],
+        "HailOfArrows": [ 6, 16 ],
+        "Arrow": [ 4, 12 ],
+        "EnemyFireball": [ 7, 7 ],
+        "Grapple": [ 4, 11 ],
+        "GrapplingSmash": [ 4, 9 ]
       }
     },
     {
@@ -885,12 +975,11 @@
     },
     {
       "Rule": "AbilityBackstabAdjusted",
-      "Config":
-        {
-          "PiercingVoice": true,
-          "ShatteringVoice": true,
-          "DiseasedBite": true
-        }
+      "Config": {
+        "PiercingVoice": true,
+        "ShatteringVoice": true,
+        "DiseasedBite": true
+      }
     },
     {
       "Rule": "PetsFocusHunterMark",
@@ -920,9 +1009,9 @@
       "Rule": "LevelSequenceOverridden",
       "Config": [
         "SewersFloor01",
-        "SewersShopFloor",
-        "ForestFloor02",
         "ForestShopFloor",
+        "ForestFloor02",
+        "ShopFloor02",
         "ElvenFloor14"
       ]
     },
@@ -934,12 +1023,12 @@
         "FloorOnePotionStand": 0,
         "FloorOneMerchant": 0,
         "FloorOneLootChests": 3,
-        "FloorOneGoldMaxAmount": 500,
+        "FloorOneGoldMaxAmount": 600,
         "FloorTwoHealingFountains": 1,
         "FloorTwoPotionStand": 1,
-        "FloorTwoMerchant": 0,
-        "FloorTwoLootChests": 3,
-        "FloorTwoGoldMaxAmount": 600,
+        "FloorTwoMerchant": 1,
+        "FloorTwoLootChests": 4,
+        "FloorTwoGoldMaxAmount": 700,
         "FloorThreeHealingFountains": 1,
         "FloorThreePotionStand": 0,
         "FloorThreeMerchant": 0,

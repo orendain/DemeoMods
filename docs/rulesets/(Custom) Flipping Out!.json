@@ -29,6 +29,9 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
+        "HeroBarbarian": [
+          "CoinFlip"
+        ],
         "HeroGuardian": [
           "CoinFlip"
         ],
@@ -56,6 +59,11 @@
           "Piece": "HeroGuardian",
           "Property": "StartArmor",
           "Value": 0.0
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "MoveRange",
+          "Value": 5.0
         },
         {
           "Piece": "HeroGuardian",
@@ -255,6 +263,40 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
+        "HeroBarbarian": [
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "CoinFlip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "PlayerLeap",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GrapplingSmash",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "ExplodingLampTotemPlaceholder",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Grapple",
+            "ReplenishFrequency": 1
+          }
+        ],
         "HeroWarlock": [
           {
             "Card": "CoinFlip",

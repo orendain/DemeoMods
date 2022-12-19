@@ -48,17 +48,17 @@
                 return;
             }
 
-            if (config.PieceName.Contains("HRH_"))
+            if (config.CriticalHitDamage > 0)
             {
                 return;
             }
 
-            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Prop) || config.HasPieceType(PieceType.Lure) || !config.HasPieceType(PieceType.Creature))
             {
                 return;
             }
 
-            config.PieceName = "HRH_" + config.PieceName;
+            config.CriticalHitDamage = config.StartHealth;
             config.StartHealth = (int)(config.StartHealth * _globalMultiplier);
         }
     }

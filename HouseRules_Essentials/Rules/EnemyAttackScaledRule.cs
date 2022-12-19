@@ -46,17 +46,17 @@
                 return;
             }
 
-            if (config.PieceName.Contains("HRA_"))
+            if (config.CriticalHitDamageOLD > 0)
             {
                 return;
             }
 
-            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Interactable) || config.PieceName.Contains("Lamp"))
+            if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.ExplodingLamp) || !config.HasPieceType(PieceType.Creature))
             {
                 return;
             }
 
-            config.PieceName = "HRA_" + config.PieceName;
+            config.CriticalHitDamageOLD = config.AttackDamage;
             config.AttackDamage = (int)(config.AttackDamage * _globalMultiplier);
         }
     }

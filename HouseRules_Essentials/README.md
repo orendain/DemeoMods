@@ -62,7 +62,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": {
       "Zap": false,
       "CourageShanty": false,
-      "HealingPotion": true,
+      "HealingPotion": true
     }
   },
   ```
@@ -82,7 +82,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "CourageShanty": 1,
       "StrengthPotion": 1,
       "SwiftnessPotion": 1,
-      "HealingPotion": 1,
+      "HealingPotion": 1
     }
   },
   ```
@@ -104,7 +104,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "PiercingArrow": true,
       "PoisonedTip": true,
       "Fireball": true,
-      "Freeze": true,
+      "Freeze": true
     }
   },
   ```
@@ -132,7 +132,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   - Only functions for abilities which do heal. (You can't make a Fireball heal).
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
-    - Specify the new integer for healAmount to use..
+    - Specify the new integer for healAmount to use.
 
   ###### _Example JSON config for AbilityHealOverridden_
 
@@ -161,7 +161,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": {
       "BeastWhisperer": [
         "GoblinRanger",
-        "Slime",
+        "Slime"
       ]
     }
   },
@@ -216,7 +216,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "CardAdditionOverridden",
     "Config": {
       "HeroSorcerer": ["StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
-      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"],
+      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"]
     }
   },
   ```
@@ -250,16 +250,16 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
 
 #### __CardLimitModified__: Card limit is modified
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
-  - Change the size of the player's card hand from the default 10/11.
+  - Change the size of the player's card hand from the default 9 plus replenishable cards.
   - To configure:
-    - Specify an integer representing the total size of the player's hand.
+    - Specify an integer representing the total size of the player's hand minus replenishable cards.
 
   ###### _Example JSON config for CardLimitModified_
 
   ```json
   {
     "Rule": "CardLimitModified",
-    "Config": 20
+    "Config": 18
   },
   ```
 
@@ -294,7 +294,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "Config": {
         "BeastWhisperer": "SporeFungus",
         "Sneak": "Guardian",
-        "Zap": "Hunter",
+        "Zap": "Hunter"
       }
     },
   ```
@@ -322,6 +322,27 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "EnemyAttackScaled",
     "Config": 0.85
+  },
+  ```
+
+#### __EnemyCooldownOverridden__: Enemy ability cooldowns are overridden
+  - Lets you set the number of turns before enemies can use specified abilities again.
+  - To configure:
+    - Specify the [AbilityKeys](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify the new integer for cooldown to use.
+
+  ###### _Example JSON config for EnemyDoorOpeningDisabled_
+
+  ```json
+  {
+    "Rule": "EnemyCooldownOverridden",
+    "Config": {
+      "LeapHeavy": 2,
+      "EnemyFrostball": 2,
+      "Shockwave": 3,
+      "EnemyFireball": 2,
+      "EnemyFlashbang": 2
+    }
   },
   ```
 
@@ -466,7 +487,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "FloorTwoHealingFountains": 9,
       "FloorTwoLootChests": 9,
       "FloorThreeHealingFountains": 9,
-      "FloorThreeLootChests": 9,
+      "FloorThreeLootChests": 9
     }
   },
   ```
@@ -597,7 +618,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": {
       "Spiderling": [ "SpiderWebshot", "LaySpiderEgg", "EarthShatter", "AcidSpit", "DropChest", "EnemyStealCard", "EnemyStealGold" ],
       "Rat": [ "DiseasedBite", "SpawnRat", "EnemyStealGold", "SpawnMushrooms", "DropChest", "EnemyStealCard", "EnemyStealGold" ],
-      "GoblinFighter": [ "SpawnCultists", "EnemyStealGold", "DropChest", "EnemyStealCard", "EnemyStealGold" ],
+      "GoblinFighter": [ "SpawnCultists", "EnemyStealGold", "DropChest", "EnemyStealCard", "EnemyStealGold" ]
     }
   },
   ```
@@ -619,7 +640,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": {
       "Spiderling": [ "AttackAndRetreat", "Patrol", "FleeToFOW", "HealFromFOW", "ChargeMove" ],
       "Rat": [ "Patrol", "SpawnPiece" ],
-      "GoblinFighter": [ "FollowPlayerRangedAttacker", "RangedSpellCaster" ],
+      "GoblinFighter": [ "FollowPlayerRangedAttacker", "RangedSpellCaster" ]
     }
   },
   ```
@@ -649,7 +670,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
   
 #### __PieceImmunityListAdjusted__: Allows the list of immunities for any ♟️BoardPiece to be overridden
-  - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weakened, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
+  - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weaken1Turn, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) of the piece to modify.
     - Specify the list of [EffectStates](../docs/SettingsReference.md#effectstatetypes) that the piece should be immune to.
@@ -660,8 +681,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "PieceImmunityListAdjusted",
     "Config": {
-      "HeroSorcerer": [ "Diseased", "HuntersMark", "Weaken", "Frozen", "Tangled", "Petrified" ],
-      "HeroGuardian": [ "Frozen" ],
+      "HeroSorcerer": [ "Diseased", "HuntersMark", "Weaken1Turn", "Frozen", "Tangled", "Petrified" ],
+      "Spider": [ "Weaken2Turns", "Panic" ]
     }
   },
   ```
@@ -683,7 +704,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": {
       "Spiderling": [ "Enemy", "Goblin", "Thief", "Canine" ],
       "Rat": [ "Enemy", "Goblin", "Thief", "Canine" ],
-      "GoblinFighter": [ "Enemy", "Goblin", "Thief", "Canine" ],
+      "GoblinFighter": [ "Enemy", "Goblin", "Thief", "Canine" ]
     }
   },
   ```
@@ -701,7 +722,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "PieceUseWhenKilledOverridden",
     "Config": {
       "Spiderling": [ "HealingPotion" ],
-      "CaveTroll": [ "Rejuvenation" ],
+      "CaveTroll": [ "Rejuvenation" ]
     }
   },
   ```
@@ -775,7 +796,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
         "SpiderEgg": [ 20, 10, 1 ] ,
         "GiantSpider": [ 30, 10, 1 ],
         "RatKing": [ 1, 1, 1 ],
-        "ElvenQueen": [ 1, 1, 2 ],
+        "ElvenQueen": [ 1, 1, 2 ]
       }
     },
   ```
@@ -803,14 +824,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
         { "Card": "PiercingThrow", "ReplenishFrequency": 0 },
         { "Card": "CoinFlip", "ReplenishFrequency": 0 },
         { "Card": "TheBehemoth", "ReplenishFrequency": 0 },
-        { "Card": "SwordOfAvalon", "ReplenishFrequency": 0 },
+        { "Card": "SwordOfAvalon", "ReplenishFrequency": 0 }
       ],
       "HeroHunter": [
         { "Card": "HealingPotion", "ReplenishFrequency": 0 },
         { "Card": "Arrow", "ReplenishFrequency": 1 },
         { "Card": "Arrow", "ReplenishFrequency": 1 },
         { "Card": "CoinFlip", "ReplenishFrequency": 0 },
-        { "Card": "DropChest", "ReplenishFrequency": 0 },
+        { "Card": "DropChest", "ReplenishFrequency": 0 }
       ],
       "HeroSorcerer": [
         { "Card": "HealingPotion", "ReplenishFrequency": 0 },
@@ -818,31 +839,31 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
         { "Card": "WhirlwindAttack", "ReplenishFrequency": 1 },
         { "Card": "Freeze", "ReplenishFrequency": 0 },
         { "Card": "Fireball", "ReplenishFrequency": 0 },
-        { "Card": "CallCompanion", "ReplenishFrequency": 0 },
-      ],
+        { "Card": "CallCompanion", "ReplenishFrequency": 0 }
+      ]
     }
   },
   ```
 
-#### __StatModifiersOverriden__: The additiveBonus parameters of StatModifiers are overridden.
+#### __StatModifiersOverridden__: The additiveBonus parameters of StatModifiers are overridden.
   - There are only six different StatModifiers in the game. They are used by 💪StrengthPotion, 🦶SwiftnessPotion, 🛡️ReplenishArmor, HuntersMark, etc.
   - These modifiers control the power of each corresponding ability.  E.g., by default the stat modifier for SongOfResilience is 5, as it grants 5 units of armor.  
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#boardpieceids) of the ability whose stat modifer should be replaced.
     - Specify an integer representing the new value of the stat modifier.
 
-  ###### _Example JSON config for StatModifiersOverriden_
+  ###### _Example JSON config for StatModifiersOverridden_
 
   ```json
   {
-    "Rule": "StatModifiersOverriden",
+    "Rule": "StatModifiersOverridden",
     "Config": {
       "StrengthPotion": 2,
       "SwiftnessPotion": 2,
       "HuntersMark": -4,
       "ReplenishBarkArmor": 4,
       "SongOfResilience": 6,
-      "ReplenishArmor": 4,
+      "ReplenishArmor": 4
     }
   },
   ```
@@ -882,7 +903,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-#### __TileEffectDurationOverriden__: Overrides TileEffect durations settings for gas, acid, web etc.
+#### __TileEffectDurationOverridden__: Overrides TileEffect durations settings for gas, acid, web etc.
   - There are five different TileEffects in the game. Gas, Acid, Web, Water and Target.
   - Overriding the durations allows for TileEffects to last for longer or shorter times.
   - It is necessary to specify all five effects in the config for this rule, or they will assume a default duration of 9999 rounds.
@@ -890,17 +911,17 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     - Specify the `TileEfect` (Gas, Acidm etc) of the effect whose duration should be replaced.
     - Specify an integer representing the new duration in turns.
 
-  ###### _Example JSON config for TileEffectDurationOverriden_
+  ###### _Example JSON config for TileEffectDurationOverridden_
 
   ```json
   {
-    "Rule": "TileEffectDurationOverriden",
+    "Rule": "TileEffectDurationOverridden",
     "Config": {
       "Gas": 3,
       "Acid": 4,
       "Web": 2,
       "Water": 2,
-      "Target": 0,
+      "Target": 0
     }
   },
   ```
@@ -924,7 +945,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "Hunter": 6,
       "Sorcerer": 4,
       "Downed": 10,
-      "Javelin": 10,
+      "Javelin": 10
     }
   },
   ```

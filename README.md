@@ -35,7 +35,7 @@ mods, or are interested in learning to build your own.
 |------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | HouseRules | [v1.5.0](https://github.com/orendain/DemeoMods/releases/tag/v1.5.0-houserules) | [HouseRules_1.5.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.5.0-houserules/HouseRules_1.5.0.zip) |
 | SkipInto   | [v1.4.0](https://github.com/orendain/DemeoMods/releases/tag/v1.4.0-skipintro)  | [SkipIntro_1.4.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.4.0-skipintro/SkipIntro_1.4.0.zip)    |
-| RoomFinder | [v1.6.0](https://github.com/orendain/DemeoMods/releases/tag/v1.6.0-roomfinder) | [RoomFinder_1.6.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.5.0-roomfinder/RoomFinder_1.5.0.zip) |
+| RoomFinder | [v1.7.0](https://github.com/orendain/DemeoMods/releases/tag/v1.7.0-roomfinder) | [RoomFinder_1.7.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.7.0-roomfinder/RoomFinder_1.7.zip) |
 | RoomCode   | [v1.2.0](https://github.com/orendain/DemeoMods/releases/tag/v1.2.0-roomcode)   | [RoomCode_1.2.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.2.0-roomcode/RoomCode_1.2.0.zip)       |
 
 ## Mods

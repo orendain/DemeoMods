@@ -32,6 +32,7 @@
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
+            HR.Rulebook.Register(typeof(EnemyCooldownOverriddenRule));
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
