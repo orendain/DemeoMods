@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Reflection;
     using System.Text;
     using Boardgame;
     using Boardgame.BoardgameActions;
@@ -44,9 +43,7 @@
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "PlayingState").GetTypeInfo()
-                    .GetDeclaredMethod("OnMasterClientChanged"),
+                original: AccessTools.Method(typeof(PlayingState), "OnMasterClientChanged"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(PlayingGameState_OnMasterClientChanged_Prefix)));
 
             harmony.Patch(
@@ -59,9 +56,7 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(PostGameControllerBase), "OnPlayAgainClicked"),
-                postfix: new HarmonyMethod(
-                    typeof(LifecycleDirector),
-                    nameof(PostGameControllerBase_OnPlayAgainClicked_Postfix)));
+                postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(PostGameControllerBase_OnPlayAgainClicked_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStateMachine), "EndGame"),
@@ -69,14 +64,10 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(SerializableEventQueue), "DisconnectLocalPlayer"),
-                prefix: new HarmonyMethod(
-                    typeof(LifecycleDirector),
-                    nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(SerializableEventQueue_DisconnectLocalPlayer_Prefix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "ReconnectState").GetTypeInfo()
-                    .GetDeclaredMethod("OnClickLeaveGameAfterReconnect"),
+                original: AccessTools.Method(typeof(ReconnectState), "OnClickLeaveGameAfterReconnect"),
                 postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(ReconnectState_OnClickLeaveGameAfterReconnect_Postfix)));
         }
 
@@ -263,14 +254,15 @@
 
             if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
             {
-                CoreMod.Logger.Warning($"<--- Disconnected from room {roomCode} --->");
+                CoreMod.Logger.Warning($"<- Disconnected from room {roomCode} ->");
                 _isReconnect = true;
                 DeactivateRuleset();
             }
             else
             {
                 CoreMod.Logger.Msg($"<- MANUALLY disconnected from room {roomCode} ->");
-                DeactivateReconnect();
+                _isReconnect = true;
+                DeactivateRuleset();
             }
         }
 
@@ -383,12 +375,13 @@
             }
         }
 
-        private static void DeactivateReconnect()
+        public static void DeactivateReconnect()
         {
             _isReconnect = false;
             IsRulesetActive = false;
 
             CoreMod.Logger.Warning($"Deactivating reconnection: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
