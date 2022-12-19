@@ -14,6 +14,36 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
+        "HeroBarbarian": [
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Grapple",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "OilLamp",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "GrapplingPush",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GrapplingSmash",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "ExplodingLampPlaceholder",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Sneak",
+            "ReplenishFrequency": 0
+          }
+        ],
         "HeroBard": [
           {
             "Card": "HealingPotion",
@@ -179,6 +209,10 @@
         "ReplenishArmor": 1,
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
+        "VigorPotion": 1,
+        "DamageResistPotion": 1,
+        "ExtraActionPotion": 1,
+        "OneMoreThing": 1,
         "Antitoxin": 1,
         "AdamantPotion": 1,
         "HealingPotion": 1
@@ -188,12 +222,24 @@
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
         "StrengthPotion": false,
-        "SwiftnessPotion": false
+        "SwiftnessPotion": false,
+        "VigorPotion": false,
+        "DamageResistPotion": false
       }
     },
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 15.0
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "MoveRange",
+          "Value": 5.0
+        },
         {
           "Piece": "HeroBard",
           "Property": "StartHealth",
@@ -307,7 +353,8 @@
         "Zap": false,
         "MagicMissile": false,
         "CourageShanty": false,
-        "Sneak": false
+        "Sneak": false,
+        "Grapple": false
       }
     },
     {
@@ -315,10 +362,11 @@
       "Config": {
         "FloorOneGoldMaxAmount": 1200,
         "FloorOneHealingFountains": 2,
-        "FloorOneLootChests": 12,
-        "FloorOneClassCardChests": 8,
+        "FloorOneLootChests": 18,
+        "FloorOnePotionStand": 2,
         "FloorTwoHealingFountains": 3,
-        "FloorTwoLootChests": 9,
+        "FloorTwoLootChests": 8,
+        "FloorTwoPotionStand": 1,
         "FloorTwoGoldMaxAmount": 1500,
         "FloorThreeHealingFountains": 1,
         "FloorThreeLootChests": 0
@@ -327,6 +375,9 @@
     {
       "Rule": "PieceImmunityListAdjusted",
       "Config": {
+        "HeroBarbarian": [
+          "Diseased"
+        ],
         "HeroBard": [
           "Diseased"
         ],
@@ -411,7 +462,7 @@
           "ElvenMystic": 3,
           "Sigataur": 2
         },
-        "KeyHolderFloor1": "CavetrollBoss",
+        "KeyHolderFloor1": "Cavetroll",
         "KeyHolderFloor2": "Sigataur",
         "Boss": "Gorgon"
       }
@@ -445,16 +496,6 @@
           "Patrol",
           "FleeToFOW",
           "ChargeMove"
-        ]
-      }
-    },
-    {
-      "Rule": "PiecePieceTypeListOverridden",
-      "Config": {
-        "Spider": [
-          "Enemy",
-          "Thief",
-          "Canine"
         ]
       }
     },

@@ -5,6 +5,20 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
+        "HeroBarbarian": [
+          {
+            "Card": "CallCompanion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "SummonElemental",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "HuntersMark",
+            "ReplenishFrequency": 1
+          }
+        ],
         "HeroBard": [
           {
             "Card": "CallCompanion",
@@ -129,6 +143,15 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
+        "HeroBarbarian": [
+          "CallCompanion",
+          "SummonElemental",
+          "BeastWhisperer",
+          "PiercingVoice",
+          "Bone",
+          "StrengthPotion",
+          "SwiftnessPotion"
+        ],
         "HeroBard": [
           "CallCompanion",
           "SummonElemental",
@@ -189,11 +212,14 @@
       "Rule": "LevelPropertiesModified",
       "Config": {
         "FloorOneHealingFountains": 6,
-        "FloorOneLootChests": 6,
+        "FloorOneLootChests": 5,
+        "FloorOnePotionStand": 1,
         "FloorTwoHealingFountains": 6,
-        "FloorTwoLootChests": 12,
+        "FloorTwoLootChests": 10,
+        "FloorTwoPotionStand": 2,
         "FloorThreeHealingFountains": 6,
-        "FloorThreeLootChests": 12
+        "FloorThreeLootChests": 11,
+        "FloorThreePotionStand": 1
       }
     }
   ]

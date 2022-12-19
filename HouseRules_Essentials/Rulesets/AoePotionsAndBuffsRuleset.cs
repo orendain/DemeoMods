@@ -10,7 +10,7 @@
         internal static Ruleset Create()
         {
             const string name = "3x3 Potions and Buffs";
-            const string description = "Heal, Strength, Speed, Adamant, Antitoxin, RepairArmor and Bard buffs are 3x3 AOE.";
+            const string description = "Heal, Strength, Speed, Adamant, Vitality, Damage Resist, Focus, One More Thing, Antitoxin, Repair Armor and Bard buffs are 3x3 AOE.";
 
             var abilityAoeRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
@@ -18,6 +18,10 @@
                 { AbilityKey.ReplenishArmor, 1 },
                 { AbilityKey.StrengthPotion, 1 },
                 { AbilityKey.SwiftnessPotion, 1 },
+                { AbilityKey.VigorPotion, 1 },
+                { AbilityKey.ExtraActionPotion, 1 },
+                { AbilityKey.DamageResistPotion, 1 },
+                { AbilityKey.OneMoreThing, 1 },
                 { AbilityKey.Antitoxin, 1 },
                 { AbilityKey.AdamantPotion, 1 },
                 { AbilityKey.HealingPotion, 1 },
@@ -27,6 +31,9 @@
             {
                 { AbilityKey.StrengthPotion, false },
                 { AbilityKey.SwiftnessPotion, false },
+                { AbilityKey.VigorPotion, false },
+                { AbilityKey.DamageResistPotion, false },
+                { AbilityKey.OneMoreThing, false },
             });
 
             return Ruleset.NewInstance(

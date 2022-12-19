@@ -32,6 +32,7 @@
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
+            HR.Rulebook.Register(typeof(EnemyCooldownOverriddenRule));
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
@@ -71,6 +72,7 @@
             HR.Rulebook.Register(HuntersParadiseRuleset.Create());
             HR.Rulebook.Register(DemeoReloaded.Create());
             HR.Rulebook.Register(FlippingOut.Create());
+            HR.Rulebook.Register(HoardersRuleset.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());
             HR.Rulebook.Register(DifficultyHardRuleset.Create());
             HR.Rulebook.Register(DifficultyLegendaryRuleset.Create());
@@ -79,6 +81,7 @@
             HR.Rulebook.Register(BetterSorcererRuleset.Create());
             HR.Rulebook.Register(NoSurprisesRuleset.Create());
             HR.Rulebook.Register(QuickAndDeadRuleset.Create());
+            HR.Rulebook.Register(PotionCommotionRuleset.Create());
         }
     }
 }

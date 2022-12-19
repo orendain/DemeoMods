@@ -25,17 +25,18 @@ mods, or are interested in learning to build your own.
 > E.g., playing on a Quest2 works, but only when linked to a PC.
 
 1. Install [MelonLoader](https://github.com/LavaGang/MelonLoader#how-to-use-the-installer)
-   (must be version `0.5.3` or later).
-2. Download the latest version of the mod you want from the table below.
-3. Unzip the downloaded files/folders into the root of your Demeo game directory.
-4. Done. The mods will automatically load upon starting Demeo.
+2. Download the latest [Nightly MelonLoader Alpha](https://nightly.link/LavaGang/MelonLoader/workflows/build/alpha-development) and unzip into the root of your Demeo game directory (allow overwrite).
+   (must be 0.5.7 or later)
+3. Download the latest version of the mod you want from the table below.
+4. Unzip the downloaded files/folders into the root of your Demeo game directory.
+5. Done. The mods will automatically load upon starting Demeo.
 
 | Mod        | Latest Release                                                                 | Direct Download Link                                                                                                   |
 |------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| HouseRules | [v1.4.0](https://github.com/orendain/DemeoMods/releases/tag/v1.4.0-houserules) | [HouseRules_1.4.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.4.0-houserules/HouseRules_1.4.0.zip) |
+| HouseRules | [v1.5.0](https://github.com/orendain/DemeoMods/releases/tag/v1.5.0-houserules) | [HouseRules_1.5.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.5.0-houserules/HouseRules_1.5.0.zip) |
 | SkipInto   | [v1.4.0](https://github.com/orendain/DemeoMods/releases/tag/v1.4.0-skipintro)  | [SkipIntro_1.4.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.4.0-skipintro/SkipIntro_1.4.0.zip)    |
-| RoomFinder | [v1.6.0](https://github.com/orendain/DemeoMods/releases/tag/v1.6.0-roomfinder) | [RoomFinder_1.6.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.5.0-roomfinder/RoomFinder_1.5.0.zip) |
-| RoomCode   | [v1.1.0](https://github.com/orendain/DemeoMods/releases/tag/v1.1.0-roomcode)   | [RoomCode_1.1.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.1.0-roomcode/RoomCode_1.1.0.zip)       |
+| RoomFinder | [v1.7.0](https://github.com/orendain/DemeoMods/releases/tag/v1.7.0-roomfinder) | [RoomFinder_1.7.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.7.0-roomfinder/RoomFinder_1.7.zip) |
+| RoomCode   | [v1.2.0](https://github.com/orendain/DemeoMods/releases/tag/v1.2.0-roomcode)   | [RoomCode_1.2.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.2.0-roomcode/RoomCode_1.2.0.zip)       |
 
 ## Mods
 

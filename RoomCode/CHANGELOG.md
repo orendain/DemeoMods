@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.2.0-roomcode](https://github.com/orendain/demeomods/tree/HEAD)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-roomcode...HEAD)
+
+- Make Roomcode compatible with v1.20 of Demeo. [\#416](https://github.com/orendain/DemeoMods/pull/416)
+
+## [v1.2.0-roomcode](https://github.com/orendain/demeomods/tree/v1.2.0-roomcode) (2022-09-30)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.1.0-roomcode...v1.2.0-roomcode)
+
 ## [v1.1.0-roomcode](https://github.com/orendain/demeomods/tree/v1.1.0-roomcode) (2022-04-11)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.0.0-roomcode...v1.1.0-roomcode)

@@ -5,6 +5,16 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
+        "HeroBarbarian": [
+          {
+            "Card": "Vortex",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Grapple",
+            "ReplenishFrequency": 1
+          }
+        ],
         "HeroBard": [
           {
             "Card": "Vortex",
@@ -70,6 +80,11 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
+        "HeroBarbarian": [
+          "PoisonBomb",
+          "Fireball",
+          "GrapplingPush"
+        ],
         "HeroBard": [
           "PoisonBomb",
           "Fireball",
@@ -106,6 +121,11 @@
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 50.0
+        },
+        {
           "Piece": "HeroBard",
           "Property": "StartHealth",
           "Value": 50.0
@@ -141,18 +161,25 @@
       "Rule": "LevelPropertiesModified",
       "Config": {
         "FloorOneHealingFountains": 2,
-        "FloorOneLootChests": 11,
+        "FloorOneLootChests": 10,
+        "FloorOnePotionStand": 1,
         "FloorTwoHealingFountains": 4,
-        "FloorTwoLootChests": 14,
+        "FloorTwoLootChests": 12,
+        "FloorTwoPotionStand": 2,
         "FloorThreeHealingFountains": 4,
-        "FloorThreeLootChests": 12
+        "FloorThreeLootChests": 10,
+        "FloorThreePotionStand": 2
       }
     },
     {
       "Rule": "AbilityAoeAdjusted",
       "Config": {
         "StrengthPotion": 1,
-        "SwiftnessPotion": 1
+        "SwiftnessPotion": 1,
+        "VigorPotion": 1,
+        "DamageResistPotion": 1,
+        "ExtraActionPotion": 1,
+        "OneMoreThing": 1
       }
     },
     {

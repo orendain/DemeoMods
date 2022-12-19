@@ -27,6 +27,9 @@
     {
         private static GameContext _gameContext;
         private static bool _isSyncScheduled;
+        private static bool _updateNewPlayer;
+        private static bool _isMove;
+        private static bool _isGrab;
 
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
@@ -113,11 +116,54 @@
         {
             switch (serializableEvent.type)
             {
+                case SerializableEvent.Type.NewPlayerJoin:
+                    _updateNewPlayer = true;
+                    return false;
+                case SerializableEvent.Type.UpdateGameHub:
+                    if (_updateNewPlayer)
+                    {
+                        _updateNewPlayer = false;
+                        return true;
+                    }
+
+                    return false;
+                case SerializableEvent.Type.OnMoved:
+                    _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                    return false;
+                case SerializableEvent.Type.Move:
+                case SerializableEvent.Type.Interact:
+                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        _isMove = true;
+                        return true;
+                    }
+
+                    return false;
                 case SerializableEvent.Type.SpawnPiece:
-                case SerializableEvent.Type.UpdateFogAndSpawn:
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
+                case SerializableEvent.Type.UpdateFogAndSpawn:
                     return true;
+                case SerializableEvent.Type.EndAction:
+                case SerializableEvent.Type.EndTurn:
+                    if (_isGrab)
+                    {
+                        _isGrab = false;
+                        _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                        return false;
+                    }
+
+                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        if (_isMove)
+                        {
+                            return true;
+                        }
+
+                        return false;
+                    }
+
+                    return false;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
@@ -132,13 +178,20 @@
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
-                case AbilityKey.SummonElemental:
-                case AbilityKey.SummonBossMinions:
+                case AbilityKey.Grab:
+                    if (!_gameContext.pieceAndTurnController.IsPlayersTurn())
+                    {
+                        _isGrab = true;
+                        return false;
+                    }
+
+                    return false;
+                case AbilityKey.RevealPath:
+                case AbilityKey.DetectEnemies:
                 case AbilityKey.BeastWhisperer:
                 case AbilityKey.HurricaneAnthem:
                 case AbilityKey.Lure:
                 case AbilityKey.BoobyTrap:
-                case AbilityKey.DetectEnemies:
                 case AbilityKey.RepeatingBallista:
                 case AbilityKey.TheBehemoth:
                 case AbilityKey.HealingWard:
@@ -153,8 +206,9 @@
             var abilityName = abilityKey.ToString();
             var isSpawnAbility = abilityName.Contains("Spawn");
             var isLampAbility = abilityName.Contains("Lamp");
+            var isSummonAbility = abilityName.Contains("Summon");
 
-            return isSpawnAbility || isLampAbility;
+            return isSpawnAbility || isLampAbility || isSummonAbility;
         }
 
         private static bool CanRepresentNewSpawn(SerializableEventPieceDied pieceDiedEvent)
@@ -166,7 +220,7 @@
                     continue;
                 }
 
-                if (piece.boardPieceId == BoardPieceId.SpiderEgg)
+                if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId == BoardPieceId.ScorpionSandPile)
                 {
                     return true;
                 }
@@ -187,7 +241,10 @@
 
         private static void SyncBoard()
         {
+            _isMove = false;
+            _isGrab = false;
             _isSyncScheduled = false;
+            _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }

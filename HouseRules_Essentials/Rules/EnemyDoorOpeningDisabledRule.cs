@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using Boardgame;
+    using Boardgame.BoardEntities;
     using HarmonyLib;
     using HouseRules.Types;
 
@@ -23,21 +24,20 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.PropertyGetter(typeof(PieceConfig), "CanOpenDoor"),
+                original: AccessTools.Method(typeof(Piece), "CreatePiece"),
                 prefix: new HarmonyMethod(
                     typeof(EnemyDoorOpeningDisabledRule),
-                    nameof(PieceConfig_CanOpenDoor_Prefix)));
+                    nameof(CreatePiece_CanOpenDoor_Prefix)));
         }
 
-        private static bool PieceConfig_CanOpenDoor_Prefix(ref bool __result)
+        private static void CreatePiece_CanOpenDoor_Prefix(PieceConfigData config)
         {
             if (!_isActivated)
             {
-                return true;
+                return;
             }
 
-            __result = false;
-            return false;
+            config.CanOpenDoor = false;
         }
     }
 }

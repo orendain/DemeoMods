@@ -83,33 +83,33 @@
             keyHolder.DisableEffectState(EffectStateType.Key);
         }
 
-        private static void BoardgameActionPieceDied_Constructor_Postfix(GameContext context)
+        private static void BoardgameActionPieceDied_Constructor_Postfix(GameContext gameContext)
         {
             if (!_isActivated)
             {
                 return;
             }
 
-            if (IsEnemyRemaining(context))
+            if (IsEnemyRemaining(gameContext))
             {
                 return;
             }
 
-            if (context.levelManager.IsBossLevel())
+            if (gameContext.levelManager.IsBossLevel())
             {
                 return;
             }
 
             GameUI.ShowCameraMessage("All enemies have been defeated! You may advance.", 5);
 
-            var levelExit = context.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
+            var levelExit = gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasPieceType(PieceType.LevelExit));
             levelExit?.DisableEffectState(EffectStateType.Locked);
             HR.ScheduleBoardSync();
         }
 
         private static bool IsEnemyRemaining(GameContext gameContext)
         {
-            return gameContext.pieceAndTurnController.GetEnemyPieces().Where(p =>
+            return gameContext.pieceAndTurnController.GetTeamPieces(Boardgame.BoardEntities.Team.Two).Where(p =>
             {
                 if (p.boardPieceId == BoardPieceId.SpiderEgg)
                 {

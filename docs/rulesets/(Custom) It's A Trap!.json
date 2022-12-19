@@ -11,6 +11,20 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
+        "HeroBarbarian": [
+          "PoisonBomb",
+          "HealingPotion",
+          "OilLamp",
+          "GasLamp",
+          "IceLamp",
+          "Vortex",
+          "Torch",
+          "Bone",
+          "DetectEnemies",
+          "WebBomb",
+          "VortexLamp",
+          "Teleportation"
+        ],
         "HeroBard": [
           "PoisonBomb",
           "MagicBarrier",
@@ -105,6 +119,9 @@
       "Config": {
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
+        "DamageResistPotion": 1,
+        "VigorPotion": 1,
+        "ExtraActionPotion": 1,
         "HealingPotion": 1
       }
     },
@@ -115,45 +132,48 @@
           "GasLamp",
           "OilLamp",
           "VortexLamp",
-          "GasLamp",
+          "WaterLamp",
           "OilLamp",
           "VortexLamp",
           "OilLamp",
-          "OilLamp",
-          "HealingBeacon"
+          "WaterLamp",
+          "GasLamp"
         ],
         "2": [
           "GasLamp",
           "GasLamp",
           "GasLamp",
           "GasLamp",
-          "GasLamp",
+          "WaterLamp",
           "GasLamp",
           "GasLamp",
           "OilLamp",
           "OilLamp",
-          "HealingBeacon"
+          "OilLamp"
         ],
         "3": [
           "OilLamp",
           "IceLamp",
           "VortexLamp",
           "OilLamp",
-          "IceLamp",
+          "WaterLamp",
           "VortexLamp",
-          "HealingBeacon"
+          "IceLamp"
         ]
       }
     },
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
-        "FloorOneHealingFountains": 0,
-        "FloorOneLootChests": 11,
+        "FloorOneHealingFountains": 1,
+        "FloorOneLootChests": 9,
+        "FloorOnePotionStand": 2,
         "FloorTwoHealingFountains": 1,
-        "FloorTwoLootChests": 14,
+        "FloorTwoLootChests": 11,
+        "FloorTwoPotionStand": 3,
         "FloorThreeHealingFountains": 1,
         "FloorThreeLootChests": 8,
+        "FloorThreePotionStand": 2,
         "FloorOneEndZoneSpikeMaxBudget": 12,
         "PacingSpikeSegmentFloorOneBudget": 12
       }
@@ -161,6 +181,11 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
         {
           "Piece": "HeroBard",
           "Property": "StartHealth",
@@ -199,30 +224,42 @@
       ]
     },
     {
-      "Rule": "PiecePieceTypeListOverridden",
-      "Config": {
-        "Torch": [
-          "Prop",
-          "UpdateFogOfWar",
-          "ShowNameplate"
-        ],
-        "EyeOfAvalon": [
-          "Prop",
-          "UpdateFogOfWar",
-          "Immovable",
-          "ShowHealthbar",
-          "ShowNameplate"
-        ],
-        "HealingBeacon": [
-          "Prop",
-          "Bot",
-          "ShowNameplate"
-        ]
-      }
-    },
-    {
       "Rule": "StartCardsModified",
       "Config": {
+        "HeroBarbarian": [
+          {
+            "Card": "BoobyTrap",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Grapple",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "ExplodingLampPlaceholder",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "OilLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GasLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "IceLamp",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Sneak",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "DetectEnemies",
+            "ReplenishFrequency": 0
+          }
+        ],
         "HeroBard": [
           {
             "Card": "BoobyTrap",
@@ -399,54 +436,6 @@
         {
           "effectStateType": "Stealthed",
           "durationTurns": 5,
-          "tickWhen": "StartTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "Courageous",
-          "durationTurns": 2,
-          "tickWhen": "StartTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "Fearless",
-          "durationTurns": 2,
-          "tickWhen": "StartTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "Heroic",
-          "durationTurns": 2,
           "tickWhen": "StartTurn",
           "stacks": false,
           "damagePerTurn": 0,

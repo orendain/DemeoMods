@@ -1,13 +1,42 @@
 # Changelog
 
-## [v1.4.0-houserules](https://github.com/orendain/demeomods/tree/v1.4.0-houserules) (2022-06-22)
+## [Unreleased](https://github.com/orendain/DemeoMods/tree/HEAD)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/v1.3.0-houserules...v1.4.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.5.0-houserules...HEAD)
+
+**Features/Enhancements:**
+
+- Fix Potion Stands loot [\#401](https://github.com/orendain/DemeoMods/pull/401)
+- New rule for Electricity damage between party members. [\#399](https://github.com/orendain/DemeoMods/pull/399)
+
+**Fixes:**
+
+- Fix the Warlock not having her health increased in the Beat the Clock ruleset. [\#409](https://github.com/orendain/DemeoMods/pull/409)
+- Apply v1.19\_compatibility fixes to HouseRules. [\#398](https://github.com/orendain/DemeoMods/pull/398)
+- Fix for CardAdditionRule not working [\#396](https://github.com/orendain/DemeoMods/pull/396)
+- Fixes Sneak from replenishing immediately after use. [\#394](https://github.com/orendain/DemeoMods/pull/394)
+- Fix issue with shop floor not loading on Demeo Reloaded ruleset. [\#392](https://github.com/orendain/DemeoMods/pull/392)
+
+**Merged pull requests:**
+
+- Passthrough version fix [\#425](https://github.com/orendain/DemeoMods/pull/425)
+- V1.20 & 1.21 houserules fixes [\#418](https://github.com/orendain/DemeoMods/pull/418)
+
+## [v1.5.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.5.0-houserules) (2022-10-26)
+
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.4.0-houserules...v1.5.0-houserules)
+
+## [v1.4.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.4.0-houserules) (2022-06-22)
+
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.3.0-houserules...v1.4.0-houserules)
 
 **Features/Enhancements:**
 
 - Add an initial configuration for Warlock where needed in rulesets. [\#369](https://github.com/orendain/DemeoMods/pull/369)
 - Introduce a new ruleset: Flipping Out [\#367](https://github.com/orendain/DemeoMods/pull/367)
+- Add new rule: AbilityStealthDamageOverridden.  Enables defining stealth damage for abilities. [\#359](https://github.com/orendain/DemeoMods/pull/359)
+- Updated Demeo Reloaded ruleset for v1.16 [\#358](https://github.com/orendain/DemeoMods/pull/358)
+- Add Warlock to the TurnOrder rule, and apply Javelin only on the forest level. [\#357](https://github.com/orendain/DemeoMods/pull/357)
 - Restore functionality for configurable replenish frequences and add support for Overcharge. [\#356](https://github.com/orendain/DemeoMods/pull/356)
 - Remove `RegroupAllies` rule, as the equivalent change is now the default in Demeo. [\#352](https://github.com/orendain/DemeoMods/pull/352)
 - Add a user-configurable amout of HP to target each time CourageShanty is cast. [\#346](https://github.com/orendain/DemeoMods/pull/346)
@@ -36,10 +65,9 @@
 
 **Chores:**
 
-- Add FlippingOut ruleset to the build list. [\#368](https://github.com/orendain/DemeoMods/pull/368)
 - Remove unneeded logic in `CardLimitModifiedRule` as changes in Demeo 1.16 no longer require it. [\#355](https://github.com/orendain/DemeoMods/pull/355)
-- V1.16 compatibility [\#349](https://github.com/orendain/DemeoMods/pull/349)
-- WIP - V1.15 compatibility [\#344](https://github.com/orendain/DemeoMods/pull/344)
+- Update for V1.16 compatibility [\#349](https://github.com/orendain/DemeoMods/pull/349)
+- Update HouseRules for V1.15 compatibility. [\#344](https://github.com/orendain/DemeoMods/pull/344)
 - Rebalance Demeo Reloaded ruleset and fix build/compile warnings [\#343](https://github.com/orendain/DemeoMods/pull/343)
 - Apply maintenance across HouseRules: fix typos, apply auto-formatting, reduce nesting. [\#341](https://github.com/orendain/DemeoMods/pull/341)
 - Further balance changes to Demeo Reloaded ruleset [\#339](https://github.com/orendain/DemeoMods/pull/339)
@@ -48,9 +76,9 @@
 - Simplify CardClassRestrictionOverrideRule [\#313](https://github.com/orendain/DemeoMods/pull/313)
 - Perform maintenance on HouseRules modules. [\#312](https://github.com/orendain/DemeoMods/pull/312)
 
-## [v1.3.0-houserules](https://github.com/orendain/demeomods/tree/v1.3.0-houserules) (2022-04-17)
+## [v1.3.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.3.0-houserules) (2022-04-17)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/v1.2.0-houserules...v1.3.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.2.0-houserules...v1.3.0-houserules)
 
 **Features/Enhancements:**
 
@@ -59,9 +87,9 @@
 - Extend LevelSequence rule to allow arbitrarily long sequences. [\#275](https://github.com/orendain/DemeoMods/pull/275)
 - Add a new rule for overriding the LevelSequence used in a game session. [\#272](https://github.com/orendain/DemeoMods/pull/272)
 
-## [v1.2.0-houserules](https://github.com/orendain/demeomods/tree/v1.2.0-houserules) (2022-03-31)
+## [v1.2.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.2.0-houserules) (2022-03-31)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/v1.1.0-houserules...v1.2.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.1.0-houserules...v1.2.0-houserules)
 
 **Features/Enhancements:**
 
@@ -71,9 +99,9 @@
 
 - Improve board syncronization between hosts and other players. [\#265](https://github.com/orendain/DemeoMods/pull/265)
 
-## [v1.1.0-houserules](https://github.com/orendain/demeomods/tree/v1.1.0-houserules) (2022-03-21)
+## [v1.1.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.1.0-houserules) (2022-03-21)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/v1.0.0-houserules...v1.1.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/v1.0.0-houserules...v1.1.0-houserules)
 
 **Features/Enhancements:**
 
@@ -103,9 +131,9 @@
 - Perform some maintenance on rules. [\#230](https://github.com/orendain/DemeoMods/pull/230)
 - Clean up unused 'lookupstring' var. [\#215](https://github.com/orendain/DemeoMods/pull/215)
 
-## [v1.0.0-houserules](https://github.com/orendain/demeomods/tree/v1.0.0-houserules) (2022-02-21)
+## [v1.0.0-houserules](https://github.com/orendain/DemeoMods/tree/v1.0.0-houserules) (2022-02-21)
 
-[Full Changelog](https://github.com/orendain/demeomods/compare/faa2e50c1fdc985e4bf0383f16ef8980eb1580b9...v1.0.0-houserules)
+[Full Changelog](https://github.com/orendain/DemeoMods/compare/faa2e50c1fdc985e4bf0383f16ef8980eb1580b9...v1.0.0-houserules)
 
 **Features/Enhancements:**
 

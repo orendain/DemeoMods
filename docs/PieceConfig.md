@@ -26,16 +26,20 @@ int ActionPoint
 int MoveRange
 int AttackDamage
 int PowerIndex
+int TurnPriority
 bool CanOpenDoor
 float AcidSlimeTrailChance
 float WaterTrailChance
+float SpiderWebChance
 int WaterTrailTiles
 float ChanceOfDeathPanic
 float ChanceOfFirePanic
+float ChanceofPanicWarcry
 float BerserkBelowHealth
 float EliteChance
 int CriticalHitChance
 int CriticalHitDamage
+bool DontConsumeAPOnCrit
 int MinHealthPotions
 int MaxHealthPotions
 ```

@@ -5,22 +5,24 @@
     using System.Linq;
     using Boardgame;
     using Boardgame.BoardEntities;
+    using Boardgame.BoardEntities.AI;
     using Boardgame.Data;
     using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
 
+
     public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
     {
         public override string Description => "Card additions are overridden";
 
-        private static readonly Random Rnd = new Random();
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;
         private static bool _isPotionStand;
         private static bool _isWaterBottleChest;
+        private static bool _isVortexDustChest;
         private static int _numPlayers;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
@@ -43,7 +45,7 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(Interactable), "OnInteraction"),
+                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new Type[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
                 prefix: new HarmonyMethod(
                     typeof(CardAdditionOverriddenRule),
                     nameof(Interactable_OnInteraction_Prefix)));
@@ -80,6 +82,11 @@
             {
                 _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
                 _isWaterBottleChest = true;
+            }
+            else if (whatIsit.type == Interactable.Type.VortexDustChest)
+            {
+                _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
+                _isVortexDustChest = true;
             }
         }
 
@@ -125,6 +132,20 @@
 
                 return;
             }
+            else if (_isVortexDustChest)
+            {
+                // TODO: Add method to allow custom card loot for Vortex Dust Chests here
+                if (_numPlayers > 1)
+                {
+                    _numPlayers--;
+                }
+                else
+                {
+                    _isVortexDustChest = false;
+                }
+
+                return;
+            }
 
             var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
@@ -151,7 +172,8 @@
                 return;
             }
 
-            var replacementAbilityKey = replacementAbilityKeys.ElementAt(Rnd.Next(replacementAbilityKeys.Count));
+            Random rand = new Random();
+            var replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
         }
     }

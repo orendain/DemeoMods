@@ -44,17 +44,15 @@
         private static Dictionary<BoardPieceId, List<PieceType>> ReplaceExistingProperties(
             Dictionary<BoardPieceId, List<PieceType>> pieceConfigChanges)
         {
-            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
-                .Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict")
-                .Value;
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value; 
             var previousProperties = new Dictionary<BoardPieceId, List<PieceType>>();
 
             foreach (var item in pieceConfigChanges)
             {
-                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key];
+                var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.PieceType.ToList();
                 pieceConfigDto.PieceType = item.Value.ToArray();
-                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
+                gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
 
             return previousProperties;

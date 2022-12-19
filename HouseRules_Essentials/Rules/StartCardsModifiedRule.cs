@@ -47,6 +47,7 @@
                 prefix: new HarmonyMethod(
                     typeof(StartCardsModifiedRule),
                     nameof(Piece_CreatePieceInternal_Prefix)));
+
             harmony.Patch(
                 original: AccessTools.Method(typeof(Inventory), "RestoreReplenishables"),
                 prefix: new HarmonyMethod(
@@ -54,7 +55,7 @@
                     nameof(Inventory_RestoreReplenishables_Prefix)));
         }
 
-        private static bool Inventory_RestoreReplenishables_Prefix(ref bool __result, Piece piece, EffectStateType[] previousEffects)
+        private static bool Inventory_RestoreReplenishables_Prefix(ref bool __result, Piece piece)
         {
             if (!_isActivated)
             {
@@ -65,33 +66,23 @@
             for (int i = 0; i < piece.inventory.Items.Count; i++)
             {
                 Inventory.Item value = piece.inventory.Items[i];
-                var targetRefresh = (value.flags >> 7) & 7;
-                var countdown = (value.flags >> 4) & 7;
 
-                if (piece.inventory.Items[i].IsReplenishing)
+                if (value.IsReplenishing)
                 {
+                    // Bypass problem with replenishCooldown somehow being set to -1 by Demeo
+                    foreach (var card in _globalHeroStartCards[piece.boardPieceId])
+                    {
+                        if (value.abilityKey == card.Card && card.ReplenishFrequency > 1 && value.replenishCooldown < 0)
+                        {
+                            value.replenishCooldown = card.ReplenishFrequency - 1;
+                            piece.inventory.Items[i] = value;
+                        }
+                    }
+
                     bool skipReplenishing = false;
                     if (!AbilityFactory.TryGetAbility(value.abilityKey, out Ability ability))
                     {
                         throw new Exception("Failed to get ability prefab from ability key while attempting to replenish hand!");
-                    }
-
-                    if (piece.inventory.Items[i].abilityKey == AbilityKey.Sneak)
-                    {
-                        bool foundPreviousEffect = false;
-                        foreach (EffectStateType effect in previousEffects)
-                        {
-                            if (ability.effectsPreventingReplenished.Contains(effect))
-                            {
-                                foundPreviousEffect = true;
-                                break;
-                            }
-                        }
-
-                        if (foundPreviousEffect)
-                        {
-                            continue;
-                        }
                     }
 
                     int j = 0;
@@ -101,6 +92,7 @@
                         if (piece.HasEffectState(ability.effectsPreventingReplenished[j]))
                         {
                             skipReplenishing = true;
+                            break;
                         }
 
                         j++;
@@ -108,24 +100,22 @@
 
                     if (!skipReplenishing)
                     {
-                        // If countdown was zero when we got called, then we need to set it.
-                        if (countdown == 0)
+                        if (value.replenishCooldown > 0)
                         {
-                            countdown = targetRefresh;
+                            value.replenishCooldown -= 1;
+                            piece.inventory.Items[i] = value;
+                            // Force inventory sync to clients
+                            piece.AddGold(0);
                         }
-
-                        // If we reached our desired turn count we can unset isReplenishing and return true
-                        if (countdown == 1)
+                        else
                         {
-                            value.flags &= -3; // unsets isReplenishing (bit1 ) allowing card to be used again.
+                            // If we reached our desired turn count we can unset isReplenishing and return true
+                            value.flags &= (Inventory.ItemFlag)(-3); // unsets isReplenishing (bit1 ) allowing card to be used again.
+                            piece.inventory.Items[i] = value;
                             __result = true;
+                            // Force inventory sync to clients
+                            piece.AddGold(0);
                         }
-
-                        countdown -= 1;
-                        value.flags &= 911; // Zero only the countdown bits using a bitmask
-                        value.flags |= countdown << 4; // OR with countdown to set them again.
-                        piece.inventory.Items[i] = value;
-                        Traverse.Create(piece.inventory).Property<bool>("needSync").Value = true;
                     }
                 }
             }
@@ -147,13 +137,13 @@
 
             var inventory = CreateInventory(spawnSettings.boardPieceId);
             Traverse.Create(spawnSettings).Property<Inventory>("Inventory").Value = inventory;
-            Traverse.Create(spawnSettings).Property<bool>("SetInventory").Value = true;
+            Traverse.Create(spawnSettings).Property<bool>("HasInventory").Value = true;
         }
 
         private static Inventory CreateInventory(BoardPieceId boardPieceId)
         {
             var inventory = new Inventory();
-
+            EssentialsMod.Logger.Warning($"StartCardsModified - > {boardPieceId}");
             foreach (var card in _globalHeroStartCards[boardPieceId])
             {
                 // flag bits
@@ -161,22 +151,19 @@
                 // 1 : isReplenishing
                 // 2 : abilityDisabledOnStatusEffect
                 // 3 : disableCooldown
-                // 4-6 : ReplenishCounter - 3-bit range used by RestoreReplenishables for counting rounds.
-                // 7-9 : ReplenishFrequency - 3-bit number, user-configured target.
-                int flags = 0;
+                Inventory.ItemFlag flags = 0;
                 if (card.ReplenishFrequency > 0)
                 {
                     Traverse.Create(inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                    flags = 1;
-                    int refreshFrequency = (card.ReplenishFrequency > 7) ? 7 : card.ReplenishFrequency; // Limit to max of 7 turns.
-                    flags |= refreshFrequency << 7; // logical or with refreshFrequency shifted 7 bits to the left to become ReplenishFrequency bits 7-9
+                    flags = (Inventory.ItemFlag)1;
                 }
 
                 inventory.Items.Add(new Inventory.Item
                 {
                     abilityKey = card.Card,
-                    flags = flags,
+                    flags = (Inventory.ItemFlag)flags,
                     originalOwner = -1,
+                    replenishCooldown = card.ReplenishFrequency,
                 });
             }
 

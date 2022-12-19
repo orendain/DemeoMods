@@ -15,6 +15,14 @@
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 5 } } });
 
+            var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PanicPowder, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, ReplenishFrequency = 0 },
+            };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
@@ -69,6 +77,7 @@
 
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
+                { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
                 { BoardPieceId.HeroHunter, hunterCards },
@@ -84,12 +93,16 @@
                 { AbilityKey.StrengthPotion, 1 },
                 { AbilityKey.SwiftnessPotion, 1 },
                 { AbilityKey.Antitoxin, 1 },
+                { AbilityKey.DamageResistPotion, 1 },
+                { AbilityKey.VigorPotion, 1 },
+                { AbilityKey.ExtraActionPotion, 1 },
                 { AbilityKey.AdamantPotion, 1 },
                 { AbilityKey.HealingPotion, 1 },
             });
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 20 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 15 },
@@ -97,6 +110,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 15 },
 
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "MoveRange", Value = 5 },
@@ -117,6 +131,7 @@
                 { AbilityKey.Zap, false },
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.Sneak, false },
+                { AbilityKey.Grapple, false },
             });
 
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(1.25f);
@@ -125,6 +140,8 @@
             {
                 AbilityKey.StrengthPotion,
                 AbilityKey.SwiftnessPotion,
+                AbilityKey.DamageResistPotion,
+                AbilityKey.VigorPotion,
                 AbilityKey.Bone,
                 AbilityKey.Fireball,
                 AbilityKey.Freeze,
@@ -148,7 +165,8 @@
                 { BoardPieceId.HeroSorcerer, allowedSorcererCards },
             });
 
-            var bardImmunities = new List<EffectStateType> { EffectStateType.Weaken, EffectStateType.MarkOfAvalon };
+            var barbarianImmunities = new List<EffectStateType> { EffectStateType.Frozen, EffectStateType.Petrified };
+            var bardImmunities = new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns, EffectStateType.MarkOfAvalon };
             var guardianImmunities = new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Stunned, EffectStateType.Frozen, EffectStateType.Tangled, EffectStateType.Petrified };
             var hunterImmunities = new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Frozen, EffectStateType.Petrified };
             var rogueImmunities = new List<EffectStateType> { EffectStateType.Frozen, EffectStateType.Petrified };
@@ -157,6 +175,7 @@
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
+                { BoardPieceId.HeroBarbarian, barbarianImmunities },
                 { BoardPieceId.HeroBard, bardImmunities },
                 { BoardPieceId.HeroGuardian, guardianImmunities },
                 { BoardPieceId.HeroHunter, hunterImmunities },
@@ -168,11 +187,14 @@
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "FloorOneHealingFountains", 2 },
-                { "FloorOneLootChests", 11 },
+                { "FloorOneLootChests", 9 },
+                { "FloorOnePotionStand", 2 },
                 { "FloorTwoHealingFountains", 4 },
-                { "FloorTwoLootChests", 14 },
+                { "FloorTwoLootChests", 11 },
+                { "FloorTwoPotionStand", 3 },
                 { "FloorThreeHealingFountains", 4 },
-                { "FloorThreeLootChests", 12 },
+                { "FloorThreeLootChests", 10 },
+                { "FloorThreePotionStand", 2 },
             });
 
             var hunterMarkRule = new PetsFocusHunterMarkRule(true);

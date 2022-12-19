@@ -14,6 +14,28 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
+        "HeroBarbarian": [
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "ExplodingLampPlaceholder",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "PanicPowder",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "DropChest",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "DropChest",
+            "ReplenishFrequency": 0
+          }
+        ],
         "HeroBard": [
           {
             "Card": "HealingPotion",
@@ -168,6 +190,9 @@
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
         "Antitoxin": 1,
+        "DamageResistPotion": 1,
+        "VigorPotion": 1,
+        "ExtraActionPotion": 1,
         "AdamantPotion": 1,
         "HealingPotion": 1
       }
@@ -175,6 +200,11 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "StartHealth",
+          "Value": 15.0
+        },
         {
           "Piece": "HeroBard",
           "Property": "StartHealth",
@@ -204,6 +234,11 @@
           "Piece": "HeroWarlock",
           "Property": "StartHealth",
           "Value": 15.0
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "MoveRange",
+          "Value": 5.0
         },
         {
           "Piece": "HeroBard",
@@ -267,7 +302,8 @@
       "Config": {
         "Zap": false,
         "CourageShanty": false,
-        "Sneak": false
+        "Sneak": false,
+        "Grapple": false
       }
     },
     {
@@ -280,6 +316,8 @@
         "HeroHunter": [
           "StrengthPotion",
           "SwiftnessPotion",
+          "DamageResistPotion",
+          "VigorPotion",
           "Bone",
           "Fireball",
           "Freeze",
@@ -299,8 +337,13 @@
     {
       "Rule": "PieceImmunityListAdjusted",
       "Config": {
+        "HeroBarbarian": [
+          "Frozen",
+          "Petrified"
+        ],
         "HeroBard": [
-          "Weaken",
+          "Weaken1Turn",
+          "Weaken2Turns",
           "MarkOfAvalon"
         ],
         "HeroGuardian": [
@@ -339,11 +382,14 @@
       "Rule": "LevelPropertiesModified",
       "Config": {
         "FloorOneHealingFountains": 2,
-        "FloorOneLootChests": 11,
+        "FloorOneLootChests": 9,
+        "FloorOnePotionStand": 2,
         "FloorTwoHealingFountains": 4,
-        "FloorTwoLootChests": 14,
+        "FloorTwoLootChests": 11,
+        "FloorTwoPotionStand": 3,
         "FloorThreeHealingFountains": 4,
-        "FloorThreeLootChests": 12
+        "FloorThreeLootChests": 10,
+        "FloorThreePotionStand": 2
       }
     },
     {

@@ -53,41 +53,39 @@
         /// <returns>Previous properties that are now replaced.</returns>
         private static List<PieceProperty> ReplaceExistingProperties(List<PieceProperty> pieceConfigChanges)
         {
-            var gameConfigPieceConfigs = Traverse.Create(typeof(GameDataAPI))
-                .Field<Dictionary<GameConfigType, Dictionary<BoardPieceId, PieceConfigDTO>>>("PieceConfigDTOdict")
-                .Value;
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var previousProperties = new List<PieceProperty>();
 
             foreach (var item in pieceConfigChanges)
             {
-                var pieceConfigDto = gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Piece];
+                var pieceConfig = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Piece];
 
                 previousProperties.Add(new PieceProperty
                 {
                     Piece = item.Piece,
                     Property = item.Property,
-                    Value = Convert.ToSingle(Traverse.Create(pieceConfigDto).Field(item.Property).GetValue()),
+                    Value = Convert.ToSingle(Traverse.Create(pieceConfig).Field(item.Property).GetValue()),
                 });
 
-                ModifyPieceConfig(ref pieceConfigDto, item.Property, item.Value);
-                gameConfigPieceConfigs[MotherbrainGlobalVars.CurrentConfig][item.Piece] = pieceConfigDto;
+                ModifyPieceConfig(ref pieceConfig, item.Property, item.Value);
+                gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Piece] = pieceConfig;
             }
 
             return previousProperties;
         }
 
-        private static void ModifyPieceConfig(ref PieceConfigDTO pieceConfigDto, string property, float value)
+        private static void ModifyPieceConfig(ref PieceConfigData pieceConfig, string property, float value)
         {
-            var valueType = Traverse.Create(pieceConfigDto).Field(property).GetValueType();
+            var valueType = Traverse.Create(pieceConfig).Field(property).GetValueType();
             if (valueType == typeof(int))
             {
-                AccessTools.StructFieldRefAccess<PieceConfigDTO, int>(ref pieceConfigDto, property) = (int) value;
+                AccessTools.FieldRefAccess<PieceConfigData, int>(pieceConfig, property) = (int)value;
                 return;
             }
 
             if (valueType == typeof(float))
             {
-                AccessTools.StructFieldRefAccess<PieceConfigDTO, float>(ref pieceConfigDto, property) = value;
+                AccessTools.FieldRefAccess<PieceConfigData, float>(pieceConfig, property) = value;
                 return;
             }
 

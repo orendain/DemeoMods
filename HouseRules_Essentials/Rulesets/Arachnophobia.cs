@@ -15,6 +15,16 @@
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 4 } } });
 
+            var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
+            {
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingPush, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingSmash, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+            };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
@@ -71,6 +81,7 @@
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
+                { BoardPieceId.HeroBarbarian, barbarianCards },
                 { BoardPieceId.HeroBard, bardCards },
                 { BoardPieceId.HeroGuardian, guardianCards },
                 { BoardPieceId.HeroHunter, hunterCards },
@@ -85,6 +96,10 @@
                 { AbilityKey.ReplenishArmor, 1 },
                 { AbilityKey.StrengthPotion, 1 },
                 { AbilityKey.SwiftnessPotion, 1 },
+                { AbilityKey.VigorPotion, 1 },
+                { AbilityKey.DamageResistPotion, 1 },
+                { AbilityKey.ExtraActionPotion, 1 },
+                { AbilityKey.OneMoreThing, 1 },
                 { AbilityKey.Antitoxin, 1 },
                 { AbilityKey.AdamantPotion, 1 },
                 { AbilityKey.HealingPotion, 1 },
@@ -94,17 +109,20 @@
             {
                 { AbilityKey.StrengthPotion, false },
                 { AbilityKey.SwiftnessPotion, false },
+                { AbilityKey.VigorPotion, false },
+                { AbilityKey.DamageResistPotion, false },
             });
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 20 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 15 },
-
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
 
@@ -133,33 +151,32 @@
                 { AbilityKey.MagicMissile, false },
                 { AbilityKey.CourageShanty, false },
                 { AbilityKey.Sneak, false },
+                { AbilityKey.Grapple, false },
             });
 
-            var ints = new Dictionary<string, int>
+            var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "FloorOneGoldMaxAmount", 1200 },
                 { "FloorOneHealingFountains", 2 },
-                { "FloorOneLootChests", 12 },
-                { "FloorOneClassCardChests", 8 },
+                { "FloorOneLootChests", 18 },
+                { "FloorOnePotionStand", 2 },
                 { "FloorTwoHealingFountains", 3 },
-                { "FloorTwoLootChests", 9 },
+                { "FloorTwoLootChests", 8 },
+                { "FloorTwoPotionStand", 1 },
                 { "FloorTwoGoldMaxAmount", 1500 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 0 },
-            };
-
-            var levelPropertiesRule = new LevelPropertiesModifiedRule(ints);
-
-            var heroImmunities = new List<EffectStateType> { EffectStateType.Diseased };
+            });
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
-                { BoardPieceId.HeroBard, heroImmunities },
-                { BoardPieceId.HeroGuardian, heroImmunities },
-                { BoardPieceId.HeroHunter, heroImmunities },
-                { BoardPieceId.HeroRogue, heroImmunities },
-                { BoardPieceId.HeroSorcerer, heroImmunities },
-                { BoardPieceId.HeroWarlock, heroImmunities },
+                { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Diseased } },
+                { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.Verochka, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.RatKing, new List<EffectStateType> { EffectStateType.Petrified, EffectStateType.Stunned, EffectStateType.Panic, EffectStateType.Frozen, EffectStateType.Disoriented, EffectStateType.Confused } },
                 { BoardPieceId.ElvenQueen, new List<EffectStateType> { EffectStateType.Petrified, EffectStateType.Stunned, EffectStateType.Disoriented, EffectStateType.Confused } },
@@ -218,7 +235,7 @@
                 EntranceDeckFloor2 = entranceDeckFloor2,
                 ExitDeckFloor2 = exitDeckFloor2,
                 BossDeck = bossDeck,
-                KeyHolderFloor1 = BoardPieceId.CavetrollBoss,
+                KeyHolderFloor1 = BoardPieceId.Cavetroll,
                 KeyHolderFloor2 = BoardPieceId.Sigataur,
                 Boss = BoardPieceId.Gorgon,
             };
@@ -234,11 +251,6 @@
             var pieceBehaviorsRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
             {
                 { BoardPieceId.Spider, new List<Behaviour> { Behaviour.AttackAndRetreat, Behaviour.Patrol, Behaviour.FleeToFOW, Behaviour.ChargeMove } },
-            });
-
-            var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
-            {
-                { BoardPieceId.Spider, new List<PieceType> { PieceType.Enemy, PieceType.Thief, PieceType.Canine } },
             });
 
             var cardClassRestrictionRule = new CardClassRestrictionOverriddenRule(new Dictionary<AbilityKey, BoardPieceId>
@@ -316,7 +328,6 @@
                 monsterDeckRule,
                 pieceAbilityRule,
                 pieceBehaviorsRule,
-                piecePieceTypeRule,
                 cardClassRestrictionRule,
                 enemyRespawnRule,
                 pieceUseWhenKilledRule,

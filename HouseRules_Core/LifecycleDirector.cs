@@ -36,15 +36,11 @@
                 postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(GameStartup_InitializeGame_Postfix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
-                    .GetDeclaredMethod("TryCreateRoom"),
+                original: AccessTools.Method(typeof(CreatingGameState), "TryCreateRoom"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_TryCreateRoom_Prefix)));
 
             harmony.Patch(
-                original: AccessTools
-                    .Inner(typeof(GameStateMachine), "CreatingGameState").GetTypeInfo()
-                    .GetDeclaredMethod("OnJoinedRoom"),
+                original: AccessTools.Method(typeof(CreatingGameState), "OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
 
             harmony.Patch(
@@ -236,6 +232,13 @@
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
         {
+            var createGameMode = Traverse.Create(_gameContext.gameStateMachine)
+                .Field<CreateGameMode>("createGameMode").Value;
+            if (createGameMode != CreateGameMode.Private)
+            {
+                return;
+            }
+
             ActivateRuleset();
             _isCreatingGame = true;
             OnPreGameCreated();
