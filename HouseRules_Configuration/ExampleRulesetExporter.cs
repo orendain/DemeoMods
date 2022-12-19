@@ -10,7 +10,7 @@
         internal static void ExportExampleRulesetsIfNeeded()
         {
             // Uncomment to export registered rulesets.
-             ExportRegisteredRuleset();
+            // ExportRegisteredRuleset();
         }
 
         private static void ExportRegisteredRuleset()
