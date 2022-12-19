@@ -119,12 +119,9 @@
       "Config": {
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
-        "Antitoxin": 1,
+        "DamageResistPotion": 1,
         "VigorPotion": 1,
         "ExtraActionPotion": 1,
-        "DamageResistPotion": 1,
-        "OneMoreThing": 1,
-        "AdamantPotion": 1,
         "HealingPotion": 1
       }
     },
@@ -135,11 +132,11 @@
           "GasLamp",
           "OilLamp",
           "VortexLamp",
-          "GasLamp",
+          "WaterLamp",
           "OilLamp",
           "VortexLamp",
           "OilLamp",
-          "OilLamp",
+          "WaterLamp",
           "GasLamp"
         ],
         "2": [
@@ -147,7 +144,7 @@
           "GasLamp",
           "GasLamp",
           "GasLamp",
-          "GasLamp",
+          "WaterLamp",
           "GasLamp",
           "GasLamp",
           "OilLamp",
@@ -159,7 +156,7 @@
           "IceLamp",
           "VortexLamp",
           "OilLamp",
-          "IceLamp",
+          "WaterLamp",
           "VortexLamp",
           "IceLamp"
         ]
@@ -169,11 +166,14 @@
       "Rule": "LevelPropertiesModified",
       "Config": {
         "FloorOneHealingFountains": 1,
-        "FloorOneLootChests": 11,
+        "FloorOneLootChests": 9,
+        "FloorOnePotionStand": 2,
         "FloorTwoHealingFountains": 1,
-        "FloorTwoLootChests": 14,
+        "FloorTwoLootChests": 11,
+        "FloorTwoPotionStand": 3,
         "FloorThreeHealingFountains": 1,
         "FloorThreeLootChests": 8,
+        "FloorThreePotionStand": 2,
         "FloorOneEndZoneSpikeMaxBudget": 12,
         "PacingSpikeSegmentFloorOneBudget": 12
       }
@@ -238,6 +238,7 @@
           {
             "Card": "ExplodingLampPlaceholder",
             "ReplenishFrequency": 1
+          },
           {
             "Card": "OilLamp",
             "ReplenishFrequency": 0
@@ -257,11 +258,7 @@
           {
             "Card": "DetectEnemies",
             "ReplenishFrequency": 0
-          },
-          {
-            "Card": "GrappleTotem",
-            "ReplenishFrequency": 1
-          },
+          }
         ],
         "HeroBard": [
           {

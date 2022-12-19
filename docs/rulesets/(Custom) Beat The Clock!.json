@@ -34,6 +34,11 @@
           "Piece": "HeroSorcerer",
           "Property": "StartHealth",
           "Value": 200.0
+        },
+        {
+          "Piece": "HeroWarlock",
+          "Property": "StartHealth",
+          "Value": 200.0
         }
       ]
     },

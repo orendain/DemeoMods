@@ -1,0 +1,18 @@
+{
+  "Name": "(Custom) Hoarders - Skirmish Only!",
+  "Description": "A large hand size but you may not get them fast enough.",
+  "Rules": [
+    {
+      "Rule": "CardEnergyFromAttackMultiplied",
+      "Config": 0.9
+    },
+    {
+      "Rule": "CardEnergyFromRecyclingMultiplied",
+      "Config": 1.5
+    },
+    {
+      "Rule": "CardLimitModified",
+      "Config": 22
+    }
+  ]
+}
