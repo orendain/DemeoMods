@@ -11,7 +11,7 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "PlayerLeap",
+            "Card": "Grapple",
             "ReplenishFrequency": 1
           }
         ],
@@ -167,8 +167,8 @@
         "FloorTwoLootChests": 12,
         "FloorTwoPotionStand": 2,
         "FloorThreeHealingFountains": 4,
-        "FloorThreeLootChests": 11,
-        "FloorThreePotionStand": 1
+        "FloorThreeLootChests": 10,
+        "FloorThreePotionStand": 2
       }
     },
     {

@@ -45,7 +45,7 @@
           "CoinFlip"
         ],
         "HeroSorcerer": [
-          "Bone"
+          "CoinFlip"
         ],
         "HeroWarlock": [
           "CoinFlip"
@@ -56,14 +56,14 @@
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
-          "Piece": "HeroGuardian",
-          "Property": "StartArmor",
-          "Value": 0.0
-        },
-        {
           "Piece": "HeroBarbarian",
           "Property": "MoveRange",
           "Value": 5.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartArmor",
+          "Value": 0.0
         },
         {
           "Piece": "HeroGuardian",
@@ -281,15 +281,11 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "PlayerLeap",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "GrapplingSmash",
             "ReplenishFrequency": 0
           },
           {
-            "Card": "ExplodingLampTotemPlaceholder",
+            "Card": "ExplodingLampPlaceholder",
             "ReplenishFrequency": 1
           },
           {

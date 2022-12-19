@@ -34,14 +34,6 @@
           {
             "Card": "DropChest",
             "ReplenishFrequency": 0
-          },
-          {
-            "Card": "Grapple",
-            "ReplenishFrequency": 1
-          },
-          {
-            "Card": "GrapplingSmash",
-            "ReplenishFrequency": 0
           }
         ],
         "HeroBard": [
@@ -197,11 +189,10 @@
         "ReplenishArmor": 1,
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
-        "VigorPotion": 1,
-        "DamageResistPotion": 1,
-        "ExtraActionPotion": 1,
-        "OneMoreThing": 1,
         "Antitoxin": 1,
+        "DamageResistPotion": 1,
+        "VigorPotion": 1,
+        "ExtraActionPotion": 1,
         "AdamantPotion": 1,
         "HealingPotion": 1
       }
@@ -213,11 +204,6 @@
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
           "Value": 15.0
-        },
-        {
-          "Piece": "HeroBarbarian",
-          "Property": "MoveRange",
-          "Value": 5.0
         },
         {
           "Piece": "HeroBard",
@@ -248,6 +234,11 @@
           "Piece": "HeroWarlock",
           "Property": "StartHealth",
           "Value": 15.0
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "MoveRange",
+          "Value": 5.0
         },
         {
           "Piece": "HeroBard",
@@ -325,6 +316,8 @@
         "HeroHunter": [
           "StrengthPotion",
           "SwiftnessPotion",
+          "DamageResistPotion",
+          "VigorPotion",
           "Bone",
           "Fireball",
           "Freeze",
@@ -349,7 +342,8 @@
           "Petrified"
         ],
         "HeroBard": [
-          "Weaken",
+          "Weaken1Turn",
+          "Weaken2Turns",
           "MarkOfAvalon"
         ],
         "HeroGuardian": [

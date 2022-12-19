@@ -14,6 +14,32 @@
     {
       "Rule": "StartCardsModified",
       "Config": {
+        "HeroBarbarian": [
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Electricity",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Fireball",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Fireball",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Sneak",
+            "ReplenishFrequency": 0
+          }
+        ],
         "HeroGuardian": [
           {
             "Card": "HealingPotion",
@@ -175,6 +201,27 @@
     {
       "Rule": "CardAdditionOverridden",
       "Config": {
+        "HeroBarbarian": [
+          "Bone",
+          "Fireball",
+          "Teleportation",
+          "RevealPath",
+          "Freeze",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "DamageResistPotion",
+          "VigorPotion",
+          "ExtraActionPotion",
+          "CallCompanion",
+          "WhirlwindAttack",
+          "LetItRain",
+          "WaterDive",
+          "HeavensFury",
+          "AdamantPotion",
+          "HealingPotion",
+          "WoodenBone",
+          "Torch"
+        ],
         "HeroGuardian": [
           "Bone",
           "Fireball",
@@ -183,6 +230,9 @@
           "Freeze",
           "StrengthPotion",
           "SwiftnessPotion",
+          "DamageResistPotion",
+          "VigorPotion",
+          "ExtraActionPotion",
           "CallCompanion",
           "WhirlwindAttack",
           "LetItRain",
@@ -201,6 +251,9 @@
           "Freeze",
           "StrengthPotion",
           "SwiftnessPotion",
+          "DamageResistPotion",
+          "VigorPotion",
+          "ExtraActionPotion",
           "CallCompanion",
           "WhirlwindAttack",
           "LetItRain",
@@ -219,6 +272,9 @@
           "Freeze",
           "StrengthPotion",
           "SwiftnessPotion",
+          "DamageResistPotion",
+          "VigorPotion",
+          "ExtraActionPotion",
           "CallCompanion",
           "WhirlwindAttack",
           "LetItRain",
@@ -237,6 +293,9 @@
           "Freeze",
           "StrengthPotion",
           "SwiftnessPotion",
+          "DamageResistPotion",
+          "VigorPotion",
+          "ExtraActionPotion",
           "CallCompanion",
           "WhirlwindAttack",
           "LetItRain",
@@ -255,6 +314,9 @@
           "Freeze",
           "StrengthPotion",
           "SwiftnessPotion",
+          "DamageResistPotion",
+          "VigorPotion",
+          "ExtraActionPotion",
           "CallCompanion",
           "WhirlwindAttack",
           "LetItRain",
@@ -273,6 +335,9 @@
           "Freeze",
           "StrengthPotion",
           "SwiftnessPotion",
+          "DamageResistPotion",
+          "VigorPotion",
+          "ExtraActionPotion",
           "CallCompanion",
           "WhirlwindAttack",
           "LetItRain",
@@ -318,6 +383,7 @@
     {
       "Rule": "BackstabConfigOverridden",
       "Config": [
+        "HeroBarbarian",
         "HeroGuardian",
         "HeroSorcerer",
         "HeroRogue",
@@ -335,7 +401,9 @@
         "Fireball": true,
         "Freeze": true,
         "Bone": true,
-        "WhirlwindAttack": true
+        "WhirlwindAttack": true,
+        "Grapple": true,
+        "GrapplingPush": true
       }
     },
     {
@@ -394,6 +462,9 @@
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
         "Antitoxin": 1,
+        "DamageResistPotion": 1,
+        "VigorPotion": 1,
+        "ExtraActionPotion": 1,
         "AdamantPotion": 1,
         "HealingPotion": 1,
         "OneMoreThing": 1
@@ -409,7 +480,9 @@
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
         "StrengthPotion": false,
-        "SwiftnessPotion": false
+        "SwiftnessPotion": false,
+        "DamageResistPotion": false,
+        "VigorPotion": false
       }
     },
     {
@@ -427,6 +500,13 @@
     {
       "Rule": "PieceAbilityListOverridden",
       "Config": {
+        "HeroBarbarian": [
+          "OneMoreThing",
+          "EarthShatter",
+          "Fireball",
+          "HurricaneAnthem",
+          "AbsorbMySoul"
+        ],
         "HeroGuardian": [
           "OneMoreThing",
           "EarthShatter",

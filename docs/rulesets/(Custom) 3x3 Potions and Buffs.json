@@ -9,11 +9,11 @@
         "ReplenishArmor": 1,
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
-        "Antitoxin": 1,
         "VigorPotion": 1,
         "ExtraActionPotion": 1,
         "DamageResistPotion": 1,
         "OneMoreThing": 1,
+        "Antitoxin": 1,
         "AdamantPotion": 1,
         "HealingPotion": 1
       }
@@ -24,7 +24,8 @@
         "StrengthPotion": false,
         "SwiftnessPotion": false,
         "VigorPotion": false,
-        "DamageResistPotion": false
+        "DamageResistPotion": false,
+        "OneMoreThing": false
       }
     }
   ]
