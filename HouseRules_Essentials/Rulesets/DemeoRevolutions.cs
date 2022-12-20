@@ -959,7 +959,6 @@
                 { AbilityKey.FretsOfFire, new List<int> { 4, 8, 4, 8 } },
                 { AbilityKey.GrapplingPush, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Petrify, new List<int> { 5, 5, 5, 5 } },
-                { AbilityKey.LeapHeavy, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.WeakeningShout, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.LeapHeavy, new List<int> { 5, 5, 5, 5 } },
             });
