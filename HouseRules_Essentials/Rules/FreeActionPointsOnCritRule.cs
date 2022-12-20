@@ -76,12 +76,20 @@ namespace HouseRules.Essentials.Rules
                     source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                 }
 
-                source.EnableEffectState(EffectStateType.Frenzy);
-                source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
+                source.EnableEffectState(EffectStateType.PlayerBerserk);
+                source.effectSink.SetStatusEffectDuration(EffectStateType.PlayerBerserk, 1);
             }
             else if (source.boardPieceId == BoardPieceId.HeroRogue)
             {
-                source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                if (currentAP < 1)
+                {
+                    source.EnableEffectState(EffectStateType.Invisibility);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.Invisibility, 2);
+                }
+                else
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                }
             }
             else if (source.boardPieceId == BoardPieceId.HeroBarbarian && !source.HasEffectState(EffectStateType.Enraged))
             {

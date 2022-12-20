@@ -190,7 +190,7 @@
                     for (int i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.SpawnRandomLamp)
+                        if (value.abilityKey == AbilityKey.ScrollElectricity)
                         {
                             int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                             hasPower = true;
@@ -224,7 +224,7 @@
                         Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
-                            abilityKey = AbilityKey.SpawnRandomLamp,
+                            abilityKey = AbilityKey.ScrollElectricity,
                             flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,
@@ -284,7 +284,7 @@
                     for (int i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.SpellPowerPotion)
+                        if (value.abilityKey == AbilityKey.DeathBeam)
                         {
                             int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                             hasPower = true;
@@ -318,7 +318,7 @@
                         Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
-                            abilityKey = AbilityKey.SpellPowerPotion,
+                            abilityKey = AbilityKey.DeathBeam,
                             flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,
@@ -378,7 +378,7 @@
                     for (int i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.Weaken)
+                        if (value.abilityKey == AbilityKey.WeakeningShout)
                         {
                             int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                             hasPower = true;
@@ -412,7 +412,7 @@
                         Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
-                            abilityKey = AbilityKey.Weaken,
+                            abilityKey = AbilityKey.WeakeningShout,
                             flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,

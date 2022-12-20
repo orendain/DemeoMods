@@ -51,7 +51,7 @@
                 { "FloorTwoHealingFountains", 2 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
-                { "FloorTwoLootChests", 4 },
+                { "FloorTwoLootChests", 3 },
                 { "FloorTwoGoldMaxAmount", 600 },
                 { "FloorTwoElvenSummoners", 1 },
                 { "FloorTwoBeggars", 1 },

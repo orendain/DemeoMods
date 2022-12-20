@@ -65,25 +65,7 @@ namespace HouseRules.Essentials.Rules
             }
 
             Inventory.Item value;
-            if (source.boardPieceId == BoardPieceId.HeroRogue)
-            {
-                for (int i = 0; i < source.inventory.Items.Count; i++)
-                {
-                    value = source.inventory.Items[i];
-                    if (value.abilityKey == AbilityKey.Sneak)
-                    {
-                        if (value.IsReplenishing)
-                        {
-                            value.flags &= (Inventory.ItemFlag)(-3);
-                            source.inventory.Items[i] = value;
-                            source.AddGold(0);
-                        }
-
-                        break;
-                    }
-                }
-            }
-            else if (source.boardPieceId == BoardPieceId.HeroBarbarian)
+            if (source.boardPieceId == BoardPieceId.HeroBarbarian)
             {
                 for (int i = 0; i < source.inventory.Items.Count; i++)
                 {

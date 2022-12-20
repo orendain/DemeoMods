@@ -57,7 +57,8 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 4 },
@@ -163,7 +164,6 @@
                 { BoardPieceId.RootMage, 1 },
                 { BoardPieceId.KillerBee, 2 },
                 { BoardPieceId.ChestGoblin, 1 },
-                { BoardPieceId.EarthElemental, 1 },
                 { BoardPieceId.Sigataur, 1 },
                 { BoardPieceId.GiantSlime, 1 },
                 { BoardPieceId.FireElemental, 1 },
@@ -488,7 +488,6 @@
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.IceImmunePotion,
                         AbilityKey.FireImmunePotion,
@@ -530,7 +529,6 @@
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.LuckPotion,
                         AbilityKey.IceImmunePotion,
@@ -572,7 +570,6 @@
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.ScrollElectricity,
                         AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.IceImmunePotion,
@@ -614,7 +611,6 @@
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.ScrollElectricity,
                         AbilityKey.LuckPotion,
                         AbilityKey.FireImmunePotion,
                         AbilityKey.ExtraActionPotion,
@@ -657,7 +653,6 @@
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.LuckPotion,
                         AbilityKey.IceImmunePotion,
@@ -739,7 +734,6 @@
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.HealingPotion,
-                        AbilityKey.ScrollElectricity,
                         AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.IceImmunePotion,
@@ -838,11 +832,20 @@
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.PlayerBerserk,
+                    durationTurns = 1,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
             });
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.EnemyJavelin } },
+                { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.Grapple } },
                 { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit, AbilityKey.Grab, AbilityKey.LeapHeavy } },
                 { BoardPieceId.RootMage, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportEnemy, AbilityKey.EnemyFlashbang } },
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold, AbilityKey.Net } },
@@ -907,7 +910,7 @@
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods, AbilityKey.DropChest } },
-                { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.Explosion, AbilityKey.DeathDropJavelin } },
+                { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.TelekineticBurst } },
             });
 
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
@@ -921,9 +924,11 @@
                 { AbilityKey.MinionCharge, false },
                 { AbilityKey.SpellPowerPotion, false },
                 { AbilityKey.PVPBlink, false },
-                { AbilityKey.Weaken, false },
+                { AbilityKey.WeakeningShout, false },
                 { AbilityKey.LeapHeavy, false },
                 { AbilityKey.SpawnRandomLamp, false },
+                { AbilityKey.ScrollElectricity, false },
+                { AbilityKey.DeathBeam, false },
                 { AbilityKey.FretsOfFire, false },
                 { AbilityKey.ExplodingGasLamp, false },
                 { AbilityKey.ExplodingOilLamp, false },
@@ -948,10 +953,12 @@
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Arrow, new List<int> { 3, 8, 3, 8 } },
                 { AbilityKey.Electricity, new List<int> { 3, 5, 1, 2 } },
-                { AbilityKey.PVPBlink, new List<int> { 6, 12, 6, 12 } },
+                { AbilityKey.PVPBlink, new List<int> { 7, 14, 7, 14 } },
                 { AbilityKey.FretsOfFire, new List<int> { 4, 8, 4, 8 } },
                 { AbilityKey.GrapplingPush, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Petrify, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.LeapHeavy, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.WeakeningShout, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.LeapHeavy, new List<int> { 5, 5, 5, 5 } },
             });
 
@@ -964,6 +971,7 @@
                 { BoardPieceId.HeroSorcerer, AbilityKey.WaterBottle },
                 { BoardPieceId.HeroWarlock, AbilityKey.SpellPowerPotion },
                 { BoardPieceId.HeroBard, AbilityKey.PanicPowder },
+                { BoardPieceId.HeroBarbarian, AbilityKey.SpawnRandomLamp },
             });
 
             var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue, BoardPieceId.HeroWarlock });
@@ -997,6 +1005,8 @@
                 { AbilityKey.EnemyFlashbang, 2 },
                 { AbilityKey.Petrify, 2 },
                 { AbilityKey.Net, 2 },
+                { AbilityKey.Grapple, 2 },
+                { AbilityKey.ElvenSummonerDeflect, 4 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
