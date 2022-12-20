@@ -54,10 +54,10 @@
             if ((source.IsPlayer() || source.IsBot() || source.IsWarlockMinion()) && mainTarget != null && mainTarget.boardPieceId == BoardPieceId.WizardBoss)
             {
                 // Serpent Lord boss gets ONE damage resist and is immune to damage while invisible
-                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
+                mainTarget.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
                 if (damageResist < 1)
                 {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
+                    mainTarget.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
                 }
 
                 if (mainTarget.HasEffectState(EffectStateType.Invisible))
@@ -131,9 +131,7 @@
                     source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 69);
                     source.EnableEffectState(EffectStateType.Courageous);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 69);
-                    low = 4;
-                    high = 6;
-                    nextPhase = Random.Range(4, 6);
+                    return;
                 }
                 else if (source.GetHealth() < (source.GetMaxHealth() / 2))
                 {
