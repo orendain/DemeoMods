@@ -842,6 +842,8 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
+                    healthBoost = 2,
+                    applyAfterDissipate = EffectStateType.Thorns,
                     tickWhen = StatusEffectsConfig.TickWhen.Never,
                 },
                 new StatusEffectData

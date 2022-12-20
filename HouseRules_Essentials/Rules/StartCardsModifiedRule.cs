@@ -103,8 +103,6 @@
                             if (value.IsReplenishing)
                             {
                                 howMany -= 1;
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                                 if (howMany < 1)
                                 {
@@ -116,8 +114,6 @@
                             }
                             else
                             {
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -150,8 +146,6 @@
                             if (value.IsReplenishing)
                             {
                                 howMany -= 1;
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                                 if (howMany < 1)
                                 {
@@ -163,8 +157,6 @@
                             }
                             else
                             {
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -197,8 +189,6 @@
                             if (value.IsReplenishing)
                             {
                                 howMany -= 1;
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                                 if (howMany < 1)
                                 {
@@ -210,8 +200,6 @@
                             }
                             else
                             {
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -244,8 +232,6 @@
                             if (value.IsReplenishing)
                             {
                                 howMany -= 1;
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                                 if (howMany < 1)
                                 {
@@ -257,8 +243,6 @@
                             }
                             else
                             {
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -291,8 +275,6 @@
                             if (value.IsReplenishing)
                             {
                                 howMany -= 1;
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                                 if (howMany < 1)
                                 {
@@ -304,8 +286,6 @@
                             }
                             else
                             {
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -338,8 +318,6 @@
                             if (value.IsReplenishing)
                             {
                                 howMany -= 1;
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                                 if (howMany < 1)
                                 {
@@ -351,8 +329,6 @@
                             }
                             else
                             {
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
@@ -385,8 +361,6 @@
                             if (value.IsReplenishing)
                             {
                                 howMany -= 1;
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                                 if (howMany < 1)
                                 {
@@ -398,8 +372,6 @@
                             }
                             else
                             {
-                                piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                piece.EnableEffectState(EffectStateType.ExtraEnergy);
                                 piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                             }
 
