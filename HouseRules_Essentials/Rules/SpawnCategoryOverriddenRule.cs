@@ -62,7 +62,7 @@
                     spawnCategories[i] = new SpawnCategoryData
                     {
                         BoardPieceId = spawnCategories[i].BoardPieceId,
-                        EnemyWeight = EnemyWeight.Light, // spawnCategories[i].EnemyWeight,
+                        EnemyWeight = spawnCategories[i].EnemyWeight,
                         IsSpawningEnabled = true,
                         IsAllowedKeyholder = spawnCategories[i].IsAllowedKeyholder,
                         IsBossSynergyUnit = spawnCategories[i].IsBossSynergyUnit,
@@ -70,8 +70,8 @@
                         MaxPerDeck = spawnModifications[spawnCategories[i].BoardPieceId][0],
                         PreFill = spawnModifications[spawnCategories[i].BoardPieceId][1],
                         FirstAllowedLevelIndex = spawnModifications[spawnCategories[i].BoardPieceId][2],
-                        IsRedrawEnabled = false, // spawnCategories[i].IsRedrawEnabled,
-                        IsPriorityUnit = spawnCategories[i].IsPriorityUnit,
+                        IsRedrawEnabled = spawnCategories[i].IsRedrawEnabled,
+                        IsPriorityUnit = true,
                     };
                 }
                 else

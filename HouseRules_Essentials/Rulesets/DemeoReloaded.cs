@@ -19,11 +19,9 @@
                 { BoardPieceId.LargeCorruption, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileArcher, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ReptileMutantWizard, new List<int> { 3, 1, 1 } },
-                { BoardPieceId.SandScorpion, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.ServantOfAlfaragh, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.ScorpionSandPile, new List<int> { 3, 1, 1 } },
                 { BoardPieceId.EmptySandPile, new List<int> { 2, 1, 1 } },
-                { BoardPieceId.GoldSandPile, new List<int> { 2, 1, 1 } },
+                { BoardPieceId.GoldSandPile, new List<int> { 1, 1, 1 } },
                 { BoardPieceId.SmallCorruption, new List<int> { 4, 1, 1 } },
                 { BoardPieceId.GeneralRonthian, new List<int> { 2, 1, 1 } },
                 { BoardPieceId.Wyvern, new List<int> { 2, 1, 2 } },
@@ -673,11 +671,11 @@
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.334f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
-                "SewersFloor01",
+                "ElvenFloor17",
                 "ForestShopFloor",
-                "ForestFloor02",
-                "ShopFloor02",
-                "ElvenFloor14",
+                "ForestFloor01",
+                "SewersShopFloor",
+                "SewersFloor01",
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
