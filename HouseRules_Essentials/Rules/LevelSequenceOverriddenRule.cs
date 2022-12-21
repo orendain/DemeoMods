@@ -32,13 +32,13 @@
                     { "ForestFloor01", "ForestFloor02", "ForestFloor07", "ForestFloor08" };
 
         private readonly List<string> forestFloors2 = new List<string>
-                    { "ForestFloor03", "ForestFloor06", "ForestFloor07", "ForestFloor09" };
+                    { "ForestFloor03", "ForestFloor07", "ForestFloor01", "ForestFloor02" };
 
         private readonly List<string> sewersFloors1 = new List<string>
                     { "SewersFloor01", "SewersFloor07", "SewersFloor09", "SewersFloor10" };
 
         private readonly List<string> sewersFloors2 = new List<string>
-                    { "SewersFloor08", "SewersFloor09", "SewersFloor10", "SewersFloor11", "SewersFloor12" };
+                    { "SewersFloor09", "SewersFloor10", "SewersFloor11", "SewersFloor12" };
 
         private readonly List<string> desertFloors1 = new List<string>
                     { "DesertFloor10", "DesertFloor06" };
@@ -50,7 +50,7 @@
                     { "TownsFloor04", "TownsFloor05", "TownsFloor06" };
 
         private readonly List<string> townsFloors2 = new List<string>
-                    { "TownsFloor01", "TownsFloor02", "TownsFloor03", "TownsFloor08" };
+                    { "TownsFloor08", "TownsFloor04", "TownsFloor05", "TownsFloor06" };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LevelSequenceOverriddenRule"/> class.
