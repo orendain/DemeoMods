@@ -486,11 +486,6 @@
                 // 2 : abilityDisabledOnStatusEffect
                 // 3 : disableCooldown
                 Inventory.ItemFlag flags = 0;
-                if (card.ReplenishFrequency > 0)
-                {
-                    Traverse.Create(inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                    flags = (Inventory.ItemFlag)1;
-                }
 
                 if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
                 {
@@ -499,6 +494,12 @@
                     {
                         continue;
                     }
+                }
+
+                if (card.ReplenishFrequency > 0)
+                {
+                    Traverse.Create(inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                    flags = (Inventory.ItemFlag)1;
                 }
 
                 inventory.Items.Add(new Inventory.Item

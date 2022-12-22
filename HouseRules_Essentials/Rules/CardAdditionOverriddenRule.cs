@@ -10,6 +10,8 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
+    using UnityEngine;
+    using Random = UnityEngine.Random;
 
     public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
@@ -173,35 +175,152 @@
                 return;
             }
 
-            Random rand = new Random();
-            var replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
-            if (replacementAbilityKey == AbilityKey.EnergyPotion)
+            int rand;
+            AbilityKey replacementAbilityKey;
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                _numEnergy++;
-                if (_numEnergy > 2)
+                int randNum = Random.Range(1, 101);
+                if (randNum < 51)
                 {
-                    while (replacementAbilityKey == AbilityKey.EnergyPotion)
+                    rand = Random.Range(replacementAbilityKeys.Count - 15, replacementAbilityKeys.Count);
+                }
+                else if (randNum > 98)
+                {
+                    // Invisibility and Vigor Potions
+                    rand = Random.Range(replacementAbilityKeys.Count - 22, replacementAbilityKeys.Count - 21);
+                }
+                else if (randNum > 95)
+                {
+                    // Energy and Damage Resist Potions
+                    rand = Random.Range(replacementAbilityKeys.Count - 24, replacementAbilityKeys.Count - 23);
+                }
+                else if (randNum > 90)
+                {
+                    // Rejuvenation and Reveal Path
+                    rand = Random.Range(replacementAbilityKeys.Count - 26, replacementAbilityKeys.Count - 25);
+                }
+                else if (randNum > 75)
+                {
+                    if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)
                     {
-                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
+                        rand = Random.Range(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
                     }
-
-                    if (replacementAbilityKey == AbilityKey.DamageResistPotion)
+                    else
                     {
-                        if (_numAlags > 3)
-                        {
-                            while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
-                            {
-                                replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
-                            }
+                        rand = Random.Range(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 16);
+                    }
+                }
+                else
+                {
+                    rand = Random.Range(0, replacementAbilityKeys.Count - 26);
+                }
 
-                            if (replacementAbilityKey == AbilityKey.Rejuvenation)
+                replacementAbilityKey = replacementAbilityKeys[rand];
+                if (replacementAbilityKey == AbilityKey.EnergyPotion)
+                {
+                    _numEnergy++;
+                    if (_numEnergy > 2)
+                    {
+                        while (replacementAbilityKey == AbilityKey.EnergyPotion)
+                        {
+                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
+                            replacementAbilityKey = replacementAbilityKeys[rand];
+                        }
+
+                        if (replacementAbilityKey == AbilityKey.DamageResistPotion)
+                        {
+                            if (_numAlags > 3)
                             {
-                                _numRejuvs++;
-                                if (_numRejuvs > 2)
+                                while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
                                 {
-                                    while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
+                                    rand = Random.Range(0, replacementAbilityKeys.Count - 21);
+                                    replacementAbilityKey = replacementAbilityKeys[rand];
+                                }
+
+                                if (replacementAbilityKey == AbilityKey.Rejuvenation)
+                                {
+                                    _numRejuvs++;
+                                    if (_numRejuvs > 2)
                                     {
-                                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
+                                        while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
+                                        {
+                                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
+                                            replacementAbilityKey = replacementAbilityKeys[rand];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (replacementAbilityKey == AbilityKey.DamageResistPotion)
+                {
+                    _numAlags++;
+                    if (_numAlags > 3)
+                    {
+                        while (replacementAbilityKey == AbilityKey.DamageResistPotion)
+                        {
+                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
+                            replacementAbilityKey = replacementAbilityKeys[rand];
+                        }
+
+                        if (replacementAbilityKey == AbilityKey.EnergyPotion)
+                        {
+                            if (_numEnergy > 2)
+                            {
+                                while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
+                                {
+                                    rand = Random.Range(0, replacementAbilityKeys.Count - 21);
+                                    replacementAbilityKey = replacementAbilityKeys[rand];
+                                }
+
+                                if (replacementAbilityKey == AbilityKey.Rejuvenation)
+                                {
+                                    _numRejuvs++;
+                                    if (_numRejuvs > 2)
+                                    {
+                                        while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
+                                        {
+                                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
+                                            replacementAbilityKey = replacementAbilityKeys[rand];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (replacementAbilityKey == AbilityKey.Rejuvenation)
+                {
+                    _numRejuvs++;
+                    if (_numRejuvs > 2)
+                    {
+                        while (replacementAbilityKey == AbilityKey.Rejuvenation)
+                        {
+                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
+                            replacementAbilityKey = replacementAbilityKeys[rand];
+                        }
+
+                        if (replacementAbilityKey == AbilityKey.EnergyPotion)
+                        {
+                            if (_numEnergy > 2)
+                            {
+                                while (replacementAbilityKey == AbilityKey.Rejuvenation || replacementAbilityKey == AbilityKey.EnergyPotion)
+                                {
+                                    rand = Random.Range(0, replacementAbilityKeys.Count - 21);
+                                    replacementAbilityKey = replacementAbilityKeys[rand];
+                                }
+
+                                if (replacementAbilityKey == AbilityKey.DamageResistPotion)
+                                {
+                                    _numAlags++;
+                                    if (_numAlags > 3)
+                                    {
+                                        while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
+                                        {
+                                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
+                                            replacementAbilityKey = replacementAbilityKeys[rand];
+                                        }
                                     }
                                 }
                             }
@@ -209,73 +328,10 @@
                     }
                 }
             }
-            else if (replacementAbilityKey == AbilityKey.DamageResistPotion)
+            else
             {
-                _numAlags++;
-                if (_numAlags > 3)
-                {
-                    while (replacementAbilityKey == AbilityKey.DamageResistPotion)
-                    {
-                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
-                    }
-
-                    if (replacementAbilityKey == AbilityKey.EnergyPotion)
-                    {
-                        if (_numEnergy > 2)
-                        {
-                            while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
-                            {
-                                replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
-                            }
-
-                            if (replacementAbilityKey == AbilityKey.Rejuvenation)
-                            {
-                                _numRejuvs++;
-                                if (_numRejuvs > 2)
-                                {
-                                    while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
-                                    {
-                                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else if (replacementAbilityKey == AbilityKey.Rejuvenation)
-            {
-                _numRejuvs++;
-                if (_numRejuvs > 2)
-                {
-                    while (replacementAbilityKey == AbilityKey.Rejuvenation)
-                    {
-                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
-                    }
-
-                    if (replacementAbilityKey == AbilityKey.EnergyPotion)
-                    {
-                        if (_numEnergy > 2)
-                        {
-                            while (replacementAbilityKey == AbilityKey.Rejuvenation || replacementAbilityKey == AbilityKey.EnergyPotion)
-                            {
-                                replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
-                            }
-
-                            if (replacementAbilityKey == AbilityKey.DamageResistPotion)
-                            {
-                                _numAlags++;
-                                if (_numAlags > 3)
-                                {
-                                    while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
-                                    {
-                                        replacementAbilityKey = replacementAbilityKeys.ElementAt(rand.Next(replacementAbilityKeys.Count));
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                rand = Random.Range(0, replacementAbilityKeys.Count);
+                replacementAbilityKey = replacementAbilityKeys[rand];
             }
 
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
