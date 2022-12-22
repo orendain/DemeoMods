@@ -10,7 +10,6 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
     using Random = UnityEngine.Random;
 
     public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
@@ -24,9 +23,9 @@
         private static bool _isWaterBottleChest;
         private static bool _isVortexDustChest;
         private static int _numPlayers;
-        private static int _numEnergy;
+        private static int _numVigor;
         private static int _numAlags;
-        private static int _numRejuvs;
+        private static int _numEnergy;
 
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
 
@@ -43,7 +42,13 @@
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(GameContext gameContext)
+        {
+            _numAlags = 0;
+            _numEnergy = 0;
+            _numVigor = 0;
+            _isActivated = false;
+        }
 
         private static void Patch(Harmony harmony)
         {
@@ -182,151 +187,115 @@
                 int randNum = Random.Range(1, 101);
                 if (randNum < 51)
                 {
+                    // Class cards
                     rand = Random.Range(replacementAbilityKeys.Count - 15, replacementAbilityKeys.Count);
                 }
-                else if (randNum > 98)
+                else if (randNum > 97)
                 {
-                    // Invisibility and Vigor Potions
-                    rand = Random.Range(replacementAbilityKeys.Count - 22, replacementAbilityKeys.Count - 21);
+                    if (_numVigor < 5)
+                    {
+                        // Invisibility, Vigor Potion, and Reveal Path
+                        _numVigor++;
+                        rand = Random.Range(replacementAbilityKeys.Count - 24, replacementAbilityKeys.Count - 21);
+                    }
+                    else if (_numAlags < 4)
+                    {
+                        // Rejuv and Damage Resist Potions
+                        _numAlags++;
+                        rand = Random.Range(replacementAbilityKeys.Count - 26, replacementAbilityKeys.Count - 24);
+                    }
+                    else if (_numEnergy < 2)
+                    {
+                        // Energy
+                        _numEnergy++;
+                        rand = replacementAbilityKeys.Count - 27;
+                        EssentialsMod.Logger.Msg($"Energy [{rand}]");
+                    }
+                    else
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                        {
+                            // Casters can get Magic Potions but not Strength
+                            rand = Random.Range(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
+                        }
+                        else
+                        {
+                            // Melee can get Strength Potions but not Magic
+                            rand = Random.Range(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 16);
+                        }
+                    }
                 }
-                else if (randNum > 95)
+                else if (randNum > 92)
                 {
-                    // Energy and Damage Resist Potions
-                    rand = Random.Range(replacementAbilityKeys.Count - 24, replacementAbilityKeys.Count - 23);
+                    if (_numAlags < 4)
+                    {
+                        // Rejuv and Damage Resist Potions
+                        _numAlags++;
+                        rand = Random.Range(replacementAbilityKeys.Count - 26, replacementAbilityKeys.Count - 24);
+                    }
+                    else if (_numEnergy < 2)
+                    {
+                        // Energy
+                        _numEnergy++;
+                        rand = replacementAbilityKeys.Count - 27;
+                    }
+                    else
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                        {
+                            // Casters can get Magic Potions but not Strength
+                            rand = Random.Range(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
+                        }
+                        else
+                        {
+                            // Melee can get Strength Potions but not Magic
+                            rand = Random.Range(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 16);
+                        }
+                    }
                 }
-                else if (randNum > 90)
+                else if (randNum > 80)
                 {
-                    // Rejuvenation and Reveal Path
-                    rand = Random.Range(replacementAbilityKeys.Count - 26, replacementAbilityKeys.Count - 25);
+                    if (_numEnergy < 2)
+                    {
+                        // Energy
+                        _numEnergy++;
+                        rand = replacementAbilityKeys.Count - 27;
+                    }
+                    else
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                        {
+                            // Casters can get Magic Potions but not Strength
+                            rand = Random.Range(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
+                        }
+                        else
+                        {
+                            // Melee can get Strength Potions but not Magic
+                            rand = Random.Range(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 16);
+                        }
+                    }
                 }
                 else if (randNum > 75)
                 {
+                    // Very good Potions/Cards
                     if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)
                     {
+                        // Casters can get Magic Potions but not Strength
                         rand = Random.Range(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
                     }
                     else
                     {
+                        // Melee can get Strength Potions but not Magic
                         rand = Random.Range(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 16);
                     }
                 }
                 else
                 {
-                    rand = Random.Range(0, replacementAbilityKeys.Count - 26);
+                    // Standard cards
+                    rand = Random.Range(0, replacementAbilityKeys.Count - 27);
                 }
 
                 replacementAbilityKey = replacementAbilityKeys[rand];
-                if (replacementAbilityKey == AbilityKey.EnergyPotion)
-                {
-                    _numEnergy++;
-                    if (_numEnergy > 2)
-                    {
-                        while (replacementAbilityKey == AbilityKey.EnergyPotion)
-                        {
-                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
-                            replacementAbilityKey = replacementAbilityKeys[rand];
-                        }
-
-                        if (replacementAbilityKey == AbilityKey.DamageResistPotion)
-                        {
-                            if (_numAlags > 3)
-                            {
-                                while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
-                                {
-                                    rand = Random.Range(0, replacementAbilityKeys.Count - 21);
-                                    replacementAbilityKey = replacementAbilityKeys[rand];
-                                }
-
-                                if (replacementAbilityKey == AbilityKey.Rejuvenation)
-                                {
-                                    _numRejuvs++;
-                                    if (_numRejuvs > 2)
-                                    {
-                                        while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
-                                        {
-                                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
-                                            replacementAbilityKey = replacementAbilityKeys[rand];
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                else if (replacementAbilityKey == AbilityKey.DamageResistPotion)
-                {
-                    _numAlags++;
-                    if (_numAlags > 3)
-                    {
-                        while (replacementAbilityKey == AbilityKey.DamageResistPotion)
-                        {
-                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
-                            replacementAbilityKey = replacementAbilityKeys[rand];
-                        }
-
-                        if (replacementAbilityKey == AbilityKey.EnergyPotion)
-                        {
-                            if (_numEnergy > 2)
-                            {
-                                while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion)
-                                {
-                                    rand = Random.Range(0, replacementAbilityKeys.Count - 21);
-                                    replacementAbilityKey = replacementAbilityKeys[rand];
-                                }
-
-                                if (replacementAbilityKey == AbilityKey.Rejuvenation)
-                                {
-                                    _numRejuvs++;
-                                    if (_numRejuvs > 2)
-                                    {
-                                        while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
-                                        {
-                                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
-                                            replacementAbilityKey = replacementAbilityKeys[rand];
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                else if (replacementAbilityKey == AbilityKey.Rejuvenation)
-                {
-                    _numRejuvs++;
-                    if (_numRejuvs > 2)
-                    {
-                        while (replacementAbilityKey == AbilityKey.Rejuvenation)
-                        {
-                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
-                            replacementAbilityKey = replacementAbilityKeys[rand];
-                        }
-
-                        if (replacementAbilityKey == AbilityKey.EnergyPotion)
-                        {
-                            if (_numEnergy > 2)
-                            {
-                                while (replacementAbilityKey == AbilityKey.Rejuvenation || replacementAbilityKey == AbilityKey.EnergyPotion)
-                                {
-                                    rand = Random.Range(0, replacementAbilityKeys.Count - 21);
-                                    replacementAbilityKey = replacementAbilityKeys[rand];
-                                }
-
-                                if (replacementAbilityKey == AbilityKey.DamageResistPotion)
-                                {
-                                    _numAlags++;
-                                    if (_numAlags > 3)
-                                    {
-                                        while (replacementAbilityKey == AbilityKey.DamageResistPotion || replacementAbilityKey == AbilityKey.EnergyPotion || replacementAbilityKey == AbilityKey.Rejuvenation)
-                                        {
-                                            rand = Random.Range(0, replacementAbilityKeys.Count - 21);
-                                            replacementAbilityKey = replacementAbilityKeys[rand];
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
             else
             {
