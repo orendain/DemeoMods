@@ -278,11 +278,14 @@
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 9 },
                 { "FloorOneGoldMaxAmount", 0 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 0 },
                 { "FloorTwoMerchant", 0 },
                 { "FloorTwoLootChests", 9 },
                 { "FloorTwoGoldMaxAmount", 0 },
+                { "FloorTwoElvenSummoners", 0 },
+                { "FloorThreeElvenSummoners", 0 },
             });
 
             return Ruleset.NewInstance(

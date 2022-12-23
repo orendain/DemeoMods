@@ -288,9 +288,17 @@
                 },
             });
 
+            var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            {
+                { "FloorOneElvenSummoners", 0 },
+                { "FloorTwoElvenSummoners", 0 },
+                { "FloorThreeElvenSummoners", 0 },
+            });
+
             return Ruleset.NewInstance(
                 name,
                 description,
+                levelPropertiesRule,
                 abilityDamageRule,
                 startingCardsRule,
                 allowedCardsRule,

@@ -22,10 +22,13 @@
               { "BigGoldPileChance", 100 },
               { "FloorOneHealingFountains", 2 },
               { "FloorOneLootChests", 4 },
+              { "FloorOneElvenSummoners", 0 },
               { "FloorTwoHealingFountains", 3 },
               { "FloorTwoLootChests", 5 },
+              { "FloorTwoElvenSummoners", 0 },
               { "FloorThreeHealingFountains", 2 },
               { "FloorThreeLootChests", 2 },
+              { "FloorThreeElvenSummoners", 0 },
             });
 
             return Ruleset.NewInstance(

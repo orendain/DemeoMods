@@ -85,12 +85,15 @@
                 { "FloorOneHealingFountains", 2 },
                 { "FloorOneLootChests", 10 },
                 { "FloorOnePotionStand", 1 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorTwoHealingFountains", 4 },
                 { "FloorTwoLootChests", 12 },
                 { "FloorTwoPotionStand", 2 },
+                { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 4 },
                 { "FloorThreeLootChests", 10 },
                 { "FloorThreePotionStand", 2 },
+                { "FloorThreeElvenSummoners", 0 },
             });
 
             var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>

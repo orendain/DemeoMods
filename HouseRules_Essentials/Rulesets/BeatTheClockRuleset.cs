@@ -27,7 +27,10 @@
             var levelRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "FloorOneLootChests", 15 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorTwoLootChests", 15 },
+                { "FloorTwoElvenSummoners", 0 },
+                { "FloorThreeElvenSummoners", 0 },
             });
 
             return Ruleset.NewInstance(

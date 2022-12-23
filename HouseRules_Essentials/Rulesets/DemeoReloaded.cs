@@ -686,15 +686,18 @@
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
                 { "FloorOneGoldMaxAmount", 550 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 0 },
                 { "FloorTwoLootChests", 3 },
                 { "FloorTwoGoldMaxAmount", 750 },
+                { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 1 },
+                { "FloorThreeElvenSummoners", 0 },
             });
 
             return Ruleset.NewInstance(

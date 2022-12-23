@@ -160,12 +160,15 @@
                 { "FloorOneHealingFountains", 2 },
                 { "FloorOneLootChests", 18 },
                 { "FloorOnePotionStand", 2 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorTwoHealingFountains", 3 },
                 { "FloorTwoLootChests", 8 },
                 { "FloorTwoPotionStand", 1 },
+                { "FloorTwoElvenSummoners", 0 },
                 { "FloorTwoGoldMaxAmount", 1500 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 0 },
+                { "FloorThreeElvenSummoners", 0 },
             });
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>

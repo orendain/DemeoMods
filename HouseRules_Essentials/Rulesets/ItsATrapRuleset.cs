@@ -236,18 +236,22 @@
                 { "FloorOneHealingFountains", 1 },
                 { "FloorOneLootChests", 9 },
                 { "FloorOnePotionStand", 2 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoLootChests", 11 },
                 { "FloorTwoPotionStand", 3 },
+                { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 8 },
                 { "FloorThreePotionStand", 2 },
+                { "FloorThreeElvenSummoners", 0 },
                 { "FloorOneEndZoneSpikeMaxBudget", 12 },
                 { "PacingSpikeSegmentFloorOneBudget", 12 },
             });
 
             var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
+                { AbilityKey.MagicPotion, 1 },
                 { AbilityKey.StrengthPotion, 1 },
                 { AbilityKey.SwiftnessPotion, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
@@ -259,51 +263,6 @@
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.BoobyTrap, false },
-            });
-
-            var lampTypesRule = new LampTypesOverriddenRule(new Dictionary<int, List<BoardPieceId>>
-            {
-                {
-                    1, new List<BoardPieceId>
-                {
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.VortexLamp,
-                    BoardPieceId.WaterLamp,
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.VortexLamp,
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.WaterLamp,
-                    BoardPieceId.GasLamp,
-                }
-                },
-                {
-                    2, new List<BoardPieceId>
-                {
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.WaterLamp,
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.GasLamp,
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.OilLamp,
-                }
-                },
-                {
-                    3, new List<BoardPieceId>
-                {
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.IceLamp,
-                    BoardPieceId.VortexLamp,
-                    BoardPieceId.OilLamp,
-                    BoardPieceId.WaterLamp,
-                    BoardPieceId.VortexLamp,
-                    BoardPieceId.IceLamp,
-                }
-                },
             });
 
             var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
@@ -358,18 +317,71 @@
                 { TileEffect.Target, 0 },
             });
 
+            /*var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
+            {
+                { BoardPieceId.Torch, new List<PieceType> { PieceType.Prop, PieceType.UpdateFogOfWar, PieceType.ShowNameplate, PieceType.ShowHealthbar } },
+                { BoardPieceId.EyeOfAvalon, new List<PieceType> { PieceType.Prop, PieceType.UpdateFogOfWar, PieceType.Immovable, PieceType.ShowHealthbar, PieceType.ShowNameplate } },
+                { BoardPieceId.HealingBeacon, new List<PieceType> { PieceType.Prop, PieceType.Bot, PieceType.ShowNameplate, PieceType.ShowHealthbar } },
+            });
+
+            var lampTypesRule = new LampTypesOverriddenRule(new Dictionary<int, List<BoardPieceId>>
+            {
+                {
+                    1, new List<BoardPieceId>
+                    {
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.VortexLamp,
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.VortexLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.HealingBeacon,
+                    }
+                },
+                {
+                    2, new List<BoardPieceId>
+                    {
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.HealingBeacon,
+                    }
+                },
+                {
+                    3, new List<BoardPieceId>
+                    {
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.IceLamp,
+                        BoardPieceId.VortexLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.IceLamp,
+                        BoardPieceId.VortexLamp,
+                        BoardPieceId.HealingBeacon,
+                    }
+                },
+            });*/
+
             return Ruleset.NewInstance(
                 name,
                 description,
                 abilityActionCostRule,
                 allowedCardsRule,
                 aoePotions,
-                lampTypesRule,
                 levelPropertiesRule,
                 piecesAdjustedRule,
                 startingCardsRule,
                 statusEffectRule,
                 tileEffectDuration,
+                // piecePieceTypeRule,
+                // lampTypesRule,
                 new EnemyDoorOpeningDisabledRule(true));
         }
     }
