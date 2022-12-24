@@ -2,6 +2,7 @@ namespace HouseRules.Essentials.Rulesets
 {
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
+    using System.Collections.Generic;
 
     internal static class HoardersRuleset
     {
@@ -16,6 +17,12 @@ namespace HouseRules.Essentials.Rulesets
                 new CardEnergyFromAttackMultipliedRule(0.9f),
                 new CardEnergyFromRecyclingMultipliedRule(1.5f),
                 new CardLimitModifiedRule(22));
+                var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+                {
+                    { "FloorOneElvenSummoners", 0 },
+                    { "FloorTwoElvenSummoners", 0 },
+                    { "FloorThreeElvenSummoners", 0 },
+                });
         }
     }
 }

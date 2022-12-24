@@ -475,7 +475,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.RevealPath, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Teleportation, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 2 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 3 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -709,7 +709,7 @@
                         AbilityKey.Rejuvenation,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.RevealPath,
-                        AbilityKey.InvisibilityPotion,
+                        AbilityKey.OneMoreThing,
                         AbilityKey.VigorPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,

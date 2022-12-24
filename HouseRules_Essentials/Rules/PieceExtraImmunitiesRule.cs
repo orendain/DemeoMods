@@ -34,7 +34,7 @@
                     nameof(Damage_DealDamage_Prefix)));
         }
 
-        private static bool Damage_DealDamage_Prefix(Target target, Damage damage)
+        private static bool Damage_DealDamage_Prefix(Target target, Damage damage, Target attacker)
         {
             if (!_isActivated)
             {
@@ -46,7 +46,7 @@
                 return true;
             }
 
-            if (target.piece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice))
+            if (target.piece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice) && !attacker.piece.HasPieceType(PieceType.Boss))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
@@ -57,33 +57,30 @@
                 return true;
             }
 
-            if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian)
+            EssentialsMod.Logger.Msg("Barbarian check");
+            if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian && !attacker.HasPieceType(PieceType.Boss) && (damage.HasTag(DamageTag.Acid) || damage.AbilityKey == AbilityKey.Petrify))
             {
-                if (damage.HasTag(DamageTag.Acid))
-                {
-                    target.piece.effectSink.SubtractHealth(0);
-                    return false;
-                }
+                EssentialsMod.Logger.Msg("Barbarian 0 damage");
+                target.piece.effectSink.SubtractHealth(0);
+                return false;
             }
-            else if (target.piece.boardPieceId == BoardPieceId.HeroSorcerer)
-            {
-                if (damage.HasTag(DamageTag.Electricity))
-                {
-                    target.piece.effectSink.SubtractHealth(0);
-                    return false;
-                }
-            }
-            else if (target.piece.boardPieceId == BoardPieceId.HeroHunter && damage.HasTag(DamageTag.Ice))
+            else if (target.piece.boardPieceId == BoardPieceId.HeroHunter && !attacker.HasPieceType(PieceType.Boss) && damage.HasTag(DamageTag.Ice))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
             }
-            else if (target.piece.boardPieceId == BoardPieceId.HeroGuardian && damage.HasTag(DamageTag.Fire))
+            else if (target.piece.boardPieceId == BoardPieceId.HeroGuardian && !attacker.HasPieceType(PieceType.Boss) && damage.HasTag(DamageTag.Fire))
+            {
+                target.piece.effectSink.SubtractHealth(0);
+                return false;
+            }
+            else if (target.piece.boardPieceId == BoardPieceId.HeroSorcerer && !attacker.HasPieceType(PieceType.Boss) && damage.HasTag(DamageTag.Electricity))
             {
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
             }
 
+            EssentialsMod.Logger.Msg("Return true");
             return true;
         }
     }
