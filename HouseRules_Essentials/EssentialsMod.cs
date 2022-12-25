@@ -42,6 +42,7 @@
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
+            HR.Rulebook.Register(typeof(ExperienceGainDisabledRule));
             HR.Rulebook.Register(typeof(PieceExtraImmunitiesRule));
             HR.Rulebook.Register(typeof(FreeAbilityOnCritRule));
             HR.Rulebook.Register(typeof(FreeActionPointsOnCritRule));
@@ -84,6 +85,7 @@
             HR.Rulebook.Register(BeatTheClockRuleset.Create());
             HR.Rulebook.Register(ItsATrapRuleset.Create());
             HR.Rulebook.Register(HuntersParadiseRuleset.Create());
+            HR.Rulebook.Register(HoardersRuleset.Create());
             HR.Rulebook.Register(DemeoReloaded.Create());
             HR.Rulebook.Register(FlippingOut.Create());
             HR.Rulebook.Register(DifficultyEasyRuleset.Create());

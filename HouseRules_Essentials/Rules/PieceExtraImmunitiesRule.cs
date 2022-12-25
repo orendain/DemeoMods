@@ -57,10 +57,8 @@
                 return true;
             }
 
-            EssentialsMod.Logger.Msg("Barbarian check");
             if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian && !attacker.HasPieceType(PieceType.Boss) && (damage.HasTag(DamageTag.Acid) || damage.AbilityKey == AbilityKey.Petrify))
             {
-                EssentialsMod.Logger.Msg("Barbarian 0 damage");
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
             }
@@ -80,7 +78,6 @@
                 return false;
             }
 
-            EssentialsMod.Logger.Msg("Return true");
             return true;
         }
     }
