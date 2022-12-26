@@ -2,6 +2,8 @@
 New Ruleset: Demeo Revolutions
 
 Gameplay changes
+================
+
 - Some NEW maps and many NEW enemies
 - Some already known enemies now have NEW hidden abilities
 - Improved loot per class and no lamps as loot
@@ -24,6 +26,8 @@ Gameplay changes
 - If playing Roots of Evil the player with the most javelins will be first in turn order on the LAST floor
 
 Class Changes
+=============
+
 Guardian:
 - 8 max health. You are immune to Weaken and non-boss Fire damage
 - Normal start cards plus Charge and War Cry
