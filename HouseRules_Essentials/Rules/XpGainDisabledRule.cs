@@ -5,13 +5,13 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class ExperienceGainDisabledRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class XpGainDisabledRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Experience gain is disabled";
+        public override string Description => "Xp gain is disabled";
 
         private static bool _isActivated;
 
-        public ExperienceGainDisabledRule(bool value)
+        public XpGainDisabledRule(bool value)
         {
         }
 
@@ -29,25 +29,25 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(PlayerDataController), "GiveExperienceAfterLevel"),
                 prefix: new HarmonyMethod(
-                    typeof(ExperienceGainDisabledRule),
+                    typeof(XpGainDisabledRule),
                     nameof(PlayerDataController_GiveExperienceAfterLevel_Prefix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(PlayerDataController), "GetSavedExperience"),
                 postfix: new HarmonyMethod(
-                    typeof(ExperienceGainDisabledRule),
+                    typeof(XpGainDisabledRule),
                     nameof(PlayerDataController_GetSavedExperience_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(PlayerDataController), "GetHighestUnlockedItemIndex"),
                 postfix: new HarmonyMethod(
-                    typeof(ExperienceGainDisabledRule),
+                    typeof(XpGainDisabledRule),
                     nameof(PlayerDataController_GetHighestUnlockedItemIndex_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(PlayerDataController), "GetHeroRankByExperience"),
                 postfix: new HarmonyMethod(
-                    typeof(ExperienceGainDisabledRule),
+                    typeof(XpGainDisabledRule),
                     nameof(PlayerDataController_GetHeroRankByExperience_Postfix)));
         }
 
@@ -58,7 +58,7 @@
                 return true;
             }
 
-            return false;
+            return false; // No xp given
         }
 
         private static void PlayerDataController_GetSavedExperience_Postfix(ref int __result)
@@ -68,7 +68,7 @@
                 return;
             }*/
 
-            __result = 117000;
+            __result = 117000; // Rank 69 is 117000 - 119999
             return;
         }
 
@@ -90,7 +90,7 @@
                 return;
             }*/
 
-            __result = 69;
+            __result = 69; // Why be higher?
             return;
         }
     }

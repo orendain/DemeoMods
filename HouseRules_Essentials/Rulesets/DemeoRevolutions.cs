@@ -1108,11 +1108,11 @@
                 { "FloorThreeElvenSummoners", 0 },
             });
 
-            // var experienceGainDisabled = new ExperienceGainDisabledRule(true);
+            // var xpGainDisabled = new XpGainDisabledRule(true);
             return Ruleset.NewInstance(
                 name,
                 description,
-                // experienceGainDisabled,
+                // xpGainDisabled,
                 piecesAdjustedRule,
                 myMonsterDeckRule,
                 startingCardsRule,
