@@ -28,7 +28,7 @@ Gameplay changes
 Class Changes
 =============
 
-Guardian:
+**Guardian:**
 - 8 max health. You are immune to Weaken and non-boss Fire damage
 - Normal start cards plus Charge and War Cry
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
