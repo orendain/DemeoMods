@@ -10,7 +10,7 @@ Gameplay changes
 - A NEW Potion loot card that has mysterious effects on the entire party...
 - The same type of enemy can have different maximum health AND attack damage
 - Enemy spawns will be a mix of all existing adventures with no respawns
-- Hunter's Mark and Adamant Potions only last 2 for rounds instead of 3
+- Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3
 - Pets always focus on Hunter's Marked targets
 - Each floor's map will be from a different adventure
 - Number of chests/stands/fountains per floor changed based on the adventure selected
