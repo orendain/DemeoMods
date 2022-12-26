@@ -23,7 +23,7 @@ Gameplay changes
 - The Serpent Lord boss is invulnerable while invisible... so you have to do it the HARD way
 - If playing Roots of Evil the player with the most javelins will be first in turn order on the LAST floor
 
-CLASS CHANGES
+Class Changes
 Guardian:
 - 8 max health. You are immune to Weaken and non-boss Fire damage
 - Normal start cards plus Charge and War Cry
