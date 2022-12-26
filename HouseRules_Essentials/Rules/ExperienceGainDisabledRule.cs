@@ -33,6 +33,12 @@
                     nameof(PlayerDataController_GiveExperienceAfterLevel_Prefix)));
 
             harmony.Patch(
+                original: AccessTools.Method(typeof(PlayerDataController), "GetSavedExperience"),
+                postfix: new HarmonyMethod(
+                    typeof(ExperienceGainDisabledRule),
+                    nameof(PlayerDataController_GetSavedExperience_Postfix)));
+
+            harmony.Patch(
                 original: AccessTools.Method(typeof(PlayerDataController), "GetHighestUnlockedItemIndex"),
                 postfix: new HarmonyMethod(
                     typeof(ExperienceGainDisabledRule),
@@ -47,13 +53,23 @@
 
         private static bool PlayerDataController_GiveExperienceAfterLevel_Prefix()
         {
-            /*if (!_isActivated)
+            if (!_isActivated)
             {
                 return true;
+            }
+
+            return false;
+        }
+
+        private static void PlayerDataController_GetSavedExperience_Postfix(ref int __result)
+        {
+            /*if (!_isActivated)
+            {
+                return;
             }*/
 
-            // 117000 - 119999 experience is Rank 69
-            return false;
+            __result = 117000;
+            return;
         }
 
         private static void PlayerDataController_GetHighestUnlockedItemIndex_Postfix(ref int __result)
