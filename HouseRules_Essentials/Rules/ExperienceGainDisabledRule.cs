@@ -31,6 +31,18 @@
                 prefix: new HarmonyMethod(
                     typeof(ExperienceGainDisabledRule),
                     nameof(PlayerDataController_GiveExperienceAfterLevel_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(PlayerDataController), "GetHighestUnlockedItemIndex"),
+                postfix: new HarmonyMethod(
+                    typeof(ExperienceGainDisabledRule),
+                    nameof(PlayerDataController_GetHighestUnlockedItemIndex_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(PlayerDataController), "GetHeroRankByExperience"),
+                postfix: new HarmonyMethod(
+                    typeof(ExperienceGainDisabledRule),
+                    nameof(PlayerDataController_GetHeroRankByExperience_Postfix)));
         }
 
         private static bool PlayerDataController_GiveExperienceAfterLevel_Prefix()
@@ -41,6 +53,18 @@
             }
 
             return false;
+        }
+
+        private static void PlayerDataController_GetHighestUnlockedItemIndex_Postfix(ref int __result)
+        {
+            __result = 74;
+            return;
+        }
+
+        private static void PlayerDataController_GetHeroRankByExperience_Postfix(ref int __result)
+        {
+            __result = 69;
+            return;
         }
     }
 }
