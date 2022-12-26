@@ -52,17 +52,28 @@
                 return true;
             }
 
+            // 117000 - 119999 experience is Rank 69
             return false;
         }
 
         private static void PlayerDataController_GetHighestUnlockedItemIndex_Postfix(ref int __result)
         {
-            __result = 74;
+            if (!_isActivated)
+            {
+                return;
+            }
+
+            __result = 74; // For some reason equals highest Rank minus one...
             return;
         }
 
         private static void PlayerDataController_GetHeroRankByExperience_Postfix(ref int __result)
         {
+            if (!_isActivated)
+            {
+                return;
+            }
+
             __result = 69;
             return;
         }
