@@ -28,14 +28,14 @@ Gameplay changes
 Class Changes
 =============
 
-__**Guardian:**__
+**Guardian:**
 - 8 max health. You are immune to Weaken and non-boss Fire damage
 - Normal start cards plus Charge and War Cry
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
 - A NEW reusable non-damaging Pull card which costs 0 Action Points (works on enemies and allies)
 - Critical hits regain all used Action Points, Pull, and gains Berserk (+1 damage for the rest of the turn)
 
-__**Barbarian:**__
+**Barbarian:**
 - 7 max health. You are immune to being Netted as well as non-boss Petrify and Slime damage 
 - Critical damage increased by 2
 - Normal start cards plus The Leviathan and Barbaric Chainwhip
@@ -45,7 +45,7 @@ __**Barbarian:**__
 - Critical hits reduce Net cooldown by 1. Also regain 1 Action Point if not last action
 - Critical hits on the LAST action do double critical damage and gain a Spawn Random Lamp card
 
-__**Hunter:**__
+**Hunter:**
 - 7 max health. You and Verochka are immune to being Frozen and non-boss Ice damage
 - Melee damage reduced to 2
 - Critical ranged damage increased by 1
@@ -56,7 +56,7 @@ __**Hunter:**__
 - Critical hits replenish Arrow
 - Critical hits on LAST action gain a Bone, a Freeze Arrow, and gives a few rounds of Fire Immunity
 
-__**Assassin:**__
+**Assassin:**
 - 7 max health. You are immune to being Tangled and Blinded
 - Critical damage increased by 1
 - Movement increased by 1
@@ -69,7 +69,7 @@ __**Assassin:**__
 - Critical hits reduce ranged Poison attack cooldown by 1. Also regain 1 Action Point if not last action
 - Critical hits on LAST action gain Invisibility that lasts until the end of the NEXT round
 
-__**Bard:**__
+**Bard:**
 - 7 max health. You are immune to Poison
 - Melee damage reduced to 2
 - Can now backstab (and so can his damaging songs)
@@ -80,7 +80,7 @@ __**Bard:**__
 - Critical hits replenish Courage Shanty and give Courageous self-buff or upgrade
 - Critical hits on LAST action also gain Panic Powder and gives a couple rounds of Deflection
 
-__**Warlock:**__
+**Warlock:**
 - 6 max health. You and Cána are immune to Corruption
 - Melee damage reduced to 1
 - Minion starts with 1 point of innate damage resistance (can NOT be increased with potion)
@@ -91,7 +91,7 @@ __**Warlock:**__
 - Critical hits replenish Feral Charge if you have more actions left
 - Critical hits on LAST action gain a Spellpower card and self-buff (+3 damage to Master's Call)
 
-__**Sorcerer:**__
+**Sorcerer:**
 - 6 max health. You are immune to Stun and non-boss Electricity damage
 - Melee damage reduced to 1
 - Zap and Lightning Bolt cost 0 Action Points
@@ -102,5 +102,3 @@ __**Sorcerer:**__
 - Critical hits while Overcharged gain Water Bottle
 
 For video tutorials go to https://www.youtube.com/c/TheGrayAlien/playlists
-
-
