@@ -49,6 +49,9 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 12 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 75 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 167 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 85 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 70 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 142 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 36 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 2 },
@@ -57,7 +60,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 4 },
@@ -956,6 +959,12 @@
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.TelekineticBurst } },
             });
 
+            var abilityBreaksStealth = new AbilityBreaksStealthAdjustedRule(new Dictionary<AbilityKey, bool>
+            {
+                { AbilityKey.PoisonBomb, false },
+                { AbilityKey.FlashBomb, false },
+            });
+
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Zap, false },
@@ -1031,7 +1040,6 @@
             var abilityStealthDamageRule = new AbilityStealthDamageOverriddenRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.DiseasedBite, 2 },
-                { AbilityKey.PoisonBomb, 1 },
                 { AbilityKey.PlayerMelee, 2 },
                 { AbilityKey.FretsOfFire, 1 },
             });
@@ -1064,8 +1072,8 @@
                 { AbilityKey.GrapplingPush, 1 },
             });
 
-            var pieceExtraImmunities = new PieceExtraImmunitiesRule(true);
-            var partyElectricity = new PartyElectricityDamageOverriddenRule(true);
+            var pieceExtraImmunitiesRule = new PieceExtraImmunitiesRule(true);
+            var partyElectricityRule = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.85f);
@@ -1108,11 +1116,12 @@
                 { "FloorThreeElvenSummoners", 0 },
             });
 
-            // var xpGainDisabled = new XpGainDisabledRule(true);
+            var xpGainDisabledRule = new XpGainDisabledRule(true);
+            var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
             return Ruleset.NewInstance(
                 name,
                 description,
-                // xpGainDisabled,
+                xpGainDisabledRule,
                 piecesAdjustedRule,
                 myMonsterDeckRule,
                 startingCardsRule,
@@ -1123,6 +1132,7 @@
                 pieceImmunityRule,
                 applyEffectOnHitRule,
                 pieceUseWhenKilledRule,
+                abilityBreaksStealth,
                 abilityActionCostRule,
                 abilityHealOverriddenRule,
                 backstabConfigRule,
@@ -1137,13 +1147,14 @@
                 enemyCooldownRule,
                 aoeAdjustedRule,
                 abilityDamageAllRule,
-                partyElectricity,
-                pieceExtraImmunities,
+                partyElectricityRule,
+                pieceExtraImmunitiesRule,
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,
                 enemyHealthScaledRule,
                 enemyAttackScaledRule,
+                pieceExtraStatsRule,
                 levelSequenceOverriddenRule,
                 levelPropertiesRule);
         }

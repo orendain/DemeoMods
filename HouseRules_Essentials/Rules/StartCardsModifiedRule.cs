@@ -63,333 +63,417 @@
             }
 
             Inventory.Item value;
-
-            // Remove Frost Arrow if used
-            if (piece.boardPieceId == BoardPieceId.HeroHunter)
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                if (piece.inventory.HasAbility(AbilityKey.EnemyFrostball))
+                // Remove One-Time replenishables if used
+                if (piece.boardPieceId == BoardPieceId.HeroHunter)
                 {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    if (piece.inventory.HasAbility(AbilityKey.EnemyFrostball) || piece.inventory.HasAbility(AbilityKey.Bone))
                     {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.EnemyFrostball)
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
                         {
-                            if (value.IsReplenishing)
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.EnemyFrostball || value.abilityKey == AbilityKey.Bone)
                             {
-                                Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                piece.inventory.Items.Remove(value);
-                                piece.AddGold(0);
-                            }
-
-                            break;
-                        }
-                    }
-                }
-            }
-
-            // Energy Potion effects per class
-            if (piece.HasEffectState(EffectStateType.ExtraEnergy))
-            {
-                bool hasPower = false;
-                if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.ImplosionExplosionRain)
-                        {
-                            int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
-                            hasPower = true;
-                            if (value.IsReplenishing)
-                            {
-                                howMany -= 1;
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                if (howMany < 1)
+                                if (value.IsReplenishing)
                                 {
                                     Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                     piece.inventory.Items.Remove(value);
                                     piece.AddGold(0);
                                 }
                             }
-                            else
-                            {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                            }
-
-                            break;
                         }
-                    }
-
-                    if (!hasPower)
-                    {
-                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                        piece.inventory.Items.Add(new Inventory.Item
-                        {
-                            abilityKey = AbilityKey.ImplosionExplosionRain,
-                            flags = (Inventory.ItemFlag)1,
-                            originalOwner = -1,
-                            replenishCooldown = 1,
-                        });
-                        piece.AddGold(0);
-                    }
-                }
-                else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.LeapHeavy)
-                        {
-                            int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
-                            hasPower = true;
-                            if (value.IsReplenishing)
-                            {
-                                howMany -= 1;
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                if (howMany < 1)
-                                {
-                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    piece.inventory.Items.Remove(value);
-                                    piece.AddGold(0);
-                                }
-                            }
-                            else
-                            {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                            }
-
-                            break;
-                        }
-                    }
-
-                    if (!hasPower)
-                    {
-                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                        piece.inventory.Items.Add(new Inventory.Item
-                        {
-                            abilityKey = AbilityKey.LeapHeavy,
-                            flags = (Inventory.ItemFlag)1,
-                            originalOwner = -1,
-                            replenishCooldown = 1,
-                        });
-                        piece.AddGold(0);
-                    }
-                }
-                else if (piece.boardPieceId == BoardPieceId.HeroHunter)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.ScrollElectricity)
-                        {
-                            int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
-                            hasPower = true;
-                            if (value.IsReplenishing)
-                            {
-                                howMany -= 1;
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                if (howMany < 1)
-                                {
-                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    piece.inventory.Items.Remove(value);
-                                    piece.AddGold(0);
-                                }
-                            }
-                            else
-                            {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                            }
-
-                            break;
-                        }
-                    }
-
-                    if (!hasPower)
-                    {
-                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                        piece.inventory.Items.Add(new Inventory.Item
-                        {
-                            abilityKey = AbilityKey.ScrollElectricity,
-                            flags = (Inventory.ItemFlag)1,
-                            originalOwner = -1,
-                            replenishCooldown = 1,
-                        });
-                        piece.AddGold(0);
-                    }
-                }
-                else if (piece.boardPieceId == BoardPieceId.HeroBard)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.PVPBlink)
-                        {
-                            int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
-                            hasPower = true;
-                            if (value.IsReplenishing)
-                            {
-                                howMany -= 1;
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                if (howMany < 1)
-                                {
-                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    piece.inventory.Items.Remove(value);
-                                    piece.AddGold(0);
-                                }
-                            }
-                            else
-                            {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                            }
-
-                            break;
-                        }
-                    }
-
-                    if (!hasPower)
-                    {
-                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                        piece.inventory.Items.Add(new Inventory.Item
-                        {
-                            abilityKey = AbilityKey.PVPBlink,
-                            flags = (Inventory.ItemFlag)1,
-                            originalOwner = -1,
-                            replenishCooldown = 1,
-                        });
-                        piece.AddGold(0);
                     }
                 }
                 else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
                 {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    if (piece.inventory.HasAbility(AbilityKey.WaterBottle))
                     {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.DeathBeam)
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
                         {
-                            int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
-                            hasPower = true;
-                            if (value.IsReplenishing)
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.WaterBottle)
                             {
-                                howMany -= 1;
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                if (howMany < 1)
+                                if (value.IsReplenishing)
                                 {
                                     Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                     piece.inventory.Items.Remove(value);
                                     piece.AddGold(0);
                                 }
-                            }
-                            else
-                            {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                            }
 
-                            break;
+                                break;
+                            }
                         }
-                    }
-
-                    if (!hasPower)
-                    {
-                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                        piece.inventory.Items.Add(new Inventory.Item
-                        {
-                            abilityKey = AbilityKey.DeathBeam,
-                            flags = (Inventory.ItemFlag)1,
-                            originalOwner = -1,
-                            replenishCooldown = 1,
-                        });
-                        piece.AddGold(0);
-                    }
-                }
-                else if (piece.boardPieceId == BoardPieceId.HeroRogue)
-                {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
-                    {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.FretsOfFire)
-                        {
-                            int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
-                            hasPower = true;
-                            if (value.IsReplenishing)
-                            {
-                                howMany -= 1;
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                if (howMany < 1)
-                                {
-                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    piece.inventory.Items.Remove(value);
-                                    piece.AddGold(0);
-                                }
-                            }
-                            else
-                            {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                            }
-
-                            break;
-                        }
-                    }
-
-                    if (!hasPower)
-                    {
-                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                        piece.inventory.Items.Add(new Inventory.Item
-                        {
-                            abilityKey = AbilityKey.FretsOfFire,
-                            flags = (Inventory.ItemFlag)1,
-                            originalOwner = -1,
-                            replenishCooldown = 1,
-                        });
-                        piece.AddGold(0);
                     }
                 }
                 else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
                 {
-                    for (int i = 0; i < piece.inventory.Items.Count; i++)
+                    if (piece.inventory.HasAbility(AbilityKey.SpellPowerPotion))
                     {
-                        value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.WeakeningShout)
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
                         {
-                            int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
-                            hasPower = true;
-                            if (value.IsReplenishing)
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.SpellPowerPotion)
                             {
-                                howMany -= 1;
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                if (howMany < 1)
+                                if (value.IsReplenishing)
                                 {
                                     Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                     piece.inventory.Items.Remove(value);
                                     piece.AddGold(0);
                                 }
-                            }
-                            else
-                            {
-                                piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                            }
 
-                            break;
+                                break;
+                            }
                         }
                     }
-
-                    if (!hasPower)
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                {
+                    if (piece.inventory.HasAbility(AbilityKey.PanicPowder))
                     {
-                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                        piece.inventory.Items.Add(new Inventory.Item
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
                         {
-                            abilityKey = AbilityKey.WeakeningShout,
-                            flags = (Inventory.ItemFlag)1,
-                            originalOwner = -1,
-                            replenishCooldown = 1,
-                        });
-                        piece.AddGold(0);
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.PanicPowder)
+                            {
+                                if (value.IsReplenishing)
+                                {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                {
+                    if (piece.inventory.HasAbility(AbilityKey.SpawnRandomLamp))
+                    {
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        {
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.SpawnRandomLamp)
+                            {
+                                if (value.IsReplenishing)
+                                {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                // Energy Potion effects per class
+                if (piece.HasEffectState(EffectStateType.ExtraEnergy))
+                {
+                    bool hasPower = false;
+                    if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                    {
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        {
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.ImplosionExplosionRain)
+                            {
+                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
+                                hasPower = true;
+                                if (value.IsReplenishing)
+                                {
+                                    howMany -= 1;
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                    if (howMany < 1)
+                                    {
+                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                        piece.inventory.Items.Remove(value);
+                                        piece.AddGold(0);
+                                    }
+                                }
+                                else
+                                {
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        if (!hasPower)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.ImplosionExplosionRain,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                    {
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        {
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.LeapHeavy)
+                            {
+                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
+                                hasPower = true;
+                                if (value.IsReplenishing)
+                                {
+                                    howMany -= 1;
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                    if (howMany < 1)
+                                    {
+                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                        piece.inventory.Items.Remove(value);
+                                        piece.AddGold(0);
+                                    }
+                                }
+                                else
+                                {
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        if (!hasPower)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.LeapHeavy,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                    {
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        {
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.ScrollElectricity)
+                            {
+                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
+                                hasPower = true;
+                                if (value.IsReplenishing)
+                                {
+                                    howMany -= 1;
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                    if (howMany < 1)
+                                    {
+                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                        piece.inventory.Items.Remove(value);
+                                        piece.AddGold(0);
+                                    }
+                                }
+                                else
+                                {
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        if (!hasPower)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.ScrollElectricity,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                    {
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        {
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.PVPBlink)
+                            {
+                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
+                                hasPower = true;
+                                if (value.IsReplenishing)
+                                {
+                                    howMany -= 1;
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                    if (howMany < 1)
+                                    {
+                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                        piece.inventory.Items.Remove(value);
+                                        piece.AddGold(0);
+                                    }
+                                }
+                                else
+                                {
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        if (!hasPower)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.PVPBlink,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                    {
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        {
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.DeathBeam)
+                            {
+                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
+                                hasPower = true;
+                                if (value.IsReplenishing)
+                                {
+                                    howMany -= 1;
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                    if (howMany < 1)
+                                    {
+                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                        piece.inventory.Items.Remove(value);
+                                        piece.AddGold(0);
+                                    }
+                                }
+                                else
+                                {
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        if (!hasPower)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.DeathBeam,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                    {
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        {
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.FretsOfFire)
+                            {
+                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
+                                hasPower = true;
+                                if (value.IsReplenishing)
+                                {
+                                    howMany -= 1;
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                    if (howMany < 1)
+                                    {
+                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                        piece.inventory.Items.Remove(value);
+                                        piece.AddGold(0);
+                                    }
+                                }
+                                else
+                                {
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        if (!hasPower)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.FretsOfFire,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                    {
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        {
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.WeakeningShout)
+                            {
+                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
+                                hasPower = true;
+                                if (value.IsReplenishing)
+                                {
+                                    howMany -= 1;
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                    if (howMany < 1)
+                                    {
+                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                        piece.inventory.Items.Remove(value);
+                                        piece.AddGold(0);
+                                    }
+                                }
+                                else
+                                {
+                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        if (!hasPower)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.WeakeningShout,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
                     }
                 }
             }

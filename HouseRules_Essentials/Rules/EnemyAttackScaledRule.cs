@@ -35,12 +35,12 @@
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
-                prefix: new HarmonyMethod(
+                postfix: new HarmonyMethod(
                     typeof(EnemyAttackScaledRule),
-                    nameof(CreatePiece_AttackDamage_Prefix)));
+                    nameof(CreatePiece_AttackDamage_Postfix)));
         }
 
-        private static void CreatePiece_AttackDamage_Prefix(PieceConfigData config)
+        private static void CreatePiece_AttackDamage_Postfix(ref Piece __result, PieceConfigData config)
         {
             if (!_isActivated)
             {
@@ -52,20 +52,27 @@
                 return;
             }
 
-            if (config.AttackDamage < 3 || config.PowerIndex > 40)
+            int range = 0;
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                return;
+                if (config.AttackDamage < 3 || config.PowerIndex > 40)
+                {
+                    return;
+                }
+
+                int low = -1;
+                int high = 1;
+                if (config.AttackDamage < 6)
+                {
+                    low = 0;
+                    high = 2;
+                }
+
+                range = Random.Range(low, high);
             }
 
-            int range = Random.Range(-1, 1);
-            if (config.CriticalHitDamageOLD > 0)
-            {
-                config.AttackDamage = (int)(config.CriticalHitDamageOLD * _globalMultiplier) + range;
-                return;
-            }
-
-            config.CriticalHitDamageOLD = config.AttackDamage;
-            config.AttackDamage = (int)(config.AttackDamage * _globalMultiplier) + range;
+            int newAttackDamage = (int)(config.AttackDamage * _globalMultiplier) + range;
+            __result.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, newAttackDamage);
         }
     }
 }

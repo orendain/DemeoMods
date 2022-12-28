@@ -86,7 +86,35 @@
                 source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                 if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge))
                 {
-                    source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
+                    Inventory.Item value1;
+                    bool hasPower1 = false;
+                    for (int i = 0; i < source.inventory.Items.Count; i++)
+                    {
+                        value1 = source.inventory.Items[i];
+                        if (value1.abilityKey == AbilityKey.WaterBottle)
+                        {
+                            hasPower1 = true;
+                            if (value1.IsReplenishing)
+                            {
+                                value1.flags &= (Inventory.ItemFlag)(-3);
+                                source.inventory.Items[i] = value1;
+                                source.AddGold(0);
+                                hasPower1 = false;
+                            }
+
+                            break;
+                        }
+                    }
+
+                    if (!hasPower1)
+                    {
+                        source.TryAddAbilityToInventory(AbilityKey.WaterBottle, showTooltip: true, isReplenishable: true);
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
 
                 if (currentAP > 0)
@@ -125,6 +153,13 @@
                         if (value.abilityKey == AbilityKey.EnemyFrostball)
                         {
                             hasPower = true;
+                            if (value.IsReplenishing)
+                            {
+                                value.flags &= (Inventory.ItemFlag)(-3);
+                                source.inventory.Items[i] = value;
+                                source.AddGold(0);
+                            }
+
                             break;
                         }
                     }
@@ -171,7 +206,36 @@
                 return;
             }
 
-            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
+            Inventory.Item value2;
+            bool hasPower2 = false;
+            for (int i = 0; i < source.inventory.Items.Count; i++)
+            {
+                value2 = source.inventory.Items[i];
+                if (value2.abilityKey == _globalAdjustments[source.boardPieceId])
+                {
+                    hasPower2 = true;
+                    if (value2.IsReplenishing)
+                    {
+                        value2.flags &= (Inventory.ItemFlag)(-3);
+                        source.inventory.Items[i] = value2;
+                        source.AddGold(0);
+                    }
+
+                    break;
+                }
+            }
+
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            {
+                if (!hasPower2)
+                {
+                    source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: true);
+                }
+            }
+            else
+            {
+                source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], showTooltip: true, isReplenishable: false);
+            }
         }
     }
 }

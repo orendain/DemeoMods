@@ -192,13 +192,13 @@
                 }
                 else if (randNum > 97)
                 {
-                    if (_numVigor < 5)
+                    if (_numVigor < 4)
                     {
                         // Invisibility, Vigor Potion, and Reveal Path
                         _numVigor++;
                         rand = Random.Range(replacementAbilityKeys.Count - 24, replacementAbilityKeys.Count - 21);
                     }
-                    else if (_numAlags < 4)
+                    else if (_numAlags < 3)
                     {
                         // Rejuv and Damage Resist Potions
                         _numAlags++;
@@ -225,9 +225,9 @@
                         }
                     }
                 }
-                else if (randNum > 92)
+                else if (randNum > 93)
                 {
-                    if (_numAlags < 4)
+                    if (_numAlags < 3)
                     {
                         // Rejuv and Damage Resist Potions
                         _numAlags++;
@@ -253,7 +253,7 @@
                         }
                     }
                 }
-                else if (randNum > 80)
+                else if (randNum > 90)
                 {
                     if (_numEnergy < 2)
                     {
@@ -275,7 +275,7 @@
                         }
                     }
                 }
-                else if (randNum > 75)
+                else if (randNum > 85)
                 {
                     // Very good Potions/Cards
                     if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)

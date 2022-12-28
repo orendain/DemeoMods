@@ -7,9 +7,9 @@
     using DataKeys;
     using HouseRules.Types;
 
-    public sealed class AbilityBreaksStealthAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>
+    public sealed class AbilityBreaksStealthAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>, IMultiplayerSafe
     {
-        public override string Description => "Ability breaking stealth is adjusted (Skirmish only)";
+        public override string Description => "Ability breaking stealth is adjusted";
 
         private readonly Dictionary<AbilityKey, bool> _adjustments;
         private Dictionary<AbilityKey, bool> _originals;

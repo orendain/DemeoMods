@@ -45,6 +45,7 @@
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
     <Compile Include="Rulesets\FlippingOut.cs" />
+    <Compile Include="Rulesets\HoardersRuleset.cs" />
     <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
     <Compile Include="Rulesets\ItsATrapRuleset.cs" />
     <Compile Include="Rulesets\LuckyDip.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
     <Compile Include="Rules\CardShopRarityOverriddenRule.cs" />
     <Compile Include="Rules\EnemyCooldownOverriddenRule.cs" />
+    <Compile Include="Rules\PieceExtraStatsAdjustedRule.cs" />
+    <Compile Include="Rules\XpGainDisabledRule.cs" />
     <Compile Include="Rules\MyMonsterDeckOverriddenRule.cs" />
     <Compile Include="Rules\PieceExtraImmunitiesRule.cs" />
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />

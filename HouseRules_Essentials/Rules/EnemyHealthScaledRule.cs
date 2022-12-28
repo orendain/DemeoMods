@@ -2,7 +2,6 @@
 {
     using Boardgame;
     using Boardgame.BoardEntities;
-    using Boardgame.NonVR.Ui;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -38,12 +37,12 @@
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
-                prefix: new HarmonyMethod(
+                postfix: new HarmonyMethod(
                     typeof(EnemyHealthScaledRule),
-                    nameof(CreatePiece_StartHealth_Prefix)));
+                    nameof(CreatePiece_StartHealth_Postfix)));
         }
 
-        private static void CreatePiece_StartHealth_Prefix(PieceConfigData config)
+        private static void CreatePiece_StartHealth_Postfix(ref Piece __result, PieceConfigData config)
         {
             if (!_isActivated)
             {
@@ -55,20 +54,21 @@
                 return;
             }
 
-            if (config.StartHealth < 4 || config.PowerIndex > 40)
+            float range = 1f;
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                return;
+
+                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                {
+                    return;
+                }
+
+                range = Random.Range(0.8f, 1.25f);
             }
 
-            float range = Random.Range(0.75f, 1.2f);
-            if (config.CriticalHitDamage > 0)
-            {
-                config.StartHealth = (int)(config.CriticalHitDamage * _globalMultiplier * range);
-                return;
-            }
-
-            config.CriticalHitDamage = config.StartHealth;
-            config.StartHealth = (int)(config.StartHealth * _globalMultiplier * range);
+            int newStartHealth = (int)(config.StartHealth * _globalMultiplier * range);
+            __result.effectSink.TrySetStatMaxValue(Stats.Type.Health, newStartHealth);
+            __result.effectSink.TrySetStatBaseValue(Stats.Type.Health, newStartHealth);
         }
     }
 }

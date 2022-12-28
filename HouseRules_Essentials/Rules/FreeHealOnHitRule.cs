@@ -53,19 +53,11 @@
 
             if ((source.IsPlayer() || source.IsBot() || source.IsWarlockMinion()) && mainTarget != null && mainTarget.boardPieceId == BoardPieceId.WizardBoss)
             {
-                // Serpent Lord boss gets ONE damage resist and is immune to damage while invisible
-                mainTarget.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
-                if (damageResist < 1)
-                {
-                    mainTarget.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-                }
-
+                // Serpent Lord boss is immune to damage while invisible
                 if (mainTarget.HasEffectState(EffectStateType.Invisible))
                 {
                     mainTarget.EnableEffectState(EffectStateType.Invulnerable1);
                 }
-
-                return;
             }
             else if (source.IsPlayer())
             {
@@ -106,18 +98,10 @@
                     source.effectSink.Heal(1);
                     source.AnimateWobble();
                 }
-
-                return;
             }
             else if (source.boardPieceId == BoardPieceId.ElvenQueen)
             {
-                // Elven Queen gets ONE damage resist after her first attack and now has 'phases' to make her more challenging
-                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
-                if (damageResist < 1)
-                {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-                }
-
+                // Elven Queen now has 'phases' to make her more challenging
                 int nextPhase;
                 int low = 1;
                 int high = 6;
@@ -175,43 +159,20 @@
                         source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 1);
                         break;
                 }
-
-                return;
-            }
-            else if (source.boardPieceId == BoardPieceId.MotherCy || source.boardPieceId == BoardPieceId.RootLord || source.boardPieceId == BoardPieceId.BossTown || source.boardPieceId == BoardPieceId.RatKing)
-            {
-                // All other bosses also get ONE damage resist after their first attack!
-                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
-                if (damageResist < 1)
-                {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-                }
-
-                return;
             }
             else if (source.IsWarlockMinion())
             {
-                // Cana gets ONE damage resist after her first attack and Frenzy if below half health
-                source.effectSink.TryGetStat(Stats.Type.DamageResist, out var damageResist);
-                if (damageResist < 1)
-                {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-                }
-
+                // Cana gets Frenzy if below half health
                 if (source.GetHealth() < source.GetMaxHealth() / 2)
                 {
                     source.EnableEffectState(EffectStateType.Frenzy);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
                 }
-                else
+                else if (source.HasEffectState(EffectStateType.Frenzy))
                 {
                     source.DisableEffectState(EffectStateType.Frenzy);
                 }
-
-                return;
             }
-
-            return;
         }
     }
 }
