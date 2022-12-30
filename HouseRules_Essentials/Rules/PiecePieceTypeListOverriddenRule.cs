@@ -1,5 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
@@ -51,6 +52,7 @@
             {
                 var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.PieceType.ToList();
+                // EssentialsMod.Logger.Msg($"{item.Key}: {string.Join(", ", item.Value)}");
                 pieceConfigDto.PieceType = item.Value.ToArray();
                 gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }

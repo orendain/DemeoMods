@@ -932,6 +932,39 @@
                 { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
             });
 
+            var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
+            {
+                { BoardPieceId.ReptileArcher, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Reptile, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.ReptileMutantWizard, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Reptile, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.GeneralRonthian, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.TheUnseen, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
+                { BoardPieceId.ElvenArcher, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.ElvenHound, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.TheUnspoken, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
+                { BoardPieceId.GoblinChieftan, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Goblin, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.GoblinMadUn, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Goblin, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.ScabRat, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Rat, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.Spider, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.Rat, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.TheUnheard, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Rat, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.Slimeling, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.SmallSlime } },
+                { BoardPieceId.Thug, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Thief, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.ElvenMystic, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.NonTeleportable } },
+                { BoardPieceId.ElvenPriest, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
+                { BoardPieceId.ElvenSkirmisher, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.EarthElemental, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
+                { BoardPieceId.Cavetroll, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget, PieceType.TooHeavyToGrapple } },
+                { BoardPieceId.BigBoiMutant, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Reptile, PieceType.ValidCorruptionTarget, PieceType.TooHeavyToGrapple } },
+                { BoardPieceId.SilentSentinel, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.TooHeavyToGrapple } },
+                { BoardPieceId.ServantOfAlfaragh, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.NonTeleportable, PieceType.TooHeavyToGrapple } },
+                { BoardPieceId.GiantSlime, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.GiantSlime, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.GiantSpider, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget, PieceType.TooHeavyToGrapple } },
+                { BoardPieceId.ElvenMarauder, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.Gorgon, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.FireElemental, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.IceElemental, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Brittle } },
+            });
+
             var applyEffectOnHitRule = new ApplyEffectOnHitAdjustedRule(new Dictionary<BoardPieceId, EffectStateType>
             {
                 { BoardPieceId.HealingBeacon, EffectStateType.Diseased },
@@ -1107,6 +1140,7 @@
                 { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 1 },
                 { "FloorThreeElvenSummoners", 0 },
+                { "PacingSpikeSegmentFloorThreeBudget", 12 },
             });
 
             var xpGainDisabledRule = new XpGainDisabledRule(true);
@@ -1115,6 +1149,7 @@
                 name,
                 description,
                 xpGainDisabledRule,
+                piecePieceTypeRule,
                 piecesAdjustedRule,
                 myMonsterDeckRule,
                 startingCardsRule,
