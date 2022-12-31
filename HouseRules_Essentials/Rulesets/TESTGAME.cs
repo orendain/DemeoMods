@@ -419,6 +419,7 @@
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SpellPowerPotion, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.God, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnergyPotion, ReplenishFrequency = 0 },
@@ -915,7 +916,7 @@
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { BoardPieceId.MotherCy, new List<AbilityKey> { AbilityKey.Electricity, AbilityKey.Teleportation, AbilityKey.LetItRain, AbilityKey.Tsunami } },
+                { BoardPieceId.MotherCy, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.Electricity, AbilityKey.Teleportation, AbilityKey.LetItRain, AbilityKey.Tsunami } },
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.Grapple } },
                 { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit, AbilityKey.Grab, AbilityKey.LeapHeavy } },
                 { BoardPieceId.RootMage, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportEnemy, AbilityKey.EnemyFlashbang } },
@@ -1180,6 +1181,40 @@
                 { "PacingSpikeSegmentFloorThreeBudget", 12 },
             });
 
+            var lampTypesRule = new LampTypesOverriddenRule(new Dictionary<int, List<BoardPieceId>>
+            {
+                {
+                    1, new List<BoardPieceId>
+                    {
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.VortexLamp,
+                        BoardPieceId.WaterLamp,
+                        BoardPieceId.IceLamp,
+                    }
+                },
+                {
+                    2, new List<BoardPieceId>
+                    {
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.VortexLamp,
+                        BoardPieceId.WaterLamp,
+                        BoardPieceId.IceLamp,
+                    }
+                },
+                {
+                    3, new List<BoardPieceId>
+                    {
+                        BoardPieceId.GasLamp,
+                        BoardPieceId.OilLamp,
+                        BoardPieceId.VortexLamp,
+                        BoardPieceId.WaterLamp,
+                        BoardPieceId.IceLamp,
+                    }
+                },
+            });
+
             var xpGainDisabledRule = new XpGainDisabledRule(true);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
             return Ruleset.NewInstance(
@@ -1220,6 +1255,7 @@
                 enemyHealthScaledRule,
                 enemyAttackScaledRule,
                 pieceExtraStatsRule,
+                lampTypesRule,
                 levelSequenceOverriddenRule,
                 levelPropertiesRule);
         }
