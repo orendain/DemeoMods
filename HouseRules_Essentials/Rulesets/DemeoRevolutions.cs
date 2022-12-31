@@ -884,6 +884,7 @@
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
+                { BoardPieceId.MotherCy, new List<AbilityKey> { AbilityKey.Electricity, AbilityKey.Teleportation, AbilityKey.LetItRain, AbilityKey.Tsunami } },
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.Grapple } },
                 { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit, AbilityKey.Grab, AbilityKey.LeapHeavy } },
                 { BoardPieceId.RootMage, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportEnemy, AbilityKey.EnemyFlashbang } },
@@ -1096,6 +1097,8 @@
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.BlockAbilities, 1 },
                 { AbilityKey.GrapplingPush, 1 },
+                { AbilityKey.LeapHeavy, 1 },
+                { AbilityKey.Leap, 1 },
             });
 
             var pieceExtraImmunitiesRule = new PieceExtraImmunitiesRule(true);
