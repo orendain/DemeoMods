@@ -1193,6 +1193,7 @@
                 { TileEffect.Acid, 2 },
                 { TileEffect.Web, 3 },
                 { TileEffect.Water, 4 },
+                { TileEffect.Corruption, 5 },
                 { TileEffect.Target, 0 },
             });
 
