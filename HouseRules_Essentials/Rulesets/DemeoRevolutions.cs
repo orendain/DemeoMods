@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rulesets
 {
     using System.Collections.Generic;
+    using Boardgame.Board;
     using DataKeys;
     using global::Types;
     using HouseRules.Essentials.Rules;
@@ -17,6 +18,7 @@
             {
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "MoveRange", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.PoisonousRat, Property = "StartHealth", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "CriticalHitDamage", Value = 9 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
@@ -899,6 +901,7 @@
                 { BoardPieceId.BigBoiMutant, new List<AbilityKey> { AbilityKey.EnemyKnockbackMelee, AbilityKey.Shockwave, AbilityKey.LeapHeavy } },
                 { BoardPieceId.GoblinFighter, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyFlashbang } },
                 { BoardPieceId.SandScorpion, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
+                { BoardPieceId.PoisonousRat, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
                 { BoardPieceId.JeweledScarab, new List<AbilityKey> { } },
             });
 
@@ -1145,6 +1148,11 @@
                 { "PacingSpikeSegmentFloorThreeBudget", 12 },
             });
 
+            var abilityRandomPieceRule = new AbilityRandomPieceListRule(new Dictionary<AbilityKey, List<BoardPieceId>>
+            {
+                { AbilityKey.BeastWhisperer, new List<BoardPieceId> { BoardPieceId.PoisonousRat, BoardPieceId.Spider } },
+            });
+
             var lampTypesRule = new LampTypesOverriddenRule(new Dictionary<int, List<BoardPieceId>>
             {
                 {
@@ -1179,14 +1187,26 @@
                 },
             });
 
-            var xpGainDisabledRule = new XpGainDisabledRule(true);
+            var tileEffectDuration = new TileEffectDurationOverriddenRule(new Dictionary<Boardgame.Board.TileEffect, int>
+            {
+                { TileEffect.Gas, 3 },
+                { TileEffect.Acid, 2 },
+                { TileEffect.Web, 3 },
+                { TileEffect.Water, 4 },
+                { TileEffect.Target, 0 },
+            });
+
+            var courageShantyRule = new CourageShantyAddsHpRule(1);
+            // var xpGainDisabledRule = new XpGainDisabledRule(true);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
             return Ruleset.NewInstance(
                 name,
                 description,
-                xpGainDisabledRule,
+                // xpGainDisabledRule,
                 piecePieceTypeRule,
                 piecesAdjustedRule,
+                courageShantyRule,
+                tileEffectDuration,
                 myMonsterDeckRule,
                 startingCardsRule,
                 allowedCardsRule,
@@ -1219,6 +1239,7 @@
                 enemyHealthScaledRule,
                 enemyAttackScaledRule,
                 pieceExtraStatsRule,
+                abilityRandomPieceRule,
                 lampTypesRule,
                 levelSequenceOverriddenRule,
                 levelPropertiesRule);

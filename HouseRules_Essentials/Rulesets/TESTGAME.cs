@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rulesets
 {
     using System.Collections.Generic;
+    using Boardgame.Board;
     using DataKeys;
     using global::Types;
     using HouseRules.Essentials.Rules;
@@ -18,6 +19,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "StartHealth", Value = 99 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "MoveRange", Value = 20 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "AttackDamage", Value = 99 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.PoisonousRat, Property = "StartHealth", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 99 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "ActionPoint", Value = 9 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "MoveRange", Value = 20 },
@@ -460,6 +462,7 @@
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BeastWhisperer, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.God, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnergyPotion, ReplenishFrequency = 0 },
@@ -931,6 +934,7 @@
                 { BoardPieceId.BigBoiMutant, new List<AbilityKey> { AbilityKey.EnemyKnockbackMelee, AbilityKey.Shockwave, AbilityKey.LeapHeavy } },
                 { BoardPieceId.GoblinFighter, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyFlashbang } },
                 { BoardPieceId.SandScorpion, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
+                { BoardPieceId.PoisonousRat, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
                 { BoardPieceId.JeweledScarab, new List<AbilityKey> { } },
             });
 
@@ -1025,6 +1029,12 @@
 
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
+                { AbilityKey.God, false },
+                { AbilityKey.Teleportation, false },
+                { AbilityKey.Fireball, false },
+                { AbilityKey.WhirlwindAttack, false },
+                { AbilityKey.RevealPath, false },
+                { AbilityKey.DetectEnemies, false },
                 { AbilityKey.Zap, false },
                 { AbilityKey.LightningBolt, false },
                 { AbilityKey.Sneak, false },
@@ -1180,6 +1190,11 @@
                 { "PacingSpikeSegmentFloorThreeBudget", 12 },
             });
 
+            var abilityRandomPieceRule = new AbilityRandomPieceListRule(new Dictionary<AbilityKey, List<BoardPieceId>>
+            {
+                { AbilityKey.BeastWhisperer, new List<BoardPieceId> { BoardPieceId.PoisonousRat, BoardPieceId.Spider } },
+            });
+
             var lampTypesRule = new LampTypesOverriddenRule(new Dictionary<int, List<BoardPieceId>>
             {
                 {
@@ -1214,14 +1229,26 @@
                 },
             });
 
-            var xpGainDisabledRule = new XpGainDisabledRule(true);
+            var tileEffectDuration = new TileEffectDurationOverriddenRule(new Dictionary<Boardgame.Board.TileEffect, int>
+            {
+                { TileEffect.Gas, 3 },
+                { TileEffect.Acid, 2 },
+                { TileEffect.Web, 3 },
+                { TileEffect.Water, 4 },
+                { TileEffect.Target, 0 },
+            });
+
+            var courageShantyRule = new CourageShantyAddsHpRule(1);
+            // var xpGainDisabledRule = new XpGainDisabledRule(true);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
             return Ruleset.NewInstance(
                 name,
                 description,
-                xpGainDisabledRule,
+                // xpGainDisabledRule,
                 piecePieceTypeRule,
                 piecesAdjustedRule,
+                courageShantyRule,
+                tileEffectDuration,
                 myMonsterDeckRule,
                 startingCardsRule,
                 allowedCardsRule,
@@ -1254,6 +1281,7 @@
                 enemyHealthScaledRule,
                 enemyAttackScaledRule,
                 pieceExtraStatsRule,
+                abilityRandomPieceRule,
                 lampTypesRule,
                 levelSequenceOverriddenRule,
                 levelPropertiesRule);

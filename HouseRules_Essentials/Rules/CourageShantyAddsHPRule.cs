@@ -4,6 +4,7 @@
     using Boardgame.GameplayEffects;
     using HarmonyLib;
     using HouseRules.Types;
+    using UnityEngine;
 
     public sealed class CourageShantyAddsHpRule : Rule, IConfigWritable<int>, IPatchable, IMultiplayerSafe
     {
@@ -45,8 +46,20 @@
                 return;
             }
 
-            target.piece.effectSink.Heal(_globalAdjustments);
-            HR.ScheduleBoardSync();
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            {
+                if (Random.Range(1, 101) > 67)
+                {
+                    target.piece.effectSink.Heal(_globalAdjustments);
+                    target.piece.AnimateWobble();
+                    HR.ScheduleBoardSync();
+                }
+            }
+            else
+            {
+                target.piece.effectSink.Heal(_globalAdjustments);
+                HR.ScheduleBoardSync();
+            }
         }
     }
 }
