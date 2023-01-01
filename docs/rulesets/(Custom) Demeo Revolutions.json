@@ -3,6 +3,194 @@
   "Description": "Everything that has a beginning has an end.",
   "Rules": [
     {
+      "Rule": "PiecePieceTypeListOverridden",
+      "Config": {
+        "ReptileArcher": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Reptile",
+          "ValidCorruptionTarget"
+        ],
+        "ReptileMutantWizard": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Reptile",
+          "ValidCorruptionTarget"
+        ],
+        "GeneralRonthian": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "TheUnseen": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "ElvenArcher": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "ElvenHound": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "TheUnspoken": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "GoblinChieftan": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Goblin",
+          "ValidCorruptionTarget"
+        ],
+        "GoblinMadUn": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Goblin",
+          "ValidCorruptionTarget"
+        ],
+        "ScabRat": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Rat",
+          "ValidCorruptionTarget"
+        ],
+        "Spider": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "Rat": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "TheUnheard": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Rat",
+          "ValidCorruptionTarget"
+        ],
+        "Slimeling": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "SmallSlime"
+        ],
+        "Thug": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Thief",
+          "ValidCorruptionTarget"
+        ],
+        "ElvenMystic": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "NonTeleportable"
+        ],
+        "ElvenPriest": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "ElvenSkirmisher": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "EarthElemental": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "Cavetroll": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget",
+          "TooHeavyToGrapple"
+        ],
+        "BigBoiMutant": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Reptile",
+          "ValidCorruptionTarget",
+          "TooHeavyToGrapple"
+        ],
+        "SilentSentinel": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "TooHeavyToGrapple"
+        ],
+        "ServantOfAlfaragh": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "NonTeleportable",
+          "TooHeavyToGrapple"
+        ],
+        "GiantSlime": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "GiantSlime",
+          "ValidCorruptionTarget"
+        ],
+        "GiantSpider": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget",
+          "TooHeavyToGrapple"
+        ],
+        "ElvenMarauder": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "Gorgon": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "FireElemental": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "IceElemental": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Brittle"
+        ]
+      }
+    },
+    {
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
@@ -16,14 +204,14 @@
           "Value": 5.0
         },
         {
-          "Piece": "HeroBarbarian",
+          "Piece": "PoisonousRat",
           "Property": "StartHealth",
-          "Value": 7.0
+          "Value": 2.0
         },
         {
           "Piece": "HeroBarbarian",
-          "Property": "MoveRange",
-          "Value": 5.0
+          "Property": "StartHealth",
+          "Value": 7.0
         },
         {
           "Piece": "HeroBarbarian",
@@ -181,6 +369,21 @@
           "Value": 167.0
         },
         {
+          "Piece": "RootLord",
+          "Property": "StartHealth",
+          "Value": 85.0
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "StartHealth",
+          "Value": 70.0
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "StartHealth",
+          "Value": 142.0
+        },
+        {
           "Piece": "Wyvern",
           "Property": "StartHealth",
           "Value": 36.0
@@ -223,7 +426,7 @@
         {
           "Piece": "EarthElemental",
           "Property": "AttackDamage",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "Brookmare",
@@ -271,6 +474,21 @@
           "Value": 5.0
         }
       ]
+    },
+    {
+      "Rule": "CourageShantyAddsHp",
+      "Config": 1
+    },
+    {
+      "Rule": "TileEffectDurationOverridden",
+      "Config": {
+        "Gas": 3,
+        "Acid": 2,
+        "Web": 3,
+        "Water": 4,
+        "Corruption": 5,
+        "Target": 0
+      }
     },
     {
       "Rule": "MyMonsterDeckOverridden",
@@ -687,7 +905,7 @@
           },
           {
             "Card": "DiseasedBite",
-            "ReplenishFrequency": 2
+            "ReplenishFrequency": 3
           }
         ],
         "HeroSorcerer": [
@@ -783,9 +1001,8 @@
           "ScrollTsunami",
           "Teleportation",
           "WaterBottle",
-          "RevealPath",
-          "Rejuvenation",
           "EnergyPotion",
+          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
           "VigorPotion",
@@ -826,9 +1043,8 @@
           "ScrollTsunami",
           "Teleportation",
           "WaterBottle",
-          "RevealPath",
-          "Rejuvenation",
           "EnergyPotion",
+          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
           "VigorPotion",
@@ -869,9 +1085,8 @@
           "ScrollTsunami",
           "Teleportation",
           "WaterBottle",
-          "RevealPath",
-          "Rejuvenation",
           "EnergyPotion",
+          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
           "VigorPotion",
@@ -912,9 +1127,8 @@
           "ScrollTsunami",
           "Teleportation",
           "WaterBottle",
-          "RevealPath",
-          "Rejuvenation",
           "EnergyPotion",
+          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
           "VigorPotion",
@@ -956,11 +1170,10 @@
           "ScrollTsunami",
           "Teleportation",
           "WaterBottle",
-          "RevealPath",
-          "Rejuvenation",
           "EnergyPotion",
+          "Rejuvenation",
           "DamageResistPotion",
-          "InvisibilityPotion",
+          "OneMoreThing",
           "VigorPotion",
           "StrengthPotion",
           "SwiftnessPotion",
@@ -999,9 +1212,8 @@
           "FireImmunePotion",
           "ScrollTsunami",
           "Teleportation",
-          "RevealPath",
-          "Rejuvenation",
           "EnergyPotion",
+          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
           "VigorPotion",
@@ -1041,11 +1253,9 @@
           "IceImmunePotion",
           "FireImmunePotion",
           "ScrollTsunami",
-          "Teleportation",
           "WaterBottle",
-          "RevealPath",
-          "Rejuvenation",
           "EnergyPotion",
+          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
           "VigorPotion",
@@ -1084,7 +1294,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "FireImmunity",
@@ -1094,7 +1310,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "IceImmunity",
@@ -1104,7 +1326,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Invulnerable3",
@@ -1114,7 +1342,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "MarkOfAvalon",
@@ -1125,6 +1359,12 @@
           "clearOnNewLevel": false,
           "damageTags": null,
           "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "ExtraEnergy",
@@ -1136,7 +1376,11 @@
           "damageTags": null,
           "healPerTurn": 0,
           "healthBoost": 2,
-          "applyAfterDissipate": "Thorns"
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Thorns",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Netted",
@@ -1146,7 +1390,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Invisibility",
@@ -1156,7 +1406,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "PlayerBerserk",
@@ -1166,7 +1422,13 @@
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
-          "healPerTurn": 0
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         }
       ]
     },
@@ -1249,6 +1511,10 @@
           "EnemyMelee",
           "DiseasedBite"
         ],
+        "PoisonousRat": [
+          "EnemyMelee",
+          "DiseasedBite"
+        ],
         "JeweledScarab": []
       }
     },
@@ -1327,7 +1593,6 @@
       "Rule": "PieceImmunityListAdjusted",
       "Config": {
         "HeroBarbarian": [
-          "Netted",
           "Petrified"
         ],
         "HeroSorcerer": [
@@ -1344,20 +1609,18 @@
           "Weaken2Turns"
         ],
         "HeroBard": [
-          "Diseased"
+          "Diseased",
+          "Netted"
         ],
         "HeroRogue": [
           "Tangled",
-          "Blinded",
-          "Netted"
+          "Blinded"
         ],
         "HeroWarlock": [
-          "CorruptedRage",
-          "Undefined"
+          "CorruptedRage"
         ],
         "WarlockMinion": [
-          "CorruptedRage",
-          "Undefined"
+          "CorruptedRage"
         ]
       }
     },
@@ -1386,6 +1649,13 @@
         "EarthElemental": [
           "TelekineticBurst"
         ]
+      }
+    },
+    {
+      "Rule": "AbilityBreaksStealthAdjusted",
+      "Config": {
+        "PoisonBomb": false,
+        "FlashBomb": false
       }
     },
     {
@@ -1502,7 +1772,6 @@
       "Rule": "AbilityStealthDamageOverridden",
       "Config": {
         "DiseasedBite": 2,
-        "PoisonBomb": 1,
         "PlayerMelee": 2,
         "FretsOfFire": 1
       }
@@ -1534,7 +1803,9 @@
         "Deflect": 2,
         "BlindingLight": 1,
         "BlockAbilities": 1,
-        "GrapplingPush": 1
+        "GrapplingPush": 1,
+        "LeapHeavy": 1,
+        "Leap": 1
       }
     },
     {
@@ -1631,6 +1902,45 @@
       "Config": 1.0
     },
     {
+      "Rule": "PieceExtraStatsAdjusted",
+      "Config": true
+    },
+    {
+      "Rule": "AbilityRandomPieceList",
+      "Config": {
+        "BeastWhisperer": [
+          "PoisonousRat",
+          "Spider"
+        ]
+      }
+    },
+    {
+      "Rule": "LampTypesOverridden",
+      "Config": {
+        "1": [
+          "GasLamp",
+          "OilLamp",
+          "VortexLamp",
+          "WaterLamp",
+          "IceLamp"
+        ],
+        "2": [
+          "GasLamp",
+          "OilLamp",
+          "VortexLamp",
+          "WaterLamp",
+          "IceLamp"
+        ],
+        "3": [
+          "GasLamp",
+          "OilLamp",
+          "VortexLamp",
+          "WaterLamp",
+          "IceLamp"
+        ]
+      }
+    },
+    {
       "Rule": "LevelSequenceOverridden",
       "Config": [
         "ElvenFloor17",
@@ -1666,7 +1976,8 @@
         "FloorThreePotionStand": 0,
         "FloorThreeMerchant": 0,
         "FloorThreeLootChests": 1,
-        "FloorThreeElvenSummoners": 0
+        "FloorThreeElvenSummoners": 0,
+        "PacingSpikeSegmentFloorThreeBudget": 12
       }
     }
   ]

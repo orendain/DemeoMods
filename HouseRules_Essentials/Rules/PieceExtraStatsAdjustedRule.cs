@@ -50,7 +50,7 @@
             else if (__result.IsPlayer())
             {
                 __result.effectSink.TrySetStatMaxValue(Stats.Type.Strength, 5);
-                __result.effectSink.TrySetStatMaxValue(Stats.Type.MoveRange, 5);
+                __result.effectSink.TrySetStatMaxValue(Stats.Type.Speed, 5);
                 __result.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, 5);
 
                 if (__result.boardPieceId == BoardPieceId.HeroGuardian)

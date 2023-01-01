@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using Boardgame;
+    using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
     using Boardgame.Data;
     using Boardgame.GameplayEffects;
@@ -51,6 +52,13 @@
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
             }
+            else if (target.piece.boardPieceId == BoardPieceId.WarlockMinion && !attacker.HasPieceType(PieceType.Boss) && damage.HasTag(DamageTag.Undefined))
+            {
+                target.piece.DisableEffectState(EffectStateType.CorruptedRage);
+                target.piece.effectSink.TrySetStatBaseValue(Stats.Type.CorruptionAP, 0);
+                target.piece.effectSink.SubtractHealth(0);
+                return false;
+            }
 
             if (!target.piece.IsPlayer())
             {
@@ -59,6 +67,14 @@
 
             if (target.piece.boardPieceId == BoardPieceId.HeroBarbarian && !attacker.HasPieceType(PieceType.Boss) && (damage.HasTag(DamageTag.Acid) || damage.AbilityKey == AbilityKey.Petrify))
             {
+                target.piece.effectSink.SubtractHealth(0);
+                return false;
+            }
+            else if (target.piece.boardPieceId == BoardPieceId.HeroWarlock && !attacker.HasPieceType(PieceType.Boss) && damage.HasTag(DamageTag.Undefined))
+            {
+                target.piece.DisableEffectState(EffectStateType.CorruptedRage);
+                target.piece.effectSink.TrySetStatBaseValue(Stats.Type.CorruptionAP, 0);
+                target.piece.effectSink.TryAddActionPoints(1);
                 target.piece.effectSink.SubtractHealth(0);
                 return false;
             }

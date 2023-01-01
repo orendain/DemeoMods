@@ -117,63 +117,30 @@
     {
       "Rule": "AbilityAoeAdjusted",
       "Config": {
+        "MagicPotion": 1,
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
-        "Antitoxin": 1,
+        "DamageResistPotion": 1,
         "VigorPotion": 1,
         "ExtraActionPotion": 1,
-        "DamageResistPotion": 1,
-        "OneMoreThing": 1,
-        "AdamantPotion": 1,
         "HealingPotion": 1
-      }
-    },
-    {
-      "Rule": "LampTypesOverridden",
-      "Config": {
-        "1": [
-          "GasLamp",
-          "OilLamp",
-          "VortexLamp",
-          "GasLamp",
-          "OilLamp",
-          "VortexLamp",
-          "OilLamp",
-          "OilLamp",
-          "GasLamp"
-        ],
-        "2": [
-          "GasLamp",
-          "GasLamp",
-          "GasLamp",
-          "GasLamp",
-          "GasLamp",
-          "GasLamp",
-          "GasLamp",
-          "OilLamp",
-          "OilLamp",
-          "OilLamp"
-        ],
-        "3": [
-          "OilLamp",
-          "IceLamp",
-          "VortexLamp",
-          "OilLamp",
-          "IceLamp",
-          "VortexLamp",
-          "IceLamp"
-        ]
       }
     },
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
         "FloorOneHealingFountains": 1,
-        "FloorOneLootChests": 11,
+        "FloorOneLootChests": 9,
+        "FloorOnePotionStand": 2,
+        "FloorOneElvenSummoners": 0,
         "FloorTwoHealingFountains": 1,
-        "FloorTwoLootChests": 14,
+        "FloorTwoLootChests": 11,
+        "FloorTwoPotionStand": 3,
+        "FloorTwoElvenSummoners": 0,
         "FloorThreeHealingFountains": 1,
         "FloorThreeLootChests": 8,
+        "FloorThreePotionStand": 2,
+        "FloorThreeElvenSummoners": 0,
         "FloorOneEndZoneSpikeMaxBudget": 12,
         "PacingSpikeSegmentFloorOneBudget": 12
       }
@@ -238,6 +205,7 @@
           {
             "Card": "ExplodingLampPlaceholder",
             "ReplenishFrequency": 1
+          },
           {
             "Card": "OilLamp",
             "ReplenishFrequency": 0
@@ -257,11 +225,7 @@
           {
             "Card": "DetectEnemies",
             "ReplenishFrequency": 0
-          },
-          {
-            "Card": "GrappleTotem",
-            "ReplenishFrequency": 1
-          },
+          }
         ],
         "HeroBard": [
           {

@@ -25,11 +25,14 @@
         "FloorOneHealingFountains": 1,
         "FloorOneLootChests": 2,
         "FloorOneGoldMaxAmount": 672,
+        "FloorOneElvenSummoners": 0,
         "FloorTwoHealingFountains": 1,
         "FloorTwoLootChests": 2,
         "FloorTwoGoldMaxAmount": 420,
+        "FloorTwoElvenSummoners": 0,
         "FloorThreeHealingFountains": 1,
-        "FloorThreeLootChests": 1
+        "FloorThreeLootChests": 1,
+        "FloorThreeElvenSummoners": 0
       }
     }
   ]

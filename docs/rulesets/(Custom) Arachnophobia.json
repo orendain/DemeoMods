@@ -354,7 +354,7 @@
         "MagicMissile": false,
         "CourageShanty": false,
         "Sneak": false,
-        "Grapple":  false
+        "Grapple": false
       }
     },
     {
@@ -362,13 +362,17 @@
       "Config": {
         "FloorOneGoldMaxAmount": 1200,
         "FloorOneHealingFountains": 2,
-        "FloorOneLootChests": 12,
-        "FloorOneClassCardChests": 8,
+        "FloorOneLootChests": 18,
+        "FloorOnePotionStand": 2,
+        "FloorOneElvenSummoners": 0,
         "FloorTwoHealingFountains": 3,
-        "FloorTwoLootChests": 9,
+        "FloorTwoLootChests": 8,
+        "FloorTwoPotionStand": 1,
+        "FloorTwoElvenSummoners": 0,
         "FloorTwoGoldMaxAmount": 1500,
         "FloorThreeHealingFountains": 1,
-        "FloorThreeLootChests": 0
+        "FloorThreeLootChests": 0,
+        "FloorThreeElvenSummoners": 0
       }
     },
     {

@@ -1,0 +1,136 @@
+{
+  "Name": "(Custom) Potion Commotion",
+  "Description": "Nothing but potions in the cards you get given. Enemies do not respawn.",
+  "Rules": [
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "FloorOneElvenSummoners": 0,
+        "FloorTwoElvenSummoners": 0,
+        "FloorThreeElvenSummoners": 0
+      }
+    },
+    {
+      "Rule": "CardAdditionOverridden",
+      "Config": {
+        "HeroBarbarian": [
+          "AdamantPotion",
+          "BottleOfLye",
+          "ExtraActionPotion",
+          "FireImmunePotion",
+          "HealingPotion",
+          "IceImmunePotion",
+          "LuckPotion",
+          "MagicPotion",
+          "SpellPowerPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion",
+          "WaterBottle"
+        ],
+        "HeroBard": [
+          "AdamantPotion",
+          "BottleOfLye",
+          "ExtraActionPotion",
+          "FireImmunePotion",
+          "HealingPotion",
+          "IceImmunePotion",
+          "LuckPotion",
+          "MagicPotion",
+          "SpellPowerPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion",
+          "WaterBottle"
+        ],
+        "HeroGuardian": [
+          "AdamantPotion",
+          "BottleOfLye",
+          "ExtraActionPotion",
+          "FireImmunePotion",
+          "HealingPotion",
+          "IceImmunePotion",
+          "LuckPotion",
+          "MagicPotion",
+          "SpellPowerPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion",
+          "WaterBottle"
+        ],
+        "HeroHunter": [
+          "AdamantPotion",
+          "BottleOfLye",
+          "ExtraActionPotion",
+          "FireImmunePotion",
+          "HealingPotion",
+          "IceImmunePotion",
+          "LuckPotion",
+          "MagicPotion",
+          "SpellPowerPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion",
+          "WaterBottle"
+        ],
+        "HeroRogue": [
+          "AdamantPotion",
+          "BottleOfLye",
+          "ExtraActionPotion",
+          "FireImmunePotion",
+          "HealingPotion",
+          "IceImmunePotion",
+          "LuckPotion",
+          "MagicPotion",
+          "SpellPowerPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion",
+          "WaterBottle"
+        ],
+        "HeroSorcerer": [
+          "AdamantPotion",
+          "BottleOfLye",
+          "ExtraActionPotion",
+          "FireImmunePotion",
+          "HealingPotion",
+          "IceImmunePotion",
+          "LuckPotion",
+          "MagicPotion",
+          "SpellPowerPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion",
+          "WaterBottle"
+        ],
+        "HeroWarlock": [
+          "AdamantPotion",
+          "BottleOfLye",
+          "ExtraActionPotion",
+          "FireImmunePotion",
+          "HealingPotion",
+          "IceImmunePotion",
+          "LuckPotion",
+          "MagicPotion",
+          "SpellPowerPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion",
+          "WaterBottle"
+        ]
+      }
+    },
+    {
+      "Rule": "AbilityActionCostAdjusted",
+      "Config": {
+        "Zap": false,
+        "Overcharge": false,
+        "LightningBolt": false
+      }
+    },
+    {
+      "Rule": "EnemyRespawnDisabled",
+      "Config": true
+    }
+  ]
+}

@@ -19,11 +19,14 @@
         "FloorOneMerchant": 0,
         "FloorOneLootChests": 9,
         "FloorOneGoldMaxAmount": 0,
+        "FloorOneElvenSummoners": 0,
         "FloorTwoHealingFountains": 1,
         "FloorTwoPotionStand": 0,
         "FloorTwoMerchant": 0,
         "FloorTwoLootChests": 9,
-        "FloorTwoGoldMaxAmount": 0
+        "FloorTwoGoldMaxAmount": 0,
+        "FloorTwoElvenSummoners": 0,
+        "FloorThreeElvenSummoners": 0
       }
     },
     {
@@ -45,7 +48,7 @@
           "CoinFlip"
         ],
         "HeroSorcerer": [
-          "Bone"
+          "CoinFlip"
         ],
         "HeroWarlock": [
           "CoinFlip"
@@ -56,14 +59,14 @@
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
-          "Piece": "HeroGuardian",
-          "Property": "StartArmor",
-          "Value": 0.0
-        },
-        {
           "Piece": "HeroBarbarian",
           "Property": "MoveRange",
           "Value": 5.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "StartArmor",
+          "Value": 0.0
         },
         {
           "Piece": "HeroGuardian",
@@ -281,15 +284,11 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "PlayerLeap",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "GrapplingSmash",
             "ReplenishFrequency": 0
           },
           {
-            "Card": "ExplodingLampTotemPlaceholder",
+            "Card": "ExplodingLampPlaceholder",
             "ReplenishFrequency": 1
           },
           {

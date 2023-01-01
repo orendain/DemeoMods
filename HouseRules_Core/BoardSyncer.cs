@@ -141,7 +141,7 @@
                 case SerializableEvent.Type.OnMoved:
                     var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
                     Piece thisPiece = _gameContext.pieceAndTurnController.GetPiece(pieceId);
-                    if (thisPiece.IsPlayer() && (_lastGrabbed == null || thisPiece != _lastGrabbed))
+                    if (_lastGrabbed == null || thisPiece != _lastGrabbed)
                     {
                         // CoreMod.Logger.Msg($"--OnMoved-- {thisPiece.GetPieceConfig().PieceName} [ID: {pieceId}] needs a Fog Update...");
                         _lastGrabbed = null;

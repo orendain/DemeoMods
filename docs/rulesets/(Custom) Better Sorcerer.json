@@ -3,6 +3,14 @@
   "Description": "0 Action Cost for Sorcerer's Zap - No other changes. #STS",
   "Rules": [
     {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "FloorOneElvenSummoners": 0,
+        "FloorTwoElvenSummoners": 0,
+        "FloorThreeElvenSummoners": 0
+      }
+    },
+    {
       "Rule": "AbilityActionCostAdjusted",
       "Config": {
         "Zap": false

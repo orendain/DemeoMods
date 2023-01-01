@@ -924,15 +924,15 @@
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
             {
-                { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType.Netted, EffectStateType.Petrified } },
+                { BoardPieceId.HeroBarbarian, new List<EffectStateType> { EffectStateType.Petrified } },
                 { BoardPieceId.HeroSorcerer, new List<EffectStateType> { EffectStateType.Stunned } },
                 { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.Verochka, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns } },
-                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased } },
-                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded, EffectStateType.Netted } },
-                { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
-                { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Undefined } },
+                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Netted } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded } },
+                { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },
+                { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage } },
             });
 
             var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
@@ -1198,8 +1198,9 @@
             });
 
             var courageShantyRule = new CourageShantyAddsHpRule(1);
-            // var xpGainDisabledRule = new XpGainDisabledRule(true);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
+            // var xpGainDisabledRule = new XpGainDisabledRule(true);
+
             return Ruleset.NewInstance(
                 name,
                 description,
