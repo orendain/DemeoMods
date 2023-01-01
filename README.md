@@ -26,6 +26,7 @@ Gameplay changes
 - The Elven Queen has new self buffs and abilities to add a REAL challenge
 - The Serpent Lord boss is invulnerable while invisible... so you have to do it the HARD way
 - If playing Roots of Evil the player with the most javelins will be first in turn order on the LAST floor
+- Text view of advanced stats when picking up a player piece (PCVR/VR ONLY)
 
 Class Changes
 =============
@@ -39,7 +40,7 @@ Class Changes
 - Enemies that melee you will be counter-attacked for 1 damage
 
 **Barbarian:**
-- 7 max health. You are immune to being Netted as well as non-boss Petrify and Slime damage 
+- 7 max health. You are immune to Petrify and Slime damage 
 - Critical damage increased by 2
 - Normal start cards plus The Leviathan and Barbaric Chainwhip
 - Barbaric Chainwhip area coverage changed from 3x3 to 5x5 and does 1 more damage
@@ -74,7 +75,7 @@ Class Changes
 - Critical hits on LAST action gain Invisibility that lasts until the end of the NEXT round
 
 **Bard:**
-- 7 max health. You are immune to Poison
+- 7 max health. You are immune to Poison and being Netted
 - Melee damage reduced to 2
 - Can now backstab (and so can his damaging songs)
 - Courage Shanty costs 0 Action Points
@@ -85,7 +86,7 @@ Class Changes
 - Critical hits on LAST action also gain Panic Powder and gives a couple rounds of Deflection
 
 **Warlock:**
-- 6 max health. You and Cána are immune to Corruption
+- 6 max health. You and Cána are immune to being Corrupted and Corruption damage
 - Melee damage reduced to 1
 - Cána starts with 1 point of innate damage resistance (can NOT be increased with potion)
 - If Cána goes under half life she gains Frenzy (+1 damage until life goes over half)
