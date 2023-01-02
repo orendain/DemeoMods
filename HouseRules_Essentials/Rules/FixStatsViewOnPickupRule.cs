@@ -61,43 +61,103 @@
             int maxmagic = myPiece.GetStatMax(Stats.Type.MagicBonus);
             int resist = myPiece.GetStat(Stats.Type.DamageResist);
             int maxresist = myPiece.GetStatMax(Stats.Type.DamageResist);
+            int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
+            int maxdowns = myPiece.GetStatMax(Stats.Type.DownedCounter);
+            bool hasbonuses = true;
+            bool hasimmunities = true;
+            var pieceConfig = Traverse.Create(__instance).Field<PieceConfigData>("pieceConfig").Value;
+            EffectStateType[] immuneToStatusEffects = pieceConfig.ImmuneToStatusEffects;
+            if (immuneToStatusEffects == null || immuneToStatusEffects.Length == 0)
+            {
+                hasimmunities = false;
+            }
+
+            if (numdowns == 0 && strength == 0 && speed == 0 && magic == 0 && resist == 0)
+            {
+                hasbonuses = false;
+                if (!hasimmunities)
+                {
+                    return;
+                }
+            }
+
             string name = pieceNameController.GetPieceName();
             var sb = new StringBuilder();
             sb.AppendLine($"<< {name} >>");
-            sb.AppendLine();
-            if (maxstrength > 3 || maxspeed > 3 || maxmagic > 3 || maxresist > 1)
+            if (hasbonuses)
             {
-                sb.AppendLine($"Strength: {strength}/{maxstrength}");
-                sb.AppendLine($"Movement: {speed}/{maxspeed}");
-                sb.AppendLine($"Magic Bonus: {magic}/{maxmagic}");
-                sb.AppendLine($"Damage Resist: {resist}/{maxresist}");
+                if (numdowns > 0)
+                {
+                    sb.AppendLine($"Times downed: {numdowns}/{maxdowns}");
+                }
+
+                sb.AppendLine();
+                sb.AppendLine("-- Bonus Stats --");
+                if (strength > 0)
+                {
+                    if (maxstrength > 3)
+                    {
+                        sb.AppendLine($"Strength: {strength}/{maxstrength}");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"Strength: {strength}");
+                    }
+                }
+
+                if (speed > 0)
+                {
+                    if (maxspeed > 3)
+                    {
+                        sb.AppendLine($"Swiftness: {speed}/{maxspeed}");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"Swiftness: {speed}");
+                    }
+                }
+
+                if (magic > 0)
+                {
+                    if (maxmagic > 3)
+                    {
+                        sb.AppendLine($"Magic: {magic}/{maxmagic}");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"Magic: {magic}");
+                    }
+                }
+
+                if (resist > 0)
+                {
+                    if (maxresist > 1)
+                    {
+                        sb.AppendLine($"Damage Resist: {resist}/{maxresist}");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"Damage Resist: {resist}");
+                    }
+                }
             }
             else
             {
-                sb.AppendLine($"Magic Bonus: {magic}");
-                sb.AppendLine($"Damage Resist: {resist}");
+                sb.AppendLine("No Stat Bonuses... yet!");
             }
 
-            var pieceConfig = Traverse.Create(__instance).Field<PieceConfigData>("pieceConfig").Value;
-            List<string> list = new List<string>();
-            EffectStateType[] immuneToStatusEffects = pieceConfig.ImmuneToStatusEffects;
-            if (immuneToStatusEffects == null)
+            if (!hasimmunities)
             {
                 GameUI.ShowCameraMessage(sb.ToString(), 3);
                 return;
             }
 
             int num = immuneToStatusEffects.Length;
-            if (num == 0)
-            {
-                GameUI.ShowCameraMessage(sb.ToString(), 3);
-                return;
-            }
-
             sb.AppendLine();
-            sb.AppendLine($"Immunities:");
- 
+            sb.AppendLine($"-- Immunities --");
+
             bool weak = false;
+            List<string> list = new List<string>();
             for (int i = 0; i < num; i++)
             {
                 string localizedTitle = StatusEffectsConfig.GetLocalizedTitle(immuneToStatusEffects[i]);
