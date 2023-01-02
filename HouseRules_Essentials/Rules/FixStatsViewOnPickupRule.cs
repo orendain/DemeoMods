@@ -11,7 +11,7 @@
 
     public sealed class FixStatsViewOnPickupRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Show missing stats when piece picked up";
+        public override string Description => "Show more stats when piece picked up";
 
         private static bool _isActivated;
 
@@ -62,8 +62,8 @@
             int resist = myPiece.GetStat(Stats.Type.DamageResist);
             int maxresist = myPiece.GetStatMax(Stats.Type.DamageResist);
             int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
-            int maxdowns = myPiece.GetStatMax(Stats.Type.DownedCounter);
             bool hasbonuses = true;
+            bool hasdowns = true;
             bool hasimmunities = true;
             var pieceConfig = Traverse.Create(__instance).Field<PieceConfigData>("pieceConfig").Value;
             EffectStateType[] immuneToStatusEffects = pieceConfig.ImmuneToStatusEffects;
@@ -72,25 +72,31 @@
                 hasimmunities = false;
             }
 
-            if (numdowns == 0 && strength == 0 && speed == 0 && magic == 0 && resist == 0)
+            if (strength == 0 && speed == 0 && magic == 0 && resist == 0)
             {
                 hasbonuses = false;
-                if (!hasimmunities)
-                {
-                    return;
-                }
+            }
+
+            if (numdowns == 0)
+            {
+                hasdowns = false;
+            }
+
+            if (!hasimmunities && !hasdowns && !hasbonuses)
+            {
+                return;
             }
 
             string name = pieceNameController.GetPieceName();
             var sb = new StringBuilder();
             sb.AppendLine($"<< {name} >>");
+            if (hasdowns)
+            {
+                sb.AppendLine($"Downed times remaining: {3 - numdowns}");
+            }
+
             if (hasbonuses)
             {
-                if (numdowns > 0)
-                {
-                    sb.AppendLine($"Times downed: {numdowns}/{maxdowns}");
-                }
-
                 sb.AppendLine();
                 sb.AppendLine("-- Bonus Stats --");
                 if (strength > 0)
@@ -140,10 +146,6 @@
                         sb.AppendLine($"Damage Resist: {resist}");
                     }
                 }
-            }
-            else
-            {
-                sb.AppendLine("No Stat Bonuses... yet!");
             }
 
             if (!hasimmunities)

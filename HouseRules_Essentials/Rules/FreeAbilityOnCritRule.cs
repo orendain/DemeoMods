@@ -99,7 +99,6 @@
                                 value1.flags &= (Inventory.ItemFlag)(-3);
                                 source.inventory.Items[i] = value1;
                                 source.AddGold(0);
-                                hasPower1 = false;
                             }
 
                             break;

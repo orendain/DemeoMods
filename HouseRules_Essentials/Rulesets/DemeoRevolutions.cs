@@ -16,6 +16,7 @@
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Torch, Property = "StartHealth", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.PoisonousRat, Property = "StartHealth", Value = 2 },
@@ -929,8 +930,8 @@
                 { BoardPieceId.HeroHunter, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.Verochka, new List<EffectStateType> { EffectStateType.Frozen } },
                 { BoardPieceId.HeroGuardian, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns } },
-                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Netted } },
-                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Blinded } },
+                { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Blinded } },
+                { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Netted } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },
                 { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage } },
             });
@@ -1085,7 +1086,7 @@
                 { AbilityKey.Petrify, 2 },
                 { AbilityKey.Net, 2 },
                 { AbilityKey.Grapple, 2 },
-                { AbilityKey.ElvenSummonerDeflect, 4 },
+                { AbilityKey.ElvenSummonerDeflect, 5 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
@@ -1101,6 +1102,7 @@
                 { AbilityKey.GrapplingPush, 1 },
                 { AbilityKey.LeapHeavy, 1 },
                 { AbilityKey.Leap, 1 },
+                { AbilityKey.Net, 0 },
             });
 
             var pieceExtraImmunitiesRule = new PieceExtraImmunitiesRule(true);

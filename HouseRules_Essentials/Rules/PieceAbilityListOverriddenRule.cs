@@ -50,6 +50,7 @@
             {
                 var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.Abilities.ToList();
+                // EssentialsMod.Logger.Msg($"{item.Key}: {string.Join(", ", previousProperties[item.Key])}"); // Uncomment to see original abilities
                 pieceConfigDto.Abilities = item.Value.ToArray();
                 gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
