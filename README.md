@@ -61,7 +61,7 @@ Class Changes
 - Critical hits on LAST action gain a Bone, a Freeze Arrow, and gives a few rounds of Fire Immunity
 
 **Assassin:**
-- 7 max health. You are immune to being Tangled and Blinded
+- 7 max health. You are immune to being Tangled and Netted
 - Critical damage increased by 1
 - Movement increased by 1
 - Sneak costs 0 Action Points
@@ -75,7 +75,7 @@ Class Changes
 - Critical hits on LAST action gain Invisibility that lasts until the end of the NEXT round
 
 **Bard:**
-- 7 max health. You are immune to Poison and being Netted
+- 7 max health. You are immune to Poison and being Blinded
 - Melee damage reduced to 2
 - Can now backstab (and so can his damaging songs)
 - Courage Shanty costs 0 Action Points
