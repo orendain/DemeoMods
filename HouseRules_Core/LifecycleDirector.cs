@@ -10,6 +10,7 @@
     using HouseRules.Types;
     using Photon.Pun;
     using Photon.Realtime;
+    using UnityEngine;
 
     internal static class LifecycleDirector
     {
@@ -492,20 +493,35 @@
         private static string NotSafeForMultiplayerMessage()
         {
             return new StringBuilder()
-                .AppendLine("Attention:")
-                .AppendLine("The HouseRules ruleset you selected is not safe for multiplayer games, and was not activated.")
+                .AppendLine(ColorizeString("Attention:", Color.yellow))
+                .AppendLine(ColorizeString("The HouseRules ruleset you selected is not safe for multiplayer games, and was not activated!", Color.red))
                 .ToString();
         }
 
         private static string RulesetActiveMessage()
         {
+            Color violet = new Color(0.8f, 0f, 0.8f, 1f);
+            Color blue = new Color(0f, 0.5f, 1f, 1f);
+            Color orange = new Color(1f, 0.499f, 0f, 1f);
             var sb = new StringBuilder();
-            sb.AppendLine("Welcome to a game using HouseRules!");
+            sb.Append(ColorizeString("This game uses ", Color.white));
+            sb.Append(ColorizeString("H", violet));
+            sb.Append(ColorizeString("o", blue));
+            sb.Append(ColorizeString("u", Color.green));
+            sb.Append(ColorizeString("s", Color.yellow));
+            sb.Append(ColorizeString("e", orange));
+            sb.Append(ColorizeString("-", Color.red));
+            sb.Append(ColorizeString("R", orange));
+            sb.Append(ColorizeString("u", Color.yellow));
+            sb.Append(ColorizeString("l", Color.green));
+            sb.Append(ColorizeString("e", blue));
+            sb.Append(ColorizeString("s", violet));
+            sb.AppendLine(ColorizeString("!", Color.white));
             sb.AppendLine();
-            sb.AppendLine($"{HR.SelectedRuleset.Name}:");
-            sb.AppendLine(HR.SelectedRuleset.Description);
+            sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Name}:", Color.cyan));
+            sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
             sb.AppendLine();
-            sb.AppendLine($"{HR.SelectedRuleset.Rules.Count} Rules loaded!");
+            sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Rules.Count} Rules loaded!", Color.yellow));
 
             /*sb.AppendLine("Rules:");
 
@@ -516,6 +532,18 @@
             }*/
 
             return sb.ToString();
+        }
+
+        private static string ColorizeString(string text, Color color)
+        {
+            return string.Concat(new string[]
+            {
+        "<color=#",
+        ColorUtility.ToHtmlStringRGB(color),
+        ">",
+        text,
+        "</color>",
+            });
         }
     }
 }

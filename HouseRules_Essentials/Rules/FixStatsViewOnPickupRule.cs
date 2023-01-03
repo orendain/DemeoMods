@@ -8,6 +8,7 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
+    using UnityEngine;
 
     public sealed class FixStatsViewOnPickupRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
@@ -44,9 +45,8 @@
                 return;
             }*/
 
-            var pieceId = Traverse.Create(__instance).Field<int>("pieceId").Value;
-            var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
-            pieceAndTurnController.TryGetPiece(pieceId, out Piece myPiece);
+            // var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
+            Piece myPiece = __instance.MyPiece;
 
             if (!myPiece.IsPlayer())
             {
@@ -80,44 +80,44 @@
 
             string name = pieceNameController.GetPieceName();
             var sb = new StringBuilder();
-            sb.AppendLine($"<< {name} >>");
-            sb.AppendLine($"Downed times remaining: {3 - numdowns}");
+            sb.AppendLine(ColorizeString($"<< {name} >>", Color.yellow));
+            sb.AppendLine(ColorizeString($"Downed times remaining: {3 - numdowns}", Color.green));
             sb.AppendLine();
-            sb.AppendLine("-- Bonus Stats --");
+            sb.AppendLine(ColorizeString("-- Bonus Stats --", Color.white));
 
             if (hasbonuses)
             {
                 if (strength > 0)
                 {
-                    sb.AppendLine($"Strength: {strength}/{maxstrength}");
+                    sb.AppendLine(ColorizeString($"Strength: {strength}/{maxstrength}", Color.cyan));
                 }
 
                 if (speed > 0)
                 {
-                    sb.AppendLine($"Swiftness: {speed}/{maxspeed}");
+                    sb.AppendLine(ColorizeString($"Swiftness: {speed}/{maxspeed}", Color.cyan));
                 }
 
                 if (magic > 0)
                 {
-                    sb.AppendLine($"Magic: {magic}/{maxmagic}");
+                    sb.AppendLine(ColorizeString($"Magic: {magic}/{maxmagic}", Color.cyan));
                 }
 
                 if (resist > 0)
                 {
-                    sb.AppendLine($"Damage Resist: {resist}/{maxresist}");
+                    sb.AppendLine(ColorizeString($"Damage Resist: {resist}/{maxresist}", Color.cyan));
                 }
             }
             else
             {
-                sb.AppendLine("None");
+                sb.AppendLine(ColorizeString("None", Color.cyan));
             }
 
             sb.AppendLine();
-            sb.AppendLine($"-- Immunities --");
+            sb.AppendLine(ColorizeString("-- Immunities --", Color.white));
 
             if (!hasimmunities)
             {
-                sb.AppendLine("None");
+                sb.AppendLine(ColorizeString("None", Color.magenta));
                 GameUI.ShowCameraMessage(sb.ToString(), 5);
                 return;
             }
@@ -133,7 +133,7 @@
                 {
                     if (localizedTitle.Contains("Netted"))
                     {
-                        localizedTitle = "Netted";
+                        localizedTitle = ColorizeString("Netted", Color.magenta);
                     }
                     else if (localizedTitle.Contains("Weaken"))
                     {
@@ -147,10 +147,10 @@
 
                     if (i != 0)
                     {
-                        sb.Append(", ");
+                        sb.Append(ColorizeString(", ", Color.magenta));
                     }
 
-                    sb.Append($"{localizedTitle}");
+                    sb.Append(ColorizeString($"{localizedTitle}", Color.magenta));
                 }
             }
 
@@ -159,24 +159,36 @@
                 switch (myPiece.boardPieceId)
                 {
                     case BoardPieceId.HeroGuardian:
-                        sb.Append(", Fire");
+                        sb.Append(ColorizeString(", Fire", Color.magenta));
                         break;
                     case BoardPieceId.HeroSorcerer:
-                        sb.Append(", Electricity");
+                        sb.Append(ColorizeString(", Electricity", Color.magenta));
                         break;
                     case BoardPieceId.HeroWarlock:
-                        sb.Append(", Corruption");
+                        sb.Append(ColorizeString(", Corruption", Color.magenta));
                         break;
                     case BoardPieceId.HeroHunter:
-                        sb.Append(", Ice");
+                        sb.Append(ColorizeString(", Ice", Color.magenta));
                         break;
                     case BoardPieceId.HeroBarbarian:
-                        sb.Append(", Slime");
+                        sb.Append(ColorizeString(", Slime", Color.magenta));
                         break;
                 }
             }
 
             GameUI.ShowCameraMessage(sb.ToString(), 5);
+        }
+
+        private static string ColorizeString(string text, Color color)
+        {
+            return string.Concat(new string[]
+            {
+        "<color=#",
+        ColorUtility.ToHtmlStringRGB(color),
+        ">",
+        text,
+        "</color>",
+            });
         }
     }
 }
