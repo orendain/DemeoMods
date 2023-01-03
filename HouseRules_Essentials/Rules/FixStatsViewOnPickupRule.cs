@@ -47,6 +47,7 @@
             var pieceId = Traverse.Create(__instance).Field<int>("pieceId").Value;
             var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
             pieceAndTurnController.TryGetPiece(pieceId, out Piece myPiece);
+
             if (!myPiece.IsPlayer())
             {
                 return;
@@ -59,16 +60,14 @@
             int maxspeed = myPiece.GetStatMax(Stats.Type.Speed);
             int magic = myPiece.GetStat(Stats.Type.MagicBonus);
             int maxmagic = myPiece.GetStatMax(Stats.Type.MagicBonus);
-            int vitality = myPiece.GetStat(Stats.Type.HealthPotion);
-            int maxvitality = myPiece.GetStatMax(Stats.Type.HealthPotion);
             int resist = myPiece.GetStat(Stats.Type.DamageResist);
             int maxresist = myPiece.GetStatMax(Stats.Type.DamageResist);
             int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
             bool hasbonuses = true;
-            bool hasdowns = true;
             bool hasimmunities = true;
             var pieceConfig = Traverse.Create(__instance).Field<PieceConfigData>("pieceConfig").Value;
             EffectStateType[] immuneToStatusEffects = pieceConfig.ImmuneToStatusEffects;
+
             if (immuneToStatusEffects == null || immuneToStatusEffects.Length == 0)
             {
                 hasimmunities = false;
@@ -79,101 +78,54 @@
                 hasbonuses = false;
             }
 
-            if (numdowns == 0)
-            {
-                hasdowns = false;
-            }
-
-            if (!hasimmunities && !hasdowns && !hasbonuses)
-            {
-                return;
-            }
-
             string name = pieceNameController.GetPieceName();
             var sb = new StringBuilder();
             sb.AppendLine($"<< {name} >>");
-            if (hasdowns)
-            {
-                sb.AppendLine($"Downed times remaining: {3 - numdowns}");
-            }
+            sb.AppendLine($"Downed times remaining: {3 - numdowns}");
+            sb.AppendLine();
+            sb.AppendLine("-- Bonus Stats --");
 
             if (hasbonuses)
             {
-                sb.AppendLine();
-                sb.AppendLine("-- Bonus Stats --");
                 if (strength > 0)
                 {
-                    if (maxstrength > 3)
-                    {
-                        sb.AppendLine($"Strength: {strength}/{maxstrength}");
-                    }
-                    else
-                    {
-                        sb.AppendLine($"Strength: {strength}");
-                    }
+                    sb.AppendLine($"Strength: {strength}/{maxstrength}");
                 }
 
                 if (speed > 0)
                 {
-                    if (maxspeed > 3)
-                    {
-                        sb.AppendLine($"Swiftness: {speed}/{maxspeed}");
-                    }
-                    else
-                    {
-                        sb.AppendLine($"Swiftness: {speed}");
-                    }
-                }
-
-                if (vitality > 0)
-                {
-                    if (maxvitality > 3)
-                    {
-                        sb.AppendLine($"Vitality: {vitality}/{maxvitality}");
-                    }
-                    else
-                    {
-                        sb.AppendLine($"Vitality: {vitality}");
-                    }
+                    sb.AppendLine($"Swiftness: {speed}/{maxspeed}");
                 }
 
                 if (magic > 0)
                 {
-                    if (maxmagic > 3)
-                    {
-                        sb.AppendLine($"Magic: {magic}/{maxmagic}");
-                    }
-                    else
-                    {
-                        sb.AppendLine($"Magic: {magic}");
-                    }
+                    sb.AppendLine($"Magic: {magic}/{maxmagic}");
                 }
 
                 if (resist > 0)
                 {
-                    if (maxresist > 1)
-                    {
-                        sb.AppendLine($"Damage Resist: {resist}/{maxresist}");
-                    }
-                    else
-                    {
-                        sb.AppendLine($"Damage Resist: {resist}");
-                    }
+                    sb.AppendLine($"Damage Resist: {resist}/{maxresist}");
                 }
             }
+            else
+            {
+                sb.AppendLine("None");
+            }
+
+            sb.AppendLine();
+            sb.AppendLine($"-- Immunities --");
 
             if (!hasimmunities)
             {
-                GameUI.ShowCameraMessage(sb.ToString(), 3);
+                sb.AppendLine("None");
+                GameUI.ShowCameraMessage(sb.ToString(), 5);
                 return;
             }
 
             int num = immuneToStatusEffects.Length;
-            sb.AppendLine();
-            sb.AppendLine($"-- Immunities --");
-
             bool weak = false;
             List<string> list = new List<string>();
+
             for (int i = 0; i < num; i++)
             {
                 string localizedTitle = StatusEffectsConfig.GetLocalizedTitle(immuneToStatusEffects[i]);
