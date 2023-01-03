@@ -59,6 +59,8 @@
             int maxspeed = myPiece.GetStatMax(Stats.Type.Speed);
             int magic = myPiece.GetStat(Stats.Type.MagicBonus);
             int maxmagic = myPiece.GetStatMax(Stats.Type.MagicBonus);
+            int vitality = myPiece.GetStat(Stats.Type.HealthPotion);
+            int maxvitality = myPiece.GetStatMax(Stats.Type.HealthPotion);
             int resist = myPiece.GetStat(Stats.Type.DamageResist);
             int maxresist = myPiece.GetStatMax(Stats.Type.DamageResist);
             int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
@@ -120,6 +122,18 @@
                     else
                     {
                         sb.AppendLine($"Swiftness: {speed}");
+                    }
+                }
+
+                if (vitality > 0)
+                {
+                    if (maxvitality > 3)
+                    {
+                        sb.AppendLine($"Vitality: {vitality}/{maxvitality}");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"Vitality: {vitality}");
                     }
                 }
 
