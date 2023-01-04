@@ -26,7 +26,7 @@ Gameplay changes
 - The Elven Queen has new self buffs and abilities to add a REAL challenge
 - The Serpent Lord boss is invulnerable while invisible... so you have to do it the HARD way
 - If playing Roots of Evil the player with the most javelins will be first in turn order on the LAST floor
-- Text view of advanced stats when picking up a player piece (PCVR/VR ONLY)
+- Text of advanced stats when grabbing player pieces. Works when not hosting games also! (PCVR/VR ONLY)
 
 Class Changes
 =============
