@@ -1,6 +1,12 @@
 # DemeoMods
 New Ruleset: Demeo Revolutions
 
+General Mod changes
+===================
+
+- If you're disconnected you can resume the ruleset by reconnecting, then having others leave and come back after you're host again!
+- Colorized text display of advanced stats when picking up player pieces. Works when NOT hosting games also! (PCVR/VR ONLY)
+
 Gameplay changes
 ================
 
@@ -107,8 +113,3 @@ Class Changes
 
 For video tutorials and gameplay go to https://www.youtube.com/c/TheGrayAlien/playlists
 
-General Mod changes
-===================
-
-- If the you're disconnected you can resume the ruleset by reconnecting, then having others leave and come back to make you host again!
-- Colorized text display of advanced stats when picking up player pieces. Works when NOT hosting games also! (PCVR/VR ONLY)
