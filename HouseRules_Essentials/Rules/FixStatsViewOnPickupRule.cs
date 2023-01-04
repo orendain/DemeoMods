@@ -79,6 +79,7 @@
             }
 
             Color lightblue = new Color(0f, 0.75f, 1f);
+            Color bluegreen = new Color(0f, 1f, 1f);
             Color orange = new Color(1f, 0.499f, 0f);
             Color pink = new Color(0.984f, 0.3765f, 0.498f);
             Color gold = new Color(1f, 1f, 0.6f);
@@ -113,22 +114,26 @@
             {
                 if (strength > 0)
                 {
-                    sb.AppendLine(ColorizeString($"Strength: {strength}/{maxstrength}", Color.cyan));
+                    sb.Append(ColorizeString("Strength: ", Color.cyan));
+                    sb.AppendLine(ColorizeString($"{strength}/{maxstrength}", bluegreen));
                 }
 
                 if (speed > 0)
                 {
-                    sb.AppendLine(ColorizeString($"Swiftness: {speed}/{maxspeed}", Color.cyan));
+                    sb.Append(ColorizeString("Swiftness: ", Color.cyan));
+                    sb.AppendLine(ColorizeString($"{speed}/{maxspeed}", bluegreen));
                 }
 
                 if (magic > 0)
                 {
-                    sb.AppendLine(ColorizeString($"Magic: {magic}/{maxmagic}", Color.cyan));
+                    sb.Append(ColorizeString("Magic: ", Color.cyan));
+                    sb.AppendLine(ColorizeString($"{magic}/{maxmagic}", bluegreen));
                 }
 
                 if (resist > 0)
                 {
-                    sb.AppendLine(ColorizeString($"Damage Resist: {resist}/{maxresist}", Color.cyan));
+                    sb.Append(ColorizeString("Damage Resist: ", Color.cyan));
+                    sb.AppendLine(ColorizeString($"{resist}/{maxresist}", bluegreen));
                 }
             }
             else

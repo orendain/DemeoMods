@@ -1120,8 +1120,6 @@
                 "ForestFloor02",
                 "ForestFloor01",
                 "ElvenFloor14",
-                "fixhydra",
-                "fixking",
             });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
