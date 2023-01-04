@@ -437,7 +437,7 @@
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SwiftnessPotion, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VigorPotion, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.God, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnergyPotion, ReplenishFrequency = 0 },
@@ -1245,12 +1245,12 @@
 
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
-            // var xpGainDisabledRule = new XpGainDisabledRule(true);
+            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
-                // xpGainDisabledRule,
+                xpGainDisabledRule,
                 piecePieceTypeRule,
                 piecesAdjustedRule,
                 courageShantyRule,

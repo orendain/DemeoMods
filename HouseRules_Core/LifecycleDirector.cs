@@ -483,7 +483,7 @@
 
             if (!IsRulesetActive)
             {
-                GameUI.ShowCameraMessage(NotSafeForMultiplayerMessage(), WelcomeMessageDurationSeconds);
+                GameUI.ShowCameraMessage(NotSafeForMultiplayerMessage(), 30);
                 return;
             }
 
@@ -492,21 +492,32 @@
 
         private static string NotSafeForMultiplayerMessage()
         {
+            Color orange = new Color(1f, 0.499f, 0f);
             return new StringBuilder()
-                .AppendLine(ColorizeString("Attention:", Color.yellow))
-                .AppendLine(ColorizeString("The HouseRules ruleset you selected is not safe for multiplayer games, and was not activated!", Color.red))
+                .Append(ColorizeString("*** ", orange))
+                .Append(ColorizeString("ATTENTION", Color.red))
+                .AppendLine(ColorizeString(" ***", orange))
+                .AppendLine()
+                .AppendLine(ColorizeString("The HouseRules ruleset you selected is", Color.yellow))
+                .Append(ColorizeString("not safe", Color.cyan))
+                .AppendLine(ColorizeString(" for multiplayer games!", Color.yellow))
+                .AppendLine()
+                .Append(ColorizeString("The ruleset was ", Color.yellow))
+                .Append(ColorizeString("NOT", Color.white))
+                .AppendLine(ColorizeString(" activated!", Color.yellow))
                 .ToString();
         }
 
         private static string RulesetActiveMessage()
         {
-            Color violet = new Color(0.8f, 0f, 0.8f, 1f);
-            Color blue = new Color(0f, 0.5f, 1f, 1f);
-            Color orange = new Color(1f, 0.499f, 0f, 1f);
+            Color violet = new Color(0.8f, 0f, 0.8f);
+            Color lightblue = new Color(0f, 0.75f, 1f);
+            Color orange = new Color(1f, 0.499f, 0f);
+            Color gold = new Color(1f, 1f, 0.6f);
             var sb = new StringBuilder();
-            sb.Append(ColorizeString("This game uses ", Color.white));
+            sb.AppendLine(ColorizeString("Welcome to a game using", Color.cyan));
             sb.Append(ColorizeString("H", violet));
-            sb.Append(ColorizeString("o", blue));
+            sb.Append(ColorizeString("o", lightblue));
             sb.Append(ColorizeString("u", Color.green));
             sb.Append(ColorizeString("s", Color.yellow));
             sb.Append(ColorizeString("e", orange));
@@ -514,22 +525,13 @@
             sb.Append(ColorizeString("R", orange));
             sb.Append(ColorizeString("u", Color.yellow));
             sb.Append(ColorizeString("l", Color.green));
-            sb.Append(ColorizeString("e", blue));
-            sb.Append(ColorizeString("s", violet));
-            sb.AppendLine(ColorizeString("!", Color.white));
+            sb.Append(ColorizeString("e", lightblue));
+            sb.AppendLine(ColorizeString("s", violet));
             sb.AppendLine();
-            sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Name}:", Color.cyan));
+            sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Name}:", Color.yellow));
             sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
             sb.AppendLine();
-            sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Rules.Count} Rules loaded!", Color.yellow));
-
-            /*sb.AppendLine("Rules:");
-
-            for (var i = 0; i < HR.SelectedRuleset.Rules.Count; i++)
-            {
-                var description = HR.SelectedRuleset.Rules[i].Description;
-                sb.AppendLine($"{i + 1}. {description}");
-            }*/
+            sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Rules.Count} Rules loaded!", gold));
 
             return sb.ToString();
         }

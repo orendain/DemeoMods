@@ -78,12 +78,36 @@
                 hasbonuses = false;
             }
 
+            Color lightblue = new Color(0f, 0.75f, 1f);
+            Color orange = new Color(1f, 0.499f, 0f);
+            Color pink = new Color(0.984f, 0.3765f, 0.498f);
+            Color gold = new Color(1f, 1f, 0.6f);
             string name = pieceNameController.GetPieceName();
             var sb = new StringBuilder();
-            sb.AppendLine(ColorizeString($"<< {name} >>", Color.yellow));
-            sb.AppendLine(ColorizeString($"Downed times remaining: {3 - numdowns}", Color.green));
+            sb.Append(ColorizeString($"<<", Color.white));
+            sb.Append(ColorizeString($" <b>{name}</b> ", Color.yellow));
+            sb.AppendLine(ColorizeString($">>", Color.white));
+            sb.Append(ColorizeString("Downed times remaining: ", pink));
+            switch (numdowns)
+            {
+                case 0:
+                    sb.AppendLine(ColorizeString("3", Color.green));
+                    break;
+                case 1:
+                    sb.AppendLine(ColorizeString("2", gold));
+                    break;
+                case 2:
+                    sb.AppendLine(ColorizeString("1", orange));
+                    break;
+                case 3:
+                    sb.AppendLine(ColorizeString("0", Color.red));
+                    break;
+            }
+
             sb.AppendLine();
-            sb.AppendLine(ColorizeString("-- Bonus Stats --", Color.white));
+            sb.Append(ColorizeString("--", Color.gray));
+            sb.Append(ColorizeString(" Bonus Stats ", Color.white));
+            sb.AppendLine(ColorizeString("--", Color.gray));
 
             if (hasbonuses)
             {
@@ -113,11 +137,13 @@
             }
 
             sb.AppendLine();
-            sb.AppendLine(ColorizeString("-- Immunities --", Color.white));
+            sb.Append(ColorizeString("--", Color.gray));
+            sb.Append(ColorizeString(" Immunities ", Color.white));
+            sb.AppendLine(ColorizeString("--", Color.gray));
 
             if (!hasimmunities)
             {
-                sb.AppendLine(ColorizeString("None", Color.magenta));
+                sb.AppendLine(ColorizeString("None", lightblue));
                 GameUI.ShowCameraMessage(sb.ToString(), 5);
                 return;
             }
@@ -133,7 +159,7 @@
                 {
                     if (localizedTitle.Contains("Netted"))
                     {
-                        localizedTitle = ColorizeString("Netted", Color.magenta);
+                        localizedTitle = ColorizeString("Netted", lightblue);
                     }
                     else if (localizedTitle.Contains("Weaken"))
                     {
@@ -147,10 +173,10 @@
 
                     if (i != 0)
                     {
-                        sb.Append(ColorizeString(", ", Color.magenta));
+                        sb.Append(ColorizeString(", ", lightblue));
                     }
 
-                    sb.Append(ColorizeString($"{localizedTitle}", Color.magenta));
+                    sb.Append(ColorizeString($"{localizedTitle}", lightblue));
                 }
             }
 
@@ -159,19 +185,19 @@
                 switch (myPiece.boardPieceId)
                 {
                     case BoardPieceId.HeroGuardian:
-                        sb.Append(ColorizeString(", Fire", Color.magenta));
+                        sb.Append(ColorizeString(", Fire", lightblue));
                         break;
                     case BoardPieceId.HeroSorcerer:
-                        sb.Append(ColorizeString(", Electricity", Color.magenta));
+                        sb.Append(ColorizeString(", Electricity", lightblue));
                         break;
                     case BoardPieceId.HeroWarlock:
-                        sb.Append(ColorizeString(", Corruption", Color.magenta));
+                        sb.Append(ColorizeString(", Corruption", lightblue));
                         break;
                     case BoardPieceId.HeroHunter:
-                        sb.Append(ColorizeString(", Ice", Color.magenta));
+                        sb.Append(ColorizeString(", Ice", lightblue));
                         break;
                     case BoardPieceId.HeroBarbarian:
-                        sb.Append(ColorizeString(", Slime", Color.magenta));
+                        sb.Append(ColorizeString(", Slime", lightblue));
                         break;
                 }
             }
