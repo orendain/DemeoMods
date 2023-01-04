@@ -110,5 +110,5 @@ For video tutorials and gameplay go to https://www.youtube.com/c/TheGrayAlien/pl
 General Mod changes
 ===================
 
-- If the you are disconnected while hosting you can resume the ruleset by reconnecting and having others leave and come back to make you host again!
+- If the you're disconnected you can resume the ruleset by reconnecting, then having others leave and come back to make you host again!
 - Colorized text display of advanced stats when picking up player pieces. Works when NOT hosting games also! (PCVR/VR ONLY)
