@@ -26,7 +26,6 @@ Gameplay changes
 - The Elven Queen has new self buffs and abilities to add a REAL challenge
 - The Serpent Lord boss is invulnerable while invisible... so you have to do it the HARD way
 - If playing Roots of Evil the player with the most javelins will be first in turn order on the LAST floor
-- Text of advanced stats when grabbing player pieces. Works when not hosting games also! (PCVR/VR ONLY)
 
 Class Changes
 =============
@@ -107,3 +106,9 @@ Class Changes
 - Critical hits while Overcharged gain Water Bottle
 
 For video tutorials and gameplay go to https://www.youtube.com/c/TheGrayAlien/playlists
+
+General Mod changes
+===================
+
+- If the you are disconnected while hosting you can resume the ruleset by reconnecting and having others leave and come back to make you host again!
+- Colorized text display of advanced stats when picking up player pieces. Works when NOT hosting games also! (PCVR/VR ONLY)
