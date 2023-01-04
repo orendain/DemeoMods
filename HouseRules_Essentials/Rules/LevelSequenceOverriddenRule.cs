@@ -306,7 +306,12 @@
 
                     break;
                 case 5:
-                    rndMap1 = Random.Range(1, 5);
+                    rndMap1 = 5;
+                    while (rndMap1 == 5)
+                    {
+                        rndMap1 = Random.Range(1, 5);
+                    }
+
                     rndMap2 = rndMap1;
                     while (rndMap2 == rndMap1)
                     {
