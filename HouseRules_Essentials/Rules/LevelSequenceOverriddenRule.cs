@@ -103,6 +103,15 @@
             var gsmLevelSequence = gameContext.levelSequenceConfiguration.GetNewLevelSequence(-1, newGameType, LevelSequence.ControlType.OneHero);
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
 
+            if (newGameType == LevelSequence.GameType.Desert)
+            {
+                _globalAdjustments[4] = "DesertBossFloor01";
+            }
+            else if (newGameType == LevelSequence.GameType.Town)
+            {
+                _globalAdjustments[4] = "TownsBossFloor01";
+            }
+
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 _globalAdjustments.Prepend(originalSequence[0]).ToArray();
             eventQueue.SendEventRequest(new SerializableEventStartNewGame(gsmLevelSequence));
@@ -118,6 +127,15 @@
             var gsmLevelSequence =
                 Traverse.Create(gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
+
+            if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
+            {
+                replacements[4] = "DesertBossFloor01";
+            }
+            else if (gsmLevelSequence.gameType == LevelSequence.GameType.Town)
+            {
+                replacements[4] = "TownsBossFloor01";
+            }
 
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 replacements.Prepend(originalSequence[0]).ToArray();
