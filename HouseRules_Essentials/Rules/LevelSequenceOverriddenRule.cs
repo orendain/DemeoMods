@@ -147,8 +147,7 @@
                 {
                     _randomMaps[4] = "DesertFloor10";
                 }
-
-                if (newGameType == LevelSequence.GameType.Town)
+                else if (newGameType == LevelSequence.GameType.Town)
                 {
                     _randomMaps[4] = "TownsBossFloor01";
                 }
@@ -166,19 +165,11 @@
                 {
                     _globalAdjustments[4] = "DesertBossFloor01";
                 }
-                else if (_globalAdjustments[4] == "DesertBossFloor01")
-                {
-                    _globalAdjustments[4] = "DesertFloor10";
-                }
-
-                if (newGameType == LevelSequence.GameType.Town)
+                else if (newGameType == LevelSequence.GameType.Town)
                 {
                     _globalAdjustments[4] = "TownsBossFloor01";
                 }
-                else if (_globalAdjustments[4] == "TownsBossFloor01")
-                {
-                   _globalAdjustments[4] = "TownsFloor02";
-                }
+
 
                 Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                     _globalAdjustments.Prepend(originalSequence[0]).ToArray();
