@@ -407,7 +407,7 @@
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MarkOfVerga, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.God, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnergyPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
@@ -464,7 +464,7 @@
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BeastWhisperer, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HuntersMark, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.God, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnergyPotion, ReplenishFrequency = 0 },
@@ -888,7 +888,7 @@
                     clearOnNewLevel = false,
                     healthBoost = 2,
                     applyAfterDissipate = EffectStateType.Thorns,
-                    tickWhen = StatusEffectsConfig.TickWhen.Never,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
                 new StatusEffectData
                 {
@@ -1087,7 +1087,7 @@
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
-            { Bard = 15, Warlock = 14, Guardian = 13, Sorcerer = 12, Hunter = 11, Barbarian = 10, Assassin = 9, Downed = -7, Javelin = 14 });
+            { Bard = 17, Warlock = 14, Guardian = 13, Sorcerer = 12, Hunter = 11, Barbarian = 10, Assassin = 9, Downed = -7, Javelin = 16, Mark = 4, Varga = 6 });
 
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {
@@ -1243,12 +1243,14 @@
 
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
+            var tickRule = new TickAdjustedRule(true);
             // var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 // xpGainDisabledRule,
+                tickRule,
                 piecePieceTypeRule,
                 piecesAdjustedRule,
                 courageShantyRule,

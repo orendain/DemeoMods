@@ -30,6 +30,8 @@
             public int Warlock;
             public int Downed;
             public int Javelin;
+            public int Mark;
+            public int Varga;
         }
 
         public TurnOrderOverriddenRule(Scores scores)
@@ -128,6 +130,18 @@
                 {
                     score += scores.Javelin;
                 }
+            }
+
+            if (piece.inventory.HasAbility(AbilityKey.HuntersMark))
+            {
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                score += scores.Mark;
+            }
+
+            if (piece.inventory.HasAbility(AbilityKey.MarkOfVerga))
+            {
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                score += scores.Varga;
             }
 
             return score;

@@ -854,7 +854,7 @@
                     clearOnNewLevel = false,
                     healthBoost = 2,
                     applyAfterDissipate = EffectStateType.Thorns,
-                    tickWhen = StatusEffectsConfig.TickWhen.Never,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
                 new StatusEffectData
                 {
@@ -872,7 +872,7 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
                 new StatusEffectData
                 {
@@ -1044,7 +1044,7 @@
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
-            { Bard = 15, Warlock = 14, Guardian = 13, Sorcerer = 12, Hunter = 11, Barbarian = 10, Assassin = 9, Downed = -6, Javelin = 14 });
+            { Bard = 17, Warlock = 14, Guardian = 13, Sorcerer = 12, Hunter = 11, Barbarian = 10, Assassin = 9, Downed = -7, Javelin = 16, Mark = 4, Varga = 6 });
 
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {
@@ -1199,12 +1199,14 @@
 
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
+            var tickRule = new TickAdjustedRule(true);
             // var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 // xpGainDisabledRule,
+                tickRule,
                 piecePieceTypeRule,
                 piecesAdjustedRule,
                 courageShantyRule,

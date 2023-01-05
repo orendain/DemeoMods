@@ -72,6 +72,7 @@
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
             HR.Rulebook.Register(typeof(StatModifiersOverridenRule));
             HR.Rulebook.Register(typeof(StatusEffectConfigRule));
+            HR.Rulebook.Register(typeof(TickAdjustedRule));
             HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
             // HR.Rulebook.Register(typeof(XpGainDisabledRule));

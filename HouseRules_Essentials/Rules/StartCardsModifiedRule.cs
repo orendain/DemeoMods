@@ -170,7 +170,7 @@
                     }
                 }
 
-                // Energy Potion effects per class
+                // Energy Potion cards added per class
                 if (piece.HasEffectState(EffectStateType.ExtraEnergy))
                 {
                     bool hasPower = false;
@@ -181,25 +181,7 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.ImplosionExplosionRain)
                             {
-                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 hasPower = true;
-                                if (value.IsReplenishing)
-                                {
-                                    howMany -= 1;
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                    if (howMany < 1)
-                                    {
-                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                        piece.inventory.Items.Remove(value);
-                                        piece.AddGold(0);
-                                    }
-                                }
-                                else
-                                {
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                }
-
                                 break;
                             }
                         }
@@ -224,25 +206,7 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.LeapHeavy)
                             {
-                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 hasPower = true;
-                                if (value.IsReplenishing)
-                                {
-                                    howMany -= 1;
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                    if (howMany < 1)
-                                    {
-                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                        piece.inventory.Items.Remove(value);
-                                        piece.AddGold(0);
-                                    }
-                                }
-                                else
-                                {
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                }
-
                                 break;
                             }
                         }
@@ -267,25 +231,7 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.ScrollElectricity)
                             {
-                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 hasPower = true;
-                                if (value.IsReplenishing)
-                                {
-                                    howMany -= 1;
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                    if (howMany < 1)
-                                    {
-                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                        piece.inventory.Items.Remove(value);
-                                        piece.AddGold(0);
-                                    }
-                                }
-                                else
-                                {
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                }
-
                                 break;
                             }
                         }
@@ -310,25 +256,7 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.PVPBlink)
                             {
-                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 hasPower = true;
-                                if (value.IsReplenishing)
-                                {
-                                    howMany -= 1;
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                    if (howMany < 1)
-                                    {
-                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                        piece.inventory.Items.Remove(value);
-                                        piece.AddGold(0);
-                                    }
-                                }
-                                else
-                                {
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                }
-
                                 break;
                             }
                         }
@@ -353,25 +281,7 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.DeathBeam)
                             {
-                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 hasPower = true;
-                                if (value.IsReplenishing)
-                                {
-                                    howMany -= 1;
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                    if (howMany < 1)
-                                    {
-                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                        piece.inventory.Items.Remove(value);
-                                        piece.AddGold(0);
-                                    }
-                                }
-                                else
-                                {
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                }
-
                                 break;
                             }
                         }
@@ -396,25 +306,7 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.FretsOfFire)
                             {
-                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 hasPower = true;
-                                if (value.IsReplenishing)
-                                {
-                                    howMany -= 1;
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                    if (howMany < 1)
-                                    {
-                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                        piece.inventory.Items.Remove(value);
-                                        piece.AddGold(0);
-                                    }
-                                }
-                                else
-                                {
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                }
-
                                 break;
                             }
                         }
@@ -439,25 +331,7 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.WeakeningShout)
                             {
-                                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 hasPower = true;
-                                if (value.IsReplenishing)
-                                {
-                                    howMany -= 1;
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                    if (howMany < 1)
-                                    {
-                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                        piece.inventory.Items.Remove(value);
-                                        piece.AddGold(0);
-                                    }
-                                }
-                                else
-                                {
-                                    piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
-                                }
-
                                 break;
                             }
                         }

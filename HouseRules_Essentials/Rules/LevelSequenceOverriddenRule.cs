@@ -213,6 +213,15 @@
             }
 
             int rndLevel = Random.Range(1, 6);
+            if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)
+            {
+                rndLevel = 4;
+            }
+            else if (gsmLevelSequence.gameType == LevelSequence.GameType.Town)
+            {
+                rndLevel = 5;
+            }
+
             int rndMap1 = 0;
             int rndMap2 = 0;
             int rndMap3 = 0;
