@@ -53,6 +53,7 @@
 
                 Inventory.Item value;
                 int howMany = 3;
+                bool hasChanged = false;
 
                 // Energy Potion tick/prevention and card removal per class
                 if (piece.HasEffectState(EffectStateType.ExtraEnergy))
@@ -67,6 +68,7 @@
                                 howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
+                                    hasChanged = true;
                                     howMany -= 1;
                                     if (howMany < 1)
                                     {
@@ -90,6 +92,7 @@
                                 howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
+                                    hasChanged = true;
                                     howMany -= 1;
                                     if (howMany < 1)
                                     {
@@ -113,6 +116,7 @@
                                 howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
+                                    hasChanged = true;
                                     howMany -= 1;
                                     if (howMany < 1)
                                     {
@@ -136,6 +140,7 @@
                                 howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
+                                    hasChanged = true;
                                     howMany -= 1;
                                     if (howMany < 1)
                                     {
@@ -159,6 +164,7 @@
                                 howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
+                                    hasChanged = true;
                                     howMany -= 1;
                                     if (howMany < 1)
                                     {
@@ -182,6 +188,7 @@
                                 howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
+                                    hasChanged = true;
                                     howMany -= 1;
                                     if (howMany < 1)
                                     {
@@ -205,6 +212,7 @@
                                 howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
+                                    hasChanged = true;
                                     howMany -= 1;
                                     if (howMany < 1)
                                     {
@@ -219,7 +227,7 @@
                         }
                     }
 
-                    if (howMany > 0)
+                    if (howMany > 0 && !hasChanged)
                     {
                         Traverse.Create(__instance).Field<int>("durationTurnsLeft").Value = howMany + 1;
                         piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
