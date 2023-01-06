@@ -380,8 +380,6 @@
                 startingCardsRule,
                 statusEffectRule,
                 tileEffectDuration,
-                // piecePieceTypeRule,
-                // lampTypesRule,
                 new EnemyDoorOpeningDisabledRule(true));
         }
     }

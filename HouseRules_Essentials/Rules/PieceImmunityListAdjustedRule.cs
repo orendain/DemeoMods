@@ -50,6 +50,8 @@
             {
                 var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.ImmuneToStatusEffects.ToList();
+
+                // EssentialsMod.Logger.Msg($"Immunities for {item.Key}: {string.Join(", ", previousProperties[item.Key])}"); // Uncomment to see original immunities
                 pieceConfigDto.ImmuneToStatusEffects = item.Value.ToArray();
                 gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }

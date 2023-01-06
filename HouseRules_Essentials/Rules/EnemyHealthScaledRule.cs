@@ -57,7 +57,6 @@
             float range = 1f;
             if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-
                 if (config.StartHealth < 5 || config.PowerIndex > 40)
                 {
                     return;

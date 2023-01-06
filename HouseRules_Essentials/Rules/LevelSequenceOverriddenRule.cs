@@ -170,7 +170,6 @@
                     _globalAdjustments[4] = "TownsBossFloor01";
                 }
 
-
                 Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                     _globalAdjustments.Prepend(originalSequence[0]).ToArray();
             }

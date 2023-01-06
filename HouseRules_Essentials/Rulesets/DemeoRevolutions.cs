@@ -61,6 +61,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AcidSlimeTrailChance", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
@@ -888,12 +889,12 @@
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.Grapple } },
-                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit, AbilityKey.Grab, AbilityKey.LeapHeavy } },
+                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit, AbilityKey.Grapple, AbilityKey.LeapHeavy, AbilityKey.PlayerLeap, AbilityKey.EnemyFrostball, AbilityKey.Zap } },
                 { BoardPieceId.RootMage, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportEnemy, AbilityKey.EnemyFlashbang } },
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold, AbilityKey.Net } },
                 { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder, AbilityKey.Net } },
                 { BoardPieceId.CultMemberElder, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Weaken, AbilityKey.EnemyFireball } },
-                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.LightningBolt, AbilityKey.LeapHeavy, AbilityKey.Grab } },
+                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.LightningBolt, AbilityKey.LeapHeavy, AbilityKey.Grapple, AbilityKey.ArbalestierPoisonTip } },
                 { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeapHeavy, AbilityKey.Grab } },
                 { BoardPieceId.ElvenArcher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyArrowSnipe, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
@@ -901,9 +902,7 @@
                 { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.SummonBossMinions, AbilityKey.LightningBolt, AbilityKey.Shockwave, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.BigBoiMutant, new List<AbilityKey> { AbilityKey.EnemyKnockbackMelee, AbilityKey.Shockwave, AbilityKey.LeapHeavy } },
                 { BoardPieceId.GoblinFighter, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyFlashbang } },
-                { BoardPieceId.SandScorpion, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
                 { BoardPieceId.PoisonousRat, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
-                { BoardPieceId.JeweledScarab, new List<AbilityKey> { } },
             });
 
             var pieceBehaviourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
@@ -933,7 +932,7 @@
                 { BoardPieceId.HeroBard, new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Blinded } },
                 { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Tangled, EffectStateType.Netted } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage } },
-                { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage } },
+                { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.Blinded, EffectStateType.Disoriented, EffectStateType.Confused, EffectStateType.ConfusedPermanentVisualOnly, EffectStateType.Panic, EffectStateType.CorruptedRage } },
             });
 
             var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
@@ -1087,6 +1086,8 @@
                 { AbilityKey.Net, 2 },
                 { AbilityKey.Grapple, 2 },
                 { AbilityKey.ElvenSummonerDeflect, 5 },
+                { AbilityKey.PlayerLeap, 2 },
+                { AbilityKey.ArbalestierPoisonTip, 2 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
@@ -1200,12 +1201,12 @@
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
             var tickRule = new TickAdjustedRule(true);
-            // var xpGainDisabledRule = new XpGainDisabledRule(true);
+            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
-                // xpGainDisabledRule,
+                xpGainDisabledRule,
                 tickRule,
                 piecePieceTypeRule,
                 piecesAdjustedRule,
