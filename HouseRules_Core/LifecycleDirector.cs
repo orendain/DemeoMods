@@ -533,6 +533,17 @@
             sb.AppendLine();
             sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Rules.Count} Rules loaded!", gold));
 
+            // Pad lines to raise text higher on PC-Edition screen
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+
             return sb.ToString();
         }
 

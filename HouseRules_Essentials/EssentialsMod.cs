@@ -42,7 +42,8 @@
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
-            HR.Rulebook.Register(typeof(FixStatsViewOnPickupRule));
+            HR.Rulebook.Register(typeof(FixNonVRStatsViewOnPickupRule));
+            HR.Rulebook.Register(typeof(FixVRStatsViewOnPickupRule));
             HR.Rulebook.Register(typeof(FreeAbilityOnCritRule));
             HR.Rulebook.Register(typeof(FreeActionPointsOnCritRule));
             HR.Rulebook.Register(typeof(FreeHealOnCritRule));
@@ -75,12 +76,10 @@
             HR.Rulebook.Register(typeof(TickAdjustedRule));
             HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
-            // HR.Rulebook.Register(typeof(XpGainDisabledRule));
         }
 
         private static void RegisterRulesets()
         {
-            // HR.Rulebook.Register(TESTGAME.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(DemeoRevolutions.Create());
             HR.Rulebook.Register(LuckyDip.Create());
