@@ -960,7 +960,7 @@
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyKnockbackMelee, AbilityKey.EarthShatter, AbilityKey.Grapple } },
-                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit, AbilityKey.Grapple, AbilityKey.LeapHeavy, AbilityKey.PlayerLeap, AbilityKey.EnemyFrostball, AbilityKey.Zap } },
+                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit, AbilityKey.Grapple, AbilityKey.PlayerLeap, AbilityKey.EnemyFrostball, AbilityKey.Zap } },
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold, AbilityKey.Net } },
                 { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder, AbilityKey.Net } },
                 { BoardPieceId.CultMemberElder, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Weaken, AbilityKey.EnemyFireball } },
@@ -973,10 +973,12 @@
                 { BoardPieceId.BigBoiMutant, new List<AbilityKey> { AbilityKey.EnemyKnockbackMelee, AbilityKey.Shockwave, AbilityKey.LeapHeavy } },
                 { BoardPieceId.GoblinFighter, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyFlashbang } },
                 { BoardPieceId.PoisonousRat, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
+                { BoardPieceId.ElvenSkirmisher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ChargeBarbarian } },
             });
 
             var pieceBehaviourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
             {
+                { BoardPieceId.ElvenSkirmisher, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.ChargeMove } },
                 { BoardPieceId.EarthElemental, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.EarthShatter, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.Mimic, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.Wyvern, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
@@ -1008,6 +1010,7 @@
 
             var piecePieceTypeRule = new PiecePieceTypeListOverriddenRule(new Dictionary<BoardPieceId, List<PieceType>>
             {
+                { BoardPieceId.Mimic, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.GiantSlime, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.ReptileArcher, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Reptile, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.ReptileMutantWizard, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Reptile, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.GeneralRonthian, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
@@ -1167,6 +1170,7 @@
                 { AbilityKey.ElvenSummonerDeflect, 5 },
                 { AbilityKey.PlayerLeap, 2 },
                 { AbilityKey.ArbalestierPoisonTip, 2 },
+                { AbilityKey.ChargeBarbarian, 2 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
