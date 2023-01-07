@@ -12,24 +12,9 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class FixNonVRStatsViewOnPickupRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class FixNonVRStatsViewOnPickupRule : Rule, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Show more stats for PC-Edition when player piece selected";
-
-        private static bool _isActivated;
-
-        public FixNonVRStatsViewOnPickupRule(bool value)
-        {
-        }
-
-        public bool GetConfigObject() => true;
-
-        protected override void OnActivate(GameContext gameContext)
-        {
-            _isActivated = true;
-        }
-
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
         private static void Patch(Harmony harmony)
         {
@@ -79,7 +64,6 @@
                         hasbonuses = false;
                     }
 
-                    EssentialsMod.Logger.Msg("Creating colors and displaying info");
                     Color lightblue = new Color(0f, 0.75f, 1f);
                     Color lightgreen = new Color(0f, 1f, 0.5f);
                     Color orange = new Color(1f, 0.499f, 0f);

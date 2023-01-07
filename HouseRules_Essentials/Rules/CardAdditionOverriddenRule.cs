@@ -199,7 +199,7 @@
                 if (randNum < 51)
                 {
                     // Class cards
-                    rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 15, replacementAbilityKeys.Count);
+                    rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 14, replacementAbilityKeys.Count);
                 }
                 else if (randNum > 97)
                 {
@@ -213,25 +213,25 @@
                     {
                         // Rejuv and Damage Resist Potions
                         _numAlags++;
-                        rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 26, replacementAbilityKeys.Count - 24);
+                        rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 25, replacementAbilityKeys.Count - 23);
                     }
                     else if (_numEnergy < 2 && !piece.HasEffectState(EffectStateType.ExtraEnergy))
                     {
                         // Energy Potion
                         _numEnergy++;
-                        rand = replacementAbilityKeys.Count - 27;
+                        rand = replacementAbilityKeys.Count - 26;
                     }
                     else
                     {
                         if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)
                         {
                             // Casters can get Magic Potions but not Strength
-                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
+                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 14);
                         }
                         else
                         {
                             // Melee can get Strength Potions but not Magic
-                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 16);
+                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 15);
                         }
                     }
                 }
@@ -241,25 +241,25 @@
                     {
                         // Rejuv and Damage Resist Potions
                         _numAlags++;
-                        rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 26, replacementAbilityKeys.Count - 24);
+                        rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 25, replacementAbilityKeys.Count - 23);
                     }
                     else if (_numEnergy < 2 && !piece.HasEffectState(EffectStateType.ExtraEnergy))
                     {
                         // Energy Potion
                         _numEnergy++;
-                        rand = replacementAbilityKeys.Count - 27;
+                        rand = replacementAbilityKeys.Count - 26;
                     }
                     else
                     {
                         if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)
                         {
                             // Casters can get Magic Potions but not Strength
-                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
+                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 19, replacementAbilityKeys.Count - 15);
                         }
                         else
                         {
                             // Melee can get Strength Potions but not Magic
-                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 16);
+                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 16);
                         }
                     }
                 }
@@ -269,19 +269,19 @@
                     {
                         // Energy Potion
                         _numEnergy++;
-                        rand = replacementAbilityKeys.Count - 27;
+                        rand = replacementAbilityKeys.Count - 26;
                     }
                     else
                     {
                         if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)
                         {
                             // Casters can get Magic Potions but not Strength
-                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
+                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 19, replacementAbilityKeys.Count - 15);
                         }
                         else
                         {
                             // Melee can get Strength Potions but not Magic
-                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 16);
+                            rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 16);
                         }
                     }
                 }
@@ -291,18 +291,18 @@
                     if (piece.boardPieceId == BoardPieceId.HeroWarlock || piece.boardPieceId == BoardPieceId.HeroSorcerer)
                     {
                         // Casters can get Magic Potions but not Strength
-                        rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
+                        rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 19, replacementAbilityKeys.Count - 15);
                     }
                     else
                     {
                         // Melee can get Strength Potions but not Magic
-                        rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 16);
+                        rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 16);
                     }
                 }
                 else
                 {
                     // Standard cards
-                    rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count - 27);
+                    rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count - 26);
                 }
 
                 replacementAbilityKey = replacementAbilityKeys[rand];

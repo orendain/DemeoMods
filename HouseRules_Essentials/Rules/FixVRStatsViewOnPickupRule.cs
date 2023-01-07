@@ -10,24 +10,9 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class FixVRStatsViewOnPickupRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class FixVRStatsViewOnPickupRule : Rule, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Show more stats in VR when player piece picked up";
-
-        private static bool _isActivated;
-
-        public FixVRStatsViewOnPickupRule(bool value)
-        {
-        }
-
-        public bool GetConfigObject() => true;
-
-        protected override void OnActivate(GameContext gameContext)
-        {
-            _isActivated = true;
-        }
-
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
 
         private static void Patch(Harmony harmony)
         {
@@ -40,7 +25,6 @@
 
         private static void GrabbedPieceHudInstantiator_CloneCurrentHudState_Postfix(ref GrabbedPieceHudInstantiator __instance)
         {
-            EssentialsMod.Logger.Msg("DisplayStatsView called");
             Piece myPiece = __instance.MyPiece;
 
             if (!myPiece.IsPlayer())
