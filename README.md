@@ -5,7 +5,7 @@ General Mod changes
 ===================
 
 - If you're disconnected you can resume the ruleset by reconnecting, then having others leave and come back after you're host again!
-- Colorized text display of advanced stats when picking up player pieces. Works when NOT hosting games also! (PCVR/VR ONLY)
+- Colorized text display of advanced stats when selecting/grabbing player pieces. Works when NOT hosting games also!
 
 Gameplay changes
 ================
@@ -21,7 +21,7 @@ Gameplay changes
 - Pets always focus on Hunter's Marked targets
 - Each floor's map will be from a different adventure
 - Number of chests/stands/fountains per floor changed based on the adventure selected
-- Card energy (mana) gained from attacks reduced by 15%
+- Card energy (mana) gained from attacks reduced by 25%
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
 - Most player summons can have detrimental effects on enemies who hit them
 - Player cast electrical attacks won't damage or stun other players or non-charmed allies
@@ -53,6 +53,7 @@ Class Changes
 - A NEW reusable non-damaging Net card that costs 0 Action Points and can be reused every 3 rounds
 - Critical hits reduce Net cooldown by 1. Also regain 1 Action Point if not last action
 - Critical hits on the LAST action do double critical damage and gain a Spawn Random Lamp card
+- Having a Mark of Varga card puts you closer to the front in turn order
 
 **Hunter:**
 - 7 max health. You and Verochka are immune to being Frozen and non-boss Ice damage
@@ -64,6 +65,7 @@ Class Changes
 - The second Arrow card is replaced by a NEW reusable single target Fire Arrow attack that can't miss
 - Critical hits replenish Arrow
 - Critical hits on LAST action gain a Bone, a Freeze Arrow, and gives a few rounds of Fire Immunity
+- Having a Hunter's Mark card puts you closer to the front in turn order
 
 **Assassin:**
 - 7 max health. You are immune to being Tangled and Netted
@@ -74,7 +76,8 @@ Class Changes
 - Flash Bomb area coverage changed from 3x3 to 5x5
 - Poison Bomb and Flash Bomb do not break Sneak
 - A NEW ranged Poison attack card that can't miss, can backstab, and is reusable every 3 rounds
-- 50% chance that attacks heal you for 1 or critical hits heal you for 2 (if hurt)
+- All attacks have 50% chance to heal you for 1 (if hurt)
+- Critical hits heal you for 1 and have 50% chance to heal you for 2 (if hurt)
 - Sneaking now adds damage to normal melee and ranged Poison attacks
 - Critical hits reduce ranged Poison attack cooldown by 1. Also regain 1 Action Point if not last action
 - Critical hits on LAST action gain Invisibility that lasts until the end of the NEXT round
@@ -87,6 +90,7 @@ Class Changes
 - Recovery and Resilience songs area coverage changed from 3x3 to 7x7
 - Normal start cards plus Shattering Voice and Piercing Voice
 - A NEW single-target blinding Flashbomb card that is reusable every 3 rounds
+- Critical hits have 33% chance to heal you for 1 (if hurt)
 - Critical hits replenish Courage Shanty and give Courageous self-buff or upgrade
 - Critical hits on LAST action also gain Panic Powder and gives a couple rounds of Deflection
 
@@ -97,7 +101,8 @@ Class Changes
 - If Cána goes under half life she gains Frenzy (+1 damage until life goes over half)
 - Normal start cards plus Implode, Deflect, and a replenishable Feral Charge that costs 0 Action Points
 - Astral Barrier area coverage changed from 3x3 to 7x7
-- Attacks heal you for 1 and critical hits heal you for 2 (if hurt)
+- Enemies that hit you or Cána will become Astral Marked for 1 turn
+- All attacks on Astral Marked targets heal you for 1 (if hurt)
 - Critical hits replenish Feral Charge if you have more actions left
 - Critical hits on LAST action gain a Spellpower card and self-buff (+3 damage to Master's Call)
 
