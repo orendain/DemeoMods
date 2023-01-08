@@ -136,8 +136,26 @@ namespace HouseRules.Essentials.Rules
                             source.inventory.Items[i] = value;
                             source.AddGold(0);
                         }
+                    }
+                    else if (value.abilityKey == AbilityKey.EnemyFlashbang)
+                    {
+                        if (value.IsReplenishing)
+                        {
+                            if (value.replenishCooldown < 0)
+                            {
+                                value.replenishCooldown = 3;
+                                source.inventory.Items[i] = value;
+                            }
 
-                        break;
+                            value.replenishCooldown -= 1;
+                            if (value.replenishCooldown < 1)
+                            {
+                                value.flags &= (Inventory.ItemFlag)(-3);
+                            }
+
+                            source.inventory.Items[i] = value;
+                            source.AddGold(0);
+                        }
                     }
                 }
             }
