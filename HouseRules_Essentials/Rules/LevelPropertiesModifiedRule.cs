@@ -99,20 +99,23 @@
 
         private void ModifyDreadMode(ref DreadLevelsData dreadLevel)
         {
-            if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                foreach (var modification in _ratKing)
+                if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
                 {
-                    AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
-                       modification.Value;
+                    foreach (var modification in _ratKing)
+                    {
+                        AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                           modification.Value;
+                    }
                 }
-            }
-            else if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Town)
-            {
-                foreach (var modification in _elvenKing)
+                else if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Town)
                 {
-                    AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
-                       modification.Value;
+                    foreach (var modification in _elvenKing)
+                    {
+                        AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                           modification.Value;
+                    }
                 }
             }
             else
@@ -120,7 +123,7 @@
                 foreach (var modification in _levelProperties)
                 {
                     AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
-                       modification.Value;
+                        modification.Value;
                 }
             }
         }
