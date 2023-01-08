@@ -13,7 +13,7 @@ Gameplay changes
 - Some NEW maps and many NEW enemies
 - Some already known enemies now have NEW hidden abilities
 - Improved loot per class and no Lamps or Antitoxins as loot
-- A NEW Potion loot card that has mysterious effects on the entire party...
+- A NEW Energy Potion loot card that has mysterious effects on the entire party...
 - The same type of enemy can have different health AND attack damage
 - Enemy spawns will be a mix of all existing adventures with NO respawns
 - Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3
@@ -25,7 +25,7 @@ Gameplay changes
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
 - Most player summons can have detrimental effects on enemies who hit them
 - Player cast electrical attacks won't damage or stun other players or non-charmed allies
-- Critical hits award 10 gold to that player or if on the last map will heal that player for 1 if hurt
+- Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
 - Class turn order starts as Bard, Warlock, Guardian, Sorcerer, Hunter, Barbarian and then Assassin
 - All bosses will start with more health and 1 innate damage resist
@@ -41,7 +41,7 @@ Class Changes
 - Normal start cards plus Charge and War Cry
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
 - A NEW reusable non-damaging Pull card which costs 0 Action Points (works on enemies and allies)
-- Critical hits regain all used Action Points, Pull, and gains Berserk (+1 damage for the rest of the turn)
+- Critical hits regain all used Action Points (max 2), Pull, and gain Berserk (+1 damage for the turn)
 - Enemies that melee you will be counter-attacked for 1 damage
 
 **Barbarian:**
@@ -51,14 +51,14 @@ Class Changes
 - Barbaric Chainwhip area coverage changed from 3x3 to 5x5 and does 1 more damage
 - Launching any Lamp costs 0 Action Points
 - A NEW reusable non-damaging Net card that costs 0 Action Points and can be reused every 3 rounds
-- Critical hits reduce Net cooldown by 1. Also regain 1 Action Point if not last action
+- Critical hits regain 1 Action Point if not last action and reduce Net cooldown by 1
 - Critical hits on the LAST action do double critical damage and gain a Spawn Random Lamp card
 - Having a Mark of Varga card puts you closer to the front in turn order
 
 **Hunter:**
 - 7 max health. You and Verochka are immune to being Frozen and non-boss Ice damage
-- Melee damage reduced to 2
-- Critical ranged damage increased by 1
+- Melee damage reduced to 2 (Ranged damage is always 1 higher)
+- Critical Ranged damage increased by 1
 - Movement increased by 1
 - Arrow costs 0 Action Points
 - Normal start cards plus Call Companion and Lure
@@ -79,7 +79,7 @@ Class Changes
 - All attacks have 50% chance to heal you for 1 (if hurt)
 - Critical hits heal you for 1 and have 50% chance to heal you for 2 (if hurt)
 - Sneaking now adds damage to normal melee and ranged Poison attacks
-- Critical hits reduce ranged Poison attack cooldown by 1. Also regain 1 Action Point if not last action
+- Critical hits regain 1 Action Point if not last action and reduce ranged Poison attack cooldown by 1
 - Critical hits on LAST action gain Invisibility that lasts until the end of the NEXT round
 
 **Bard:**
@@ -90,7 +90,7 @@ Class Changes
 - Recovery and Resilience songs area coverage changed from 3x3 to 7x7
 - Normal start cards plus Shattering Voice and Piercing Voice
 - A NEW single-target blinding Flashbomb card that is reusable every 3 rounds
-- Critical hits have 33% chance to heal you for 1 (if hurt)
+- Critical hits have 33% chance to heal you for 1 (if hurt) and reduce Flashbomb cooldown by 1
 - Critical hits replenish Courage Shanty and give Courageous self-buff or upgrade
 - Critical hits on LAST action also gain Panic Powder and gives a couple rounds of Deflection
 
