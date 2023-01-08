@@ -42,7 +42,7 @@ namespace HouseRules.Essentials.Rules
                     nameof(Ability_GenerateAttackDamage_Postfix)));
         }
 
-        private static void Ability_GenerateAttackDamage_Postfix(Piece source, Dice.Outcome diceResult)
+        private static void Ability_GenerateAttackDamage_Postfix(Piece source, Piece mainTarget , Dice.Outcome diceResult)
         {
             if (!_isActivated)
             {
@@ -96,19 +96,22 @@ namespace HouseRules.Essentials.Rules
                 {
                     if (chance > 98 && chance2 > 66)
                     {
-                        addHeal += 3;
+                        addHeal += 2;
                         source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
                     else if (chance2 > 66)
                     {
-                        addHeal += 2;
+                        addHeal ++;
                         source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
-                    else
+                }
+                else if (source.boardPieceId == BoardPieceId.HeroWarlock)
+                {
+                    if (mainTarget != null && mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
                     {
-                        addHeal++;
+                        addHeal ++;
                         source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }

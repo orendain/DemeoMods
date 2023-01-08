@@ -82,6 +82,29 @@
                             source.effectSink.Heal(1);
                             source.AnimateWobble();
                         }
+                        else if (chance > 98)
+                        {
+                            source.effectSink.Heal(1);
+                            source.AnimateWobble();
+                        }
+                    }
+                    else if (source.boardPieceId == BoardPieceId.HeroWarlock)
+                    {
+                        if (chance > 98 && mainTarget != null && mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
+                        {
+                            source.effectSink.Heal(2);
+                            source.AnimateWobble();
+                        }
+                        else if (mainTarget != null && mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
+                        {
+                            source.effectSink.Heal(1);
+                            source.AnimateWobble();
+                        }
+                        else if (chance > 98)
+                        {
+                            source.effectSink.Heal(1);
+                            source.AnimateWobble();
+                        }
                     }
                     else if (chance > 98)
                     {

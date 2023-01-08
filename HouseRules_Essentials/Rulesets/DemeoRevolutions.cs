@@ -1114,7 +1114,7 @@
             var partyElectricityRule = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.85f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.75f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
@@ -1133,7 +1133,7 @@
                 { "FloorOneHealingFountains", 1 },
                 { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
-                { "FloorOneLootChests", 2 },
+                { "FloorOneLootChests", 3 },
                 { "FloorOneGoldMaxAmount", 325 },
                 { "FloorOneElvenSummoners", 0 },
                 { "FloorOneSellswords", 1 },
