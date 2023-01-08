@@ -102,7 +102,7 @@ namespace HouseRules.Essentials.Rules
                     }
                     else if (chance2 > 66)
                     {
-                        addHeal ++;
+                        addHeal++;
                         source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
@@ -111,7 +111,7 @@ namespace HouseRules.Essentials.Rules
                 {
                     if (mainTarget != null && mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
                     {
-                        addHeal ++;
+                        addHeal++;
                         source.effectSink.Heal(addHeal);
                         source.AnimateWobble();
                     }
