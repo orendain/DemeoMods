@@ -71,9 +71,7 @@
                     Color gold = new Color(1f, 1f, 0.6f);
                     string name = pieceNameController.GetPieceName();
                     var sb = new StringBuilder();
-                    sb.Append(ColorizeString($"<<", Color.white));
-                    sb.Append(ColorizeString($" <b>{name}</b> ", Color.yellow));
-                    sb.AppendLine(ColorizeString($">>", Color.white));
+                    sb.AppendLine(ColorizeString($"<u>{name}</u>", Color.yellow));
                     sb.Append(ColorizeString("Downed times remaining: ", pink));
                     switch (numdowns)
                     {
