@@ -108,6 +108,8 @@
                         AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
                            modification.Value;
                     }
+
+                    return;
                 }
                 else if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Town)
                 {
@@ -116,15 +118,15 @@
                         AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
                            modification.Value;
                     }
+
+                    return;
                 }
             }
-            else
+
+            foreach (var modification in _levelProperties)
             {
-                foreach (var modification in _levelProperties)
-                {
-                    AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
-                        modification.Value;
-                }
+                AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                    modification.Value;
             }
         }
     }
