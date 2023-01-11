@@ -219,7 +219,7 @@
                     sb.AppendLine();
                     sb.AppendLine();
                     sb.AppendLine();
-                    sb.AppendLine();
+                    sb.AppendLine(ColorizeString(" ", Color.clear));
                     GameUI.ShowCameraMessage(sb.ToString(), 5);
                 }
             }

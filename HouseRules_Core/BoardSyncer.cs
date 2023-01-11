@@ -198,7 +198,6 @@
                     return false;
                 case AbilityKey.Shuffle:
                 case AbilityKey.Telekinesis:
-                case AbilityKey.TelekineticBurst:
                 case AbilityKey.RevealPath:
                 case AbilityKey.DetectEnemies:
                 case AbilityKey.BeastWhisperer:
