@@ -3,7 +3,6 @@
     using System;
     using Boardgame;
     using Boardgame.BoardEntities;
-    using Boardgame.BoardEntities.AI;
     using Boardgame.Data;
     using Boardgame.SerializableEvents;
     using DataKeys;
@@ -31,8 +30,6 @@
         private static bool _isSyncScheduled;
         private static bool _updateNewPlayer;
         private static bool _isMove;
-        private static bool _isGrab;
-        private static Piece _lastGrabbed;
 
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
@@ -138,26 +135,15 @@
 
                     // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
-                case SerializableEvent.Type.OnMoved:
-                    var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
-                    Piece thisPiece = _gameContext.pieceAndTurnController.GetPiece(pieceId);
-                    if (_lastGrabbed == null || thisPiece != _lastGrabbed)
-                    {
-                        // CoreMod.Logger.Msg($"--OnMoved-- {thisPiece.GetPieceConfig().PieceName} [ID: {pieceId}] needs a Fog Update...");
-                        _lastGrabbed = null;
-                        _isGrab = true;
-                        return true;
-                    }
-
-                    return false;
                 case SerializableEvent.Type.Move:
                 case SerializableEvent.Type.Interact:
+                case SerializableEvent.Type.NPCStartInteraction:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
                         // CoreMod.Logger.Msg("(Move) Player");
                         // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
                         _isMove = true;
-                        return true;
+                        return false;
                     }
 
                     // CoreMod.Logger.Msg($"------ {whatUp}");
@@ -171,26 +157,11 @@
                     return true;
                 case SerializableEvent.Type.EndAction:
                 case SerializableEvent.Type.EndTurn:
-                    if (_isGrab)
+                    if (_isMove)
                     {
-                        // CoreMod.Logger.Msg("<<Grabbed>> EndAction/EndTurn UpdateFog");
+                        // CoreMod.Logger.Msg("(Move) EndAction/EndTurn");
                         // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
-                        _isGrab = false;
-                        _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
-                        return false;
-                    }
-
-                    if (_gameContext.pieceAndTurnController.IsPlayersTurn())
-                    {
-                        if (_isMove)
-                        {
-                            // CoreMod.Logger.Msg("(Move) EndAction/EndTurn");
-                            // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
-                            return true;
-                        }
-
-                        // CoreMod.Logger.Msg($"------ {whatUp}");
-                        return false;
+                        return true;
                     }
 
                     // CoreMod.Logger.Msg($"------ {whatUp}");
@@ -217,16 +188,17 @@
                         Piece wasGrabbed = _gameContext.pieceAndTurnController.FindPieceWithPosition(targetTile);
                         if (wasGrabbed.IsPlayer())
                         {
-                            _isGrab = true;
-                            _lastGrabbed = wasGrabbed;
-                            // CoreMod.Logger.Msg($"--Grabbed-- {_lastGrabbed.GetPieceConfig().PieceName} by Enemy");
-                            return false;
+                            // CoreMod.Logger.Msg($"<<Grabbed>> {wasGrabbed.GetPieceConfig().PieceNameLocalizationKey} by Enemy");
+                            return true;
                         }
 
                         return false;
                     }
 
                     return false;
+                case AbilityKey.Shuffle:
+                case AbilityKey.Telekinesis:
+                case AbilityKey.TelekineticBurst:
                 case AbilityKey.RevealPath:
                 case AbilityKey.DetectEnemies:
                 case AbilityKey.BeastWhisperer:
@@ -290,19 +262,11 @@
 
         private static void SyncBoard()
         {
+            // CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
             _isMove = false;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
-            if (!_isGrab)
-            {
-                // CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
-                _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
-            }
-            else
-            {
-                // CoreMod.Logger.Msg("||Grabbed/OnMoved|| FOG UPDATE ONLY (NO RECOVERY)");
-                _isGrab = false;
-            }
+            _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
         }
     }
 }

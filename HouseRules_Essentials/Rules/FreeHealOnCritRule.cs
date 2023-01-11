@@ -42,7 +42,7 @@ namespace HouseRules.Essentials.Rules
                     nameof(Ability_GenerateAttackDamage_Postfix)));
         }
 
-        private static void Ability_GenerateAttackDamage_Postfix(Piece source, Piece mainTarget , Dice.Outcome diceResult)
+        private static void Ability_GenerateAttackDamage_Postfix(Piece source, Piece mainTarget, Dice.Outcome diceResult)
         {
             if (!_isActivated)
             {

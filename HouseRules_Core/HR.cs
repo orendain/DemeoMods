@@ -12,14 +12,22 @@ namespace HouseRules
 
         internal static bool IsRulesetActive => LifecycleDirector.IsRulesetActive;
 
+        internal static bool IsReconnect => LifecycleDirector.IsReconnect;
+
         public static void ScheduleResync() => BoardSyncer.ScheduleSync();
 
         public static void SelectRuleset(string ruleset)
         {
             if (IsRulesetActive)
             {
-                LifecycleDirector.DeactivateReconnect();
-                // throw new InvalidOperationException("May not select a new ruleset while one is currently active.");
+                if (IsReconnect)
+                {
+                    LifecycleDirector.DeactivateReconnect();
+                }
+                else
+                {
+                    throw new InvalidOperationException("May not select a new ruleset while one is currently active.");
+                }
             }
 
             if (Ruleset.None.Name.Equals(ruleset, StringComparison.OrdinalIgnoreCase))

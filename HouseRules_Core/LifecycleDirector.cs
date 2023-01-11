@@ -19,11 +19,12 @@
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
-        private static bool _isReconnect = false;
         private static string roomCode;
         private static string lastCode;
 
         internal static bool IsRulesetActive { get; private set; }
+
+        internal static bool IsReconnect { get; private set; }
 
         internal static void Patch(Harmony harmony)
         {
@@ -85,7 +86,7 @@
 
         private static void GameStateMachine_OnRoomJoined_Postfix()
         {
-            if (!_isReconnect)
+            if (!IsReconnect)
             {
                 return;
             }
@@ -157,7 +158,7 @@
             var levelSequence = Traverse.Create(_gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             MotherbrainGlobalVars.CurrentConfig = levelSequence.gameConfig;
 
-            if (_isReconnect)
+            if (IsReconnect)
             {
                 DeactivateReconnect();
             }
@@ -170,7 +171,7 @@
 
         private static void PlayingGameState_OnMasterClientChanged_Prefix()
         {
-            if (!_isReconnect)
+            if (!IsReconnect)
             {
                 return;
             }
@@ -195,7 +196,7 @@
             ActivateRuleset();
             OnPreGameCreated();
             OnPostGameCreated();
-            _isReconnect = false;
+            IsReconnect = false;
         }
 
         private static void GameStateMachine_GoToPlayingState_Postfix()
@@ -256,13 +257,13 @@
             if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
             {
                 CoreMod.Logger.Warning($"<- Disconnected from room {roomCode} ->");
-                _isReconnect = true;
+                IsReconnect = true;
                 DeactivateRuleset();
             }
             else
             {
                 CoreMod.Logger.Msg($"<- MANUALLY disconnected from room {roomCode} ->");
-                _isReconnect = true;
+                IsReconnect = true;
                 DeactivateRuleset();
             }
         }
@@ -295,7 +296,7 @@
 
         private static void ActivateRuleset()
         {
-            if (IsRulesetActive && !_isReconnect)
+            if (IsRulesetActive && !IsReconnect)
             {
                 CoreMod.Logger.Warning("Ruleset activation was attempted whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
                 return;
@@ -320,7 +321,7 @@
                 try
                 {
                     var isDisabled = rule is IDisableOnReconnect;
-                    if (_isReconnect && isDisabled)
+                    if (IsReconnect && isDisabled)
                     {
                         CoreMod.Logger.Msg($"Skip activating rule type: {rule.GetType()}");
                         continue;
@@ -346,7 +347,7 @@
                 return;
             }
 
-            if (!_isReconnect)
+            if (!IsReconnect)
             {
                 IsRulesetActive = false;
             }
@@ -357,7 +358,7 @@
                 try
                 {
                     var isDisabled = rule is IDisableOnReconnect;
-                    if (_isReconnect && isDisabled)
+                    if (IsReconnect && isDisabled)
                     {
                         CoreMod.Logger.Msg($"Skip deactivating rule type: {rule.GetType()}");
                         continue;
@@ -378,7 +379,7 @@
 
         public static void DeactivateReconnect()
         {
-            _isReconnect = false;
+            IsReconnect = false;
             IsRulesetActive = false;
 
             CoreMod.Logger.Warning($"Deactivating reconnection: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
@@ -419,7 +420,7 @@
                 try
                 {
                     var isDisabled = rule is IDisableOnReconnect;
-                    if (_isReconnect && isDisabled)
+                    if (IsReconnect && isDisabled)
                     {
                         CoreMod.Logger.Msg($"Skip OnPreGameCreated for rule type: {rule.GetType()}");
                         continue;
@@ -455,7 +456,7 @@
                 try
                 {
                     var isDisabled = rule is IDisableOnReconnect;
-                    if (_isReconnect && isDisabled)
+                    if (IsReconnect && isDisabled)
                     {
                         CoreMod.Logger.Msg($"Skip OnPostGameCreated for rule type: {rule.GetType()}");
                         continue;
