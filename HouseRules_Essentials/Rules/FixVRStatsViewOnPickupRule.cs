@@ -62,6 +62,7 @@
             Color orange = new Color(1f, 0.499f, 0f);
             Color pink = new Color(0.984f, 0.3765f, 0.498f);
             Color gold = new Color(1f, 1f, 0.6f);
+            Color mustard = new Color(0.73f, 0.55f, 0.07f);
             string name = pieceNameController.GetPieceName();
             var sb = new StringBuilder();
             sb.AppendLine(ColorizeString($"<u>{name}</u>", Color.yellow));
@@ -80,6 +81,11 @@
                 case 3:
                     sb.AppendLine(ColorizeString("0", Color.red));
                     break;
+            }
+
+            if (myPiece.HasEffectState(EffectStateType.Weaken1Turn) || myPiece.HasEffectState(EffectStateType.Weaken2Turns))
+            {
+                sb.Append(ColorizeString("Weakened (Half Damage)", mustard));
             }
 
             sb.AppendLine();
@@ -182,6 +188,19 @@
                         sb.Append(ColorizeString(", Slime", lightblue));
                         break;
                 }
+            }
+
+            sb.AppendLine();
+            if (myPiece.HasEffectState(EffectStateType.FireImmunity))
+            {
+                int rounds = myPiece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.FireImmunity);
+                sb.AppendLine(ColorizeString($"Fire ({rounds} turns left)", lightblue));
+            }
+
+            if (myPiece.HasEffectState(EffectStateType.IceImmunity))
+            {
+                int rounds = myPiece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.IceImmunity);
+                sb.AppendLine(ColorizeString($"Frozen, Ice ({rounds} turns left)", lightblue));
             }
 
             GameUI.ShowCameraMessage(sb.ToString(), 5);
