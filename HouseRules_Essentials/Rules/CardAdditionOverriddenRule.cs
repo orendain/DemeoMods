@@ -203,7 +203,7 @@
                 }
                 else if (randNum > 97)
                 {
-                    if (_numVigor < 4)
+                    if (_numVigor < 3)
                     {
                         // Invisibility and Vigor Potions
                         _numVigor++;

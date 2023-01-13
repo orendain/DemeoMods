@@ -47,6 +47,11 @@
                 return true;
             }
 
+            if ((target.piece.IsPlayer() || target.piece.IsBot()) && attacker.piece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
+            {
+                return false;
+            }
+
             if (target.piece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice) && !attacker.piece.HasPieceType(PieceType.Boss))
             {
                 target.piece.effectSink.SubtractHealth(0);

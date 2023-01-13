@@ -92,7 +92,7 @@
 
                     if (myPiece.HasEffectState(EffectStateType.Weaken1Turn) || myPiece.HasEffectState(EffectStateType.Weaken2Turns))
                     {
-                        sb.Append(ColorizeString("Weakened (Half Damage)", mustard));
+                        sb.Append(ColorizeString("Weakened (Half damage)", mustard));
                     }
 
                     sb.AppendLine();
