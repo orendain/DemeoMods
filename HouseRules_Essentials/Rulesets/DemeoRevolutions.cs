@@ -895,7 +895,7 @@
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold, AbilityKey.Net } },
                 { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder, AbilityKey.Net } },
                 { BoardPieceId.CultMemberElder, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Weaken, AbilityKey.EnemyFireball } },
-                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.LightningBolt, AbilityKey.LeapHeavy, AbilityKey.Grapple, AbilityKey.ArbalestierPoisonTip } },
+                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.LightningBolt, AbilityKey.LeapHeavy, AbilityKey.Grapple } },
                 { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeapHeavy, AbilityKey.Grapple } },
                 { BoardPieceId.ElvenArcher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyArrowSnipe, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
@@ -989,13 +989,12 @@
                 { BoardPieceId.WarlockMinion, EffectStateType.ExposeEnergy },
                 { BoardPieceId.Barricade, EffectStateType.Thorns },
                 { BoardPieceId.EyeOfAvalon, EffectStateType.Confused },
-                { BoardPieceId.GrapplingTotem, EffectStateType.Netted },
             });
 
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods, AbilityKey.DropChest } },
-                { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.TelekineticBurst } },
+                { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.Explosion } },
             });
 
             var abilityBreaksStealth = new AbilityBreaksStealthAdjustedRule(new Dictionary<AbilityKey, bool>
@@ -1097,7 +1096,6 @@
                 { AbilityKey.Grapple, 2 },
                 { AbilityKey.ElvenSummonerDeflect, 5 },
                 { AbilityKey.PlayerLeap, 2 },
-                { AbilityKey.ArbalestierPoisonTip, 2 },
                 { AbilityKey.ChargeBarbarian, 2 },
             });
 

@@ -11,7 +11,7 @@ using MelonLoader;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Orendain")]
 [assembly: AssemblyProduct("HouseRules: Core")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -41,4 +41,4 @@ using MelonLoader;
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("574512")]
-[assembly: VerifyLoaderVersion("0.5.3", true)]
+[assembly: VerifyLoaderVersion("0.5.7", true)]
