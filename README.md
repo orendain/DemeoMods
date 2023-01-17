@@ -40,6 +40,7 @@ Class Changes
 - 8 max health. You are immune to Weaken and non-boss Fire damage
 - Normal start cards plus Charge and War Cry
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
+- Whirlwind doesn't harm allies but it will still knock them back
 - A NEW reusable non-damaging Pull card which costs 0 Action Points (works on enemies and allies)
 - Critical hits regain all used Action Points (max 2), Pull, and gain Berserk (+1 damage for the turn)
 - Enemies that melee you will be counter-attacked for 1 damage
