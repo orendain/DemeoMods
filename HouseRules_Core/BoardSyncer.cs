@@ -189,7 +189,8 @@
                         if (wasGrabbed.IsPlayer())
                         {
                             // CoreMod.Logger.Msg($"<<Grabbed>> {wasGrabbed.GetPieceConfig().PieceNameLocalizationKey} by Enemy");
-                            return true;
+                            _isMove = true;
+                            return false;
                         }
 
                         return false;
