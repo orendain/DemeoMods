@@ -68,6 +68,7 @@
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
             HR.Rulebook.Register(typeof(RegainAbilityIfMaxxedOutOverriddenRule));
+            HR.Rulebook.Register(typeof(ReviveRemovesEffectsRule));
             HR.Rulebook.Register(typeof(RoundCountLimitedRule));
             HR.Rulebook.Register(typeof(SpawnCategoryOverriddenRule));
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));

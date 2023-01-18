@@ -1207,6 +1207,7 @@
                 { TileEffect.Target, 0 },
             });
 
+            var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
             var tickRule = new TickAdjustedRule(true);
@@ -1218,6 +1219,7 @@
                 piecePieceTypeRule,
                 piecesAdjustedRule,
                 courageShantyRule,
+                reviveEffectsRule,
                 tileEffectDuration,
                 myMonsterDeckRule,
                 startingCardsRule,
