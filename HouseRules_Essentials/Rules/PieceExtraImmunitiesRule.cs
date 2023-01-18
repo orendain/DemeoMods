@@ -52,7 +52,7 @@
                 return true;
             }
 
-            if ((target.piece.IsPlayer() || target.piece.IsBot()) && attacker.piece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
+            if ((target.piece.IsPlayer() || target.piece.IsBot() || target.piece.IsProp()) && attacker.piece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
             {
                 return false;
             }
