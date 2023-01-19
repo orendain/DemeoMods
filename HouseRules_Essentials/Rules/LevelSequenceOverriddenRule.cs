@@ -22,7 +22,7 @@
         private readonly List<string> _adjustments;
 
         private readonly List<string> elvenFloors1 = new List<string>
-                    { "ElvenFloor01", "ElvenFloor04", "ElvenFloor13", "ElvenFloor14", "ElvenFloor16", "ElvenFloor17" };
+                    { "ElvenFloor01", "ElvenFloor04", "ElvenFloor13", "ElvenFloor14", "ElvenFloor16", "ElvenFloor17", "ElvenFloor03" };
 
         private readonly List<string> elvenFloors2 = new List<string>
                     { "ElvenFloor02", "ElvenFloor03", "ElvenFloor06", "ElvenFloor07", "ElvenFloor08", "ElvenFloor10", "ElvenFloor11" };
@@ -31,19 +31,19 @@
                     { "ForestFloor01", "ForestFloor02", "ForestFloor07", "ForestFloor08" };
 
         private readonly List<string> forestFloors2 = new List<string>
-                    { "ForestFloor03", "ForestFloor07", "ForestFloor01", "ForestFloor02" };
+                    { "ForestFloor03", "ForestFloor07", "ForestFloor01", "ForestFloor02", "ForestFloor08", "ForestFloor01" };
 
         private readonly List<string> sewersFloors1 = new List<string>
-                    { "SewersFloor01", "SewersFloor07", "SewersFloor09", "SewersFloor10" };
+                    { "SewersFloor01", "SewersFloor07", "SewersFloor09", "SewersFloor10", "SewersFloor11", "SewersFloor12" };
 
         private readonly List<string> sewersFloors2 = new List<string>
-                    { "SewersFloor09", "SewersFloor10", "SewersFloor11", "SewersFloor12" };
+                    { "SewersFloor09", "SewersFloor10", "SewersFloor11", "SewersFloor12", "SewersFloor07", "SewersFloor08" };
 
         private readonly List<string> desertFloors1 = new List<string>
                     { "DesertFloor10", "DesertFloor06" };
 
         private readonly List<string> desertFloors2 = new List<string>
-                    { "DesertFloor02", "DesertFloor08", "DesertFloor09", "DesertFloor06", "DesertFloor10" };
+                    { "DesertFloor08", "DesertFloor09", "DesertFloor06", "DesertFloor10" };
 
         private readonly List<string> townsFloors1 = new List<string>
                     { "TownsFloor04", "TownsFloor05", "TownsFloor06" };
