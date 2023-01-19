@@ -43,10 +43,7 @@
 
             revivedPiece.effectSink.RemoveStatusEffect(EffectStateType.Stunned);
             revivedPiece.effectSink.RemoveStatusEffect(EffectStateType.Frozen);
-            revivedPiece.effectSink.RemoveStatusEffect(EffectStateType.Weaken1Turn);
-            revivedPiece.effectSink.RemoveStatusEffect(EffectStateType.Weaken2Turns);
-            revivedPiece.effectSink.RemoveStatusEffect(EffectStateType.Thorns);
-            revivedPiece.AddGold(0);
+            revivedPiece.effectSink.SubtractHealth(0);
         }
     }
 }
