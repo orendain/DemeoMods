@@ -23,7 +23,7 @@ Gameplay changes
 - Number of chests/stands/fountains per floor changed based on the adventure selected
 - Card energy (mana) gained from attacks reduced by 25%
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
-- Reviving a player by any means now removes ALL negative effects
+- Reviving a player by any means removes Stunned and Frozen effects
 - Most player summons can have detrimental effects on enemies who hit them
 - Player cast electrical attacks won't damage or stun other players or non-charmed allies
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
