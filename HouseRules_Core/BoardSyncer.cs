@@ -199,6 +199,10 @@
                     return false;
                 case AbilityKey.Shuffle:
                 case AbilityKey.Telekinesis:
+                case AbilityKey.TeleportEnemy:
+                    // CoreMod.Logger.Msg($"<<Moved>> Enemy/Player Teleported");
+                    _isMove = true;
+                    return false;
                 case AbilityKey.RevealPath:
                 case AbilityKey.DetectEnemies:
                 case AbilityKey.BeastWhisperer:

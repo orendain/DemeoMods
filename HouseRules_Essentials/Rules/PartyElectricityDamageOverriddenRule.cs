@@ -57,7 +57,7 @@
             var attackerTarget = Traverse.Create(abilityContext).Field("attacker").GetValue<Target>();
             var attacker = Traverse.Create(attackerTarget).Field("piece").GetValue<Piece>();
 
-            if (attacker.IsPlayer() && (targetPiece.IsPlayer() || targetPiece.IsBot() || (targetPiece.IsProp() && targetPiece.boardPieceId != BoardPieceId.EnemyTurret)) && damage.HasTag(DamageTag.Electricity))
+            if (damage.HasTag(DamageTag.Electricity) && attacker.IsPlayer() && (targetPiece.IsPlayer() || targetPiece.IsBot() || (targetPiece.IsProp() && targetPiece.boardPieceId != BoardPieceId.EnemyTurret && !targetPiece.HasPieceType(PieceType.ExplodingLamp))))
             {
                 var localizedText = Traverse.Create(damage).Method("GetLocalizedText", paramTypes: new[] { typeof(string), typeof(bool) }, arguments: new object[] { "Ui/pieceUi/notification/damage/noDamage", false }).GetValue<string>();
                 Notification.ShowGoldenText(new Target(targetPiece).gameObject, localizedText);
