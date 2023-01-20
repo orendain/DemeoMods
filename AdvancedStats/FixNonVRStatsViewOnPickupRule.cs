@@ -1,4 +1,4 @@
-﻿namespace HouseRules.Essentials.Rules
+﻿namespace AdvancedStats
 {
     using System.Collections.Generic;
     using System.Text;
@@ -9,14 +9,11 @@
     using Boardgame.Ui;
     using DataKeys;
     using HarmonyLib;
-    using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class FixNonVRStatsViewOnPickupRule : Rule, IPatchable, IMultiplayerSafe
+    internal static class FixNonVRStatsViewOnPickupRule
     {
-        public override string Description => "Show more stats for PC-Edition when player piece selected";
-
-        private static void Patch(Harmony harmony)
+        internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(NonVrInfoPanelController), "OnSelectPiece"),
@@ -136,9 +133,20 @@
                     sb.Append(ColorizeString(" Immunities ", Color.white));
                     sb.AppendLine(ColorizeString("--", Color.gray));
 
-                    if (!hasimmunities)
+                    if (!hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
                     {
                         sb.AppendLine(ColorizeString("None", lightblue));
+
+                        // Pad lines to raise text higher on PC-Edition screen
+                        sb.AppendLine();
+                        sb.AppendLine();
+                        sb.AppendLine();
+                        sb.AppendLine();
+                        sb.AppendLine();
+                        sb.AppendLine();
+                        sb.AppendLine();
+                        sb.AppendLine();
+                        sb.AppendLine(ColorizeString(" ", Color.clear));
                         GameUI.ShowCameraMessage(sb.ToString(), 5);
                         return;
                     }
@@ -175,7 +183,7 @@
                         }
                     }
 
-                    if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+                    if (maxmagic == 5)
                     {
                         switch (myPiece.boardPieceId)
                         {

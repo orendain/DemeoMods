@@ -1,4 +1,4 @@
-﻿namespace HouseRules.Essentials.Rules
+﻿namespace AdvancedStats
 {
     using System.Collections.Generic;
     using System.Text;
@@ -7,14 +7,11 @@
     using Boardgame.Ui;
     using DataKeys;
     using HarmonyLib;
-    using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class FixVRStatsViewOnPickupRule : Rule, IPatchable, IMultiplayerSafe
+    internal static class FixVRStatsViewOnPickupRule
     {
-        public override string Description => "Show more stats in VR when player piece picked up";
-
-        private static void Patch(Harmony harmony)
+        internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(GrabbedPieceHudInstantiator), "CloneCurrentHudState"),
@@ -129,7 +126,7 @@
             sb.Append(ColorizeString(" Immunities ", Color.white));
             sb.AppendLine(ColorizeString("--", Color.gray));
 
-            if (!hasimmunities)
+            if (!hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
             {
                 sb.AppendLine(ColorizeString("None", lightblue));
                 GameUI.ShowCameraMessage(sb.ToString(), 5);
@@ -168,7 +165,7 @@
                 }
             }
 
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (maxmagic == 5)
             {
                 switch (myPiece.boardPieceId)
                 {
