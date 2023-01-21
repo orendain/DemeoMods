@@ -37,7 +37,7 @@ using AdvancedStats;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 // Melon Loader.
-[assembly: MelonInfo(typeof(AdvancedStatsMod), "Advanced Stats", "1.0.0", "TheGrayAlien", "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(AdvancedStatsMod), "AdvancedStats", "1.0.0", "TheGrayAlien", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: VerifyLoaderVersion("0.5.7", true)]

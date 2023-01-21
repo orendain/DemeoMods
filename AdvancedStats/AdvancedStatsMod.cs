@@ -11,8 +11,14 @@
         public override void OnApplicationStart()
         {
             var harmony = new Harmony("com.orendain.demeomods.advancedstats");
-            FixVRStatsViewOnPickupRule.Patch(harmony);
-            FixNonVRStatsViewOnPickupRule.Patch(harmony);
+            if (MotherbrainGlobalVars.IsRunningOnDesktop)
+            {
+                FixNonVRStatsViewOnPickupRule.Patch(harmony);
+            }
+            else
+            {
+                FixVRStatsViewOnPickupRule.Patch(harmony);
+            }
         }
     }
 }
