@@ -9,14 +9,14 @@
     using HarmonyLib;
     using UnityEngine;
 
-    internal static class FixVRStatsViewOnPickupRule
+    internal static class VRAdvancedStatsView
     {
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(GrabbedPieceHudInstantiator), "CloneCurrentHudState"),
                 postfix: new HarmonyMethod(
-                    typeof(FixVRStatsViewOnPickupRule),
+                    typeof(VRAdvancedStatsView),
                     nameof(GrabbedPieceHudInstantiator_CloneCurrentHudState_Postfix)));
         }
 
@@ -162,28 +162,6 @@
                     }
 
                     sb.Append(ColorizeString($"{localizedTitle}", lightblue));
-                }
-            }
-
-            if (maxmagic == 5)
-            {
-                switch (myPiece.boardPieceId)
-                {
-                    case BoardPieceId.HeroGuardian:
-                        sb.Append(ColorizeString(", Fire", lightblue));
-                        break;
-                    case BoardPieceId.HeroSorcerer:
-                        sb.Append(ColorizeString(", Electricity", lightblue));
-                        break;
-                    case BoardPieceId.HeroWarlock:
-                        sb.Append(ColorizeString(", Corruption", lightblue));
-                        break;
-                    case BoardPieceId.HeroHunter:
-                        sb.Append(ColorizeString(", Ice", lightblue));
-                        break;
-                    case BoardPieceId.HeroBarbarian:
-                        sb.Append(ColorizeString(", Slime", lightblue));
-                        break;
                 }
             }
 

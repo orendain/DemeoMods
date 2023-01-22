@@ -62,8 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvancedStatsMod.cs" />
-    <Compile Include="FixNonVRStatsViewOnPickupRule.cs" />
-    <Compile Include="FixVRStatsViewOnPickupRule.cs" />
+    <Compile Include="NonVRAdvancedStatsView.cs" />
+    <Compile Include="VRAdvancedStatsView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

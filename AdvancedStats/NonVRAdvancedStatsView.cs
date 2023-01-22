@@ -11,14 +11,14 @@
     using HarmonyLib;
     using UnityEngine;
 
-    internal static class FixNonVRStatsViewOnPickupRule
+    internal static class NonVRAdvancedStatsView
     {
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(NonVrInfoPanelController), "OnSelectPiece"),
                 postfix: new HarmonyMethod(
-                    typeof(FixNonVRStatsViewOnPickupRule),
+                    typeof(NonVRAdvancedStatsView),
                     nameof(NonVrInfoPanelController_OnSelectPiece_Postfix)));
         }
 
@@ -180,28 +180,6 @@
                             }
 
                             sb.Append(ColorizeString($"{localizedTitle}", lightblue));
-                        }
-                    }
-
-                    if (maxmagic == 5)
-                    {
-                        switch (myPiece.boardPieceId)
-                        {
-                            case BoardPieceId.HeroGuardian:
-                                sb.Append(ColorizeString(", Fire", lightblue));
-                                break;
-                            case BoardPieceId.HeroSorcerer:
-                                sb.Append(ColorizeString(", Electricity", lightblue));
-                                break;
-                            case BoardPieceId.HeroWarlock:
-                                sb.Append(ColorizeString(", Corruption", lightblue));
-                                break;
-                            case BoardPieceId.HeroHunter:
-                                sb.Append(ColorizeString(", Ice", lightblue));
-                                break;
-                            case BoardPieceId.HeroBarbarian:
-                                sb.Append(ColorizeString(", Slime", lightblue));
-                                break;
                         }
                     }
 

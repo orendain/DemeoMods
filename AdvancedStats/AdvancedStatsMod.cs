@@ -13,11 +13,11 @@
             var harmony = new Harmony("com.orendain.demeomods.advancedstats");
             if (MotherbrainGlobalVars.IsRunningOnDesktop)
             {
-                FixNonVRStatsViewOnPickupRule.Patch(harmony);
+                NonVRAdvancedStatsView.Patch(harmony);
             }
             else
             {
-                FixVRStatsViewOnPickupRule.Patch(harmony);
+                VRAdvancedStatsView.Patch(harmony);
             }
         }
     }
