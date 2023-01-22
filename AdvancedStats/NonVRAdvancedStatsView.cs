@@ -11,14 +11,14 @@
     using HarmonyLib;
     using UnityEngine;
 
-    internal static class FixNonVRStatsViewOnPickupRule
+    internal static class NonVRAdvancedStatsView
     {
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(NonVrInfoPanelController), "OnSelectPiece"),
                 postfix: new HarmonyMethod(
-                    typeof(FixNonVRStatsViewOnPickupRule),
+                    typeof(NonVRAdvancedStatsView),
                     nameof(NonVrInfoPanelController_OnSelectPiece_Postfix)));
         }
 

@@ -9,14 +9,14 @@
     using HarmonyLib;
     using UnityEngine;
 
-    internal static class FixVRStatsViewOnPickupRule
+    internal static class VRAdvancedStatsView
     {
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(GrabbedPieceHudInstantiator), "CloneCurrentHudState"),
                 postfix: new HarmonyMethod(
-                    typeof(FixVRStatsViewOnPickupRule),
+                    typeof(VRAdvancedStatsView),
                     nameof(GrabbedPieceHudInstantiator_CloneCurrentHudState_Postfix)));
         }
 
