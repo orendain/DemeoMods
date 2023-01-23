@@ -7,15 +7,14 @@
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("AdvancedStats");
 
-        [System.Obsolete]
-        public override void OnApplicationStart()
+        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
             var harmony = new Harmony("com.orendain.demeomods.advancedstats");
-            if (MotherbrainGlobalVars.IsRunningOnDesktop)
+            if (sceneName == "StartupDesktop")
             {
                 NonVRAdvancedStatsView.Patch(harmony);
             }
-            else
+            else if (sceneName.Contains("Startup"))
             {
                 VRAdvancedStatsView.Patch(harmony);
             }
