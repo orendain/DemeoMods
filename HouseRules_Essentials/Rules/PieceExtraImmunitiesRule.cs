@@ -54,9 +54,20 @@
                 return true;
             }
 
-            if (attackerPiece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack && (targetPiece.IsPlayer() || targetPiece.IsBot() || (targetPiece.IsProp() && targetPiece.boardPieceId != BoardPieceId.EnemyTurret && !targetPiece.HasPieceType(PieceType.ExplodingLamp))))
+            if (attackerPiece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
             {
-                return false;
+                BoardPieceId targetId = targetPiece.boardPieceId;
+                string targetString = targetId.ToString();
+                bool canBeHit = true;
+                if (targetId == BoardPieceId.EnemyTurret || targetId == BoardPieceId.SporeFungus || targetString.Contains("SandPile") || targetPiece.HasPieceType(PieceType.ExplodingLamp))
+                {
+                    canBeHit = false;
+                }
+
+                if (targetPiece.IsPlayer() || targetPiece.IsBot() || (targetPiece.IsProp() && canBeHit))
+                {
+                    return false;
+                }
             }
 
             if (targetPiece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice) && !attackerPiece.HasPieceType(PieceType.Boss))

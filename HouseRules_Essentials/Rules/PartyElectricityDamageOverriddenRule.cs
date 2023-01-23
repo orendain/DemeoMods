@@ -51,13 +51,30 @@
                 return true;
             }
 
-            var targetPiece = Traverse.Create(__instance).Field("targetPiece").GetValue<Piece>();
             var abilityContext = Traverse.Create(__instance).Field("abilityContext").GetValue<AbilityContext>();
             var damage = Traverse.Create(abilityContext).Field("damage").GetValue<Damage>();
+            if (!damage.HasTag(DamageTag.Electricity))
+            {
+                return true;
+            }
+
             var attackerTarget = Traverse.Create(abilityContext).Field("attacker").GetValue<Target>();
             var attacker = Traverse.Create(attackerTarget).Field("piece").GetValue<Piece>();
+            if (!attacker.IsPlayer())
+            {
+                return true;
+            }
 
-            if (damage.HasTag(DamageTag.Electricity) && attacker.IsPlayer() && (targetPiece.IsPlayer() || targetPiece.IsBot() || (targetPiece.IsProp() && targetPiece.boardPieceId != BoardPieceId.EnemyTurret && !targetPiece.HasPieceType(PieceType.ExplodingLamp))))
+            var targetPiece = Traverse.Create(__instance).Field("targetPiece").GetValue<Piece>();
+            BoardPieceId targetId = targetPiece.boardPieceId;
+            string targetString = targetId.ToString();
+            bool canBeHit = true;
+            if (targetId == BoardPieceId.EnemyTurret || targetId == BoardPieceId.SporeFungus || targetString.Contains("SandPile") || targetPiece.HasPieceType(PieceType.ExplodingLamp))
+            {
+                canBeHit = false;
+            }
+
+            if (targetPiece.IsPlayer() || targetPiece.IsBot() || (targetPiece.IsProp() && canBeHit))
             {
                 var localizedText = Traverse.Create(damage).Method("GetLocalizedText", paramTypes: new[] { typeof(string), typeof(bool) }, arguments: new object[] { "Ui/pieceUi/notification/damage/noDamage", false }).GetValue<string>();
                 Notification.ShowGoldenText(new Target(targetPiece).gameObject, localizedText);
