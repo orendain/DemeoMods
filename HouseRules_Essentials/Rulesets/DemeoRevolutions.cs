@@ -1108,7 +1108,6 @@
                 { AbilityKey.Deflect, 2 },
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.BlockAbilities, 1 },
-                { AbilityKey.GrapplingPush, 1 },
                 { AbilityKey.LeapHeavy, 1 },
                 { AbilityKey.Leap, 1 },
                 { AbilityKey.Net, 0 },
