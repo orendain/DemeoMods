@@ -50,7 +50,7 @@ Class Changes
 - 7 max health. You are immune to Petrify and Slime damage 
 - Critical damage increased by 2
 - Normal start cards plus The Leviathan and Barbaric Chainwhip
-- Barbaric Chainwhip area coverage changed from 3x3 to 5x5 and does 1 more damage
+- Barbaric Chainwhip does 1 more damage
 - Launching any Lamp costs 0 Action Points
 - A NEW reusable non-damaging Net card that costs 0 Action Points and can be reused every 3 rounds
 - Critical hits regain 1 Action Point if not last action and reduce Net cooldown by 1
