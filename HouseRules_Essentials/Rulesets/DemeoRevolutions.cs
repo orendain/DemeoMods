@@ -988,6 +988,7 @@
                 { BoardPieceId.WarlockMinion, EffectStateType.ExposeEnergy },
                 { BoardPieceId.Barricade, EffectStateType.Thorns },
                 { BoardPieceId.EyeOfAvalon, EffectStateType.Confused },
+                { BoardPieceId.Torch, EffectStateType.Panic },
             });
 
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
