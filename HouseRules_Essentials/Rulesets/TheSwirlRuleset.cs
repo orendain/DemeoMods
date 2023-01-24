@@ -107,7 +107,6 @@
             });
 
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);
-            var levelExitLockedRule = new LevelExitLockedUntilAllEnemiesDefeatedRule(true);
 
             return Ruleset.NewInstance(
                 name,
@@ -117,8 +116,7 @@
                 piecesAdjustedRule,
                 levelPropertiesRule,
                 aoePotions,
-                respawnsDisabledRule,
-                levelExitLockedRule);
+                respawnsDisabledRule);
         }
     }
 }
