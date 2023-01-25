@@ -138,3 +138,30 @@ jobs:
         with:
           name: RoomCode
           path: Bundle\*
+
+  build_advancedstats:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Prepare
+        run: |
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/69d8617a0eeb247eb43f802f20d00fac0fb94de2/ws.zip
+          7z x ws.zip 
+
+      - name: Build AdvancedStats
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoPcDir="%GITHUB_WORKSPACE%" AdvancedStats\AdvancedStats.csproj
+
+      - name: Assemble Zip
+        run: |
+          mkdir Bundle\Mods
+          xcopy AdvancedStats\bin\Release\AdvancedStats.dll Bundle\Mods
+
+      - name: Upload AdvancedStats
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: AdvancedStats
+          path: Bundle\*
