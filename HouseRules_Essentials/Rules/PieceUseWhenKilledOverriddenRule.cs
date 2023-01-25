@@ -9,7 +9,7 @@
     using HouseRules.Types;
 
     public sealed class PieceUseWhenKilledOverriddenRule : Rule,
-        IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe
+        IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe, IDisableOnReconnect
     {
         public override string Description => "Piece UseWhenKilled lists are overridden";
 
