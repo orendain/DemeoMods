@@ -67,6 +67,12 @@ namespace HouseRules.Essentials.Rules
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
             if (source.boardPieceId == BoardPieceId.HeroGuardian)
             {
+                source.effectSink.TryGetStat(Stats.Type.Armor, out int myArmor);
+                if (myArmor < 5)
+                {
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.Armor, myArmor + 1);
+                }
+
                 if (currentAP < 1)
                 {
                     source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 2);
@@ -91,15 +97,26 @@ namespace HouseRules.Essentials.Rules
                     source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                 }
             }
-            else if (source.boardPieceId == BoardPieceId.HeroBarbarian && !source.HasEffectState(EffectStateType.Enraged))
+            else if (source.boardPieceId == BoardPieceId.HeroBarbarian)
             {
+                source.effectSink.TryGetStat(Stats.Type.MagicArmor, out int myArmor);
                 if (currentAP < 1)
                 {
-                    source.EnableEffectState(EffectStateType.Enraged);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Enraged, 1);
+                    if (myArmor < 10)
+                    {
+                        source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 2);
+                    }
+
+                    int myVargas = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.MarkOfVerga);
+                    source.EnableEffectState(EffectStateType.MarkOfVerga, myVargas + 6);
                 }
                 else
                 {
+                    if (myArmor < 10)
+                    {
+                        source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 1);
+                    }
+
                     source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                 }
             }

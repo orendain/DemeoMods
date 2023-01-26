@@ -59,7 +59,7 @@
                 BoardPieceId targetId = targetPiece.boardPieceId;
                 string targetString = targetId.ToString();
                 bool canBeHit = true;
-                if (targetId == BoardPieceId.EnemyTurret || targetId == BoardPieceId.SporeFungus || targetString.Contains("SandPile") || targetPiece.HasPieceType(PieceType.ExplodingLamp))
+                if (targetId == BoardPieceId.ProximityMine || targetId == BoardPieceId.EnemyTurret || targetId == BoardPieceId.SporeFungus || targetString.Contains("SandPile") || targetPiece.HasPieceType(PieceType.ExplodingLamp))
                 {
                     canBeHit = false;
                 }
