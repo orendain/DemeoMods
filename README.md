@@ -43,7 +43,7 @@ Class Changes
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
 - Whirlwind doesn't harm allies but it will still knock them back
 - A NEW reusable non-damaging Pull card which costs 0 Action Points (works on enemies and allies)
-- Critical hits regain all used Action Points (max 2), Pull, and gain Berserk (+1 damage for the turn)
+- Critical hits regain all used Action Points, 1 Armor, Pull, and gain Berserk (+1 damage for the turn)
 - Enemies that melee you will be counter-attacked for 1 damage
 
 **Barbarian:**
@@ -53,8 +53,8 @@ Class Changes
 - Barbaric Chainwhip does 1 more damage
 - Launching any Lamp costs 0 Action Points
 - A NEW reusable non-damaging Net card that costs 0 Action Points and can be reused every 3 rounds
-- Critical hits regain 1 Action Point if not last action and reduce Net cooldown by 1
-- Critical hits on the LAST action do double critical damage and gain a Spawn Random Lamp card
+- Critical hits regain 1 Action Point if not last action, gain 1 Magic Armor, and reduce Net cooldown by 1
+- Critical hits on the LAST action gain 6 Vargas, 2 Magic Armor, and a Spawn Random Lamp card
 - Having a Mark of Varga card puts you closer to the front in turn order
 
 **Hunter:**
