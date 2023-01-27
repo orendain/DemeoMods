@@ -64,12 +64,12 @@
                 return true;
             }
 
-            if (targetPiece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice) && !attackerPiece.HasPieceType(PieceType.Boss))
+            if (targetPiece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice) && (attackerPiece == null || !attackerPiece.HasPieceType(PieceType.Boss)))
             {
                 targetPiece.effectSink.SubtractHealth(0);
                 return false;
             }
-            else if (attackerPiece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
+            else if (attackerPiece != null && attackerPiece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
             {
                 BoardPieceId targetId = targetPiece.boardPieceId;
                 string targetString = targetId.ToString();
