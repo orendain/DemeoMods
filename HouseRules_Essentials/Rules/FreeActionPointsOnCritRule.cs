@@ -102,9 +102,13 @@ namespace HouseRules.Essentials.Rules
                 source.effectSink.TryGetStat(Stats.Type.MagicArmor, out int myArmor);
                 if (currentAP < 1)
                 {
-                    if (myArmor < 10)
+                    if (myArmor < 9)
                     {
                         source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 2);
+                    }
+                    else if (myArmor == 9)
+                    {
+                        source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 1);
                     }
 
                     int myVargas = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.MarkOfVerga);

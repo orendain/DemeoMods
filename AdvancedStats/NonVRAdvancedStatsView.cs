@@ -133,7 +133,7 @@
                     sb.Append(ColorizeString(" Immunities ", Color.white));
                     sb.AppendLine(ColorizeString("--", Color.gray));
 
-                    if (!hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
+                    if (maxmagic != 5 && !hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
                     {
                         sb.AppendLine(ColorizeString("None", lightblue));
 
@@ -150,57 +150,68 @@
                         GameUI.ShowCameraMessage(sb.ToString(), 5);
                         return;
                     }
-
-                    int num = immuneToStatusEffects.Length;
-                    bool weak = false;
-                    List<string> list = new List<string>();
-
-                    for (int i = 0; i < num; i++)
+                    else if (maxmagic != 5)
                     {
-                        string localizedTitle = StatusEffectsConfig.GetLocalizedTitle(immuneToStatusEffects[i]);
-                        if (!list.Contains(localizedTitle))
+                        int num = immuneToStatusEffects.Length;
+                        bool weak = false;
+                        List<string> list = new List<string>();
+
+                        for (int i = 0; i < num; i++)
                         {
-                            if (localizedTitle.Contains("Netted"))
+                            string localizedTitle = StatusEffectsConfig.GetLocalizedTitle(immuneToStatusEffects[i]);
+                            if (!list.Contains(localizedTitle))
                             {
-                                localizedTitle = ColorizeString("Netted", lightblue);
-                            }
-                            else if (localizedTitle.Contains("Weaken"))
-                            {
-                                if (weak)
+                                if (localizedTitle.Contains("Netted"))
+                                {
+                                    localizedTitle = ColorizeString("Netted", lightblue);
+                                }
+                                else if (localizedTitle.Contains("Undefined"))
                                 {
                                     continue;
                                 }
+                                else if (localizedTitle.Contains("Weaken"))
+                                {
+                                    if (weak)
+                                    {
+                                        continue;
+                                    }
 
-                                weak = true;
+                                    weak = true;
+                                }
+
+                                if (i != 0)
+                                {
+                                    sb.Append(ColorizeString(", ", lightblue));
+                                }
+
+                                sb.Append(ColorizeString($"{localizedTitle}", lightblue));
                             }
-
-                            if (i != 0)
-                            {
-                                sb.Append(ColorizeString(", ", lightblue));
-                            }
-
-                            sb.Append(ColorizeString($"{localizedTitle}", lightblue));
                         }
                     }
-
-                    if (maxmagic == 5)
+                    else
                     {
                         switch (myPiece.boardPieceId)
                         {
                             case BoardPieceId.HeroGuardian:
-                                sb.Append(ColorizeString(", Fire", lightblue));
+                                sb.Append(ColorizeString("Weaken, Fire", lightblue));
                                 break;
                             case BoardPieceId.HeroSorcerer:
-                                sb.Append(ColorizeString(", Electricity", lightblue));
+                                sb.Append(ColorizeString("Stunned, Electricity", lightblue));
                                 break;
                             case BoardPieceId.HeroWarlock:
-                                sb.Append(ColorizeString(", Corruption", lightblue));
+                                sb.Append(ColorizeString("Corrupted Rage, Corruption", lightblue));
                                 break;
                             case BoardPieceId.HeroHunter:
-                                sb.Append(ColorizeString(", Ice", lightblue));
+                                sb.Append(ColorizeString("Frozen, Ice", lightblue));
                                 break;
                             case BoardPieceId.HeroBarbarian:
-                                sb.Append(ColorizeString(", Slime", lightblue));
+                                sb.Append(ColorizeString("Petrify, Slime", lightblue));
+                                break;
+                            case BoardPieceId.HeroRogue:
+                                sb.Append(ColorizeString("Tangled, Netted", lightblue));
+                                break;
+                            case BoardPieceId.HeroBard:
+                                sb.Append(ColorizeString("Poisoned, Blinded", lightblue));
                                 break;
                         }
                     }

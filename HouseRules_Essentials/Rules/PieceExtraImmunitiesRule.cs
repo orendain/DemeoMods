@@ -44,17 +44,32 @@
 
             Piece targetPiece = target.piece;
             Piece attackerPiece = attacker.piece;
+            if (targetPiece.boardPieceId == BoardPieceId.WarlockMinion && (attackerPiece == null || !attackerPiece.HasPieceType(PieceType.Boss)) && damage.HasTag(DamageTag.Undefined))
+            {
+                targetPiece.DisableEffectState(EffectStateType.CorruptedRage);
+                targetPiece.effectSink.SubtractHealth(0);
+                return false;
+            }
+            else if (targetPiece.boardPieceId == BoardPieceId.HeroWarlock && (attackerPiece == null || !attackerPiece.HasPieceType(PieceType.Boss)) && damage.HasTag(DamageTag.Undefined))
+            {
+                targetPiece.DisableEffectState(EffectStateType.CorruptedRage);
+                targetPiece.effectSink.TrySetStatBaseValue(Stats.Type.CorruptionAP, 0);
+                targetPiece.effectSink.TryAddActionPoints(1);
+                targetPiece.effectSink.SubtractHealth(0);
+                return false;
+            }
+
             if (targetPiece.IsImmuneToDamage())
             {
                 return true;
             }
 
-            if (attackerPiece == null)
+            if (targetPiece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice) && !attackerPiece.HasPieceType(PieceType.Boss))
             {
-                return true;
+                targetPiece.effectSink.SubtractHealth(0);
+                return false;
             }
-
-            if (attackerPiece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
+            else if (attackerPiece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
             {
                 BoardPieceId targetId = targetPiece.boardPieceId;
                 string targetString = targetId.ToString();
@@ -70,38 +85,26 @@
                 }
             }
 
-            if (targetPiece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice) && !attackerPiece.HasPieceType(PieceType.Boss))
-            {
-                targetPiece.effectSink.SubtractHealth(0);
-                return false;
-            }
-            else if (targetPiece.boardPieceId == BoardPieceId.WarlockMinion && !attackerPiece.HasPieceType(PieceType.Boss) && damage.HasTag(DamageTag.Undefined))
-            {
-                targetPiece.DisableEffectState(EffectStateType.CorruptedRage);
-                targetPiece.effectSink.TrySetStatBaseValue(Stats.Type.CorruptionAP, 0);
-                targetPiece.effectSink.SubtractHealth(0);
-                return false;
-            }
-
             if (!targetPiece.IsPlayer())
             {
                 return true;
             }
 
-            if (targetPiece.boardPieceId == BoardPieceId.HeroBarbarian && !attackerPiece.HasPieceType(PieceType.Boss) && (damage.HasTag(DamageTag.Acid) || damage.AbilityKey == AbilityKey.Petrify))
+            if (targetPiece.boardPieceId == BoardPieceId.HeroBarbarian)
             {
-                targetPiece.effectSink.SubtractHealth(0);
-                return false;
+                if ((attackerPiece == null || !attackerPiece.HasPieceType(PieceType.Boss)) && (damage.HasTag(DamageTag.Acid) || damage.AbilityKey == AbilityKey.Petrify))
+                {
+                    targetPiece.effectSink.SubtractHealth(0);
+                    return false;
+                }
             }
-            else if (targetPiece.boardPieceId == BoardPieceId.HeroWarlock && !attackerPiece.HasPieceType(PieceType.Boss) && damage.HasTag(DamageTag.Undefined))
+
+            if (attackerPiece == null)
             {
-                targetPiece.DisableEffectState(EffectStateType.CorruptedRage);
-                targetPiece.effectSink.TrySetStatBaseValue(Stats.Type.CorruptionAP, 0);
-                targetPiece.effectSink.TryAddActionPoints(1);
-                targetPiece.effectSink.SubtractHealth(0);
-                return false;
+                return true;
             }
-            else if (targetPiece.boardPieceId == BoardPieceId.HeroHunter && !attackerPiece.HasPieceType(PieceType.Boss) && damage.HasTag(DamageTag.Ice))
+
+            if (targetPiece.boardPieceId == BoardPieceId.HeroHunter && !attackerPiece.HasPieceType(PieceType.Boss) && damage.HasTag(DamageTag.Ice))
             {
                 targetPiece.effectSink.SubtractHealth(0);
                 return false;

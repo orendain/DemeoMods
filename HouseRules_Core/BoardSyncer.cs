@@ -197,6 +197,7 @@
                     }
 
                     return false;
+                case AbilityKey.GrapplingPush:
                 case AbilityKey.Shuffle:
                 case AbilityKey.Telekinesis:
                 case AbilityKey.TeleportEnemy:
