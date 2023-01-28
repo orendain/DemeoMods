@@ -30,6 +30,7 @@ Gameplay changes
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
 - Class turn order starts as Bard, Warlock, Guardian, Sorcerer, Hunter, Barbarian and then Assassin
 - All bosses will start with more health and 1 innate damage resist
+- Placed Torches have 4 health instead of 15
 - The Elven Queen has new self buffs and abilities to add a REAL challenge
 - The Serpent Lord boss is invulnerable while invisible... so you have to do it the HARD way
 - If playing Roots of Evil the player with the most javelins will be first in turn order on the LAST floor
@@ -43,18 +44,18 @@ Class Changes
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
 - Whirlwind doesn't harm allies but it will still knock them back
 - A NEW reusable non-damaging Pull card which costs 0 Action Points (works on enemies and allies)
-- Critical hits regain all used Action Points (max 2), Pull, and gain Berserk (+1 damage for the turn)
+- Critical hits regain all used Action Points, 1 Armor, Pull, and gain Berserk (+1 damage for the turn)
 - Enemies that melee you will be counter-attacked for 1 damage
 
 **Barbarian:**
 - 7 max health. You are immune to Petrify and Slime damage 
 - Critical damage increased by 2
 - Normal start cards plus The Leviathan and Barbaric Chainwhip
-- Barbaric Chainwhip does 1 more damage
+- Barbaric Chainwhip damage increased by 1
 - Launching any Lamp costs 0 Action Points
 - A NEW reusable non-damaging Net card that costs 0 Action Points and can be reused every 3 rounds
-- Critical hits regain 1 Action Point if not last action and reduce Net cooldown by 1
-- Critical hits on the LAST action do double critical damage and gain a Spawn Random Lamp card
+- Critical hits regain 1 Action Point if not last action, gain 1 Magic Armor, and reduce Net cooldown by 1
+- Critical hits on the LAST action gain 6 Vargas, 2 Magic Armor, and a Spawn Random Lamp card
 - Having a Mark of Varga card puts you closer to the front in turn order
 
 **Hunter:**
