@@ -851,7 +851,7 @@
                     effectStateType = EffectStateType.ExtraEnergy,
                     durationTurns = 3,
                     damagePerTurn = 0,
-                    stacks = false,
+                    stacks = true,
                     clearOnNewLevel = false,
                     healthBoost = 2,
                     applyAfterDissipate = EffectStateType.Thorns,
