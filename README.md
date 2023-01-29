@@ -20,7 +20,7 @@ Gameplay changes
 - Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3
 - Pets always focus on Hunter's Marked targets
 - Each floor's map will be from a different adventure
-- Number of chests/stands/fountains per floor changed based on the adventure selected
+- Number of chests/stands/fountains/traders per floor changed based on the adventure selected
 - Card energy (mana) gained from attacks reduced by 25%
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
 - Reviving a player by any means removes Stunned and Frozen effects
