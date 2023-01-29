@@ -62,10 +62,7 @@
     <Compile Include="Rules\ApplyEffectOnHitAdjustedRule.cs" />
     <Compile Include="Rules\CardChestRarityOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
-    <Compile Include="Rules\CardShopRarityOverriddenRule.cs" />
     <Compile Include="Rules\EnemyCooldownOverriddenRule.cs" />
-    <Compile Include="Rules\FixNonVRStatsViewOnPickupRule.cs" />
-    <Compile Include="Rules\FixVRStatsViewOnPickupRule.cs" />
     <Compile Include="Rules\ReviveRemovesEffectsRule.cs" />
     <Compile Include="Rules\PieceExtraStatsAdjustedRule.cs" />
     <Compile Include="Rules\TickAdjustedRule.cs" />

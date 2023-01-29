@@ -35,7 +35,6 @@
             HR.Rulebook.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
             HR.Rulebook.Register(typeof(CardChestRarityOverriddenRule));
-            HR.Rulebook.Register(typeof(CardShopRarityOverriddenRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
             HR.Rulebook.Register(typeof(EnemyCooldownOverriddenRule));
