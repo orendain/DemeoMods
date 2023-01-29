@@ -28,7 +28,7 @@ Gameplay changes
 - Player cast electrical attacks won't damage or stun other players or non-charmed allies
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
-- Class turn order starts as Bard, Guardian, Sorcerer, Warlock, Barbarian, Hunter and then Assassin
+- Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin
 - All bosses will start with more health and 1 innate damage resist
 - Placed Torches have 4 health instead of 15
 - The Elven Queen has new self buffs and abilities to add a REAL challenge
