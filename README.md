@@ -77,8 +77,8 @@ Class Changes
 - Sneak costs 0 Action Points
 - Normal start cards plus Cursed Dagger and Flash Bomb
 - Flash Bomb area coverage changed from 3x3 to 5x5
-- Poison Bomb and Flash Bomb do not break Sneak
 - A NEW ranged Poison attack card that can't miss, can backstab, and is reusable every 3 rounds
+- Poison Bomb, Flash Bomb, and the NEW ranged Poison attack do not break Sneak
 - All attacks have 50% chance to heal you for 1 (if hurt)
 - Critical hits heal you for 1 and have 50% chance to heal you for 2 (if hurt)
 - Sneaking now adds damage to normal melee and ranged Poison attacks
