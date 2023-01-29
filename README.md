@@ -28,7 +28,7 @@ Gameplay changes
 - Player cast electrical attacks won't damage or stun other players or non-charmed allies
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
-- Class turn order starts as Bard, Warlock, Guardian, Sorcerer, Hunter, Barbarian and then Assassin
+- Class turn order starts as Bard, Guardian, Sorcerer, Warlock, Barbarian, Hunter and then Assassin
 - All bosses will start with more health and 1 innate damage resist
 - Placed Torches have 4 health instead of 15
 - The Elven Queen has new self buffs and abilities to add a REAL challenge
@@ -108,6 +108,7 @@ Class Changes
 - All attacks on Astral Marked targets heal you for 1 (if hurt)
 - Critical hits replenish Feral Charge if you have more actions left
 - Critical hits on LAST action gain a Spellpower card and self-buff (+3 damage to Master's Call)
+- Having an Astral Barrier card puts you closer to the front in turn order
 
 **Sorcerer:**
 - 6 max health. You are immune to Stun and non-boss Electricity damage
