@@ -24,8 +24,17 @@
         private static int _numVigor;
         private static int _numAlags;
         private static int _numEnergy;
-
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
+        private static readonly Dictionary<BoardPieceId, List<AbilityKey>> _potionCards = new Dictionary<BoardPieceId, List<AbilityKey>>
+        {
+            { BoardPieceId.HeroBarbarian, new List<AbilityKey> { AbilityKey.DamageResistPotion, AbilityKey.Rejuvenation, AbilityKey.InvisibilityPotion, AbilityKey.AdamantPotion, AbilityKey.LuckPotion, AbilityKey.ExtraActionPotion, AbilityKey.StrengthPotion, AbilityKey.SwiftnessPotion, AbilityKey.VigorPotion } },
+            { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.DamageResistPotion, AbilityKey.Rejuvenation, AbilityKey.InvisibilityPotion, AbilityKey.AdamantPotion, AbilityKey.LuckPotion, AbilityKey.ExtraActionPotion, AbilityKey.StrengthPotion, AbilityKey.SwiftnessPotion, AbilityKey.VigorPotion } },
+            { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.DamageResistPotion, AbilityKey.Rejuvenation, AbilityKey.InvisibilityPotion, AbilityKey.AdamantPotion, AbilityKey.LuckPotion, AbilityKey.ExtraActionPotion, AbilityKey.StrengthPotion, AbilityKey.SwiftnessPotion, AbilityKey.VigorPotion } },
+            { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.DamageResistPotion, AbilityKey.Rejuvenation, AbilityKey.InvisibilityPotion, AbilityKey.AdamantPotion, AbilityKey.LuckPotion, AbilityKey.ExtraActionPotion, AbilityKey.StrengthPotion, AbilityKey.SwiftnessPotion, AbilityKey.VigorPotion } },
+            { BoardPieceId.HeroRogue, new List<AbilityKey> { AbilityKey.DamageResistPotion, AbilityKey.Rejuvenation, AbilityKey.InvisibilityPotion, AbilityKey.AdamantPotion, AbilityKey.LuckPotion, AbilityKey.ExtraActionPotion, AbilityKey.StrengthPotion, AbilityKey.SwiftnessPotion, AbilityKey.VigorPotion } },
+            { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.DamageResistPotion, AbilityKey.Rejuvenation, AbilityKey.InvisibilityPotion, AbilityKey.AdamantPotion, AbilityKey.LuckPotion, AbilityKey.ExtraActionPotion, AbilityKey.MagicPotion, AbilityKey.SwiftnessPotion, AbilityKey.VigorPotion } },
+            { BoardPieceId.HeroWarlock, new List<AbilityKey> { AbilityKey.DamageResistPotion, AbilityKey.Rejuvenation, AbilityKey.InvisibilityPotion, AbilityKey.AdamantPotion, AbilityKey.LuckPotion, AbilityKey.ExtraActionPotion, AbilityKey.MagicPotion, AbilityKey.SwiftnessPotion, AbilityKey.VigorPotion } },
+        };
 
         public CardAdditionOverriddenRule(Dictionary<BoardPieceId, List<AbilityKey>> heroCards)
         {
@@ -90,7 +99,6 @@
                 return;
             }
 
-            _isPotionStand = false;
             Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
             if (whatIsit.type == Interactable.Type.PotionStand)
             {
@@ -123,21 +131,7 @@
                 return;
             }
 
-            if (_isPotionStand)
-            {
-                // TODO: Add method to allow custom card loot for Potion Stands here
-                if (_numPlayers > 1)
-                {
-                    _numPlayers--;
-                }
-                else
-                {
-                    _isPotionStand = false;
-                }
-
-                return;
-            }
-            else if (_isWaterBottleChest)
+            if (_isWaterBottleChest)
             {
                 // TODO: Add method to allow custom card loot for Water Bottle Chests here
                 if (_numPlayers > 1)
@@ -196,6 +190,45 @@
             if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 int randNum = RandomProvider.GetThreadRandom().Next(101);
+                if (_isPotionStand)
+                {
+                    if (!_potionCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys2))
+                    {
+                        return;
+                    }
+
+                    if (randNum > 90)
+                    {
+                        if (_numAlags < 3)
+                        {
+                            // Rejuv and Damage Resist Potions
+                            _numAlags++;
+                            rand = RandomProvider.GetThreadRandom().Next(0, 2);
+                        }
+                        else
+                        {
+                            rand = RandomProvider.GetThreadRandom().Next(2, replacementAbilityKeys2.Count);
+                        }
+                    }
+                    else
+                    {
+                        rand = RandomProvider.GetThreadRandom().Next(2, replacementAbilityKeys2.Count);
+                    }
+
+                    AbilityKey replacementAbilityKey2 = replacementAbilityKeys2[rand];
+                    Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey2;
+                    if (_numPlayers > 1)
+                    {
+                        _numPlayers--;
+                    }
+                    else
+                    {
+                        _isPotionStand = false;
+                    }
+
+                    return;
+                }
+
                 if (randNum < 51)
                 {
                     // Class cards

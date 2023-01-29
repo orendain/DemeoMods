@@ -803,6 +803,15 @@
             {
                 new StatusEffectData
                 {
+                    effectStateType = EffectStateType.Torch,
+                    durationTurns = 20,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
                     effectStateType = EffectStateType.TorchPlayer,
                     durationTurns = 20,
                     damagePerTurn = 0,
@@ -851,7 +860,7 @@
                     effectStateType = EffectStateType.ExtraEnergy,
                     durationTurns = 3,
                     damagePerTurn = 0,
-                    stacks = true,
+                    stacks = false,
                     clearOnNewLevel = false,
                     healthBoost = 2,
                     applyAfterDissipate = EffectStateType.Thorns,
@@ -1052,7 +1061,7 @@
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
-            { Bard = 17, Warlock = 14, Guardian = 13, Sorcerer = 12, Hunter = 11, Barbarian = 10, Assassin = 9, Downed = -7, Javelin = 16, Mark = 4, Varga = 6 });
+            { Bard = 18, Guardian = 14, Warlock = 13, Sorcerer = 12, Barbarian = 11, Hunter = 10, Assassin = 9, Downed = -10, Javelin = 20, Deflect = 2, Mark = 7, Varga = 5 });
 
             var freeAbilityOnCritRule = new FreeAbilityOnCritRule(new Dictionary<BoardPieceId, AbilityKey>
             {

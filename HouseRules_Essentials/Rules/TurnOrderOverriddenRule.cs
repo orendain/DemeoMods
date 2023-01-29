@@ -32,6 +32,7 @@
             public int Javelin;
             public int Mark;
             public int Varga;
+            public int Deflect;
         }
 
         public TurnOrderOverriddenRule(Scores scores)
@@ -130,6 +131,12 @@
                 {
                     score += scores.Javelin;
                 }
+            }
+
+            if (piece.inventory.HasAbility(AbilityKey.Deflect))
+            {
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                score += scores.Deflect;
             }
 
             if (piece.inventory.HasAbility(AbilityKey.HuntersMark))
