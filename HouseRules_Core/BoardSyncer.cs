@@ -30,6 +30,7 @@
         private static bool _isSyncScheduled;
         private static bool _updateNewPlayer;
         private static bool _isMove;
+        private static bool _isEndMove;
 
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
@@ -156,8 +157,17 @@
                     // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
                     return true;
                 case SerializableEvent.Type.EndAction:
-                case SerializableEvent.Type.EndTurn:
                     if (_isMove)
+                    {
+                        // CoreMod.Logger.Msg("(Move) EndAction/EndTurn");
+                        // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
+                        return true;
+                    }
+
+                    // CoreMod.Logger.Msg($"------ {whatUp}");
+                    return false;
+                case SerializableEvent.Type.EndTurn:
+                    if (_isMove || _isEndMove)
                     {
                         // CoreMod.Logger.Msg("(Move) EndAction/EndTurn");
                         // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
@@ -201,8 +211,15 @@
                 case AbilityKey.Shuffle:
                 case AbilityKey.Telekinesis:
                 case AbilityKey.TeleportEnemy:
-                    // CoreMod.Logger.Msg($"<<Moved>> Enemy/Player Teleported");
-                    _isMove = true;
+                    var targetTile2 = Traverse.Create(onAbilityUsedEvent).Field<IntPoint2D>("targetTile").Value;
+                    Piece wasGrabbed2 = _gameContext.pieceAndTurnController.FindPieceWithPosition(targetTile2);
+                    if (wasGrabbed2.IsPlayer())
+                    {
+                        // CoreMod.Logger.Msg($"<<Moved>> {wasGrabbed.GetPieceConfig().PieceNameLocalizationKey} by Enemy");
+                        _isEndMove = true;
+                        return false;
+                    }
+
                     return false;
                 case AbilityKey.RevealPath:
                 case AbilityKey.DetectEnemies:
@@ -269,6 +286,7 @@
         {
             // CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
             _isMove = false;
+            _isEndMove = false;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());

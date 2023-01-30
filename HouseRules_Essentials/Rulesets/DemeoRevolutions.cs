@@ -912,12 +912,12 @@
                 { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.SummonBossMinions, AbilityKey.LightningBolt, AbilityKey.Shockwave, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.GoblinFighter, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyFlashbang } },
                 { BoardPieceId.PoisonousRat, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
-                { BoardPieceId.ElvenSkirmisher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ChargeBarbarian } },
+                { BoardPieceId.ElvenSkirmisher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyPikeMeleeAttack } },
             });
 
             var pieceBehaviourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
             {
-                { BoardPieceId.ElvenSkirmisher, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.ChargeMove } },
+                { BoardPieceId.ElvenSkirmisher, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.PikeAttack } },
                 { BoardPieceId.EarthElemental, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.EarthShatter, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.Mimic, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.Wyvern, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
@@ -1010,6 +1010,7 @@
             {
                 { AbilityKey.PoisonBomb, false },
                 { AbilityKey.FlashBomb, false },
+                { AbilityKey.DiseasedBite, false },
             });
 
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
@@ -1144,7 +1145,7 @@
             {
                 { "BigGoldPileChance", 30 },
                 { "FloorOneHealingFountains", 1 },
-                { "FloorOnePotionStand", 0 },
+                { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 3 },
                 { "FloorOneGoldMaxAmount", 325 },

@@ -54,7 +54,12 @@
             {
                 targetPiece.DisableEffectState(EffectStateType.CorruptedRage);
                 targetPiece.effectSink.TrySetStatBaseValue(Stats.Type.CorruptionAP, 0);
-                targetPiece.effectSink.TryAddActionPoints(1);
+                targetPiece.effectSink.TryGetStat(Stats.Type.ActionPoints, out int actionPoints);
+                if (actionPoints > 0)
+                {
+                    targetPiece.effectSink.TryAddActionPoints(1);
+                }
+
                 targetPiece.effectSink.SubtractHealth(0);
                 return false;
             }
