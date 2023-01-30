@@ -20,7 +20,7 @@ Gameplay changes
 - Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3
 - Pets always focus on Hunter's Marked targets
 - Each floor's map will be from a different adventure
-- Number of chests/stands/fountains per floor changed based on the adventure selected
+- Number of chests/stands/fountains/traders per floor changed based on the adventure selected
 - Card energy (mana) gained from attacks reduced by 25%
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
 - Reviving a player by any means removes Stunned and Frozen effects
@@ -28,7 +28,7 @@ Gameplay changes
 - Player cast electrical attacks won't damage or stun other players or non-charmed allies
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
-- Class turn order starts as Bard, Guardian, Sorcerer, Warlock, Barbarian, Hunter and then Assassin
+- Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin
 - All bosses will start with more health and 1 innate damage resist
 - Placed Torches have 4 health instead of 15
 - The Elven Queen has new self buffs and abilities to add a REAL challenge
@@ -77,8 +77,8 @@ Class Changes
 - Sneak costs 0 Action Points
 - Normal start cards plus Cursed Dagger and Flash Bomb
 - Flash Bomb area coverage changed from 3x3 to 5x5
-- Poison Bomb and Flash Bomb do not break Sneak
 - A NEW ranged Poison attack card that can't miss, can backstab, and is reusable every 3 rounds
+- Poison Bomb, Flash Bomb, and the NEW ranged Poison attack do not break Sneak
 - All attacks have 50% chance to heal you for 1 (if hurt)
 - Critical hits heal you for 1 and have 50% chance to heal you for 2 (if hurt)
 - Sneaking now adds damage to normal melee and ranged Poison attacks
