@@ -67,9 +67,8 @@
 
             var targetPiece = Traverse.Create(__instance).Field("targetPiece").GetValue<Piece>();
             BoardPieceId targetId = targetPiece.boardPieceId;
-            string targetString = targetId.ToString();
             bool canBeHit = true;
-            if (targetId == BoardPieceId.RootVine || targetId == BoardPieceId.ProximityMine || targetId == BoardPieceId.EnemyTurret || targetId == BoardPieceId.SporeFungus || targetString.Contains("SandPile") || targetPiece.HasPieceType(PieceType.ExplodingLamp))
+            if (targetId == BoardPieceId.RootVine || targetId == BoardPieceId.ProximityMine || targetId == BoardPieceId.EnemyTurret || targetId == BoardPieceId.SporeFungus || targetId.ToString().Contains("SandPile") || targetPiece.HasPieceType(PieceType.ExplodingLamp))
             {
                 canBeHit = false;
             }

@@ -99,7 +99,20 @@ namespace HouseRules.Essentials.Rules
                 for (int i = 0; i < source.inventory.Items.Count; i++)
                 {
                     value = source.inventory.Items[i];
-                    if (value.abilityKey == AbilityKey.Net)
+                    if (value.abilityKey == AbilityKey.Grapple)
+                    {
+                        if (value.IsReplenishing)
+                        {
+                            AbilityFactory.TryGetAbility(AbilityKey.Grapple, out var abilityG);
+                            source.effectSink.RemoveStatusEffect(EffectStateType.UsedHookThisTurn);
+                            abilityG.effectsPreventingUse.Clear();
+                            source.inventory.RemoveDisableCooldownFlags();
+                            value.flags &= (Inventory.ItemFlag)(-3);
+                            source.inventory.Items[i] = value;
+                            source.AddGold(0);
+                        }
+                    }
+                    else if (value.abilityKey == AbilityKey.Net)
                     {
                         if (value.IsReplenishing)
                         {

@@ -28,9 +28,8 @@
     {
         private static GameContext _gameContext;
         private static bool _isSyncScheduled;
-        private static bool _updateNewPlayer;
         private static bool _isMove;
-        private static bool _isEndMove;
+        private static bool _isNewPlayer;
 
         /// <summary>
         /// Schedules a sync to be triggered at the next available opportunity.
@@ -117,21 +116,34 @@
 
         private static bool CanRepresentNewSpawn(SerializableEvent serializableEvent)
         {
-            // string whatUp = serializableEvent.ToString();
+            string whatUp = serializableEvent.ToString();
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.NewPlayerJoin:
-                    // CoreMod.Logger.Msg("(NewPlayer) Joined");
-                    // CoreMod.Logger.Msg($"------ {whatUp}");
-                    _updateNewPlayer = true;
+                    // CoreMod.Logger.Msg($"---NewPlayer--- {whatUp}");
+                    _isNewPlayer = true;
                     return false;
                 case SerializableEvent.Type.UpdateGameHub:
-                    if (_updateNewPlayer)
+                    if (_isNewPlayer)
                     {
-                        // CoreMod.Logger.Msg("(NewPlayer) Updated");
-                        // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
-                        _updateNewPlayer = false;
-                        return true;
+                        // CoreMod.Logger.Msg($"***NewPlayer*** UpdateFog -> {whatUp}");
+                        _isNewPlayer = false;
+                        _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                        return false;
+                    }
+
+                    // CoreMod.Logger.Msg($"------ {whatUp}");
+                    return false;
+                case SerializableEvent.Type.OnMoved:
+                    if (!_isMove)
+                    {
+                        var pieceId = Traverse.Create(serializableEvent).Field<int>("pieceId").Value;
+                        Piece thisPiece = _gameContext.pieceAndTurnController.GetPiece(pieceId);
+                        if (thisPiece.IsPlayer())
+                        {
+                            // CoreMod.Logger.Msg($"<<<OnMoved>>> {thisPiece.GetPieceConfig().PieceNameLocalizationKey} {whatUp}");
+                            return true;
+                        }
                     }
 
                     // CoreMod.Logger.Msg($"------ {whatUp}");
@@ -141,8 +153,7 @@
                 case SerializableEvent.Type.NPCStartInteraction:
                     if (_gameContext.pieceAndTurnController.IsPlayersTurn())
                     {
-                        // CoreMod.Logger.Msg("(Move) Player");
-                        // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
+                        // CoreMod.Logger.Msg($"---PlayerMove--- {whatUp}");
                         _isMove = true;
                         return false;
                     }
@@ -153,41 +164,36 @@
                 case SerializableEvent.Type.SetBoardPieceID:
                 case SerializableEvent.Type.SlimeFusion:
                 case SerializableEvent.Type.UpdateFogAndSpawn:
-                    // CoreMod.Logger.Msg("(SpawnEvent) New Piece/Player");
                     // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
                     return true;
                 case SerializableEvent.Type.EndAction:
+                case SerializableEvent.Type.EndTurn:
                     if (_isMove)
                     {
-                        // CoreMod.Logger.Msg("(Move) EndAction/EndTurn");
-                        // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
-                        return true;
+                        // CoreMod.Logger.Msg($"***EndAction/EndTurn*** UpdateFog -> {whatUp}");
+                        _isMove = false;
+                        _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
+                        return false;
                     }
 
                     // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
-                case SerializableEvent.Type.EndTurn:
-                    if (_isMove || _isEndMove)
-                    {
-                        // CoreMod.Logger.Msg("(Move) EndAction/EndTurn");
-                        // CoreMod.Logger.Msg($"<<<>>> {whatUp}");
-                        return true;
-                    }
-
-                    // CoreMod.Logger.Msg($"------ {whatUp}");
-                    return false;
+                case SerializableEvent.Type.EndRound:
+                    // CoreMod.Logger.Msg($"<<<EndRound>>> {whatUp}");
+                    return true;
                 case SerializableEvent.Type.OnAbilityUsed:
                     return CanRepresentNewSpawn((SerializableEventOnAbilityUsed)serializableEvent);
                 case SerializableEvent.Type.PieceDied:
                     return CanRepresentNewSpawn((SerializableEventPieceDied)serializableEvent);
                 default:
-                    // CoreMod.Logger.Msg($"------ {whatUp}");
+                    // CoreMod.Logger.Msg($"---Event--- {whatUp}");
                     return false;
             }
         }
 
         private static bool CanRepresentNewSpawn(SerializableEventOnAbilityUsed onAbilityUsedEvent)
         {
+            string whatUp = onAbilityUsedEvent.ToString();
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
@@ -198,28 +204,16 @@
                         Piece wasGrabbed = _gameContext.pieceAndTurnController.FindPieceWithPosition(targetTile);
                         if (wasGrabbed.IsPlayer())
                         {
-                            // CoreMod.Logger.Msg($"<<Grabbed>> {wasGrabbed.GetPieceConfig().PieceNameLocalizationKey} by Enemy");
+                            // CoreMod.Logger.Msg($"---Grab--- {wasGrabbed.GetPieceConfig().PieceNameLocalizationKey} {whatUp}");
                             _isMove = true;
                             return false;
                         }
 
+                        // CoreMod.Logger.Msg($"------ {whatUp}");
                         return false;
                     }
 
-                    return false;
-                case AbilityKey.GrapplingPush:
-                case AbilityKey.Shuffle:
-                case AbilityKey.Telekinesis:
-                case AbilityKey.TeleportEnemy:
-                    var targetTile2 = Traverse.Create(onAbilityUsedEvent).Field<IntPoint2D>("targetTile").Value;
-                    Piece wasGrabbed2 = _gameContext.pieceAndTurnController.FindPieceWithPosition(targetTile2);
-                    if (wasGrabbed2.IsPlayer())
-                    {
-                        // CoreMod.Logger.Msg($"<<Moved>> {wasGrabbed.GetPieceConfig().PieceNameLocalizationKey} by Enemy");
-                        _isEndMove = true;
-                        return false;
-                    }
-
+                    // CoreMod.Logger.Msg($"------ {whatUp}");
                     return false;
                 case AbilityKey.RevealPath:
                 case AbilityKey.DetectEnemies:
@@ -235,7 +229,7 @@
                 case AbilityKey.DigRatsNest:
                 case AbilityKey.Barricade:
                 case AbilityKey.MagicBarrier:
-                    // CoreMod.Logger.Msg("(Ability) Spawn/Effect");
+                    // CoreMod.Logger.Msg($"<<<Spawn>>> {whatUp}");
                     return true;
             }
 
@@ -246,7 +240,7 @@
 
             if (isSpawnAbility || isLampAbility || isSummonAbility)
             {
-                // CoreMod.Logger.Msg("(Summon) Creature/Lamp");
+                // CoreMod.Logger.Msg("<<<Ability>>> Summon Spawn/Creature/Lamp");
                 return true;
             }
 
@@ -262,9 +256,9 @@
                     continue;
                 }
 
-                if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId == BoardPieceId.ScorpionSandPile || piece.boardPieceId == BoardPieceId.ScarabSandPile || piece.boardPieceId == BoardPieceId.EmptySandPile || piece.boardPieceId == BoardPieceId.GoldSandPile)
+                if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId.ToString().Contains("SandPile"))
                 {
-                    // CoreMod.Logger.Msg("(Died) SpiderEgg/SandPile");
+                    // CoreMod.Logger.Msg("<<<Died>>> SpiderEgg/SandPile");
                     return true;
                 }
             }
@@ -284,9 +278,9 @@
 
         private static void SyncBoard()
         {
-            // CoreMod.Logger.Msg("<<< !!RECOVERY!! >>>");
+            // CoreMod.Logger.Msg("<<< Recovery >>>");
             _isMove = false;
-            _isEndMove = false;
+            _isNewPlayer = false;
             _isSyncScheduled = false;
             _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventUpdateFog());
             _gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());

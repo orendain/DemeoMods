@@ -26,6 +26,7 @@
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
             HR.Rulebook.Register(typeof(AbilityStealthDamageOverriddenRule));
+            HR.Rulebook.Register(typeof(AbilityTargetEffectsRule));
             HR.Rulebook.Register(typeof(ApplyEffectOnHitAdjustedRule));
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
             HR.Rulebook.Register(typeof(CourageShantyAddsHpRule));
@@ -41,8 +42,6 @@
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
-            HR.Rulebook.Register(typeof(FixNonVRStatsViewOnPickupRule));
-            HR.Rulebook.Register(typeof(FixVRStatsViewOnPickupRule));
             HR.Rulebook.Register(typeof(FreeAbilityOnCritRule));
             HR.Rulebook.Register(typeof(FreeActionPointsOnCritRule));
             HR.Rulebook.Register(typeof(FreeHealOnCritRule));

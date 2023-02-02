@@ -74,22 +74,29 @@
                 targetPiece.effectSink.SubtractHealth(0);
                 return false;
             }
-            else if (attackerPiece != null && attackerPiece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
+
+            if (attackerPiece != null)
             {
-                BoardPieceId targetId = targetPiece.boardPieceId;
-                string targetString = targetId.ToString();
-                bool canBeHit = true;
-                if (targetId == BoardPieceId.RootVine || targetId == BoardPieceId.ProximityMine || targetId == BoardPieceId.EnemyTurret || targetId == BoardPieceId.SporeFungus || targetString.Contains("SandPile") || targetPiece.HasPieceType(PieceType.ExplodingLamp))
+                if (attackerPiece.boardPieceId == BoardPieceId.HeroGuardian && damage.AbilityKey == AbilityKey.WhirlwindAttack)
                 {
-                    canBeHit = false;
+                    BoardPieceId targetId = targetPiece.boardPieceId;
+                    bool canBeHit = true;
+                    if (targetId == BoardPieceId.RootVine || targetId == BoardPieceId.ProximityMine || targetId == BoardPieceId.EnemyTurret || targetId == BoardPieceId.SporeFungus || targetId.ToString().Contains("SandPile") || targetPiece.HasPieceType(PieceType.ExplodingLamp))
+                    {
+                        canBeHit = false;
+                    }
+
+                    if (targetPiece.IsPlayer() || targetPiece.IsBot() || (targetPiece.IsProp() && canBeHit))
+                    {
+                        return false;
+                    }
                 }
 
-                if (targetPiece.IsPlayer() || targetPiece.IsBot() || (targetPiece.IsProp() && canBeHit))
+                if (attackerPiece.boardPieceId == BoardPieceId.GrapplingTotem && damage.AbilityKey == AbilityKey.GrapplingTotemHook)
                 {
-                    return false;
+                    targetPiece.effectSink.AddStatusEffect(EffectStateType.Tangled);
                 }
             }
-
             if (!targetPiece.IsPlayer())
             {
                 return true;
