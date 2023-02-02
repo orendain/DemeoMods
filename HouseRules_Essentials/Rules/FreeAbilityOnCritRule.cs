@@ -59,8 +59,14 @@
                 return;
             }
 
+            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
+            {
+                return;
+            }
+
             if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
+                source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                 if (source.boardPieceId == BoardPieceId.HeroBard)
                 {
                     if (source.HasEffectState(EffectStateType.Fearless))
@@ -82,9 +88,7 @@
                         source.EnableEffectState(EffectStateType.Courageous);
                     }
                 }
-
-                source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-                if (source.boardPieceId == BoardPieceId.HeroBarbarian)
+                else if (source.boardPieceId == BoardPieceId.HeroBarbarian)
                 {
                     source.effectSink.TryGetStat(Stats.Type.MagicArmor, out int myArmor);
                     if (currentAP < 1)
@@ -223,11 +227,6 @@
                         }
                     }
                 }
-            }
-
-            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
-            {
-                return;
             }
 
             Inventory.Item value2;
