@@ -121,7 +121,7 @@ namespace HouseRules.Essentials.Rules
                         source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 1);
                     }
 
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                    // source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                 }
             }
         }
