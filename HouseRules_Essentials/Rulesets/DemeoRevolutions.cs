@@ -1043,11 +1043,12 @@
                 { AbilityKey.ScrollElectricity, false },
                 { AbilityKey.DeathBeam, false },
                 { AbilityKey.FretsOfFire, false },
-                { AbilityKey.ExplodingGasLamp, false },
+                { AbilityKey.Grapple, false },
+                /*{ AbilityKey.ExplodingGasLamp, false },
                 { AbilityKey.ExplodingOilLamp, false },
                 { AbilityKey.ExplodingVortexLamp, false },
                 { AbilityKey.ExplodingWaterLamp, false },
-                { AbilityKey.ExplodingIceLamp, false },
+                { AbilityKey.ExplodingIceLamp, false },*/
                 { AbilityKey.ImplosionExplosionRain, false },
             });
 
