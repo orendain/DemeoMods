@@ -84,7 +84,32 @@
                 }
 
                 source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-                if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge))
+                if (source.boardPieceId == BoardPieceId.HeroBarbarian)
+                {
+                    source.effectSink.TryGetStat(Stats.Type.MagicArmor, out int myArmor);
+                    if (currentAP < 1)
+                    {
+                        if (myArmor < 9)
+                        {
+                            source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 2);
+                        }
+                        else if (myArmor == 9)
+                        {
+                            source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 1);
+                        }
+
+                        int myVargas = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.MarkOfVerga);
+                        source.EnableEffectState(EffectStateType.MarkOfVerga, myVargas + 6);
+                    }
+                    else
+                    {
+                        if (myArmor < 10)
+                        {
+                            source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 1);
+                        }
+                    }
+                }
+                else if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge))
                 {
                     Inventory.Item value1;
                     bool hasPower1 = false;
