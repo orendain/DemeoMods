@@ -1003,13 +1003,12 @@
             var targetEffectRule = new AbilityTargetEffectsRule(new Dictionary<AbilityKey, List<EffectStateType>>
             {
                 { AbilityKey.SigataurianJavelin, new List<EffectStateType> { EffectStateType.Weaken1Turn } },
-                { AbilityKey.PVPBlink, new List<EffectStateType> { EffectStateType.Weaken1Turn } },
+                { AbilityKey.PVPBlink, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Disoriented } },
                 { AbilityKey.PanicPowderArrow, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Netted } },
                 { AbilityKey.TurretDamageProjectile, new List<EffectStateType> { EffectStateType.Tangled } },
                 { AbilityKey.EnemyTurretDamageProjectile, new List<EffectStateType> { EffectStateType.Tangled } },
                 { AbilityKey.TurretHighDamageProjectile, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Blinded } },
                 { AbilityKey.AcidSpit, new List<EffectStateType> { EffectStateType.Diseased } },
-                { AbilityKey.CursedDagger, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Disoriented } },
                 { AbilityKey.EnemyArrowSnipe, new List<EffectStateType> { EffectStateType.Stunned } },
             });
 
