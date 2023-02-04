@@ -24,7 +24,8 @@ Gameplay changes
 - Card energy (mana) gained from attacks reduced by 25%
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
 - Reviving a player by any means removes Stunned and Frozen effects
-- Most player summons can have detrimental effects on enemies who hit them
+- Player summons have detrimental effects on enemies who hit them
+- Some abilities now have added secondary effects
 - Player cast electrical attacks won't damage or stun other players or non-charmed allies
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
@@ -51,10 +52,12 @@ Class Changes
 - 7 max health. You are immune to Petrify and Slime damage 
 - Critical damage increased by 2
 - Normal start cards plus The Leviathan and Barbaric Chainwhip
+- The Leviathan now Tangles enemies that it chains
 - Barbaric Chainwhip damage increased by 1
-- Launching any Lamp costs 0 Action Points
-- A NEW reusable non-damaging Net card that costs 0 Action Points and can be reused every 3 rounds
-- Critical hits regain 1 Action Point if not last action, gain 1 Magic Armor, and reduce Net cooldown by 1
+- Grapple costs 0 Action Points
+- Grapple and Launching a Lamp can now be used in the same turn
+- A NEW non-damaging Net card that costs 0 Action Points and can be reused every 3 rounds
+- Critical hits regain Grapple, reduce Net cooldown by 1, and gain 1 Magic Armor if not last action
 - Critical hits on the LAST action gain 6 Vargas, 2 Magic Armor, and a Spawn Random Lamp card
 - Having a Mark of Varga card puts you closer to the front in turn order
 
