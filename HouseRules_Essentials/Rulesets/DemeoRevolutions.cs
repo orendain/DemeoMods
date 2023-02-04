@@ -1007,7 +1007,7 @@
                 { AbilityKey.PanicPowderArrow, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Netted } },
                 { AbilityKey.TurretDamageProjectile, new List<EffectStateType> { EffectStateType.Tangled } },
                 { AbilityKey.EnemyTurretDamageProjectile, new List<EffectStateType> { EffectStateType.Tangled } },
-                { AbilityKey.TurretHighDamageProjectile, new List<EffectStateType> { EffectStateType.Panic } },
+                { AbilityKey.TurretHighDamageProjectile, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Blinded } },
                 { AbilityKey.AcidSpit, new List<EffectStateType> { EffectStateType.Diseased } },
                 { AbilityKey.CursedDagger, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Disoriented } },
                 { AbilityKey.EnemyArrowSnipe, new List<EffectStateType> { EffectStateType.Stunned } },
@@ -1044,11 +1044,6 @@
                 { AbilityKey.DeathBeam, false },
                 { AbilityKey.FretsOfFire, false },
                 { AbilityKey.Grapple, false },
-                /*{ AbilityKey.ExplodingGasLamp, false },
-                { AbilityKey.ExplodingOilLamp, false },
-                { AbilityKey.ExplodingVortexLamp, false },
-                { AbilityKey.ExplodingWaterLamp, false },
-                { AbilityKey.ExplodingIceLamp, false },*/
                 { AbilityKey.ImplosionExplosionRain, false },
             });
 
@@ -1067,8 +1062,8 @@
                 { AbilityKey.PiercingVoice, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Arrow, new List<int> { 3, 8, 3, 8 } },
                 { AbilityKey.Electricity, new List<int> { 3, 5, 1, 2 } },
-                { AbilityKey.PVPBlink, new List<int> { 7, 14, 7, 14 } },
-                { AbilityKey.FretsOfFire, new List<int> { 4, 8, 4, 8 } },
+                { AbilityKey.PVPBlink, new List<int> { 9, 18, 9, 18 } },
+                { AbilityKey.FretsOfFire, new List<int> { 3, 6, 3, 6 } },
                 { AbilityKey.GrapplingPush, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Petrify, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.WeakeningShout, new List<int> { 2, 2, 2, 2 } },
@@ -1120,7 +1115,6 @@
                 { AbilityKey.Grapple, 2 },
                 { AbilityKey.ElvenSummonerDeflect, 5 },
                 { AbilityKey.PlayerLeap, 2 },
-                { AbilityKey.ChargeBarbarian, 2 },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>

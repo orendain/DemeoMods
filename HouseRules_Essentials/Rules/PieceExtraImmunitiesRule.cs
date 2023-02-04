@@ -97,6 +97,7 @@
                     targetPiece.effectSink.AddStatusEffect(EffectStateType.Tangled);
                 }
             }
+
             if (!targetPiece.IsPlayer())
             {
                 return true;
