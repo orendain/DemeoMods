@@ -1009,7 +1009,6 @@
                 { AbilityKey.EnemyTurretDamageProjectile, new List<EffectStateType> { EffectStateType.Tangled } },
                 { AbilityKey.TurretHighDamageProjectile, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Blinded } },
                 { AbilityKey.AcidSpit, new List<EffectStateType> { EffectStateType.Diseased } },
-                { AbilityKey.EnemyArrowSnipe, new List<EffectStateType> { EffectStateType.Stunned } },
             });
 
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
