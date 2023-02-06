@@ -116,7 +116,7 @@
 
         private static bool CanRepresentNewSpawn(SerializableEvent serializableEvent)
         {
-            string whatUp = serializableEvent.ToString();
+            // string whatUp = serializableEvent.ToString();
             switch (serializableEvent.type)
             {
                 case SerializableEvent.Type.NewPlayerJoin:
@@ -141,8 +141,9 @@
                         Piece thisPiece = _gameContext.pieceAndTurnController.GetPiece(pieceId);
                         if (thisPiece.IsPlayer())
                         {
-                            // CoreMod.Logger.Msg($"<<<OnMoved>>> {thisPiece.GetPieceConfig().PieceNameLocalizationKey} {whatUp}");
-                            return true;
+                            // CoreMod.Logger.Msg($"---OnMoved--- {thisPiece.GetPieceConfig().PieceNameLocalizationKey} {whatUp}");
+                            _isMove = true;
+                            return false;
                         }
                     }
 
@@ -193,7 +194,7 @@
 
         private static bool CanRepresentNewSpawn(SerializableEventOnAbilityUsed onAbilityUsedEvent)
         {
-            string whatUp = onAbilityUsedEvent.ToString();
+            // string whatUp = onAbilityUsedEvent.ToString();
             var abilityKey = Traverse.Create(onAbilityUsedEvent).Field<AbilityKey>("abilityKey").Value;
             switch (abilityKey)
             {
