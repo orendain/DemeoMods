@@ -32,7 +32,7 @@
 
         public static bool IsPcEdition()
         {
-            return MelonUtils.CurrentGameAttribute.Name == DemeoPCEditionString;
+            return MotherbrainGlobalVars.IsRunningOnNonVRPlatform;
         }
 
         public static bool IsInHangouts()
