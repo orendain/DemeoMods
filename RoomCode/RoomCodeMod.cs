@@ -11,6 +11,7 @@
 
         internal static List<string> RoomCodes { get; private set; }
 
+        [System.Obsolete]
         public override void OnApplicationStart()
         {
             var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.roomcode");
