@@ -23,7 +23,7 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (MotherbrainGlobalVars.IsRunningOnDesktop)
+            if (MotherbrainGlobalVars.IsRunningOnNonVRPlatform)
                 {
                     if (buildIndex != LobbySceneIndex)
                 {
