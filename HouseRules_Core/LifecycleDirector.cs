@@ -6,6 +6,7 @@
     using Boardgame;
     using Boardgame.BoardgameActions;
     using Boardgame.Networking;
+    using Boardgame.NonVR.Ui.Settings;
     using HarmonyLib;
     using HouseRules.Types;
     using Photon.Pun;
@@ -71,6 +72,26 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(ReconnectState), "OnClickLeaveGameAfterReconnect"),
                 postfix: new HarmonyMethod(typeof(LifecycleDirector), nameof(ReconnectState_OnClickLeaveGameAfterReconnect_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(NonVrGameSettingsPageController), "ToggleGamePrivacy"),
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(HandSettingsPageController), "<SetupGameButtons>g__ToggleGamePrivacy|16_4"),
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_SetupGameButtons_Prefix)));
+        }
+
+        private static bool HandSettingsPageController_SetupGameButtons_Prefix()
+        {
+            // Don't allow PCVR privacy settings to change from Private to Public
+            return false;
+        }
+
+        private static bool NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix()
+        {
+            // Don't allow PC-Edition privacy settings to change from Private to Public
+            return false;
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
