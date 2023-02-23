@@ -70,12 +70,22 @@
 
         private static bool HandSettingsPageController_SetupGameButtons_Prefix()
         {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return true;
+            }
+
             // Don't allow PCVR privacy settings to change from Private to Public
             return false;
         }
 
         private static bool NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix()
         {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return true;
+            }
+
             // Don't allow PC-Edition privacy settings to change from Private to Public
             return false;
         }
