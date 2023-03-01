@@ -11,15 +11,15 @@
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(GameStateMachine), "GetRandomRoomCode"),
-                prefix: new HarmonyMethod(typeof(ModPatcher), nameof(GameStateMachine_GetRandomRoomCode_Prefix)));
+                original: AccessTools.Method(typeof(NetworkRoomUtils), "GetRandomRoomCode"),
+                prefix: new HarmonyMethod(typeof(ModPatcher), nameof(NetworkRoomUtils_GetRandomRoomCode_Prefix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(CreatingGameState), "OnJoinedRoom"),
                 prefix: new HarmonyMethod(typeof(ModPatcher), nameof(CreatingGameState_OnJoinedRoom_Prefix)));
         }
 
-        private static bool GameStateMachine_GetRandomRoomCode_Prefix(ref string __result)
+        private static bool NetworkRoomUtils_GetRandomRoomCode_Prefix(ref string __result)
         {
             if (!RoomCodeMod.Enabled)
             {

@@ -32,7 +32,7 @@
 
         public static bool IsPcEdition()
         {
-            return MotherbrainGlobalVars.IsRunningOnDesktop;
+            return MotherbrainGlobalVars.IsRunningOnNonVRPlatform;
         }
 
         public static bool IsInHangouts()
