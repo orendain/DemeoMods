@@ -125,3 +125,29 @@ Class Changes
 
 For video tutorials and gameplay go to https://www.youtube.com/c/TheGrayAlien/playlists
 
+
+About the Extra Energy buff given by the Energy Potion
+======================================================
+
+When the Energy Potion card is used it will give each character 2 extra maximum health, a NEW ability that they can use 3 times total, and the new ability will not cost any action points when used. There is no turn limit to the buff. The character using the Energy Potion will not get the ability until their NEXT turn. The buff counter will update at the start of your turn to let you know how many more charges are left. If you use all 3 charges then at the end of that turn you will lose the extra 2 maximum health and gain a Thorns debuff for 2 rounds.
+
+**Guardian:**
+- Leap: Jumps a moderate distance. Landing causes 5 damage to enemies within a 3x3 area.
+
+**Barbarian:**
+- Vortex Storm: Drops 3 meteors over a large area that cause small vortexes that do 2 to 3 damage to each thing hit. This includes friendlies. Does NOT hit lamps.
+
+**Hunter:**
+- Scroll of Lightning: Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets.
+
+**Assassin:**
+- Frets of Fire: Causes fire damage in a 7x7 area around you that does 3 damage to enemies. Does NOT break sneak. DOES hit lamps!
+
+**Bard:**
+- Blink: Teleports to and attacks an enemy for 9 damage. This move also Weakens and Confuses the target.
+
+**Warlock:**
+- Weakening Shout: Weakens and hits enemies for 2 damage each in a straight line.
+
+**Sorcerer:**
+- Rift Beam: Hits everything in a straight line for 5 damage. This includes friendlies.
