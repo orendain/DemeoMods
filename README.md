@@ -32,6 +32,8 @@ Gameplay changes
 - Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin
 - All bosses will start with more health and 1 innate damage resist
 - Placed Torches have 4 health instead of 15
+- Potion Stands will no longer give out Water or Healing Potions
+- Desert Merchant rewards much better loot now
 - The Elven Queen has new self buffs and abilities to add a REAL challenge
 - The Serpent Lord boss is invulnerable while invisible... so you have to do it the HARD way
 - If playing Roots of Evil the player with the most javelins will be first in turn order on the LAST floor
