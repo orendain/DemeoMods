@@ -182,6 +182,7 @@
             };
             var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.ScarabSandPile, 1 },
                 { BoardPieceId.EmptySandPile, 1 },
                 { BoardPieceId.ScorpionSandPile, 1 },
                 { BoardPieceId.ElvenSpearman, 2 },
@@ -1212,7 +1213,7 @@
                 },
             });
 
-            var tileEffectDuration = new TileEffectDurationOverriddenRule(new Dictionary<Boardgame.Board.TileEffect, int>
+            var tileEffectDuration = new TileEffectDurationOverriddenRule(new Dictionary<TileEffect, int>
             {
                 { TileEffect.Gas, 3 },
                 { TileEffect.Acid, 2 },
@@ -1222,14 +1223,29 @@
                 { TileEffect.Target, 0 },
             });
 
+            var merchantOverriddenRule = new MerchantOfferRarityOverriddenRule(new Dictionary<AbilityKey, int>
+            {
+                { AbilityKey.ScrollTsunami, 0 },
+                { AbilityKey.SummonElemental, 0 },
+                { AbilityKey.Teleportation, 0 },
+                { AbilityKey.RepeatingBallista, 0 },
+                { AbilityKey.ScrollElectricity, 0 },
+                { AbilityKey.SwiftnessPotion, 0 },
+                { AbilityKey.DamageResistPotion, 50 },
+                { AbilityKey.InvisibilityPotion, 50 },
+            });
+
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
             var tickRule = new TickAdjustedRule(true);
+            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
+                xpGainDisabledRule,
+                merchantOverriddenRule,
                 tickRule,
                 piecePieceTypeRule,
                 piecesAdjustedRule,

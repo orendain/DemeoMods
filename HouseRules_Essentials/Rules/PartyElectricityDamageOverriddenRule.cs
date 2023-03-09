@@ -1,11 +1,9 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
-    using System.IO;
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
     using Boardgame.GameplayEffects;
-    using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;

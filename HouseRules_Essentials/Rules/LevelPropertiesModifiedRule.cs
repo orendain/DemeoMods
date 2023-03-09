@@ -125,6 +125,8 @@
 
             foreach (var modification in _levelProperties)
             {
+                int value1 = AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key);
+                // EssentialsMod.Logger.Msg($"{modification.Key} = {value1}");
                 AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
                     modification.Value;
             }

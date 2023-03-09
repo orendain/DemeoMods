@@ -35,7 +35,6 @@
             HR.Rulebook.Register(typeof(CardEnergyFromAttackMultipliedRule));
             HR.Rulebook.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
-            HR.Rulebook.Register(typeof(CardChestRarityOverriddenRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
             HR.Rulebook.Register(typeof(EnemyCooldownOverriddenRule));
@@ -52,6 +51,7 @@
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(LevelSequenceOverriddenRule));
+            HR.Rulebook.Register(typeof(MerchantOfferRarityOverriddenRule));
             HR.Rulebook.Register(typeof(MonsterDeckOverriddenRule));
             HR.Rulebook.Register(typeof(MyMonsterDeckOverriddenRule));
             HR.Rulebook.Register(typeof(PartyElectricityDamageOverriddenRule));

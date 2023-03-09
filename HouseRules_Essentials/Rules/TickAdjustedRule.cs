@@ -6,9 +6,9 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class TickAdjustedRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class TickAdjustedRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe, IDisableOnReconnect
     {
-        public override string Description => "Ignore tick for Energy Potion (and maybe others if we add them here.";
+        public override string Description => "Ignore tick for Energy Potion and maybe others if we add them here.";
 
         private static bool _isActivated;
 
