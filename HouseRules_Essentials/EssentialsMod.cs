@@ -56,13 +56,14 @@
             HR.Rulebook.Register(typeof(MyMonsterDeckOverriddenRule));
             HR.Rulebook.Register(typeof(PartyElectricityDamageOverriddenRule));
             HR.Rulebook.Register(typeof(PetsFocusHunterMarkRule));
+            HR.Rulebook.Register(typeof(PieceAbilityListOverriddenRule));
+            HR.Rulebook.Register(typeof(PieceBehavioursListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
             HR.Rulebook.Register(typeof(PieceExtraStatsAdjustedRule));
             HR.Rulebook.Register(typeof(PieceExtraImmunitiesRule));
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
-            HR.Rulebook.Register(typeof(PieceAbilityListOverriddenRule));
-            HR.Rulebook.Register(typeof(PieceBehavioursListOverriddenRule));
             HR.Rulebook.Register(typeof(PiecePieceTypeListOverriddenRule));
+            HR.Rulebook.Register(typeof(PieceUseOnCreatedOverriddenRule));
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
             HR.Rulebook.Register(typeof(RegainAbilityIfMaxxedOutOverriddenRule));

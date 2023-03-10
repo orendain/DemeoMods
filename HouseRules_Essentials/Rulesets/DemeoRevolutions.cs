@@ -288,7 +288,6 @@
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
-                { BoardPieceId.GoldSandPile, 1 },
                 { BoardPieceId.SmallCorruption, 1 },
                 { BoardPieceId.GeneralRonthian, 2 },
                 { BoardPieceId.TheUnseen, 2 },
