@@ -3,8 +3,31 @@
   "Description": "Everything that has a beginning has an end.",
   "Rules": [
     {
+      "Rule": "MerchantOfferRarityOverridden",
+      "Config": {
+        "ScrollTsunami": 0,
+        "SummonElemental": 0,
+        "Teleportation": 0,
+        "RepeatingBallista": 0,
+        "ScrollElectricity": 0,
+        "SwiftnessPotion": 0,
+        "DamageResistPotion": 50,
+        "InvisibilityPotion": 50
+      }
+    },
+    {
+      "Rule": "TickAdjusted",
+      "Config": true
+    },
+    {
       "Rule": "PiecePieceTypeListOverridden",
       "Config": {
+        "Mimic": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
         "ReptileArcher": [
           "Creature",
           "ForestCreature",
@@ -38,6 +61,7 @@
         ],
         "ElvenHound": [
           "Creature",
+          "Canine",
           "ForestCreature",
           "DesertCreature",
           "ValidCorruptionTarget"
@@ -76,6 +100,7 @@
         ],
         "Rat": [
           "Creature",
+          "Rat",
           "ForestCreature",
           "DesertCreature",
           "ValidCorruptionTarget"
@@ -193,6 +218,11 @@
     {
       "Rule": "PieceConfigAdjusted",
       "Config": [
+        {
+          "Piece": "Torch",
+          "Property": "StartHealth",
+          "Value": 4.0
+        },
         {
           "Piece": "SellswordArbalestierActive",
           "Property": "StartHealth",
@@ -404,6 +434,21 @@
           "Value": 0.75
         },
         {
+          "Piece": "EarthElemental",
+          "Property": "AttackDamage",
+          "Value": 2.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "PowerIndex",
+          "Value": 3.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "PowerIndex",
+          "Value": 4.0
+        },
+        {
           "Piece": "Wyvern",
           "Property": "PowerIndex",
           "Value": 5.0
@@ -412,21 +457,6 @@
           "Piece": "Mimic",
           "Property": "PowerIndex",
           "Value": 5.0
-        },
-        {
-          "Piece": "SilentSentinel",
-          "Property": "PowerIndex",
-          "Value": 4.0
-        },
-        {
-          "Piece": "EarthElemental",
-          "Property": "PowerIndex",
-          "Value": 3.0
-        },
-        {
-          "Piece": "EarthElemental",
-          "Property": "AttackDamage",
-          "Value": 2.0
         },
         {
           "Piece": "Brookmare",
@@ -478,6 +508,10 @@
     {
       "Rule": "CourageShantyAddsHp",
       "Config": 1
+    },
+    {
+      "Rule": "ReviveRemovesEffects",
+      "Config": true
     },
     {
       "Rule": "TileEffectDurationOverridden",
@@ -540,12 +574,12 @@
           "ServantOfAlfaragh": 1
         },
         "ExitDeckFloor1": {
+          "ScarabSandPile": 1,
           "EmptySandPile": 1,
           "ScorpionSandPile": 1,
           "ElvenSpearman": 2,
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
-          "GoldSandPile": 1,
           "SmallCorruption": 1,
           "GeneralRonthian": 1,
           "TheUnseen": 2,
@@ -643,7 +677,6 @@
           "ElvenSpearman": 2,
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
-          "GoldSandPile": 1,
           "SmallCorruption": 1,
           "GeneralRonthian": 2,
           "TheUnseen": 2,
@@ -1283,9 +1316,109 @@
         ]
       }
     },
+	
+	{
+      "Rule": "PotionAdditionOverridden",
+      "Config": {
+        "HeroBarbarian": [
+          "DamageResistPotion",
+          "Rejuvenation",
+          "InvisibilityPotion",
+          "AdamantPotion",
+          "LuckPotion",
+          "ExtraActionPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion"
+        ],
+        "HeroGuardian": [
+          "DamageResistPotion",
+          "Rejuvenation",
+          "InvisibilityPotion",
+          "AdamantPotion",
+          "LuckPotion",
+          "ExtraActionPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion"
+        ],
+        "HeroBard": [
+          "DamageResistPotion",
+          "Rejuvenation",
+          "InvisibilityPotion",
+          "AdamantPotion",
+          "LuckPotion",
+          "ExtraActionPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion"
+        ],
+        "HeroHunter": [
+          "DamageResistPotion",
+          "Rejuvenation",
+          "InvisibilityPotion",
+          "AdamantPotion",
+          "LuckPotion",
+          "ExtraActionPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion"
+        ],
+        "HeroRogue": [
+          "DamageResistPotion",
+          "Rejuvenation",
+          "InvisibilityPotion",
+          "AdamantPotion",
+          "LuckPotion",
+          "ExtraActionPotion",
+          "StrengthPotion",
+          "SwiftnessPotion",
+          "VigorPotion"
+        ],
+        "HeroSorcerer": [
+          "DamageResistPotion",
+          "Rejuvenation",
+          "InvisibilityPotion",
+          "AdamantPotion",
+          "LuckPotion",
+          "ExtraActionPotion",
+          "MagicPotion",
+          "SwiftnessPotion",
+          "VigorPotion"
+        ],
+        "HeroWarlock": [
+          "DamageResistPotion",
+          "Rejuvenation",
+          "InvisibilityPotion",
+          "AdamantPotion",
+          "LuckPotion",
+          "ExtraActionPotion",
+          "MagicPotion",
+          "SwiftnessPotion",
+          "VigorPotion"
+        ]
+      }
+    },
+	
     {
       "Rule": "StatusEffectConfig",
       "Config": [
+        {
+          "effectStateType": "Torch",
+          "durationTurns": 20,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
+        },
         {
           "effectStateType": "TorchPlayer",
           "durationTurns": 20,
@@ -1369,7 +1502,7 @@
         {
           "effectStateType": "ExtraEnergy",
           "durationTurns": 3,
-          "tickWhen": "Never",
+          "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
@@ -1435,6 +1568,11 @@
     {
       "Rule": "PieceAbilityListOverridden",
       "Config": {
+        "ElvenMarauder": [
+          "EnemyKnockbackMelee",
+          "EnemyHeal",
+          "Grab"
+        ],
         "EarthElemental": [
           "EnemyMelee",
           "EnemyKnockbackMelee",
@@ -1444,8 +1582,10 @@
         "Mimic": [
           "EnemyMelee",
           "AcidSpit",
-          "Grab",
-          "LeapHeavy"
+          "Grapple",
+          "PlayerLeap",
+          "EnemyFrostball",
+          "Zap"
         ],
         "RootMage": [
           "EnemyMelee",
@@ -1471,12 +1611,12 @@
           "EnemyMelee",
           "DiseasedBite",
           "LightningBolt",
-          "LeapHeavy",
-          "Grab"
+          "Leap",
+          "Grapple"
         ],
         "SilentSentinel": [
           "EnemyMelee",
-          "LeapHeavy",
+          "Leap",
           "Grab"
         ],
         "ElvenArcher": [
@@ -1498,29 +1638,28 @@
           "Shockwave",
           "EnemyFrostball"
         ],
-        "BigBoiMutant": [
-          "EnemyKnockbackMelee",
-          "Shockwave",
-          "LeapHeavy"
-        ],
         "GoblinFighter": [
           "EnemyMelee",
           "EnemyFlashbang"
-        ],
-        "SandScorpion": [
-          "EnemyMelee",
-          "DiseasedBite"
         ],
         "PoisonousRat": [
           "EnemyMelee",
           "DiseasedBite"
         ],
-        "JeweledScarab": []
+        "ElvenSkirmisher": [
+          "EnemyMelee",
+          "EnemyPikeMeleeAttack"
+        ]
       }
     },
     {
       "Rule": "PieceBehavioursListOverridden",
       "Config": {
+        "ElvenSkirmisher": [
+          "Patrol",
+          "AttackPlayer",
+          "PikeAttack"
+        ],
         "EarthElemental": [
           "Patrol",
           "AttackPlayer",
@@ -1585,6 +1724,7 @@
           "AttackAndRetreat"
         ],
         "JeweledScarab": [
+          "Patrol",
           "FleeToFOW"
         ]
       }
@@ -1610,17 +1750,100 @@
         ],
         "HeroBard": [
           "Diseased",
-          "Netted"
+          "Blinded"
         ],
         "HeroRogue": [
           "Tangled",
-          "Blinded"
+          "Netted"
         ],
         "HeroWarlock": [
-          "CorruptedRage"
+          "CorruptedRage",
+          "Undefined"
         ],
         "WarlockMinion": [
-          "CorruptedRage"
+          "Blinded",
+          "Disoriented",
+          "Confused",
+          "ConfusedPermanentVisualOnly",
+          "Panic",
+          "CorruptedRage",
+          "Undefined"
+        ],
+        "ElvenQueen": [
+          "Stunned",
+          "Frozen",
+          "Tangled",
+          "Panic",
+          "Blinded",
+          "Confused",
+          "Disoriented",
+          "AbilityBlocked",
+          "Netted"
+        ],
+        "RatKing": [
+          "Stunned",
+          "Frozen",
+          "Panic",
+          "Blinded",
+          "Confused",
+          "Diseased",
+          "Disoriented",
+          "AbilityBlocked",
+          "Netted"
+        ],
+        "RootLord": [
+          "Stunned",
+          "Frozen",
+          "Tangled",
+          "Panic",
+          "Blinded",
+          "MarkOfAvalon",
+          "Confused",
+          "Disoriented",
+          "AbilityBlocked",
+          "Netted"
+        ],
+        "MotherCy": [
+          "Stunned",
+          "Frozen",
+          "Tangled",
+          "Panic",
+          "Blinded",
+          "MarkOfAvalon",
+          "Confused",
+          "Disoriented",
+          "AbilityBlocked",
+          "Netted"
+        ],
+        "WizardBoss": [
+          "Stunned",
+          "Frozen",
+          "Tangled",
+          "Panic",
+          "Blinded",
+          "MarkOfAvalon",
+          "Diseased",
+          "CorruptedRage",
+          "Corruption",
+          "Confused",
+          "Disoriented",
+          "AbilityBlocked",
+          "Netted"
+        ],
+        "BossTown": [
+          "Stunned",
+          "Frozen",
+          "Tangled",
+          "Panic",
+          "Blinded",
+          "MarkOfAvalon",
+          "Confused",
+          "Weaken1Turn",
+          "ConfusedPermanentVisualOnly",
+          "Petrified",
+          "Disoriented",
+          "AbilityBlocked",
+          "Netted"
         ]
       }
     },
@@ -1636,7 +1859,37 @@
         "WarlockMinion": "ExposeEnergy",
         "Barricade": "Thorns",
         "EyeOfAvalon": "Confused",
-        "GrapplingTotem": "Netted"
+        "Torch": "Panic",
+        "SellswordArbalestierActive": "Panic"
+      }
+    },
+    {
+      "Rule": "AbilityTargetEffects",
+      "Config": {
+        "SigataurianJavelin": [
+          "Weaken1Turn"
+        ],
+        "PVPBlink": [
+          "Weaken1Turn",
+          "Disoriented"
+        ],
+        "PanicPowderArrow": [
+          "Panic",
+          "Netted"
+        ],
+        "TurretDamageProjectile": [
+          "Tangled"
+        ],
+        "EnemyTurretDamageProjectile": [
+          "Tangled"
+        ],
+        "TurretHighDamageProjectile": [
+          "Panic",
+          "Blinded"
+        ],
+        "AcidSpit": [
+          "Diseased"
+        ]
       }
     },
     {
@@ -1647,7 +1900,7 @@
           "DropChest"
         ],
         "EarthElemental": [
-          "TelekineticBurst"
+          "Explosion"
         ]
       }
     },
@@ -1655,7 +1908,8 @@
       "Rule": "AbilityBreaksStealthAdjusted",
       "Config": {
         "PoisonBomb": false,
-        "FlashBomb": false
+        "FlashBomb": false,
+        "DiseasedBite": false
       }
     },
     {
@@ -1676,11 +1930,7 @@
         "ScrollElectricity": false,
         "DeathBeam": false,
         "FretsOfFire": false,
-        "ExplodingGasLamp": false,
-        "ExplodingOilLamp": false,
-        "ExplodingVortexLamp": false,
-        "ExplodingWaterLamp": false,
-        "ExplodingIceLamp": false,
+        "Grapple": false,
         "ImplosionExplosionRain": false
       }
     },
@@ -1704,15 +1954,18 @@
     {
       "Rule": "TurnOrderOverridden",
       "Config": {
-        "Barbarian": 10,
+        "Barbarian": 11,
         "Assassin": 9,
-        "Bard": 15,
-        "Guardian": 13,
-        "Hunter": 11,
+        "Bard": 18,
+        "Guardian": 14,
+        "Hunter": 10,
         "Sorcerer": 12,
-        "Warlock": 14,
-        "Downed": -6,
-        "Javelin": 14
+        "Warlock": 13,
+        "Downed": -10,
+        "Javelin": 20,
+        "Mark": 7,
+        "Varga": 5,
+        "Deflect": 2
       }
     },
     {
@@ -1745,7 +1998,6 @@
     {
       "Rule": "FreeActionPointsOnCrit",
       "Config": [
-        "HeroBarbarian",
         "HeroGuardian",
         "HeroRogue"
       ]
@@ -1789,7 +2041,8 @@
         "Petrify": 2,
         "Net": 2,
         "Grapple": 2,
-        "ElvenSummonerDeflect": 4
+        "ElvenSummonerDeflect": 5,
+        "PlayerLeap": 2
       }
     },
     {
@@ -1803,9 +2056,9 @@
         "Deflect": 2,
         "BlindingLight": 1,
         "BlockAbilities": 1,
-        "GrapplingPush": 1,
         "LeapHeavy": 1,
-        "Leap": 1
+        "Leap": 1,
+        "Net": 0
       }
     },
     {
@@ -1836,16 +2089,16 @@
           2
         ],
         "PVPBlink": [
-          7,
-          14,
-          7,
-          14
+          9,
+          18,
+          9,
+          18
         ],
         "FretsOfFire": [
-          4,
-          8,
-          4,
-          8
+          3,
+          6,
+          3,
+          6
         ],
         "GrapplingPush": [
           2,
@@ -1891,7 +2144,7 @@
     },
     {
       "Rule": "CardEnergyFromAttackMultiplied",
-      "Config": 0.85
+      "Config": 0.75
     },
     {
       "Rule": "EnemyHealthScaled",
@@ -1956,9 +2209,9 @@
       "Config": {
         "BigGoldPileChance": 30,
         "FloorOneHealingFountains": 1,
-        "FloorOnePotionStand": 0,
+        "FloorOnePotionStand": 1,
         "FloorOneMerchant": 0,
-        "FloorOneLootChests": 2,
+        "FloorOneLootChests": 3,
         "FloorOneGoldMaxAmount": 325,
         "FloorOneElvenSummoners": 0,
         "FloorOneSellswords": 1,

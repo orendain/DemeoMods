@@ -3,6 +3,14 @@
   "Description": "No surprises in the dark or coming through doors.",
   "Rules": [
     {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "FloorOneElvenSummoners": 0,
+        "FloorTwoElvenSummoners": 0,
+        "FloorThreeElvenSummoners": 0
+      }
+    },
+    {
       "Rule": "EnemyDoorOpeningDisabled",
       "Config": true
     },

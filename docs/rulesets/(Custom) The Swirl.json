@@ -188,10 +188,6 @@
     {
       "Rule": "EnemyRespawnDisabled",
       "Config": true
-    },
-    {
-      "Rule": "LevelExitLockedUntilAllEnemiesDefeated",
-      "Config": true
     }
   ]
 }

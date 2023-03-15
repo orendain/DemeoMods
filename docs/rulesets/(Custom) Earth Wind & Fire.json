@@ -362,6 +362,11 @@
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
+          "Piece": "Sigataur",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
           "Piece": "HeroGuardian",
           "Property": "StartArmor",
           "Value": 0.0

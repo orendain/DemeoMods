@@ -231,6 +231,16 @@
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
+          "Piece": "Sigataur",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "GiantSpider",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
           "Value": 15.0
