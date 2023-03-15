@@ -61,6 +61,7 @@
     <Compile Include="Rules\PartyElectricityDamageOverriddenRule.cs" />
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />
     <Compile Include="Rules\CourageShantyAddsHPRule.cs" />
+    <Compile Include="Rules\PotionAdditionOverriddenRule.cs" />
     <Compile Include="Rules\TileEffectDurationOverriddenRule.cs" />
     <Compile Include="Rules\LampTypesOverriddenRule.cs" />
     <Compile Include="Rules\LevelSequenceOverriddenRule.cs" />

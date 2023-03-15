@@ -727,6 +727,24 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+#### __PotionAdditionOverridden__: Overrides the lists of cards which players receive from potion stands.
+  - The default card allocation mechanism is intercepted and changed to use a user-defined list of cards.
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) that should have its card pool overridden.
+    - Specify a list of [AbilityKeys](../docs/SettingsReference.md#abilitykeys) for the cards that should make up the card pool.
+    - NOTE: This card list does NOT have to be limited to only potions.
+  ###### _Example JSON config for PotionAdditionOverridden_
+
+  ```json
+  {
+    "Rule": "PotionAdditionOverridden",
+    "Config": {
+      "HeroSorcerer": ["MagicPotion", "SwiftnessPotion", "DamageResistPotion"],
+      "HeroGuardian": ["StrengthPotion", "VigorPotion", "WaterBottle", "HealingPotion"]
+    }
+  },
+  ```
+
 #### __RatNestsSpawnGold__: Rat nests spawn 💰gold💰
   - 🚧 _Skirmish-only - Does not work properly in multiplayer games._ 🚧
   - To configure:
