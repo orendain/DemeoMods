@@ -798,6 +798,108 @@
                 },
             });
 
+            var allowedPotionsRule = new PotionAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
+            {
+                {
+                    BoardPieceId.HeroBarbarian, new List<AbilityKey>
+                    {
+                        AbilityKey.DamageResistPotion,
+                        AbilityKey.Rejuvenation,
+                        AbilityKey.InvisibilityPotion,
+                        AbilityKey.AdamantPotion,
+                        AbilityKey.LuckPotion,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.StrengthPotion,
+                        AbilityKey.SwiftnessPotion,
+                        AbilityKey.VigorPotion,
+                    }
+                },
+                {
+                    BoardPieceId.HeroBard, new List<AbilityKey>
+                    {
+                        AbilityKey.DamageResistPotion,
+                        AbilityKey.Rejuvenation,
+                        AbilityKey.InvisibilityPotion,
+                        AbilityKey.AdamantPotion,
+                        AbilityKey.LuckPotion,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.StrengthPotion,
+                        AbilityKey.SwiftnessPotion,
+                        AbilityKey.VigorPotion,
+                    }
+                },
+                {
+                    BoardPieceId.HeroGuardian, new List<AbilityKey>
+                    {
+                        AbilityKey.DamageResistPotion,
+                        AbilityKey.Rejuvenation,
+                        AbilityKey.InvisibilityPotion,
+                        AbilityKey.AdamantPotion,
+                        AbilityKey.LuckPotion,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.StrengthPotion,
+                        AbilityKey.SwiftnessPotion,
+                        AbilityKey.VigorPotion,
+                    }
+                },
+                {
+                    BoardPieceId.HeroHunter, new List<AbilityKey>
+                    {
+                        AbilityKey.DamageResistPotion,
+                        AbilityKey.Rejuvenation,
+                        AbilityKey.InvisibilityPotion,
+                        AbilityKey.AdamantPotion,
+                        AbilityKey.LuckPotion,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.StrengthPotion,
+                        AbilityKey.SwiftnessPotion,
+                        AbilityKey.VigorPotion,
+                    }
+                },
+                {
+                    BoardPieceId.HeroRogue, new List<AbilityKey>
+                    {
+                        AbilityKey.DamageResistPotion,
+                        AbilityKey.Rejuvenation,
+                        AbilityKey.InvisibilityPotion,
+                        AbilityKey.AdamantPotion,
+                        AbilityKey.LuckPotion,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.StrengthPotion,
+                        AbilityKey.SwiftnessPotion,
+                        AbilityKey.VigorPotion,
+                    }
+                },
+                {
+                    BoardPieceId.HeroSorcerer, new List<AbilityKey>
+                    {
+                        AbilityKey.DamageResistPotion,
+                        AbilityKey.Rejuvenation,
+                        AbilityKey.InvisibilityPotion,
+                        AbilityKey.AdamantPotion,
+                        AbilityKey.LuckPotion,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.MagicPotion,
+                        AbilityKey.SwiftnessPotion,
+                        AbilityKey.VigorPotion,
+                    }
+                },
+                {
+                    BoardPieceId.HeroWarlock, new List<AbilityKey>
+                    {
+                        AbilityKey.DamageResistPotion,
+                        AbilityKey.Rejuvenation,
+                        AbilityKey.InvisibilityPotion,
+                        AbilityKey.AdamantPotion,
+                        AbilityKey.LuckPotion,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.MagicPotion,
+                        AbilityKey.SwiftnessPotion,
+                        AbilityKey.VigorPotion,
+                    }
+                },
+            });
+
             var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
             {
                 new StatusEffectData
@@ -1254,6 +1356,7 @@
                 myMonsterDeckRule,
                 startingCardsRule,
                 allowedCardsRule,
+                allowedPotionsRule,
                 statusEffectRule,
                 pieceAbilityRule,
                 pieceBehaviourListRule,
