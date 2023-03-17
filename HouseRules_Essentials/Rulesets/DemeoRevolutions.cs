@@ -188,7 +188,6 @@
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
-                { BoardPieceId.GoldSandPile, 1 },
                 { BoardPieceId.SmallCorruption, 1 },
                 { BoardPieceId.GeneralRonthian, 1 },
                 { BoardPieceId.TheUnseen, 2 },
@@ -1144,6 +1143,7 @@
                 { AbilityKey.DeathBeam, false },
                 { AbilityKey.FretsOfFire, false },
                 { AbilityKey.Grapple, false },
+                { AbilityKey.Net, true },
                 { AbilityKey.ImplosionExplosionRain, false },
             });
 

@@ -1316,7 +1316,6 @@
         ]
       }
     },
-	
 	{
       "Rule": "PotionAdditionOverridden",
       "Config": {
@@ -1399,7 +1398,6 @@
         ]
       }
     },
-	
     {
       "Rule": "StatusEffectConfig",
       "Config": [

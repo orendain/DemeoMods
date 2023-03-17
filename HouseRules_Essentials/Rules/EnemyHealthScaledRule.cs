@@ -62,7 +62,7 @@
                     return;
                 }
 
-                range = Random.Range(0.8f, 1.25f);
+                range = Random.Range(0.9f, 1.33f);
             }
 
             int newStartHealth = (int)(config.StartHealth * _globalMultiplier * range);

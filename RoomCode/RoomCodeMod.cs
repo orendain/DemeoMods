@@ -1,6 +1,7 @@
 ﻿namespace RoomCode
 {
     using System.Collections.Generic;
+    using System.Linq;
     using MelonLoader;
 
     internal class RoomCodeMod : MelonMod
@@ -28,6 +29,14 @@
 
             Enabled = enabledEntry.Value;
             RoomCodes = roomCodesEntry.Value;
+            if (RoomCodes.Any())
+            {
+                Logger.Warning($"Custom Room Codes were found!");
+            }
+            else
+            {
+                Logger.Error("No custom Room Codes were found!");
+            }
         }
     }
 }
