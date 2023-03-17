@@ -58,7 +58,7 @@ Class Changes
 - Barbaric Chainwhip damage increased by 1
 - Grapple costs 0 Action Points
 - Grapple and Launching a Lamp can now be used in the same turn
-- A NEW non-damaging Net card that costs 0 Action Points and can be reused every 3 rounds
+- A NEW non-damaging Net card that roots an enemy in place and can be reused every 3 rounds
 - Critical hits regain Grapple, reduce Net cooldown by 1, and gain 1 Magic Armor if not last action
 - Critical hits on the LAST action gain 6 Vargas, 2 Magic Armor, and a Spawn Random Lamp card
 - Having a Mark of Varga card puts you closer to the front in turn order
