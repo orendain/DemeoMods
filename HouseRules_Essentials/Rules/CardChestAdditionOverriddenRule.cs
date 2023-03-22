@@ -10,46 +10,48 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-
-    public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
+    public sealed class CardChestAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Card additions from chests AND energy (mana) are overridden";
+        public override string Description => "Card additions from chests are overridden";
 
-        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
+        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalchestCards;
         private static bool _isActivated;
-        private static bool _isSkipped;
+        private static bool _isChest;
         private static int _numPlayers;
 
-        private readonly Dictionary<BoardPieceId, List<AbilityKey>> _heroCards;
+        private readonly Dictionary<BoardPieceId, List<AbilityKey>> _chestCards;
 
-        public CardAdditionOverriddenRule(Dictionary<BoardPieceId, List<AbilityKey>> heroCards)
+        public CardChestAdditionOverriddenRule(Dictionary<BoardPieceId, List<AbilityKey>> chestCards)
         {
-            _heroCards = heroCards;
+            _chestCards = chestCards;
         }
 
-        public Dictionary<BoardPieceId, List<AbilityKey>> GetConfigObject() => _heroCards;
+        public Dictionary<BoardPieceId, List<AbilityKey>> GetConfigObject() => _chestCards;
 
         protected override void OnActivate(GameContext gameContext)
         {
-            _globalHeroCards = _heroCards;
+            _globalchestCards = _chestCards;
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(GameContext gameContext)
+        {
+            _isActivated = false;
+        }
 
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(Interactable), "OnInteraction", new Type[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
                 prefix: new HarmonyMethod(
-                    typeof(CardAdditionOverriddenRule),
+                    typeof(CardChestAdditionOverriddenRule),
                     nameof(Interactable_OnInteraction_Prefix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(SerializableEventQueue), "RespondToRequest"),
                 prefix: new HarmonyMethod(
-                    typeof(CardAdditionOverriddenRule),
+                    typeof(CardChestAdditionOverriddenRule),
                     nameof(SerializableEventQueue_RespondToRequest_Prefix)));
         }
 
@@ -81,10 +83,10 @@
             }
 
             Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
-            if (whatIsit.type == Interactable.Type.PotionStand || whatIsit.type == Interactable.Type.WaterBottleChest || whatIsit.type == Interactable.Type.VortexDustChest)
+            if (whatIsit.type == Interactable.Type.Chest)
             {
                 _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
-                _isSkipped = true;
+                _isChest = true;
             }
         }
 
@@ -97,12 +99,7 @@
                 return;
             }
 
-            if (request.type != SerializableEvent.Type.AddCardToPiece)
-            {
-                return;
-            }
-
-            if (_isSkipped)
+            if (_isChest)
             {
                 if (_numPlayers > 1)
                 {
@@ -110,21 +107,22 @@
                 }
                 else
                 {
-                    _isSkipped = false;
+                    _isChest = false;
                 }
+            }
+            else
+            {
+                return;
+            }
 
+            if (request.type != SerializableEvent.Type.AddCardToPiece)
+            {
                 return;
             }
 
             var addCardToPieceEvent = (SerializableEventAddCardToPiece)request;
             var gameContext = Traverse.Create(__instance).Property<GameContext>("gameContext").Value;
             var pieceId = Traverse.Create(addCardToPieceEvent).Field<int>("pieceId").Value;
-            var cardSource = Traverse.Create(addCardToPieceEvent).Field<int>("cardSource").Value;
-
-            if (cardSource != (int)MotherTracker.Context.Energy && cardSource != (int)MotherTracker.Context.Chest)
-            {
-                return;
-            }
 
             if (!gameContext.pieceAndTurnController.TryGetPiece(pieceId, out var piece))
             {
@@ -136,7 +134,7 @@
                 return;
             }
 
-            if (!_globalHeroCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
+            if (!_globalchestCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
             {
                 return;
             }
@@ -144,6 +142,8 @@
             int rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
             AbilityKey replacementAbilityKey = replacementAbilityKeys[rand];
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
+
+            return;
         }
     }
 }
