@@ -203,7 +203,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     },
   ```
 
-#### __CardAdditionOverridden__: Overrides the lists of cards which players receive from chests & card energy.
+#### __CardAdditionOverridden__: Overrides the lists of cards which players receive from chest AND card energy (mana).
+  - 🚧 NOTE: You should not use this rule if you plan to use the following two rules! 🚧
   - The default card allocation mechanism is intercepted and changed to use a user-defined list of cards.
   - To configure:
     - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) that should have its card pool overridden.
@@ -214,6 +215,41 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```json
   {
     "Rule": "CardAdditionOverridden",
+    "Config": {
+      "HeroSorcerer": ["StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
+      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"]
+    }
+  },
+  ```
+#### __CardChestAdditionOverridden__: Overrides the lists of cards which players receive from chests.
+  - The default card allocation mechanism is intercepted and changed to use a user-defined list of cards.
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) that should have its card pool overridden.
+    - Specify a list of [AbilityKeys](../docs/SettingsReference.md#abilitykeys) for the cards that should make up the card pool.
+
+  ###### _Example JSON config for CardChestAdditionOverridden_
+
+  ```json
+  {
+    "Rule": "CardChestAdditionOverridden",
+    "Config": {
+      "HeroSorcerer": ["StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
+      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"]
+    }
+  },
+  ```
+
+#### __CardEnergyAdditionOverridden__: Overrides the lists of cards which players receive from card energy (mana).
+  - The default card allocation mechanism is intercepted and changed to use a user-defined list of cards.
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) that should have its card pool overridden.
+    - Specify a list of [AbilityKeys](../docs/SettingsReference.md#abilitykeys) for the cards that should make up the card pool.
+
+  ###### _Example JSON config for CardEnergyAdditionOverridden_
+
+  ```json
+  {
+    "Rule": "CardEnergyAdditionOverridden",
     "Config": {
       "HeroSorcerer": ["StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
       "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"]

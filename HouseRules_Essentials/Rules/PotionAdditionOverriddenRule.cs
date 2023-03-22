@@ -144,12 +144,9 @@
                 return;
             }
 
-            int rand;
-            AbilityKey replacementAbilityKey;
-
-            rand = RandomProvider.GetThreadRandom().Next(2, replacementAbilityKeys.Count);
-            AbilityKey replacementAbilityKey2 = replacementAbilityKeys[rand];
-            Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey2;
+            int rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
+            AbilityKey replacementAbilityKey = replacementAbilityKeys[rand];
+            Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
 
             return;
         }
