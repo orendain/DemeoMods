@@ -31,7 +31,9 @@
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
             HR.Rulebook.Register(typeof(CourageShantyAddsHpRule));
             HR.Rulebook.Register(typeof(CardAdditionOverriddenRule));
+            HR.Rulebook.Register(typeof(CardChestAdditionOverriddenRule));
             HR.Rulebook.Register(typeof(CardClassRestrictionOverriddenRule));
+            HR.Rulebook.Register(typeof(CardEnergyAdditionOverriddenRule));
             HR.Rulebook.Register(typeof(CardEnergyFromAttackMultipliedRule));
             HR.Rulebook.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
