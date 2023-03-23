@@ -140,7 +140,7 @@ When the Energy Potion card is used it will give each character 2 extra maximum 
 - Vortex Storm: Drops 3 meteors over a large area that cause small vortexes that do 2 to 3 damage to each thing hit. This includes friendlies. Does NOT hit lamps.
 
 **Hunter:**
-- Scroll of Lightning: Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets.
+- Lightning Bolt: Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets.
 
 **Assassin:**
 - Frets of Fire: Causes fire damage in a 7x7 area around you that does 3 damage to enemies. Does NOT break sneak. DOES hit lamps!
