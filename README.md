@@ -16,12 +16,14 @@ Gameplay changes
 - A NEW Energy Potion loot card that has mysterious effects on the entire party...
 - The same type of enemy can have different health AND attack damage
 - Enemy spawns will be a mix of all existing adventures with NO respawns
+- Thorns debuff also does 2 damage per turn
 - Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3
 - Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3
 - Pets always focus on Hunter's Marked targets
 - Each floor's map will be from a different adventure
 - Number of chests/stands/fountains/traders per floor changed based on the adventure selected
 - Card energy (mana) gained from attacks reduced by 25%
+- Card energy (mana) gained from recycling cards increased by 25%
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
 - Reviving a player by any means removes Stunned and Frozen effects
 - Player summons have detrimental effects on enemies who hit them
@@ -44,6 +46,7 @@ Class Changes
 **Guardian:**
 - 8 max health. You are immune to Weaken and non-boss Fire damage
 - Normal start cards plus Charge and War Cry
+- Replenish Armor regains 4 armor instead of 5
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
 - Whirlwind doesn't harm allies but it will still knock them back
 - A NEW reusable non-damaging Pull card which costs 0 Action Points (works on enemies and allies)
