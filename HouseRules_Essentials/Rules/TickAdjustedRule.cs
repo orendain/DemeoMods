@@ -111,19 +111,16 @@
                         for (int i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
-                            if (value.abilityKey == AbilityKey.ScrollElectricity)
+                            if (value.abilityKey == AbilityKey.Zap)
                             {
                                 howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
-                                if (value.IsReplenishing)
+                                hasChanged = true;
+                                howMany -= 1;
+                                if (howMany < 1)
                                 {
-                                    hasChanged = true;
-                                    howMany -= 1;
-                                    if (howMany < 1)
-                                    {
-                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                        piece.inventory.Items.Remove(value);
-                                    }
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                    piece.inventory.Items.Remove(value);
                                 }
 
                                 break;

@@ -1499,7 +1499,6 @@
                 { AbilityKey.WeakeningShout, false },
                 { AbilityKey.LeapHeavy, false },
                 { AbilityKey.SpawnRandomLamp, false },
-                { AbilityKey.ScrollElectricity, false },
                 { AbilityKey.DeathBeam, false },
                 { AbilityKey.FretsOfFire, false },
                 { AbilityKey.Grapple, false },

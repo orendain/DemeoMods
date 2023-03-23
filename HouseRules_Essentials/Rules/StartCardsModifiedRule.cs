@@ -229,9 +229,16 @@
                         for (int i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
-                            if (value.abilityKey == AbilityKey.ScrollElectricity)
+                            if (value.abilityKey == AbilityKey.LightningBolt)
                             {
                                 hasPower = true;
+                                break;
+                            }
+
+                            if (value.abilityKey == AbilityKey.Zap)
+                            {
+                                piece.inventory.Items.Remove(value);
+                                Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                 break;
                             }
                         }
@@ -241,7 +248,7 @@
                             Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                             piece.inventory.Items.Add(new Inventory.Item
                             {
-                                abilityKey = AbilityKey.ScrollElectricity,
+                                abilityKey = AbilityKey.LightningBolt,
                                 flags = (Inventory.ItemFlag)1,
                                 originalOwner = -1,
                                 replenishCooldown = 1,

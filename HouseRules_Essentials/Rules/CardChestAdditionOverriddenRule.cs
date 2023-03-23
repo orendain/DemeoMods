@@ -150,7 +150,6 @@
                 {
                     // Class cards
                     rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 14, replacementAbilityKeys.Count);
-                    MelonLoader.MelonLogger.Msg($"Class: {rand}");
                 }
                 else if (randNum > 97)
                 {
@@ -159,14 +158,12 @@
                         // Invisibility and Vigor Potions
                         _numVigor++;
                         rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 22, replacementAbilityKeys.Count - 20);
-                        MelonLoader.MelonLogger.Msg($"Invis/Vigor: {rand}");
                     }
                     else if (_numAlags < 2)
                     {
                         // Rejuv and Damage Resist Potions
                         _numAlags++;
                         rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 24, replacementAbilityKeys.Count - 22);
-                        MelonLoader.MelonLogger.Msg($"Rejuv/DamRes: {rand}");
                     }
                     else
                     {
@@ -174,13 +171,11 @@
                         {
                             // Casters can get Magic Potions but not Strength
                             rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 19, replacementAbilityKeys.Count - 14);
-                            MelonLoader.MelonLogger.Msg($"Caster: {rand}");
                         }
                         else
                         {
                             // Melee can get Strength Potions but not Magic
                             rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
-                            MelonLoader.MelonLogger.Msg($"Melee: {rand}");
                         }
                     }
                 }
@@ -191,7 +186,6 @@
                         // Rejuv and Damage Resist Potions
                         _numAlags++;
                         rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 24, replacementAbilityKeys.Count - 22);
-                        MelonLoader.MelonLogger.Msg($"Rejuv/DamRes: {rand}");
                     }
                     else
                     {
@@ -199,13 +193,11 @@
                         {
                             // Casters can get Magic Potions but not Strength
                             rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 19, replacementAbilityKeys.Count - 14);
-                            MelonLoader.MelonLogger.Msg($"Caster: {rand}");
                         }
                         else
                         {
                             // Melee can get Strength Potions but not Magic
                             rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
-                            MelonLoader.MelonLogger.Msg($"Melee: {rand}");
                         }
                     }
                 }
@@ -216,20 +208,17 @@
                     {
                         // Casters can get Magic Potions but not Strength
                         rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 19, replacementAbilityKeys.Count - 14);
-                        MelonLoader.MelonLogger.Msg($"Caster: {rand}");
                     }
                     else
                     {
                         // Melee can get Strength Potions but not Magic
                         rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 20, replacementAbilityKeys.Count - 15);
-                        MelonLoader.MelonLogger.Msg($"Melee: {rand}");
                     }
                 }
                 else
                 {
                     // Standard cards 8% chance
                     rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count - 24);
-                    MelonLoader.MelonLogger.Msg($"Standard: {rand}");
                 }
 
                 replacementAbilityKey = replacementAbilityKeys[rand];
@@ -240,7 +229,6 @@
                 replacementAbilityKey = replacementAbilityKeys[rand];
             }
 
-            MelonLoader.MelonLogger.Msg($"Ability: {replacementAbilityKey}");
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
             return;
         }
