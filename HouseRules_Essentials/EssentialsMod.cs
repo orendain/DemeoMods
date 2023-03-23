@@ -23,6 +23,7 @@
             HR.Rulebook.Register(typeof(AbilityActionCostAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityRandomPieceListRule));
             HR.Rulebook.Register(typeof(AbilityStealthDamageOverriddenRule));
+            HR.Rulebook.Register(typeof(ApplyEffectOnHitAdjustedRule));
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
             HR.Rulebook.Register(typeof(CourageShantyAddsHpRule));
             HR.Rulebook.Register(typeof(CardAdditionOverriddenRule));

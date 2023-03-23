@@ -188,6 +188,29 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+
+#### __ApplyEffectOnHitAdjusted__: Adjusts the effect that a ♟️BoardPiece has on attackers.
+  - For example, you can make Barricades inspire Panic on enemies that hit it.
+  - To be useful the effect has to last at least 2 rounds.
+  - To configure:
+    - Specify the [BoardPieceId](../docs/SettingsReference.md#boardpieceids) that should have its effect adjusted.
+    - Specify the [EffectState](../docs/SettingsReference.md#effectstatetypes) that the piece should apply when attacked.
+  
+  ###### _Example JSON config for ApplyEffectOnHitAdjusted_
+
+  ```json
+  {
+    "Rule": "ApplyEffectOnHitAdjusted",
+    "Config": {
+      "HealingBeacon": "Confused",
+      "SwordOfAvalon": "Diseased",
+      "Lure": "Thorns",
+      "HeroWarlock": "ExposeEnergy",
+      "Verochka": "Panic"
+    }
+  },
+  ```
+
 #### __BackstabConfigOverridden__: A list of Pieces may use 🔪Backstab🔪 instead of just the Assassin
   - Replaces the hardcoded default of HeroRogue with a configurable list.
   - Now everyone can benefit from Backstab bonus.

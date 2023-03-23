@@ -56,6 +56,7 @@
     <Compile Include="Rules\AbilityDamageOverriddenRule.cs" />
     <Compile Include="Rules\AbilityStealthDamageOverriddenRule.cs" />
     <Compile Include="Rules\AbilityHealOverriddenRule.cs" />
+    <Compile Include="Rules\ApplyEffectOnHitAdjustedRule.cs" />
     <Compile Include="Rules\CardChestAdditionOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
     <Compile Include="Rules\CardEnergyAdditionOverriddenRule.cs" />
