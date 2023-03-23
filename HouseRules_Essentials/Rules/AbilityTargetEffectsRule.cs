@@ -7,7 +7,6 @@
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HouseRules.Types;
-    using PieceType = DataKeys.PieceType;
 
     public sealed class AbilityTargetEffectsRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<EffectStateType>>>, IMultiplayerSafe
     {

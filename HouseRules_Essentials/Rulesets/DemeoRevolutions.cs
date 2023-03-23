@@ -1359,6 +1359,15 @@
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Thorns,
+                    durationTurns = 2,
+                    damagePerTurn = 1,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
             });
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
@@ -1603,6 +1612,7 @@
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.75f);
+            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(1.25f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
@@ -1622,7 +1632,7 @@
                 { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 3 },
-                { "FloorOneGoldMaxAmount", 325 },
+                { "FloorOneGoldMaxAmount", 475 },
                 { "FloorOneElvenSummoners", 0 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
@@ -1631,7 +1641,7 @@
                 { "FloorTwoMerchant", 1 },
                 { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 3 },
-                { "FloorTwoGoldMaxAmount", 500 },
+                { "FloorTwoGoldMaxAmount", 635 },
                 { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
@@ -1702,6 +1712,12 @@
                 { AbilityKey.InvisibilityPotion, 50 },
             });
 
+            var statModifiersRule = new StatModifiersOverridenRule(new Dictionary<AbilityKey, int>
+            {
+                { AbilityKey.ReplenishArmor, 4 },
+            });
+
+            var goldPickupRule = new GoldPickedUpMultipliedRule(1);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
@@ -1710,8 +1726,10 @@
             return Ruleset.NewInstance(
                 name,
                 description,
-                merchantOverriddenRule,
+                 merchantOverriddenRule,
                 tickRule,
+                statModifiersRule,
+                goldPickupRule,
                 piecePieceTypeRule,
                 piecesAdjustedRule,
                 courageShantyRule,
@@ -1749,6 +1767,7 @@
                 petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,
+                cardEnergyFromRecyclingRule,
                 enemyHealthScaledRule,
                 enemyAttackScaledRule,
                 pieceExtraStatsRule,
