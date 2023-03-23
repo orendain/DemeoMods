@@ -1036,6 +1036,7 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
+                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.MarkOfVerga,
                     }
@@ -1055,6 +1056,7 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
+                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.WhirlwindAttack,
                     }
@@ -1074,6 +1076,7 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
+                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ScrollOfCharm,
                     }
@@ -1092,6 +1095,7 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
+                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.HuntersMark,
                     }
@@ -1102,7 +1106,6 @@
                         AbilityKey.EnergyPotion,
                         AbilityKey.Bone,
                         AbilityKey.WebBomb,
-                        AbilityKey.Barricade,
                         AbilityKey.RepeatingBallista,
                         AbilityKey.OneMoreThing,
                         AbilityKey.PanicPowder,
@@ -1112,6 +1115,7 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
+                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.Blink,
                     }
@@ -1131,6 +1135,7 @@
                         AbilityKey.FireImmunePotion,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
+                        AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.Fireball,
                     }
@@ -1151,6 +1156,7 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
+                        AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.Portal,
                     }
@@ -1527,6 +1533,7 @@
                 { AbilityKey.Petrify, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.WeakeningShout, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.LeapHeavy, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.ImplosionExplosionRain, new List<int> { 5, 5, 5, 5 } },
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
