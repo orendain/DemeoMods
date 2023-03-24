@@ -48,7 +48,14 @@
                 return;
             }
 
-            __instance.goldAmount = 69; // (int)(__instance.goldAmount * _globalMultiplier);
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            {
+                __instance.goldAmount = 69;
+            }
+            else
+            {
+                __instance.goldAmount = (int)(__instance.goldAmount * _globalMultiplier);
+            }
         }
     }
 }
