@@ -1031,6 +1031,7 @@
                         AbilityKey.WaterBottle,
                         AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
+                        AbilityKey.ScrollElectricity,
                         AbilityKey.MarkOfVerga,
                     }
                 },
@@ -1051,6 +1052,7 @@
                         AbilityKey.WaterBottle,
                         AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
+                        AbilityKey.ScrollElectricity,
                         AbilityKey.WhirlwindAttack,
                     }
                 },
@@ -1071,6 +1073,7 @@
                         AbilityKey.WaterBottle,
                         AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
+                        AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollOfCharm,
                     }
                 },
@@ -1090,6 +1093,7 @@
                         AbilityKey.WaterBottle,
                         AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
+                        AbilityKey.ScrollElectricity,
                         AbilityKey.HuntersMark,
                     }
                 },
@@ -1110,6 +1114,7 @@
                         AbilityKey.WaterBottle,
                         AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
+                        AbilityKey.ScrollElectricity,
                         AbilityKey.Blink,
                     }
                 },
@@ -1130,6 +1135,7 @@
                         AbilityKey.Regroup,
                         AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
+                        AbilityKey.ScrollElectricity,
                         AbilityKey.Fireball,
                     }
                 },
@@ -1151,6 +1157,7 @@
                         AbilityKey.WaterBottle,
                         AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
+                        AbilityKey.ScrollElectricity,
                         AbilityKey.Portal,
                     }
                 },
@@ -1620,12 +1627,12 @@
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
-                { "BigGoldPileChance", 30 },
+                { "BigGoldPileChance", 0 },
                 { "FloorOneHealingFountains", 1 },
                 { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 3 },
-                { "FloorOneGoldMaxAmount", 475 },
+                { "FloorOneGoldMaxAmount", 400 },
                 { "FloorOneElvenSummoners", 0 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
@@ -1634,7 +1641,7 @@
                 { "FloorTwoMerchant", 1 },
                 { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 3 },
-                { "FloorTwoGoldMaxAmount", 635 },
+                { "FloorTwoGoldMaxAmount", 550 },
                 { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
