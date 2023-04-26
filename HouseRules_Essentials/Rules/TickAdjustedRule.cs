@@ -52,7 +52,7 @@
                 }
 
                 Inventory.Item value;
-                int howMany = 3;
+                int howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                 bool hasChanged = false;
 
                 // Energy Potion tick/prevention and card removal per class
@@ -65,7 +65,6 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.ImplosionExplosionRain)
                             {
-                                howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
                                     hasChanged = true;
@@ -89,7 +88,6 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.LeapHeavy)
                             {
-                                howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
                                     hasChanged = true;
@@ -108,22 +106,24 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroHunter)
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        if (piece.HasEffectState(EffectStateType.Wet) && piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Wet) < 3)
                         {
-                            value = piece.inventory.Items[i];
-                            if (value.abilityKey == AbilityKey.Zap)
+                            for (int i = 0; i < piece.inventory.Items.Count; i++)
                             {
-                                howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
-                                hasChanged = true;
-                                howMany -= 1;
-                                if (howMany < 1)
+                                value = piece.inventory.Items[i];
+                                if (value.abilityKey == AbilityKey.Zap)
                                 {
-                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                    piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                                    piece.inventory.Items.Remove(value);
-                                }
+                                    hasChanged = true;
+                                    howMany -= 1;
+                                    if (howMany < 1)
+                                    {
+                                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                        piece.DisableEffectState(EffectStateType.ExtraEnergy);
+                                        piece.inventory.Items.Remove(value);
+                                    }
 
-                                break;
+                                    break;
+                                }
                             }
                         }
                     }
@@ -134,7 +134,6 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.PVPBlink)
                             {
-                                howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
                                     hasChanged = true;
@@ -158,7 +157,6 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.DeathBeam)
                             {
-                                howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
                                     hasChanged = true;
@@ -182,7 +180,6 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.FretsOfFire)
                             {
-                                howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
                                     hasChanged = true;
@@ -206,7 +203,6 @@
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.WeakeningShout)
                             {
-                                howMany = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ExtraEnergy);
                                 if (value.IsReplenishing)
                                 {
                                     hasChanged = true;
