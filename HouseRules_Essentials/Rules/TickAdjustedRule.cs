@@ -106,7 +106,7 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroHunter)
                     {
-                        if (piece.HasEffectState(EffectStateType.Wet) && piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Wet) < 3)
+                        if (!piece.HasEffectState(EffectStateType.Wet) || piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Wet) < 3)
                         {
                             for (int i = 0; i < piece.inventory.Items.Count; i++)
                             {
