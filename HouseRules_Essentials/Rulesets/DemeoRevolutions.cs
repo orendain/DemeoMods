@@ -1700,7 +1700,7 @@
                 { TileEffect.Target, 0 },
             });
 
-            var merchantOverriddenRule = new MerchantOfferRarityOverriddenRule(new Dictionary<AbilityKey, int>
+            /*var merchantOverriddenRule = new MerchantOfferRarityOverriddenRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.ScrollTsunami, 0 },
                 { AbilityKey.SummonElemental, 0 },
@@ -1710,7 +1710,7 @@
                 { AbilityKey.SwiftnessPotion, 0 },
                 { AbilityKey.DamageResistPotion, 50 },
                 { AbilityKey.InvisibilityPotion, 50 },
-            });
+            });*/
 
             var statModifiersRule = new StatModifiersOverridenRule(new Dictionary<AbilityKey, int>
             {
@@ -1726,7 +1726,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
-                merchantOverriddenRule,
+                //merchantOverriddenRule,
                 tickRule,
                 statModifiersRule,
                 goldPickupRule,

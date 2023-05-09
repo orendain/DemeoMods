@@ -5,12 +5,11 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using static HouseRules.Essentials.Rules.StartCardsModifiedRule;
 
     public sealed class MerchantOfferRarityOverriddenRule : Rule,
-        IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe, IDisableOnReconnect
+        IConfigWritable<Dictionary<AbilityKey, int>>
     {
-        public override string Description => "Merchant card rarity is overridden";
+        public override string Description => "Merchant card rarity is overridden <Skirmish only>";
 
         private readonly Dictionary<AbilityKey, int> _adjustments;
         private Dictionary<AbilityKey, int> _originals;

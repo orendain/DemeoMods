@@ -58,7 +58,7 @@
 
             var attackerTarget = Traverse.Create(abilityContext).Field("attacker").GetValue<Target>();
             var attacker = Traverse.Create(attackerTarget).Field("piece").GetValue<Piece>();
-            if (!attacker.IsPlayer())
+            if (attacker.characterClass != CharacterClass.Sorcerer)
             {
                 return true;
             }

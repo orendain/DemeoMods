@@ -106,8 +106,9 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroHunter)
                     {
-                        if (!piece.HasEffectState(EffectStateType.Wet) || piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Wet) < 3)
+                        if (piece.HasEffectState(EffectStateType.Discharge))
                         {
+                            MelonLoader.MelonLogger.Msg("Hunter is discharged...");
                             for (int i = 0; i < piece.inventory.Items.Count; i++)
                             {
                                 value = piece.inventory.Items[i];
@@ -120,6 +121,7 @@
                                         Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                         piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                         piece.inventory.Items.Remove(value);
+                                        MelonLoader.MelonLogger.Msg("Hunter's Lightning Bolt removed");
                                     }
 
                                     break;
@@ -225,6 +227,10 @@
                         Traverse.Create(__instance).Field<int>("durationTurnsLeft").Value = howMany + 1;
                         piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                         piece.effectSink.AddStatusEffect(EffectStateType.It, 1);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                    {
+                        MelonLoader.MelonLogger.Msg("Hunter's Extra Action reduced by 1");
                     }
                 }
             }
