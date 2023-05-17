@@ -1,6 +1,6 @@
 ﻿namespace Common
 {
-    using Bowser.Core;
+    using Bowser.Legacy;
     using MelonLoader;
 
     internal static class CommonModule
