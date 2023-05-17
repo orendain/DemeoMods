@@ -146,7 +146,6 @@
 
             var filteredRooms =
                 unfilteredRooms.Where(info => isRoomValidMethod.GetValue<bool>(info))
-                    .ToList()
                     .Select(Room.Parse)
                     .ToList();
 
