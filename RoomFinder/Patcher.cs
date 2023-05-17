@@ -1,9 +1,10 @@
 ﻿namespace RoomFinder
 {
-    using System.Reflection;
     using Boardgame;
+    using Boardgame.Networking;
+    using Boardgame.PlayerData;
+    using ExternalMatchmaking;
     using HarmonyLib;
-    using static UnityEngine.UI.Image;
 
     internal static class Patcher
     {
@@ -12,13 +13,31 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
                 postfix: new HarmonyMethod(typeof(Patcher), nameof(GameStartup_InitializeGame_Postfix)));
-            harmony.Patch(
-                original: AccessTools.Method(typeof(MatchMakingState), "OnRoomListUpdated"),
-                postfix: new HarmonyMethod(typeof(Patcher), nameof(MatchMakingState_OnRoomListUpdated_Postfix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(MatchMakingState), "FindGame"),
-                prefix: new HarmonyMethod(typeof(Patcher), nameof(MatchMakingState_FindGame_Prefix)));
+                original: AccessTools.Constructor(
+                    typeof(MatchmakingController),
+                    new[]
+                    {
+                        typeof(SerializableEventQueue),
+                        typeof(INetworkController),
+                        typeof(ConnectionStringProvider),
+                        typeof(PlayerDataController),
+                        typeof(UserBlockingController),
+                        typeof(ReconnectController),
+                        typeof(VoiceSettings),
+                        typeof(AvatarController),
+                        typeof(IExternalMatchmaking),
+                    }),
+                postfix: new HarmonyMethod(typeof(Patcher), nameof(MatchmakingController_Constructor_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(LobbyMatchmakingController), "OnRoomListUpdated"),
+                postfix: new HarmonyMethod(typeof(Patcher), nameof(LobbyMatchmakingController_OnRoomListUpdated_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(MatchMakingState), "OnMatchmakingRoomCodesUpdated"),
+                prefix: new HarmonyMethod(typeof(Patcher), nameof(MatchMakingState_OnMatchmakingRoomCodesUpdated_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -26,12 +45,17 @@
             RoomFinderMod.SharedState.GameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
         }
 
-        private static void MatchMakingState_OnRoomListUpdated_Postfix()
+        private static void MatchmakingController_Constructor_Postfix(MatchmakingController __instance)
+        {
+            RoomFinderMod.SharedState.LobbyMatchmakingController = __instance.LobbyMatchmakingController;
+        }
+
+        private static void LobbyMatchmakingController_OnRoomListUpdated_Postfix()
         {
             RoomFinderMod.SharedState.HasRoomListUpdated = true;
         }
 
-        private static bool MatchMakingState_FindGame_Prefix()
+        private static bool MatchMakingState_OnMatchmakingRoomCodesUpdated_Prefix()
         {
             if (!RoomFinderMod.SharedState.IsRefreshingRoomList)
             {
