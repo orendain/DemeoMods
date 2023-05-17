@@ -1,0 +1,43 @@
+name: RoomFinder
+
+on:
+  pull_request:
+    paths:
+      - 'RoomFinder/**'
+      - '.github/workflows/roomfinder.yml'
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: cmd
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set Up MSBuild
+        uses: microsoft/setup-msbuild@v1.3.1
+
+      - name: Add Build Dependencies
+        run: |
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/7563f9c2b2726c4c0d84dc5d4ba603df8e1e88d8/ws.zip
+          7z x ws.zip
+
+      - name: Build Project
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" RoomFinder\RoomFinder.csproj
+
+      - name: Assemble into Bundle
+        run: |
+          mkdir Bundle\Mods
+          xcopy RoomFinder\bin\Release\RoomFinder.dll Bundle\Mods
+
+      - name: Upload Bundle
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: RoomFinder
+          path: Bundle\*
