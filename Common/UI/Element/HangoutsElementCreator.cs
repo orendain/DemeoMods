@@ -1,7 +1,7 @@
 ﻿namespace Common.UI.Element
 {
     using System;
-    using Bowser.Core;
+    using Bowser.Legacy;
     using UnityEngine;
 
     internal class HangoutsElementCreator : IElementCreator

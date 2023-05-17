@@ -39,6 +39,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserCore.dll</HintPath>
     </Reference>
+    <Reference Include="BowserCoreDataTypesRuntime">
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserCoreDataTypesRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="BowserLegacyRuntime">
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserLegacyRuntime.dll</HintPath>
+    </Reference>
     <Reference Include="MelonLoader">
       <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>

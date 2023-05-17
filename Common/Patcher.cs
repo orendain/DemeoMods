@@ -1,7 +1,7 @@
 ﻿namespace Common
 {
-    using Bowser.Core;
     using Bowser.GameIntegration;
+    using Bowser.Legacy;
     using HarmonyLib;
 
     internal static class Patcher
