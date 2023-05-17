@@ -28,14 +28,13 @@ Gameplay changes
 - Reviving a player by any means removes Stunned and Frozen effects
 - Player summons have detrimental effects on enemies who hit them
 - Some abilities now have added secondary effects
-- Player cast electrical attacks won't damage or stun other players or non-charmed allies
+- Sorcerer cast electrical attacks won't damage or stun other players or non-charmed allies
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
 - Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin
 - All bosses will start with more health and 1 innate damage resist
 - Placed Torches have 4 health instead of 15
 - Potion Stands will no longer give out Water or Healing Potions
-- Desert Merchant rewards much better loot now
 - The Elven Queen has new self buffs and abilities to add a REAL challenge
 - The Serpent Lord boss is invulnerable while invisible... so you have to do it the HARD way
 - If playing Roots of Evil the player with the most javelins will be first in turn order on the LAST floor
