@@ -140,12 +140,15 @@
                 Traverse.Create(RoomFinderMod.SharedState.LobbyMatchmakingController)
                     .Field<List<RoomInfo>>("roomList").Value;
 
-            var isRoomValidMethod = Traverse.Create(RoomFinderMod.SharedState.LobbyMatchmakingController).Method(
-                "IsRoomValidWithCurrentConfiguration",
-                new[] { typeof(RoomInfo) });
+            var isRoomValidMethod =
+                Traverse.Create(RoomFinderMod.SharedState.LobbyMatchmakingController)
+                    .Method("IsRoomValidWithCurrentConfiguration", new[] { typeof(RoomInfo) });
 
-            var filteredRooms = unfilteredRooms
-                .Where(info => isRoomValidMethod.GetValue<bool>(info)).ToList().Select(Room.Parse).ToList();
+            var filteredRooms =
+                unfilteredRooms.Where(info => isRoomValidMethod.GetValue<bool>(info))
+                    .ToList()
+                    .Select(Room.Parse)
+                    .ToList();
 
             RoomFinderMod.Logger.Msg($"Found {unfilteredRooms.Count} total rooms.");
             RoomFinderMod.Logger.Msg($"Listing {filteredRooms.Count} available rooms.");
