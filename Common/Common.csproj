@@ -39,6 +39,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\BowserCore.dll</HintPath>
     </Reference>
+    <Reference Include="BowserCoreDataTypesRuntime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\BowserCoreDataTypesRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="BowserInteractionRuntime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\BowserInteractionRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="BowserLegacyRuntime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\BowserLegacyRuntime.dll</HintPath>
+    </Reference>
     <Reference Include="MelonLoader">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>

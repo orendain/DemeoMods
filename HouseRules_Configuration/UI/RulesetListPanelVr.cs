@@ -26,7 +26,7 @@
             return new RulesetListPanelVr(
                 rulebook,
                 elementCreator,
-                PageStack.NewInstance());
+                PageStack.NewInstance(elementCreator));
         }
 
         private RulesetListPanelVr(

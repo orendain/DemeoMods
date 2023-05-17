@@ -147,8 +147,6 @@
             }
 
             int rand;
-            AbilityKey replacementAbilityKey;
-
             if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 int randNum = RandomProvider.GetThreadRandom().Next(101);

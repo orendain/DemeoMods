@@ -74,7 +74,7 @@
             if (targetPiece.IsPlayer() || targetPiece.IsBot() || (targetPiece.IsProp() && canBeHit))
             {
                 var localizedText = Traverse.Create(damage).Method("GetLocalizedText", paramTypes: new[] { typeof(string), typeof(bool) }, arguments: new object[] { "Ui/pieceUi/notification/damage/noDamage", false }).GetValue<string>();
-                Notification.ShowGoldenText(new Target(targetPiece).gameObject, localizedText);
+                Notification.ShowGoldenText(targetPiece, new Target(targetPiece).gameObject, localizedText);
                 targetPiece.effectSink.SubtractHealth(0);
                 return false; // Don't run the original OnStarted method.
             }

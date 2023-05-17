@@ -55,17 +55,23 @@
             int range = 0;
             if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                if (config.AttackDamage < 3 || config.PowerIndex > 40)
+                if (config.PowerIndex > 40)
                 {
                     return;
                 }
 
-                int low = -1;
+                int low = 0;
                 int high = 1;
-                if (config.AttackDamage < 6)
+                if (config.AttackDamage < 4)
                 {
-                    low = 0;
-                    high = 2;
+                    high = 3;
+                }
+                else if (config.AttackDamage < 6)
+                {
+                    if (Random.Range(1, 101) < 21)
+                    {
+                        high = 2;
+                    }
                 }
 
                 range = Random.Range(low, high);

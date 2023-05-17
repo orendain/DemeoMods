@@ -111,14 +111,24 @@
 
         private void PopulateRoomList()
         {
-            var cachedRooms =
-                Traverse.Create(RoomFinderMod.SharedState.GameContext.gameStateMachine)
-                    .Field<Dictionary<string, RoomInfo>>("cachedRoomList").Value;
+            var unfilteredRooms =
+                Traverse.Create(RoomFinderMod.SharedState.LobbyMatchmakingController)
+                    .Field<List<RoomInfo>>("roomList").Value;
 
-            RoomFinderMod.Logger.Msg($"Captured {cachedRooms.Count} rooms.");
+            RoomFinderMod.Logger.Msg($"Captured {unfilteredRooms.Count} rooms.");
+            var isRoomValidMethod =
+                Traverse.Create(RoomFinderMod.SharedState.LobbyMatchmakingController)
+                    .Method("IsRoomValidWithCurrentConfiguration", new[] { typeof(RoomInfo) });
 
-            var rooms = cachedRooms.Values.ToList().Select(Room.Parse).ToList();
-            _roomListPanel.UpdateRooms(rooms);
+            var filteredRooms =
+                unfilteredRooms.Where(info => isRoomValidMethod.GetValue<bool>(info))
+                    .Select(Room.Parse)
+                    .ToList();
+
+            RoomFinderMod.Logger.Msg($"Found {unfilteredRooms.Count} total rooms.");
+            RoomFinderMod.Logger.Msg($"Listing {filteredRooms.Count} available rooms.");
+
+            _roomListPanel.UpdateRooms(filteredRooms);
         }
     }
 }
