@@ -13,7 +13,7 @@
     public static class Environments
     {
         private const string DemeoPCEditionString = "Demeo PC Edition";
-        private const int HangoutsSceneIndex = 43;
+        private const int HangoutsSceneIndex = 45;
 
         public static Environment CurrentEnvironment()
         {

@@ -16,7 +16,6 @@
             var harmony = new Harmony("com.orendain.demeomods.houserules.core");
             LifecycleDirector.Patch(harmony);
             BoardSyncer.Patch(harmony);
-            HangoutsGameRacer.Patch(harmony);
 
             HR.Rulebook.Register(Ruleset.None);
         }

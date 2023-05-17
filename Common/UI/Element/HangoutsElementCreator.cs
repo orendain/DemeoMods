@@ -83,7 +83,10 @@
             buttonData.pressHaptic = BowserButtonData.HapticEffect.Mini;
             buttonData.pressSound = BowserButtonData.SoundEffect.Generic2d;
 
-            CommonModule.HangoutsButtonHandler.RegisterBowserButton(buttonData, delegate { callback(); });
+            var selectable3D = button.AddComponent<Bowser.Interaction.Selectable3D>();
+            selectable3D.OnClicked += delegate { callback(); };
+
+            // CommonModule.HangoutsButtonHandler.RegisterBowserButton(buttonData, delegate { callback(); });
             return button;
         }
 

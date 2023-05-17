@@ -26,6 +26,11 @@
                 return new PageStackNavigation(pageStack, NonVrElementCreator.Instance());
             }
 
+            if (Environments.CurrentEnvironment() == Environment.Hangouts)
+            {
+                return new PageStackNavigation(pageStack, HangoutsElementCreator.Instance());
+            }
+
             return new PageStackNavigation(pageStack, VrElementCreator.Instance());
         }
 
