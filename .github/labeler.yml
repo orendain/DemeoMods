@@ -1,0 +1,24 @@
+'area: advancedstats':
+- AdvancedStats/**
+
+'area: common':
+- Common/**
+
+'area: houserules/configuration':
+- HouseRules_Configuration/**
+
+'area: houserules/core':
+- HouseRules_Core/**
+
+'area: houserules/essentials':
+- HouseRules_Essentials/**
+
+'area: roomcode':
+- RoomCode/**
+
+'area: roomfinder':
+- RoomFinder/**
+
+'area: skipintro':
+- SkipIntro/**
+
