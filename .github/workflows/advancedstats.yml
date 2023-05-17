@@ -29,7 +29,7 @@ jobs:
           7z x ws.zip
 
       - name: Build Project
-        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" AdvancedStats\AdvancedStats.csproj
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoPcDir="%GITHUB_WORKSPACE%" AdvancedStats\AdvancedStats.csproj
 
       - name: Assemble into Bundle
         run: |
