@@ -19,14 +19,9 @@
 
         public TMP_Text PageStatusText { get; }
 
-        public static PageStackNavigation NewInstance(PageStack pageStack)
+        public static PageStackNavigation NewInstance(PageStack pageStack, IElementCreator elementCreator)
         {
-            if (Environments.CurrentEnvironment() == Environment.NonVr)
-            {
-                return new PageStackNavigation(pageStack, NonVrElementCreator.Instance());
-            }
-
-            return new PageStackNavigation(pageStack, VrElementCreator.Instance());
+            return new PageStackNavigation(pageStack, elementCreator);
         }
 
         private PageStackNavigation(PageStack pageStack, IElementCreator elementCreator)
