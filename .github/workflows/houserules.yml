@@ -1,38 +1,39 @@
-name: Build Mods
+name: HouseRules
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    paths:
+      - 'HouseRules*/**'
+      - '.github/workflows/houserules.yml'
+  push:
+    branches:
+      - 'main'
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 defaults:
   run:
     shell: cmd
 
 jobs:
-
-  build_houserules:
+  build:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Add MSBuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
+      - name: Set Up MSBuild
+        uses: microsoft/setup-msbuild@v1.3.1
 
-      - name: Prepare
+      - name: Add Build Dependencies
         run: |
           C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/7563f9c2b2726c4c0d84dc5d4ba603df8e1e88d8/ws.zip
-          7z x ws.zip 
+          7z x ws.zip
 
       - name: Build HouseRules_Core
         run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Core\HouseRules_Core.csproj
+
       - name: Build HouseRules_Essentials
         run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Essentials\HouseRules_Essentials.csproj
+
       - name: Build HouseRules_Configuration
         run: msbuild -restore -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Configuration\HouseRules_Configuration.csproj
 
@@ -41,7 +42,7 @@ jobs:
           C:\msys64\usr\bin\wget.exe https://github.com/jilleJr/Newtonsoft.Json-for-Unity/archive/refs/tags/13.0.102.zip
           7z e 13.0.102.zip -o. "Newtonsoft.Json-for-Unity-13.0.102\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.dll"
 
-      - name: Assemble Zip
+      - name: Assemble into Bundle
         run: |
           mkdir Bundle\Mods
           xcopy HouseRules_Core\bin\Release\HouseRules_Core.dll Bundle\Mods
@@ -52,8 +53,8 @@ jobs:
           mkdir Bundle\UserData\HouseRules\ExampleRulesets
           xcopy docs\rulesets\* Bundle\UserData\HouseRules\ExampleRulesets
 
-      - name: Upload HouseRules
-        uses: actions/upload-artifact@v3.1.0
+      - name: Upload Bundle
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: HouseRules
           path: Bundle\*

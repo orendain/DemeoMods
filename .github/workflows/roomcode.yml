@@ -1,10 +1,10 @@
-name: RoomFinder
+name: RoomCode
 
 on:
   pull_request:
     paths:
-      - 'RoomFinder/**'
-      - '.github/workflows/roomfinder.yml'
+      - 'RoomCode/**'
+      - '.github/workflows/roomcode.yml'
   push:
     branches:
       - 'main'
@@ -29,15 +29,15 @@ jobs:
           7z x ws.zip
 
       - name: Build Project
-        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" RoomFinder\RoomFinder.csproj
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" RoomCode\RoomCode.csproj
 
       - name: Assemble into Bundle
         run: |
           mkdir Bundle\Mods
-          xcopy RoomFinder\bin\Release\RoomFinder.dll Bundle\Mods
+          xcopy RoomCode\bin\Release\RoomCode.dll Bundle\Mods
 
       - name: Upload Bundle
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: RoomFinder
+          name: RoomCode
           path: Bundle\*

@@ -1,10 +1,10 @@
-name: RoomFinder
+name: SkipIntro
 
 on:
   pull_request:
     paths:
-      - 'RoomFinder/**'
-      - '.github/workflows/roomfinder.yml'
+      - 'SkipIntro/**'
+      - '.github/workflows/skipintro.yml'
   push:
     branches:
       - 'main'
@@ -29,15 +29,15 @@ jobs:
           7z x ws.zip
 
       - name: Build Project
-        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" RoomFinder\RoomFinder.csproj
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" SkipIntro\SkipIntro.csproj
 
       - name: Assemble into Bundle
         run: |
           mkdir Bundle\Mods
-          xcopy RoomFinder\bin\Release\RoomFinder.dll Bundle\Mods
+          xcopy SkipIntro\bin\Release\SkipIntro.dll Bundle\Mods
 
       - name: Upload Bundle
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: RoomFinder
+          name: SkipIntro
           path: Bundle\*
