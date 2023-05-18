@@ -60,7 +60,7 @@
             {
                 targetPiece.effectSink.SubtractHealth(0);
                 var localizedText = Traverse.Create(damage).Method("GetLocalizedText", paramTypes: new[] { typeof(string), typeof(bool) }, arguments: new object[] { "Ui/pieceUi/notification/damage/noDamage", false }).GetValue<string>();
-                Notification.ShowGoldenText(new Target(targetPiece).gameObject, localizedText);
+                Notification.ShowGoldenText(targetPiece, new Target(targetPiece).gameObject, localizedText);
 
                 return false; // Don't run the original OnStarted method.
             }

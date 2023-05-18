@@ -1,6 +1,7 @@
 ﻿namespace Common.UI.Element
 {
     using System;
+    using Bowser.Interaction;
     using Bowser.Legacy;
     using UnityEngine;
 
@@ -83,7 +84,9 @@
             buttonData.pressHaptic = BowserButtonData.HapticEffect.Mini;
             buttonData.pressSound = BowserButtonData.SoundEffect.Generic2d;
 
-            CommonModule.HangoutsButtonHandler.RegisterBowserButton(buttonData, delegate { callback(); });
+            var selectable = button.AddComponent<Selectable3D>();
+            selectable.OnClicked += obj => { callback(); };
+
             return button;
         }
 
