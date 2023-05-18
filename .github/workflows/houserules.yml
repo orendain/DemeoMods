@@ -25,7 +25,7 @@ jobs:
 
       - name: Add Build Dependencies
         run: |
-          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/203cf1f5fbcf0a8a375e7acb4e2a6c83eca5b58c/ws.zip
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/237277ac6fbc60feb5b83c0f87d5407513d51de1/ws.zip
           7z x ws.zip
 
       - name: Build HouseRules_Core
