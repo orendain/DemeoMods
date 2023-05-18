@@ -14,7 +14,7 @@
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
         internal static readonly SharedState SharedState = SharedState.NewInstance();
 
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
         {
             var harmony = new Harmony("com.orendain.demeomods.roomfinder");
             Patcher.Patch(harmony);

@@ -11,7 +11,7 @@
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Core");
         private static readonly Harmony RulesPatcher = new Harmony("com.orendain.demeomods.houserules.core.patcher");
 
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
         {
             var harmony = new Harmony("com.orendain.demeomods.houserules.core");
             LifecycleDirector.Patch(harmony);
@@ -20,7 +20,7 @@
             HR.Rulebook.Register(Ruleset.None);
         }
 
-        public override void OnApplicationLateStart()
+        public override void OnLateInitializeMelon()
         {
             PatchRegisteredRules();
         }

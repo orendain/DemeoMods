@@ -10,7 +10,7 @@
         internal static BowserButtonHandler HangoutsButtonHandler { get; set; }
 
         /// <summary>
-        /// Initialize the module. This should be called during the dependant module's OnApplicationStart().
+        /// Initialize the module. This should be called during the dependant module's OnInitializeMelon().
         /// </summary>
         public static void Initialize()
         {
