@@ -1,6 +1,7 @@
 namespace Common.UI
 {
     using System.Collections.Generic;
+    using Common.UI.Element;
     using UnityEngine;
 
     public class PageStack
@@ -10,16 +11,16 @@ namespace Common.UI
 
         public PageStackNavigation Navigation { get; }
 
-        public static PageStack NewInstance()
+        public static PageStack NewInstance(IElementCreator elementCreator)
         {
-            return new PageStack();
+            return new PageStack(elementCreator);
         }
 
-        private PageStack()
+        private PageStack(IElementCreator elementCreator)
         {
             _pages = new List<GameObject>();
             _currentPageIndex = 0;
-            Navigation = PageStackNavigation.NewInstance(this);
+            Navigation = PageStackNavigation.NewInstance(this, elementCreator);
 
             UpdatePageStatus();
         }

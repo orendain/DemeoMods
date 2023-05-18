@@ -29,7 +29,7 @@
             return new RoomListPanelVr(
                 elementCreator,
                 onRefresh,
-                PageStack.NewInstance());
+                PageStack.NewInstance(elementCreator));
         }
 
         private RoomListPanelVr(VrElementCreator elementCreator, Action onRefresh, PageStack pageStack)
