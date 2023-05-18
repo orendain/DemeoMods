@@ -1,7 +1,6 @@
 ﻿namespace RoomFinder
 {
     using Common;
-    using HarmonyLib;
     using MelonLoader;
     using RoomFinder.UI;
     using UnityEngine;
@@ -16,9 +15,8 @@
 
         public override void OnInitializeMelon()
         {
-            var harmony = new Harmony("com.orendain.demeomods.roomfinder");
-            Patcher.Patch(harmony);
-            CommonModule.Initialize();
+            Patcher.Patch(HarmonyInstance);
+            CommonModule.Initialize(HarmonyInstance);
         }
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)

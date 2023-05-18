@@ -13,9 +13,7 @@
 
         public override void OnInitializeMelon()
         {
-            var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.roomcode");
-            ModPatcher.Patch(harmony);
-
+            ModPatcher.Patch(HarmonyInstance);
             InitializeConfiguration();
         }
 

@@ -9,13 +9,11 @@
     internal class CoreMod : MelonMod
     {
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Core");
-        private static readonly Harmony RulesPatcher = new Harmony("com.orendain.demeomods.houserules.core.patcher");
 
         public override void OnInitializeMelon()
         {
-            var harmony = new Harmony("com.orendain.demeomods.houserules.core");
-            LifecycleDirector.Patch(harmony);
-            BoardSyncer.Patch(harmony);
+            LifecycleDirector.Patch(HarmonyInstance);
+            BoardSyncer.Patch(HarmonyInstance);
 
             HR.Rulebook.Register(Ruleset.None);
         }
@@ -25,7 +23,7 @@
             PatchRegisteredRules();
         }
 
-        private static void PatchRegisteredRules()
+        private void PatchRegisteredRules()
         {
             var patchableRules = HR.Rulebook.RuleTypes.Where(typ => typeof(IPatchable).IsAssignableFrom(typ)).ToList();
             Logger.Msg($"Found [{patchableRules.Count}] registered rules that require game patching.");
@@ -35,7 +33,7 @@
                 Logger.Msg($"Patching game with rule type: {ruleType}");
 
                 var traverse = Traverse.Create(ruleType)
-                    .Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] { RulesPatcher });
+                    .Method("Patch", paramTypes: new[] { typeof(Harmony) }, arguments: new object[] { HarmonyInstance });
                 if (!traverse.MethodExists())
                 {
                     Logger.Warning($"Could not find expected Patch method for rule [{ruleType}]. Skipping patching for that rule.");

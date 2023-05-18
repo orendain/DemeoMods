@@ -1,6 +1,7 @@
 ﻿namespace Common
 {
     using Bowser.Legacy;
+    using HarmonyLib;
     using MelonLoader;
 
     internal static class CommonModule
@@ -12,9 +13,8 @@
         /// <summary>
         /// Initialize the module. This should be called during the dependant module's OnInitializeMelon().
         /// </summary>
-        public static void Initialize()
+        public static void Initialize(Harmony harmony)
         {
-            var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.common");
             Patcher.Patch(harmony);
         }
     }

@@ -8,8 +8,7 @@
 
         public override void OnInitializeMelon()
         {
-            var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.skipintro");
-            ModPatcher.Patch(harmony);
+            ModPatcher.Patch(HarmonyInstance);
         }
     }
 }
