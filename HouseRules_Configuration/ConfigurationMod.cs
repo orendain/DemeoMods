@@ -20,7 +20,7 @@
 
         public override void OnInitializeMelon()
         {
-            CommonModule.Initialize();
+            CommonModule.Initialize(HarmonyInstance);
             DetermineIfUpdateAvailable();
         }
 
