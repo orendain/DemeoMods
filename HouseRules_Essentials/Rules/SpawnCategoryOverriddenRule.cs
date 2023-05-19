@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using Boardgame;
-    using Data.GameData;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -18,7 +17,7 @@
         /// Initializes a new instance of the <see cref="SpawnCategoryOverriddenRule"/> class.
         /// </summary>
         /// <param name="adjustments">Accepts a Dictionary of BoardPieceIDs and Int settings
-        /// for MaxPerDe</param>
+        /// for MaxPerDeck.</param>
         public SpawnCategoryOverriddenRule(Dictionary<BoardPieceId, List<int>> adjustments)
         {
             _adjustments = adjustments;

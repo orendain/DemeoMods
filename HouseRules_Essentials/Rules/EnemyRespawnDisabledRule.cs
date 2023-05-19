@@ -32,12 +32,7 @@
 
         private static bool AIDirectorController2_DynamicSpawning_Prefix()
         {
-            if (!_isActivated)
-            {
-                return true;
-            }
-
-            return false;
+            return !_isActivated;
         }
     }
 }

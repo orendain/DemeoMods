@@ -79,7 +79,7 @@
                 }
 
                 mySubDeck.Add(deckItem);
-                for (int i = 0; i < deckItemConfig.Value - 1; i++)
+                for (var i = 0; i < deckItemConfig.Value - 1; i++)
                 {
                     mySubDeck.Add(deckItem);
                 }
@@ -137,7 +137,7 @@
             SpawnZone spawnZone2 = null;
             List<SpawnZone> list;
             list = context.spawnZoneModel.GetZonesWithTag(tag);
-            for (int i = list.Count - 1; i >= 0; i--)
+            for (var i = list.Count - 1; i >= 0; i--)
             {
                 SpawnZone spawnZone3 = list[i];
                 if (spawnZone3.GetAllFreeTiles(ref boardState).Count == 0)
@@ -150,8 +150,8 @@
             IntPoint2D intPoint2D = IntPoint2D.Invalid;
             IntPoint2D keyHolderPosition = IntPoint2D.Invalid;
 
-            int num = 0;
-            for (int j = 0; j < list.Count; j++)
+            var num = 0;
+            for (var j = 0; j < list.Count; j++)
             {
                 SpawnZone spawnZone4 = list[j];
                 if (spawnZone4.NumStepsToExit >= AIDirectorConfig.KeyHolderMinDistanceToExit && spawnZone4.NumStepsToExit <= AIDirectorConfig.KeyHolderMaxDistanceToExit && spawnZone4.numStepsToEntrance >= AIDirectorConfig.KeyHolderMinDistanceToEntrance)

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using Common;
     using Common.UI;
     using HouseRules.Configuration.UI;
     using MelonLoader;
@@ -18,13 +17,12 @@
 
         internal static bool IsUpdateAvailable { get; private set; }
 
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
         {
-            CommonModule.Initialize();
             DetermineIfUpdateAvailable();
         }
 
-        public override void OnApplicationLateStart()
+        public override void OnLateInitializeMelon()
         {
             ExampleRulesetExporter.ExportExampleRulesetsIfNeeded();
 

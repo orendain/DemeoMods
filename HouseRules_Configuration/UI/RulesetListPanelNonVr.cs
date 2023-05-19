@@ -125,7 +125,6 @@
             buttonTextTransform.sizeDelta = new Vector2(300, 50);
             buttonTextTransform.localPosition = new Vector2(-325f, 1);
 
-
             var description = _elementCreator.CreateNormalText(ruleset.Description);
             var rectTransform = (RectTransform)description.transform;
             rectTransform.SetParent(container.transform, worldPositionStays: false);
