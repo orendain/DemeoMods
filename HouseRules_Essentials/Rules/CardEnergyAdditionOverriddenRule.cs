@@ -9,7 +9,6 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-
     public sealed class CardEnergyAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
     {
@@ -22,14 +21,14 @@
 
         public CardEnergyAdditionOverriddenRule(Dictionary<BoardPieceId, List<AbilityKey>> energyCards)
         {
-            _energyCards= energyCards;
+            _energyCards = energyCards;
         }
 
         public Dictionary<BoardPieceId, List<AbilityKey>> GetConfigObject() => _energyCards;
 
         protected override void OnActivate(GameContext gameContext)
         {
-            _globalEnergyCards= _energyCards;
+            _globalEnergyCards = _energyCards;
             _isActivated = true;
         }
 
@@ -96,8 +95,8 @@
                 return;
             }
 
-            int rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
-            AbilityKey replacementAbilityKey = replacementAbilityKeys[rand];
+            var rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
+            var replacementAbilityKey = replacementAbilityKeys[rand];
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
         }
     }

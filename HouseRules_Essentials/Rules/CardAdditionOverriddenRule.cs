@@ -10,7 +10,6 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-
     public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
     {
@@ -80,8 +79,8 @@
                 return;
             }
 
-            Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
-            if (whatIsit.type == Interactable.Type.PotionStand || whatIsit.type == Interactable.Type.WaterBottleChest || whatIsit.type == Interactable.Type.VortexDustChest)
+            var interactable = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
+            if (interactable.type == Interactable.Type.PotionStand || interactable.type == Interactable.Type.WaterBottleChest || interactable.type == Interactable.Type.VortexDustChest)
             {
                 _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
                 _isSkipped = true;
@@ -141,8 +140,8 @@
                 return;
             }
 
-            int rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
-            AbilityKey replacementAbilityKey = replacementAbilityKeys[rand];
+            var rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
+            var replacementAbilityKey = replacementAbilityKeys[rand];
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
         }
     }
