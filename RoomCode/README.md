@@ -22,7 +22,7 @@ If none of the room codes are available, the mod will fall back to Demeo's
 random room code generation.
 
 **Example configuration:**
-```toml[ModPatcher.cs](ModPatcher.cs)
+```toml
 [RoomCode]
 enabled = true
 codes = ["8888", "7777", "1234"]
