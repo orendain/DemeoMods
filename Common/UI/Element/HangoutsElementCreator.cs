@@ -41,7 +41,7 @@
         /// </summary>
         internal static bool IsReady()
         {
-            return VrElementCreator.IsReady() && CommonModule.HangoutsButtonHandler != null;
+            return VrElementCreator.IsReady();
         }
 
         public GameObject CreateNormalText(string text)

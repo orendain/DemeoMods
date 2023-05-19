@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using Common;
     using Common.UI;
     using HouseRules.Configuration.UI;
     using MelonLoader;
@@ -20,7 +19,6 @@
 
         public override void OnInitializeMelon()
         {
-            CommonModule.Initialize(HarmonyInstance);
             DetermineIfUpdateAvailable();
         }
 
