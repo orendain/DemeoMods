@@ -53,6 +53,9 @@
     <Reference Include="MelonLoader">
       <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
+    <Reference Include="Oculus.Interaction">
+      <HintPath>..\..\..\..\..\Oculus\Software\resolution-games-demeo\DemeoVR\Demeo_Data\Managed\Oculus.Interaction.dll</HintPath>
+    </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Photon3Unity3D.dll</HintPath>
     </Reference>

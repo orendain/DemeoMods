@@ -53,6 +53,9 @@
     <Reference Include="MelonLoader">
       <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
+    <Reference Include="Oculus.Interaction">
+      <HintPath>..\..\..\..\..\Oculus\Software\resolution-games-demeo\DemeoVR\Demeo_Data\Managed\Oculus.Interaction.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Net.Http" />
     <Reference Include="Unity.TextMeshPro">

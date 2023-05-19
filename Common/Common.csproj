@@ -54,6 +54,9 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Oculus.Interaction">
+      <HintPath>..\..\..\..\..\Oculus\Software\resolution-games-demeo\DemeoVR\Demeo_Data\Managed\Oculus.Interaction.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>
