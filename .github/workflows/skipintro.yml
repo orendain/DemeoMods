@@ -25,7 +25,7 @@ jobs:
 
       - name: Add Build Dependencies
         run: |
-          C:\msys64\usr\bin\wget.exe https://gist.github.com/jimconner/f3c89c300d0b13e23c32fc9fb5d1b1df/raw/7563f9c2b2726c4c0d84dc5d4ba603df8e1e88d8/ws.zip
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/eab432f1b7df70451905531f1e77bb05102747ec/ws.zip
           7z x ws.zip
 
       - name: Build Project

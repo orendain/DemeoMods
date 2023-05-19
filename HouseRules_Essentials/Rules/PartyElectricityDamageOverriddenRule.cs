@@ -13,7 +13,6 @@
     {
         public override string Description => "Player on player electricity damage is zero.";
 
-        private static bool _globalAdjustments;
         private static bool _isActivated;
 
         private readonly bool _adjustments;
@@ -27,7 +26,6 @@
 
         protected override void OnActivate(GameContext gameContext)
         {
-            _globalAdjustments = _adjustments;
             _isActivated = true;
         }
 
@@ -35,7 +33,6 @@
 
         private static void Patch(Harmony harmony)
         {
-
             harmony.Patch(
                 original: AccessTools.Method(typeof(ProjectileHitSequence), "OnStarted"),
                 prefix: new HarmonyMethod(
@@ -60,7 +57,7 @@
             {
                 targetPiece.effectSink.SubtractHealth(0);
                 var localizedText = Traverse.Create(damage).Method("GetLocalizedText", paramTypes: new[] { typeof(string), typeof(bool) }, arguments: new object[] { "Ui/pieceUi/notification/damage/noDamage", false }).GetValue<string>();
-                Notification.ShowGoldenText(new Target(targetPiece).gameObject, localizedText);
+                Notification.ShowGoldenText(targetPiece, new Target(targetPiece).gameObject, localizedText);
 
                 return false; // Don't run the original OnStarted method.
             }

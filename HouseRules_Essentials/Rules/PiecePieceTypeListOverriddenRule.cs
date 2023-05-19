@@ -44,7 +44,7 @@
         private static Dictionary<BoardPieceId, List<PieceType>> ReplaceExistingProperties(
             Dictionary<BoardPieceId, List<PieceType>> pieceConfigChanges)
         {
-            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value; 
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var previousProperties = new Dictionary<BoardPieceId, List<PieceType>>();
 
             foreach (var item in pieceConfigChanges)

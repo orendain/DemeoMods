@@ -15,7 +15,7 @@
     {
         public override string Description => "Card additions from chests are overridden";
 
-        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalchestCards;
+        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalChestCards;
         private static bool _isActivated;
         private static bool _isChest;
         private static int _numPlayers;
@@ -31,7 +31,7 @@
 
         protected override void OnActivate(GameContext gameContext)
         {
-            _globalchestCards = _chestCards;
+            _globalChestCards = _chestCards;
             _isActivated = true;
         }
 
@@ -43,7 +43,7 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new Type[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
+                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
                 prefix: new HarmonyMethod(
                     typeof(CardChestAdditionOverriddenRule),
                     nameof(Interactable_OnInteraction_Prefix)));
@@ -134,16 +134,14 @@
                 return;
             }
 
-            if (!_globalchestCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
+            if (!_globalChestCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
             {
                 return;
             }
 
-            int rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
-            AbilityKey replacementAbilityKey = replacementAbilityKeys[rand];
+            var rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
+            var replacementAbilityKey = replacementAbilityKeys[rand];
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
-
-            return;
         }
     }
 }

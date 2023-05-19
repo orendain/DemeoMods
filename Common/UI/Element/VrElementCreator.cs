@@ -118,7 +118,9 @@
             hoverEffect.Init();
 
             // Added after HoverMaterial to enable effect.
-            button.AddComponent<ClickableButton>().InitButton(0, string.Empty, callback, false);
+            var clickableButton = button.AddComponent<ClickableButton>();
+            clickableButton.InitButton(0, string.Empty, callback, false);
+            clickableButton.enabled = true;
 
             // Added last to allow ray to hit full object.
             button.AddComponent<BoxCollider>();

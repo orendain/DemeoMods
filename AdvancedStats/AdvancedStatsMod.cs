@@ -1,6 +1,5 @@
 ﻿namespace AdvancedStats
 {
-    using HarmonyLib;
     using MelonLoader;
 
     internal class AdvancedStatsMod : MelonMod
@@ -9,14 +8,13 @@
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            var harmony = new Harmony("com.orendain.demeomods.advancedstats");
             if (sceneName == "StartupDesktop")
             {
-                NonVRAdvancedStatsView.Patch(harmony);
+                NonVRAdvancedStatsView.Patch(HarmonyInstance);
             }
             else if (sceneName.Contains("Startup"))
             {
-                VRAdvancedStatsView.Patch(harmony);
+                VRAdvancedStatsView.Patch(HarmonyInstance);
             }
         }
     }

@@ -1,7 +1,8 @@
 ﻿namespace Common.UI.Element
 {
     using System;
-    using Bowser.Core;
+    using Bowser.Interaction;
+    using Bowser.Legacy;
     using UnityEngine;
 
     internal class HangoutsElementCreator : IElementCreator
@@ -40,7 +41,7 @@
         /// </summary>
         internal static bool IsReady()
         {
-            return VrElementCreator.IsReady() && CommonModule.HangoutsButtonHandler != null;
+            return VrElementCreator.IsReady();
         }
 
         public GameObject CreateNormalText(string text)
@@ -83,7 +84,9 @@
             buttonData.pressHaptic = BowserButtonData.HapticEffect.Mini;
             buttonData.pressSound = BowserButtonData.SoundEffect.Generic2d;
 
-            CommonModule.HangoutsButtonHandler.RegisterBowserButton(buttonData, delegate { callback(); });
+            var selectable = button.AddComponent<Selectable3D>();
+            selectable.OnClicked += obj => { callback(); };
+
             return button;
         }
 

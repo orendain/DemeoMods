@@ -35,7 +35,7 @@
             harmony.Patch(
                 original: AccessTools.Constructor(
                     typeof(SerializableEventPickup),
-                    new[] {typeof(int), typeof(IntPoint2D), typeof(bool)}),
+                    new[] { typeof(int), typeof(IntPoint2D), typeof(bool) }),
                 postfix: new HarmonyMethod(
                     typeof(GoldPickedUpMultipliedRule),
                     nameof(SerializableEventPickup_Constructor_Postfix)));
@@ -48,7 +48,7 @@
                 return;
             }
 
-            __instance.goldAmount = (int) (__instance.goldAmount * _globalMultiplier);
+            __instance.goldAmount = (int)(__instance.goldAmount * _globalMultiplier);
         }
     }
 }

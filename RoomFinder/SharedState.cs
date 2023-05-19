@@ -6,6 +6,8 @@
     {
         internal GameContext GameContext { get; set; }
 
+        internal LobbyMatchmakingController LobbyMatchmakingController { get; set; }
+
         internal bool IsRefreshingRoomList { get; set; }
 
         internal bool HasRoomListUpdated { get; set; }

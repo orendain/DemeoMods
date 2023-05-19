@@ -62,60 +62,66 @@
             }
 
             __result = false;
-            for (int i = 0; i < piece.inventory.Items.Count; i++)
+            for (var i = 0; i < piece.inventory.Items.Count; i++)
             {
-                Inventory.Item value = piece.inventory.Items[i];
+                var value = piece.inventory.Items[i];
 
-                if (value.IsReplenishing)
+                if (!value.IsReplenishing)
                 {
-                    // Bypass problem with replenishCooldown somehow being set to -1 by Demeo
-                    foreach (var card in _globalHeroStartCards[piece.boardPieceId])
+                    continue;
+                }
+
+                // Bypass problem with replenishCooldown somehow being set to -1 by Demeo
+                foreach (var card in _globalHeroStartCards[piece.boardPieceId])
+                {
+                    if (value.abilityKey == card.Card && card.ReplenishFrequency > 1 && value.replenishCooldown < 0)
                     {
-                        if (value.abilityKey == card.Card && card.ReplenishFrequency > 1 && value.replenishCooldown < 0)
-                        {
-                            value.replenishCooldown = card.ReplenishFrequency - 1;
-                            piece.inventory.Items[i] = value;
-                        }
+                        value.replenishCooldown = card.ReplenishFrequency - 1;
+                        piece.inventory.Items[i] = value;
+                    }
+                }
+
+                var skipReplenishing = false;
+                if (!AbilityFactory.TryGetAbility(value.abilityKey, out var ability))
+                {
+                    throw new Exception("Failed to get ability prefab from ability key while attempting to replenish hand!");
+                }
+
+                var j = 0;
+                var count = ability.effectsPreventingReplenished.Count;
+                while (j < count)
+                {
+                    if (piece.HasEffectState(ability.effectsPreventingReplenished[j]))
+                    {
+                        skipReplenishing = true;
+                        break;
                     }
 
-                    bool skipReplenishing = false;
-                    if (!AbilityFactory.TryGetAbility(value.abilityKey, out Ability ability))
-                    {
-                        throw new Exception("Failed to get ability prefab from ability key while attempting to replenish hand!");
-                    }
+                    j++;
+                }
 
-                    int j = 0;
-                    int count = ability.effectsPreventingReplenished.Count;
-                    while (j < count)
-                    {
-                        if (piece.HasEffectState(ability.effectsPreventingReplenished[j]))
-                        {
-                            skipReplenishing = true;
-                            break;
-                        }
+                if (skipReplenishing)
+                {
+                    continue;
+                }
 
-                        j++;
-                    }
+                if (value.replenishCooldown > 0)
+                {
+                    value.replenishCooldown -= 1;
+                    piece.inventory.Items[i] = value;
 
-                    if (!skipReplenishing)
-                    {
-                        if (value.replenishCooldown > 0)
-                        {
-                            value.replenishCooldown -= 1;
-                            piece.inventory.Items[i] = value;
-                            // Force inventory sync to clients
-                            piece.AddGold(0);
-                        }
-                        else
-                        {
-                            // If we reached our desired turn count we can unset isReplenishing and return true
-                            value.flags &= (Inventory.ItemFlag)(-3); // unsets isReplenishing (bit1 ) allowing card to be used again.
-                            piece.inventory.Items[i] = value;
-                            __result = true;
-                            // Force inventory sync to clients
-                            piece.AddGold(0);
-                        }
-                    }
+                    // Force inventory sync to clients
+                    piece.AddGold(0);
+                }
+                else
+                {
+                    // If we reached our desired turn count we can unset isReplenishing and return true
+                    value.flags &= (Inventory.ItemFlag)(-3); // unsets isReplenishing (bit1 ) allowing card to be used again.
+                    piece.inventory.Items[i] = value;
+                    __result = true;
+
+                    // Force inventory sync to clients
+                    piece.AddGold(0);
                 }
             }
 
@@ -159,7 +165,7 @@
                 inventory.Items.Add(new Inventory.Item
                 {
                     abilityKey = card.Card,
-                    flags = (Inventory.ItemFlag)flags,
+                    flags = flags,
                     originalOwner = -1,
                     replenishCooldown = card.ReplenishFrequency,
                 });
