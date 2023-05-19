@@ -30,7 +30,7 @@
                        .FindObjectsOfTypeAll<charactersoundlistener>()
                        .Count(x => x.name == "MenuBox_BindPose") < 2)
             {
-                RoomFinderMod.Logger.Msg("RoomFinder: UIVr dependencies not yet ready. Waiting...");
+                RoomFinderMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
@@ -115,7 +115,6 @@
                 Traverse.Create(RoomFinderMod.SharedState.LobbyMatchmakingController)
                     .Field<List<RoomInfo>>("roomList").Value;
 
-            RoomFinderMod.Logger.Msg($"Captured {unfilteredRooms.Count} rooms.");
             var isRoomValidMethod =
                 Traverse.Create(RoomFinderMod.SharedState.LobbyMatchmakingController)
                     .Method("IsRoomValidWithCurrentConfiguration", new[] { typeof(RoomInfo) });

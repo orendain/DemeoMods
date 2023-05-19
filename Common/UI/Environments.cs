@@ -13,7 +13,8 @@
     public static class Environments
     {
         private const string DemeoPCEditionString = "Demeo PC Edition";
-        private const int HangoutsSceneIndex = 45;
+        private const int SteamHangoutsSceneIndex = 45;
+        private const int OculusHangoutsSceneIndex = 43;
 
         public static Environment CurrentEnvironment()
         {
@@ -37,7 +38,8 @@
 
         public static bool IsInHangouts()
         {
-            return SceneManager.GetActiveScene().buildIndex == HangoutsSceneIndex;
+            return SceneManager.GetActiveScene().buildIndex == SteamHangoutsSceneIndex
+                || SceneManager.GetActiveScene().buildIndex == OculusHangoutsSceneIndex;
         }
     }
 }

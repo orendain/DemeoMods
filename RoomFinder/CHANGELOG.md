@@ -1,5 +1,27 @@
 # Changelog
 
+## [v1.7.0-roomfinder](https://github.com/orendain/demeomods/tree/HEAD)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.6.0-roomfinder...HEAD)
+
+- Ensure compatability with v1.20 [\#417](https://github.com/orendain/DemeoMods/pull/417)
+
+## [v1.6.0-roomfinder](https://github.com/orendain/demeomods/tree/v1.6.0-roomfinder) (2022-07-09)
+
+[Full Changelog](https://github.com/orendain/demeomods/compare/v1.5.0-roomfinder...v1.6.0-roomfinder)
+
+**Features/Enhancements:**
+
+- Update RoomFinder to be compatible with Demeo v1.19. [\#397](https://github.com/orendain/DemeoMods/pull/397)
+
+**Fixes:**
+
+- Fix RoomFinder getting stuck on Oculus PC edition. [\#388](https://github.com/orendain/DemeoMods/pull/388)
+
+**Chores:**
+
+- Apply maintenance to VR and NonVR UIs. [\#387](https://github.com/orendain/DemeoMods/pull/387)
+
 ## [v1.5.0-roomfinder](https://github.com/orendain/demeomods/tree/v1.5.0-roomfinder) (2022-06-22)
 
 [Full Changelog](https://github.com/orendain/demeomods/compare/v1.4.0-roomfinder...v1.5.0-roomfinder)

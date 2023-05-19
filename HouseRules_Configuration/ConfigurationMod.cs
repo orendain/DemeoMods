@@ -18,14 +18,12 @@
 
         internal static bool IsUpdateAvailable { get; private set; }
 
-        [Obsolete]
         public override void OnApplicationStart()
         {
             CommonModule.Initialize();
             DetermineIfUpdateAvailable();
         }
 
-        [Obsolete]
         public override void OnApplicationLateStart()
         {
             ExampleRulesetExporter.ExportExampleRulesetsIfNeeded();

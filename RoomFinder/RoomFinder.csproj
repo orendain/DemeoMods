@@ -33,49 +33,46 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\MelonLoader\0Harmony.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\MelonLoader\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BowserCore">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\demeo_Data\Managed\BowserCore.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserCore.dll</HintPath>
     </Reference>
-    <Reference Include="BowserCoreDataTypesRuntime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\BowserCoreDataTypesRuntime.dll</HintPath>
+    <Reference Include="BowserCoreDataTypesRuntime">
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserCoreDataTypesRuntime.dll</HintPath>
     </Reference>
-    <Reference Include="BowserInteractionRuntime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\BowserInteractionRuntime.dll</HintPath>
+    <Reference Include="BowserInteractionRuntime">
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserInteractionRuntime.dll</HintPath>
     </Reference>
-    <Reference Include="BowserLegacyRuntime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo\demeo_Data\Managed\BowserLegacyRuntime.dll</HintPath>
+    <Reference Include="BowserLegacyRuntime">
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserLegacyRuntime.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\MelonLoader\MelonLoader.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\demeo_Data\Managed\Photon3Unity3D.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="PhotonRealtime">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
     </Reference>
     <Reference Include="PhotonUnityNetworking">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\demeo_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\demeo_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Demeo - PC Edition\demeo_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -95,9 +92,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="CopyToModsDir" AfterTargets="Build">
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoVrDir)\Mods" />
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoPcDir)\Mods" />
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusVrDir)\Mods" />
+    <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll" DestinationFolder="$(DemeoVrDir)\Mods" />
+    <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll" DestinationFolder="$(DemeoPcDir)\Mods" />
+	<Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusVrDir)\Mods" />
     <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusPcDir)\Mods" />
   </Target>
 </Project>

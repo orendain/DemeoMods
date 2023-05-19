@@ -20,7 +20,7 @@ namespace Common.UI
         {
             _pages = new List<GameObject>();
             _currentPageIndex = 0;
-            Navigation = PageStackNavigation.NewInstance(this);
+            Navigation = PageStackNavigation.NewInstance(this, elementCreator);
 
             UpdatePageStatus();
         }

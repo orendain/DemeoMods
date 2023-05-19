@@ -8,6 +8,7 @@
     {
         private readonly PageStack _pageStack;
         private readonly IElementCreator _elementCreator;
+
         private GameObject _pageStatus;
         private GameObject _previousButton;
         private GameObject _previousButtonText;
@@ -18,29 +19,21 @@
 
         public TMP_Text PageStatusText { get; }
 
-        public static PageStackNavigation NewInstance(PageStack pageStack)
+        public static PageStackNavigation NewInstance(PageStack pageStack, IElementCreator elementCreator)
         {
-            if (Environments.CurrentEnvironment() == Environment.NonVr)
-            {
-                return new PageStackNavigation(pageStack, NonVrElementCreator.Instance());
-            }
-
-            if (Environments.CurrentEnvironment() == Environment.Hangouts)
-            {
-                return new PageStackNavigation(pageStack, HangoutsElementCreator.Instance());
-            }
-
-            return new PageStackNavigation(pageStack, VrElementCreator.Instance());
+            return new PageStackNavigation(pageStack, elementCreator);
         }
 
         private PageStackNavigation(PageStack pageStack, IElementCreator elementCreator)
         {
             _pageStack = pageStack;
             _elementCreator = elementCreator;
+
             _previousButton = elementCreator.CreateButton(OnPreviousPageClick);
             _previousButtonText = elementCreator.CreateButtonText("<");
             _nextButton = elementCreator.CreateButton(OnNextPageClick);
             _nextButtonText = elementCreator.CreateButtonText(">");
+
             if (Environments.CurrentEnvironment() == Environment.NonVr)
             {
                 InitializeForNonVr();
@@ -56,6 +49,7 @@
             _previousButtonText.transform.SetParent(Panel.transform, worldPositionStays: false);
             _nextButton.transform.SetParent(Panel.transform, worldPositionStays: false);
             _nextButtonText.transform.SetParent(Panel.transform, worldPositionStays: false);
+
             PageStatusText = _pageStatus.GetComponent<TMP_Text>();
         }
 
@@ -79,9 +73,12 @@
         {
             _previousButton.transform.localScale = new Vector2(0.8f, 0.6f);
             _previousButton.transform.localPosition = new Vector2(-80f, 0);
+
             _previousButtonText.transform.localPosition = new Vector2(-80f, 0);
+
             _nextButton.transform.localScale = new Vector2(0.8f, 0.6f);
             _nextButton.transform.localPosition = new Vector2(80f, 0);
+
             _nextButtonText.transform.localPosition = new Vector2(80f, 0);
         }
 
@@ -89,12 +86,15 @@
         {
             _previousButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
             _previousButton.transform.localPosition = new Vector3(-2.5f, 0, VrElementCreator.ButtonZShift);
+
             _previousButtonText.transform.localPosition = new Vector3(
                 -2.5f,
                 0,
                 VrElementCreator.ButtonZShift + VrElementCreator.TextZShift);
+
             _nextButton.transform.localScale = new Vector3(0.25f, 0.8f, 0.8f);
             _nextButton.transform.localPosition = new Vector3(2.5f, 0, VrElementCreator.ButtonZShift);
+
             _nextButtonText.transform.localPosition = new Vector3(
                 2.5f,
                 0,
