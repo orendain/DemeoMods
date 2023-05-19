@@ -207,7 +207,6 @@
             DeactivateRuleset();
         }
 
-
         /// <summary>
         /// Add properties to the room to indicate its modded nature.
         /// </summary>

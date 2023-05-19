@@ -54,9 +54,6 @@
                 return true;
             }
 
-            var attackTargetType = Traverse.Create(__instance)
-                .Method("GetAttackTargetType", __instance.piece)
-                .GetValue<PieceType>();
             if (!__instance.piece.HasPieceType(PieceType.Bot) && !__instance.piece.IsConfused())
             {
                 return true;

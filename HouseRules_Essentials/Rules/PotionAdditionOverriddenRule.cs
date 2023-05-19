@@ -15,7 +15,7 @@
     {
         public override string Description => "Potion additions are overridden";
 
-        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalpotionCards;
+        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalPotionCards;
         private static bool _isActivated;
         private static int _numPlayers;
         private static bool _isPotionStand;
@@ -30,7 +30,7 @@
 
         protected override void OnActivate(GameContext gameContext)
         {
-            _globalpotionCards = _potionCards;
+            _globalPotionCards = _potionCards;
             _isActivated = true;
         }
 
@@ -42,7 +42,7 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new Type[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
+                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
                 prefix: new HarmonyMethod(
                     typeof(PotionAdditionOverriddenRule),
                     nameof(Interactable_OnInteraction_Prefix)));
@@ -81,8 +81,8 @@
                 return;
             }
 
-            Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
-            if (whatIsit.type == Interactable.Type.PotionStand)
+            var interactable = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
+            if (interactable.type == Interactable.Type.PotionStand)
             {
                 _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
                 _isPotionStand = true;
@@ -98,20 +98,18 @@
                 return;
             }
 
-            if (_isPotionStand)
+            if (!_isPotionStand)
             {
-                if (_numPlayers > 1)
-                {
-                    _numPlayers--;
-                }
-                else
-                {
-                    _isPotionStand = false;
-                }
+                return;
+            }
+
+            if (_numPlayers > 1)
+            {
+                _numPlayers--;
             }
             else
             {
-                return;
+                _isPotionStand = false;
             }
 
             if (request.type != SerializableEvent.Type.AddCardToPiece)
@@ -139,16 +137,14 @@
                 return;
             }
 
-            if (!_globalpotionCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
+            if (!_globalPotionCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
             {
                 return;
             }
 
-            int rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
-            AbilityKey replacementAbilityKey = replacementAbilityKeys[rand];
+            var rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
+            var replacementAbilityKey = replacementAbilityKeys[rand];
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
-
-            return;
         }
     }
 }

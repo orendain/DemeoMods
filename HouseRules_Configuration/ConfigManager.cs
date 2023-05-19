@@ -14,7 +14,6 @@
     {
         internal static readonly string RulesetDirectory = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules");
 
-        private readonly MelonPreferences_Category _configCategory;
         private readonly MelonPreferences_Entry<string> _defaultRulesetEntry;
         private readonly MelonPreferences_Entry<bool> _loadRulesetsFromConfigEntry;
 
@@ -25,9 +24,9 @@
 
         private ConfigManager()
         {
-            _configCategory = MelonPreferences.CreateCategory("HouseRules");
-            _defaultRulesetEntry = _configCategory.CreateEntry("defaultRuleset", string.Empty);
-            _loadRulesetsFromConfigEntry = _configCategory.CreateEntry("loadRulesetsFromConfig", true);
+            var configCategory = MelonPreferences.CreateCategory("HouseRules");
+            _defaultRulesetEntry = configCategory.CreateEntry("defaultRuleset", string.Empty);
+            _loadRulesetsFromConfigEntry = configCategory.CreateEntry("loadRulesetsFromConfig", true);
             Directory.CreateDirectory(RulesetDirectory);
             SetDefaultSerializationSettings();
         }

@@ -18,13 +18,13 @@
 
         internal static bool IsUpdateAvailable { get; private set; }
 
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
         {
-            CommonModule.Initialize();
+            CommonModule.Initialize(HarmonyInstance);
             DetermineIfUpdateAvailable();
         }
 
-        public override void OnApplicationLateStart()
+        public override void OnLateInitializeMelon()
         {
             ExampleRulesetExporter.ExportExampleRulesetsIfNeeded();
 
