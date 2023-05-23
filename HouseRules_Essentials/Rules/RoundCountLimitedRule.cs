@@ -76,10 +76,7 @@
 
                 EssentialsMod.Logger.Msg("EVERYONE DIES NOW!");
                 _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventEndGame());
-                return;
             }
-
-            return;
         }
 
         private static void ShowRoundsLeft()

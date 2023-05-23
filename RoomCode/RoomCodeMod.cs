@@ -13,11 +13,9 @@
         internal static List<string> RoomCodes { get; private set; }
 
         [System.Obsolete]
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
         {
-            var harmony = new HarmonyLib.Harmony("com.orendain.demeomods.roomcode");
-            ModPatcher.Patch(harmony);
-
+            ModPatcher.Patch(HarmonyInstance);
             InitializeConfiguration();
         }
 

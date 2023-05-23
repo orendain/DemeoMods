@@ -308,7 +308,7 @@
                 },
             });
 
-            var tileEffectDuration = new TileEffectDurationOverriddenRule(new Dictionary<Boardgame.Board.TileEffect, int>
+            var tileEffectDuration = new TileEffectDurationOverriddenRule(new Dictionary<TileEffect, int>
             {
                 { TileEffect.Gas, 10 },
                 { TileEffect.Acid, 1 },

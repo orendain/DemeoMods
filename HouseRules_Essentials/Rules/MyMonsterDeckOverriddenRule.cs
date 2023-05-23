@@ -68,7 +68,7 @@
                 }
 
                 mySubDeck.Add(deckItem);
-                for (int i = 0; i < deckItemConfig.Value - 1; i++)
+                for (var i = 0; i < deckItemConfig.Value - 1; i++)
                 {
                     mySubDeck.Add(deckItem);
                 }

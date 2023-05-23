@@ -70,7 +70,7 @@
                 {
                     if (piece.inventory.HasAbility(AbilityKey.EnemyFrostball) || piece.inventory.HasAbility(AbilityKey.Bone))
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.EnemyFrostball || value.abilityKey == AbilityKey.Bone)
@@ -89,7 +89,7 @@
                 {
                     if (piece.inventory.HasAbility(AbilityKey.WaterBottle))
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.WaterBottle)
@@ -110,7 +110,7 @@
                 {
                     if (piece.inventory.HasAbility(AbilityKey.SpellPowerPotion))
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.SpellPowerPotion)
@@ -131,7 +131,7 @@
                 {
                     if (piece.inventory.HasAbility(AbilityKey.PanicPowder))
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.PanicPowder)
@@ -152,7 +152,7 @@
                 {
                     if (piece.inventory.HasAbility(AbilityKey.SpawnRandomLamp))
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.SpawnRandomLamp)
@@ -176,7 +176,7 @@
                     bool hasPower = false;
                     if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.ImplosionExplosionRain)
@@ -201,7 +201,7 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.LeapHeavy)
@@ -226,7 +226,7 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroHunter)
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.LightningBolt)
@@ -258,7 +258,7 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroBard)
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.PVPBlink)
@@ -283,7 +283,7 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.DeathBeam)
@@ -308,7 +308,7 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroRogue)
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.FretsOfFire)
@@ -333,7 +333,7 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
                     {
-                        for (int i = 0; i < piece.inventory.Items.Count; i++)
+                        for (var i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
                             if (value.abilityKey == AbilityKey.WeakeningShout)
@@ -360,13 +360,12 @@
             }
 
             __result = false;
-            for (int i = 0; i < piece.inventory.Items.Count; i++)
+            for (var i = 0; i < piece.inventory.Items.Count; i++)
             {
                 value = piece.inventory.Items[i];
 
-                if (value.IsReplenishing)
+                if (!value.IsReplenishing)
                 {
-                    // Bypass problem with replenishCooldown somehow being set to -1 by Demeo
                     foreach (var card in _globalHeroStartCards[piece.boardPieceId])
                     {
                         if (value.abilityKey == card.Card && card.ReplenishFrequency > 1 && value.replenishCooldown < 0)

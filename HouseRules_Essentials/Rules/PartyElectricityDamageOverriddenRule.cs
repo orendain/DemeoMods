@@ -13,7 +13,6 @@
     {
         public override string Description => "Player on player electricity damage is zero.";
 
-        private static bool _globalAdjustments;
         private static bool _isActivated;
 
         private readonly bool _adjustments;
@@ -27,7 +26,6 @@
 
         protected override void OnActivate(GameContext gameContext)
         {
-            _globalAdjustments = _adjustments;
             _isActivated = true;
         }
 

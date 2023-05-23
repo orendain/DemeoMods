@@ -1731,13 +1731,10 @@
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
             var tickRule = new TickAdjustedRule(true);
-            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
-                xpGainDisabledRule,
-                //merchantOverriddenRule,
                 tickRule,
                 statModifiersRule,
                 goldPickupRule,

@@ -44,7 +44,7 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new Type[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
+                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
                 prefix: new HarmonyMethod(
                     typeof(PotionAdditionOverriddenRule),
                     nameof(Interactable_OnInteraction_Prefix)));
@@ -83,8 +83,8 @@
                 return;
             }
 
-            Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
-            if (whatIsit.type == Interactable.Type.PotionStand)
+            var interactable = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
+            if (interactable.type == Interactable.Type.PotionStand)
             {
                 _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
                 _isPotionStand = true;
@@ -102,18 +102,16 @@
 
             if (_isPotionStand)
             {
-                if (_numPlayers > 1)
-                {
-                    _numPlayers--;
-                }
-                else
-                {
-                    _isPotionStand = false;
-                }
+                return;
+            }
+
+            if (_numPlayers > 1)
+            {
+                _numPlayers--;
             }
             else
             {
-                return;
+                _isPotionStand = false;
             }
 
             if (request.type != SerializableEvent.Type.AddCardToPiece)
@@ -173,7 +171,7 @@
                 rand = RandomProvider.GetThreadRandom().Next(2, replacementAbilityKeys.Count);
             }
 
-            AbilityKey replacementAbilityKey2 = replacementAbilityKeys[rand];
+            var replacementAbilityKey2 = replacementAbilityKeys[rand];
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey2;
 
             return;

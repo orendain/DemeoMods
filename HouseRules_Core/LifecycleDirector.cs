@@ -15,8 +15,9 @@
 
     internal static class LifecycleDirector
     {
-        private const string ModdedRoomPropertyKey = "modded";
         private const float WelcomeMessageDurationSeconds = 10f;
+        private const string ModdedRoomPropertyKey = "modded";
+
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;

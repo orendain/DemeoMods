@@ -14,7 +14,7 @@
     {
         public override string Description => "Card additions from mana are overridden";
 
-        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalEnergyCards;
+        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalenergyCards;
         private static bool _isActivated;
         private static int _numEnergy;
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _energyCards;
@@ -28,7 +28,7 @@
 
         protected override void OnActivate(GameContext gameContext)
         {
-            _globalEnergyCards = _energyCards;
+            _globalenergyCards = _energyCards;
             _isActivated = true;
         }
 
@@ -94,7 +94,7 @@
                 return;
             }
 
-            if (!_globalEnergyCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
+            if (!_globalenergyCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
             {
                 return;
             }

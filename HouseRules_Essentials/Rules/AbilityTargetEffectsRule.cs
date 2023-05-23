@@ -40,10 +40,10 @@
         private static Dictionary<AbilityKey, List<EffectStateType>> ReplaceAbilities(Dictionary<AbilityKey, List<EffectStateType>> replacements)
         {
             var originals = new Dictionary<AbilityKey, List<EffectStateType>>();
+
             // var pieceTypes = new List<PieceType> { PieceType.Creature, PieceType.Prop };
             // var invalidPieces = new List<PieceType> { PieceType.Player };
             // var teamMode = new List<Ability.TeamMode> { Ability.TeamMode.OpponentTeam };
-
             foreach (var replacement in replacements)
             {
                 if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))

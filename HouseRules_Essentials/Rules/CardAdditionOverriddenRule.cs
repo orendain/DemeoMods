@@ -87,8 +87,8 @@
                 return;
             }
 
-            Interactable whatIsit = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
-            if (whatIsit.type == Interactable.Type.PotionStand || whatIsit.type == Interactable.Type.WaterBottleChest || whatIsit.type == Interactable.Type.VortexDustChest)
+            var interactable = gameContext.pieceAndTurnController.GetInteractableAtPosition(targetTile);
+            if (interactable.type == Interactable.Type.PotionStand || interactable.type == Interactable.Type.WaterBottleChest || interactable.type == Interactable.Type.VortexDustChest)
             {
                 _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
                 _isSkipped = true;

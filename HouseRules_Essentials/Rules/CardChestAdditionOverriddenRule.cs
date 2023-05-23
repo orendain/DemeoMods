@@ -15,7 +15,7 @@
     {
         public override string Description => "Card additions from chests are overridden";
 
-        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalChestCards;
+        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalchestCards;
         private static bool _isActivated;
         private static int _numPlayers;
         private static bool _isChest;
@@ -32,7 +32,7 @@
 
         protected override void OnActivate(GameContext gameContext)
         {
-            _globalChestCards = _chestCards;
+            _globalchestCards = _chestCards;
             _isActivated = true;
         }
 
@@ -45,7 +45,7 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new Type[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
+                original: AccessTools.Method(typeof(Interactable), "OnInteraction", new[] { typeof(int), typeof(IntPoint2D), typeof(GameContext), typeof(int) }),
                 prefix: new HarmonyMethod(
                     typeof(CardChestAdditionOverriddenRule),
                     nameof(Interactable_OnInteraction_Prefix)));
@@ -136,7 +136,7 @@
                 return;
             }
 
-            if (!_globalChestCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
+            if (!_globalchestCards.TryGetValue(piece.boardPieceId, out var replacementAbilityKeys))
             {
                 return;
             }

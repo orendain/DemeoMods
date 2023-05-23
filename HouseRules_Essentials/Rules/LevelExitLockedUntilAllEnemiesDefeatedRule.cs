@@ -37,7 +37,10 @@
             harmony.Patch(
                 original: AccessTools.Constructor(
                     typeof(BoardgameActionPieceDied),
-                    new[] { typeof(GameContext), typeof(int[]), typeof(bool), typeof(bool), typeof(int) }),
+                    new[]
+                    {
+                        typeof(GameContext), typeof(int[]), typeof(bool), typeof(bool), typeof(bool), typeof(int),
+                    }),
                 postfix: new HarmonyMethod(
                     typeof(LevelExitLockedUntilAllEnemiesDefeatedRule),
                     nameof(BoardgameActionPieceDied_Constructor_Postfix)));
