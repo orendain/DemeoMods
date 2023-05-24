@@ -60,21 +60,20 @@
                     return;
                 }
 
-                int low = 0;
                 int high = 1;
-                if (config.AttackDamage < 4)
+                if (config.AttackDamage < 5)
                 {
-                    high = 3;
+                    high = 2;
                 }
-                else if (config.AttackDamage < 6)
+                else if (config.AttackDamage < 7)
                 {
                     if (Random.Range(1, 101) < 21)
                     {
-                        high = 2;
+                        high = 3;
                     }
                 }
 
-                range = Random.Range(low, high);
+                range = Random.Range(0, high);
             }
 
             int newAttackDamage = (int)(config.AttackDamage * _globalMultiplier) + range;

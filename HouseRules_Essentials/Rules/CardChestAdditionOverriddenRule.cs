@@ -101,20 +101,18 @@
                 return;
             }
 
-            if (_isChest)
+            if (!_isChest)
             {
-                if (_numPlayers > 1)
-                {
-                    _numPlayers--;
-                }
-                else
-                {
-                    _isChest = false;
-                }
+                return;
+            }
+
+            if (_numPlayers > 1)
+            {
+                _numPlayers--;
             }
             else
             {
-                return;
+                _isChest = false;
             }
 
             if (request.type != SerializableEvent.Type.AddCardToPiece)

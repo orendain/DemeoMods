@@ -100,7 +100,7 @@
                 return;
             }
 
-            if (_isPotionStand)
+            if (!_isPotionStand)
             {
                 return;
             }
