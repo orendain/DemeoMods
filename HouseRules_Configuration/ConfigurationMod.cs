@@ -9,7 +9,8 @@
 
     internal class ConfigurationMod : MelonMod
     {
-        private const int LobbySceneIndex = 1;
+        private const int PC1LobbySceneIndex = 1;
+        private const int PC2LobbySceneIndex = 3;
 
         internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
@@ -52,7 +53,7 @@
         {
             if (Environments.IsPcEdition())
             {
-                if (buildIndex != LobbySceneIndex)
+                if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
                 {
                     return;
                 }
@@ -69,7 +70,7 @@
                 return;
             }
 
-            if (buildIndex != LobbySceneIndex)
+            if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
             {
                 return;
             }
