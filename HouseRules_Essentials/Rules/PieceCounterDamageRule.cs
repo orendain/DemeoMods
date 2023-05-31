@@ -7,16 +7,16 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class PieceExtraStatsAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
+    public sealed class PieceCounterDamageRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Piece max stat change effects added on creation";
+        public override string Description => "Piece innate counterdamage effects added on creation";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 
         private static Dictionary<BoardPieceId, int> _globalAdjustments;
         private static bool _isActivated;
 
-        public PieceExtraStatsAdjustedRule(Dictionary<BoardPieceId, int> adjustments)
+        public PieceCounterDamageRule(Dictionary<BoardPieceId, int> adjustments)
         {
             _adjustments = adjustments;
         }
@@ -38,13 +38,13 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
                 postfix: new HarmonyMethod(
-                    typeof(PieceExtraStatsAdjustedRule),
+                    typeof(PieceCounterDamageRule),
                     nameof(CreatePiece_Effects_Postfix)));
         }
 
         private static void CreatePiece_Effects_Postfix(ref Piece __result)
         {
-            if (!_isActivated || !__result.IsPlayer())
+            if (!_isActivated)
             {
                 return;
             }
@@ -58,10 +58,9 @@
             {
                 if (replacement.Key == __result.boardPieceId)
                 {
-                    __result.effectSink.TrySetStatMaxValue(Stats.Type.Strength, replacement.Value);
-                    __result.effectSink.TrySetStatMaxValue(Stats.Type.Speed, replacement.Value);
-                    __result.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, replacement.Value);
-                    MelonLoader.MelonLogger.Msg($"{__result.boardPieceId} max stats set to {replacement.Value}");
+                    __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamage, replacement.Value);
+                    __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 255);
+                    MelonLoader.MelonLogger.Msg($"{__result.boardPieceId} innate counterdamage set to {replacement.Value}");
                     return;
                 }
             }

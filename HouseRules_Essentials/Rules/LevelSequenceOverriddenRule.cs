@@ -188,7 +188,7 @@
                 Traverse.Create(gameContext.gameStateMachine).Field<LevelSequence>("levelSequence").Value;
             var originalSequence = Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value;
 
-            if (replacements.Count == 5 || replacements[1].Contains("Shop"))
+            if (replacements.Count == 5 && replacements[1].Contains("Shop") && replacements[3].Contains("Shop"))
             {
                 isRandomMaps = false;
                 if (gsmLevelSequence.gameType == LevelSequence.GameType.Desert)

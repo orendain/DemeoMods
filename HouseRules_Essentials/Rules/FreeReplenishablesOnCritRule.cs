@@ -4,7 +4,6 @@ namespace HouseRules.Essentials.Rules
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
-    using Boardgame.BoardEntities.AI;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -60,6 +59,11 @@ namespace HouseRules.Essentials.Rules
             }
 
             if (!_globalAdjustments.Contains(source.boardPieceId))
+            {
+                return;
+            }
+
+            if (!HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 return;
             }

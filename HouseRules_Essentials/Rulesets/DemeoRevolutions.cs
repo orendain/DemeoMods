@@ -1729,16 +1729,51 @@
                 { AbilityKey.ReplenishArmor, 4 },
             });
 
+            var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.HeroGuardian, 5 },
+                { BoardPieceId.HeroHunter, 5 },
+                { BoardPieceId.HeroBard, 5 },
+                { BoardPieceId.HeroBarbarian, 5 },
+                { BoardPieceId.HeroRogue, 5 },
+                { BoardPieceId.HeroWarlock, 5 },
+                { BoardPieceId.HeroSorcerer, 5 },
+            });
+
+            var pieceDamageResistRule = new PieceDamageResistRule(new List<BoardPieceId>
+            {
+                { BoardPieceId.WarlockMinion },
+                { BoardPieceId.ElvenQueen },
+                { BoardPieceId.WizardBoss },
+                { BoardPieceId.BossTown },
+                { BoardPieceId.MotherCy },
+                { BoardPieceId.RootLord },
+                { BoardPieceId.RatKing },
+                { BoardPieceId.Mimic },
+                { BoardPieceId.Wyvern },
+            });
+
+            var pieceCounterDamageRule = new PieceCounterDamageRule(new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.HeroGuardian, 1 },
+                { BoardPieceId.ElvenQueen, 1 },
+                { BoardPieceId.Mimic, 1 },
+            });
+
             var goldPickupRule = new GoldPickedUpMultipliedRule(1);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
-            var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(true);
             var tickRule = new TickAdjustedRule(true);
+            var elvenQueenChange = new ElvenQueenFightChange(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 tickRule,
+                pieceCounterDamageRule,
+                pieceDamageResistRule,
+                pieceExtraStatsRule,
+                elvenQueenChange,
                 statModifiersRule,
                 goldPickupRule,
                 piecePieceTypeRule,
@@ -1781,7 +1816,6 @@
                 cardEnergyFromRecyclingRule,
                 enemyHealthScaledRule,
                 enemyAttackScaledRule,
-                pieceExtraStatsRule,
                 abilityRandomPieceRule,
                 lampTypesRule,
                 levelSequenceOverriddenRule,

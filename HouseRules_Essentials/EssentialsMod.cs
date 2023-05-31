@@ -37,6 +37,7 @@
             HR.Rulebook.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
+            HR.Rulebook.Register(typeof(ElvenQueenFightChange));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
             HR.Rulebook.Register(typeof(EnemyCooldownOverriddenRule));
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
@@ -60,6 +61,8 @@
             HR.Rulebook.Register(typeof(PieceAbilityListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceBehavioursListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
+            HR.Rulebook.Register(typeof(PieceCounterDamageRule));
+            HR.Rulebook.Register(typeof(PieceDamageResistRule));
             HR.Rulebook.Register(typeof(PieceExtraStatsAdjustedRule));
             HR.Rulebook.Register(typeof(PieceExtraImmunitiesRule));
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));

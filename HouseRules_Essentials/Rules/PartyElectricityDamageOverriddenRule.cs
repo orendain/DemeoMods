@@ -56,9 +56,12 @@
 
             var attackerTarget = Traverse.Create(abilityContext).Field("attacker").GetValue<Target>();
             var attacker = Traverse.Create(attackerTarget).Field("piece").GetValue<Piece>();
-            if (attacker.characterClass != CharacterClass.Sorcerer)
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                return true;
+                if (attacker.characterClass != CharacterClass.Sorcerer)
+                {
+                    return true;
+                }
             }
 
             var targetPiece = Traverse.Create(__instance).Field("targetPiece").GetValue<Piece>();

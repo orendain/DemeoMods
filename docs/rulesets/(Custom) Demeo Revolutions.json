@@ -13,7 +13,7 @@
         "ReplenishArmor": 4
       }
     },
-	// Makes gold piles worth 69 most of the time
+	// Just like the normal rule (Makes gold piles worth 69 most of the time in Demeo Revolutions)
     {
       "Rule": "GoldPickedUpMultiplied",
       "Config": 1.0
@@ -550,7 +550,7 @@
         }
       ]
     },
-	// Bard Courage has 33% chance to heal for 1
+	// Just like the normal rule (Bard Courage has only 33% chance to heal for 1 in Demeo Revolutions)
     {
       "Rule": "CourageShantyAddsHp",
       "Config": 1
@@ -571,7 +571,7 @@
         "Target": 0
       }
     },
-	// Changes the keyhoilders but doesn't change the end boss
+	// Now changes the keyholders but doesn't change the end boss (caused lockups)
     {
       "Rule": "MyMonsterDeckOverridden",
       "Config": {
@@ -1888,7 +1888,7 @@
         "SellswordArbalestierActive": "Panic"
       }
     },
-	// Abilities used have secondary effects
+	// When these abilities are used they have secondary effects
     {
       "Rule": "AbilityTargetEffects",
       "Config": {
@@ -1996,8 +1996,7 @@
         "Deflect": 2
       }
     },
-	// Warlock heals self for 1 every hit if marked. Rogue has 50% chance to heal 1 every hit. Minion frenzies under half health.
-	// Note: Using this rule also gives Elven Queen and Desert Boss their changes
+	// Pieces heal for ONE when they hit
     {
       "Rule": "FreeHealOnHit",
       "Config": [
@@ -2005,7 +2004,7 @@
         "HeroWarlock"
       ]
     },
-	// Warlock and Rogue same as above in 'FreeHealOnHit'. Bard has 66% chance to heal self for 1 on crit.
+	// Pieces heal for ONE when they critical hit
     {
       "Rule": "FreeHealOnCrit",
       "Config": [
@@ -2014,7 +2013,7 @@
         "HeroBard"
       ]
     },
-	// Restores specific (hardcoded) replenishable abilities on critical hits.
+	// (Only affects Demeo Revolutions) Replenishes specific abilities on critical hits
     {
       "Rule": "FreeReplenishablesOnCrit",
       "Config": [
@@ -2027,7 +2026,7 @@
         "HeroWarlock"
       ]
     },
-	// Adds action points on crits. Hardcoded to add 2 for Guardian and substitutes Invisibility buff to Rogue if last hit.
+	// Adds ONE action point on critical hit
     {
       "Rule": "FreeActionPointsOnCrit",
       "Config": [
@@ -2035,7 +2034,7 @@
         "HeroRogue"
       ]
     },
-	// Only gives these cards out if crit is on their last turn
+	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeAbilityOnCrit",
       "Config": {
@@ -2167,7 +2166,7 @@
         ]
       }
     },
-	// Hardcoded to only prevent Sorcerer from damaging/stunning other friendlies
+	// Just like the normal rule (Only affects Sorcerer in Demeo Revolutions)
     {
       "Rule": "PartyElectricityDamageOverridden",
       "Config": true
@@ -2193,20 +2192,55 @@
       "Rule": "CardEnergyFromRecyclingMultiplied",
       "Config": 1.25
     },
-	// Health is ALSO hardcoded random from 90% normal to 115% normal
     {
       "Rule": "EnemyHealthScaled",
       "Config": 1.0
     },
-	// Damage is ALSO hardcoded random from -1 normal to +1 normal
     {
       "Rule": "EnemyAttackScaled",
       "Config": 1.0
     },
-	// Changes max stats from potions to 5 (from 3)
+	// Changes the Elven Queen fight
+	{
+		"Rule": "ElvenQueenFightChange",
+		"Config": true
+	},
+	// Adds counter-attack damage to pieces
+	{
+      "Rule": "PieceCounterDamage",
+      "Config": {
+        "HeroGuardian": 1,
+        "ElvenQueen": 1,
+        "Mimic": 1
+      }
+    },
+	// Adds ONE (game max allowed) damage resist to pieces
+    {
+      "Rule": "PieceDamageResist",
+      "Config": [
+        "WarlockMinion",
+        "ElvenQueen",
+        "WizardBoss",
+        "BossTown",
+        "MotherCy",
+        "RootLord",
+        "RatKing",
+        "Mimic",
+        "Wyvern"
+      ]
+    },
+	// Changes max stats per piece for Strength, Swiftness, and Magic
     {
       "Rule": "PieceExtraStatsAdjusted",
-      "Config": true
+      "Config": {
+        "HeroGuardian": 5,
+        "HeroHunter": 5,
+        "HeroBard": 5,
+        "HeroBarbarian": 5,
+        "HeroRogue": 5,
+        "HeroWarlock": 5,
+        "HeroSorcerer": 5
+      }
     },
     {
       "Rule": "AbilityRandomPieceList",
@@ -2243,7 +2277,7 @@
         ]
       }
     },
-	// No shops listed here automatically causes random levels from any map/adventure
+	// Uses random levels from any map/adventure if more or less than 5 floors are listed or when floors 2 and/or 4 are not listed as shops
     {
       "Rule": "LevelSequenceOverridden",
       "Config": [

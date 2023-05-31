@@ -7,7 +7,6 @@ namespace HouseRules.Essentials.Rules
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
     public sealed class FreeActionPointsOnCritRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
@@ -65,36 +64,39 @@ namespace HouseRules.Essentials.Rules
             }
 
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-            if (source.boardPieceId == BoardPieceId.HeroGuardian)
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                source.effectSink.TryGetStat(Stats.Type.Armor, out int myArmor);
-                if (myArmor < 5)
+                if (source.boardPieceId == BoardPieceId.HeroGuardian)
                 {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.Armor, myArmor + 1);
-                }
+                    source.effectSink.TryGetStat(Stats.Type.Armor, out int myArmor);
+                    if (myArmor < 5)
+                    {
+                        source.effectSink.TrySetStatBaseValue(Stats.Type.Armor, myArmor + 1);
+                    }
 
-                if (currentAP < 1)
-                {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 2);
-                }
-                else
-                {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
-                }
+                    if (currentAP < 1)
+                    {
+                        source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 2);
+                    }
+                    else
+                    {
+                        source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                    }
 
-                source.EnableEffectState(EffectStateType.PlayerBerserk);
-                source.effectSink.SetStatusEffectDuration(EffectStateType.PlayerBerserk, 1);
-            }
-            else if (source.boardPieceId == BoardPieceId.HeroRogue)
-            {
-                if (currentAP < 1)
-                {
-                    source.EnableEffectState(EffectStateType.Invisibility);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Invisibility, 2);
+                    source.EnableEffectState(EffectStateType.PlayerBerserk);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.PlayerBerserk, 1);
                 }
-                else
+                else if (source.boardPieceId == BoardPieceId.HeroRogue)
                 {
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                    if (currentAP < 1)
+                    {
+                        source.EnableEffectState(EffectStateType.Invisibility);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Invisibility, 2);
+                    }
+                    else
+                    {
+                        source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                    }
                 }
             }
             else

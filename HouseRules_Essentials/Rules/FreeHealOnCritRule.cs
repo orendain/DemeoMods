@@ -59,81 +59,88 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            int chance = Random.Range(1, 101);
-            int chance2 = Random.Range(1, 101);
-            int addHeal = 0;
-            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-            source.inventory.AddGold(10);
-            if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
+            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                addHeal++;
-            }
-
-            if (_globalAdjustments.Contains(source.boardPieceId))
-            {
-                if (source.boardPieceId == BoardPieceId.HeroRogue)
+                int chance = Random.Range(1, 101);
+                int chance2 = Random.Range(1, 101);
+                int addHeal = 0;
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                source.inventory.AddGold(10);
+                if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
-                    if (chance > 98 && chance2 > 50)
+                    addHeal++;
+                }
+
+                if (_globalAdjustments.Contains(source.boardPieceId))
+                {
+                    if (source.boardPieceId == BoardPieceId.HeroRogue)
                     {
-                        addHeal += 3;
-                        source.effectSink.Heal(addHeal);
-                        source.AnimateWobble();
+                        if (chance > 98 && chance2 > 50)
+                        {
+                            addHeal += 3;
+                            source.effectSink.Heal(addHeal);
+                            source.AnimateWobble();
+                        }
+                        else if (chance2 > 50)
+                        {
+                            addHeal += 2;
+                            source.effectSink.Heal(addHeal);
+                            source.AnimateWobble();
+                        }
+                        else
+                        {
+                            addHeal++;
+                            source.effectSink.Heal(addHeal);
+                            source.AnimateWobble();
+                        }
                     }
-                    else if (chance2 > 50)
+                    else if (source.boardPieceId == BoardPieceId.HeroBard)
                     {
-                        addHeal += 2;
-                        source.effectSink.Heal(addHeal);
-                        source.AnimateWobble();
+                        if (chance > 98 && chance2 > 66)
+                        {
+                            addHeal += 2;
+                            source.effectSink.Heal(addHeal);
+                            source.AnimateWobble();
+                        }
+                        else if (chance2 > 66)
+                        {
+                            addHeal++;
+                            source.effectSink.Heal(addHeal);
+                            source.AnimateWobble();
+                        }
+                    }
+                    else if (source.boardPieceId == BoardPieceId.HeroWarlock)
+                    {
+                        if (mainTarget != null && mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
+                        {
+                            addHeal++;
+                            source.effectSink.Heal(addHeal);
+                            source.AnimateWobble();
+                        }
                     }
                     else
                     {
-                        addHeal++;
-                        source.effectSink.Heal(addHeal);
-                        source.AnimateWobble();
-                    }
-                }
-                else if (source.boardPieceId == BoardPieceId.HeroBard)
-                {
-                    if (chance > 98 && chance2 > 66)
-                    {
-                        addHeal += 2;
-                        source.effectSink.Heal(addHeal);
-                        source.AnimateWobble();
-                    }
-                    else if (chance2 > 66)
-                    {
-                        addHeal++;
-                        source.effectSink.Heal(addHeal);
-                        source.AnimateWobble();
-                    }
-                }
-                else if (source.boardPieceId == BoardPieceId.HeroWarlock)
-                {
-                    if (mainTarget != null && mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
-                    {
-                        addHeal++;
-                        source.effectSink.Heal(addHeal);
-                        source.AnimateWobble();
+                        if (chance > 98)
+                        {
+                            addHeal += 2;
+                            source.effectSink.Heal(addHeal);
+                            source.AnimateWobble();
+                        }
+                        else
+                        {
+                            addHeal++;
+                            source.effectSink.Heal(addHeal);
+                        }
                     }
                 }
                 else
                 {
-                    if (chance > 98)
-                    {
-                        addHeal += 2;
-                        source.effectSink.Heal(addHeal);
-                        source.AnimateWobble();
-                    }
-                    else
-                    {
-                        addHeal++;
-                        source.effectSink.Heal(addHeal);
-                    }
+                    source.effectSink.Heal(addHeal);
                 }
             }
             else
             {
-                source.effectSink.Heal(addHeal);
+                source.effectSink.Heal(1);
             }
         }
     }
