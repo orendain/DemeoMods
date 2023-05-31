@@ -97,6 +97,10 @@ namespace HouseRules.Essentials.Rules
                     source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                 }
             }
+            else
+            {
+                source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+            }
         }
     }
 }

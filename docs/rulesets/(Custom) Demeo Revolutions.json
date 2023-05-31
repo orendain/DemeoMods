@@ -2,23 +2,23 @@
   "Name": "(Custom) Demeo Revolutions",
   "Description": "Everything that has a beginning has an end.",
   "Rules": [
-    {
-      "Rule": "MerchantOfferRarityOverridden",
-      "Config": {
-        "ScrollTsunami": 0,
-        "SummonElemental": 0,
-        "Teleportation": 0,
-        "RepeatingBallista": 0,
-        "ScrollElectricity": 0,
-        "SwiftnessPotion": 0,
-        "DamageResistPotion": 50,
-        "InvisibilityPotion": 50
-      }
-    },
+    // Prevents ExtraEnergy buff from counting down unless special ability was used
     {
       "Rule": "TickAdjusted",
       "Config": true
     },
+    {
+      "Rule": "StatModifiersOverriden",
+      "Config": {
+        "ReplenishArmor": 4
+      }
+    },
+	// Makes gold piles worth 69 most of the time
+    {
+      "Rule": "GoldPickedUpMultiplied",
+      "Config": 1.0
+    },
+	// Added Forest and Desert creature types so these enemies can spawn on relevant boss maps
     {
       "Rule": "PiecePieceTypeListOverridden",
       "Config": {
@@ -441,74 +441,121 @@
         {
           "Piece": "EarthElemental",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 1.0
         },
         {
           "Piece": "SilentSentinel",
           "Property": "PowerIndex",
-          "Value": 4.0
+          "Value": 2.0
         },
         {
           "Piece": "Wyvern",
           "Property": "PowerIndex",
-          "Value": 5.0
+          "Value": 1.0
         },
         {
           "Piece": "Mimic",
           "Property": "PowerIndex",
-          "Value": 5.0
+          "Value": 1.0
         },
         {
           "Piece": "Brookmare",
           "Property": "PowerIndex",
-          "Value": 4.0
+          "Value": 2.0
         },
         {
           "Piece": "BigBoiMutant",
           "Property": "PowerIndex",
-          "Value": 4.0
+          "Value": 2.0
         },
         {
           "Piece": "Cavetroll",
           "Property": "PowerIndex",
-          "Value": 4.0
+          "Value": 2.0
         },
         {
           "Piece": "ElvenMarauder",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "GiantSlime",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "GiantSpider",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "Sigataur",
           "Property": "PowerIndex",
-          "Value": 4.0
+          "Value": 2.0
         },
         {
           "Piece": "RootGolem",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "ServantOfAlfaragh",
           "Property": "PowerIndex",
-          "Value": 5.0
+          "Value": 2.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.5
+        },
+        {
+          "Piece": "ElvenMarauder",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.5
+        },
+        {
+          "Piece": "RootGolem",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.5
+        },
+        {
+          "Piece": "GiantSlime",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.5
+        },
+        {
+          "Piece": "Gorgon",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.5
+        },
+        {
+          "Piece": "ElvenSkirmisher",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "ScabRat",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.666
+        },
+        {
+          "Piece": "ChestGoblin",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.99
+        },
+        {
+          "Piece": "GoblinMadUn",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
         }
       ]
     },
+	// Bard Courage has 33% chance to heal for 1
     {
       "Rule": "CourageShantyAddsHp",
       "Config": 1
     },
+	// Reviving a player removes stun and frozen effects
     {
       "Rule": "ReviveRemovesEffects",
       "Config": true
@@ -524,6 +571,7 @@
         "Target": 0
       }
     },
+	// Changes the keyhoilders but doesn't change the end boss
     {
       "Rule": "MyMonsterDeckOverridden",
       "Config": {
@@ -539,9 +587,9 @@
           "TheUnseen": 2,
           "ElvenArcher": 1,
           "ElvenHound": 2,
-          "RootHound": 1,
+          "RootHound": 2,
           "TheUnspoken": 2,
-          "Bandit": 1,
+          "Bandit": 2,
           "DruidArcher": 1,
           "DruidHoundMaster": 1,
           "GoblinChieftan": 1,
@@ -550,28 +598,30 @@
           "ScabRat": 2,
           "Spider": 2,
           "Rat": 1,
+          "SpiderEgg": 1,
+          "RatNest": 1,
           "TheUnheard": 2,
           "Slimeling": 1,
-          "Thug": 1,
+          "Thug": 2,
           "ElvenMystic": 1,
           "ElvenPriest": 1,
           "ElvenSkirmisher": 1,
           "GoblinFighter": 1,
-          "GoblinRanger": 1,
+          "GoblinRanger": 2,
           "CultMemberElder": 2,
           "RootMage": 1,
           "KillerBee": 2,
           "ChestGoblin": 1,
           "Sigataur": 1,
-          "GiantSlime": 1,
+          "GiantSlime": 2,
           "FireElemental": 1,
-          "ElvenMarauder": 1,
+          "ElvenMarauder": 2,
           "IceElemental": 2,
           "GiantSpider": 2,
           "Cavetroll": 1,
           "BigBoiMutant": 1,
           "SilentSentinel": 1,
-          "ServantOfAlfaragh": 1
+          "ServantOfAlfaragh": 2
         },
         "ExitDeckFloor1": {
           "ScarabSandPile": 1,
@@ -584,14 +634,14 @@
           "TheUnseen": 2,
           "ElvenArcher": 1,
           "ElvenHound": 1,
-          "RootHound": 2,
+          "RootHound": 1,
           "Bandit": 1,
           "DruidArcher": 1,
           "DruidHoundMaster": 1,
           "GoblinChieftan": 1,
           "GoblinMadUn": 2,
           "RootBeast": 1,
-          "ScabRat": 1,
+          "ScabRat": 2,
           "Spider": 1,
           "Rat": 1,
           "TheUnheard": 2,
@@ -607,16 +657,16 @@
           "RootMage": 1,
           "KillerBee": 1,
           "EarthElemental": 1,
-          "Cavetroll": 1,
-          "ElvenMarauder": 1,
-          "Sigataur": 1,
-          "GiantSlime": 1,
-          "RootGolem": 1,
-          "Brookmare": 1,
-          "Gorgon": 1,
-          "SilentSentinel": 1,
-          "BigBoiMutant": 1,
-          "ServantOfAlfaragh": 1
+          "Cavetroll": 2,
+          "ElvenMarauder": 2,
+          "Sigataur": 2,
+          "GiantSlime": 2,
+          "RootGolem": 2,
+          "Brookmare": 2,
+          "Gorgon": 2,
+          "SilentSentinel": 2,
+          "BigBoiMutant": 2,
+          "ServantOfAlfaragh": 2
         },
         "EntranceDeckFloor2": {
           "EmptySandPile": 1,
@@ -629,11 +679,11 @@
           "SmallCorruption": 1,
           "GeneralRonthian": 1,
           "TheUnseen": 2,
-          "ElvenArcher": 1,
+          "ElvenArcher": 2,
           "ElvenHound": 2,
           "RootHound": 2,
           "TheUnspoken": 2,
-          "Bandit": 1,
+          "Bandit": 2,
           "DruidArcher": 1,
           "DruidHoundMaster": 1,
           "GoblinChieftan": 1,
@@ -642,18 +692,20 @@
           "ScabRat": 2,
           "Spider": 2,
           "Rat": 1,
+          "SpiderEgg": 1,
+          "RatNest": 1,
           "TheUnheard": 2,
           "Slimeling": 1,
-          "Thug": 1,
+          "Thug": 2,
           "ElvenMystic": 2,
           "ElvenPriest": 1,
           "ElvenSkirmisher": 1,
           "GoblinFighter": 1,
           "GoblinRanger": 2,
-          "CultMemberElder": 1,
+          "CultMemberElder": 2,
           "RootMage": 1,
           "KillerBee": 2,
-          "EarthElemental": 1,
+          "EarthElemental": 2,
           "Sigataur": 1,
           "GiantSlime": 1,
           "FireElemental": 1,
@@ -674,16 +726,16 @@
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
           "SmallCorruption": 1,
-          "GeneralRonthian": 2,
-          "TheUnseen": 2,
-          "ElvenArcher": 1,
-          "ElvenHound": 2,
+          "GeneralRonthian": 1,
+          "TheUnseen": 1,
+          "ElvenArcher": 2,
+          "ElvenHound": 1,
           "RootHound": 1,
           "Bandit": 1,
           "DruidArcher": 1,
           "DruidHoundMaster": 1,
           "GoblinChieftan": 1,
-          "GoblinMadUn": 1,
+          "GoblinMadUn": 2,
           "RootBeast": 1,
           "ScabRat": 2,
           "Spider": 1,
@@ -695,67 +747,65 @@
           "ElvenSkirmisher": 1,
           "GoblinFighter": 1,
           "GoblinRanger": 1,
-          "SpiderEgg": 1,
-          "RatNest": 1,
           "CultMemberElder": 1,
           "RootMage": 1,
           "KillerBee": 2,
           "ChestGoblin": 1,
-          "EarthElemental": 2,
-          "Sigataur": 1,
-          "GiantSlime": 1,
+          "EarthElemental": 1,
+          "Sigataur": 2,
+          "GiantSlime": 2,
           "FireElemental": 1,
-          "ElvenMarauder": 1,
+          "ElvenMarauder": 2,
           "IceElemental": 2,
-          "GiantSpider": 1,
-          "Cavetroll": 1,
-          "RootGolem": 1,
-          "Brookmare": 1,
-          "Gorgon": 1,
-          "SilentSentinel": 1,
-          "BigBoiMutant": 1,
-          "ServantOfAlfaragh": 1
+          "GiantSpider": 2,
+          "Cavetroll": 2,
+          "RootGolem": 2,
+          "Brookmare": 2,
+          "Gorgon": 2,
+          "SilentSentinel": 2,
+          "BigBoiMutant": 2,
+          "ServantOfAlfaragh": 2
         },
         "BossDeck": {
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
           "GeneralRonthian": 1,
-          "TheUnseen": 2,
-          "ElvenArcher": 1,
+          "TheUnseen": 1,
+          "ElvenArcher": 2,
           "ElvenHound": 1,
           "RootHound": 1,
           "TheUnspoken": 1,
           "DruidArcher": 1,
           "DruidHoundMaster": 1,
           "GoblinChieftan": 1,
-          "GoblinMadUn": 1,
+          "GoblinMadUn": 2,
           "RootBeast": 1,
           "ScabRat": 2,
           "Spider": 1,
-          "Rat": 2,
+          "Rat": 1,
           "TheUnheard": 2,
           "Slimeling": 1,
           "Thug": 1,
           "ElvenMystic": 1,
           "ElvenPriest": 1,
           "ElvenSkirmisher": 1,
-          "CultMemberElder": 1,
+          "CultMemberElder": 2,
           "RootMage": 1,
-          "KillerBee": 2,
+          "KillerBee": 1,
           "EarthElemental": 1,
-          "Sigataur": 1,
-          "GiantSlime": 1,
+          "Sigataur": 2,
+          "GiantSlime": 2,
           "FireElemental": 1,
           "ElvenMarauder": 2,
           "IceElemental": 2,
           "GiantSpider": 2,
-          "Cavetroll": 1,
-          "RootGolem": 1,
-          "Brookmare": 1,
-          "Gorgon": 1,
-          "SilentSentinel": 1,
-          "BigBoiMutant": 1,
-          "ServantOfAlfaragh": 1
+          "Cavetroll": 2,
+          "RootGolem": 2,
+          "Brookmare": 2,
+          "Gorgon": 2,
+          "SilentSentinel": 2,
+          "BigBoiMutant": 2,
+          "ServantOfAlfaragh": 2
         },
         "KeyHolderFloor1": "Mimic",
         "KeyHolderFloor2": "Wyvern"
@@ -1023,7 +1073,6 @@
           "SwiftnessPotion",
           "ExtraActionPotion",
           "HeavensFury",
-          "MagicPotion",
           "GrapplingTotem",
           "PlayerLeap",
           "MarkOfVerga",
@@ -1052,7 +1101,6 @@
           "SwiftnessPotion",
           "ExtraActionPotion",
           "HeavensFury",
-          "MagicPotion",
           "HealingWard",
           "WhirlwindAttack",
           "WarCry",
@@ -1081,7 +1129,6 @@
           "SwiftnessPotion",
           "ExtraActionPotion",
           "HeavensFury",
-          "MagicPotion",
           "SongOfRecovery",
           "SongOfResilience",
           "BlockAbilities",
@@ -1110,7 +1157,6 @@
           "SwiftnessPotion",
           "ExtraActionPotion",
           "HeavensFury",
-          "MagicPotion",
           "ScrollOfCharm",
           "BeastWhisperer",
           "CallCompanion",
@@ -1139,7 +1185,6 @@
           "SwiftnessPotion",
           "ExtraActionPotion",
           "HeavensFury",
-          "MagicPotion",
           "Blink",
           "PoisonBomb",
           "CoinFlip",
@@ -1164,7 +1209,6 @@
           "DamageResistPotion",
           "InvisibilityPotion",
           "VigorPotion",
-          "StrengthPotion",
           "SwiftnessPotion",
           "ExtraActionPotion",
           "HeavensFury",
@@ -1193,7 +1237,6 @@
           "DamageResistPotion",
           "InvisibilityPotion",
           "VigorPotion",
-          "StrengthPotion",
           "SwiftnessPotion",
           "ExtraActionPotion",
           "HeavensFury",
@@ -1233,7 +1276,9 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
+          "StrengthPotion",
           "LuckPotion",
+          "ScrollElectricity",
           "MarkOfVerga"
         ],
         "HeroGuardian": [
@@ -1249,7 +1294,9 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
+          "StrengthPotion",
           "LuckPotion",
+          "ScrollElectricity",
           "WhirlwindAttack"
         ],
         "HeroBard": [
@@ -1265,7 +1312,9 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
+          "StrengthPotion",
           "LuckPotion",
+          "ScrollElectricity",
           "ScrollOfCharm"
         ],
         "HeroHunter": [
@@ -1280,14 +1329,15 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
+          "StrengthPotion",
           "LuckPotion",
+          "ScrollElectricity",
           "HuntersMark"
         ],
         "HeroRogue": [
           "EnergyPotion",
           "Bone",
           "WebBomb",
-          "Barricade",
           "RepeatingBallista",
           "OneMoreThing",
           "PanicPowder",
@@ -1297,7 +1347,9 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
+          "StrengthPotion",
           "LuckPotion",
+          "ScrollElectricity",
           "Blink"
         ],
         "HeroSorcerer": [
@@ -1313,7 +1365,9 @@
           "FireImmunePotion",
           "ScrollTsunami",
           "Regroup",
+          "MagicPotion",
           "LuckPotion",
+          "ScrollElectricity",
           "Fireball"
         ],
         "HeroWarlock": [
@@ -1330,7 +1384,9 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
+          "MagicPotion",
           "LuckPotion",
+          "ScrollElectricity",
           "Portal"
         ]
       }
@@ -1427,14 +1483,8 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "healthBoost": 0
         },
         {
           "effectStateType": "TorchPlayer",
@@ -1443,14 +1493,8 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "healthBoost": 0
         },
         {
           "effectStateType": "FireImmunity",
@@ -1459,14 +1503,8 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "healthBoost": 0
         },
         {
           "effectStateType": "IceImmunity",
@@ -1475,14 +1513,8 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "healthBoost": 0
         },
         {
           "effectStateType": "Invulnerable3",
@@ -1491,14 +1523,8 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "healthBoost": 0
         },
         {
           "effectStateType": "MarkOfAvalon",
@@ -1507,14 +1533,8 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "healthBoost": 0
         },
         {
           "effectStateType": "ExtraEnergy",
@@ -1523,14 +1543,9 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
           "healthBoost": 2,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Thorns",
-          "useOnDissipate": 0
+          "applyAfterDissipate": "Thorns"
         },
         {
           "effectStateType": "Netted",
@@ -1539,14 +1554,8 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "healthBoost": 0
         },
         {
           "effectStateType": "Invisibility",
@@ -1555,14 +1564,8 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "healthBoost": 0
         },
         {
           "effectStateType": "PlayerBerserk",
@@ -1571,14 +1574,18 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
-          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "healthBoost": 0
+        },
+        {
+          "effectStateType": "Thorns",
+          "durationTurns": 2,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 1,
+          "clearOnNewLevel": false,
+          "healPerTurn": 0,
+          "healthBoost": 0
         }
       ]
     },
@@ -1864,6 +1871,7 @@
         ]
       }
     },
+	// Pieces that get hit cause effects on the enemy that hit them (if they're not immune)
     {
       "Rule": "ApplyEffectOnHitAdjusted",
       "Config": {
@@ -1880,6 +1888,7 @@
         "SellswordArbalestierActive": "Panic"
       }
     },
+	// Abilities used have secondary effects
     {
       "Rule": "AbilityTargetEffects",
       "Config": {
@@ -1921,6 +1930,7 @@
         ]
       }
     },
+	// These additional abilities won't break stealth
     {
       "Rule": "AbilityBreaksStealthAdjusted",
       "Config": {
@@ -1944,7 +1954,6 @@
         "WeakeningShout": false,
         "LeapHeavy": false,
         "SpawnRandomLamp": false,
-        "ScrollElectricity": false,
         "DeathBeam": false,
         "FretsOfFire": false,
         "Grapple": false,
@@ -1969,6 +1978,7 @@
         "HeroRogue"
       ]
     },
+	// Turn order changes if Mark, Varga, or Deflect card is held by player.
     {
       "Rule": "TurnOrderOverridden",
       "Config": {
@@ -1986,6 +1996,8 @@
         "Deflect": 2
       }
     },
+	// Warlock heals self for 1 every hit if marked. Rogue has 50% chance to heal 1 every hit. Minion frenzies under half health.
+	// Note: Using this rule also gives Elven Queen and Desert Boss their changes
     {
       "Rule": "FreeHealOnHit",
       "Config": [
@@ -1993,6 +2005,7 @@
         "HeroWarlock"
       ]
     },
+	// Warlock and Rogue same as above in 'FreeHealOnHit'. Bard has 66% chance to heal self for 1 on crit.
     {
       "Rule": "FreeHealOnCrit",
       "Config": [
@@ -2001,6 +2014,7 @@
         "HeroBard"
       ]
     },
+	// Restores specific (hardcoded) replenishable abilities on critical hits.
     {
       "Rule": "FreeReplenishablesOnCrit",
       "Config": [
@@ -2013,6 +2027,7 @@
         "HeroWarlock"
       ]
     },
+	// Adds action points on crits. Hardcoded to add 2 for Guardian and substitutes Invisibility buff to Rogue if last hit.
     {
       "Rule": "FreeActionPointsOnCrit",
       "Config": [
@@ -2020,6 +2035,7 @@
         "HeroRogue"
       ]
     },
+	// Only gives these cards out if crit is on their last turn
     {
       "Rule": "FreeAbilityOnCrit",
       "Config": {
@@ -2079,6 +2095,7 @@
         "Net": 0
       }
     },
+	// Adjusts ability Damage, Crit, SplashDamage, and CritSplashDamage
     {
       "Rule": "AbilityDamageAllOverridden",
       "Config": {
@@ -2141,13 +2158,21 @@
           5,
           5,
           5
+        ],
+        "ImplosionExplosionRain": [
+          5,
+          5,
+          5,
+          5
         ]
       }
     },
+	// Hardcoded to only prevent Sorcerer from damaging/stunning other friendlies
     {
       "Rule": "PartyElectricityDamageOverridden",
       "Config": true
     },
+	// Adds extra hardcoded immunities to each class [ex: Guardian is immune to fire]
     {
       "Rule": "PieceExtraImmunities",
       "Config": true
@@ -2165,13 +2190,20 @@
       "Config": 0.75
     },
     {
+      "Rule": "CardEnergyFromRecyclingMultiplied",
+      "Config": 1.25
+    },
+	// Health is ALSO hardcoded random from 90% normal to 115% normal
+    {
       "Rule": "EnemyHealthScaled",
       "Config": 1.0
     },
+	// Damage is ALSO hardcoded random from -1 normal to +1 normal
     {
       "Rule": "EnemyAttackScaled",
       "Config": 1.0
     },
+	// Changes max stats from potions to 5 (from 3)
     {
       "Rule": "PieceExtraStatsAdjusted",
       "Config": true
@@ -2211,6 +2243,7 @@
         ]
       }
     },
+	// No shops listed here automatically causes random levels from any map/adventure
     {
       "Rule": "LevelSequenceOverridden",
       "Config": [
@@ -2225,12 +2258,12 @@
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
-        "BigGoldPileChance": 30,
+        "BigGoldPileChance": 0,
         "FloorOneHealingFountains": 1,
         "FloorOnePotionStand": 1,
         "FloorOneMerchant": 0,
         "FloorOneLootChests": 3,
-        "FloorOneGoldMaxAmount": 325,
+        "FloorOneGoldMaxAmount": 350,
         "FloorOneElvenSummoners": 0,
         "FloorOneSellswords": 1,
         "FloorOneVillagers": 1,

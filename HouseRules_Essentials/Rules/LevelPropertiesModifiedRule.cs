@@ -14,7 +14,7 @@
         private readonly Dictionary<string, int> _levelProperties;
         private readonly Dictionary<string, int> _ratKing = new Dictionary<string, int>
         {
-                { "BigGoldPileChance", 30 },
+                { "BigGoldPileChance", 0 },
                 { "FloorOneHealingFountains", 1 },
                 { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
@@ -39,8 +39,8 @@
 
         private readonly Dictionary<string, int> _elvenKing = new Dictionary<string, int>
         {
-                { "BigGoldPileChance", 30 },
-                { "FloorOneHealingFountains", 2 },
+                { "BigGoldPileChance", 0 },
+                { "FloorOneHealingFountains", 1 },
                 { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 3 },
