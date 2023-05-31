@@ -66,6 +66,7 @@
             HR.Rulebook.Register(typeof(PieceExtraStatsAdjustedRule));
             HR.Rulebook.Register(typeof(PieceExtraImmunitiesRule));
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
+            HR.Rulebook.Register(typeof(PieceMagicStatAddedRule));
             HR.Rulebook.Register(typeof(PiecePieceTypeListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceUseOnCreatedOverriddenRule));
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));

@@ -1756,8 +1756,24 @@
             var pieceCounterDamageRule = new PieceCounterDamageRule(new Dictionary<BoardPieceId, int>
             {
                 { BoardPieceId.HeroGuardian, 1 },
+                { BoardPieceId.FireElemental, 1 },
+                { BoardPieceId.IceElemental, 1 },
                 { BoardPieceId.ElvenQueen, 1 },
                 { BoardPieceId.Mimic, 1 },
+                { BoardPieceId.Wyvern, 1 },
+            });
+
+            var pieceMagicStatsRule = new PieceMagicStatAddedRule(new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.HeroSorcerer, 1 },
+                { BoardPieceId.FireElemental, 1 },
+                { BoardPieceId.IceElemental, 1 },
+                { BoardPieceId.ElvenQueen, 1 },
+                { BoardPieceId.WizardBoss, 1 },
+                { BoardPieceId.BossTown, 1 },
+                { BoardPieceId.MotherCy, 1 },
+                { BoardPieceId.Mimic, 1 },
+                { BoardPieceId.Wyvern, 1 },
             });
 
             var goldPickupRule = new GoldPickedUpMultipliedRule(1);
@@ -1770,6 +1786,7 @@
                 name,
                 description,
                 tickRule,
+                pieceMagicStatsRule,
                 pieceCounterDamageRule,
                 pieceDamageResistRule,
                 pieceExtraStatsRule,
