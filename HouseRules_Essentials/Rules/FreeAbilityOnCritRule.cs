@@ -37,19 +37,14 @@
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(Ability), "GenerateAttackDamage"),
-                postfix: new HarmonyMethod(
+                prefix: new HarmonyMethod(
                     typeof(FreeAbilityOnCritRule),
-                    nameof(Ability_GenerateAttackDamage_Postfix)));
+                    nameof(Ability_GenerateAttackDamage_Prefix)));
         }
 
-        private static void Ability_GenerateAttackDamage_Postfix(Piece source, Dice.Outcome diceResult)
+        private static void Ability_GenerateAttackDamage_Prefix(Piece source, Dice.Outcome diceResult)
         {
             if (!_isActivated)
-            {
-                return;
-            }
-
-            if (!source.IsPlayer())
             {
                 return;
             }
@@ -59,7 +54,7 @@
                 return;
             }
 
-            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
+            if (!source.IsPlayer())
             {
                 return;
             }
@@ -154,17 +149,30 @@
                 {
                     if (!source.HasEffectState(EffectStateType.DeflectionBarrier))
                     {
+                        source.effectSink.TryGetStat(Stats.Type.MoveRange, out int myMoveRange);
+                        source.effectSink.TryGetStatMax(Stats.Type.MoveRange, out int myMaxMoveRange);
+                        source.effectSink.TrySetStatMaxValue(Stats.Type.MoveRange, myMaxMoveRange + 3);
+                        source.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, myMoveRange + 3);
                         source.EnableEffectState(EffectStateType.DeflectionBarrier);
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.DeflectionBarrier, 2);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.DeflectionBarrier, 3);
                     }
                     else
                     {
-                        source.effectSink.SetStatusEffectDuration(EffectStateType.DeflectionBarrier, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.DeflectionBarrier) + 2);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.DeflectionBarrier, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.DeflectionBarrier) + 3);
                     }
                 }
                 else if (source.boardPieceId == BoardPieceId.HeroWarlock)
                 {
-                    source.EnableEffectState(EffectStateType.SpellPower);
+                    if (!source.HasEffectState(EffectStateType.ChargeUp))
+                    {
+                        source.effectSink.TryGetStat(Stats.Type.MagicBonus, out int myMagic);
+                        source.effectSink.TryGetStatMax(Stats.Type.MagicBonus, out int myMaxMagic);
+                        source.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, myMaxMagic + 3);
+                        source.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, myMagic + 3);
+                    }
+
+                    source.EnableEffectState(EffectStateType.ChargeUp);
+                    source.effectSink.SetStatusEffectDuration(EffectStateType.ChargeUp, 2);
                 }
                 else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
                 {
@@ -227,6 +235,11 @@
                         }
                     }
                 }
+            }
+
+            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
+            {
+                return;
             }
 
             Inventory.Item value2;

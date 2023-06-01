@@ -8,7 +8,7 @@
 
     public sealed class TickAdjustedRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe, IDisableOnReconnect
     {
-        public override string Description => "Ignore tick for Energy Potion and maybe others if we add them here.";
+        public override string Description => "Ignore tick for Energy Potion and remove secondary effects for other buffs that fade.";
 
         private static bool _isActivated;
 
@@ -235,8 +235,7 @@
                     }
                 }
             }
-
-            if (__instance.effectStateType == EffectStateType.PlayerBerserk)
+            else if (__instance.effectStateType == EffectStateType.PlayerBerserk)
             {
                 var pieceId = Traverse.Create(__instance).Field<int>("sourcePieceId").Value;
                 var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
@@ -249,8 +248,51 @@
                 if (piece.boardPieceId == BoardPieceId.HeroGuardian)
                 {
                     piece.effectSink.TryGetStat(Stats.Type.MoveRange, out int myMoveRange);
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, (int)(myMoveRange - 3));
-                    MelonLoader.MelonLogger.Msg($"Guardian speed lowered (returned) to {(int)(myMoveRange - 3)}");
+                    piece.effectSink.TryGetStatMax(Stats.Type.MoveRange, out int myMaxMove);
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, myMoveRange - 3);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.MoveRange, myMaxMove - 3);
+                }
+            }
+            else if (__instance.effectStateType == EffectStateType.ChargeUp)
+            {
+                var pieceId = Traverse.Create(__instance).Field<int>("sourcePieceId").Value;
+                var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
+                Piece piece = pieceAndTurnController.GetPiece(pieceId);
+                if (piece == null)
+                {
+                    return;
+                }
+
+                if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                {
+                    if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ChargeUp) == 1)
+                    {
+                        piece.effectSink.TryGetStat(Stats.Type.MagicBonus, out int myMagic);
+                        piece.effectSink.TryGetStatMax(Stats.Type.MagicBonus, out int myMaxMagic);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, myMagic - 3);
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, myMaxMagic - 3);
+                    }
+                }
+            }
+            else if (__instance.effectStateType == EffectStateType.DeflectionBarrier)
+            {
+                var pieceId = Traverse.Create(__instance).Field<int>("sourcePieceId").Value;
+                var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
+                Piece piece = pieceAndTurnController.GetPiece(pieceId);
+                if (piece == null)
+                {
+                    return;
+                }
+
+                if (piece.boardPieceId == BoardPieceId.HeroBard)
+                {
+                    if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.DeflectionBarrier) == 1)
+                    {
+                        piece.effectSink.TryGetStat(Stats.Type.MoveRange, out int myMoveRange);
+                        piece.effectSink.TryGetStatMax(Stats.Type.MoveRange, out int myMaxMove);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, myMoveRange - 3);
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.MoveRange, myMaxMove - 3);
+                    }
                 }
             }
         }

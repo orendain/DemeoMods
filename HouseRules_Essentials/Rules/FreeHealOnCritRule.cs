@@ -96,13 +96,13 @@ namespace HouseRules.Essentials.Rules
                     }
                     else if (source.boardPieceId == BoardPieceId.HeroBard)
                     {
-                        if (chance > 98 && chance2 > 66)
+                        if (chance > 98)
                         {
                             addHeal += 2;
                             source.effectSink.Heal(addHeal);
                             source.AnimateWobble();
                         }
-                        else if (chance2 > 66)
+                        else
                         {
                             addHeal++;
                             source.effectSink.Heal(addHeal);
@@ -132,10 +132,6 @@ namespace HouseRules.Essentials.Rules
                             source.effectSink.Heal(addHeal);
                         }
                     }
-                }
-                else
-                {
-                    source.effectSink.Heal(addHeal);
                 }
             }
             else

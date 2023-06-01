@@ -89,7 +89,9 @@ namespace HouseRules.Essentials.Rules
                     }
 
                     source.effectSink.TryGetStat(Stats.Type.MoveRange, out int myMoveRange);
-                    source.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, (int)(myMoveRange + 3));
+                    source.effectSink.TryGetStatMax(Stats.Type.MoveRange, out int myMaxMoveRange);
+                    source.effectSink.TrySetStatMaxValue(Stats.Type.MoveRange, myMaxMoveRange + 3);
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, myMoveRange + 3);
                     source.EnableEffectState(EffectStateType.PlayerBerserk);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.PlayerBerserk, 1);
                 }

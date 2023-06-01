@@ -58,6 +58,8 @@
             {
                 if (replacement.Key == __result.boardPieceId)
                 {
+                    __result.effectSink.TryGetStatMax(Stats.Type.MagicBonus, out int myMaxMagic);
+                    __result.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, myMaxMagic + 1);
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, replacement.Value);
                     return;
                 }

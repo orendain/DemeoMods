@@ -2,6 +2,7 @@
 {
     using Boardgame;
     using Boardgame.GameplayEffects;
+    using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
     using UnityEngine;
@@ -48,9 +49,10 @@
 
             if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
-                if (Random.Range(1, 101) > 67)
+                if (Random.Range(1, 101) > 66)
                 {
                     target.piece.effectSink.Heal(_globalAdjustments);
+                    target.piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
                     target.piece.AnimateWobble();
                     HR.ScheduleBoardSync();
                 }
