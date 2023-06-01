@@ -41,6 +41,11 @@
                 return;
             }
 
+            if (!HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            {
+                return;
+            }
+
             if (__instance.effectStateType == EffectStateType.ExtraEnergy)
             {
                 var pieceId = Traverse.Create(__instance).Field<int>("sourcePieceId").Value;
@@ -228,10 +233,24 @@
                         piece.effectSink.SetStatusEffectDuration(EffectStateType.ExtraEnergy, howMany);
                         piece.effectSink.AddStatusEffect(EffectStateType.It, 1);
                     }
-                    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
-                    {
-                        MelonLoader.MelonLogger.Msg("Hunter's Extra Action reduced by 1");
-                    }
+                }
+            }
+
+            if (__instance.effectStateType == EffectStateType.PlayerBerserk)
+            {
+                var pieceId = Traverse.Create(__instance).Field<int>("sourcePieceId").Value;
+                var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
+                Piece piece = pieceAndTurnController.GetPiece(pieceId);
+                if (piece == null)
+                {
+                    return;
+                }
+
+                if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                {
+                    piece.effectSink.TryGetStat(Stats.Type.MoveRange, out int myMoveRange);
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, (int)(myMoveRange - 3));
+                    MelonLoader.MelonLogger.Msg($"Guardian speed lowered (returned) to {(int)(myMoveRange - 3)}");
                 }
             }
         }

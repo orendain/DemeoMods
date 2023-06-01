@@ -60,7 +60,6 @@
                 {
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamage, replacement.Value);
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 255);
-                    MelonLoader.MelonLogger.Msg($"{__result.boardPieceId} innate counterdamage set to {replacement.Value}");
                     return;
                 }
             }

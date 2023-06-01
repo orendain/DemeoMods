@@ -1780,7 +1780,8 @@
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new TickAdjustedRule(true);
-            var elvenQueenChange = new ElvenQueenFightChange(true);
+            var elvenQueenBuffs = new ElvenQueenBuffsRule(true);
+            var elvenQueenSuper = new ElvenQueenSuperBuffRule(true);
 
             return Ruleset.NewInstance(
                 name,
@@ -1790,7 +1791,8 @@
                 pieceCounterDamageRule,
                 pieceDamageResistRule,
                 pieceExtraStatsRule,
-                elvenQueenChange,
+                elvenQueenBuffs,
+                elvenQueenSuper,
                 statModifiersRule,
                 goldPickupRule,
                 piecePieceTypeRule,

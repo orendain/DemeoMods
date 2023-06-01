@@ -8,7 +8,7 @@
     using HouseRules.Types;
     using UnityEngine;
 
-    public sealed class ElvenQueenFightChange : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class ElvenQueenBuffsRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
         public override string Description => "Adds phases to Elven Queen fight.";
 
@@ -18,7 +18,9 @@
 
         private readonly bool _adjustments;
 
-        public ElvenQueenFightChange(bool adjustments)
+        internal static bool IsSuperBuffed => ElvenQueenSuperBuffRule.SuperBuff;
+
+        public ElvenQueenBuffsRule(bool adjustments)
         {
             _adjustments = adjustments;
         }
@@ -38,7 +40,7 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(Ability), "GenerateAttackDamage"),
                 postfix: new HarmonyMethod(
-                    typeof(ElvenQueenFightChange),
+                    typeof(ElvenQueenBuffsRule),
                     nameof(Ability_GenerateAttackDamage_Postfix)));
         }
 
@@ -59,23 +61,18 @@
             }
             else if (source.GetHealth() < (source.GetMaxHealth() / 3))
             {
-                source.EnableEffectState(EffectStateType.MagicShield);
-                source.effectSink.SetStatusEffectDuration(EffectStateType.MagicShield, 69);
-                source.EnableEffectState(EffectStateType.Courageous);
-                source.effectSink.SetStatusEffectDuration(EffectStateType.Courageous, 69);
-                return;
-            }
-            else if (source.GetHealth() < (source.GetMaxHealth() / 2))
-            {
-                low = 2;
-                high = 4;
-                nextPhase = Random.Range(2, 4);
+                if (IsSuperBuffed)
+                {
+                    return;
+                }
+
+                nextPhase = Random.Range(2, 6);
             }
             else
             {
-                low = 3;
+                low = 2;
                 high = 6;
-                nextPhase = Random.Range(3, 6);
+                nextPhase = Random.Range(2, 6);
             }
 
             while (nextPhase == phase)

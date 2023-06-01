@@ -61,7 +61,6 @@
                     __result.effectSink.TrySetStatMaxValue(Stats.Type.Strength, replacement.Value);
                     __result.effectSink.TrySetStatMaxValue(Stats.Type.Speed, replacement.Value);
                     __result.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, replacement.Value);
-                    MelonLoader.MelonLogger.Msg($"{__result.boardPieceId} max stats set to {replacement.Value}");
                     return;
                 }
             }

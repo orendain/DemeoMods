@@ -55,7 +55,6 @@
             }
 
             __result.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1);
-            MelonLoader.MelonLogger.Msg($"{__result.boardPieceId} damage resist set to 1");
         }
     }
 }

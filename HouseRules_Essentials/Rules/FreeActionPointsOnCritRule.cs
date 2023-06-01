@@ -83,6 +83,13 @@ namespace HouseRules.Essentials.Rules
                         source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                     }
 
+                    if (source.HasEffectState(EffectStateType.PlayerBerserk))
+                    {
+                        return;
+                    }
+
+                    source.effectSink.TryGetStat(Stats.Type.MoveRange, out int myMoveRange);
+                    source.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, (int)(myMoveRange + 3));
                     source.EnableEffectState(EffectStateType.PlayerBerserk);
                     source.effectSink.SetStatusEffectDuration(EffectStateType.PlayerBerserk, 1);
                 }

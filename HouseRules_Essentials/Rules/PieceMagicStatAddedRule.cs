@@ -59,7 +59,6 @@
                 if (replacement.Key == __result.boardPieceId)
                 {
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, replacement.Value);
-                    MelonLoader.MelonLogger.Msg($"{__result.boardPieceId} magic bonus set to {replacement.Value}");
                     return;
                 }
             }

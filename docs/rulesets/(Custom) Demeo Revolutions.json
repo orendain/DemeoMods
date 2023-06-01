@@ -2200,9 +2200,14 @@
       "Rule": "EnemyAttackScaled",
       "Config": 1.0
     },
-	// Changes the Elven Queen fight
+	// Elven Queen fight buffs herself between attacks
 	{
-		"Rule": "ElvenQueenFightChange",
+		"Rule": "ElvenQueenBuffs",
+		"Config": true
+	},
+	// Elven Queen enables a super buff when under 33% life
+	{
+		"Rule": "ElvenQueenSuperBuff",
 		"Config": true
 	},
 	// Adds counter-attack damage to pieces
@@ -2210,8 +2215,12 @@
       "Rule": "PieceCounterDamage",
       "Config": {
         "HeroGuardian": 1,
+		"FireElemental": 1,
+		"IceElemental": 1,
+		"GiantSlime": 1,
         "ElvenQueen": 1,
-        "Mimic": 1
+        "Mimic": 1,
+		"Wyvern": 1
       }
     },
 	// Adds ONE (game max allowed) damage resist to pieces
@@ -2240,6 +2249,21 @@
         "HeroRogue": 5,
         "HeroWarlock": 5,
         "HeroSorcerer": 5
+      }
+    },
+	// Add magic bonus damage to pieces
+	{
+      "Rule": "PieceMagicStatAdded",
+      "Config": {
+        "HeroSorceror": 1,
+		"FireElemental": 1,
+		"IceElemental": 1,
+		"ElvenQueen": 1,
+        "WizardBoss": 1,
+		"BossTown": 1,
+		"MotherCy": 1,
+        "Mimic": 1,
+		"Wyvern": 1
       }
     },
     {
