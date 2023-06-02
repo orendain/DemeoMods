@@ -65,10 +65,13 @@ namespace HouseRules.Essentials.Rules
                 int chance2 = Random.Range(1, 101);
                 int addHeal = 0;
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-                source.inventory.AddGold(10);
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
                     addHeal++;
+                }
+                else
+                {
+                    source.inventory.AddGold(10);
                 }
 
                 if (_globalAdjustments.Contains(source.boardPieceId))
@@ -132,6 +135,10 @@ namespace HouseRules.Essentials.Rules
                             source.effectSink.Heal(addHeal);
                         }
                     }
+                }
+                else
+                {
+                    source.effectSink.Heal(1);
                 }
             }
             else

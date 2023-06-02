@@ -1766,6 +1766,7 @@
                 { BoardPieceId.HeroGuardian, 1 },
                 { BoardPieceId.FireElemental, 1 },
                 { BoardPieceId.IceElemental, 1 },
+                { BoardPieceId.GiantSlime, 1 },
                 { BoardPieceId.ElvenQueen, 1 },
                 { BoardPieceId.Mimic, 1 },
                 { BoardPieceId.Wyvern, 1 },
@@ -1790,11 +1791,13 @@
             var tickRule = new TickAdjustedRule(true);
             var elvenQueenBuffs = new ElvenQueenBuffsRule(true);
             var elvenQueenSuper = new ElvenQueenSuperBuffRule(true);
+            var grappleUnhooked = new GrappleUnhookedRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 tickRule,
+                grappleUnhooked,
                 pieceMagicStatsRule,
                 pieceCounterDamageRule,
                 pieceDamageResistRule,

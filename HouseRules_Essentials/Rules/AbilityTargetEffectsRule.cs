@@ -59,20 +59,6 @@
                 // ability.validEffectTeams = teamMode;
             }
 
-            // Barbarian can Grapple and Throw Lamps in same turn
-            AbilityFactory.TryGetAbility(AbilityKey.Grapple, out var grapple);
-            grapple.effectAppliedToSelf = EffectStateType.It;
-            AbilityFactory.TryGetAbility(AbilityKey.ExplodingIceLamp, out var launchIce);
-            launchIce.effectAppliedToSelf = EffectStateType.It;
-            AbilityFactory.TryGetAbility(AbilityKey.ExplodingIceLamp, out var launchFire);
-            launchFire.effectAppliedToSelf = EffectStateType.It;
-            AbilityFactory.TryGetAbility(AbilityKey.ExplodingIceLamp, out var launchVortex);
-            launchVortex.effectAppliedToSelf = EffectStateType.It;
-            AbilityFactory.TryGetAbility(AbilityKey.ExplodingIceLamp, out var launchGas);
-            launchGas.effectAppliedToSelf = EffectStateType.It;
-            AbilityFactory.TryGetAbility(AbilityKey.ExplodingIceLamp, out var launchWater);
-            launchWater.effectAppliedToSelf = EffectStateType.It;
-
             return originals;
         }
     }

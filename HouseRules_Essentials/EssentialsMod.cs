@@ -37,7 +37,8 @@
             HR.Rulebook.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
-            HR.Rulebook.Register(typeof(ElvenQueenFightChange));
+            HR.Rulebook.Register(typeof(ElvenQueenBuffsRule));
+            HR.Rulebook.Register(typeof(ElvenQueenSuperBuffRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
             HR.Rulebook.Register(typeof(EnemyCooldownOverriddenRule));
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
@@ -49,6 +50,7 @@
             HR.Rulebook.Register(typeof(FreeHealOnHitRule));
             HR.Rulebook.Register(typeof(FreeReplenishablesOnCritRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
+            HR.Rulebook.Register(typeof(GrappleUnhookedRule));
             HR.Rulebook.Register(typeof(LampTypesOverriddenRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
