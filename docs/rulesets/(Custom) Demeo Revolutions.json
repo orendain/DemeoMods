@@ -2255,7 +2255,7 @@
 	{
       "Rule": "PieceMagicStatAdded",
       "Config": {
-        "HeroSorceror": 1,
+        "HeroSorcerer": 1,
 		"FireElemental": 1,
 		"IceElemental": 1,
 		"ElvenQueen": 1,
