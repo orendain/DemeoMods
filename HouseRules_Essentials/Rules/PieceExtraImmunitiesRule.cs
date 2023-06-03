@@ -43,6 +43,11 @@
             }
 
             Piece targetPiece = target.piece;
+            if (targetPiece.IsImmuneToDamage())
+            {
+                return true;
+            }
+
             Piece attackerPiece = attacker.piece;
             if (targetPiece.boardPieceId == BoardPieceId.WarlockMinion && (attackerPiece == null || !attackerPiece.HasPieceType(PieceType.Boss)) && damage.HasTag(DamageTag.Undefined))
             {
@@ -55,18 +60,10 @@
                 targetPiece.DisableEffectState(EffectStateType.CorruptedRage);
                 targetPiece.effectSink.TrySetStatBaseValue(Stats.Type.CorruptionAP, 0);
                 targetPiece.effectSink.TryGetStat(Stats.Type.ActionPoints, out int actionPoints);
-                if (actionPoints > 0)
-                {
-                    targetPiece.effectSink.TryAddActionPoints(1);
-                }
+                targetPiece.effectSink.TryAddActionPoints(1);
 
                 targetPiece.effectSink.SubtractHealth(0);
                 return false;
-            }
-
-            if (targetPiece.IsImmuneToDamage())
-            {
-                return true;
             }
 
             if (targetPiece.boardPieceId == BoardPieceId.Verochka && damage.HasTag(DamageTag.Ice) && (attackerPiece == null || !attackerPiece.HasPieceType(PieceType.Boss)))
