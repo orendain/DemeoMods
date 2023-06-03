@@ -2,7 +2,7 @@
   "Name": "(Custom) Demeo Revolutions",
   "Description": "Everything that has a beginning has an end.",
   "Rules": [
-    // Prevents ExtraEnergy buff from counting down unless special ability was used
+    // (Only affects Demeo Revolutions) Prevents ExtraEnergy from counting down unless special ability was used. Also removes temporary Movement/Magic Bonuses
     {
       "Rule": "TickAdjusted",
       "Config": true
@@ -13,12 +13,12 @@
         "ReplenishArmor": 4
       }
     },
-	// Just like the normal rule (Makes gold piles worth 69 most of the time in Demeo Revolutions)
+	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "GoldPickedUpMultiplied",
       "Config": 1.0
     },
-	// Added Forest and Desert creature types so these enemies can spawn on relevant boss maps
+	// Added Forest and Desert creature types to these enemies so they can spawn on relevant boss maps
     {
       "Rule": "PiecePieceTypeListOverridden",
       "Config": {
@@ -550,7 +550,7 @@
         }
       ]
     },
-	// Just like the normal rule (Bard Courage has only 33% chance to heal for 1 in Demeo Revolutions)
+	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "CourageShantyAddsHp",
       "Config": 1
@@ -1586,6 +1586,16 @@
           "clearOnNewLevel": false,
           "healPerTurn": 0,
           "healthBoost": 0
+        },
+		{
+          "effectStateType": "ChargeUp",
+          "durationTurns": 1,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "healPerTurn": 0,
+          "healthBoost": 0
         }
       ]
     },
@@ -1978,7 +1988,7 @@
         "HeroRogue"
       ]
     },
-	// Turn order changes if Mark, Varga, or Deflect card is held by player.
+	// Turn order changes if Mark, Varga, or Deflect card is held by player
     {
       "Rule": "TurnOrderOverridden",
       "Config": {
@@ -1996,7 +2006,7 @@
         "Deflect": 2
       }
     },
-	// Pieces heal for ONE when they hit
+	// Pieces heal for ONE when they hit (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeHealOnHit",
       "Config": [
@@ -2004,7 +2014,7 @@
         "HeroWarlock"
       ]
     },
-	// Pieces heal for ONE when they critical hit
+	// Pieces heal for ONE when they critical hit (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeHealOnCrit",
       "Config": [
@@ -2013,7 +2023,7 @@
         "HeroBard"
       ]
     },
-	// (Only affects Demeo Revolutions) Replenishes specific abilities on critical hits
+	// (ONLY affects Demeo Revolutions ruleset) Replenishes specific abilities on critical hits
     {
       "Rule": "FreeReplenishablesOnCrit",
       "Config": [
@@ -2026,7 +2036,7 @@
         "HeroWarlock"
       ]
     },
-	// Adds ONE action point on critical hit
+	// Adds ONE action point on critical hit (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeActionPointsOnCrit",
       "Config": [
@@ -2040,7 +2050,6 @@
       "Config": {
         "HeroHunter": "Bone",
         "HeroSorcerer": "WaterBottle",
-        "HeroWarlock": "SpellPowerPotion",
         "HeroBard": "PanicPowder",
         "HeroBarbarian": "SpawnRandomLamp"
       }
@@ -2166,12 +2175,17 @@
         ]
       }
     },
-	// Just like the normal rule (Only affects Sorcerer in Demeo Revolutions)
+	// Grapple and throwing lamps can be use in same turn
+	{
+      "Rule": "GrappleUnhooked",
+      "Config": true
+    },
+	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "PartyElectricityDamageOverridden",
       "Config": true
     },
-	// Adds extra hardcoded immunities to each class [ex: Guardian is immune to fire]
+	// Adds Fire, Slime/Petrify, Corruption, Electricity, and Ice damage protection to Guardian, Barbarian, Warlock, Sorcerer, and Hunter respectively. Also makes Leviathan tangle enemies that it pulls
     {
       "Rule": "PieceExtraImmunities",
       "Config": true
@@ -2215,6 +2229,7 @@
       "Rule": "PieceCounterDamage",
       "Config": {
         "HeroGuardian": 1,
+		"GiantSlime": 1,
 		"FireElemental": 1,
 		"IceElemental": 1,
 		"GiantSlime": 1,
@@ -2223,7 +2238,7 @@
 		"Wyvern": 1
       }
     },
-	// Adds ONE (game max allowed) damage resist to pieces
+	// Adds ONE damage resist to pieces
     {
       "Rule": "PieceDamageResist",
       "Config": [
@@ -2251,7 +2266,7 @@
         "HeroSorcerer": 5
       }
     },
-	// Add magic bonus damage to pieces
+	// Add magic bonus damage to pieces and increases maximum magic bonus allowed
 	{
       "Rule": "PieceMagicStatAdded",
       "Config": {
@@ -2301,7 +2316,7 @@
         ]
       }
     },
-	// Uses random levels from any map/adventure if more or less than 5 floors are listed or when floors 2 and/or 4 are not listed as shops
+	// Works as normal *OR* uses random levels from any map/adventure if more or less than 5 floors are listed or when floors 2 and/or 4 are not listed as shops
     {
       "Rule": "LevelSequenceOverridden",
       "Config": [
@@ -2316,12 +2331,10 @@
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
-        "BigGoldPileChance": 0,
         "FloorOneHealingFountains": 1,
         "FloorOnePotionStand": 1,
         "FloorOneMerchant": 0,
         "FloorOneLootChests": 3,
-        "FloorOneGoldMaxAmount": 350,
         "FloorOneElvenSummoners": 0,
         "FloorOneSellswords": 1,
         "FloorOneVillagers": 1,
@@ -2330,7 +2343,6 @@
         "FloorTwoMerchant": 1,
         "FloorTwoVillagers": 1,
         "FloorTwoLootChests": 3,
-        "FloorTwoGoldMaxAmount": 500,
         "FloorTwoElvenSummoners": 0,
         "FloorThreeHealingFountains": 1,
         "FloorThreePotionStand": 0,
