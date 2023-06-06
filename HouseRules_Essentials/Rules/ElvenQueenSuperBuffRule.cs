@@ -6,7 +6,6 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
     public sealed class ElvenQueenSuperBuffRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
