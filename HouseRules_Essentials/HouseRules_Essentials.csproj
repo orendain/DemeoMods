@@ -63,9 +63,15 @@
     <Compile Include="Rules\ApplyEffectOnHitAdjustedRule.cs" />
     <Compile Include="Rules\CardAdditionOverriddenRule.cs" />
     <Compile Include="Rules\CardChestAdditionOverriddenRule.cs" />
+    <Compile Include="Rules\ElvenQueenBuffsRule.cs" />
+    <Compile Include="Rules\ElvenQueenSuperBuffRule.cs" />
+    <Compile Include="Rules\GrappleUnhookedRule.cs" />
     <Compile Include="Rules\MerchantOfferRarityOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
     <Compile Include="Rules\EnemyCooldownOverriddenRule.cs" />
+    <Compile Include="Rules\PieceCounterDamageRule.cs" />
+    <Compile Include="Rules\PieceDamageResistRule.cs" />
+    <Compile Include="Rules\PieceMagicStatAddedRule.cs" />
     <Compile Include="Rules\PotionAdditionOverriddenRule.cs" />
     <Compile Include="Rules\ReviveRemovesEffectsRule.cs" />
     <Compile Include="Rules\PieceExtraStatsAdjustedRule.cs" />
