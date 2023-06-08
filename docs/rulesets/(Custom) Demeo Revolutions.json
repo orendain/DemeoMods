@@ -1586,16 +1586,6 @@
           "clearOnNewLevel": false,
           "healPerTurn": 0,
           "healthBoost": 0
-        },
-		{
-          "effectStateType": "ChargeUp",
-          "durationTurns": 1,
-          "tickWhen": "EndTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "healPerTurn": 0,
-          "healthBoost": 0
         }
       ]
     },

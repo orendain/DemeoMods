@@ -163,16 +163,29 @@
                 }
                 else if (source.boardPieceId == BoardPieceId.HeroWarlock)
                 {
-                    if (!source.HasEffectState(EffectStateType.ChargeUp))
+                    if (!source.HasEffectState(EffectStateType.SpawnBuildUp))
                     {
                         source.effectSink.TryGetStat(Stats.Type.MagicBonus, out int myMagic);
                         source.effectSink.TryGetStatMax(Stats.Type.MagicBonus, out int myMaxMagic);
                         source.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, myMaxMagic + 3);
                         source.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, myMagic + 3);
+                        source.EnableEffectState(EffectStateType.SpawnBuildUp);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.SpawnBuildUp, 2);
+                    }
+                    else
+                    {
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.SpawnBuildUp, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.SpawnBuildUp) + 2);
                     }
 
-                    source.EnableEffectState(EffectStateType.ChargeUp);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.ChargeUp, 2);
+                    if (!source.HasEffectState(EffectStateType.Deflect))
+                    {
+                        source.EnableEffectState(EffectStateType.Deflect);
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
+                    }
+                    else
+                    {
+                        source.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Deflect) + 2);
+                    }
                 }
                 else if (source.boardPieceId == BoardPieceId.HeroSorcerer)
                 {

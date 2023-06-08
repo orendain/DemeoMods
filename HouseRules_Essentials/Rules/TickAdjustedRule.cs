@@ -113,7 +113,6 @@
                     {
                         if (piece.HasEffectState(EffectStateType.Discharge))
                         {
-                            MelonLoader.MelonLogger.Msg("Hunter is discharged...");
                             for (int i = 0; i < piece.inventory.Items.Count; i++)
                             {
                                 value = piece.inventory.Items[i];
@@ -126,7 +125,6 @@
                                         Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                         piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                         piece.inventory.Items.Remove(value);
-                                        MelonLoader.MelonLogger.Msg("Hunter's Lightning Bolt removed");
                                     }
 
                                     break;
@@ -253,7 +251,7 @@
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.MoveRange, myMaxMove - 3);
                 }
             }
-            else if (__instance.effectStateType == EffectStateType.ChargeUp)
+            else if (__instance.effectStateType == EffectStateType.SpawnBuildUp)
             {
                 var pieceId = Traverse.Create(__instance).Field<int>("sourcePieceId").Value;
                 var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
@@ -265,7 +263,7 @@
 
                 if (piece.boardPieceId == BoardPieceId.HeroWarlock)
                 {
-                    if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.ChargeUp) == 1)
+                    if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.SpawnBuildUp) == 1)
                     {
                         piece.effectSink.TryGetStat(Stats.Type.MagicBonus, out int myMagic);
                         piece.effectSink.TryGetStatMax(Stats.Type.MagicBonus, out int myMaxMagic);

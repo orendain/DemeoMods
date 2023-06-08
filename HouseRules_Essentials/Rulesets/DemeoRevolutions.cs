@@ -1379,15 +1379,6 @@
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.ChargeUp,
-                    durationTurns = 1,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
-                },
             });
 
             var pieceAbilityRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
