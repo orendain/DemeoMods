@@ -15,7 +15,7 @@
 
         public bool GetConfigObject() => true;
 
-        protected override void OnPreGameCreated(GameContext gameContext)
+        protected override void OnActivate(GameContext gameContext)
         {
             GrappleUnhooked();
         }
