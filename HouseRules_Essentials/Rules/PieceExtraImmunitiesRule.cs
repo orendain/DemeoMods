@@ -49,7 +49,7 @@
             }
 
             Piece attackerPiece = attacker.piece;
-            if (targetPiece.boardPieceId == BoardPieceId.WarlockMinion && (attackerPiece == null || !attackerPiece.HasPieceType(PieceType.Boss)) && damage.HasTag(DamageTag.Undefined))
+            if (targetPiece.IsWarlockMinion() && (attackerPiece == null || !attackerPiece.HasPieceType(PieceType.Boss)) && damage.HasTag(DamageTag.Undefined))
             {
                 targetPiece.DisableEffectState(EffectStateType.CorruptedRage);
                 targetPiece.effectSink.SubtractHealth(0);
@@ -91,10 +91,22 @@
                         return false;
                     }
                 }
-
-                if (attackerPiece.boardPieceId == BoardPieceId.GrapplingTotem && damage.AbilityKey == AbilityKey.GrapplingTotemHook)
+                else if (attackerPiece.boardPieceId == BoardPieceId.GrapplingTotem && damage.AbilityKey == AbilityKey.GrapplingTotemHook)
                 {
                     targetPiece.effectSink.AddStatusEffect(EffectStateType.Tangled);
+                }
+                else if (attackerPiece.IsWarlockMinion())
+                {
+                    // Cana gets Frenzy if at or below half health
+                    if (attackerPiece.GetHealth() <= attackerPiece.GetMaxHealth() / 2)
+                    {
+                        attackerPiece.EnableEffectState(EffectStateType.Frenzy);
+                        attackerPiece.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
+                    }
+                    else if (attackerPiece.HasEffectState(EffectStateType.Frenzy))
+                    {
+                        attackerPiece.DisableEffectState(EffectStateType.Frenzy);
+                    }
                 }
             }
 

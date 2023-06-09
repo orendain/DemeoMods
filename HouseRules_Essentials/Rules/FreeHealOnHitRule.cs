@@ -54,20 +54,6 @@
                 return;
             }
 
-            if (source.IsWarlockMinion())
-            {
-                // Cana gets Frenzy if below half health
-                if (source.GetHealth() < source.GetMaxHealth() / 2)
-                {
-                    source.EnableEffectState(EffectStateType.Frenzy);
-                    source.effectSink.SetStatusEffectDuration(EffectStateType.Frenzy, 1);
-                }
-                else if (source.HasEffectState(EffectStateType.Frenzy))
-                {
-                    source.DisableEffectState(EffectStateType.Frenzy);
-                }
-            }
-
             if (!source.IsPlayer())
             {
                 return;
