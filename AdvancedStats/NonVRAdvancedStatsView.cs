@@ -4,8 +4,6 @@
     using System.Text;
     using Boardgame;
     using Boardgame.BoardEntities;
-    using Boardgame.BoardPiece;
-    using Boardgame.GameplayEffects;
     using Boardgame.NonVR;
     using Boardgame.NonVR.Ui;
     using Boardgame.Ui;

@@ -4,12 +4,10 @@
     using System.Text;
     using Boardgame;
     using Boardgame.BoardEntities;
-    using Boardgame.GameplayEffects;
     using Boardgame.Ui;
     using DataKeys;
     using HarmonyLib;
     using UnityEngine;
-    using static MelonLoader.MelonLogger;
 
     internal static class VRAdvancedStatsView
     {
