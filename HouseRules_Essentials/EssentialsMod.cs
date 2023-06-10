@@ -88,8 +88,11 @@
 
         private static void RegisterRulesets()
         {
-            HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(DemeoRevolutions.Create());
+            HR.Rulebook.Register(DemeoRevolutions_Easy.Create());
+            HR.Rulebook.Register(DemeoRevolutions_Hard.Create());
+            HR.Rulebook.Register(DemeoRevolutions_Legendary.Create());
+            HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(LuckyDip.Create());
             HR.Rulebook.Register(TheSwirlRuleset.Create());
             HR.Rulebook.Register(BeatTheClockRuleset.Create());

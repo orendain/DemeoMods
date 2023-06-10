@@ -38,6 +38,9 @@
     <Compile Include="Rulesets\Arachnophobia.cs" />
     <Compile Include="Rulesets\DemeoReloaded.cs" />
     <Compile Include="Rulesets\DemeoRevolutions.cs" />
+    <Compile Include="Rulesets\DemeoRevolutions_Easy.cs" />
+    <Compile Include="Rulesets\DemeoRevolutions_Hard.cs" />
+    <Compile Include="Rulesets\DemeoRevolutions_Legendary.cs" />
     <Compile Include="Rulesets\EarthWindAndFire.cs" />
     <Compile Include="Rulesets\BeatTheClockRuleset.cs" />
     <Compile Include="Rulesets\BetterSorcererRuleset.cs" />

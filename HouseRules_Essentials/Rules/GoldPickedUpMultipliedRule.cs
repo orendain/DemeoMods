@@ -48,7 +48,8 @@
                 return;
             }
 
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            var ruleSet = HR.SelectedRuleset.Name;
+            if (ruleSet.Contains("-<(LEGENDARY") || ruleSet.Contains("-<(HARD"))
             {
                 __instance.goldAmount = 69;
             }

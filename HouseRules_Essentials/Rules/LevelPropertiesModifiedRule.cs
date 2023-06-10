@@ -14,12 +14,11 @@
         private readonly Dictionary<string, int> _levelProperties;
         private readonly Dictionary<string, int> _ratKing = new Dictionary<string, int>
         {
-                // { "BigGoldPileChance", 0 },
+                { "BigGoldPileChance", 20 },
                 { "FloorOneHealingFountains", 1 },
                 { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 2 },
-                // { "FloorOneGoldMaxAmount", 450 },
                 { "FloorOneElvenSummoners", 0 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
@@ -28,7 +27,6 @@
                 { "FloorTwoMerchant", 1 },
                 { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 4 },
-                // { "FloorTwoGoldMaxAmount", 550 },
                 { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
@@ -37,14 +35,87 @@
                 { "FloorThreeElvenSummoners", 0 },
         };
 
-        private readonly Dictionary<string, int> _elvenKing = new Dictionary<string, int>
+        private readonly Dictionary<string, int> _ratKingEasy = new Dictionary<string, int>
         {
-                // { "BigGoldPileChance", 0 },
+                { "BigGoldPileChance", 30 },
+                { "FloorOneHealingFountains", 2 },
+                { "FloorOnePotionStand", 1 },
+                { "FloorOneMerchant", 0 },
+                { "FloorOneLootChests", 4 },
+                { "FloorOneElvenSummoners", 0 },
+                { "FloorOneSellswords", 1 },
+                { "FloorOneVillagers", 1 },
+                { "FloorTwoHealingFountains", 2 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoMerchant", 1 },
+                { "FloorTwoVillagers", 1 },
+                { "FloorTwoLootChests", 5 },
+                { "FloorTwoElvenSummoners", 0 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreePotionStand", 1 },
+                { "FloorThreeMerchant", 0 },
+                { "FloorThreeLootChests", 2 },
+                { "FloorThreeElvenSummoners", 0 },
+        };
+
+        private readonly Dictionary<string, int> _ratKingHard = new Dictionary<string, int>
+        {
+                { "BigGoldPileChance", 0 },
                 { "FloorOneHealingFountains", 1 },
                 { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 3 },
-                // { "FloorOneGoldMaxAmount", 450 },
+                { "FloorOneGoldMaxAmount", 600 },
+                { "FloorOneElvenSummoners", 0 },
+                { "FloorOneSellswords", 1 },
+                { "FloorOneVillagers", 1 },
+                { "FloorTwoHealingFountains", 2 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoMerchant", 1 },
+                { "FloorTwoVillagers", 1 },
+                { "FloorTwoLootChests", 4 },
+                { "FloorTwoGoldMaxAmount", 750 },
+                { "FloorTwoElvenSummoners", 0 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreePotionStand", 0 },
+                { "FloorThreeMerchant", 0 },
+                { "FloorThreeLootChests", 1 },
+                { "FloorThreeElvenSummoners", 0 },
+                { "PacingSpikeSegmentFloorThreeBudget", 9 },
+        };
+
+        private readonly Dictionary<string, int> _ratKingLegendary = new Dictionary<string, int>
+        {
+                { "BigGoldPileChance", 0 },
+                { "FloorOneHealingFountains", 1 },
+                { "FloorOnePotionStand", 0 },
+                { "FloorOneMerchant", 0 },
+                { "FloorOneLootChests", 3 },
+                { "FloorOneGoldMaxAmount", 450 },
+                { "FloorOneElvenSummoners", 0 },
+                { "FloorOneVillagers", 1 },
+                { "FloorTwoHealingFountains", 1 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoMerchant", 0 },
+                { "FloorTwoVillagers", 1 },
+                { "FloorTwoLootChests", 4 },
+                { "FloorTwoGoldMaxAmount", 600 },
+                { "FloorTwoElvenSummoners", 1 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreePotionStand", 0 },
+                { "FloorThreeMerchant", 0 },
+                { "FloorThreeLootChests", 1 },
+                { "FloorThreeElvenSummoners", 0 },
+                { "PacingSpikeSegmentFloorThreeBudget", 12 },
+        };
+
+        private readonly Dictionary<string, int> _elvenKing = new Dictionary<string, int>
+        {
+                { "BigGoldPileChance", 20 },
+                { "FloorOneHealingFountains", 1 },
+                { "FloorOnePotionStand", 0 },
+                { "FloorOneMerchant", 0 },
+                { "FloorOneLootChests", 3 },
                 { "FloorOneElvenSummoners", 1 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
@@ -52,8 +123,80 @@
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoMerchant", 1 },
                 { "FloorTwoLootChests", 3 },
-                // { "FloorTwoGoldMaxAmount", 550 },
                 { "FloorTwoElvenSummoners", 1 },
+                { "FloorTwoBeggars", 1 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreePotionStand", 0 },
+                { "FloorThreeMerchant", 0 },
+                { "FloorThreeLootChests", 2 },
+                { "FloorThreeElvenSummoners", 0 },
+        };
+
+        private readonly Dictionary<string, int> _elvenKingEasy = new Dictionary<string, int>
+        {
+                { "BigGoldPileChance", 30 },
+                { "FloorOneHealingFountains", 2 },
+                { "FloorOnePotionStand", 1 },
+                { "FloorOneMerchant", 0 },
+                { "FloorOneLootChests", 4 },
+                { "FloorOneElvenSummoners", 1 },
+                { "FloorOneSellswords", 1 },
+                { "FloorOneVillagers", 1 },
+                { "FloorTwoHealingFountains", 2 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoMerchant", 1 },
+                { "FloorTwoLootChests", 4 },
+                { "FloorTwoElvenSummoners", 1 },
+                { "FloorTwoBeggars", 1 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreePotionStand", 1 },
+                { "FloorThreeMerchant", 0 },
+                { "FloorThreeLootChests", 3 },
+                { "FloorThreeElvenSummoners", 0 },
+        };
+
+        private readonly Dictionary<string, int> _elvenKingHard = new Dictionary<string, int>
+        {
+                { "BigGoldPileChance", 0 },
+                { "FloorOneHealingFountains", 1 },
+                { "FloorOnePotionStand", 0 },
+                { "FloorOneMerchant", 0 },
+                { "FloorOneLootChests", 3 },
+                { "FloorOneGoldMaxAmount", 650 },
+                { "FloorOneElvenSummoners", 1 },
+                { "FloorOneSellswords", 1 },
+                { "FloorOneVillagers", 1 },
+                { "FloorTwoHealingFountains", 1 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoMerchant", 1 },
+                { "FloorTwoLootChests", 3 },
+                { "FloorTwoGoldMaxAmount", 750 },
+                { "FloorTwoElvenSummoners", 1 },
+                { "FloorTwoBeggars", 1 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreePotionStand", 0 },
+                { "FloorThreeMerchant", 0 },
+                { "FloorThreeLootChests", 1 },
+                { "FloorThreeElvenSummoners", 0 },
+        };
+
+        private readonly Dictionary<string, int> _elvenKingLegendary = new Dictionary<string, int>
+        {
+                { "BigGoldPileChance", 0 },
+                { "FloorOneHealingFountains", 1 },
+                { "FloorOnePotionStand", 0 },
+                { "FloorOneMerchant", 0 },
+                { "FloorOneLootChests", 4 },
+                { "FloorOneGoldMaxAmount", 500 },
+                { "FloorOneElvenSummoners", 1 },
+                { "FloorOneSellswords", 0 },
+                { "FloorOneVillagers", 1 },
+                { "FloorTwoHealingFountains", 1 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoMerchant", 0 },
+                { "FloorTwoLootChests", 3 },
+                { "FloorTwoGoldMaxAmount", 600 },
+                { "FloorTwoElvenSummoners", 2 },
                 { "FloorTwoBeggars", 1 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
@@ -99,24 +242,79 @@
 
         private void ModifyDreadMode(ref DreadLevelsData dreadLevel)
         {
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            var ruleSet = HR.SelectedRuleset.Name;
+            if (ruleSet.Contains("Demeo Revolutions"))
             {
                 if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
                 {
-                    foreach (var modification in _ratKing)
+                    if (ruleSet.Contains("-<(EASY"))
                     {
-                        AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
-                           modification.Value;
+                        foreach (var modification in _ratKingEasy)
+                        {
+                            AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                               modification.Value;
+                        }
+                    }
+                    else if (ruleSet.Contains("-<(HARD"))
+                    {
+                        foreach (var modification in _ratKingHard)
+                        {
+                            AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                               modification.Value;
+                        }
+                    }
+                    else if (ruleSet.Contains("-<(LEGENDARY"))
+                    {
+                        foreach (var modification in _ratKingLegendary)
+                        {
+                            AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                               modification.Value;
+                        }
+                    }
+                    else
+                    {
+                        foreach (var modification in _ratKing)
+                        {
+                            AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                               modification.Value;
+                        }
                     }
 
                     return;
                 }
                 else if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Town)
                 {
-                    foreach (var modification in _elvenKing)
+                    if (ruleSet.Contains("-<(EASY"))
                     {
-                        AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
-                           modification.Value;
+                        foreach (var modification in _elvenKingEasy)
+                        {
+                            AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                               modification.Value;
+                        }
+                    }
+                    else if (ruleSet.Contains("-<(HARD"))
+                    {
+                        foreach (var modification in _elvenKingHard)
+                        {
+                            AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                               modification.Value;
+                        }
+                    }
+                    else if (ruleSet.Contains("-<(LEGENDARY"))
+                    {
+                        foreach (var modification in _elvenKingLegendary)
+                        {
+                            AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                               modification.Value;
+                        }
+                    }
+                    else
+                    {
+                        foreach (var modification in _elvenKing)
+                        {
+                            AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                               modification.Value;
+                        }
                     }
 
                     return;
@@ -125,8 +323,7 @@
 
             foreach (var modification in _levelProperties)
             {
-                int value1 = AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key);
-
+                // int value1 = AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key);
                 // EssentialsMod.Logger.Msg($"{modification.Key} = {value1}");
                 AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
                     modification.Value;

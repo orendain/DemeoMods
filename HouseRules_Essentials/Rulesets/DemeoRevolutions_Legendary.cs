@@ -7,12 +7,12 @@
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
 
-    internal static class DemeoRevolutions
+    internal static class DemeoRevolutions_Legendary
     {
         internal static Ruleset Create()
         {
-            const string name = "Demeo Revolutions";
-            const string description = "Everything that has a beginning has an ending.";
+            const string name = "Demeo Revolutions -<(LEGENDARY)>-";
+            const string description = "Everything that has a beginning has a LEGENDARY ending.";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -60,19 +60,27 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "PowerIndex", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "PowerIndex", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "PowerIndex", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PowerIndex", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PowerIndex", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "BerserkBelowHealth", Value = .5f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "BerserkBelowHealth", Value = .5f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "BerserkBelowHealth", Value = .5f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "BerserkBelowHealth", Value = .5f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "BerserkBelowHealth", Value = .5f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenSkirmisher, Property = "BerserkBelowHealth", Value = .75f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ScabRat, Property = "BerserkBelowHealth", Value = .666f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinMadUn, Property = "BerserkBelowHealth", Value = .75f },
             });
 
             /*var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
@@ -140,7 +148,6 @@
                 { BoardPieceId.LargeCorruption, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
-                { BoardPieceId.GoldSandPile, 1 },
                 { BoardPieceId.SmallCorruption, 1 },
                 { BoardPieceId.GeneralRonthian, 1 },
                 { BoardPieceId.TheUnseen, 2 },
@@ -184,7 +191,6 @@
             };
             var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ScarabSandPile, 1 },
                 { BoardPieceId.ScorpionSandPile, 1 },
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
@@ -282,7 +288,6 @@
             };
             var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ScarabSandPile, 1 },
                 { BoardPieceId.ScorpionSandPile, 1 },
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
@@ -1381,8 +1386,8 @@
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyStealGold, AbilityKey.Net } },
                 { BoardPieceId.KillerBee, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ThornPowder, AbilityKey.Net } },
                 { BoardPieceId.CultMemberElder, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Weaken, AbilityKey.EnemyFireball } },
-                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.LightningBolt, AbilityKey.Leap, AbilityKey.Grapple } },
-                { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Leap, AbilityKey.Grab } },
+                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite, AbilityKey.LightningBolt, AbilityKey.LeapHeavy, AbilityKey.Grapple } },
+                { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeapHeavy, AbilityKey.Grab } },
                 { BoardPieceId.ElvenArcher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyArrowSnipe, AbilityKey.EnemyFrostball } },
                 { BoardPieceId.ElvenCultist, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.LeechMelee } },
                 { BoardPieceId.TheUnseen, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Zap } },
@@ -1589,7 +1594,7 @@
                 { AbilityKey.Petrify, 2 },
                 { AbilityKey.Net, 2 },
                 { AbilityKey.Grapple, 2 },
-                { AbilityKey.ElvenSummonerDeflect, 5 },
+                { AbilityKey.ElvenSummonerDeflect, 3 },
                 { AbilityKey.PlayerLeap, 2 },
             });
 
@@ -1612,9 +1617,9 @@
             var partyElectricityRule = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.75f);
-            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(1.25f);
-            var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.65f);
+            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.85f);
+            var enemyHealthScaledRule = new EnemyHealthScaledRule(1.15f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
@@ -1630,18 +1635,20 @@
             {
                 { "BigGoldPileChance", 0 },
                 { "FloorOneHealingFountains", 1 },
-                { "FloorOnePotionStand", 1 },
+                { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
-                { "FloorOneLootChests", 3 },
-                { "FloorOneElvenSummoners", 0 },
+                { "FloorOneLootChests", 4 },
+                { "FloorOneGoldMaxAmount", 250 },
+                { "FloorOneElvenSummoners", 1 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
-                { "FloorTwoMerchant", 1 },
+                { "FloorTwoMerchant", 0 },
                 { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 3 },
-                { "FloorTwoElvenSummoners", 0 },
+                { "FloorTwoGoldMaxAmount", 400 },
+                { "FloorTwoElvenSummoners", 1 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
@@ -1737,6 +1744,8 @@
                 { BoardPieceId.MotherCy },
                 { BoardPieceId.RootLord },
                 { BoardPieceId.RatKing },
+                { BoardPieceId.Mimic },
+                { BoardPieceId.Wyvern },
             });
 
             var pieceCounterDamageRule = new PieceCounterDamageRule(new Dictionary<BoardPieceId, int>
@@ -1746,6 +1755,8 @@
                 { BoardPieceId.IceElemental, 1 },
                 { BoardPieceId.GiantSlime, 1 },
                 { BoardPieceId.ElvenQueen, 1 },
+                { BoardPieceId.Mimic, 1 },
+                { BoardPieceId.Wyvern, 1 },
             });
 
             var pieceMagicStatsRule = new PieceMagicStatAddedRule(new Dictionary<BoardPieceId, int>
@@ -1758,6 +1769,7 @@
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new TickAdjustedRule(true);
             var elvenQueenBuffs = new ElvenQueenBuffsRule(true);
+            var elvenQueenSuper = new ElvenQueenSuperBuffRule(true);
             var grappleUnhooked = new GrappleUnhookedRule(true);
 
             return Ruleset.NewInstance(
@@ -1770,6 +1782,7 @@
                 pieceDamageResistRule,
                 pieceExtraStatsRule,
                 elvenQueenBuffs,
+                elvenQueenSuper,
                 statModifiersRule,
                 goldPickupRule,
                 piecePieceTypeRule,
