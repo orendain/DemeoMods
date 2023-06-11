@@ -41,7 +41,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 36 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 48 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "MoveRange", Value = 3 },
@@ -50,15 +50,15 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Barricade, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 12 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 75 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 167 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 85 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 70 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 142 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 36 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 90 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 190 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 100 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 80 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 165 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 48 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.75f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.99f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 2 },
@@ -143,8 +143,6 @@
 
             var myEntranceDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.EmptySandPile, 2 },
-                { BoardPieceId.ScorpionSandPile, 2 },
                 { BoardPieceId.LargeCorruption, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
@@ -164,8 +162,6 @@
                 { BoardPieceId.ScabRat, 2 },
                 { BoardPieceId.Spider, 2 },
                 { BoardPieceId.Rat, 1 },
-                { BoardPieceId.SpiderEgg, 1 },
-                { BoardPieceId.RatNest, 1 },
                 { BoardPieceId.TheUnheard, 2 },
                 { BoardPieceId.Slimeling, 1 },
                 { BoardPieceId.Thug, 2 },
@@ -191,7 +187,6 @@
             };
             var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ScorpionSandPile, 1 },
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
@@ -217,8 +212,6 @@
                 { BoardPieceId.ElvenSkirmisher, 1 },
                 { BoardPieceId.GoblinFighter, 1 },
                 { BoardPieceId.GoblinRanger, 1 },
-                { BoardPieceId.SpiderEgg, 1 },
-                { BoardPieceId.RatNest, 1 },
                 { BoardPieceId.CultMemberElder, 1 },
                 { BoardPieceId.RootMage, 1 },
                 { BoardPieceId.KillerBee, 1 },
@@ -236,8 +229,6 @@
             };
             var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.EmptySandPile, 1 },
-                { BoardPieceId.ScorpionSandPile, 2 },
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.LargeCorruption, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
@@ -259,8 +250,6 @@
                 { BoardPieceId.ScabRat, 2 },
                 { BoardPieceId.Spider, 2 },
                 { BoardPieceId.Rat, 1 },
-                { BoardPieceId.SpiderEgg, 1 },
-                { BoardPieceId.RatNest, 1 },
                 { BoardPieceId.TheUnheard, 2 },
                 { BoardPieceId.Slimeling, 1 },
                 { BoardPieceId.Thug, 2 },
@@ -288,7 +277,6 @@
             };
             var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ScorpionSandPile, 1 },
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
@@ -338,7 +326,7 @@
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
                 { BoardPieceId.GeneralRonthian, 1 },
-                { BoardPieceId.TheUnseen, 1 },
+                { BoardPieceId.TheUnseen, 2 },
                 { BoardPieceId.ElvenArcher, 2 },
                 { BoardPieceId.ElvenHound, 1 },
                 { BoardPieceId.RootHound, 1 },
@@ -1036,7 +1024,6 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
-                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.MarkOfVerga,
@@ -1057,7 +1044,6 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
-                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.WhirlwindAttack,
@@ -1078,7 +1064,6 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
-                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.ScrollOfCharm,
@@ -1098,7 +1083,6 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
-                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.HuntersMark,
@@ -1119,7 +1103,6 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
-                        AbilityKey.StrengthPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.Blink,
@@ -1140,7 +1123,6 @@
                         AbilityKey.FireImmunePotion,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
-                        AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.Fireball,
@@ -1162,7 +1144,6 @@
                         AbilityKey.ScrollTsunami,
                         AbilityKey.Regroup,
                         AbilityKey.WaterBottle,
-                        AbilityKey.MagicPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.Portal,
@@ -1277,7 +1258,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.Torch,
-                    durationTurns = 20,
+                    durationTurns = 15,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -1286,7 +1267,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.TorchPlayer,
-                    durationTurns = 20,
+                    durationTurns = 15,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -1638,7 +1619,7 @@
                 { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 4 },
-                { "FloorOneGoldMaxAmount", 250 },
+                { "FloorOneGoldMaxAmount", 350 },
                 { "FloorOneElvenSummoners", 1 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
@@ -1647,7 +1628,7 @@
                 { "FloorTwoMerchant", 0 },
                 { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 3 },
-                { "FloorTwoGoldMaxAmount", 400 },
+                { "FloorTwoGoldMaxAmount", 500 },
                 { "FloorTwoElvenSummoners", 1 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
@@ -1764,6 +1745,17 @@
                 { BoardPieceId.HeroSorcerer, 1 },
             });
 
+            var pieceDownedCountRule = new PieceDownedCountAdjustedRule(new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.HeroGuardian, 2 },
+                { BoardPieceId.HeroHunter, 2 },
+                { BoardPieceId.HeroBard, 2 },
+                { BoardPieceId.HeroBarbarian, 2 },
+                { BoardPieceId.HeroRogue, 2 },
+                { BoardPieceId.HeroWarlock, 2 },
+                { BoardPieceId.HeroSorcerer, 2 },
+            });
+
             var goldPickupRule = new GoldPickedUpMultipliedRule(1);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
@@ -1771,12 +1763,15 @@
             var elvenQueenBuffs = new ElvenQueenBuffsRule(true);
             var elvenQueenSuper = new ElvenQueenSuperBuffRule(true);
             var grappleUnhooked = new GrappleUnhookedRule(true);
+            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
+                xpGainDisabledRule,
                 tickRule,
                 grappleUnhooked,
+                pieceDownedCountRule,
                 pieceMagicStatsRule,
                 pieceCounterDamageRule,
                 pieceDamageResistRule,

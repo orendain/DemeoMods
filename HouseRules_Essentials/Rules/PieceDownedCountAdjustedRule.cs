@@ -7,16 +7,16 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class PieceExtraStatsAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
+    public sealed class PieceDownedCountAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Piece max stat change effects added on creation";
+        public override string Description => "Piece down count modified on creation";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 
         private static Dictionary<BoardPieceId, int> _globalAdjustments;
         private static bool _isActivated;
 
-        public PieceExtraStatsAdjustedRule(Dictionary<BoardPieceId, int> adjustments)
+        public PieceDownedCountAdjustedRule(Dictionary<BoardPieceId, int> adjustments)
         {
             _adjustments = adjustments;
         }
@@ -38,7 +38,7 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
                 postfix: new HarmonyMethod(
-                    typeof(PieceExtraStatsAdjustedRule),
+                    typeof(PieceDownedCountAdjustedRule),
                     nameof(CreatePiece_Effects_Postfix)));
         }
 
@@ -58,9 +58,10 @@
             {
                 if (replacement.Key == __result.boardPieceId)
                 {
-                    __result.effectSink.TrySetStatMaxValue(Stats.Type.Strength, replacement.Value);
-                    __result.effectSink.TrySetStatMaxValue(Stats.Type.Speed, replacement.Value);
-                    __result.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, replacement.Value);
+                    __result.effectSink.TrySetStatMaxValue(Stats.Type.DownedCounter, replacement.Value);
+                    __result.effectSink.TrySetStatMaxValue(Stats.Type.DownedTimer, replacement.Value);
+                    __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, replacement.Value);
+                    __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, replacement.Value);
                 }
             }
         }

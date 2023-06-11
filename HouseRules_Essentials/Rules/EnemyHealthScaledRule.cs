@@ -55,14 +55,42 @@
             }
 
             float range = 1f;
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            var ruleSet = HR.SelectedRuleset.Name;
+            if (ruleSet.Contains("-<(LEGENDARY"))
             {
                 if (config.StartHealth < 5 || config.PowerIndex > 40)
                 {
                     return;
                 }
 
-                range = Random.Range(0.9f, 1.33f);
+                range = Random.Range(1.2f, 1.4f);
+            }
+            else if (ruleSet.Contains("-<(HARD"))
+            {
+                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                {
+                    return;
+                }
+
+                range = Random.Range(1f, 1.3f);
+            }
+            else if (ruleSet.Contains("-<(EASY"))
+            {
+                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                {
+                    return;
+                }
+
+                range = Random.Range(0.75f, 1f);
+            }
+            else if (ruleSet.Contains("Demeo Revolutions"))
+            {
+                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                {
+                    return;
+                }
+
+                range = Random.Range(0.85f, 1.2f);
             }
 
             int newStartHealth = (int)(config.StartHealth * _globalMultiplier * range);

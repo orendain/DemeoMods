@@ -17,46 +17,44 @@
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Torch, Property = "StartHealth", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "StartHealth", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "StartHealth", Value = 10 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.PoisonousRat, Property = "StartHealth", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 7 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 9 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "CriticalHitDamage", Value = 9 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "MoveRange", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 6 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 7 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 8 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 7 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 7 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 6 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "AttackDamage", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "CriticalHitDamage", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "AttackDamage", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "CriticalHitDamage", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "AttackDamage", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "AttackDamage", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "CriticalHitDamage", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 9 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 10 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 9 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 9 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "AttackDamage", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "CriticalHitDamage", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "AttackDamage", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "CriticalHitDamage", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "AttackDamage", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "AttackDamage", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "CriticalHitDamage", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 8 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 36 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 6 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 30 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "MoveRange", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "MoveRange", Value = 10 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "ActionPoint", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 7 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 9 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Barricade, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 12 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 36 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 30 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 6 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 6 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 9 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 9 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 6 },
             });
 
             /*var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
@@ -121,7 +119,7 @@
             {
                 { BoardPieceId.ScarabSandPile, 1 },
                 { BoardPieceId.EmptySandPile, 2 },
-                { BoardPieceId.ScorpionSandPile, 2 },
+                { BoardPieceId.ScorpionSandPile, 1 },
                 { BoardPieceId.LargeCorruption, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
@@ -139,7 +137,7 @@
                 { BoardPieceId.GoblinChieftan, 1 },
                 { BoardPieceId.GoblinMadUn, 1 },
                 { BoardPieceId.RootBeast, 1 },
-                { BoardPieceId.ScabRat, 2 },
+                { BoardPieceId.ScabRat, 1 },
                 { BoardPieceId.Spider, 2 },
                 { BoardPieceId.Rat, 1 },
                 { BoardPieceId.SpiderEgg, 1 },
@@ -186,7 +184,7 @@
                 { BoardPieceId.GoblinChieftan, 1 },
                 { BoardPieceId.GoblinMadUn, 2 },
                 { BoardPieceId.RootBeast, 1 },
-                { BoardPieceId.ScabRat, 2 },
+                { BoardPieceId.ScabRat, 1 },
                 { BoardPieceId.Spider, 1 },
                 { BoardPieceId.Rat, 1 },
                 { BoardPieceId.TheUnheard, 2 },
@@ -216,9 +214,9 @@
             {
                 { BoardPieceId.ScarabSandPile, 1 },
                 { BoardPieceId.EmptySandPile, 1 },
-                { BoardPieceId.ScorpionSandPile, 2 },
+                { BoardPieceId.ScorpionSandPile, 1 },
                 { BoardPieceId.ElvenSpearman, 2 },
-                { BoardPieceId.LargeCorruption, 2 },
+                { BoardPieceId.LargeCorruption, 1 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
                 { BoardPieceId.GoldSandPile, 1 },
@@ -236,7 +234,7 @@
                 { BoardPieceId.GoblinMadUn, 1 },
                 { BoardPieceId.RootBeast, 1 },
                 { BoardPieceId.ScabRat, 2 },
-                { BoardPieceId.Spider, 2 },
+                { BoardPieceId.Spider, 1 },
                 { BoardPieceId.Rat, 1 },
                 { BoardPieceId.SpiderEgg, 1 },
                 { BoardPieceId.RatNest, 1 },
@@ -317,7 +315,7 @@
                 { BoardPieceId.ReptileMutantWizard, 1 },
                 { BoardPieceId.GeneralRonthian, 1 },
                 { BoardPieceId.TheUnseen, 1 },
-                { BoardPieceId.ElvenArcher, 2 },
+                { BoardPieceId.ElvenArcher, 1 },
                 { BoardPieceId.ElvenHound, 1 },
                 { BoardPieceId.RootHound, 1 },
                 { BoardPieceId.TheUnspoken, 1 },
@@ -326,7 +324,7 @@
                 { BoardPieceId.GoblinChieftan, 1 },
                 { BoardPieceId.GoblinMadUn, 2 },
                 { BoardPieceId.RootBeast, 1 },
-                { BoardPieceId.ScabRat, 2 },
+                { BoardPieceId.ScabRat, 1 },
                 { BoardPieceId.Spider, 1 },
                 { BoardPieceId.Rat, 1 },
                 { BoardPieceId.TheUnheard, 2 },
@@ -1157,7 +1155,6 @@
                         AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
-                        AbilityKey.LuckPotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
@@ -1171,7 +1168,6 @@
                         AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
-                        AbilityKey.LuckPotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
@@ -1185,7 +1181,6 @@
                         AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
-                        AbilityKey.LuckPotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
@@ -1199,7 +1194,6 @@
                         AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
-                        AbilityKey.LuckPotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
@@ -1213,7 +1207,6 @@
                         AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
-                        AbilityKey.LuckPotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
@@ -1227,7 +1220,6 @@
                         AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
-                        AbilityKey.LuckPotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.MagicPotion,
                         AbilityKey.SwiftnessPotion,
@@ -1241,7 +1233,6 @@
                         AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
-                        AbilityKey.LuckPotion,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.MagicPotion,
                         AbilityKey.SwiftnessPotion,
@@ -1255,7 +1246,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.Torch,
-                    durationTurns = 20,
+                    durationTurns = 30,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -1264,7 +1255,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.TorchPlayer,
-                    durationTurns = 20,
+                    durationTurns = 30,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -1273,7 +1264,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.FireImmunity,
-                    durationTurns = 12,
+                    durationTurns = 18,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -1282,29 +1273,11 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.IceImmunity,
-                    durationTurns = 12,
+                    durationTurns = 18,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Invulnerable3,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.MarkOfAvalon,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
                 new StatusEffectData
                 {
@@ -1328,15 +1301,6 @@
                 },
                 new StatusEffectData
                 {
-                    effectStateType = EffectStateType.Invisibility,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                },
-                new StatusEffectData
-                {
                     effectStateType = EffectStateType.PlayerBerserk,
                     durationTurns = 1,
                     damagePerTurn = 0,
@@ -1348,7 +1312,7 @@
                 {
                     effectStateType = EffectStateType.Thorns,
                     durationTurns = 2,
-                    damagePerTurn = 1,
+                    damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
@@ -1618,7 +1582,6 @@
                 { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 2 },
                 { "FloorThreeElvenSummoners", 0 },
-                { "PacingSpikeSegmentFloorThreeBudget", 12 },
             });
 
             var abilityRandomPieceRule = new AbilityRandomPieceListRule(new Dictionary<AbilityKey, List<BoardPieceId>>
@@ -1714,17 +1677,31 @@
                 { BoardPieceId.HeroSorcerer, 1 },
             });
 
+            var pieceDownedCountRule = new PieceDownedCountAdjustedRule(new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.HeroGuardian, 5 },
+                { BoardPieceId.HeroHunter, 5 },
+                { BoardPieceId.HeroBard, 5 },
+                { BoardPieceId.HeroBarbarian, 5 },
+                { BoardPieceId.HeroRogue, 5 },
+                { BoardPieceId.HeroWarlock, 5 },
+                { BoardPieceId.HeroSorcerer, 5 },
+            });
+
             var goldPickupRule = new GoldPickedUpMultipliedRule(1.25f);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new TickAdjustedRule(true);
             var grappleUnhooked = new GrappleUnhookedRule(true);
+            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
+                xpGainDisabledRule,
                 tickRule,
                 grappleUnhooked,
+                pieceDownedCountRule,
                 pieceMagicStatsRule,
                 pieceCounterDamageRule,
                 pieceDamageResistRule,

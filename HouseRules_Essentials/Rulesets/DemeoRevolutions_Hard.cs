@@ -40,8 +40,8 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "CriticalHitDamage", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 36 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.75f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 42 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "MoveRange", Value = 3 },
@@ -55,7 +55,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 85 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 70 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 142 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 36 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 42 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.75f },
@@ -1634,7 +1634,7 @@
                 { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 4 },
-                { "FloorOneGoldMaxAmount", 250 },
+                { "FloorOneGoldMaxAmount", 450 },
                 { "FloorOneElvenSummoners", 1 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
@@ -1643,7 +1643,7 @@
                 { "FloorTwoMerchant", 1 },
                 { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 3 },
-                { "FloorTwoGoldMaxAmount", 400 },
+                { "FloorTwoGoldMaxAmount", 600 },
                 { "FloorTwoElvenSummoners", 1 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
@@ -1758,6 +1758,17 @@
                 { BoardPieceId.HeroSorcerer, 1 },
             });
 
+            var pieceDownedCountRule = new PieceDownedCountAdjustedRule(new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.HeroGuardian, 3 },
+                { BoardPieceId.HeroHunter, 3 },
+                { BoardPieceId.HeroBard, 3 },
+                { BoardPieceId.HeroBarbarian, 3 },
+                { BoardPieceId.HeroRogue, 3 },
+                { BoardPieceId.HeroWarlock, 3 },
+                { BoardPieceId.HeroSorcerer, 3 },
+            });
+
             var goldPickupRule = new GoldPickedUpMultipliedRule(1);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
@@ -1765,12 +1776,15 @@
             var elvenQueenBuffs = new ElvenQueenBuffsRule(true);
             var elvenQueenSuper = new ElvenQueenSuperBuffRule(true);
             var grappleUnhooked = new GrappleUnhookedRule(true);
+            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
+                xpGainDisabledRule,
                 tickRule,
                 grappleUnhooked,
+                pieceDownedCountRule,
                 pieceMagicStatsRule,
                 pieceCounterDamageRule,
                 pieceDamageResistRule,
