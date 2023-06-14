@@ -118,7 +118,7 @@
                     else if (nextLevel == 4 || nextLevel == 7 || nextLevel == 10)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) - 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
                         piece.AnimateWobble();
                     }
 
