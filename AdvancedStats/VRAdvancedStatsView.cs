@@ -67,7 +67,15 @@
             sb.AppendLine(ColorizeString($"<u>{name}</u>", Color.yellow));
             if (level > 0)
             {
-                sb.AppendLine(ColorizeString($"Character Level: {level}", lightgreen));
+                sb.Append(ColorizeString("Character Level: {level}", Color.green));
+                if (level < 10)
+                {
+                    sb.AppendLine(ColorizeString($"{level}", lightgreen));
+                }
+                else
+                {
+                    sb.AppendLine(ColorizeString($"{level} (MAXED!)", lightgreen));
+                }
             }
 
             sb.Append(ColorizeString("Knockdowns Remaining: ", pink));
@@ -83,6 +91,9 @@
                     sb.AppendLine(ColorizeString("1", orange));
                     break;
                 case 3:
+                    sb.AppendLine(ColorizeString("0", Color.red));
+                    break;
+                default:
                     sb.AppendLine(ColorizeString("0", Color.red));
                     break;
             }

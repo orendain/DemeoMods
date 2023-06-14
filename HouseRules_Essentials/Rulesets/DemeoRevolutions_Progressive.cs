@@ -61,25 +61,24 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.99f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "BerserkBelowHealth", Value = .66f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "BerserkBelowHealth", Value = .66f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "BerserkBelowHealth", Value = .66f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "BerserkBelowHealth", Value = .66f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "BerserkBelowHealth", Value = .66f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "PowerIndex", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "PowerIndex", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "PowerIndex", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PowerIndex", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PowerIndex", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "BerserkBelowHealth", Value = .5f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "BerserkBelowHealth", Value = .5f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "BerserkBelowHealth", Value = .5f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "BerserkBelowHealth", Value = .5f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenSkirmisher, Property = "BerserkBelowHealth", Value = .75f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ScabRat, Property = "BerserkBelowHealth", Value = .666f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ScabRat, Property = "BerserkBelowHealth", Value = .5f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinMadUn, Property = "BerserkBelowHealth", Value = .75f },
             });
 
@@ -175,15 +174,15 @@
                 { BoardPieceId.KillerBee, 2 },
                 { BoardPieceId.ChestGoblin, 1 },
                 { BoardPieceId.Sigataur, 1 },
-                { BoardPieceId.GiantSlime, 2 },
+                { BoardPieceId.GiantSlime, 1 },
                 { BoardPieceId.FireElemental, 1 },
-                { BoardPieceId.ElvenMarauder, 2 },
-                { BoardPieceId.IceElemental, 2 },
-                { BoardPieceId.GiantSpider, 2 },
+                { BoardPieceId.ElvenMarauder, 1 },
+                { BoardPieceId.IceElemental, 1 },
+                { BoardPieceId.GiantSpider, 1 },
                 { BoardPieceId.Cavetroll, 1 },
                 { BoardPieceId.BigBoiMutant, 1 },
                 { BoardPieceId.SilentSentinel, 1 },
-                { BoardPieceId.ServantOfAlfaragh, 2 },
+                { BoardPieceId.ServantOfAlfaragh, 1 },
             };
             var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
@@ -216,16 +215,15 @@
                 { BoardPieceId.RootMage, 1 },
                 { BoardPieceId.KillerBee, 1 },
                 { BoardPieceId.EarthElemental, 1 },
-                { BoardPieceId.Cavetroll, 2 },
-                { BoardPieceId.ElvenMarauder, 2 },
-                { BoardPieceId.Sigataur, 2 },
-                { BoardPieceId.GiantSlime, 2 },
-                { BoardPieceId.RootGolem, 2 },
-                { BoardPieceId.Brookmare, 2 },
-                { BoardPieceId.Gorgon, 2 },
-                { BoardPieceId.SilentSentinel, 2 },
-                { BoardPieceId.BigBoiMutant, 2 },
-                { BoardPieceId.ServantOfAlfaragh, 2 },
+                { BoardPieceId.Cavetroll, 1 },
+                { BoardPieceId.ElvenMarauder, 1 },
+                { BoardPieceId.Sigataur, 1 },
+                { BoardPieceId.GiantSlime, 1 },
+                { BoardPieceId.RootGolem, 1 },
+                { BoardPieceId.Brookmare, 1 },
+                { BoardPieceId.SilentSentinel, 1 },
+                { BoardPieceId.BigBoiMutant, 1 },
+                { BoardPieceId.ServantOfAlfaragh, 1 },
             };
             var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
@@ -273,7 +271,7 @@
                 { BoardPieceId.Brookmare, 1 },
                 { BoardPieceId.SilentSentinel, 1 },
                 { BoardPieceId.BigBoiMutant, 1 },
-                { BoardPieceId.ServantOfAlfaragh, 1 },
+                { BoardPieceId.ServantOfAlfaragh, 2 },
             };
             var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
@@ -1598,8 +1596,8 @@
             var partyElectricityRule = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.6f);
-            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.8f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.8f);
+            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.25f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.15f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>

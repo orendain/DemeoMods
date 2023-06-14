@@ -104,11 +104,11 @@
             if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
             {
                 int nextLevel = piece.GetStat(Stats.Type.BonusCorruptionDamage);
-                if (nextLevel < 10)
+                if (nextLevel < 11)
                 {
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, nextLevel + 1);
                     nextLevel++;
-                    if (nextLevel == 3 || nextLevel == 5 || nextLevel == 7 || nextLevel == 9)
+                    if (nextLevel == 3 || nextLevel == 6 || nextLevel == 9)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
@@ -117,13 +117,12 @@
                     }
                     else if (nextLevel == 4 || nextLevel == 7 || nextLevel == 10)
                     {
-                        piece.effectSink.TrySetStatMaxValue(Stats.Type.DownedCounter, piece.GetStatMax(Stats.Type.DownedCounter) + 1);
-                        piece.effectSink.TrySetStatMaxValue(Stats.Type.DownedTimer, piece.GetStatMax(Stats.Type.DownedTimer) + 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) - 1);
                         piece.AnimateWobble();
                     }
-                    else if (nextLevel == 2)
+
+                    if (nextLevel == 3)
                     {
                         if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
                         {
@@ -199,7 +198,22 @@
                         }
                         else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
                         {
-                            piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, 1);
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, piece.GetStat(Stats.Type.MagicBonus) + 1);
+                            piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, piece.GetStatMax(Stats.Type.MagicBonus) + 1);
+                        }
+                    }
+
+                    if (nextLevel == 5 || nextLevel == 10)
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroSorcerer || piece.boardPieceId == BoardPieceId.HeroWarlock)
+                        {
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, piece.GetStat(Stats.Type.MagicBonus) + 1);
+                            piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, piece.GetStatMax(Stats.Type.MagicBonus) + 1);
+                        }
+                        else
+                        {
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.Strength, piece.GetStat(Stats.Type.Strength) + 1);
+                            piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 1);
                         }
                     }
                 }
