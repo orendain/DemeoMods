@@ -100,26 +100,25 @@
                 return;
             }
 
-
             if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
             {
                 int nextLevel = piece.GetStat(Stats.Type.BonusCorruptionDamage);
-                if (nextLevel < 11)
+                if (nextLevel < 10)
                 {
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, nextLevel + 1);
                     nextLevel++;
+                    piece.DisableEffectState(EffectStateType.Heal);
+                    piece.EnableEffectState(EffectStateType.Heal, 1);
                     if (nextLevel == 3 || nextLevel == 6 || nextLevel == 9)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
                         piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
-                        piece.AnimateWobble();
                     }
                     else if (nextLevel == 4 || nextLevel == 7 || nextLevel == 10)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
-                        piece.AnimateWobble();
                     }
 
                     if (nextLevel == 3)

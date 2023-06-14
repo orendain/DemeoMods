@@ -81,7 +81,8 @@
                         }
                         else
                         {
-                            sb.AppendLine(ColorizeString($"{level} (MAXED!)", lightgreen));
+                            sb.Append(ColorizeString($"{level} ", lightgreen));
+                            sb.AppendLine(ColorizeString($"(MAXED!)", gold));
                         }
                     }
 
