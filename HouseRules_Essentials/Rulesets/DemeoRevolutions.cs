@@ -1612,8 +1612,8 @@
             var partyElectricityRule = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.75f);
-            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(1.25f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.8f);
+            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(1.2f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
