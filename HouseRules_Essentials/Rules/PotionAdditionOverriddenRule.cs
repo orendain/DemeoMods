@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading;
     using Boardgame;
+    using Boardgame.BoardEntities;
     using Boardgame.Data;
     using Boardgame.SerializableEvents;
     using DataKeys;
@@ -145,7 +146,7 @@
             }
 
             int rand;
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
             {
                 int randNum = RandomProvider.GetThreadRandom().Next(101);
                 if (randNum > 90)

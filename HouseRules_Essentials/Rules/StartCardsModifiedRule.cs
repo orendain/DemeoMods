@@ -63,7 +63,7 @@
             }
 
             Inventory.Item value;
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
             {
                 // Remove One-Time replenishables if used
                 if (piece.boardPieceId == BoardPieceId.HeroHunter)

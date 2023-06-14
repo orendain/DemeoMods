@@ -71,12 +71,14 @@
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
             HR.Rulebook.Register(typeof(PieceMagicStatAddedRule));
             HR.Rulebook.Register(typeof(PiecePieceTypeListOverriddenRule));
+            HR.Rulebook.Register(typeof(PieceProgressRule));
             HR.Rulebook.Register(typeof(PieceUseOnCreatedOverriddenRule));
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));
             HR.Rulebook.Register(typeof(PotionAdditionOverriddenRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
             HR.Rulebook.Register(typeof(RegainAbilityIfMaxxedOutOverriddenRule));
             HR.Rulebook.Register(typeof(ReviveRemovesEffectsRule));
+            HR.Rulebook.Register(typeof(RevolutionsRule));
             HR.Rulebook.Register(typeof(RoundCountLimitedRule));
             HR.Rulebook.Register(typeof(SpawnCategoryOverriddenRule));
             HR.Rulebook.Register(typeof(StartCardsModifiedRule));
@@ -93,6 +95,7 @@
             HR.Rulebook.Register(DemeoRevolutions_Easy.Create());
             HR.Rulebook.Register(DemeoRevolutions_Hard.Create());
             HR.Rulebook.Register(DemeoRevolutions_Legendary.Create());
+            HR.Rulebook.Register(DemeoRevolutions_Progressive.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(LuckyDip.Create());
             HR.Rulebook.Register(TheSwirlRuleset.Create());

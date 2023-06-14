@@ -46,6 +46,8 @@
                     int resist = myPiece.GetStat(Stats.Type.DamageResist);
                     int maxresist = myPiece.GetStatMax(Stats.Type.DamageResist);
                     int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
+                    var revolutions = myPiece.GetStat(Stats.Type.InnateCounterDamageExtraDamage);
+                    int level = myPiece.GetStat(Stats.Type.BonusCorruptionDamage);
                     bool hasbonuses = true;
                     bool hasimmunities = true;
                     var pieceConfig = Traverse.Create(data).Field<PieceConfigData>("pieceConfig").Value;
@@ -70,7 +72,12 @@
                     string name = pieceNameController.GetPieceName();
                     var sb = new StringBuilder();
                     sb.AppendLine(ColorizeString($"<u>{name}</u>", Color.yellow));
-                    sb.Append(ColorizeString("Downed times remaining: ", pink));
+                    if (level > 0)
+                    {
+                        sb.AppendLine(ColorizeString($"Character Level: {level}", lightgreen));
+                    }
+
+                    sb.Append(ColorizeString("Knockdowns Remaining: ", pink));
                     switch (numdowns)
                     {
                         case 0:
@@ -133,7 +140,7 @@
                     sb.Append(ColorizeString(" Immunities ", Color.white));
                     sb.AppendLine(ColorizeString("--", Color.gray));
 
-                    if (maxmagic != 5 && !hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
+                    if (revolutions != 69 && !hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
                     {
                         sb.AppendLine(ColorizeString("None", lightblue));
 
@@ -150,7 +157,7 @@
                         GameUI.ShowCameraMessage(sb.ToString(), 5);
                         return;
                     }
-                    else if (maxmagic != 5)
+                    else if (revolutions != 69)
                     {
                         int num = immuneToStatusEffects.Length;
                         bool weak = false;

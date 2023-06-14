@@ -1,6 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using Boardgame;
+    using Boardgame.BoardEntities;
     using Boardgame.GameplayEffects;
     using DataKeys;
     using HarmonyLib;
@@ -47,7 +48,7 @@
                 return;
             }
 
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (target.piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
             {
                 if (Random.Range(1, 101) > 66)
                 {

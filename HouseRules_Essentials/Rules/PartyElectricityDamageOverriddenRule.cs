@@ -56,7 +56,7 @@
 
             var attackerTarget = Traverse.Create(abilityContext).Field("attacker").GetValue<Target>();
             var attacker = Traverse.Create(attackerTarget).Field("piece").GetValue<Piece>();
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (attacker.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
             {
                 if (attacker.characterClass != CharacterClass.Sorcerer)
                 {

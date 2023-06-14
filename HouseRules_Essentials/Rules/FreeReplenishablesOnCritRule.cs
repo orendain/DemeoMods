@@ -63,9 +63,17 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (!HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
             {
                 return;
+            }
+
+            if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
+            {
+                if (source.GetStat(Stats.Type.BonusCorruptionDamage) < 2)
+                {
+                    return;
+                }
             }
 
             Inventory.Item value;

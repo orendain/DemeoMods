@@ -63,8 +63,16 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
+            if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
+            {
+                if (source.GetStat(Stats.Type.BonusCorruptionDamage) < 2)
+                {
+                    return;
+                }
+            }
+
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
             {
                 if (source.boardPieceId == BoardPieceId.HeroGuardian)
                 {

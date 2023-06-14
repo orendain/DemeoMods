@@ -59,7 +59,7 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
             {
                 int chance = Random.Range(1, 101);
                 int chance2 = Random.Range(1, 101);

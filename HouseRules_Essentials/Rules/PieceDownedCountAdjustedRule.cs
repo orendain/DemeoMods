@@ -65,8 +65,6 @@
             {
                 if (replacement.Key == __result.boardPieceId)
                 {
-                    __result.effectSink.TrySetStatMaxValue(Stats.Type.DownedCounter, replacement.Value);
-                    __result.effectSink.TrySetStatMaxValue(Stats.Type.DownedTimer, replacement.Value);
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, replacement.Value);
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, replacement.Value);
                 }

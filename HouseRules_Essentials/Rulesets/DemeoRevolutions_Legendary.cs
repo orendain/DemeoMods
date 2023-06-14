@@ -1756,6 +1756,7 @@
                 { BoardPieceId.HeroSorcerer, 2 },
             });
 
+            var revolutionsRule = new RevolutionsRule(true);
             var goldPickupRule = new GoldPickedUpMultipliedRule(1);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
@@ -1768,6 +1769,7 @@
                 name,
                 description,
                 tickRule,
+                revolutionsRule,
                 grappleUnhooked,
                 pieceDownedCountRule,
                 pieceMagicStatsRule,

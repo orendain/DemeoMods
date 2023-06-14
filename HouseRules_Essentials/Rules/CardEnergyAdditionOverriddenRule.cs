@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading;
     using Boardgame;
+    using Boardgame.BoardEntities;
     using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
@@ -99,10 +100,115 @@
                 return;
             }
 
+
+            if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
+            {
+                int nextLevel = piece.GetStat(Stats.Type.BonusCorruptionDamage);
+                if (nextLevel < 10)
+                {
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, nextLevel + 1);
+                    nextLevel++;
+                    if (nextLevel == 3 || nextLevel == 5 || nextLevel == 7 || nextLevel == 9)
+                    {
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
+                        piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
+                        piece.AnimateWobble();
+                    }
+                    else if (nextLevel == 4 || nextLevel == 7 || nextLevel == 10)
+                    {
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.DownedCounter, piece.GetStatMax(Stats.Type.DownedCounter) + 1);
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.DownedTimer, piece.GetStatMax(Stats.Type.DownedTimer) + 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) - 1);
+                        piece.AnimateWobble();
+                    }
+                    else if (nextLevel == 2)
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.Net,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 3,
+                            });
+                            piece.AddGold(0);
+                        }
+                        else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.EnemyFlashbang,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 3,
+                            });
+                            piece.AddGold(0);
+                        }
+                        else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.Grab,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
+                        else if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.DiseasedBite,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 3,
+                            });
+                            piece.AddGold(0);
+                        }
+                        else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.EnemyFireball,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
+                        else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.Electricity,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+                        }
+                        else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                        {
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, 1);
+                        }
+                    }
+                }
+            }
+
             int rand;
             AbilityKey replacementAbilityKey;
             int randNum = RandomProvider.GetThreadRandom().Next(101);
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
             {
                 if (randNum > 90 && _numEnergy < 2)
                 {
@@ -115,7 +221,7 @@
                     else
                     {
                         // Standard cards
-                        rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
+                        rand = RandomProvider.GetThreadRandom().Next(1, replacementAbilityKeys.Count);
                     }
                 }
                 else
@@ -123,15 +229,13 @@
                     // Standard cards
                     rand = RandomProvider.GetThreadRandom().Next(1, replacementAbilityKeys.Count);
                 }
-
-                replacementAbilityKey = replacementAbilityKeys[rand];
             }
             else
             {
-                rand = RandomProvider.GetThreadRandom().Next(1, replacementAbilityKeys.Count);
-                replacementAbilityKey = replacementAbilityKeys[rand];
+                rand = RandomProvider.GetThreadRandom().Next(0, replacementAbilityKeys.Count);
             }
 
+            replacementAbilityKey = replacementAbilityKeys[rand];
             Traverse.Create(addCardToPieceEvent).Field<AbilityKey>("card").Value = replacementAbilityKey;
         }
     }

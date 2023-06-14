@@ -1676,17 +1676,7 @@
                 { BoardPieceId.HeroSorcerer, 1 },
             });
 
-            var pieceDownedCountRule = new PieceDownedCountAdjustedRule(new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.HeroGuardian, 5 },
-                { BoardPieceId.HeroHunter, 5 },
-                { BoardPieceId.HeroBard, 5 },
-                { BoardPieceId.HeroBarbarian, 5 },
-                { BoardPieceId.HeroRogue, 5 },
-                { BoardPieceId.HeroWarlock, 5 },
-                { BoardPieceId.HeroSorcerer, 5 },
-            });
-
+            var revolutionsRule = new RevolutionsRule(true);
             var goldPickupRule = new GoldPickedUpMultipliedRule(1.25f);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
@@ -1697,8 +1687,8 @@
                 name,
                 description,
                 tickRule,
+                revolutionsRule,
                 grappleUnhooked,
-                pieceDownedCountRule,
                 pieceMagicStatsRule,
                 pieceCounterDamageRule,
                 pieceDamageResistRule,

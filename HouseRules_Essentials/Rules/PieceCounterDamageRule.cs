@@ -60,7 +60,6 @@
                 {
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamage, replacement.Value);
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 255);
-                    return;
                 }
             }
         }
