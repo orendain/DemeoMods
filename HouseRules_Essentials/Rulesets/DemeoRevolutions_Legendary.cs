@@ -73,11 +73,11 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PowerIndex", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PowerIndex", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "BerserkBelowHealth", Value = .5f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "BerserkBelowHealth", Value = .5f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "BerserkBelowHealth", Value = .5f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "BerserkBelowHealth", Value = .5f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "BerserkBelowHealth", Value = .5f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "BerserkBelowHealth", Value = .66f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "BerserkBelowHealth", Value = .66f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "BerserkBelowHealth", Value = .66f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "BerserkBelowHealth", Value = .66f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "BerserkBelowHealth", Value = .66f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenSkirmisher, Property = "BerserkBelowHealth", Value = .75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ScabRat, Property = "BerserkBelowHealth", Value = .666f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinMadUn, Property = "BerserkBelowHealth", Value = .75f },
@@ -1619,7 +1619,7 @@
                 { "FloorOnePotionStand", 0 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 4 },
-                { "FloorOneGoldMaxAmount", 350 },
+                { "FloorOneGoldMaxAmount", 300 },
                 { "FloorOneElvenSummoners", 1 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
@@ -1763,12 +1763,10 @@
             var elvenQueenBuffs = new ElvenQueenBuffsRule(true);
             var elvenQueenSuper = new ElvenQueenSuperBuffRule(true);
             var grappleUnhooked = new GrappleUnhookedRule(true);
-            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
-                xpGainDisabledRule,
                 tickRule,
                 grappleUnhooked,
                 pieceDownedCountRule,

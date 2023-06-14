@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using Boardgame;
     using Boardgame.BoardEntities;
+    using Boardgame.LevelLoading;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -39,10 +40,16 @@
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
                 postfix: new HarmonyMethod(
                     typeof(PieceDownedCountAdjustedRule),
-                    nameof(CreatePiece_Effects_Postfix)));
+                    nameof(CreatePiece_RecreatePieceOnNewLevel_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(LevelManager), "RecreatePieceOnNewLevel"),
+                postfix: new HarmonyMethod(
+                    typeof(PieceDownedCountAdjustedRule),
+                    nameof(CreatePiece_RecreatePieceOnNewLevel_Postfix)));
         }
 
-        private static void CreatePiece_Effects_Postfix(ref Piece __result)
+        private static void CreatePiece_RecreatePieceOnNewLevel_Postfix(ref Piece __result)
         {
             if (!_isActivated || !__result.IsPlayer())
             {

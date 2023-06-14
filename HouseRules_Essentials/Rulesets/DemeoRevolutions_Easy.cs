@@ -1693,12 +1693,10 @@
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new TickAdjustedRule(true);
             var grappleUnhooked = new GrappleUnhookedRule(true);
-            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
-                xpGainDisabledRule,
                 tickRule,
                 grappleUnhooked,
                 pieceDownedCountRule,
