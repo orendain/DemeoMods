@@ -7,11 +7,10 @@
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
-    using UnityEngine;
 
     public sealed class PieceDownedCountAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Piece down count modified on creation";
+        public override string Description => "Player piece maximum knockdown count modified on creation";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

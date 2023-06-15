@@ -96,6 +96,7 @@
             HR.Rulebook.Register(DemeoRevolutions_Hard.Create());
             HR.Rulebook.Register(DemeoRevolutions_Legendary.Create());
             HR.Rulebook.Register(DemeoRevolutions_Progressive.Create());
+            HR.Rulebook.Register(HardcoreRuleset.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(LuckyDip.Create());
             HR.Rulebook.Register(TheSwirlRuleset.Create());

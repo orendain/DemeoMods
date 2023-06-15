@@ -634,6 +634,27 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     ]
   },
   ```
+
+#### __PieceDownedCountAdjusted__: Changes the number of knockdowns a player ♟️BoardPiece is allowed
+  - Sets how many times each character piece is allowed to be knocked down at the start of a game.
+  - Allows configuration of different amount of 'lives' on a per-hero basis.
+  - To configure:
+    - Specify a Dictionary of [BoardPieceIds](../docs/SettingsReference.md#boardpieceids) and a number from 0 to 2. (3 is the default)
+
+  ###### _Example JSON config for PieceDownedCountAdjusted_
+
+  ```json
+  {
+    "Rule": "PieceDownedCountAdjusted",
+    "Config": {
+      "HeroBard": "2",
+      "HeroHunter": "2",
+      "HeroSorcerer": "2",
+      "HeroGuardian": "2",
+      "HeroRogue": "1",
+      "HeroBarbarian": "0"
+    }
+  },
   
 #### __PieceImmunityListAdjusted__: Allows the list of immunities for any ♟️BoardPiece to be overridden
   - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weakened, 🥶Frozen, 🧶Tangled, 💤Petrified , etc
