@@ -152,7 +152,7 @@
             int rand;
             AbilityKey replacementAbilityKey;
             int randNum = RandomProvider.GetThreadRandom().Next(101);
-            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
+            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 if (randNum < 51)
                 {

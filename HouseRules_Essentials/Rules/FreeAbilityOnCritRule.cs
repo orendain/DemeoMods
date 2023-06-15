@@ -59,7 +59,7 @@
                 return;
             }
 
-            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
+            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                 if (source.boardPieceId == BoardPieceId.HeroBard)
@@ -274,7 +274,7 @@
                 }
             }
 
-            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
+            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 if (!hasPower2)
                 {

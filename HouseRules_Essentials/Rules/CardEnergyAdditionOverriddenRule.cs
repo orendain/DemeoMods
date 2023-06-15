@@ -115,7 +115,7 @@
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
                         piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
                     }
-                    else if (nextLevel == 4 || nextLevel == 7 || nextLevel == 10)
+                    else if (nextLevel == 4 || nextLevel == 8)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
@@ -221,7 +221,7 @@
             int rand;
             AbilityKey replacementAbilityKey;
             int randNum = RandomProvider.GetThreadRandom().Next(101);
-            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69)
+            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 if (randNum > 90 && _numEnergy < 2)
                 {

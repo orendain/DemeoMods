@@ -41,7 +41,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "CriticalHitDamage", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "CriticalHitDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "BerserkBelowHealth", Value = 0.99f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 48 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 32 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartArmor", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "MoveRange", Value = 3 },
@@ -50,28 +50,29 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Barricade, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Lure, Property = "StartHealth", Value = 12 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 90 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 190 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 100 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 80 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 165 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 48 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 60 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 140 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 70 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 60 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 125 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 140 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 38 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.99f },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 8 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "PowerIndex", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PowerIndex", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PowerIndex", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "BerserkBelowHealth", Value = .5f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "BerserkBelowHealth", Value = .5f },
@@ -227,6 +228,7 @@
             };
             var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.JeweledScarab, 1},
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.LargeCorruption, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
@@ -271,10 +273,11 @@
                 { BoardPieceId.Brookmare, 1 },
                 { BoardPieceId.SilentSentinel, 1 },
                 { BoardPieceId.BigBoiMutant, 1 },
-                { BoardPieceId.ServantOfAlfaragh, 2 },
+                { BoardPieceId.ServantOfAlfaragh, 1 },
             };
             var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
+                { BoardPieceId.JeweledScarab, 1},
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
@@ -358,8 +361,8 @@
                 { BoardPieceId.Brookmare, 2 },
                 { BoardPieceId.Gorgon, 2 },
                 { BoardPieceId.SilentSentinel, 2 },
-                { BoardPieceId.BigBoiMutant, 2 },
-                { BoardPieceId.ServantOfAlfaragh, 2 },
+                { BoardPieceId.BigBoiMutant, 1 },
+                { BoardPieceId.ServantOfAlfaragh, 1 },
             };
             var myMonsterDeckConfig = new MyMonsterDeckOverriddenRule.MyDeckConfig
             {
@@ -383,7 +386,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingTotem, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PlayerLeap, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Net, ReplenishFrequency = 3 },
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -405,11 +407,9 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SongOfRecovery, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ShatteringVoice, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingVoice, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFlashbang, ReplenishFrequency = 3 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grab, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WhirlwindAttack, ReplenishFrequency = 0 },
@@ -427,7 +427,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CallCompanion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Lure, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 1 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -438,7 +437,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonBomb, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CursedDagger, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.FlashBomb, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 3 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -449,7 +447,6 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Freeze, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
@@ -1596,9 +1593,9 @@
             var partyElectricityRule = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.8f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.666f);
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.25f);
-            var enemyHealthScaledRule = new EnemyHealthScaledRule(1.15f);
+            var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
             {
@@ -1614,26 +1611,24 @@
             {
                 { "BigGoldPileChance", 0 },
                 { "FloorOneHealingFountains", 1 },
-                { "FloorOnePotionStand", 0 },
+                { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 4 },
-                { "FloorOneGoldMaxAmount", 300 },
-                { "FloorOneElvenSummoners", 1 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
                 { "FloorTwoHealingFountains", 1 },
                 { "FloorTwoPotionStand", 1 },
-                { "FloorTwoMerchant", 0 },
+                { "FloorTwoMerchant", 1 },
                 { "FloorTwoVillagers", 1 },
-                { "FloorTwoLootChests", 3 },
-                { "FloorTwoGoldMaxAmount", 500 },
-                { "FloorTwoElvenSummoners", 1 },
+                { "FloorTwoLootChests", 4 },
+                { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 1 },
                 { "FloorThreeElvenSummoners", 0 },
-                { "PacingSpikeSegmentFloorThreeBudget", 12 },
+                { "PacingSpikeSegmentFloorThreeBudget", 8 },
             });
 
             var abilityRandomPieceRule = new AbilityRandomPieceListRule(new Dictionary<AbilityKey, List<BoardPieceId>>
@@ -1745,13 +1740,13 @@
 
             var pieceDownedCountRule = new PieceDownedCountAdjustedRule(new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.HeroGuardian, 0 },
-                { BoardPieceId.HeroHunter, 0 },
-                { BoardPieceId.HeroBard, 0 },
-                { BoardPieceId.HeroBarbarian, 0 },
-                { BoardPieceId.HeroRogue, 0 },
-                { BoardPieceId.HeroWarlock, 0 },
-                { BoardPieceId.HeroSorcerer, 0 },
+                { BoardPieceId.HeroGuardian, 1 },
+                { BoardPieceId.HeroHunter, 1 },
+                { BoardPieceId.HeroBard, 1 },
+                { BoardPieceId.HeroBarbarian, 1 },
+                { BoardPieceId.HeroRogue, 1 },
+                { BoardPieceId.HeroWarlock, 1 },
+                { BoardPieceId.HeroSorcerer, 1 },
             });
 
             var revolutionsRule = new RevolutionsRule(true);
