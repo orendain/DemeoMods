@@ -52,6 +52,7 @@
             HR.Rulebook.Register(typeof(PieceImmunityListAdjustedRule));
             HR.Rulebook.Register(typeof(PieceAbilityListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceBehavioursListOverriddenRule));
+            HR.Rulebook.Register(typeof(PieceDownedCountAdjustedRule));
             HR.Rulebook.Register(typeof(PiecePieceTypeListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));
             HR.Rulebook.Register(typeof(PotionAdditionOverriddenRule));
@@ -86,6 +87,7 @@
             HR.Rulebook.Register(NoSurprisesRuleset.Create());
             HR.Rulebook.Register(QuickAndDeadRuleset.Create());
             HR.Rulebook.Register(PotionCommotionRuleset.Create());
+            HR.Rulebook.Register(HardcoreRuleset.Create());
         }
     }
 }
