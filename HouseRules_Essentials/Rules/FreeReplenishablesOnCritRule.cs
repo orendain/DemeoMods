@@ -63,14 +63,14 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
+            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69 && !HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 return;
             }
 
             if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
             {
-                if (source.GetStat(Stats.Type.BonusCorruptionDamage) < 2)
+                if (source.GetStat(Stats.Type.BonusCorruptionDamage) < 3)
                 {
                     return;
                 }

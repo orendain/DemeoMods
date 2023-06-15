@@ -63,14 +63,6 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
-            {
-                if (source.GetStat(Stats.Type.BonusCorruptionDamage) < 2)
-                {
-                    return;
-                }
-            }
-
             source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
             if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
@@ -82,13 +74,29 @@ namespace HouseRules.Essentials.Rules
                         source.effectSink.TrySetStatBaseValue(Stats.Type.Armor, myArmor + 1);
                     }
 
-                    if (currentAP < 1)
+                    if (!HR.SelectedRuleset.Name.Contains("PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("PROGRESSIVE") && source.GetStat(Stats.Type.BonusCorruptionDamage) > 2))
                     {
-                        source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 2);
+                        if (currentAP < 1)
+                        {
+                            source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 2);
+                        }
+                        else
+                        {
+                            source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                        }
                     }
-                    else
+                    else if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE") && source.GetStat(Stats.Type.BonusCorruptionDamage) < 3)
                     {
-                        source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                        if (currentAP < 1)
+                        {
+                            source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                            source.EnableEffectState(EffectStateType.PlayerBerserk);
+                            source.effectSink.SetStatusEffectDuration(EffectStateType.PlayerBerserk, 1);
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
 
                     if (source.HasEffectState(EffectStateType.PlayerBerserk))
@@ -110,7 +118,7 @@ namespace HouseRules.Essentials.Rules
                         source.EnableEffectState(EffectStateType.Invisibility);
                         source.effectSink.SetStatusEffectDuration(EffectStateType.Invisibility, 2);
                     }
-                    else
+                    else if (!HR.SelectedRuleset.Name.Contains("PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("PROGRESSIVE") && source.GetStat(Stats.Type.BonusCorruptionDamage) > 2))
                     {
                         source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                     }

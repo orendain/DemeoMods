@@ -1543,6 +1543,7 @@
                 { BoardPieceId.HeroSorcerer, AbilityKey.WaterBottle },
                 { BoardPieceId.HeroBard, AbilityKey.PanicPowder },
                 { BoardPieceId.HeroBarbarian, AbilityKey.SpawnRandomLamp },
+                { BoardPieceId.HeroWarlock, AbilityKey.SpellPowerPotion },
             });
 
             var freeHealOnHitRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroRogue, BoardPieceId.HeroWarlock });

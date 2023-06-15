@@ -107,21 +107,21 @@
                 {
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, nextLevel + 1);
                     nextLevel++;
+                    piece.effectSink.Heal(2);
+                    piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
                     piece.DisableEffectState(EffectStateType.Heal);
                     piece.EnableEffectState(EffectStateType.Heal, 1);
                     if (nextLevel == 3 || nextLevel == 6 || nextLevel == 9)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
-                        piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
                     }
                     else if (nextLevel == 4 || nextLevel == 8)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
                     }
-
-                    if (nextLevel == 3)
+                    else if (nextLevel == 2)
                     {
                         if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
                         {
@@ -173,6 +173,19 @@
                         }
                         else if (piece.boardPieceId == BoardPieceId.HeroHunter)
                         {
+                            Inventory.Item value;
+                            for (var i = 0; i < piece.inventory.Items.Count; i++)
+                            {
+                                value = piece.inventory.Items[i];
+                                if (value.abilityKey == AbilityKey.Arrow)
+                                {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                    piece.inventory.Items.Remove(value);
+                                    piece.AddGold(0);
+                                    break;
+                                }
+                            }
+
                             Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                             piece.inventory.Items.Add(new Inventory.Item
                             {
@@ -201,8 +214,7 @@
                             piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, piece.GetStatMax(Stats.Type.MagicBonus) + 1);
                         }
                     }
-
-                    if (nextLevel == 5 || nextLevel == 10)
+                    else if (nextLevel == 5 || nextLevel == 10)
                     {
                         if (piece.boardPieceId == BoardPieceId.HeroSorcerer || piece.boardPieceId == BoardPieceId.HeroWarlock)
                         {
@@ -214,6 +226,11 @@
                             piece.effectSink.TrySetStatBaseValue(Stats.Type.Strength, piece.GetStat(Stats.Type.Strength) + 1);
                             piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 1);
                         }
+                    }
+                    else if (nextLevel == 7)
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, piece.GetStat(Stats.Type.Speed) + 1);
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, piece.GetStatMax(Stats.Type.Speed) + 1);
                     }
                 }
             }
