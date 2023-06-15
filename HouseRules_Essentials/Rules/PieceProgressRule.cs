@@ -2,6 +2,7 @@
 {
     using Boardgame;
     using Boardgame.BoardEntities;
+    using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
 
@@ -38,6 +39,8 @@
             }
 
             __result.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, 1);
+            __result.EnableEffectState(EffectStateType.StrengthInNumbers);
+            __result.effectSink.SetStatusEffectDuration(EffectStateType.StrengthInNumbers, 1);
         }
     }
 }

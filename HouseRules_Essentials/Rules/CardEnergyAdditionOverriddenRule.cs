@@ -111,10 +111,16 @@
                     piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
                     piece.DisableEffectState(EffectStateType.Heal);
                     piece.EnableEffectState(EffectStateType.Heal, 1);
-                    if (nextLevel == 3 || nextLevel == 6 || nextLevel == 9)
+                    piece.effectSink.SetStatusEffectDuration(EffectStateType.StrengthInNumbers, piece.GetStat(Stats.Type.BonusCorruptionDamage));
+                    if (nextLevel == 3 || nextLevel == 6)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
+                    }
+                    else if (nextLevel == 9)
+                    {
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 2);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 2);
                     }
                     else if (nextLevel == 4 || nextLevel == 8)
                     {
@@ -214,7 +220,7 @@
                             piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, piece.GetStatMax(Stats.Type.MagicBonus) + 1);
                         }
                     }
-                    else if (nextLevel == 5 || nextLevel == 10)
+                    else if (nextLevel == 5)
                     {
                         if (piece.boardPieceId == BoardPieceId.HeroSorcerer || piece.boardPieceId == BoardPieceId.HeroWarlock)
                         {
@@ -227,10 +233,23 @@
                             piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 1);
                         }
                     }
+                    else if (nextLevel == 10)
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroSorcerer || piece.boardPieceId == BoardPieceId.HeroWarlock)
+                        {
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, piece.GetStat(Stats.Type.MagicBonus) + 2);
+                            piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, piece.GetStatMax(Stats.Type.MagicBonus) + 2);
+                        }
+                        else
+                        {
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.Strength, piece.GetStat(Stats.Type.Strength) + 2);
+                            piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 2);
+                        }
+                    }
                     else if (nextLevel == 7)
                     {
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, piece.GetStat(Stats.Type.Speed) + 1);
-                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, piece.GetStatMax(Stats.Type.Speed) + 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, piece.GetStat(Stats.Type.Speed) + 2);
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, piece.GetStatMax(Stats.Type.Speed) + 2);
                     }
                 }
             }
