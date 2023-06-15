@@ -369,6 +369,24 @@
                     continue;
                 }
 
+                // Fix for adding new cards late in the game with longer than 1 cooldown
+                if (value.abilityKey == AbilityKey.EnemyFlashbang || value.abilityKey == AbilityKey.DiseasedBite || value.abilityKey == AbilityKey.Net)
+                {
+                    if (value.replenishCooldown < 0)
+                    {
+                        value.replenishCooldown = 2;
+                        piece.inventory.Items[i] = value;
+                    }
+                }
+                else if (value.abilityKey == AbilityKey.Petrify)
+                {
+                    if (value.replenishCooldown < 0)
+                    {
+                        value.replenishCooldown = 5;
+                        piece.inventory.Items[i] = value;
+                    }
+                }
+
                 // Bypass problem with replenishCooldown somehow being set to -1 by Demeo
                 foreach (var card in _globalHeroStartCards[piece.boardPieceId])
                 {

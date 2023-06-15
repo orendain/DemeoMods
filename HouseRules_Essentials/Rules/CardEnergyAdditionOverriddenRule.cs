@@ -245,6 +245,16 @@
                             piece.effectSink.TrySetStatBaseValue(Stats.Type.Strength, piece.GetStat(Stats.Type.Strength) + 2);
                             piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 2);
                         }
+
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.Petrify,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 6,
+                        });
+                        piece.AddGold(0);
                     }
                     else if (nextLevel == 7)
                     {
