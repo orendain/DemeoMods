@@ -389,7 +389,7 @@
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GuidingLight, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Torch, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implode, ReplenishFrequency = 0 },
@@ -1486,13 +1486,7 @@
 
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
-                { AbilityKey.Zap, false },
-                { AbilityKey.LightningBolt, false },
-                { AbilityKey.Sneak, false },
                 { AbilityKey.Grab, false },
-                { AbilityKey.Arrow, false },
-                { AbilityKey.CourageShanty, false },
-                { AbilityKey.MinionCharge, false },
                 { AbilityKey.SpellPowerPotion, false },
                 { AbilityKey.PVPBlink, false },
                 { AbilityKey.WeakeningShout, false },
@@ -1500,7 +1494,6 @@
                 { AbilityKey.SpawnRandomLamp, false },
                 { AbilityKey.DeathBeam, false },
                 { AbilityKey.FretsOfFire, false },
-                { AbilityKey.Grapple, false },
                 { AbilityKey.Net, true },
                 { AbilityKey.ImplosionExplosionRain, false },
             });
@@ -1616,6 +1609,7 @@
                 { "FloorOnePotionStand", 1 },
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 4 },
+                { "FloorOneGoldMaxAmount", 550 },
                 { "FloorOneElvenSummoners", 0 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 1 },
@@ -1624,13 +1618,14 @@
                 { "FloorTwoMerchant", 1 },
                 { "FloorTwoVillagers", 1 },
                 { "FloorTwoLootChests", 4 },
+                { "FloorTwoGoldMaxAmount", 900 },
                 { "FloorTwoElvenSummoners", 0 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 1 },
                 { "FloorThreeElvenSummoners", 0 },
-                { "PacingSpikeSegmentFloorThreeBudget", 8 },
+                { "PacingSpikeSegmentFloorThreeBudget", 12 },
             });
 
             var abilityRandomPieceRule = new AbilityRandomPieceListRule(new Dictionary<AbilityKey, List<BoardPieceId>>

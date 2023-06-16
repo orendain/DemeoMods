@@ -49,7 +49,7 @@
             }
 
             var ruleSet = HR.SelectedRuleset.Name;
-            if (ruleSet.Contains("-<(LEGENDARY") || ruleSet.Contains("-<(HARD"))
+            if (ruleSet.Contains("-<(LEGENDARY") || ruleSet.Contains("-<(HARD") || ruleSet.Contains("-<(PROGRESSIVE"))
             {
                 __instance.goldAmount = 69;
             }

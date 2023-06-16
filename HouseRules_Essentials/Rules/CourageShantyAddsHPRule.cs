@@ -54,7 +54,8 @@
                 {
                     target.piece.effectSink.Heal(_globalAdjustments);
                     target.piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
-                    target.piece.AnimateWobble();
+                    target.DisableEffectState(EffectStateType.Heal);
+                    target.EnableEffectState(EffectStateType.Heal);
                     HR.ScheduleBoardSync();
                 }
             }

@@ -5,6 +5,7 @@
     using System.Threading;
     using Boardgame;
     using Boardgame.BoardEntities;
+    using Boardgame.BoardEntities.Abilities;
     using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
@@ -112,20 +113,26 @@
                     piece.DisableEffectState(EffectStateType.Heal);
                     piece.EnableEffectState(EffectStateType.Heal, 1);
                     piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, piece.GetStat(Stats.Type.BonusCorruptionDamage));
-                    if (nextLevel == 3 || nextLevel == 6)
+                    if (nextLevel == 3)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
                     }
-                    else if (nextLevel == 9)
+                    else if (nextLevel == 6 || nextLevel == 9)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 2);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 2);
                     }
-                    else if (nextLevel == 4 || nextLevel == 8)
+                    else if (nextLevel == 4)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
+                    }
+                    else if (nextLevel == 8)
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.ActionPoints, 3);
                     }
                     else if (nextLevel == 2)
                     {
@@ -140,6 +147,9 @@
                                 replenishCooldown = 3,
                             });
                             piece.AddGold(0);
+
+                            AbilityFactory.TryGetAbility(AbilityKey.Grapple, out var ability);
+                            ability.costActionPoint = false;
                         }
                         else if (piece.boardPieceId == BoardPieceId.HeroBard)
                         {
@@ -152,6 +162,9 @@
                                 replenishCooldown = 3,
                             });
                             piece.AddGold(0);
+
+                            AbilityFactory.TryGetAbility(AbilityKey.CourageShanty, out var ability);
+                            ability.costActionPoint = false;
                         }
                         else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
                         {
@@ -176,6 +189,9 @@
                                 replenishCooldown = 3,
                             });
                             piece.AddGold(0);
+
+                            AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var ability);
+                            ability.costActionPoint = false;
                         }
                         else if (piece.boardPieceId == BoardPieceId.HeroHunter)
                         {
@@ -201,6 +217,9 @@
                                 replenishCooldown = 1,
                             });
                             piece.AddGold(0);
+
+                            AbilityFactory.TryGetAbility(AbilityKey.Arrow, out var ability);
+                            ability.costActionPoint = false;
                         }
                         else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
                         {
@@ -213,11 +232,26 @@
                                 replenishCooldown = 1,
                             });
                             piece.AddGold(0);
+
+                            AbilityFactory.TryGetAbility(AbilityKey.Zap, out var ability);
+                            AbilityFactory.TryGetAbility(AbilityKey.LightningBolt, out var ability2);
+                            ability.costActionPoint = false;
+                            ability2.costActionPoint = false;
                         }
                         else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
                         {
-                            piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, piece.GetStat(Stats.Type.MagicBonus) + 1);
-                            piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, piece.GetStatMax(Stats.Type.MagicBonus) + 1);
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.MinionCharge,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                            piece.AddGold(0);
+
+                            AbilityFactory.TryGetAbility(AbilityKey.MinionCharge, out var ability);
+                            ability.costActionPoint = false;
                         }
                     }
                     else if (nextLevel == 5)

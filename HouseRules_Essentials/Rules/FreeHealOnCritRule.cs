@@ -59,17 +59,21 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
+            int addHeal = 0;
             if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 int chance = Random.Range(1, 101);
                 int chance2 = Random.Range(1, 101);
-                int addHeal = 0;
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
                     addHeal++;
                 }
-                else
+                else if (source.GetStat(Stats.Type.BonusCorruptionDamage) > 3)
+                {
+                    source.inventory.AddGold(30);
+                }
+                else if (source.GetStat(Stats.Type.BonusCorruptionDamage) == 0)
                 {
                     source.inventory.AddGold(10);
                 }
@@ -81,20 +85,14 @@ namespace HouseRules.Essentials.Rules
                         if (chance > 98 && chance2 > 50)
                         {
                             addHeal += 3;
-                            source.effectSink.Heal(addHeal);
-                            source.AnimateWobble();
                         }
                         else if (chance2 > 50)
                         {
                             addHeal += 2;
-                            source.effectSink.Heal(addHeal);
-                            source.AnimateWobble();
                         }
                         else
                         {
                             addHeal++;
-                            source.effectSink.Heal(addHeal);
-                            source.AnimateWobble();
                         }
                     }
                     else if (source.boardPieceId == BoardPieceId.HeroBard)
@@ -102,14 +100,10 @@ namespace HouseRules.Essentials.Rules
                         if (chance > 98)
                         {
                             addHeal += 2;
-                            source.effectSink.Heal(addHeal);
-                            source.AnimateWobble();
                         }
                         else
                         {
                             addHeal++;
-                            source.effectSink.Heal(addHeal);
-                            source.AnimateWobble();
                         }
                     }
                     else if (source.boardPieceId == BoardPieceId.HeroWarlock)
@@ -117,8 +111,6 @@ namespace HouseRules.Essentials.Rules
                         if (mainTarget != null && mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
                         {
                             addHeal++;
-                            source.effectSink.Heal(addHeal);
-                            source.AnimateWobble();
                         }
                     }
                     else
@@ -126,24 +118,31 @@ namespace HouseRules.Essentials.Rules
                         if (chance > 98)
                         {
                             addHeal += 2;
-                            source.effectSink.Heal(addHeal);
-                            source.AnimateWobble();
                         }
                         else
                         {
                             addHeal++;
-                            source.effectSink.Heal(addHeal);
                         }
                     }
                 }
                 else
                 {
-                    source.effectSink.Heal(1);
+                    if (chance > 98)
+                    {
+                        addHeal++;
+                    }
                 }
             }
-            else
+            else if (_globalAdjustments.Contains(source.boardPieceId))
             {
-                source.effectSink.Heal(1);
+                addHeal++;
+            }
+
+            if (addHeal > 0)
+            {
+                source.effectSink.Heal(addHeal);
+                source.DisableEffectState(EffectStateType.Heal);
+                source.EnableEffectState(EffectStateType.Heal, 1);
             }
         }
     }
