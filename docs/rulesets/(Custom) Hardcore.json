@@ -1,0 +1,18 @@
+{
+  "Name": "(Custom) Hardcore",
+  "Description": "You only get one life. No knockdowns. Can your team survive?",
+  "Rules": [
+    {
+    "Rule": "PieceDownedCountAdjusted",
+    "Config": {
+      "HeroBard": "0",
+      "HeroHunter": "0",
+      "HeroSorcerer": "0",
+      "HeroGuardian": "0",
+      "HeroRogue": "0",
+      "HeroBarbarian": "0",
+	  "HeroWarlock": "0"
+    }
+  }
+  ]
+}
