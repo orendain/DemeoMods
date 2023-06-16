@@ -11,7 +11,7 @@
     {
         internal static Ruleset Create()
         {
-            const string name = "Demeo Revolutions -<(HARD)>-";
+            const string name = "Demeo Revolutions (HARD)";
             const string description = "Everything that has a beginning has a HARD ending.";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>

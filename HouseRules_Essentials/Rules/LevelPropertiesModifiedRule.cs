@@ -247,7 +247,7 @@
             {
                 if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
                 {
-                    if (ruleSet.Contains("-<(EASY"))
+                    if (ruleSet.Contains("(EASY"))
                     {
                         foreach (var modification in _ratKingEasy)
                         {
@@ -255,7 +255,7 @@
                                modification.Value;
                         }
                     }
-                    else if (ruleSet.Contains("-<(HARD"))
+                    else if (ruleSet.Contains("(HARD") || ruleSet.Contains("(PROGRESSIVE"))
                     {
                         foreach (var modification in _ratKingHard)
                         {
@@ -263,7 +263,7 @@
                                modification.Value;
                         }
                     }
-                    else if (ruleSet.Contains("-<(LEGENDARY"))
+                    else if (ruleSet.Contains("(LEGENDARY"))
                     {
                         foreach (var modification in _ratKingLegendary)
                         {
@@ -284,7 +284,7 @@
                 }
                 else if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Town)
                 {
-                    if (ruleSet.Contains("-<(EASY"))
+                    if (ruleSet.Contains("(EASY"))
                     {
                         foreach (var modification in _elvenKingEasy)
                         {
@@ -292,7 +292,7 @@
                                modification.Value;
                         }
                     }
-                    else if (ruleSet.Contains("-<(HARD"))
+                    else if (ruleSet.Contains("(HARD") || ruleSet.Contains("(PROGRESSIVE"))
                     {
                         foreach (var modification in _elvenKingHard)
                         {
@@ -300,7 +300,7 @@
                                modification.Value;
                         }
                     }
-                    else if (ruleSet.Contains("-<(LEGENDARY"))
+                    else if (ruleSet.Contains("(LEGENDARY"))
                     {
                         foreach (var modification in _elvenKingLegendary)
                         {

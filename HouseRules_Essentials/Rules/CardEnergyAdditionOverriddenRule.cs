@@ -101,7 +101,7 @@
                 return;
             }
 
-            if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
+            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
             {
                 int nextLevel = piece.GetStat(Stats.Type.BonusCorruptionDamage);
                 if (nextLevel < 10)

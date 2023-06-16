@@ -11,7 +11,7 @@
     {
         internal static Ruleset Create()
         {
-            const string name = "Demeo Revolutions -<(PROGRESSIVE)>-";
+            const string name = "Demeo Revolutions (PROGRESSIVE)";
             const string description = "Everything that has a beginning has a PROGRESSIVE ending.";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>

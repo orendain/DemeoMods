@@ -1,6 +1,6 @@
 {
-  "Name": "(Custom) Demeo Revolutions -<(HARD)>-",
-  "Description": "Everything that has a beginning has a HARD ending.",
+  "Name": "(Custom) Demeo Revolutions (LEGENDARY)",
+  "Description": "Everything that has a beginning has a LEGENDARY ending.",
   "Rules": [
     {
       "Rule": "TickAdjusted",
@@ -17,13 +17,13 @@
     {
       "Rule": "PieceDownedCountAdjusted",
       "Config": {
-        "HeroGuardian": 3,
-        "HeroHunter": 3,
-        "HeroBard": 3,
-        "HeroBarbarian": 3,
-        "HeroRogue": 3,
-        "HeroWarlock": 3,
-        "HeroSorcerer": 3
+        "HeroGuardian": 2,
+        "HeroHunter": 2,
+        "HeroBard": 2,
+        "HeroBarbarian": 2,
+        "HeroRogue": 2,
+        "HeroWarlock": 2,
+        "HeroSorcerer": 2
       }
     },
     {
@@ -53,7 +53,9 @@
         "BossTown",
         "MotherCy",
         "RootLord",
-        "RatKing"
+        "RatKing",
+        "Mimic",
+        "Wyvern"
       ]
     },
     {
@@ -408,12 +410,12 @@
         {
           "Piece": "Mimic",
           "Property": "BerserkBelowHealth",
-          "Value": 0.75
+          "Value": 0.99
         },
         {
           "Piece": "Mimic",
           "Property": "StartHealth",
-          "Value": 42.0
+          "Value": 48.0
         },
         {
           "Piece": "Mimic",
@@ -458,37 +460,37 @@
         {
           "Piece": "ElvenQueen",
           "Property": "StartHealth",
-          "Value": 75.0
+          "Value": 90.0
         },
         {
           "Piece": "BossTown",
           "Property": "StartHealth",
-          "Value": 167.0
+          "Value": 190.0
         },
         {
           "Piece": "RootLord",
           "Property": "StartHealth",
-          "Value": 85.0
+          "Value": 100.0
         },
         {
           "Piece": "MotherCy",
           "Property": "StartHealth",
-          "Value": 70.0
+          "Value": 80.0
         },
         {
           "Piece": "RatKing",
           "Property": "StartHealth",
-          "Value": 142.0
+          "Value": 165.0
         },
         {
           "Piece": "WizardBoss",
           "Property": "StartHealth",
-          "Value": 160.0
+          "Value": 175.0
         },
         {
           "Piece": "Wyvern",
           "Property": "StartHealth",
-          "Value": 42.0
+          "Value": 48.0
         },
         {
           "Piece": "Wyvern",
@@ -498,12 +500,12 @@
         {
           "Piece": "Wyvern",
           "Property": "BarkArmor",
-          "Value": 2.0
+          "Value": 3.0
         },
         {
           "Piece": "Wyvern",
           "Property": "BerserkBelowHealth",
-          "Value": 0.75
+          "Value": 0.99
         },
         {
           "Piece": "EarthElemental",
@@ -518,37 +520,37 @@
         {
           "Piece": "SilentSentinel",
           "Property": "PowerIndex",
-          "Value": 4.0
+          "Value": 2.0
         },
         {
           "Piece": "Wyvern",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 1.0
         },
         {
           "Piece": "Mimic",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 1.0
         },
         {
           "Piece": "Brookmare",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "BigBoiMutant",
           "Property": "PowerIndex",
-          "Value": 4.0
+          "Value": 2.0
         },
         {
           "Piece": "Cavetroll",
           "Property": "PowerIndex",
-          "Value": 4.0
+          "Value": 2.0
         },
         {
           "Piece": "ElvenMarauder",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "GiantSlime",
@@ -563,37 +565,57 @@
         {
           "Piece": "Sigataur",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "RootGolem",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "ServantOfAlfaragh",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "SilentSentinel",
           "Property": "BerserkBelowHealth",
-          "Value": 0.5
+          "Value": 0.66
+        },
+        {
+          "Piece": "ElvenMarauder",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.66
         },
         {
           "Piece": "RootGolem",
           "Property": "BerserkBelowHealth",
-          "Value": 0.5
+          "Value": 0.66
+        },
+        {
+          "Piece": "GiantSlime",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.66
         },
         {
           "Piece": "Gorgon",
           "Property": "BerserkBelowHealth",
-          "Value": 0.5
+          "Value": 0.66
+        },
+        {
+          "Piece": "ElvenSkirmisher",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
         },
         {
           "Piece": "ScabRat",
           "Property": "BerserkBelowHealth",
-          "Value": 0.5
+          "Value": 0.666
+        },
+        {
+          "Piece": "GoblinMadUn",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
         }
       ]
     },
@@ -620,8 +642,6 @@
       "Rule": "MyMonsterDeckOverridden",
       "Config": {
         "EntranceDeckFloor1": {
-          "EmptySandPile": 2,
-          "ScorpionSandPile": 2,
           "LargeCorruption": 1,
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
@@ -641,8 +661,6 @@
           "ScabRat": 2,
           "Spider": 2,
           "Rat": 1,
-          "SpiderEgg": 1,
-          "RatNest": 1,
           "TheUnheard": 2,
           "Slimeling": 1,
           "Thug": 2,
@@ -658,16 +676,15 @@
           "Sigataur": 1,
           "GiantSlime": 2,
           "FireElemental": 1,
-          "ElvenMarauder": 1,
+          "ElvenMarauder": 2,
           "IceElemental": 2,
-          "GiantSpider": 1,
+          "GiantSpider": 2,
           "Cavetroll": 1,
           "BigBoiMutant": 1,
           "SilentSentinel": 1,
           "ServantOfAlfaragh": 2
         },
         "ExitDeckFloor1": {
-          "ScorpionSandPile": 1,
           "ElvenSpearman": 2,
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
@@ -693,8 +710,6 @@
           "ElvenSkirmisher": 1,
           "GoblinFighter": 1,
           "GoblinRanger": 1,
-          "SpiderEgg": 1,
-          "RatNest": 1,
           "CultMemberElder": 1,
           "RootMage": 1,
           "KillerBee": 1,
@@ -704,15 +719,13 @@
           "Sigataur": 2,
           "GiantSlime": 2,
           "RootGolem": 2,
-          "Brookmare": 1,
-          "Gorgon": 1,
-          "SilentSentinel": 1,
-          "BigBoiMutant": 1,
-          "ServantOfAlfaragh": 1
+          "Brookmare": 2,
+          "Gorgon": 2,
+          "SilentSentinel": 2,
+          "BigBoiMutant": 2,
+          "ServantOfAlfaragh": 2
         },
         "EntranceDeckFloor2": {
-          "EmptySandPile": 1,
-          "ScorpionSandPile": 2,
           "ElvenSpearman": 2,
           "LargeCorruption": 2,
           "ReptileArcher": 1,
@@ -734,8 +747,6 @@
           "ScabRat": 2,
           "Spider": 2,
           "Rat": 1,
-          "SpiderEgg": 1,
-          "RatNest": 1,
           "TheUnheard": 2,
           "Slimeling": 1,
           "Thug": 2,
@@ -751,8 +762,8 @@
           "Sigataur": 1,
           "GiantSlime": 1,
           "FireElemental": 1,
-          "IceElemental": 1,
-          "ElvenMarauder": 1,
+          "IceElemental": 2,
+          "ElvenMarauder": 2,
           "GiantSpider": 2,
           "Cavetroll": 1,
           "Gorgon": 1,
@@ -762,8 +773,6 @@
           "ServantOfAlfaragh": 1
         },
         "ExitDeckFloor2": {
-          "ScarabSandPile": 1,
-          "ScorpionSandPile": 1,
           "ElvenSpearman": 2,
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
@@ -797,22 +806,22 @@
           "Sigataur": 2,
           "GiantSlime": 2,
           "FireElemental": 1,
-          "ElvenMarauder": 1,
-          "IceElemental": 1,
+          "ElvenMarauder": 2,
+          "IceElemental": 2,
           "GiantSpider": 2,
           "Cavetroll": 2,
           "RootGolem": 2,
           "Brookmare": 2,
-          "Gorgon": 1,
+          "Gorgon": 2,
           "SilentSentinel": 2,
-          "BigBoiMutant": 1,
+          "BigBoiMutant": 2,
           "ServantOfAlfaragh": 2
         },
         "BossDeck": {
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
           "GeneralRonthian": 1,
-          "TheUnseen": 1,
+          "TheUnseen": 2,
           "ElvenArcher": 2,
           "ElvenHound": 1,
           "RootHound": 1,
@@ -845,9 +854,9 @@
           "RootGolem": 2,
           "Brookmare": 2,
           "Gorgon": 2,
-          "SilentSentinel": 1,
-          "BigBoiMutant": 1,
-          "ServantOfAlfaragh": 1
+          "SilentSentinel": 2,
+          "BigBoiMutant": 2,
+          "ServantOfAlfaragh": 2
         },
         "KeyHolderFloor1": "Mimic",
         "KeyHolderFloor2": "Wyvern"
@@ -1322,7 +1331,6 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "MarkOfVerga"
@@ -1340,7 +1348,6 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "WhirlwindAttack"
@@ -1358,7 +1365,6 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "ScrollOfCharm"
@@ -1375,7 +1381,6 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "HuntersMark"
@@ -1393,7 +1398,6 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "Blink"
@@ -1411,7 +1415,6 @@
           "FireImmunePotion",
           "ScrollTsunami",
           "Regroup",
-          "MagicPotion",
           "LuckPotion",
           "ScrollElectricity",
           "Fireball"
@@ -1430,7 +1433,6 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "MagicPotion",
           "LuckPotion",
           "ScrollElectricity",
           "Portal"
@@ -1524,7 +1526,7 @@
       "Config": [
         {
           "effectStateType": "Torch",
-          "durationTurns": 20,
+          "durationTurns": 15,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -1540,7 +1542,7 @@
         },
         {
           "effectStateType": "TorchPlayer",
-          "durationTurns": 20,
+          "durationTurns": 15,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -1751,7 +1753,7 @@
         ],
         "SilentSentinel": [
           "EnemyMelee",
-          "Leap",
+          "LeapHeavy",
           "Grab"
         ],
         "ElvenArcher": [
@@ -2285,11 +2287,15 @@
     },
     {
       "Rule": "CardEnergyFromAttackMultiplied",
-      "Config": 0.7
+      "Config": 0.6
+    },
+    {
+      "Rule": "CardEnergyFromRecyclingMultiplied",
+      "Config": 0.8
     },
     {
       "Rule": "EnemyHealthScaled",
-      "Config": 1.05
+      "Config": 1.15
     },
     {
       "Rule": "EnemyAttackScaled",
@@ -2349,16 +2355,16 @@
         "FloorOnePotionStand": 0,
         "FloorOneMerchant": 0,
         "FloorOneLootChests": 4,
-        "FloorOneGoldMaxAmount": 400,
+        "FloorOneGoldMaxAmount": 300,
         "FloorOneElvenSummoners": 1,
         "FloorOneSellswords": 1,
         "FloorOneVillagers": 1,
         "FloorTwoHealingFountains": 1,
         "FloorTwoPotionStand": 1,
-        "FloorTwoMerchant": 1,
+        "FloorTwoMerchant": 0,
         "FloorTwoVillagers": 1,
         "FloorTwoLootChests": 3,
-        "FloorTwoGoldMaxAmount": 600,
+        "FloorTwoGoldMaxAmount": 500,
         "FloorTwoElvenSummoners": 1,
         "FloorThreeHealingFountains": 1,
         "FloorThreePotionStand": 0,

@@ -56,7 +56,7 @@
 
             float range = 1f;
             var ruleSet = HR.SelectedRuleset.Name;
-            if (ruleSet.Contains("-<(LEGENDARY"))
+            if (ruleSet.Contains("(LEGENDARY"))
             {
                 if (config.StartHealth < 5 || config.PowerIndex > 40)
                 {
@@ -65,7 +65,7 @@
 
                 range = Random.Range(1.2f, 1.4f);
             }
-            else if (ruleSet.Contains("-<(HARD"))
+            else if (ruleSet.Contains("(HARD"))
             {
                 if (config.StartHealth < 5 || config.PowerIndex > 40)
                 {
@@ -74,7 +74,7 @@
 
                 range = Random.Range(1f, 1.3f);
             }
-            else if (ruleSet.Contains("-<(EASY"))
+            else if (ruleSet.Contains("(EASY"))
             {
                 if (config.StartHealth < 5 || config.PowerIndex > 40)
                 {
@@ -82,6 +82,27 @@
                 }
 
                 range = Random.Range(0.75f, 1f);
+            }
+            else if (ruleSet.Contains("(PROGRESSIVE"))
+            {
+                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                {
+                    return;
+                }
+
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
+                {
+                    range = Random.Range(0.9f, 1f);
+                }
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
+                {
+                    range = Random.Range(1f, 1.2f);
+                }
+                else
+                {
+                    range = Random.Range(1.15f, 1.333f);
+                }
             }
             else if (ruleSet.Contains("Demeo Revolutions"))
             {

@@ -68,7 +68,7 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
+            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
             {
                 if (source.GetStat(Stats.Type.BonusCorruptionDamage) < 3)
                 {

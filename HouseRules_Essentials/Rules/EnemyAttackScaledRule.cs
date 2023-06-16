@@ -53,7 +53,50 @@
             }
 
             int range = 0;
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
+            {
+                if (config.PowerIndex > 40)
+                {
+                    return;
+                }
+
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
+                {
+                    return;
+                }
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
+                {
+                    int high = 1;
+                    if (config.AttackDamage < 5)
+                    {
+                        high = 1;
+                    }
+                    else if (config.AttackDamage < 7)
+                    {
+                        if (Random.Range(1, 101) < 21)
+                        {
+                            high = 2;
+                        }
+                    }
+
+                    range = Random.Range(0, high);
+                }
+                else
+                {
+                    int high = 2;
+                    if (config.AttackDamage > 4 && config.AttackDamage < 7)
+                    {
+                        if (Random.Range(1, 101) < 21)
+                        {
+                            high = 3;
+                        }
+                    }
+
+                    range = Random.Range(0, high);
+                }
+            }
+            else if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 if (config.PowerIndex > 40)
                 {

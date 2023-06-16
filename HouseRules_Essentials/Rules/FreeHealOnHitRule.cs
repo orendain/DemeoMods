@@ -59,6 +59,7 @@
                 return;
             }
 
+            int addHeal = 0;
             if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 int chance = Random.Range(1, 101);
@@ -67,60 +68,44 @@
                     int chance2 = Random.Range(1, 101);
                     if (source.boardPieceId == BoardPieceId.HeroRogue)
                     {
-                        if (chance > 98 && chance2 > 50)
+                        if (chance2 > 50)
                         {
-                            source.effectSink.Heal(2);
-                            source.AnimateWobble();
-                        }
-                        else if (chance2 > 50)
-                        {
-                            source.effectSink.Heal(1);
-                            source.AnimateWobble();
-                        }
-                        else if (chance > 98)
-                        {
-                            source.effectSink.Heal(1);
-                            source.AnimateWobble();
+                            addHeal++;
                         }
                     }
                     else if (source.boardPieceId == BoardPieceId.HeroWarlock)
                     {
-                        if (chance > 98 && mainTarget != null && mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
+                        if (mainTarget == null)
                         {
-                            source.effectSink.Heal(2);
-                            source.AnimateWobble();
+                            return;
                         }
-                        else if (mainTarget != null && mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
+
+                        if (mainTarget.HasEffectState(EffectStateType.ExposeEnergy))
                         {
-                            source.effectSink.Heal(1);
-                            source.AnimateWobble();
-                        }
-                        else if (chance > 98)
-                        {
-                            source.effectSink.Heal(1);
-                            source.AnimateWobble();
+                            addHeal++;
                         }
                     }
-                    else if (chance > 98)
+
+                    if (chance > 98)
                     {
-                        source.effectSink.Heal(2);
-                        source.AnimateWobble();
-                    }
-                    else
-                    {
-                        source.effectSink.Heal(1);
+                        addHeal++;
                     }
                 }
                 else if (chance > 98)
                 {
-                    source.effectSink.Heal(1);
-                    source.AnimateWobble();
+                    addHeal++;
                 }
             }
             else
             {
-                source.effectSink.Heal(1);
-                source.AnimateWobble();
+                addHeal++;
+            }
+
+            if (addHeal > 0)
+            {
+                source.effectSink.Heal(addHeal);
+                source.DisableEffectState(EffectStateType.Heal);
+                source.EnableEffectState(EffectStateType.Heal, 1);
             }
         }
     }
