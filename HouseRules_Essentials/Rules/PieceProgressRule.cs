@@ -39,8 +39,8 @@
             }
 
             __result.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, 1);
-            __result.EnableEffectState(EffectStateType.StrengthInNumbers);
-            __result.effectSink.SetStatusEffectDuration(EffectStateType.StrengthInNumbers, 1);
+            __result.EnableEffectState(EffectStateType.Flying);
+            __result.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);
         }
     }
 }

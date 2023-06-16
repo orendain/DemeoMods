@@ -288,6 +288,21 @@
                     }
                 }
             }
+
+            /*else if (__instance.effectStateType == EffectStateType.Flying)
+            {
+                var pieceId = Traverse.Create(__instance).Field<int>("sourcePieceId").Value;
+                var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
+                Piece piece = pieceAndTurnController.GetPiece(pieceId);
+                if (piece == null)
+                {
+                    return;
+                }
+
+                Traverse.Create(__instance).Field<int>("durationTurnsLeft").Value = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Flying) + 1;
+                piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Flying));
+                piece.effectSink.AddStatusEffect(EffectStateType.It, 1);
+            }*/
         }
     }
 }

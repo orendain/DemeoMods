@@ -111,7 +111,7 @@
                     piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
                     piece.DisableEffectState(EffectStateType.Heal);
                     piece.EnableEffectState(EffectStateType.Heal, 1);
-                    piece.effectSink.SetStatusEffectDuration(EffectStateType.StrengthInNumbers, piece.GetStat(Stats.Type.BonusCorruptionDamage));
+                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, piece.GetStat(Stats.Type.BonusCorruptionDamage));
                     if (nextLevel == 3 || nextLevel == 6)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);

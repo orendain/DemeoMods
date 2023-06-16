@@ -90,8 +90,6 @@ namespace HouseRules.Essentials.Rules
                         if (currentAP < 1)
                         {
                             source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
-                            source.EnableEffectState(EffectStateType.PlayerBerserk);
-                            source.effectSink.SetStatusEffectDuration(EffectStateType.PlayerBerserk, 1);
                         }
                         else
                         {
