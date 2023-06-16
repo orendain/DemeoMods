@@ -58,7 +58,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 140 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 38 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 1 },
@@ -228,7 +228,7 @@
             };
             var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.JeweledScarab, 1},
+                { BoardPieceId.ScarabSandPile, 1},
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.LargeCorruption, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
@@ -277,7 +277,7 @@
             };
             var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.JeweledScarab, 1},
+                { BoardPieceId.ScarabSandPile, 1},
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },
@@ -1595,7 +1595,7 @@
             var partyElectricityRule = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.666f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.75f);
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.25f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);

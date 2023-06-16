@@ -87,6 +87,18 @@
 
                 if (replacement.Key == __result.boardPieceId)
                 {
+                    if (__result.GetStat(Stats.Type.BonusCorruptionDamage) > 7)
+                    {
+                        countReplacement--;
+                        timerReplacement++;
+                    }
+
+                    if (__result.GetStat(Stats.Type.BonusCorruptionDamage) > 3)
+                    {
+                        countReplacement--;
+                        timerReplacement++;
+                    }
+
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, countReplacement);
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, timerReplacement);
                 }
