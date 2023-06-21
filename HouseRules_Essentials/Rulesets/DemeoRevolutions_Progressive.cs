@@ -1496,6 +1496,7 @@
                 { AbilityKey.FretsOfFire, false },
                 { AbilityKey.Net, true },
                 { AbilityKey.ImplosionExplosionRain, false },
+                { AbilityKey.Petrify, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -1588,7 +1589,7 @@
             var partyElectricityRule = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.75f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.9f);
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.25f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);

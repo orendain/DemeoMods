@@ -359,6 +359,88 @@
                 }
             }
 
+            // Handle Extra Actions and Action Point cost changes per character class when card hand is active
+            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
+            {
+                int level = piece.GetStat(Stats.Type.BonusCorruptionDamage);
+                if (level > 7)
+                {
+                    piece.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                }
+
+                if (level < 2)
+                {
+                    if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Grapple, out var ability);
+                        ability.costActionPoint = true;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.CourageShanty, out var ability);
+                        ability.costActionPoint = true;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var ability);
+                        ability.costActionPoint = true;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Zap, out var ability);
+                        AbilityFactory.TryGetAbility(AbilityKey.LightningBolt, out var ability2);
+                        ability.costActionPoint = true;
+                        ability2.costActionPoint = true;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Arrow, out var ability);
+                        ability.costActionPoint = true;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.MinionCharge, out var ability);
+                        ability.costActionPoint = true;
+                    }
+                }
+                else
+                {
+                    if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Grapple, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.CourageShanty, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Zap, out var ability);
+                        AbilityFactory.TryGetAbility(AbilityKey.LightningBolt, out var ability2);
+                        ability.costActionPoint = false;
+                        ability2.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Arrow, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.MinionCharge, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                }
+            }
+
             __result = false;
             for (var i = 0; i < piece.inventory.Items.Count; i++)
             {

@@ -118,10 +118,15 @@
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
                     }
-                    else if (nextLevel == 6 || nextLevel == 9)
+                    else if (nextLevel == 6)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 2);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 2);
+                    }
+                    else if (nextLevel == 9)
+                    {
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 3);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 3);
                     }
                     else if (nextLevel == 4)
                     {
@@ -132,7 +137,8 @@
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
-                        piece.effectSink.TrySetStatMaxValue(Stats.Type.ActionPoints, 3);
+                        piece.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                     }
                     else if (nextLevel == 2)
                     {

@@ -95,7 +95,7 @@
                 {
                     range = Random.Range(0.9f, 1f);
                 }
-                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
                 {
                     range = Random.Range(1f, 1.2f);
                 }

@@ -65,32 +65,22 @@
                 {
                     return;
                 }
-                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
                 {
-                    int high = 1;
-                    if (config.AttackDamage < 5)
+                    int high = 0;
+                    if (config.AttackDamage < 7)
                     {
                         high = 1;
-                    }
-                    else if (config.AttackDamage < 7)
-                    {
-                        if (Random.Range(1, 101) < 21)
-                        {
-                            high = 2;
-                        }
                     }
 
                     range = Random.Range(0, high);
                 }
                 else
                 {
-                    int high = 2;
-                    if (config.AttackDamage > 4 && config.AttackDamage < 7)
+                    int high = 0;
+                    if (config.AttackDamage < 7)
                     {
-                        if (Random.Range(1, 101) < 21)
-                        {
-                            high = 3;
-                        }
+                        high = 2;
                     }
 
                     range = Random.Range(0, high);
@@ -103,16 +93,16 @@
                     return;
                 }
 
-                int high = 1;
+                int high = 0;
                 if (config.AttackDamage < 5)
                 {
-                    high = 2;
+                    high = 1;
                 }
                 else if (config.AttackDamage < 7)
                 {
                     if (Random.Range(1, 101) < 21)
                     {
-                        high = 3;
+                        high = 2;
                     }
                 }
 
