@@ -64,23 +64,26 @@
                 source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                 if (source.boardPieceId == BoardPieceId.HeroBard)
                 {
-                    if (source.HasEffectState(EffectStateType.Fearless))
+                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStat(Stats.Type.BonusCorruptionDamage) > 2))
                     {
-                        source.EnableEffectState(EffectStateType.Fearless);
-                    }
-                    else if (source.HasEffectState(EffectStateType.Heroic))
-                    {
-                        source.DisableEffectState(EffectStateType.Heroic);
-                        source.EnableEffectState(EffectStateType.Fearless);
-                    }
-                    else if (source.HasEffectState(EffectStateType.Courageous))
-                    {
-                        source.DisableEffectState(EffectStateType.Courageous);
-                        source.EnableEffectState(EffectStateType.Heroic);
-                    }
-                    else
-                    {
-                        source.EnableEffectState(EffectStateType.Courageous);
+                        if (source.HasEffectState(EffectStateType.Fearless))
+                        {
+                            source.EnableEffectState(EffectStateType.Fearless);
+                        }
+                        else if (source.HasEffectState(EffectStateType.Heroic))
+                        {
+                            source.DisableEffectState(EffectStateType.Heroic);
+                            source.EnableEffectState(EffectStateType.Fearless);
+                        }
+                        else if (source.HasEffectState(EffectStateType.Courageous))
+                        {
+                            source.DisableEffectState(EffectStateType.Courageous);
+                            source.EnableEffectState(EffectStateType.Heroic);
+                        }
+                        else
+                        {
+                            source.EnableEffectState(EffectStateType.Courageous);
+                        }
                     }
                 }
                 else if (source.boardPieceId == BoardPieceId.HeroBarbarian)
@@ -102,9 +105,12 @@
                     }
                     else
                     {
-                        if (myArmor < 10)
+                        if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStat(Stats.Type.BonusCorruptionDamage) > 2))
                         {
-                            source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 1);
+                            if (myArmor < 10)
+                            {
+                                source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 1);
+                            }
                         }
                     }
                 }
