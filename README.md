@@ -183,7 +183,7 @@ You will **NOT** start with most of the normal Demeo Revolutions abilities and p
 
 ***`Level 8`*** - Gain 1 knockdown and 1 extra Action Point per turn
 
-***`Level 9`*** - Gain 2 health
+***`Level 9`*** - Gain 3 health
 
 ***`Level 10`*** - Gain 2 bonus & max bonus to stat (Strength or Magic depending on class) AND a new permanent powerful ability that can only be used once every 6 turns
 
