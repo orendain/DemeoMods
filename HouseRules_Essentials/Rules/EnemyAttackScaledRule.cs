@@ -63,12 +63,22 @@
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
-                    return;
+                    int high = 0;
+                    if (config.AttackDamage > 2 && config.AttackDamage < 5)
+                    {
+                        high = 1;
+                    }
+
+                    range = Random.Range(0, high);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
                 {
                     int high = 0;
-                    if (config.AttackDamage < 7)
+                    if (config.AttackDamage > 2 && config.AttackDamage < 5)
+                    {
+                        high = 2;
+                    }
+                    else if (config.AttackDamage < 7)
                     {
                         high = 1;
                     }
@@ -78,7 +88,11 @@
                 else
                 {
                     int high = 0;
-                    if (config.AttackDamage < 7)
+                    if (config.AttackDamage > 2 && config.AttackDamage < 5)
+                    {
+                        high = 3;
+                    }
+                    else if (config.AttackDamage < 7)
                     {
                         high = 2;
                     }

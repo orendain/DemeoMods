@@ -93,15 +93,15 @@
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
-                    range = Random.Range(0.9f, 1f);
+                    range = Random.Range(1.0f, 1.1f);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
                 {
-                    range = Random.Range(1f, 1.2f);
+                    range = Random.Range(1.1f, 1.2f);
                 }
                 else
                 {
-                    range = Random.Range(1.15f, 1.333f);
+                    range = Random.Range(1.2f, 1.3f);
                 }
             }
             else if (ruleSet.Contains("Demeo Revolutions"))
