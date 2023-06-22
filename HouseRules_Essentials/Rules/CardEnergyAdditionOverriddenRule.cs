@@ -109,7 +109,13 @@
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, nextLevel + 1);
                     nextLevel++;
                     piece.effectSink.Heal(2);
-                    piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
+                    if (piece.HasEffectState(EffectStateType.Downed))
+                    {
+                        piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
+                        piece.effectSink.RemoveStatusEffect(EffectStateType.Stunned);
+                        piece.effectSink.RemoveStatusEffect(EffectStateType.Frozen);
+                    }
+
                     piece.DisableEffectState(EffectStateType.Heal);
                     piece.EnableEffectState(EffectStateType.Heal, 1);
                     piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, piece.GetStat(Stats.Type.BonusCorruptionDamage));
