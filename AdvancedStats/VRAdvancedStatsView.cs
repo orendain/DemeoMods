@@ -714,7 +714,7 @@
                 }
             }
 
-            GameUI.ShowCameraMessage(sb.ToString(), 5);
+            GameUI.ShowCameraMessage(sb.ToString(), 10);
         }
 
         private static string ColorizeString(string text, Color color)
