@@ -85,7 +85,7 @@
             }
             else if (ruleSet.Contains("(PROGRESSIVE"))
             {
-                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                if (config.PowerIndex > 40)
                 {
                     return;
                 }
@@ -93,15 +93,15 @@
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
-                    range = Random.Range(1.0f, 1.1f);
+                    range = Random.Range(1.0f, 1.2f);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
                 {
-                    range = Random.Range(1.1f, 1.2f);
+                    range = Random.Range(1.2f, 1.4f);
                 }
                 else
                 {
-                    range = Random.Range(1.2f, 1.3f);
+                    range = Random.Range(1.4f, 1.6f);
                 }
             }
             else if (ruleSet.Contains("Demeo Revolutions"))
