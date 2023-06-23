@@ -51,6 +51,7 @@ Class Changes
 - Normal start cards plus Charge and War Cry
 - Replenish Armor regains 4 armor instead of 5
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
+- War Cry now also blinds enemies as well as panicking them
 - Whirlwind doesn't harm allies but it will still knock them back
 - A NEW reusable non-damaging Pull card which costs 0 Action Points (works on enemies and allies)
 - Critical hits regain all Action Points, 1 Armor, Pull, and gain Berserk (+1 Dmg & +3 Move for the turn)
@@ -62,6 +63,7 @@ Class Changes
 - Normal start cards plus The Leviathan and Barbaric Chainwhip
 - The Leviathan now Tangles enemies that it chains
 - Barbaric Chainwhip damage increased to 3
+- Howl of the Ancients now also confuses enemies as well as weakening them
 - Grapple costs 0 Action Points
 - Grapple and Launching a Lamp can now be used in the same turn
 - A NEW non-damaging Net card that roots an enemy in place and can be reused every 3 rounds
@@ -135,37 +137,34 @@ Class Changes
 - Critical hits on LAST action gain Water Bottle and become Overcharged
 - Critical hits while Overcharged gain Water Bottle
 
-For video tutorials and gameplay go to https://www.youtube.com/c/TheGrayAlien/playlists
 
-
-About the Extra Energy buff given by the Energy Potion
-======================================================
-
+### `About the Extra Energy buff given by the Energy Potion`
 When the Energy Potion card is used it will give each character 2 extra maximum health, a NEW ability that they can use 3 times total that will not cost any action points when used. There is no turn limit to the buff. The character using the Energy Potion will not get the ability until their NEXT turn. The buff counter will update at the start of your turn to let you know how many more charges are left. If you use all 3 charges then at the end of that turn you will lose the extra 2 maximum health and gain a Thorns debuff for 2 rounds.
 
 **Guardian:**
-- Leap: Jumps a moderate distance. Landing causes 5 damage to each enemy within a 3x3 area.
+- ***`Leap`*** Jumps a moderate distance. Landing causes 5 damage to each enemy within a 3x3 area.
 
 **Barbarian:**
-- Vortex Storm: Drops 3 meteors over a large area that cause small vortexes that do 5 damage to each thing hit. This includes allies but not yourself. Does NOT hit lamps.
+- ***`Vortex Storm`*** Drops 3 meteors over a large area that cause small vortexes that do 5 damage to each thing hit. This includes allies but not yourself. Does NOT hit lamps.
 
 **Hunter:**
-- Lightning Bolt: Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets. CAN hit allies!
+- ***`Lightning Bolt`*** Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets. CAN hit allies!
 
 **Assassin:**
-- Frets of Fire: Causes fire damage in a 7x7 area around you that does 3 damage to enemies. Does NOT break sneak. DOES hit lamps!
+- ***`Frets of Fire`*** Causes fire damage in a 7x7 area around you that does 3 damage to enemies. Does NOT break sneak. DOES hit lamps!
 
 **Bard:**
-- Blink: Teleports to and attacks an enemy for 9 damage. This move also Weakens and Confuses the target.
+- ***`Blink`*** Teleports to and attacks an enemy for 9 damage. This move also Weakens and Confuses the target.
 
 **Warlock:**
-- Weakening Shout: Weakens and hits enemies for 2 damage each in a straight line.
+- ***`Weakening Shout`*** Weakens and hits enemies for 2 damage each in a straight line.
 
 **Sorcerer:**
-- Rift Beam: Hits everything in a straight line for 5 damage. This includes friendlies.
+- ***`Rift Beam`*** Hits everything in a straight line for 5 damage. This includes friendlies.
+
 
 ### `About the new Progressive ruleset`
-You will **NOT** start with most of the normal Demeo Revolutions abilities and perks. Instead, you will gain them as you ***LEVEL UP*** by filling the card mana meter. You start with 1 knockdown instead of 3. Gaining a level heals the party for 2 (if hurt) and will revive downed party members. You will still gain cards when filling the card meter. Discarding cards will only give 25% of the amount indicated (to avoid exploiting levels). If you die and return to pick another character you will start at level 1 again. Party members can see their current levels indicated by a new permanent buff over their heads.
+You will **NOT** start with most of the normal Demeo Revolutions abilities and perks. Instead, you will gain them as you ***LEVEL UP*** by filling the card mana meter. You start with 1 knockdown instead of 3. Gaining a level heals the party for 2 (if hurt) and will revive downed party members. You will still gain cards when filling the card meter. Discarding cards will only give 25% of the amount indicated (to avoid exploiting levels). If you die and return to pick another character you will start at level 1 again. Party members can see their current levels indicated by a new permanent buff over their heads. Enemy difficulty increases on each new floor.
 
 ***`Level 1`*** - Critical hits on your FINAL action function as in normal Demeo Revolutions except the Guardian only gains 1 Action Point instead of 2 (until level 3)
 
@@ -187,3 +186,4 @@ You will **NOT** start with most of the normal Demeo Revolutions abilities and p
 
 ***`Level 10`*** - Gain 2 bonus & max bonus to stat (Strength or Magic depending on class) AND a new permanent powerful ability that can only be used once every 6 turns
 
+For video tutorials and gameplay go to https://www.youtube.com/c/TheGrayAlien/playlists
