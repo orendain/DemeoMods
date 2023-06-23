@@ -65,20 +65,6 @@
             string name = pieceNameController.GetPieceName();
             var sb = new StringBuilder();
             sb.AppendLine(ColorizeString($"<u>{name}</u>", Color.yellow));
-            if (level > 0)
-            {
-                sb.Append(ColorizeString("Character Level: ", Color.green));
-                if (level < 10)
-                {
-                    sb.AppendLine(ColorizeString($"{level}", lightgreen));
-                }
-                else
-                {
-                    sb.Append(ColorizeString($"{level} ", lightgreen));
-                    sb.AppendLine(ColorizeString($"(MAXED!)", gold));
-                }
-            }
-
             sb.Append(ColorizeString("Knockdowns Remaining: ", pink));
             switch (numdowns)
             {
