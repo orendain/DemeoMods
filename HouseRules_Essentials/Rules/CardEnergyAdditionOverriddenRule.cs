@@ -292,15 +292,43 @@
                             piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 2);
                         }
 
-                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-                        piece.inventory.Items.Add(new Inventory.Item
+                        int randAbil = RandomProvider.GetThreadRandom().Next(3);
+                        if (randAbil == 0)
                         {
-                            abilityKey = AbilityKey.Petrify,
-                            flags = (Inventory.ItemFlag)1,
-                            originalOwner = -1,
-                            replenishCooldown = 6,
-                        });
-                        piece.AddGold(0);
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.Petrify,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 6,
+                            });
+                            piece.AddGold(0);
+                        }
+                        else if (randAbil == 1)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.AcidSpit,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 6,
+                            });
+                            piece.AddGold(0);
+                        }
+                        else if (randAbil == 2)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.DropChest,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 6,
+                            });
+                            piece.AddGold(0);
+                        }
                     }
                     else if (nextLevel == 7)
                     {

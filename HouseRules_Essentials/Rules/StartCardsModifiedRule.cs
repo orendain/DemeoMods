@@ -451,8 +451,9 @@
                     continue;
                 }
 
+                AbilityKey levelTen = value.abilityKey;
                 // Fix for adding new cards late in the game with longer than 1 cooldown
-                if (value.abilityKey == AbilityKey.EnemyFlashbang || value.abilityKey == AbilityKey.DiseasedBite || value.abilityKey == AbilityKey.Net)
+                if (levelTen == AbilityKey.EnemyFlashbang || levelTen == AbilityKey.DiseasedBite || levelTen == AbilityKey.Net)
                 {
                     if (value.replenishCooldown < 0)
                     {
@@ -460,7 +461,7 @@
                         piece.inventory.Items[i] = value;
                     }
                 }
-                else if (value.abilityKey == AbilityKey.Petrify)
+                else if (levelTen == AbilityKey.Petrify || levelTen == AbilityKey.AcidSpit || levelTen == AbilityKey.DropChest)
                 {
                     if (value.replenishCooldown < 0)
                     {

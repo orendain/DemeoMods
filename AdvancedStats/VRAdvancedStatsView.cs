@@ -706,8 +706,8 @@
                             sb.Append(ColorizeString("2 Strength", Color.white));
                         }
 
-                        sb.Append(ColorizeString(" and ", Color.yellow));
-                        sb.Append(ColorizeString("Petrify", Color.white));
+                        sb.Append(ColorizeString(" and a ", Color.yellow));
+                        sb.Append(ColorizeString("Random", Color.white));
                         sb.Append(ColorizeString(" ability ", Color.yellow));
                         sb.AppendLine(ColorizeString("(FREE Action/6 turn cooldown)", lightgreen));
                     }
