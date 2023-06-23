@@ -165,7 +165,7 @@ When the Energy Potion card is used it will give each character 2 extra maximum 
 - Rift Beam: Hits everything in a straight line for 5 damage. This includes friendlies.
 
 ### `About the new Progressive ruleset`
-You will **NOT** start with most of the normal Demeo Revolutions abilities and perks. Instead, you will gain them as you ***LEVEL UP*** by filling the card mana meter. You start with 1 knockdown instead of 3. Gaining a level heals the party for 2 (if hurt) and will revive downed party members. You will still gain cards when filling the card meter. Discarding cards will only give 25% of the amount indicated (to avoid exploiting levels). If you die and return to pick another character you will start at level 1 again. Party members can see their current levels indicated by a new permanent buff over their heads.
+You will **NOT** start with most of the normal Demeo Revolutions abilities and perks. Instead, you will gain them as you ***LEVEL UP*** by filling the card mana meter. You start with 1 knockdown instead of 3. Gaining a level heals the party for 2 (if hurt) and will revive downed party members. You will still gain cards when filling the card meter. Discarding cards will only give 25% of the amount indicated (to avoid exploiting levels). If you die and return to pick another character you will start at level 1 again. Party members can see their current levels indicated by a new permanent buff over their heads. Enemy difficulty increases on each new floor.
 
 ***`Level 1`*** - Critical hits on your FINAL action function as in normal Demeo Revolutions except the Guardian only gains 1 Action Point instead of 2 (until level 3)
 
