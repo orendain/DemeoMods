@@ -7,6 +7,7 @@
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HarmonyLib;
+    using HouseRules.Essentials.Rulesets;
     using HouseRules.Types;
 
     public sealed class StartCardsModifiedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>>,
@@ -16,6 +17,8 @@
 
         private static Dictionary<BoardPieceId, List<CardConfig>> _globalHeroStartCards;
         private static bool _isActivated;
+        private static bool _isReconnect;
+        private static int _numPlayers = 1;
 
         private readonly Dictionary<BoardPieceId, List<CardConfig>> _heroStartCards;
 
@@ -62,9 +65,328 @@
                 return true;
             }
 
+            if (!piece.IsPlayer())
+            {
+                return true;
+            }
+
             Inventory.Item value;
+            bool rev_progr = false;
+            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
+            {
+                rev_progr = true;
+            }
+
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
+                if (piece.IsDead())
+                {
+                    _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces() + 1;
+                    EssentialsMod.Logger.Msg($"Revolutions: {_numPlayers - 1} pieces found");
+                }
+
+                if (!piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
+                {
+                    int mage = 0;
+                    int diff = 0;
+                    if (HR.SelectedRuleset.Name.Contains("(EASY"))
+                    {
+                        diff = 2;
+                    }
+                    else if (HR.SelectedRuleset.Name.Equals("Demeo Revolutions"))
+                    {
+                        diff = 1;
+                    }
+
+                    if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                    {
+                        mage = 1;
+                        if (piece.inventory.HasAbility(AbilityKey.Overcharge))
+                        {
+                            for (var i = 0; i < piece.inventory.Items.Count; i++)
+                            {
+                                value = piece.inventory.Items[i];
+                                if (value.abilityKey == AbilityKey.Overcharge)
+                                {
+                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                                    piece.inventory.Items.Remove(value);
+                                    break;
+                                }
+                            }
+                        }
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.Vortex,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.Banish,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        if (!rev_progr)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.Electricity,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                        }
+
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, 1);
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 6 + diff);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 6 + diff);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                    {
+                        if (piece.inventory.HasAbility(AbilityKey.MinionCharge))
+                        {
+                            for (var i = 0; i < piece.inventory.Items.Count; i++)
+                            {
+                                value = piece.inventory.Items[i];
+                                if (value.abilityKey == AbilityKey.MinionCharge)
+                                {
+                                    piece.inventory.Items.Remove(value);
+                                    break;
+                                }
+                            }
+                        }
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.Implode,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.Deflect,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.GuidingLight,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        if (!rev_progr)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.MinionCharge,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                        }
+
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 6 + diff);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 6 + diff);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.Lure,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.CallCompanion,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        if (!rev_progr)
+                        {
+                            for (var i = 0; i < piece.inventory.Items.Count; i++)
+                            {
+                                value = piece.inventory.Items[i];
+                                if (value.abilityKey == AbilityKey.Arrow)
+                                {
+                                    piece.inventory.Items.Remove(value);
+                                    break;
+                                }
+                            }
+
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.EnemyFireball,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                        }
+
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.ShatteringVoice,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.PiercingVoice,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        if (!rev_progr)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.EnemyFlashbang,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                        }
+
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.CursedDagger,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.FlashBomb,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        if (!rev_progr)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.DiseasedBite,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                        }
+
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.GrapplingTotem,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.GrapplingPush,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        if (!rev_progr)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.Net,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                        }
+
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                    {
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.Charge,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.WarCry,
+                            flags = 0,
+                            originalOwner = -1,
+                            replenishCooldown = 0,
+                        });
+
+                        if (!rev_progr)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.Grab,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 1,
+                            });
+                        }
+
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 8 + diff);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 8 + diff);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamage, 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 255);
+                    }
+
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, 5 + mage);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, 5);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, 5);
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, 69);
+                    piece.AddGold(0);
+                    _isReconnect = true;
+                }
+
                 // Remove One-Time replenishables if used
                 if (piece.boardPieceId == BoardPieceId.HeroHunter)
                 {
@@ -359,10 +681,31 @@
                 }
             }
 
-            // Handle Extra Actions and Action Point cost changes per character class when card hand is active
-            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
+            if (_numPlayers > 1 && _isReconnect)
+            {
+                piece.effectSink.AddStatusEffect(EffectStateType.Invulnerable1);
+                piece.effectSink.SetStatusEffectDuration(EffectStateType.Invulnerable1, 1);
+                _numPlayers--;
+                if (_numPlayers == 1)
+                {
+                    _isReconnect = false;
+                }
+            }
+
+            // Handle Host-Reconnect Progressive Effects, Extra Actions, and Action Point cost changes per character class
+            if (rev_progr)
             {
                 int level = piece.GetStat(Stats.Type.BonusCorruptionDamage);
+                if (!piece.IsDead() && level < 1)
+                {
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, 1);
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, 1);
+                    piece.EnableEffectState(EffectStateType.Flying);
+                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);
+                    piece.AddGold(0);
+                }
+
                 if (level > 7)
                 {
                     piece.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
@@ -451,8 +794,8 @@
                     continue;
                 }
 
-                AbilityKey levelTen = value.abilityKey;
                 // Fix for adding new cards late in the game with longer than 1 cooldown
+                AbilityKey levelTen = value.abilityKey;
                 if (levelTen == AbilityKey.EnemyFlashbang || levelTen == AbilityKey.DiseasedBite || levelTen == AbilityKey.Net)
                 {
                     if (value.replenishCooldown < 0)
