@@ -103,10 +103,10 @@
 
             if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
             {
-                int nextLevel = piece.GetStat(Stats.Type.BonusCorruptionDamage);
+                int nextLevel = piece.GetStatMax(Stats.Type.CritChance);
                 if (nextLevel < 10)
                 {
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, nextLevel + 1);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, nextLevel + 1);
                     nextLevel++;
                     piece.effectSink.Heal(2);
                     if (piece.HasEffectState(EffectStateType.Downed))
@@ -118,7 +118,7 @@
 
                     piece.DisableEffectState(EffectStateType.Heal);
                     piece.EnableEffectState(EffectStateType.Heal, 1);
-                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, piece.GetStat(Stats.Type.BonusCorruptionDamage));
+                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, piece.GetStatMax(Stats.Type.CritChance));
                     if (nextLevel == 3)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);

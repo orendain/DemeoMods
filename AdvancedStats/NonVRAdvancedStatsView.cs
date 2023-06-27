@@ -47,7 +47,7 @@
                     int maxresist = myPiece.GetStatMax(Stats.Type.DamageResist);
                     int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
                     var revolutions = myPiece.GetStat(Stats.Type.InnateCounterDamageExtraDamage);
-                    int level = myPiece.GetStat(Stats.Type.BonusCorruptionDamage);
+                    int level = myPiece.GetStatMax(Stats.Type.CritChance);
                     bool hasbonuses = true;
                     bool hasimmunities = true;
                     var pieceConfig = Traverse.Create(data).Field<PieceConfigData>("pieceConfig").Value;
@@ -463,8 +463,8 @@
                         if (level > 9)
                         {
                             app = true;
-                            sb.Append(ColorizeString(" and ", Color.yellow));
-                            sb.Append(ColorizeString("Petrify", Color.white));
+                            sb.Append(ColorizeString(" and a ", Color.yellow));
+                            sb.Append(ColorizeString("Random", Color.white));
                             sb.Append(ColorizeString(" ability ", Color.yellow));
                             sb.AppendLine(ColorizeString("(FREE Action/6 turn cooldown)", lightgreen));
                         }

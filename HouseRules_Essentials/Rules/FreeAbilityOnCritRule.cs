@@ -64,7 +64,7 @@
                 source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                 if (source.boardPieceId == BoardPieceId.HeroBard)
                 {
-                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStat(Stats.Type.BonusCorruptionDamage) > 2))
+                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 2))
                     {
                         if (source.HasEffectState(EffectStateType.Fearless))
                         {
@@ -105,7 +105,7 @@
                     }
                     else
                     {
-                        if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStat(Stats.Type.BonusCorruptionDamage) > 2))
+                        if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 2))
                         {
                             if (myArmor < 10)
                             {

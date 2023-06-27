@@ -69,11 +69,11 @@ namespace HouseRules.Essentials.Rules
                 {
                     addHeal++;
                 }
-                else if (source.GetStat(Stats.Type.BonusCorruptionDamage) > 3)
+                else if (source.GetStatMax(Stats.Type.CritChance) > 3)
                 {
                     source.inventory.AddGold(30);
                 }
-                else if (source.GetStat(Stats.Type.BonusCorruptionDamage) == 0)
+                else if (source.GetStatMax(Stats.Type.CritChance) == 0)
                 {
                     source.inventory.AddGold(10);
                 }

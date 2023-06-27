@@ -695,12 +695,11 @@
             // Handle Host-Reconnect Progressive Effects, Extra Actions, and Action Point cost changes per character class
             if (rev_progr)
             {
-                int level = piece.GetStat(Stats.Type.BonusCorruptionDamage);
+                int level = piece.GetStatMax(Stats.Type.CritChance);
                 if (!piece.IsDead() && level < 1)
                 {
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, 1);
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.BonusCorruptionDamage, 1);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
                     piece.EnableEffectState(EffectStateType.Flying);
                     piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);
                     piece.AddGold(0);
