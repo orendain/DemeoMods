@@ -1534,6 +1534,8 @@
                 { AbilityKey.WeakeningShout, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.LeapHeavy, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.ImplosionExplosionRain, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.Shockwave, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.DeathFlurry, new List<int> { 5, 5, 5, 5 } },
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores

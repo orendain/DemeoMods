@@ -302,7 +302,7 @@
                             piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 2);
                         }
 
-                        int randAbil = RandomProvider.GetThreadRandom().Next(4);
+                        int randAbil = RandomProvider.GetThreadRandom().Next(5);
                         if (randAbil == 0)
                         {
                             Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
@@ -341,7 +341,18 @@
                             Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                             piece.inventory.Items.Add(new Inventory.Item
                             {
-                                abilityKey = AbilityKey.BossShockwave,
+                                abilityKey = AbilityKey.Shockwave,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 6,
+                            });
+                        }
+                        else if (randAbil == 4)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.DeathFlurry,
                                 flags = (Inventory.ItemFlag)1,
                                 originalOwner = -1,
                                 replenishCooldown = 6,

@@ -804,7 +804,7 @@
                         piece.inventory.Items[i] = value;
                     }
                 }
-                else if (levelTen == AbilityKey.Petrify || levelTen == AbilityKey.AcidSpit || levelTen == AbilityKey.DropChest || levelTen == AbilityKey.BossShockwave)
+                else if (levelTen == AbilityKey.Petrify || levelTen == AbilityKey.AcidSpit || levelTen == AbilityKey.DropChest || levelTen == AbilityKey.Shockwave || levelTen == AbilityKey.DeathFlurry)
                 {
                     if (value.replenishCooldown < 0)
                     {
