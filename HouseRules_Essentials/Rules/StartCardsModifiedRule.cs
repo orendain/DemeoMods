@@ -7,7 +7,6 @@
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HarmonyLib;
-    using HouseRules.Essentials.Rulesets;
     using HouseRules.Types;
 
     public sealed class StartCardsModifiedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>>,
@@ -77,17 +76,20 @@
                 rev_progr = true;
             }
 
-            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (piece.IsDead())
                 {
-                    _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces() + 1;
-                    EssentialsMod.Logger.Msg($"Revolutions: {_numPlayers - 1} pieces found");
+                    if (gameContext.pieceAndTurnController.IsMyTurn())
+                    {
+                        _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
+                    }
                 }
 
                 if (!piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
                 {
+                    _isReconnect = true;
                     int mage = 0;
                     int diff = 0;
                     if (HR.SelectedRuleset.Name.Contains("(EASY"))
@@ -102,7 +104,7 @@
                     if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
                     {
                         mage = 1;
-                        if (piece.inventory.HasAbility(AbilityKey.Overcharge))
+                        /*if (piece.inventory.HasAbility(AbilityKey.Overcharge))
                         {
                             for (var i = 0; i < piece.inventory.Items.Count; i++)
                             {
@@ -114,7 +116,7 @@
                                     break;
                                 }
                             }
-                        }
+                        }*/
 
                         piece.inventory.Items.Add(new Inventory.Item
                         {
@@ -383,8 +385,15 @@
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, 5);
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, 5);
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, 69);
+                    if (rev_progr)
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
+                        piece.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
+                        piece.EnableEffectState(EffectStateType.Flying);
+                        piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);
+                    }
+
                     piece.AddGold(0);
-                    _isReconnect = true;
                 }
 
                 // Remove One-Time replenishables if used
@@ -679,32 +688,24 @@
                         }
                     }
                 }
-            }
 
-            if (_numPlayers > 1 && _isReconnect)
-            {
-                piece.effectSink.AddStatusEffect(EffectStateType.Invulnerable1);
-                piece.effectSink.SetStatusEffectDuration(EffectStateType.Invulnerable1, 1);
-                _numPlayers--;
-                if (_numPlayers == 1)
+                // Handle Host reconnect makes returning players invulnerable when becoming master client again
+                if (!piece.IsDead() && _numPlayers > 1 && _isReconnect && !gameContext.pieceAndTurnController.IsMyTurn())
                 {
-                    _isReconnect = false;
+                    piece.effectSink.AddStatusEffect(EffectStateType.Invulnerable1);
+                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Invulnerable1, 1);
+                    _numPlayers--;
+                    if (_numPlayers == 1)
+                    {
+                        _isReconnect = false;
+                    }
                 }
             }
 
-            // Handle Host-Reconnect Progressive Effects, Extra Actions, and Action Point cost changes per character class
+            // Progressive Extra Actions and Action Point cost changes per character class
             if (rev_progr)
             {
                 int level = piece.GetStatMax(Stats.Type.CritChance);
-                if (!piece.IsDead() && level < 1)
-                {
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
-                    piece.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
-                    piece.EnableEffectState(EffectStateType.Flying);
-                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);
-                    piece.AddGold(0);
-                }
-
                 if (level > 7)
                 {
                     piece.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
@@ -803,7 +804,7 @@
                         piece.inventory.Items[i] = value;
                     }
                 }
-                else if (levelTen == AbilityKey.Petrify || levelTen == AbilityKey.AcidSpit || levelTen == AbilityKey.DropChest)
+                else if (levelTen == AbilityKey.Petrify || levelTen == AbilityKey.AcidSpit || levelTen == AbilityKey.DropChest || levelTen == AbilityKey.BossShockwave)
                 {
                     if (value.replenishCooldown < 0)
                     {

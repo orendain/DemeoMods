@@ -235,7 +235,17 @@
                         }
                         else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
                         {
-                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            Inventory.Item value;
+                            for (var i = 0; i < piece.inventory.Items.Count; i++)
+                            {
+                                value = piece.inventory.Items[i];
+                                if (value.abilityKey == AbilityKey.Overcharge)
+                                {
+                                    piece.inventory.Items.Remove(value);
+                                    break;
+                                }
+                            }
+
                             piece.inventory.Items.Add(new Inventory.Item
                             {
                                 abilityKey = AbilityKey.Electricity,
@@ -292,7 +302,7 @@
                             piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 2);
                         }
 
-                        int randAbil = RandomProvider.GetThreadRandom().Next(3);
+                        int randAbil = RandomProvider.GetThreadRandom().Next(4);
                         if (randAbil == 0)
                         {
                             Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
@@ -303,7 +313,6 @@
                                 originalOwner = -1,
                                 replenishCooldown = 6,
                             });
-                            piece.AddGold(0);
                         }
                         else if (randAbil == 1)
                         {
@@ -315,7 +324,6 @@
                                 originalOwner = -1,
                                 replenishCooldown = 6,
                             });
-                            piece.AddGold(0);
                         }
                         else if (randAbil == 2)
                         {
@@ -327,8 +335,20 @@
                                 originalOwner = -1,
                                 replenishCooldown = 6,
                             });
-                            piece.AddGold(0);
                         }
+                        else if (randAbil == 3)
+                        {
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                            piece.inventory.Items.Add(new Inventory.Item
+                            {
+                                abilityKey = AbilityKey.BossShockwave,
+                                flags = (Inventory.ItemFlag)1,
+                                originalOwner = -1,
+                                replenishCooldown = 6,
+                            });
+                        }
+
+                        piece.AddGold(0);
                     }
                     else if (nextLevel == 7)
                     {
