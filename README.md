@@ -147,6 +147,30 @@ Demeo Revolutions Class Changes
 - Critical hits while Overcharged gain Water Bottle
 
 
+### `About the new Progressive ruleset`
+You will **NOT** start with most of the normal Demeo Revolutions abilities and perks. Instead, you will gain them as you ***LEVEL UP*** by filling the card mana meter. You start with 1 knockdown instead of 3. Gaining a level heals the party for 2 (if hurt) and will revive downed party members. You will still gain cards when filling the card meter. Discarding cards will only give 25% of the amount indicated (to avoid exploiting levels). If you die and return to pick another character you will start at level 1 again. Party members can see their current levels indicated by a new permanent buff over their heads. Enemy difficulty increases on each new floor.
+
+***`Level 1`*** - Critical hits on your FINAL action function as in normal Demeo Revolutions except the Guardian only gains 1 Action Point instead of 2 (until level 3)
+
+***`Level 2`*** - Gain 1 permanent replenishable ability. Pull, Stealth, Arrow, Zap, Lightning Bolt, Courage Shanty, Feral Charge, and Grapple now cost 0 Action Points
+
+***`Level 3`*** - Gain 1 health and critical hits restore your 0 Action Cost replenishables and/or Action Points (depending on class) as in normal Demeo Revolutions
+
+***`Level 4`*** - Gain 1 knockdown and critical hits also earns you 30 gold OR heal you for 1 if you're on the last floor
+
+***`Level 5`*** - Gain 1 bonus & max bonus to a stat (Strength or Magic depending on class)
+
+***`Level 6`*** - Gain 2 health
+
+***`Level 7`*** - Gain 2 bonus & max bonus to Swiftness
+
+***`Level 8`*** - Gain 1 knockdown and 1 extra Action Point per turn
+
+***`Level 9`*** - Gain 3 health
+
+***`Level 10`*** - Gain 2 bonus & max bonus to stat (Strength or Magic depending on class) AND a new permanent powerful ability that can only be used once every 6 turns
+
+
 ### `About the Extra Energy buff given by the Energy Potion`
 When the Energy Potion card is used it will give each character 2 extra maximum health, a NEW ability that they can use 3 times total that will not cost any action points when used. There is no turn limit to the buff. The character using the Energy Potion will not get the ability until their NEXT turn. The buff counter will update at the start of your turn to let you know how many more charges are left. If you use all 3 charges then at the end of that turn you will lose the extra 2 maximum health and gain a Thorns debuff for 2 rounds.
 
@@ -171,28 +195,5 @@ When the Energy Potion card is used it will give each character 2 extra maximum 
 **Sorcerer:**
 - ***`Rift Beam`*** Hits everything in a straight line for 5 damage. This includes friendlies.
 
-
-### `About the new Progressive ruleset`
-You will **NOT** start with most of the normal Demeo Revolutions abilities and perks. Instead, you will gain them as you ***LEVEL UP*** by filling the card mana meter. You start with 1 knockdown instead of 3. Gaining a level heals the party for 2 (if hurt) and will revive downed party members. You will still gain cards when filling the card meter. Discarding cards will only give 25% of the amount indicated (to avoid exploiting levels). If you die and return to pick another character you will start at level 1 again. Party members can see their current levels indicated by a new permanent buff over their heads. Enemy difficulty increases on each new floor.
-
-***`Level 1`*** - Critical hits on your FINAL action function as in normal Demeo Revolutions except the Guardian only gains 1 Action Point instead of 2 (until level 3)
-
-***`Level 2`*** - Gain 1 permanent replenishable ability. Pull, Stealth, Arrow, Zap, Lightning Bolt, Courage Shanty, Feral Charge, and Grapple now cost 0 Action Points
-
-***`Level 3`*** - Gain 1 health and critical hits restore your 0 Action Cost replenishables and/or Action Points (depending on class) as in normal Demeo Revolutions
-
-***`Level 4`*** - Gain 1 knockdown and critical hits also earns you 30 gold OR heal you for 1 if you're on the last floor
-
-***`Level 5`*** - Gain 1 bonus & max bonus to a stat (Strength or Magic depending on class)
-
-***`Level 6`*** - Gain 2 health
-
-***`Level 7`*** - Gain 2 bonus & max bonus to Swiftness
-
-***`Level 8`*** - Gain 1 knockdown and 1 extra Action Point per turn
-
-***`Level 9`*** - Gain 3 health
-
-***`Level 10`*** - Gain 2 bonus & max bonus to stat (Strength or Magic depending on class) AND a new permanent powerful ability that can only be used once every 6 turns
-
-For video tutorials and gameplay go to https://www.youtube.com/c/TheGrayAlien/playlists
+ 
+For video tutorials and gameplay go to [My YouTube](https://www.youtube.com/c/TheGrayAlien/playlists) or [My Twitch](https://www.twitch.tv/demeorevolutions) for live streams!
