@@ -61,7 +61,7 @@ Demeo Revolutions Class Changes
 ===============================
 **NOTE:** Start health/max is adjusted up or down for EASY, HARD, LEGENDARY, and PROGRESSIVE rulesets
 
-**Guardian:**
+**`Guardian:`**
 - 9 max health. You are immune to Weaken and non-boss Fire damage
 - Normal start cards plus Charge and War Cry
 - Replenish Armor regains 4 armor instead of 5
@@ -71,7 +71,7 @@ Demeo Revolutions Class Changes
 - Critical hits regain all Action Points, 1 Armor, Pull, and gain Berserk (+1 Damage and +3 Movement for the turn)
 - Enemies that melee you will be counter-attacked for 1 damage
 
-**Barbarian:**
+**`Barbarian:`**
 - 8 max health. You are immune to Petrify and Slime damage 
 - Starting critical damage increased to 9
 - Normal start cards plus The Leviathan and Barbaric Chainwhip
@@ -84,7 +84,7 @@ Demeo Revolutions Class Changes
 - Critical hits on the LAST action gain 6 Vargas, 2 Magic Armor, and a Spawn Random Lamp card
 - Having a Mark of Varga card puts you closer to the front in turn order
 
-**Hunter:**
+**`Hunter:`**
 - 8 max health. You and Verochka are immune to being Frozen and non-boss Ice damage
 - Melee damage reduced to 2 (Ranged damage is always 1 higher)
 - Starting critical RANGED damage increased to 8
@@ -97,7 +97,7 @@ Demeo Revolutions Class Changes
 - Critical hits on LAST action gain a Bone, a Freeze Arrow, and gain 6 rounds of Fire Immunity
 - Having a Hunter's Mark card puts you closer to the front in turn order
 
-**Assassin:**
+**`Assassin:`**
 - 8 max health. You are immune to being Tangled and Netted
 - Starting critical damage increased to 8
 - Starting movement increased to 5
@@ -112,7 +112,7 @@ Demeo Revolutions Class Changes
 - Critical hits regain 1 Action Point if not last action and reduce ranged Poison attack cooldown by 1
 - Critical hits on LAST action gain Invisibility that lasts until the end of the NEXT round
 
-**Bard:**
+**`Bard:`**
 - 8 max health. You are immune to Poison and being Blinded
 - Starting melee damage reduced to 2
 - Can now backstab (and so can his damaging songs)
@@ -124,7 +124,7 @@ Demeo Revolutions Class Changes
 - Critical hits replenish Courage Shanty and give Courageous self-buff or upgrade
 - Critical hits on LAST action also gain Panic Powder plus both Deflection and +3 Movement for 2 rounds
 
-**Warlock:**
+**`Warlock:`**
 - 7 max health. You and Cána are immune to being Corrupted and Corruption damage
 - Starting melee damage reduced to 1
 - Cána starts with 1 point of innate damage resistance (can NOT be increased)
@@ -137,7 +137,7 @@ Demeo Revolutions Class Changes
 - Critical hits on LAST action gain +3 Magic Bonus damage until the end of the NEXT round
 - Having an Astral Barrier card puts you closer to the front in turn order
 
-**Sorcerer:**
+**`Sorcerer:`**
 - 7 max health. You are immune to Stun and non-boss Electricity damage
 - Starting melee damage reduced to 1
 - Starting Magic Bonus set to 1
@@ -149,7 +149,6 @@ Demeo Revolutions Class Changes
 - Critical hits replenish Zap (NOT Lightning Bolt)
 - Critical hits on LAST action gain Water Bottle and become Overcharged
 - Critical hits while Overcharged gain Water Bottle
-
 
 ### `About the new Progressive ruleset`
 You will **NOT** ***start*** with most of the normal [Demeo Revolutions abilities and perks](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#demeo-revolutions-class-changes). Instead, you will gain them as you `LEVEL UP` by filling the card mana meter. You start with 1 knockdown (extra life) instead of 3. Gaining a level heals the party for 2 (if hurt) and will revive downed party members. You will still gain cards when filling the card meter. Discarding cards will only give 20% of the amount indicated (to avoid exploiting levels). If you die and return to pick another character you will start at level 1 again. Party members can see their current levels indicated by a new permanent crossed-arrow buff over their heads. Enemy difficulty increases on each new floor.
@@ -178,26 +177,26 @@ You will **NOT** ***start*** with most of the normal [Demeo Revolutions abilitie
 ### `About the Extra Energy buff given by the Energy Potion`
 When the Energy Potion card is used it will give each character 2 extra maximum health, a NEW ability that they can use 3 times total that will not cost any action points when used. There is no turn limit to the buff. The character using the Energy Potion will not get the ability until their NEXT turn. The buff counter will update at the start of your turn to let you know how many more charges are left. If you use all 3 charges then at the end of that turn you will lose the extra 2 maximum health and gain a Thorns debuff for 2 rounds.
 
-**Guardian:**
-- ***`Leap`*** Jumps a moderate distance. Landing causes 5 damage to each enemy within a 3x3 area.
+**`Guardian:`**
+- ***Leap*** - Jumps a moderate distance. Landing causes 5 damage to each enemy within a 3x3 area.
 
-**Barbarian:**
-- ***`Vortex Storm`*** Drops 3 meteors over a large area that cause small vortexes that do 5 damage to each thing hit. This includes allies but not yourself. Does NOT hit lamps.
+**`Barbarian:`**
+- ***Vortex Storm*** - Drops 3 meteors over a large area that cause small vortexes that do 5 damage to each thing hit. This includes allies but not yourself. Does NOT hit lamps.
 
-**Hunter:**
-- ***`Lightning Bolt`*** Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets. CAN hit allies! Will be disabled on your turn if you are made wet.
+**`Hunter:`**
+- ***Lightning Bolt*** - Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets. CAN hit allies! Will be disabled on your turn if you are made wet.
 
-**Assassin:**
-- ***`Frets of Fire`*** Causes fire damage in a 7x7 area around you that does 3 damage to enemies. Does NOT break sneak. DOES hit lamps!
+**`Assassin:`**
+- ***Frets of Fire*** - Causes fire damage in a 7x7 area around you that does 3 damage to enemies. Does NOT break sneak. DOES hit lamps!
 
-**Bard:**
-- ***`Blink`*** Teleports to and attacks an enemy for 9 damage. This move also Weakens and Confuses the target.
+**`Bard:`**
+- ***Blink*** - Teleports to and attacks an enemy for 9 damage. This move also Weakens and Confuses the target.
 
-**Warlock:**
-- ***`Weakening Shout`*** Weakens, pushes, and hits enemies for 2 damage each in a straight line.
+**`Warlock:`**
+- ***Weakening Shout*** - Weakens, pushes, and hits enemies for 2 damage each in a straight line.
 
-**Sorcerer:**
-- ***`Rift Beam`*** Hits everything in a straight line for 5 damage. This includes friendlies.
+**`Sorcerer:`**
+- ***Rift Beam*** - Hits everything in a straight line for 5 damage. This includes friendlies.
 
  
 For video tutorials and gameplay go to [My YouTube](https://www.youtube.com/c/TheGrayAlien/playlists) or [My Twitch](https://www.twitch.tv/demeorevolutions) for live streams!
