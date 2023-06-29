@@ -68,7 +68,7 @@ Demeo Revolutions Class Changes
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
 - Whirlwind doesn't harm allies but it will still knock them back
 - A NEW reusable non-damaging Pull card which costs 0 Action Points (works on enemies and allies)
-- Critical hits regain all Action Points, 1 Armor, Pull, and gain Berserk (+1 Dmg & +3 Move for the turn)
+- Critical hits regain all Action Points, 1 Armor, Pull, and gain Berserk (+1 Damage and +3 Movement for the turn)
 - Enemies that melee you will be counter-attacked for 1 damage
 
 **Barbarian:**
@@ -116,13 +116,13 @@ Demeo Revolutions Class Changes
 - 8 max health. You are immune to Poison and being Blinded
 - Starting melee damage reduced to 2
 - Can now backstab (and so can his damaging songs)
-- Courage Shanty costs 0 Action Points and has 33% chance to heal/revive the target for 1 (if hurt/dead)
+- Courage Shanty costs 0 Action Points and has 33% chance to heal/revive the target for 1 (if hurt/downed)
 - Recovery and Resilience songs area coverage changed from 3x3 to 7x7
 - Normal start cards plus Shattering Voice and Piercing Voice
 - A NEW single-target blinding Flashbomb card that doesn'r miss and is reusable every 3 rounds
 - Critical hits heal you for 1 (if hurt) and reduce Flashbomb cooldown by 1
 - Critical hits replenish Courage Shanty and give Courageous self-buff or upgrade
-- Critical hits on LAST action also gain Panic Powder plus both Deflection and Move +3 for 2 rounds
+- Critical hits on LAST action also gain Panic Powder plus both Deflection and +3 Movement for 2 rounds
 
 **Warlock:**
 - 7 max health. You and Cána are immune to being Corrupted and Corruption damage
@@ -132,7 +132,7 @@ Demeo Revolutions Class Changes
 - Normal start cards plus Implode, Deflect, and a replenishable Feral Charge that costs 0 Action Points
 - Astral Barrier area coverage changed from 3x3 to 7x7
 - Enemies that hit you or Cána will become Astral Marked for 1 turn
-- All damaging attacks on Astral Marked targets heal you for 1 (if hurt)
+- All your damaging attacks on Astral Marked targets heal you for 1 (if hurt)
 - Critical hits replenish Feral Charge if not last action
 - Critical hits on LAST action gain +3 Magic Bonus damage until the end of the NEXT round
 - Having an Astral Barrier card puts you closer to the front in turn order
