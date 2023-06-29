@@ -9,7 +9,7 @@ New Rulesets:
 
 General Mod changes
 ===================
-- If the mod host dies or is disconnected they can rejoin with a new character. To continue the mod/ruleset just have everyone else leave the room and rejoin so the original mod host becomes the game host again. On their turn everyone else will gain 1 round of invulnerability to protect them from damage if/when enemies attack them and to make up for the lost turn!
+- If the mod host dies or is disconnected they can rejoin the game (and pick a character if they died). To continue the mod/ruleset just have everyone else leave the room and rejoin so the original mod host becomes the game host again. On their turn everyone else will gain 1 round of invulnerability to protect them from damage if/when enemies attack them and to make up for the lost turn!
 - Colorized text display of advanced stats when clicking/grabbing player pieces. In PROGRESSIVE ruleset this displays character levels, current perks, and what perks they get at the next level. Works when NOT hosting games also!
 
 Demeo Revolutions Gameplay Changes
