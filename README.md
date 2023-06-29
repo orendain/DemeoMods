@@ -26,13 +26,20 @@ Demeo Revolutions Gameplay Changes
 - Lamp spawns found throughout each floor are now much more random
 - Pets and charmed creatures will always focus on Hunter's Marked targets
 - Number of chests/stands/fountains/traders per floor changed based on the adventure selected
-- Card energy (mana) gained from attacks reduced by 25%
-- Card energy (mana) gained from recycled cards increased by 25%
+- Card energy (mana) gained from attacks reduced by 20%
+- Card energy (mana) gained from recycled cards increased by 20%
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
 - Reviving a player by any means removes Stunned and Frozen effects
 - Thorns debuff now also does 2 damage per turn
 - Player summons (Ballistas, Detect Enemies, Verochka, etc) inflict effects on enemies who hit them
-- Some abilities now have added secondary effects
+- Acid Spit now poisons targets
+- Sigataur Javelin now weakens an enemy when used by a player
+- Repeating Ballistas now hamstring (tangle) targets and poison enemies who hit them
+- The Behemoth now blinds and panics targets and poisons enemies who hit them
+- Healing Wards heal for 2 and poisons enemies who hit them
+- Lures and Barricades now Thorn enemies who hit them
+- Verochka, Arly Owl, and placed torches now panic enemies who hit them
+- Scrying Beacons (Detect Enemies) now charms enemies who hit them
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
 - Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin
