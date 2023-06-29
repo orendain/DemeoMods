@@ -31,13 +31,12 @@ Demeo Revolutions Gameplay Changes
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
 - Reviving a player by any means removes Stunned and Frozen effects
 - Thorns debuff now also does 2 damage per turn
-- Player summons (Ballistas, Detect Enemies, Verochka, etc) inflict effects on enemies who hit them
+- Lures and Barricades now Thorn enemies who hit them
 - Acid Spit now poisons targets
 - Sigataur Javelin now weakens an enemy when used by a player
 - Repeating Ballistas now hamstring (tangle) targets and poison enemies who hit them
 - The Behemoth now blinds and panics targets and poisons enemies who hit them
 - Healing Wards heal for 2 and poisons enemies who hit them
-- Lures and Barricades now Thorn enemies who hit them
 - Verochka, Arly Owl, and placed torches now panic enemies who hit them
 - Scrying Beacons (Detect Enemies) now charms enemies who hit them
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
