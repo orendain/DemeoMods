@@ -39,15 +39,15 @@ Demeo Revolutions Gameplay Changes
 - Healing Wards heal for 2 and poisons enemies who hit them
 - Verochka, Arly Owl, and placed torches now panic enemies who hit them
 - Scrying Beacons (Detect Enemies) now charms enemies who hit them
+- War Cry now also blinds enemies as well as panicking them
+- Howl of the Ancients now also confuses enemies as well as weakening them
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
 - Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin
 - Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3
 - Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3
-- War Cry now also blinds enemies as well as panicking them
-- Howl of the Ancients now also confuses enemies as well as weakening them
 - Torches last 20 rounds and placed Torches have 4 health instead of 15
-- Arly Owl's health is now 8 and movement is now 5
+- Arly Owl's health is now 9 and movement is now 5
 - Arly Owl's panic shot now also Nets enemies so they can't move unless they use an ability to do so
 - A NEW Energy Potion loot card [DETAILS](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#about-the-extra-energy-buff-given-by-the-energy-potion)
 - Some enemies will counter-attack when hit with melee damage
