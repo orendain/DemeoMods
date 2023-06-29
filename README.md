@@ -29,10 +29,10 @@ Demeo Revolutions Gameplay Changes
 - Card energy (mana) gained from attacks reduced by 20%
 - Card energy (mana) gained from recycled cards increased by 20%
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
-- Reviving a player by any means removes Stunned and Frozen effects
+- Reviving a player by any means removes Stunned and Frozen effects so they get their turn
 - Thorns debuff now also does 2 damage per turn
 - Lures and Barricades now Thorn enemies who hit them
-- Acid Spit now poisons targets
+- Acid Spit (Giant Slime ability) now poisons targets
 - Sigataur Javelin now weakens an enemy when used by a player
 - Repeating Ballistas now hamstring (tangle) targets and poison enemies who hit them
 - The Behemoth now blinds and panics targets and poisons enemies who hit them
@@ -50,9 +50,9 @@ Demeo Revolutions Gameplay Changes
 - Arly Owl's health is now 9 and movement is now 5
 - Arly Owl's panic shot now also Nets enemies so they can't move unless they use an ability to do so
 - A NEW Energy Potion loot card [DETAILS](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#about-the-extra-energy-buff-given-by-the-energy-potion)
-- Some enemies will counter-attack when hit with melee damage
-- Each floor's keyholder start with 1 innate damage resist and 1 counter-attack damage if melee'd
-- All bosses will start with more health, are immune to Net, and have 1 innate damage resist
+- Elven Queen, keyholders on the first 2 floors, and elemental type enemies have 1 counter-attack damage when hit by melee
+- Each floor's keyholder (including bosses) start with 1 innate damage resist
+- All bosses will start with more health and are immune to Net
 - The Elven Queen has new self buffs and abilities to add more of a challenge
 - If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor
 - A new Progressive ruleset included that allows characters to `LEVEL-UP` and new gain perks [DETAILS](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#about-the-new-progressive-ruleset)
