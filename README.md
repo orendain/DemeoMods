@@ -10,7 +10,7 @@ New Rulesets:
 General Mod changes
 ===================
 - If the mod host dies or is disconnected they can rejoin the game (and pick a character if they died). To continue the mod/ruleset just have everyone else leave the room and rejoin so the original mod host becomes the game host again. On their turn everyone else will gain 1 round of invulnerability to protect them from damage if/when enemies attack them and to make up for the lost turn!
-- Colorized text display of advanced stats when clicking/grabbing player pieces. In PROGRESSIVE ruleset this displays character levels, current perks, and what perks they get at the next level. Works when NOT hosting games also!
+- Colorized text display of advanced stats when clicking/grabbing player pieces. In [PROGRESSIVE](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#about-the-new-progressive-ruleset) ruleset this displays character levels, current perks, and what perks they get at the next level. Works when NOT hosting games also!
 
 Demeo Revolutions Gameplay Changes
 ================
@@ -175,7 +175,7 @@ You will **NOT** ***start*** with most of the normal [Demeo Revolutions abilitie
 
 
 ### `About the Extra Energy buff given by the Energy Potion`
-When the Energy Potion card is used it will give each character 2 extra maximum health, a NEW ability that they can use 3 times total that will not cost any action points when used. There is no turn limit to the buff. The character using the Energy Potion will not get the ability until their NEXT turn. The buff counter will update at the start of your turn to let you know how many more charges are left. If you use all 3 charges then at the end of that turn you will lose the extra 2 maximum health and gain a Thorns debuff for 2 rounds.
+When the Energy Potion card is used it will give each character 2 extra maximum health and a NEW ability that they can use 3 times total that will not cost any action points when used. There is no turn limit to the buff. The character using the Energy Potion will not get the ability until their NEXT turn. The buff counter will update at the start of your turn to let you know how many more charges are left. If you use all 3 charges then at the end of that turn you will lose the extra 2 maximum health and gain a Thorns debuff for 2 rounds. Energy Potion card buffs **DO NOT** stack!
 
 **`Guardian:`**
 - ***Leap*** - Jumps a moderate distance. Landing causes 5 damage to each enemy within a 3x3 area.
