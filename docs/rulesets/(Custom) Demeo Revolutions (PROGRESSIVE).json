@@ -2235,6 +2235,18 @@
           5,
           5,
           5
+        ],
+        "DeathFlurry": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "Shockwave": [
+          5,
+          5,
+          5,
+          5
         ]
       }
     },
@@ -2256,11 +2268,11 @@
     },
     {
       "Rule": "CardEnergyFromAttackMultiplied",
-      "Config": 0.75
+      "Config": 0.8
     },
     {
       "Rule": "CardEnergyFromRecyclingMultiplied",
-      "Config": 0.25
+      "Config": 0.2
     },
     {
       "Rule": "EnemyHealthScaled",

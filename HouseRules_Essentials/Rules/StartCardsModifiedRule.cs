@@ -79,13 +79,7 @@
             if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-                if (piece.IsDead())
-                {
-                    if (gameContext.pieceAndTurnController.IsMyTurn())
-                    {
-                        _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
-                    }
-                }
+                _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
 
                 if (!piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
                 {
