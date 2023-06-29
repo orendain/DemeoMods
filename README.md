@@ -43,13 +43,13 @@ Demeo Revolutions Gameplay Changes
 - Torches last 20 rounds and placed Torches have 4 health instead of 15
 - Arly Owl's health is now 8 and movement is now 5
 - Arly Owl's panic shot now also Nets enemies so they can't move unless they use an ability to do so
-- A NEW Energy Potion loot card (See below)
+- A NEW Energy Potion loot card [DETAILS](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#about-the-extra-energy-buff-given-by-the-energy-potion)
 - Some enemies will counter-attack when hit with melee damage
 - Each floor's keyholder start with 1 innate damage resist and 1 counter-attack damage if melee'd
 - All bosses will start with more health, are immune to Net, and have 1 innate damage resist
 - The Elven Queen has new self buffs and abilities to add more of a challenge
 - If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor
-- A new Progressive ruleset included that allows character to LEVEL-UP and new gain perks (See below)
+- A new Progressive ruleset included that allows character to LEVEL-UP and new gain perks [DETAILS](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#about-the-new-progressive-ruleset)
 
 Demeo Revolutions Class Changes
 ===============================
