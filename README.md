@@ -38,8 +38,8 @@ Demeo Revolutions Gameplay Changes
 - Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin
 - Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3
 - Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3
-- WarCry now ALSO blinds enemies
-- Howl of the Ancients now ALSO confuses enemies
+- War Cry now also blinds enemies as well as panicking them
+- Howl of the Ancients now also confuses enemies as well as weakening them
 - Torches last 20 rounds and placed Torches have 4 health instead of 15
 - Arly Owl's health is now 8 and movement is now 5
 - Arly Owl's panic shot now also Nets enemies so they can't move unless they use an ability to do so
@@ -60,7 +60,6 @@ Demeo Revolutions Class Changes
 - Normal start cards plus Charge and War Cry
 - Replenish Armor regains 4 armor instead of 5
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
-- War Cry now also blinds enemies as well as panicking them
 - Whirlwind doesn't harm allies but it will still knock them back
 - A NEW reusable non-damaging Pull card which costs 0 Action Points (works on enemies and allies)
 - Critical hits regain all Action Points, 1 Armor, Pull, and gain Berserk (+1 Dmg & +3 Move for the turn)
@@ -72,7 +71,6 @@ Demeo Revolutions Class Changes
 - Normal start cards plus The Leviathan and Barbaric Chainwhip
 - The Leviathan now Tangles enemies that it chains
 - Barbaric Chainwhip damage increased to 3
-- Howl of the Ancients now also confuses enemies as well as weakening them
 - Grapple costs 0 Action Points
 - Grapple and Launching a Lamp can now be used in the same turn
 - A NEW non-damaging Net card that roots an enemy in place and can be reused every 3 rounds
