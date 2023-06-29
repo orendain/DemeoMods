@@ -49,7 +49,7 @@ Demeo Revolutions Gameplay Changes
 - All bosses will start with more health, are immune to Net, and have 1 innate damage resist
 - The Elven Queen has new self buffs and abilities to add more of a challenge
 - If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor
-- A new Progressive ruleset included that allows character to LEVEL-UP and new gain perks [DETAILS](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#about-the-new-progressive-ruleset)
+- A new Progressive ruleset included that allows characters to `LEVEL-UP` and new gain perks [DETAILS](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#about-the-new-progressive-ruleset)
 
 Demeo Revolutions Class Changes
 ===============================
