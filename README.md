@@ -199,4 +199,4 @@ When the Energy Potion card is used it will give each character 2 extra maximum 
 - ***Rift Beam*** - Hits everything in a straight line for 5 damage. This includes friendlies.
 
  
-For video tutorials and gameplay go to [My YouTube](https://www.youtube.com/c/TheGrayAlien/playlists) or [My Twitch](https://www.twitch.tv/demeorevolutions) for live streams!
+For video tutorials and gameplay go to [My YouTube](https://www.youtube.com/c/TheGrayAlien/playlists) or for live streams go to [My Twitch](https://www.twitch.tv/demeorevolutions)!
