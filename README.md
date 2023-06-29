@@ -1,14 +1,20 @@
 # DemeoMods
-New Ruleset: Demeo Revolutions
+New Rulesets:
+=============
+- Demeo Revolutions
+- Demeo Revolutions (EASY)
+- Demeo Revolutions (HARD)
+- Demeo Revolutions (LEGENDARY)
+- Demeo Revolutions (PROGRESSIVE)
 
 General Mod changes
 ===================
+- If you die or are disconnected you can rejoin with a new character. To continue the mod/ruleset just have everyone else leave the room and rejoin so you become the game host again. On their turn everyone else will gain 1 round of invulnerability to protect them from damage if/when enemies attack them and to make up for the lost turn!
+- Colorized text display of advanced stats when clicking/grabbing player pieces. In PROGRESSIVE ruleset this displays character levels, current perks, and what perks they get at the next level. Works when NOT hosting games also!
 
-- If you're disconnected you can resume the ruleset by reconnecting, then having others leave and come back after you're host again!
-- Colorized text display of advanced stats when selecting/grabbing player pieces. Works when NOT hosting games also!
-
-Gameplay changes
+Demeo Revolutions Gameplay Changes
 ================
+**NOTE:** Some things are adjusted up or down for EASY, HARD, LEGENDARY, and PROGRESSIVE rulesets
 
 - Some NEW maps and many NEW enemies
 - Some already known enemies now have NEW hidden abilities
@@ -16,9 +22,7 @@ Gameplay changes
 - Each floor's enemy spawns will be a mix of ALL existing adventures with NO respawns
 - Each floor's map will be from a different adventure
 - No Lamps or Antitoxins as loot
-- Improved chest, energy (mana), and potion stand loot
-- Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3
-- Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3
+- Improved loot from chests, energy (mana), and potion stands
 - Lamp spawns found throughout each floor are now much more random
 - Pets and charmed creatures will always focus on Hunter's Marked targets
 - Number of chests/stands/fountains/traders per floor changed based on the adventure selected
@@ -32,22 +36,27 @@ Gameplay changes
 - Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)
 - Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively
 - Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin
+- Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3
+- Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3
+- WarCry now ALSO blinds enemies
+- Howl of the Ancients now ALSO confuses enemies
 - Torches last 20 rounds and placed Torches have 4 health instead of 15
 - Arly Owl's health is now 8 and movement is now 5
 - Arly Owl's panic shot now also Nets enemies so they can't move unless they use an ability to do so
-- A NEW Energy Potion loot card (Scroll to section at bottom for details)
+- A NEW Energy Potion loot card (See below)
 - Some enemies will counter-attack when hit with melee damage
-- Each floor's keyholder start with 1 innate damage resist
+- Each floor's keyholder start with 1 innate damage resist and 1 counter-attack damage if melee'd
 - All bosses will start with more health, are immune to Net, and have 1 innate damage resist
 - The Elven Queen has new self buffs and abilities to add more of a challenge
 - If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor
-- A new Progressive ruleset included that allows charcter to LEVEL-UP to gain perks (see below)
+- A new Progressive ruleset included that allows character to LEVEL-UP and new gain perks (See below)
 
-Class Changes
-=============
+Demeo Revolutions Class Changes
+===============================
+**NOTE:** Start health/max is adjusted up or down for EASY, HARD, LEGENDARY, and PROGRESSIVE rulesets
 
 **Guardian:**
-- 8 max health. You are immune to Weaken and non-boss Fire damage
+- 9 max health. You are immune to Weaken and non-boss Fire damage
 - Normal start cards plus Charge and War Cry
 - Replenish Armor regains 4 armor instead of 5
 - War Cry and Whirlwind area coverage changed from 3x3 to 5x5
@@ -58,7 +67,7 @@ Class Changes
 - Enemies that melee you will be counter-attacked for 1 damage
 
 **Barbarian:**
-- 7 max health. You are immune to Petrify and Slime damage 
+- 8 max health. You are immune to Petrify and Slime damage 
 - Starting critical damage increased to 9
 - Normal start cards plus The Leviathan and Barbaric Chainwhip
 - The Leviathan now Tangles enemies that it chains
@@ -72,7 +81,7 @@ Class Changes
 - Having a Mark of Varga card puts you closer to the front in turn order
 
 **Hunter:**
-- 7 max health. You and Verochka are immune to being Frozen and non-boss Ice damage
+- 8 max health. You and Verochka are immune to being Frozen and non-boss Ice damage
 - Melee damage reduced to 2 (Ranged damage is always 1 higher)
 - Starting critical RANGED damage increased to 8
 - Starting movement increased to 5
@@ -85,7 +94,7 @@ Class Changes
 - Having a Hunter's Mark card puts you closer to the front in turn order
 
 **Assassin:**
-- 7 max health. You are immune to being Tangled and Netted
+- 8 max health. You are immune to being Tangled and Netted
 - Starting critical damage increased to 8
 - Starting movement increased to 5
 - Sneak costs 0 Action Points
@@ -100,7 +109,7 @@ Class Changes
 - Critical hits on LAST action gain Invisibility that lasts until the end of the NEXT round
 
 **Bard:**
-- 7 max health. You are immune to Poison and being Blinded
+- 8 max health. You are immune to Poison and being Blinded
 - Starting melee damage reduced to 2
 - Can now backstab (and so can his damaging songs)
 - Courage Shanty costs 0 Action Points and has 33% chance to heal/revive the target for 1 (if hurt/dead)
@@ -112,7 +121,7 @@ Class Changes
 - Critical hits on LAST action also gain Panic Powder plus both Deflection and Move +3 for 2 rounds
 
 **Warlock:**
-- 6 max health. You and Cána are immune to being Corrupted and Corruption damage
+- 7 max health. You and Cána are immune to being Corrupted and Corruption damage
 - Starting melee damage reduced to 1
 - Cána starts with 1 point of innate damage resistance (can NOT be increased)
 - If Cána goes under half life she gains Frenzy (+1 damage until life goes over half)
@@ -125,7 +134,7 @@ Class Changes
 - Having an Astral Barrier card puts you closer to the front in turn order
 
 **Sorcerer:**
-- 6 max health. You are immune to Stun and non-boss Electricity damage
+- 7 max health. You are immune to Stun and non-boss Electricity damage
 - Starting melee damage reduced to 1
 - Starting Magic Bonus set to 1
 - Maximum Magic Bonus is set to 6 
@@ -148,7 +157,7 @@ When the Energy Potion card is used it will give each character 2 extra maximum 
 - ***`Vortex Storm`*** Drops 3 meteors over a large area that cause small vortexes that do 5 damage to each thing hit. This includes allies but not yourself. Does NOT hit lamps.
 
 **Hunter:**
-- ***`Lightning Bolt`*** Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets. CAN hit allies!
+- ***`Lightning Bolt`*** Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets. CAN hit allies! Will be disabled on your turn if you are made wet.
 
 **Assassin:**
 - ***`Frets of Fire`*** Causes fire damage in a 7x7 area around you that does 3 damage to enemies. Does NOT break sneak. DOES hit lamps!
@@ -157,7 +166,7 @@ When the Energy Potion card is used it will give each character 2 extra maximum 
 - ***`Blink`*** Teleports to and attacks an enemy for 9 damage. This move also Weakens and Confuses the target.
 
 **Warlock:**
-- ***`Weakening Shout`*** Weakens and hits enemies for 2 damage each in a straight line.
+- ***`Weakening Shout`*** Weakens, pushes, and hits enemies for 2 damage each in a straight line.
 
 **Sorcerer:**
 - ***`Rift Beam`*** Hits everything in a straight line for 5 damage. This includes friendlies.
