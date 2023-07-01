@@ -49,8 +49,27 @@
             }
         }
 
+        public override void OnSceneWasUnloaded(int buildIndex, string sceneName)
+        {
+            // Logger.Msg($"Scene unloaded {buildIndex} - {sceneName}");
+            GameObject canvasObject = GameObject.Find("~LeanTween");
+            if (canvasObject == null)
+            {
+                return;
+            }
+
+            Transform transformScreenToRemove = canvasObject.transform.Find("RevolutionsUiVr");
+            if (transformScreenToRemove == null)
+            {
+                return;
+            }
+
+            UnityEngine.Object.Destroy(transformScreenToRemove.gameObject);
+        }
+
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
+            // Logger.Msg($"buildIndex {buildIndex} - sceneName {sceneName}");
             if (Environments.IsPcEdition())
             {
                 if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
@@ -60,23 +79,25 @@
 
                 Logger.Msg("Recognized lobby in PC. Loading UI.");
                 _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
-                return;
             }
-
-            if (Environments.IsInHangouts())
+            else if (Environments.IsInHangouts() || sceneName.Contains("HobbyShop"))
             {
                 Logger.Msg("Recognized lobby in Hangouts. Loading UI.");
                 _ = new GameObject("HouseRulesUiHangouts", typeof(HouseRulesUiHangouts));
-                return;
             }
-
-            if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
+            else if (sceneName.Equals("Lobby"))
             {
-                return;
+                Logger.Msg("Recognized lobby in VR. Loading UI.");
+                _ = new GameObject("HouseRulesUiVr", typeof(HouseRulesUiVr));
             }
-
-            Logger.Msg("Recognized lobby in VR. Loading UI.");
-            _ = new GameObject("HouseRulesUiVr", typeof(HouseRulesUiVr));
+            else if (buildIndex > 3 && (buildIndex < 43 || buildIndex > 46))
+            {
+                if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+                {
+                    Logger.Msg("Recognized Revolutions gaming in VR. Loading UI.");
+                    _ = new GameObject("RevolutionsUiVr", typeof(RevolutionsUiVr));
+                }
+            }
         }
 
         private static async void DetermineIfUpdateAvailable()

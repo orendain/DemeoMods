@@ -236,7 +236,7 @@
             };
             var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ScarabSandPile, 1},
+                { BoardPieceId.ScarabSandPile, 1 },
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.LargeCorruption, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
@@ -285,7 +285,7 @@
             };
             var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ScarabSandPile, 1},
+                { BoardPieceId.ScarabSandPile, 1 },
                 { BoardPieceId.ElvenSpearman, 2 },
                 { BoardPieceId.ReptileArcher, 1 },
                 { BoardPieceId.ReptileMutantWizard, 1 },

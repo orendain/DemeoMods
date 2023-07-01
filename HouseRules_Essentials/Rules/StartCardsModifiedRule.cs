@@ -382,6 +382,7 @@
                     if (rev_progr)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.CritChance, 34);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
                         piece.EnableEffectState(EffectStateType.Flying);
                         piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);

@@ -1,6 +1,7 @@
 ﻿namespace Common.UI.Element
 {
     using System;
+    using System.Text;
     using Bowser.Interaction;
     using Bowser.Legacy;
     using UnityEngine;
@@ -44,6 +45,11 @@
             return VrElementCreator.IsReady();
         }
 
+        public GameObject CreateNewText(string text)
+        {
+            return _elementCreator.CreateMyText(text);
+        }
+
         public GameObject CreateNormalText(string text)
         {
             return _elementCreator.CreateNormalText(text);
@@ -62,6 +68,11 @@
         public GameObject CreateText(string text, Color color, int fontSize)
         {
             return _elementCreator.CreateText(text, color, fontSize);
+        }
+
+        public GameObject CreateMyText(string text)
+        {
+            return _elementCreator.CreateMyText(text);
         }
 
         public GameObject CreateButton(Action callback)

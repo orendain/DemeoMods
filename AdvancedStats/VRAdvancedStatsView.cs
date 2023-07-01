@@ -41,6 +41,11 @@
             int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
             var revolutions = myPiece.GetStat(Stats.Type.InnateCounterDamageExtraDamage);
             int level = myPiece.GetStatMax(Stats.Type.CritChance);
+            if (myPiece.GetStat(Stats.Type.CritChance) == 33)
+            {
+                level = 0;
+            }
+
             bool hasbonuses = true;
             bool hasimmunities = true;
             var pieceConfig = Traverse.Create(__instance).Field<PieceConfigData>("pieceConfig").Value;

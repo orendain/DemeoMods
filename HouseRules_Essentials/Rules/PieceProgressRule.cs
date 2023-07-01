@@ -38,6 +38,7 @@
                 return;
             }
 
+            __result.effectSink.TrySetStatBaseValue(Stats.Type.CritChance, 34);
             __result.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
             __result.EnableEffectState(EffectStateType.Flying);
             __result.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);

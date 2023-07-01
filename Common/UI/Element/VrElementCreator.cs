@@ -1,6 +1,7 @@
 ﻿namespace Common.UI.Element
 {
     using System;
+    using System.Text;
     using TMPro;
     using UnityEngine;
 
@@ -51,6 +52,11 @@
             return VrResourceTable.IsReady();
         }
 
+        public GameObject CreateNewText(string text)
+        {
+            return CreateMyText(text);
+        }
+
         public GameObject CreateNormalText(string text)
         {
             return CreateText(text, ColorBrown, fontSize: NormalFontSize);
@@ -63,7 +69,7 @@
 
         public GameObject CreateMenuHeaderText(string text)
         {
-            return CreateText(text, ColorBeige, fontSize: HeaderFontSize);
+            return CreateText(text, Color.cyan, fontSize: HeaderFontSize);
         }
 
         /// <summary>
@@ -93,6 +99,25 @@
             textComponent.fontSizeMax = fontSize;
             textComponent.fontSizeMin = 1;
             textComponent.fontStyle = FontStyles.Normal;
+            textComponent.text = text;
+            textComponent.transform.localPosition = new Vector3(0, 0, TextZShift);
+
+            return container;
+        }
+
+        public GameObject CreateMyText(string text)
+        {
+            var container = new GameObject("Text");
+
+            var textComponent = container.AddComponent<TextMeshPro>();
+            textComponent.alignment = TextAlignmentOptions.Center;
+            textComponent.colorGradientPreset = _resourceTable.FontColorGradient;
+            textComponent.enableAutoSizing = true;
+            textComponent.font = _resourceTable.Font;
+            textComponent.fontSize = 7;
+            textComponent.fontSizeMax = 7;
+            textComponent.fontSizeMin = 5;
+            textComponent.fontStyle = FontStyles.Bold;
             textComponent.text = text;
             textComponent.transform.localPosition = new Vector3(0, 0, TextZShift);
 

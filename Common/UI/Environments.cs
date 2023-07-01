@@ -1,6 +1,5 @@
 ﻿namespace Common.UI
 {
-    using MelonLoader;
     using UnityEngine.SceneManagement;
 
     public enum Environment
@@ -12,7 +11,6 @@
 
     public static class Environments
     {
-        private const string DemeoPCEditionString = "Demeo PC Edition";
         private const int SteamHangoutsSceneIndex = 45;
         private const int OculusHangoutsSceneIndex = 43;
 
