@@ -17,10 +17,11 @@
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
         internal static bool IsUpdateAvailable { get; private set; }
+        internal static bool IsUpdateAvailable2 { get; private set; }
 
         public override void OnInitializeMelon()
         {
-            DetermineIfUpdateAvailable();
+            DetermineIfUpdatesAvailable();
         }
 
         public override void OnLateInitializeMelon()
@@ -85,7 +86,7 @@
                 Logger.Msg("Recognized lobby in Hangouts. Loading UI.");
                 _ = new GameObject("HouseRulesUiHangouts", typeof(HouseRulesUiHangouts));
             }
-            else if (sceneName.Equals("Lobby"))
+            else if (sceneName.Contains("Lobby"))
             {
                 Logger.Msg("Recognized lobby in VR. Loading UI.");
                 _ = new GameObject("HouseRulesUiVr", typeof(HouseRulesUiVr));
@@ -100,10 +101,12 @@
             }
         }
 
-        private static async void DetermineIfUpdateAvailable()
+        private static async void DetermineIfUpdatesAvailable()
         {
             IsUpdateAvailable = await VersionChecker.IsUpdateAvailable();
             Logger.Msg($"{(IsUpdateAvailable ? "New" : "No new")} HouseRules update found.");
+            IsUpdateAvailable2 = await RevolutionsChecker.IsUpdateAvailable();
+            Logger.Msg($"{(IsUpdateAvailable2 ? "New" : "No new")} Revolutions update found.");
         }
 
         private static void LoadRulesetsFromConfig()

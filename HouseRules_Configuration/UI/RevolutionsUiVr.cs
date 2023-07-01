@@ -5,6 +5,7 @@
     using System.Text;
     using Common.UI;
     using Common.UI.Element;
+    using Revolutions;
     using UnityEngine;
 
     internal class RevolutionsUiVr : MonoBehaviour
@@ -32,7 +33,7 @@
 
         private IEnumerator WaitAndInitialize()
         {
-            ConfigurationMod.Logger.Msg("RevolutionsUiVr called...");
+            // ConfigurationMod.Logger.Msg("RevolutionsUiVr called...");
             while (!VrElementCreator.IsReady()
                    || Resources
                        .FindObjectsOfTypeAll<GameObject>()
@@ -88,16 +89,16 @@
             detailsPanel.transform.SetParent(transform, worldPositionStays: false);
             detailsPanel.transform.localPosition = new Vector3(0, 2.5f, VrElementCreator.TextZShift);
 
-            var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
+            var versionText = _elementCreator.CreateNormalText($"v{RevolutionsVersion.Version}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
             versionText.transform.localPosition = new Vector3(-7, -15.85f, VrElementCreator.TextZShift);
 
-            /*if (ConfigurationMod.IsUpdateAvailable)
+            if (ConfigurationMod.IsUpdateAvailable2)
             {
                 var updateText = _elementCreator.CreateNormalText("NEW UPDATE AVAILABLE!");
                 updateText.transform.SetParent(transform, worldPositionStays: false);
                 updateText.transform.localPosition = new Vector3(4.8f, -15.85f, VrElementCreator.TextZShift);
-            }*/
+            }
 
             // TODO(orendain): Fix so that ray interacts with entire object.
             gameObject.AddComponent<BoxCollider>();
