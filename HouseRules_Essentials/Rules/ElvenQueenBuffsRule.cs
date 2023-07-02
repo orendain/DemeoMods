@@ -10,7 +10,7 @@
 
     public sealed class ElvenQueenBuffsRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Adds phases to Elven Queen fight.";
+        public override string Description => "The Elven Queen fight now has phases";
 
         private static bool _globalAdjustments;
         private static bool _isActivated;

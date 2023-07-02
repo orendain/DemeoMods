@@ -11,7 +11,7 @@ namespace HouseRules.Essentials.Rules
 
     public sealed class FreeHealOnCritRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Critical Hit restores health.";
+        public override string Description => "Some Heroes can restore some health by getting critical hits";
 
         private static List<BoardPieceId> _globalAdjustments;
         private static bool _isActivated;

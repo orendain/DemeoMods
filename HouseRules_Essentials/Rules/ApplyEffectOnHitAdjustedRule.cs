@@ -9,7 +9,7 @@
     public sealed class ApplyEffectOnHitAdjustedRule : Rule,
         IConfigWritable<Dictionary<BoardPieceId, EffectStateType>>, IMultiplayerSafe, IDisableOnReconnect
     {
-        public override string Description => "Effects applied when piece is hit are adjusted";
+        public override string Description => "Some pieces apply effects when getting damaged";
 
         private readonly Dictionary<BoardPieceId, EffectStateType> _adjustments;
         private Dictionary<BoardPieceId, EffectStateType> _originals;

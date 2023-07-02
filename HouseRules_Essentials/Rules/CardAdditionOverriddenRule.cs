@@ -14,7 +14,7 @@
     public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Card additions are overridden";
+        public override string Description => "Card loot from chests & energy is adjusted";
 
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;

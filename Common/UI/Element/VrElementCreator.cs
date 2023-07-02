@@ -112,10 +112,10 @@
             var textComponent = container.AddComponent<TextMeshPro>();
             textComponent.alignment = TextAlignmentOptions.Center;
             textComponent.colorGradientPreset = _resourceTable.FontColorGradient;
-            textComponent.enableAutoSizing = true;
+            textComponent.enableAutoSizing = false;
             textComponent.font = _resourceTable.Font;
-            textComponent.fontSize = 7;
-            textComponent.fontSizeMax = 7;
+            textComponent.fontSize = 6;
+            textComponent.fontSizeMax = 6;
             textComponent.fontSizeMin = 5;
             textComponent.fontStyle = FontStyles.Bold;
             textComponent.text = text;

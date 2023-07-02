@@ -11,7 +11,7 @@
 
     public sealed class LevelSequenceOverriddenRule : Rule, IConfigWritable<List<string>>, IPatchable, IMultiplayerSafe, IDisableOnReconnect
     {
-        public override string Description => "LevelSequence is overridden";
+        public override string Description => "The adventure's map order is adjusted";
 
         private static bool isRandomMaps;
         private static List<string> _globalAdjustments;

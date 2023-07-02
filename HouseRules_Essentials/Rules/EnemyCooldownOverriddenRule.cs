@@ -7,7 +7,7 @@
     using DataKeys;
     using HouseRules.Types;
 
-    public sealed class EnemyCooldownOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
+    public sealed class EnemyCooldownOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe, IHidden
     {
         public override string Description => "Enemy ability cooldown values are overridden";
 

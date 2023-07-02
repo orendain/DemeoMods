@@ -14,7 +14,7 @@
     public sealed class CardEnergyAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Card additions from mana are overridden";
+        public override string Description => "Card loot from energy (mana) is adjusted";
 
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalenergyCards;
         private static bool _isActivated;

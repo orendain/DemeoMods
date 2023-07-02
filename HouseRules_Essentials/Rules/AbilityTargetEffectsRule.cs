@@ -10,7 +10,7 @@
 
     public sealed class AbilityTargetEffectsRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<EffectStateType>>>, IMultiplayerSafe
     {
-        public override string Description => "Ability effects on hit are modified.";
+        public override string Description => "Some abilities have added secondary effects";
 
         private readonly Dictionary<AbilityKey, List<EffectStateType>> _adjustments;
         private Dictionary<AbilityKey, List<EffectStateType>> _originals;

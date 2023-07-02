@@ -9,7 +9,7 @@
 
     public sealed class PieceDamageResistRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Piece damage resist effects added on creation";
+        public override string Description => "Some pieces will have innate damage resist";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

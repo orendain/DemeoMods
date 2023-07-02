@@ -7,7 +7,7 @@
 
     public sealed class GrappleUnhookedRule : Rule, IConfigWritable<bool>, IMultiplayerSafe
     {
-        public override string Description => "Grapple and throwing lamps can be use in same turn.";
+        public override string Description => "Grapple & throwing lamps can be used in the same turn";
 
         public GrappleUnhookedRule(bool value)
         {

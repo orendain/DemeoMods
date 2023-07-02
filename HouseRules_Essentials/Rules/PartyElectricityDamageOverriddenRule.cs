@@ -11,7 +11,7 @@
     public sealed class PartyElectricityDamageOverriddenRule : Rule, IConfigWritable<bool>, IPatchable,
         IMultiplayerSafe
     {
-        public override string Description => "Player on player electricity damage is zero.";
+        public override string Description => "Some Heroes can't electrify or stun allies";
 
         private static bool _isActivated;
 

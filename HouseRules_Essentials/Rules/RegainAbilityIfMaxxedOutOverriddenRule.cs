@@ -9,7 +9,7 @@
     using HouseRules.Types;
 
     public sealed class RegainAbilityIfMaxxedOutOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>,
-        IMultiplayerSafe
+        IMultiplayerSafe, IHidden
     {
         public override string Description => "RegainAbilityIfMaxxedOut settings are overridden";
 

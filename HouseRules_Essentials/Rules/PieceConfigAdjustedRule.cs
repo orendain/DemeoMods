@@ -11,7 +11,7 @@
     public sealed class PieceConfigAdjustedRule : Rule, IConfigWritable<List<PieceConfigAdjustedRule.PieceProperty>>,
         IMultiplayerSafe, IDisableOnReconnect
     {
-        public override string Description => "Piece configuration is adjusted";
+        public override string Description => "Some piece's base stats are adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

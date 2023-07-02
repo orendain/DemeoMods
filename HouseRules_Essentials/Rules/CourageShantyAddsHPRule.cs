@@ -10,7 +10,7 @@
 
     public sealed class CourageShantyAddsHpRule : Rule, IConfigWritable<int>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Courage Shanty also adds HP.";
+        public override string Description => "Courage Shanty can also give a small heal";
 
         private static int _globalAdjustments;
         private static bool _isActivated;

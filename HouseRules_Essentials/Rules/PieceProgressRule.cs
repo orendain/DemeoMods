@@ -6,9 +6,9 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class PieceProgressRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class PieceProgressRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe, IHidden
     {
-        public override string Description => "Piece progression levels enabled.";
+        public override string Description => "Hero progression levels enabled";
 
         private static bool _isActivated;
 

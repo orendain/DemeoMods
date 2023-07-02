@@ -11,7 +11,7 @@
     public sealed class StatModifiersOverridenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>,
         IMultiplayerSafe
     {
-        public override string Description => "StatModifiersOverridenRule are overridden";
+        public override string Description => "Some stat potions and/or abilities are adjusted";
 
         private readonly Dictionary<AbilityKey, int> _adjustments;
         private Dictionary<AbilityKey, int> _originals;

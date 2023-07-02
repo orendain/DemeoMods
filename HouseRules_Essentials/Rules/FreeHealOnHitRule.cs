@@ -11,7 +11,7 @@
 
     public sealed class FreeHealOnHitRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Hit restores health.";
+        public override string Description => "Some Heroes can restore some health by attacking";
 
         private static List<BoardPieceId> _globalAdjustments;
         private static bool _isActivated;

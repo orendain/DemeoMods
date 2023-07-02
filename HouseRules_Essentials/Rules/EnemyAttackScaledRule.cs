@@ -9,7 +9,7 @@
 
     public sealed class EnemyAttackScaledRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Enemy attack damage is scaled";
+        public override string Description => "Enemy attack damage is adjusted";
 
         private static float _globalMultiplier;
         private static bool _isActivated;

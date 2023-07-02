@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Common.UI;
     using HouseRules.Configuration.UI;
+    using HouseRules.Types;
     using MelonLoader;
     using UnityEngine;
 
@@ -17,6 +18,7 @@
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
         internal static bool IsUpdateAvailable { get; private set; }
+
         internal static bool IsUpdateAvailable2 { get; private set; }
 
         public override void OnInitializeMelon()
@@ -91,11 +93,11 @@
                 Logger.Msg("Recognized lobby in VR. Loading UI.");
                 _ = new GameObject("HouseRulesUiVr", typeof(HouseRulesUiVr));
             }
-            else if (buildIndex > 3 && (buildIndex < 43 || buildIndex > 46))
+            else
             {
-                if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+                if (HR.SelectedRuleset != Ruleset.None)
                 {
-                    Logger.Msg("Recognized Revolutions gaming in VR. Loading UI.");
+                    Logger.Msg("Recognized modded game in VR. Loading UI.");
                     _ = new GameObject("RevolutionsUiVr", typeof(RevolutionsUiVr));
                 }
             }

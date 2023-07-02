@@ -6,9 +6,9 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class TickAdjustedRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe, IDisableOnReconnect
+    public sealed class TickAdjustedRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe, IDisableOnReconnect, IHidden
     {
-        public override string Description => "Ignore tick for Energy Potion and remove secondary effects for other buffs that fade.";
+        public override string Description => "Ignore tick for Energy Potion and remove secondary effects for other buffs that fade";
 
         private static bool _isActivated;
 

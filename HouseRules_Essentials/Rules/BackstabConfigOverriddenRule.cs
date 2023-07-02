@@ -10,7 +10,7 @@
     public sealed class BackstabConfigOverriddenRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable,
         IMultiplayerSafe
     {
-        public override string Description => "Backstab is allocated to new BoardPieceIDs";
+        public override string Description => "Some additional Heroes can backstab";
 
         private static List<BoardPieceId> _globalAdjustments;
         private static bool _isActivated;

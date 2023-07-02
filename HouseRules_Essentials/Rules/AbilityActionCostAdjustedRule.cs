@@ -10,7 +10,7 @@
     public sealed class AbilityActionCostAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>,
         IMultiplayerSafe
     {
-        public override string Description => "Ability AP costs are adjusted";
+        public override string Description => "Some Hero ability Action Point costs are adjusted";
 
         private readonly Dictionary<AbilityKey, bool> _adjustments;
         private Dictionary<AbilityKey, bool> _originals;

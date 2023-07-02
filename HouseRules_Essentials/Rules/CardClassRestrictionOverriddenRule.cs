@@ -9,7 +9,7 @@
     using static HouseRules.Essentials.Rules.StartCardsModifiedRule;
 
     public sealed class CardClassRestrictionOverriddenRule : Rule,
-        IConfigWritable<Dictionary<AbilityKey, BoardPieceId>>, IMultiplayerSafe
+        IConfigWritable<Dictionary<AbilityKey, BoardPieceId>>, IMultiplayerSafe, IHidden
     {
         public override string Description => "Card class restrictions are overridden";
 

@@ -8,7 +8,7 @@
 
     public sealed class ReviveRemovesEffectsRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Reviving removes all negative effects.";
+        public override string Description => "Reviving a Hero removes stun and frozen effects";
 
         private static bool _isActivated;
 

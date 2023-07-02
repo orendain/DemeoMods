@@ -10,7 +10,7 @@
     public sealed class PieceAbilityListOverriddenRule : Rule,
         IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe, IDisableOnReconnect
     {
-        public override string Description => "Piece abilities are adjusted";
+        public override string Description => "Some enemies abilities are adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

@@ -10,7 +10,7 @@ namespace HouseRules.Essentials.Rules
 
     public sealed class FreeActionPointsOnCritRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Critical Hit restores action points.";
+        public override string Description => "Some Heroes can restore Action Points by getting critical hits";
 
         private static List<BoardPieceId> _globalAdjustments;
         private static bool _isActivated;

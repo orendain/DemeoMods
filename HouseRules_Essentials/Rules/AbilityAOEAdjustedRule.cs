@@ -11,7 +11,7 @@
 
     public sealed class AbilityAoeAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
     {
-        public override string Description => "Ability AOE Ranges are adjusted";
+        public override string Description => "Some ability AOE ranges are adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.StatusEffectDataModified;
 

@@ -10,7 +10,7 @@
     public sealed class PieceImmunityListAdjustedRule : Rule,
         IConfigWritable<Dictionary<BoardPieceId, List<EffectStateType>>>, IMultiplayerSafe, IDisableOnReconnect
     {
-        public override string Description => "Piece immunities are adjusted";
+        public override string Description => "Some pieces have their immunities adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.StatusEffectImmunityModified;
 

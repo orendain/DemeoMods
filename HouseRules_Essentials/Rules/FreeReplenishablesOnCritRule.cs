@@ -10,7 +10,7 @@ namespace HouseRules.Essentials.Rules
 
     public sealed class FreeReplenishablesOnCritRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Critical Hit gives gold & restores replenishables.";
+        public override string Description => "Some Heroes can replenish abilities by getting critical hits";
 
         private static List<BoardPieceId> _globalAdjustments;
         private static bool _isActivated;

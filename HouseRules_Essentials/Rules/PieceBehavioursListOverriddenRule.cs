@@ -10,7 +10,7 @@
     using Behaviour = DataKeys.Behaviour;
 
     public sealed class PieceBehavioursListOverriddenRule : Rule,
-        IConfigWritable<Dictionary<BoardPieceId, List<Behaviour>>>, IMultiplayerSafe, IDisableOnReconnect
+        IConfigWritable<Dictionary<BoardPieceId, List<Behaviour>>>, IMultiplayerSafe, IDisableOnReconnect, IHidden
     {
         public override string Description => "Piece behaviours are adjusted";
 

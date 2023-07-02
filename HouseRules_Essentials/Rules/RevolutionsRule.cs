@@ -5,9 +5,9 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class RevolutionsRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class RevolutionsRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe, IHidden
     {
-        public override string Description => "Demeo Revolutions enabled.";
+        public override string Description => "Demeo Revolutions enabled";
 
         private static bool _isActivated;
 

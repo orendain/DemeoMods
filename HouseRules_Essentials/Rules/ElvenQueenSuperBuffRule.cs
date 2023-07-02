@@ -7,9 +7,9 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class ElvenQueenSuperBuffRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class ElvenQueenSuperBuffRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe, IHidden
     {
-        public override string Description => "Adds phases to Elven Queen fight.";
+        public override string Description => "The Elven Queen gains a super buff eventually";
 
         private static bool _globalAdjustments;
         private static bool _isActivated;

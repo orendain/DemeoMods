@@ -10,7 +10,7 @@
 
     public sealed class PieceDownedCountAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Player piece maximum knockdown count modified on creation";
+        public override string Description => "Some Heroes maximum knockdown count adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

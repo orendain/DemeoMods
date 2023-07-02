@@ -8,7 +8,7 @@
     using HouseRules.Types;
 
     public sealed class PieceUseOnCreatedOverriddenRule : Rule,
-        IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe, IDisableOnReconnect
+        IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe, IDisableOnReconnect, IHidden
     {
         public override string Description => "Piece UseOnCreated lists are overridden";
 

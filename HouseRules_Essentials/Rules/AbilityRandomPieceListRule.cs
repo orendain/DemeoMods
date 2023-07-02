@@ -8,7 +8,7 @@
     using DataKeys;
     using HouseRules.Types;
 
-    public sealed class AbilityRandomPieceListRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<BoardPieceId>>>, IMultiplayerSafe
+    public sealed class AbilityRandomPieceListRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<BoardPieceId>>>, IMultiplayerSafe, IHidden
     {
         public override string Description => "Ability randomPieceLists are replaced";
 

@@ -9,7 +9,7 @@
     public sealed class MerchantOfferRarityOverriddenRule : Rule,
         IConfigWritable<Dictionary<AbilityKey, int>>
     {
-        public override string Description => "Merchant card rarity is overridden <Skirmish only>";
+        public override string Description => "Merchant card rarity is modified <Skirmish only>";
 
         private readonly Dictionary<AbilityKey, int> _adjustments;
         private Dictionary<AbilityKey, int> _originals;

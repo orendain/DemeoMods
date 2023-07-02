@@ -8,7 +8,7 @@
 
     public sealed class StatusEffectConfigRule : Rule, IConfigWritable<List<StatusEffectData>>, IMultiplayerSafe
     {
-        public override string Description => "StatusEffects config is Overridden";
+        public override string Description => "Some buffs/debuffs have their duration & effects adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.StatusEffectDataModified;
 

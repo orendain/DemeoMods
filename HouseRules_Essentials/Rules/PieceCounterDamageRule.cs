@@ -9,7 +9,7 @@
 
     public sealed class PieceCounterDamageRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Piece innate counterdamage effects added on creation";
+        public override string Description => "Some pieces will have innate counterdamage";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

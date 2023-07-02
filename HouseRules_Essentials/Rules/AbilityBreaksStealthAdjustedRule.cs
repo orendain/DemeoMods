@@ -9,7 +9,7 @@
 
     public sealed class AbilityBreaksStealthAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>, IMultiplayerSafe
     {
-        public override string Description => "Ability breaking stealth is adjusted";
+        public override string Description => "Some additional Hero abilities won't break stealth";
 
         private readonly Dictionary<AbilityKey, bool> _adjustments;
         private Dictionary<AbilityKey, bool> _originals;

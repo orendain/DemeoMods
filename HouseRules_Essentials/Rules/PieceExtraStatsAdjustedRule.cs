@@ -9,7 +9,7 @@
 
     public sealed class PieceExtraStatsAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Piece max stat change effects added on creation";
+        public override string Description => "Some Heroes have their maximum allowed stats adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

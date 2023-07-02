@@ -9,7 +9,7 @@
 
     public sealed class PieceMagicStatAddedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Piece innate counterdamage effects added on creation";
+        public override string Description => "Some Heroes start with a magic bonus";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

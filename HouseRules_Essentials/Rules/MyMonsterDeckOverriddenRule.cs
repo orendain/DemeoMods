@@ -9,7 +9,7 @@
 
     public sealed class MyMonsterDeckOverriddenRule : Rule, IConfigWritable<MyMonsterDeckOverriddenRule.MyDeckConfig>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "My MonsterDeck creation is overriden";
+        public override string Description => "Enemy spawn randomness is adjusted";
 
         private static MyDeckConfig _globalAdjustments;
         private static bool _isActivated;

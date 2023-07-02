@@ -9,7 +9,7 @@
 
     public sealed class AbilityStealthDamageOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
     {
-        public override string Description => "Ability stealth bonus damage values are overridden";
+        public override string Description => "Some abilities have their Stealth bonus damage adjusted";
 
         private readonly Dictionary<AbilityKey, int> _adjustments;
         private Dictionary<AbilityKey, int> _originals;

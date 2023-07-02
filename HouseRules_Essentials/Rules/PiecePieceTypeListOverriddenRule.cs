@@ -10,7 +10,7 @@
     using HouseRules.Types;
 
     public sealed class PiecePieceTypeListOverriddenRule : Rule,
-        IConfigWritable<Dictionary<BoardPieceId, List<PieceType>>>, IMultiplayerSafe, IDisableOnReconnect
+        IConfigWritable<Dictionary<BoardPieceId, List<PieceType>>>, IMultiplayerSafe, IDisableOnReconnect, IHidden
     {
         public override string Description => "Piece piece types are adjusted";
 

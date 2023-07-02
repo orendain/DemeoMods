@@ -11,7 +11,7 @@
     public sealed class FreeAbilityOnCritRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable,
         IMultiplayerSafe
     {
-        public override string Description => "Critical Hit gives free card.";
+        public override string Description => "Some Heroes can get a free card by getting critical hits";
 
         private static Dictionary<BoardPieceId, AbilityKey> _globalAdjustments;
         private static bool _isActivated;
