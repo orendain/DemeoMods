@@ -45,6 +45,11 @@
             return VrElementCreator.IsReady();
         }
 
+        public GameObject CreateLeftText(string text)
+        {
+            return CreateListText(text);
+        }
+
         public GameObject CreateNewText(string text)
         {
             return _elementCreator.CreateMyText(text);
@@ -73,6 +78,11 @@
         public GameObject CreateMyText(string text)
         {
             return _elementCreator.CreateMyText(text);
+        }
+
+        public GameObject CreateListText(string text)
+        {
+            return _elementCreator.CreateListText(text);
         }
 
         public GameObject CreateButton(Action callback)

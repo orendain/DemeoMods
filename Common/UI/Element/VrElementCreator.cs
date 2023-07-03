@@ -52,6 +52,11 @@
             return VrResourceTable.IsReady();
         }
 
+        public GameObject CreateLeftText(string text)
+        {
+            return CreateListText(text);
+        }
+
         public GameObject CreateNewText(string text)
         {
             return CreateMyText(text);
@@ -112,12 +117,31 @@
             var textComponent = container.AddComponent<TextMeshPro>();
             textComponent.alignment = TextAlignmentOptions.Center;
             textComponent.colorGradientPreset = _resourceTable.FontColorGradient;
-            textComponent.enableAutoSizing = false;
+            textComponent.enableAutoSizing = true;
             textComponent.font = _resourceTable.Font;
             textComponent.fontSize = 6;
             textComponent.fontSizeMax = 6;
             textComponent.fontSizeMin = 5;
             textComponent.fontStyle = FontStyles.Bold;
+            textComponent.text = text;
+            textComponent.transform.localPosition = new Vector3(0, 0, TextZShift);
+
+            return container;
+        }
+
+        public GameObject CreateListText(string text)
+        {
+            var container = new GameObject("Text");
+
+            var textComponent = container.AddComponent<TextMeshPro>();
+            textComponent.alignment = TextAlignmentOptions.Left;
+            textComponent.colorGradientPreset = _resourceTable.FontColorGradient;
+            textComponent.enableAutoSizing = false;
+            textComponent.font = _resourceTable.Font;
+            textComponent.fontSize = 6;
+            textComponent.fontSizeMax = 6;
+            textComponent.fontSizeMin = 5;
+            textComponent.fontStyle = FontStyles.Normal;
             textComponent.text = text;
             textComponent.transform.localPosition = new Vector3(0, 0, TextZShift);
 

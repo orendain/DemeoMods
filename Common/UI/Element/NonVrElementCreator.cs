@@ -50,6 +50,11 @@
             return NonVrResourceTable.IsReady();
         }
 
+        public GameObject CreateLeftText(string text)
+        {
+            return CreateListText(text);
+        }
+
         public GameObject CreateNewText(string text)
         {
             return CreateMyText(text);
@@ -98,6 +103,24 @@
             textComponent.fontSize = NormalFontSize;
             textComponent.fontSizeMax = NormalFontSize;
             textComponent.fontSizeMin = 1;
+            textComponent.fontStyle = FontStyles.Normal;
+            textComponent.text = text;
+
+            container.GetComponent<Graphic>().raycastTarget = false;
+
+            return container;
+        }
+
+        public GameObject CreateListText(string text)
+        {
+            var container = new GameObject("Text");
+
+            var textComponent = container.AddComponent<TextMeshPro>();
+            textComponent.alignment = TextAlignmentOptions.Left;
+            textComponent.enableAutoSizing = false;
+            textComponent.fontSize = 6;
+            textComponent.fontSizeMax = 6;
+            textComponent.fontSizeMin = 5;
             textComponent.fontStyle = FontStyles.Normal;
             textComponent.text = text;
 

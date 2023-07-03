@@ -9,6 +9,11 @@
         /// <summary>
         /// Creates a details text element.
         /// </summary>
+        GameObject CreateLeftText(string text);
+
+        /// <summary>
+        /// Creates a details text element.
+        /// </summary>
         GameObject CreateNewText(string text);
 
         /// <summary>
@@ -35,6 +40,11 @@
         /// Creates a my stringbuilder element.
         /// </summary>
         GameObject CreateMyText(string text);
+
+        /// <summary>
+        /// Creates a my stringbuilder element.
+        /// </summary>
+        GameObject CreateListText(string text);
 
         /// <summary>
         /// Creates a button with the specified callback.
