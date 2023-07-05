@@ -15,7 +15,7 @@
     {
         private const string ModdedRoomPropertyKey = "modded";
 
-        private static float welcomeMessageDurationSeconds = 20f;
+        private static float welcomeMessageDurationSeconds = 30f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
@@ -412,10 +412,18 @@
                 sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
                 sb.AppendLine();
 
-                for (var i = 0; i < HR.SelectedRuleset.Rules.Count; i++)
+                if (HR.SelectedRuleset.Longdesc != string.Empty)
                 {
-                    var description = HR.SelectedRuleset.Rules[i].Description;
-                    sb.AppendLine(ColorizeString($"{i + 1}. {description}", gold));
+                    sb.AppendLine(ColorizeString($"<========== Ruleset Creator's Description ==========>", orange));
+                    sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Longdesc}", gold));
+                }
+                else
+                {
+                    for (var i = 0; i < HR.SelectedRuleset.Rules.Count; i++)
+                    {
+                        var description = HR.SelectedRuleset.Rules[i].Description;
+                        sb.AppendLine(ColorizeString($"{i + 1}. {description}", gold));
+                    }
                 }
             }
             else
