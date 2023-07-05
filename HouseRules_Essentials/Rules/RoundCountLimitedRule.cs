@@ -7,7 +7,7 @@
 
     public sealed class RoundCountLimitedRule : Rule, IConfigWritable<int>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Round count is limited";
+        public override string Description => "This adventure's total round count is limited";
 
         private const float RoundsLeftMessageDurationSeconds = 5f;
         private static int _globalRoundLimit;

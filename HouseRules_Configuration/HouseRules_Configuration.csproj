@@ -76,6 +76,7 @@
     <Compile Include="..\Common\**\*.cs" Exclude="..\Common\Properties\AssemblyInfo.cs;..\Common\bin\**\*.*;..\Common\obj\**\*.*;..\Common\**\*.csproj;..\Common\**\*.user;..\Common\**\*.vstemplate">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Compile>
+    <Compile Include="UI\HouseRulesUiGameVr.cs" />
     <Compile Include="UI\HouseRulesUiHangouts.cs" />
     <Compile Include="UI\HouseRulesUiNonVr.cs" />
     <Compile Include="UI\HouseRulesUiVr.cs" />

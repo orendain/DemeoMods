@@ -8,7 +8,7 @@
 
     public sealed class SpawnCategoryOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<int>>>, IMultiplayerSafe
     {
-        public override string Description => "Spawn Category definitions are Overridden";
+        public override string Description => "Enemy spawn randomness is adjusted";
 
         private readonly Dictionary<BoardPieceId, List<int>> _adjustments;
         private Dictionary<BoardPieceId, List<int>> _originals;

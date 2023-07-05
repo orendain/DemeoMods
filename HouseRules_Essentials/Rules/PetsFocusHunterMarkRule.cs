@@ -10,7 +10,7 @@
 
     public sealed class PetsFocusHunterMarkRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Pets focus on hunter marked enemies";
+        public override string Description => "Pets focus on Hunter's marked enemies";
 
         private static bool _isActivated;
 

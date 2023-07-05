@@ -11,7 +11,7 @@
     public sealed class PiecePieceTypeListOverriddenRule : Rule,
         IConfigWritable<Dictionary<BoardPieceId, List<PieceType>>>, IMultiplayerSafe
     {
-        public override string Description => "Piece piece types are adjusted";
+        public override string Description => "Piece types are adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

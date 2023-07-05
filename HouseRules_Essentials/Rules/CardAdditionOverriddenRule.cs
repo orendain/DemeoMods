@@ -13,7 +13,7 @@
     public sealed class CardAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Card additions from chests AND energy (mana) are overridden";
+        public override string Description => "Card additions from chests AND energy (mana) are adjusted";
 
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalHeroCards;
         private static bool _isActivated;

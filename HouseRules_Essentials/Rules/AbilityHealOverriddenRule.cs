@@ -10,7 +10,7 @@
 
     public sealed class AbilityHealOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
     {
-        public override string Description => "Ability Heal settings are adjusted";
+        public override string Description => "Ability Heal amounts are adjusted";
 
         private readonly Dictionary<AbilityKey, int> _adjustments;
         private Dictionary<AbilityKey, int> _originals;

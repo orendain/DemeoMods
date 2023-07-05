@@ -9,7 +9,7 @@
 
     public sealed class EnemyCooldownOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>, IMultiplayerSafe
     {
-        public override string Description => "Enemy ability cooldown values are overridden";
+        public override string Description => "Enemy ability cooldown turns are adjusted";
 
         private readonly Dictionary<AbilityKey, int> _adjustments;
         private Dictionary<AbilityKey, int> _originals;

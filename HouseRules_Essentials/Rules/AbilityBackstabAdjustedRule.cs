@@ -10,7 +10,7 @@
     public sealed class AbilityBackstabAdjustedRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>,
         IMultiplayerSafe
     {
-        public override string Description => "Ability backstab enablement is adjusted";
+        public override string Description => "Hero ability backstab bonus damage is adjusted";
 
         private readonly Dictionary<AbilityKey, bool> _adjustments;
         private Dictionary<AbilityKey, bool> _originals;

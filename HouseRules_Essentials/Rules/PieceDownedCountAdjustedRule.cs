@@ -10,7 +10,7 @@
 
     public sealed class PieceDownedCountAdjustedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, int>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Player piece maximum knockdown count modified on creation";
+        public override string Description => "Hero maximum knockdown count adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 
@@ -64,31 +64,25 @@
             foreach (var replacement in _globalAdjustments)
             {
                 int countReplacement;
-                int timerReplacement;
                 switch (replacement.Value)
                 {
                     case 0:
                         countReplacement = 3;
-                        timerReplacement = 0;
                         break;
                     case 1:
                         countReplacement = 2;
-                        timerReplacement = 1;
                         break;
                     case 2:
                         countReplacement = 1;
-                        timerReplacement = 2;
                         break;
                     default:
                         countReplacement = 0;
-                        timerReplacement = 3;
                         break;
                 }
 
                 if (replacement.Key == __result.boardPieceId)
                 {
                     __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, countReplacement);
-                    __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, timerReplacement);
                 }
             }
         }

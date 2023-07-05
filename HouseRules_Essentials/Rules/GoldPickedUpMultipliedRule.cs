@@ -8,7 +8,7 @@
 
     public sealed class GoldPickedUpMultipliedRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Gold picked up is multiplied";
+        public override string Description => "Gold found per pile is adjusted";
 
         private static float _globalMultiplier;
         private static bool _isActivated;
