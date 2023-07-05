@@ -98,20 +98,6 @@
                     if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
                     {
                         mage = 1;
-                        /*if (piece.inventory.HasAbility(AbilityKey.Overcharge))
-                        {
-                            for (var i = 0; i < piece.inventory.Items.Count; i++)
-                            {
-                                value = piece.inventory.Items[i];
-                                if (value.abilityKey == AbilityKey.Overcharge)
-                                {
-                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
-                                    piece.inventory.Items.Remove(value);
-                                    break;
-                                }
-                            }
-                        }*/
-
                         piece.inventory.Items.Add(new Inventory.Item
                         {
                             abilityKey = AbilityKey.Vortex,
@@ -734,7 +720,9 @@
                     else if (piece.boardPieceId == BoardPieceId.HeroHunter)
                     {
                         AbilityFactory.TryGetAbility(AbilityKey.Arrow, out var ability);
+                        AbilityFactory.TryGetAbility(AbilityKey.LightningBolt, out var ability2);
                         ability.costActionPoint = true;
+                        ability2.costActionPoint = false;
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
                     {
@@ -769,7 +757,9 @@
                     else if (piece.boardPieceId == BoardPieceId.HeroHunter)
                     {
                         AbilityFactory.TryGetAbility(AbilityKey.Arrow, out var ability);
+                        AbilityFactory.TryGetAbility(AbilityKey.LightningBolt, out var ability2);
                         ability.costActionPoint = false;
+                        ability2.costActionPoint = false;
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
                     {
