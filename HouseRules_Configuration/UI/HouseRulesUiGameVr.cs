@@ -107,11 +107,11 @@
             sb.AppendLine();
             if (numRules > 1)
             {
-                sb.AppendLine(ColorizeString($"<========== {numRules} Active Rules ==========>", Color.magenta));
+                sb.AppendLine(ColorizeString($"<========== {numRules} Active Rules ==========>", Color.white));
             }
             else
             {
-                sb.AppendLine(ColorizeString($"<========== 1 Active Rule ==========>", Color.magenta));
+                sb.AppendLine(ColorizeString($"<========== 1 Active Rule ==========>", Color.white));
             }
 
             foreach (var rule in HR.SelectedRuleset.Rules)
