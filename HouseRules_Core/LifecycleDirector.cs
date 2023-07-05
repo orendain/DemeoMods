@@ -15,9 +15,9 @@
 
     internal static class LifecycleDirector
     {
-        private const float WelcomeMessageDurationSeconds = 10f;
         private const string ModdedRoomPropertyKey = "modded";
 
+        private static float welcomeMessageDurationSeconds = 10f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
@@ -520,7 +520,7 @@
                 return;
             }
 
-            GameUI.ShowCameraMessage(RulesetActiveMessage(), WelcomeMessageDurationSeconds);
+            GameUI.ShowCameraMessage(RulesetActiveMessage(), welcomeMessageDurationSeconds);
         }
 
         private static string NotSafeForMultiplayerMessage()
@@ -561,12 +561,21 @@
             sb.Append(ColorizeString("e", lightblue));
             sb.AppendLine(ColorizeString("s", violet));
             sb.AppendLine();
-            sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Name}:", Color.yellow));
-            sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
-            sb.AppendLine();
-            sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Rules.Count} Rules loaded!", gold));
+
+            if (MotherbrainGlobalVars.IsRunningOnNonVRPlatform)
+            {
+                sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Name}:", Color.yellow));
+                sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
+                sb.AppendLine();
+                sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Rules.Count} Rules loaded!", gold));
+            }
 
             // Pad lines to raise text higher on PC-Edition screen
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
             sb.AppendLine();
             sb.AppendLine();
             sb.AppendLine();

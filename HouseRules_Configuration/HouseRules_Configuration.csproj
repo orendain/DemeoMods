@@ -81,7 +81,6 @@
     <Compile Include="UI\HouseRulesUiHangouts.cs" />
     <Compile Include="UI\HouseRulesUiNonVr.cs" />
     <Compile Include="UI\HouseRulesUiVr.cs" />
-    <Compile Include="UI\RevolutionsUiVr.cs" />
     <Compile Include="UI\RulesetListPanelNonVr.cs" />
     <Compile Include="UI\RulesetListPanelVr.cs" />
     <Compile Include="VersionChecker.cs" />

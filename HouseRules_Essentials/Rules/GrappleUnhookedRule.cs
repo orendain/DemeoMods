@@ -55,7 +55,6 @@
             launchGas.effectAppliedToSelf = EffectStateType.UsedHookThisTurn;
             AbilityFactory.TryGetAbility(AbilityKey.ExplodingWaterLamp, out var launchWater);
             launchWater.effectAppliedToSelf = EffectStateType.UsedHookThisTurn;
-
         }
     }
 }

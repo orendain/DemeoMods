@@ -4,6 +4,7 @@
     using System.Linq;
     using Common.UI;
     using Common.UI.Element;
+    using Revolutions;
     using UnityEngine;
 
     internal class HouseRulesUiHangouts : MonoBehaviour
@@ -54,7 +55,7 @@
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             background.transform.localScale = new Vector3(3.75f, 1, 2.5f);
 
-            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules");
+            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules (Demeo Revolutions rebuild)");
             headerText.transform.SetParent(transform, worldPositionStays: false);
             headerText.transform.localPosition = new Vector3(0, 5.95f, VrElementCreator.TextZShift);
 
@@ -62,7 +63,7 @@
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
             selectionPanel.transform.localPosition = new Vector3(0, 2.5f, 0);
 
-            var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
+            var versionText = _elementCreator.CreateNormalText($"v{RevolutionsVersion.Version}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
             versionText.transform.localPosition = new Vector3(-7, -15.85f, VrElementCreator.TextZShift);
 

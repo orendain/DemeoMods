@@ -19,8 +19,6 @@
 
         internal static bool IsUpdateAvailable { get; private set; }
 
-        internal static bool IsUpdateAvailable2 { get; private set; }
-
         public override void OnInitializeMelon()
         {
             DetermineIfUpdatesAvailable();
@@ -110,10 +108,8 @@
 
         private static async void DetermineIfUpdatesAvailable()
         {
-            IsUpdateAvailable = await VersionChecker.IsUpdateAvailable();
-            Logger.Msg($"{(IsUpdateAvailable ? "New" : "No new")} HouseRules update found.");
-            IsUpdateAvailable2 = await RevolutionsChecker.IsUpdateAvailable();
-            Logger.Msg($"{(IsUpdateAvailable2 ? "New" : "No new")} Revolutions update found.");
+            IsUpdateAvailable = await RevolutionsChecker.IsUpdateAvailable();
+            Logger.Msg($"{(IsUpdateAvailable ? "New" : "No new")} Revolutions update found.");
         }
 
         private static void LoadRulesetsFromConfig()

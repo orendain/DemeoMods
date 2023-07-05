@@ -3,6 +3,7 @@
     using System.Collections;
     using Common.UI;
     using Common.UI.Element;
+    using Revolutions;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -48,7 +49,7 @@
             paper.AddComponent<Image>().sprite = _resourceTable.PaperDecorated;
             paper.GetComponent<RectTransform>().sizeDelta = new Vector2(1576, 876);
 
-            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules");
+            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules (Demeo Revolutions rebuild)");
             headerText.transform.SetParent(transform, worldPositionStays: false);
             headerText.transform.localPosition = new Vector2(0, 310f);
 
@@ -56,7 +57,7 @@
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
             selectionPanel.transform.localPosition = new Vector2(0, 230f);
 
-            var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
+            var versionText = _elementCreator.CreateNormalText($"v{RevolutionsVersion.Version}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
             versionText.transform.localPosition = new Vector2(-615, -400);
 

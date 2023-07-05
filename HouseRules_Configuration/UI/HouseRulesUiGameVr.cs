@@ -6,6 +6,7 @@
     using System.Text;
     using Common.UI;
     using Common.UI.Element;
+    using Revolutions;
     using UnityEngine;
 
     internal class HouseRulesUiGameVr : MonoBehaviour
@@ -66,7 +67,7 @@
             background.transform.localScale = new Vector3(4.75f, 1, scale);
 
             var header = 3.6f;
-            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules");
+            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules (Demeo Revolutions rebuild)");
             headerText.transform.SetParent(transform, worldPositionStays: false);
             if (numRules > 11)
             {
@@ -136,7 +137,7 @@
             detailsPanel.transform.localPosition = new Vector3(0, details, VrElementCreator.TextZShift);
 
             sb.Clear();
-            sb.Append(ColorizeString($"v{BuildVersion.Version}", Color.yellow));
+            sb.Append(ColorizeString($"v{RevolutionsVersion.Version}", Color.yellow));
             var version = -9.5f;
             var versionText = _elementCreator.CreateNormalText(sb.ToString());
             versionText.transform.SetParent(transform, worldPositionStays: false);
