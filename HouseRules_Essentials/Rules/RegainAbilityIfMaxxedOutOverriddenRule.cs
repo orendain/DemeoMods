@@ -9,9 +9,9 @@
     using HouseRules.Types;
 
     public sealed class RegainAbilityIfMaxxedOutOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>,
-        IMultiplayerSafe, IHidden
+        IMultiplayerSafe
     {
-        public override string Description => "RegainAbilityIfMaxxedOut settings are overridden";
+        public override string Description => "Regain card if stat ability is already maxxed out adjusted";
 
         private readonly Dictionary<AbilityKey, bool> _adjustments;
         private Dictionary<AbilityKey, bool> _originals;

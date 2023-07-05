@@ -6,11 +6,9 @@
     using System.Text;
     using Common.UI;
     using Common.UI.Element;
-    using HouseRules.Types;
-    using Revolutions;
     using UnityEngine;
 
-    internal class RevolutionsUiVr : MonoBehaviour
+    internal class HouseRulesUiGameVr : MonoBehaviour
     {
         private VrResourceTable _resourceTable;
         private IElementCreator _elementCreator;
@@ -18,24 +16,11 @@
 
         private void Start()
         {
-            // ToFindObjects();
             StartCoroutine(WaitAndInitialize());
         }
 
-        /*public static void ToFindObjects()
-        {
-            foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
-            {
-                if (go.hideFlags == HideFlags.NotEditable || go.hideFlags == HideFlags.HideAndDontSave)
-                {
-                    ConfigurationMod.Logger.Msg($"{go.name}");
-                }
-            }
-        }*/
-
         private IEnumerator WaitAndInitialize()
         {
-            // ConfigurationMod.Logger.Msg("RevolutionsUiVr called...");
             while (!VrElementCreator.IsReady()
                    || Resources
                        .FindObjectsOfTypeAll<GameObject>()
@@ -66,47 +51,30 @@
 
             var background = new GameObject("Background");
             var numRules = HR.SelectedRuleset.Rules.Count;
+            var scale = 1.5f;
             background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
             background.AddComponent<MeshRenderer>().material = _resourceTable.MenuMaterial;
             background.transform.SetParent(transform, worldPositionStays: false);
             background.transform.localPosition = new Vector3(0, 0, 0);
             background.transform.localRotation =
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
-            if (numRules < 12)
+            if (numRules > 11)
             {
-                background.transform.localScale = new Vector3(4.75f, 1, 1.5f);
-            }
-            else if (numRules < 24)
-            {
-                background.transform.localScale = new Vector3(4.75f, 1, 2.5f);
-            }
-            else
-            {
-                background.transform.localScale = new Vector3(4.75f, 1, 4.5f);
+                scale = 1.5f + (float)(0.09 * (numRules - 11));
             }
 
+            background.transform.localScale = new Vector3(4.75f, 1, scale);
+
+            var header = 3.6f;
             var headerText = _elementCreator.CreateMenuHeaderText("HouseRules");
             headerText.transform.SetParent(transform, worldPositionStays: false);
-            if (numRules < 12)
+            if (numRules > 11)
             {
-                headerText.transform.localPosition = new Vector3(0, 3.6f, VrElementCreator.TextZShift);
-            }
-            else if (numRules < 24)
-            {
-                headerText.transform.localPosition = new Vector3(0, 6f, VrElementCreator.TextZShift);
-            }
-            else
-            {
-                headerText.transform.localPosition = new Vector3(0, 10.5f, VrElementCreator.TextZShift);
+                header = 3.6f + (float)(0.21f * (numRules - 11));
             }
 
+            headerText.transform.localPosition = new Vector3(0, header, VrElementCreator.TextZShift);
             Color indigo = new Color(0.294f, 0f, 0.51f);
-            Color lightgreen = new Color(0f, 1f, 0.5f);
-            Color orange = new Color(1f, 0.499f, 0f);
-            Color pink = new Color(0.984f, 0.3765f, 0.498f);
-            Color gold = new Color(1f, 1f, 0.6f);
-            Color mustard = new Color(0.73f, 0.55f, 0.07f);
-            Color beige = new Color(0.878f, 0.752f, 0.384f, 1);
             Color brown = new Color(0.0392f, 0.0157f, 0, 1);
             var sb = new StringBuilder();
             sb.Append(ColorizeString("You're playing ", brown));
@@ -114,21 +82,19 @@
             sb.AppendLine(ColorizeString(" ruleset!", brown));
             sb.AppendLine(ColorizeString($"<i>{HR.SelectedRuleset.Description}</i>", Color.blue));
             sb.AppendLine();
-
+            var ruleset = 1.25f;
             var rulesetPanel = _elementCreator.CreateNewText(sb.ToString());
             rulesetPanel.transform.SetParent(transform, worldPositionStays: false);
-            if (numRules < 12)
+            if (numRules > 40)
             {
-                rulesetPanel.transform.localPosition = new Vector3(0, 1.25f, VrElementCreator.TextZShift);
+                ruleset = 6.5f;
             }
-            else if (numRules < 24)
+            else if (numRules > 11)
             {
-                rulesetPanel.transform.localPosition = new Vector3(0, 3.5f, VrElementCreator.TextZShift);
+                ruleset = 1.25f + (float)(0.2f * (numRules - 11));
             }
-            else
-            {
-                rulesetPanel.transform.localPosition = new Vector3(0, 7.25f, VrElementCreator.TextZShift);
-            }
+
+            rulesetPanel.transform.localPosition = new Vector3(0, ruleset, VrElementCreator.TextZShift);
 
             sb.Clear();
             int total = 0;
@@ -157,52 +123,32 @@
                 }
             }
 
+            var variance = (float)(numRules * .005);
+            var details = (float)((-0.375 + variance) * numRules);
             var detailsPanel = _elementCreator.CreateLeftText(sb.ToString());
             detailsPanel.transform.SetParent(transform, worldPositionStays: false);
-            if (numRules < 12)
+            if (numRules > 40)
             {
-                detailsPanel.transform.localPosition = new Vector3(0, -1f, VrElementCreator.TextZShift);
-            }
-            else if (numRules < 24)
-            {
-                detailsPanel.transform.localPosition = new Vector3(0, -5f, VrElementCreator.TextZShift);
-            }
-            else
-            {
-                detailsPanel.transform.localPosition = new Vector3(0, -10f, VrElementCreator.TextZShift);
+                details = -12.5f;
             }
 
-            var versionText = _elementCreator.CreateNormalText($"v{RevolutionsVersion.Version}");
+            detailsPanel.transform.localPosition = new Vector3(0, details, VrElementCreator.TextZShift);
+
+            var version = -9.5f;
+            var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
-            if (numRules < 12)
+            if (numRules > 11)
             {
-                versionText.transform.localPosition = new Vector3(-7, -9.5f, VrElementCreator.TextZShift);
-            }
-            else if (numRules < 24)
-            {
-                versionText.transform.localPosition = new Vector3(-7, -16.25f, VrElementCreator.TextZShift);
-            }
-            else
-            {
-                versionText.transform.localPosition = new Vector3(-7, -28.75f, VrElementCreator.TextZShift);
+                version = -9.5f - (float)(0.6 * (numRules - 11));
             }
 
-            if (ConfigurationMod.IsUpdateAvailable2)
+            versionText.transform.localPosition = new Vector3(-7, version, VrElementCreator.TextZShift);
+
+            if (ConfigurationMod.IsUpdateAvailable)
             {
                 var updateText = _elementCreator.CreateNormalText("NEW UPDATE AVAILABLE!");
                 updateText.transform.SetParent(transform, worldPositionStays: false);
-                if (numRules < 12)
-                {
-                    updateText.transform.localPosition = new Vector3(5.75f, -9.5f, VrElementCreator.TextZShift);
-                }
-                else if (numRules < 24)
-                {
-                    updateText.transform.localPosition = new Vector3(5.75f, -15.5f, VrElementCreator.TextZShift);
-                }
-                else
-                {
-                    updateText.transform.localPosition = new Vector3(5.75f, -28.75f, VrElementCreator.TextZShift);
-                }
+                updateText.transform.localPosition = new Vector3(5.75f, version, VrElementCreator.TextZShift);
             }
 
             // TODO(orendain): Fix so that ray interacts with entire object.

@@ -8,9 +8,9 @@
     using DataKeys;
     using HouseRules.Types;
 
-    public sealed class AbilityRandomPieceListRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<BoardPieceId>>>, IMultiplayerSafe, IHidden
+    public sealed class AbilityRandomPieceListRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<BoardPieceId>>>, IMultiplayerSafe
     {
-        public override string Description => "Ability randomPieceLists are replaced";
+        public override string Description => "Random summon abilities are adjusted";
 
         private readonly Dictionary<AbilityKey, List<BoardPieceId>> _adjustments;
         private Dictionary<AbilityKey, List<BoardPieceId>> _originals;

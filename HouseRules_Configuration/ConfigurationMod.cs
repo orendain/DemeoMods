@@ -61,7 +61,7 @@
                 return;
             }
 
-            Transform transformScreenToRemove = canvasObject.transform.Find("RevolutionsUiVr");
+            Transform transformScreenToRemove = canvasObject.transform.Find("HouseRulesUiGameVr");
             if (transformScreenToRemove == null)
             {
                 return;
@@ -98,7 +98,9 @@
                 if (HR.SelectedRuleset != Ruleset.None)
                 {
                     Logger.Msg("Recognized modded game in VR. Loading UI.");
-                    _ = new GameObject("RevolutionsUiVr", typeof(RevolutionsUiVr));
+                    _ = new GameObject("HouseRulesUiGameVr", typeof(HouseRulesUiGameVr));
+
+                    // _ = new GameObject("RevolutionsUiVr", typeof(RevolutionsUiVr));
                 }
             }
         }

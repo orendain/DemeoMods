@@ -7,9 +7,9 @@
     using HouseRules.Types;
 
     public sealed class TileEffectDurationOverriddenRule : Rule, IConfigWritable<Dictionary<TileEffect, int>>,
-        IPatchable, IMultiplayerSafe, IHidden
+        IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Tile Effect durations are overridden";
+        public override string Description => "Tile Effect durations are adjusted";
 
         private static Dictionary<TileEffect, int> _globalAdjustments;
         private static bool _isActivated;

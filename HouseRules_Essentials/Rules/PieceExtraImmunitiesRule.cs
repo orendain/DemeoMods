@@ -10,7 +10,7 @@
     using HouseRules.Types;
 
     public sealed class PieceExtraImmunitiesRule : Rule, IConfigWritable<bool>, IPatchable,
-        IMultiplayerSafe, IHidden
+        IMultiplayerSafe
     {
         public override string Description => "Some pieces have extra immunities added";
 

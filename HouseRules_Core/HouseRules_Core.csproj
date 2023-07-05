@@ -69,7 +69,6 @@
     <Compile Include="Rulebook.cs" />
     <Compile Include="Types\IConfigWritable.cs" />
     <Compile Include="Types\IDisableOnReconnect.cs" />
-    <Compile Include="Types\IHidden.cs" />
     <Compile Include="Types\IMultiplayerSafe.cs" />
     <Compile Include="Types\IPatchable.cs" />
     <Compile Include="Types\ISingular.cs" />

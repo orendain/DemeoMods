@@ -77,6 +77,7 @@
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Compile>
     <Compile Include="RevolutionsChecker.cs" />
+    <Compile Include="UI\HouseRulesUiGameVr.cs" />
     <Compile Include="UI\HouseRulesUiHangouts.cs" />
     <Compile Include="UI\HouseRulesUiNonVr.cs" />
     <Compile Include="UI\HouseRulesUiVr.cs" />
