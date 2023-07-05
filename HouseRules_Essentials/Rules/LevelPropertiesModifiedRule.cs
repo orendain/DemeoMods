@@ -9,7 +9,7 @@
 
     public sealed class LevelPropertiesModifiedRule : Rule, IConfigWritable<Dictionary<string, int>>, IMultiplayerSafe
     {
-        public override string Description => "Level properties are modified";
+        public override string Description => "Each floor's POI's and maximum gold are adjusted";
 
         private const int DefaultDreadLevel = 1;
         private readonly Dictionary<string, int> _levelProperties;

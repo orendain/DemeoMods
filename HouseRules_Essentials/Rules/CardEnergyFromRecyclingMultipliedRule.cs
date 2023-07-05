@@ -7,7 +7,7 @@
     public sealed class CardEnergyFromRecyclingMultipliedRule : Rule, IConfigWritable<float>, IPatchable,
         IMultiplayerSafe
     {
-        public override string Description => "CardConfig energy from recycling is multiplied";
+        public override string Description => "Card energy (mana) from recycling is adjusted";
 
         private static float _globalMultiplier;
         private static bool _isActivated;

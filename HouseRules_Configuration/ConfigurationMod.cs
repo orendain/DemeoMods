@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Common.UI;
     using HouseRules.Configuration.UI;
+    using HouseRules.Types;
     using MelonLoader;
     using UnityEngine;
 
@@ -49,8 +50,33 @@
             }
         }
 
+        public override void OnSceneWasUnloaded(int buildIndex, string sceneName)
+        {
+            // Logger.Msg($"Scene unloaded {buildIndex} - {sceneName}");
+            GameObject canvasObject = GameObject.Find("~LeanTween");
+            if (canvasObject == null)
+            {
+                return;
+            }
+
+            // Prevent Game VR object from trying to appear at main menu and hangouts
+            Transform transformScreenToRemove = canvasObject.transform.Find("HouseRulesUiGameVr");
+            if (transformScreenToRemove == null)
+            {
+                return;
+            }
+
+            UnityEngine.Object.Destroy(transformScreenToRemove.gameObject);
+        }
+
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
+            // Logger.Msg($"buildIndex {buildIndex} - sceneName {sceneName}");
+            if (buildIndex == 0 || sceneName.Contains("Startup"))
+            {
+                return;
+            }
+
             if (Environments.IsPcEdition())
             {
                 if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
@@ -60,23 +86,25 @@
 
                 Logger.Msg("Recognized lobby in PC. Loading UI.");
                 _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
-                return;
             }
-
-            if (Environments.IsInHangouts())
+            else if (Environments.IsInHangouts() || sceneName.Contains("HobbyShop"))
             {
                 Logger.Msg("Recognized lobby in Hangouts. Loading UI.");
                 _ = new GameObject("HouseRulesUiHangouts", typeof(HouseRulesUiHangouts));
-                return;
             }
-
-            if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
+            else if (sceneName.Contains("Lobby"))
             {
-                return;
+                Logger.Msg("Recognized lobby in VR. Loading UI.");
+                _ = new GameObject("HouseRulesUiVr", typeof(HouseRulesUiVr));
             }
-
-            Logger.Msg("Recognized lobby in VR. Loading UI.");
-            _ = new GameObject("HouseRulesUiVr", typeof(HouseRulesUiVr));
+            else
+            {
+                if (HR.SelectedRuleset != Ruleset.None)
+                {
+                    Logger.Msg("Recognized modded game in VR. Loading UI.");
+                    _ = new GameObject("HouseRulesUiGameVr", typeof(HouseRulesUiGameVr));
+                }
+            }
         }
 
         private static async void DetermineIfUpdateAvailable()

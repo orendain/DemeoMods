@@ -10,7 +10,7 @@
 
     public sealed class AbilityRandomPieceListRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<BoardPieceId>>>
     {
-        public override string Description => "Ability randomPieceLists are replaced";
+        public override string Description => "Ability random summons are replaced (Skirmish Only)";
 
         private readonly Dictionary<AbilityKey, List<BoardPieceId>> _adjustments;
         private Dictionary<AbilityKey, List<BoardPieceId>> _originals;

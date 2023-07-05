@@ -9,12 +9,13 @@
     using HarmonyLib;
     using HouseRules.Types;
     using Photon.Realtime;
+    using UnityEngine;
 
     internal static class LifecycleDirector
     {
-        private const float WelcomeMessageDurationSeconds = 30f;
         private const string ModdedRoomPropertyKey = "modded";
 
+        private static float welcomeMessageDurationSeconds = 20f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
@@ -359,38 +360,98 @@
 
             if (!IsRulesetActive)
             {
-                GameUI.ShowCameraMessage(NotSafeForMultiplayerMessage(), WelcomeMessageDurationSeconds);
+                GameUI.ShowCameraMessage(NotSafeForMultiplayerMessage(), 30);
                 return;
             }
 
-            GameUI.ShowCameraMessage(RulesetActiveMessage(), WelcomeMessageDurationSeconds);
+            GameUI.ShowCameraMessage(RulesetActiveMessage(), welcomeMessageDurationSeconds);
         }
 
         private static string NotSafeForMultiplayerMessage()
         {
+            Color orange = new Color(1f, 0.499f, 0f);
             return new StringBuilder()
-                .AppendLine("Attention:")
-                .AppendLine("The HouseRules ruleset you selected is not safe for multiplayer games, and was not activated.")
+                .Append(ColorizeString("*** ", orange))
+                .Append(ColorizeString("ATTENTION", Color.red))
+                .AppendLine(ColorizeString(" ***", orange))
+                .AppendLine()
+                .AppendLine(ColorizeString("The HouseRules ruleset you selected is", Color.yellow))
+                .Append(ColorizeString("not safe", Color.cyan))
+                .AppendLine(ColorizeString(" for multiplayer games!", Color.yellow))
+                .AppendLine()
+                .Append(ColorizeString("The ruleset was ", Color.yellow))
+                .Append(ColorizeString("NOT", Color.white))
+                .AppendLine(ColorizeString(" activated!", Color.yellow))
                 .ToString();
         }
 
         private static string RulesetActiveMessage()
         {
+            Color violet = new Color(0.8f, 0f, 0.8f);
+            Color lightblue = new Color(0f, 0.75f, 1f);
+            Color orange = new Color(1f, 0.499f, 0f);
+            Color gold = new Color(1f, 1f, 0.6f);
             var sb = new StringBuilder();
-            sb.AppendLine("Welcome to a game using HouseRules!");
-            sb.AppendLine();
-            sb.AppendLine($"{HR.SelectedRuleset.Name}:");
-            sb.AppendLine(HR.SelectedRuleset.Description);
-            sb.AppendLine();
-            sb.AppendLine("Rules:");
+            sb.AppendLine(ColorizeString("Welcome to a game using", Color.cyan));
+            sb.Append(ColorizeString("H", violet));
+            sb.Append(ColorizeString("o", lightblue));
+            sb.Append(ColorizeString("u", Color.green));
+            sb.Append(ColorizeString("s", Color.yellow));
+            sb.Append(ColorizeString("e", orange));
+            sb.Append(ColorizeString("-", Color.red));
+            sb.Append(ColorizeString("R", orange));
+            sb.Append(ColorizeString("u", Color.yellow));
+            sb.Append(ColorizeString("l", Color.green));
+            sb.Append(ColorizeString("e", lightblue));
+            sb.AppendLine(ColorizeString("s", violet));
 
-            for (var i = 0; i < HR.SelectedRuleset.Rules.Count; i++)
+            if (MotherbrainGlobalVars.IsRunningOnNonVRPlatform)
             {
-                var description = HR.SelectedRuleset.Rules[i].Description;
-                sb.AppendLine($"{i + 1}. {description}");
+                sb.AppendLine();
+                sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Name}:", Color.yellow));
+                sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
+                sb.AppendLine();
+
+                for (var i = 0; i < HR.SelectedRuleset.Rules.Count; i++)
+                {
+                    var description = HR.SelectedRuleset.Rules[i].Description;
+                    sb.AppendLine(ColorizeString($"{i + 1}. {description}", gold));
+                }
+            }
+            else
+            {
+                welcomeMessageDurationSeconds = 10f;
             }
 
+            // Pad lines to raise text higher on PC-Edition screen
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+            sb.AppendLine();
+
             return sb.ToString();
+        }
+
+        private static string ColorizeString(string text, Color color)
+        {
+            return string.Concat(new string[]
+            {
+        "<color=#",
+        ColorUtility.ToHtmlStringRGB(color),
+        ">",
+        text,
+        "</color>",
+            });
         }
     }
 }

@@ -8,7 +8,7 @@
 
     public sealed class EnemyHealthScaledRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Enemy health is scaled";
+        public override string Description => "Enemy health is adjusted";
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 

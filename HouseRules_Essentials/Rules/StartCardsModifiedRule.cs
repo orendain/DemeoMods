@@ -11,7 +11,7 @@
 
     public sealed class StartCardsModifiedRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Hero start cards are modified";
+        public override string Description => "Hero start cards are adjusted";
 
         private static Dictionary<BoardPieceId, List<CardConfig>> _globalHeroStartCards;
         private static bool _isActivated;
