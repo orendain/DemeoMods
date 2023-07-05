@@ -67,7 +67,7 @@
             background.transform.localScale = new Vector3(4.75f, 1, scale);
 
             var header = 3.6f;
-            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules (Demeo Revolutions rebuild)");
+            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules - Revolutions");
             headerText.transform.SetParent(transform, worldPositionStays: false);
             if (numRules > 11)
             {

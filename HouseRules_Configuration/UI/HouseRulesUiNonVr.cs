@@ -49,7 +49,7 @@
             paper.AddComponent<Image>().sprite = _resourceTable.PaperDecorated;
             paper.GetComponent<RectTransform>().sizeDelta = new Vector2(1576, 876);
 
-            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules (Demeo Revolutions rebuild)");
+            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules (Revolutions)");
             headerText.transform.SetParent(transform, worldPositionStays: false);
             headerText.transform.localPosition = new Vector2(0, 310f);
 
