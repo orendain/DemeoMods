@@ -13,9 +13,9 @@
 
     internal static class LifecycleDirector
     {
-        private const float WelcomeMessageDurationSeconds = 10f;
         private const string ModdedRoomPropertyKey = "modded";
 
+        private static float welcomeMessageDurationSeconds = 20f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
@@ -364,7 +364,7 @@
                 return;
             }
 
-            GameUI.ShowCameraMessage(RulesetActiveMessage(), WelcomeMessageDurationSeconds);
+            GameUI.ShowCameraMessage(RulesetActiveMessage(), welcomeMessageDurationSeconds);
         }
 
         private static string NotSafeForMultiplayerMessage()
@@ -390,6 +390,7 @@
             Color violet = new Color(0.8f, 0f, 0.8f);
             Color lightblue = new Color(0f, 0.75f, 1f);
             Color orange = new Color(1f, 0.499f, 0f);
+            Color gold = new Color(1f, 1f, 0.6f);
             var sb = new StringBuilder();
             sb.AppendLine(ColorizeString("Welcome to a game using", Color.cyan));
             sb.Append(ColorizeString("H", violet));
@@ -403,6 +404,24 @@
             sb.Append(ColorizeString("l", Color.green));
             sb.Append(ColorizeString("e", lightblue));
             sb.AppendLine(ColorizeString("s", violet));
+
+            if (MotherbrainGlobalVars.IsRunningOnNonVRPlatform)
+            {
+                sb.AppendLine();
+                sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Name}:", Color.yellow));
+                sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
+                sb.AppendLine();
+
+                for (var i = 0; i < HR.SelectedRuleset.Rules.Count; i++)
+                {
+                    var description = HR.SelectedRuleset.Rules[i].Description;
+                    sb.AppendLine(ColorizeString($"{i + 1}. {description}", gold));
+                }
+            }
+            else
+            {
+                welcomeMessageDurationSeconds = 10f;
+            }
 
             // Pad lines to raise text higher on PC-Edition screen
             sb.AppendLine();
