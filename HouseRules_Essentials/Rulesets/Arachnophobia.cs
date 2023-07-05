@@ -12,6 +12,7 @@
         {
             const string name = "Arachnophobia";
             const string description = "Money Spiders everywhere. On my face and in my hair.";
+            const string longdesc = "";
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 4 } } });
 
@@ -317,6 +318,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 abilityDamageRule,
                 startingCardsRule,
                 abilityAoeRule,

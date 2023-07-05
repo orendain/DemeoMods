@@ -11,6 +11,7 @@
         {
             const string name = "Beat The Clock!";
             const string description = "Ultra health. Ultra card recycling. Only 15 rounds to escape...";
+            const string longdesc = "";
 
             var healthRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -33,6 +34,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 healthRule,
                 recyclingRule,
                 roundLimitRule,

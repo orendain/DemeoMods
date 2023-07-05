@@ -10,6 +10,7 @@
         {
             const string name = "Difficulty: Legendary";
             const string description = "Increased game difficulty for those who want to be a legend.";
+            const string longdesc = "No fountains except 1 on floor 2 and less chests and gold per floor!\n\n50% energy gained for attacks and recycled cards!\n\nEnemies at 220% normal health and they hit 100% harder!";
 
             var levelProperties = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
@@ -32,6 +33,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 cardEnergyAttack,
                 cardEnergyRecycle,
                 enemyScaleAttack,

@@ -94,6 +94,7 @@
             {
                 Name = ruleset.Name,
                 Description = ruleset.Description,
+                Longdesc = ruleset.Longdesc,
                 Rules = ruleEntries,
             };
             var serializedRuleset = JsonConvert.SerializeObject(rulesetConfig);
@@ -142,7 +143,7 @@
             }
 
             ConfigurationMod.Logger.Msg($"Successfully imported ruleset from: {fileName}");
-            return Ruleset.NewInstance(rulesetConfig.Name, rulesetConfig.Description, rules);
+            return Ruleset.NewInstance(rulesetConfig.Name, rulesetConfig.Description, rulesetConfig.Longdesc, rules);
         }
 
         private static (Type RuleType, Type ConfigType) FindRuleAndConfigType(string ruleName)
@@ -236,6 +237,7 @@
         {
             public string Name;
             public string Description;
+            public string Longdesc;
             public List<RuleConfigEntry> Rules;
         }
 

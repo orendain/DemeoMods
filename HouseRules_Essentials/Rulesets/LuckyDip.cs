@@ -12,6 +12,7 @@
         {
             const string name = "LuckyDip";
             const string description = "Life is like a box of chocolates + AOE changes, so stay close to your allies";
+            const string longdesc = "";
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 5 } } });
 
@@ -268,6 +269,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 abilityDamageRule,
                 startingCardsRule,
                 abilityAoeRule,
