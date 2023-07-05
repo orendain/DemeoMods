@@ -73,6 +73,11 @@
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
             // Logger.Msg($"buildIndex {buildIndex} - sceneName {sceneName}");
+            if (buildIndex == 0 || sceneName.Contains("Startup"))
+            {
+                return;
+            }
+
             if (Environments.IsPcEdition())
             {
                 if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
@@ -99,8 +104,6 @@
                 {
                     Logger.Msg("Recognized modded game in VR. Loading UI.");
                     _ = new GameObject("HouseRulesUiGameVr", typeof(HouseRulesUiGameVr));
-
-                    // _ = new GameObject("RevolutionsUiVr", typeof(RevolutionsUiVr));
                 }
             }
         }

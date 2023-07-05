@@ -83,29 +83,34 @@
             sb.AppendLine(ColorizeString($"<i>{HR.SelectedRuleset.Description}</i>", Color.blue));
             sb.AppendLine();
             var ruleset = 1.25f;
+            var drift = 1.25f;
             var rulesetPanel = _elementCreator.CreateNewText(sb.ToString());
             rulesetPanel.transform.SetParent(transform, worldPositionStays: false);
             if (numRules > 40)
             {
-                ruleset = 6.5f;
+                drift = 1.25f - (float)(0.035f * (numRules - 20));
             }
-            else if (numRules > 11)
+            else if (numRules > 20)
             {
-                ruleset = 1.25f + (float)(0.2f * (numRules - 11));
+                drift = 1.25f - (float)(0.045f * (numRules - 20));
+            }
+
+            if (numRules > 11)
+            {
+                ruleset = drift + (float)(0.2f * (numRules - 11));
             }
 
             rulesetPanel.transform.localPosition = new Vector3(0, ruleset, VrElementCreator.TextZShift);
 
             sb.Clear();
             int total = 0;
-            sb.AppendLine();
             if (numRules > 1)
             {
-                sb.AppendLine(ColorizeString($"<========== {numRules} Active Rules ==========>", Color.magenta));
+                sb.AppendLine(ColorizeString($"<========== {numRules} Active Rules ==========>", Color.white));
             }
             else
             {
-                sb.AppendLine(ColorizeString($"<========== 1 Active Rule ==========>", Color.magenta));
+                sb.AppendLine(ColorizeString($"<========== 1 Active Rule ==========>", Color.white));
             }
 
             foreach (var rule in HR.SelectedRuleset.Rules)
@@ -123,30 +128,30 @@
                 }
             }
 
-            var variance = (float)(numRules * .005);
-            var details = (float)((-0.375 + variance) * numRules);
+            var center = -2f + (float)(numRules * .05);
+            var details = center - (float)(0.245 * numRules);
             var detailsPanel = _elementCreator.CreateLeftText(sb.ToString());
             detailsPanel.transform.SetParent(transform, worldPositionStays: false);
-            if (numRules > 40)
-            {
-                details = -12.5f;
-            }
 
             detailsPanel.transform.localPosition = new Vector3(0, details, VrElementCreator.TextZShift);
 
+            sb.Clear();
+            sb.Append(ColorizeString($"v{BuildVersion.Version}", Color.yellow));
             var version = -9.5f;
-            var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
+            var versionText = _elementCreator.CreateNormalText(sb.ToString());
             versionText.transform.SetParent(transform, worldPositionStays: false);
             if (numRules > 11)
             {
-                version = -9.5f - (float)(0.6 * (numRules - 11));
+                version = -9.5f - (float)(0.58 * (numRules - 11));
             }
 
             versionText.transform.localPosition = new Vector3(-7, version, VrElementCreator.TextZShift);
 
             if (ConfigurationMod.IsUpdateAvailable)
             {
-                var updateText = _elementCreator.CreateNormalText("NEW UPDATE AVAILABLE!");
+                sb.Clear();
+                sb.Append(ColorizeString("NEW UPDATE AVAILABLE", Color.green));
+                var updateText = _elementCreator.CreateNormalText(sb.ToString());
                 updateText.transform.SetParent(transform, worldPositionStays: false);
                 updateText.transform.localPosition = new Vector3(5.75f, version, VrElementCreator.TextZShift);
             }
