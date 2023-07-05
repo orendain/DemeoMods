@@ -10,7 +10,7 @@
     public sealed class PieceUseWhenKilledOverriddenRule : Rule,
         IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IMultiplayerSafe
     {
-        public override string Description => "Piece UseWhenKilled lists are overridden";
+        public override string Description => "Piece 'use when killed' abilities are adjusted";
 
         protected override SyncableTrigger ModifiedSyncables =>
             SyncableTrigger.NewPieceModified | SyncableTrigger.StatusEffectDataModified;

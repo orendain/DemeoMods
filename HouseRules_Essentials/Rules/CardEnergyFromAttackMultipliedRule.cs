@@ -7,7 +7,7 @@
 
     public sealed class CardEnergyFromAttackMultipliedRule : Rule, IConfigWritable<float>, IMultiplayerSafe
     {
-        public override string Description => "CardConfig energy from attack is multiplied";
+        public override string Description => "Card energy (mana) given from attacks is adjusted";
 
         private readonly float _multiplier;
         private readonly float _originalValue;

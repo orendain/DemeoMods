@@ -13,7 +13,7 @@
     public sealed class CardChestAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Card additions from chests are overridden";
+        public override string Description => "Card additions from chests are adjusted";
 
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalChestCards;
         private static bool _isActivated;

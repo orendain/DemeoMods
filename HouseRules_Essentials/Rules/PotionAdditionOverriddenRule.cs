@@ -13,7 +13,7 @@
     public sealed class PotionAdditionOverriddenRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>,
         IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Potion additions are overridden";
+        public override string Description => "Potion Rack loot is adjusted";
 
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalPotionCards;
         private static bool _isActivated;

@@ -9,7 +9,7 @@
 
     public sealed class AbilityDamageOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<int>>>, IMultiplayerSafe
     {
-        public override string Description => "Ability damage values are overridden";
+        public override string Description => "Ability damage is adjusted";
 
         private readonly Dictionary<AbilityKey, List<int>> _adjustments;
         private Dictionary<AbilityKey, List<int>> _originals;

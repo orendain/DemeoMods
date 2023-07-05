@@ -11,7 +11,7 @@
     public sealed class CardClassRestrictionOverriddenRule : Rule,
         IConfigWritable<Dictionary<AbilityKey, BoardPieceId>>, IMultiplayerSafe
     {
-        public override string Description => "Card class restrictions are overridden";
+        public override string Description => "Card class restrictions are adjusted";
 
         private readonly Dictionary<AbilityKey, BoardPieceId> _adjustments;
         private Dictionary<AbilityKey, BoardPieceId> _originals;

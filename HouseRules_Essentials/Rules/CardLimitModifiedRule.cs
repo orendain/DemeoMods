@@ -7,7 +7,7 @@
 
     public sealed class CardLimitModifiedRule : Rule, IConfigWritable<int>, IPatchable
     {
-        public override string Description => "Card limit is modified";
+        public override string Description => "Hero starting card limit is adjusted (Skirmish Only)";
 
         private static int _globalLimit;
         private static bool _isActivated;

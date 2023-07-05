@@ -12,7 +12,7 @@
 
     public sealed class TurnOrderOverriddenRule : Rule, IConfigWritable<TurnOrderOverriddenRule.Scores>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Turn order is overridden.";
+        public override string Description => "Hero turn order is adjusted";
 
         private static Scores _globalConfig;
         private static bool _isActivated;

@@ -12,7 +12,7 @@
     public sealed class LevelExitLockedUntilAllEnemiesDefeatedRule : Rule, IConfigWritable<bool>, IPatchable,
         IMultiplayerSafe
     {
-        public override string Description => "Level exit stays locked until all enemies are defeated.";
+        public override string Description => "Level exit stays locked until all enemies are defeated";
 
         private static bool _isActivated;
 

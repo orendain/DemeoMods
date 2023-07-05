@@ -11,7 +11,7 @@
     public sealed class RegainAbilityIfMaxxedOutOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, bool>>,
         IMultiplayerSafe
     {
-        public override string Description => "RegainAbilityIfMaxxedOut settings are overridden";
+        public override string Description => "Regain ability card if stat maxxed out setting adjusted";
 
         private readonly Dictionary<AbilityKey, bool> _adjustments;
         private Dictionary<AbilityKey, bool> _originals;

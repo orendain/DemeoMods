@@ -10,7 +10,7 @@
     public sealed class LampTypesOverriddenRule : Rule, IConfigWritable<Dictionary<int, List<BoardPieceId>>>,
         IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Lamp types are overridden.";
+        public override string Description => "Lamp spawn types and variety are adjusted";
 
         private static Dictionary<int, List<BoardPieceId>> _globalAdjustments;
         private static bool _isActivated;

@@ -14,7 +14,7 @@
 
     public sealed class MonsterDeckOverriddenRule : Rule, IConfigWritable<MonsterDeckOverriddenRule.DeckConfig>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "MonsterDeck creation is overriden";
+        public override string Description => "Enemy spawn randomness is adjusted";
 
         private static DeckConfig _globalAdjustments;
         private static bool _isActivated;

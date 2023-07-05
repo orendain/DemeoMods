@@ -1,6 +1,7 @@
 ﻿namespace Common.UI.Element
 {
     using System;
+    using System.Text;
     using Boardgame.NonVR.Ui;
     using TMPro;
     using UnityEngine;
@@ -49,6 +50,16 @@
             return NonVrResourceTable.IsReady();
         }
 
+        public GameObject CreateLeftText(string text)
+        {
+            return CreateListText(text);
+        }
+
+        public GameObject CreateNewText(string text)
+        {
+            return CreateMyText(text);
+        }
+
         public GameObject CreateNormalText(string text)
         {
             return CreateText(text, ColorBrown, fontSize: NormalFontSize);
@@ -75,6 +86,42 @@
             textComponent.fontSize = fontSize;
             textComponent.fontSizeMax = fontSize;
             textComponent.fontSizeMin = 1;
+            textComponent.text = text;
+
+            container.GetComponent<Graphic>().raycastTarget = false;
+
+            return container;
+        }
+
+        public GameObject CreateMyText(string text)
+        {
+            var container = new GameObject("Text");
+
+            var textComponent = container.AddComponent<TextMeshPro>();
+            textComponent.alignment = TextAlignmentOptions.Center;
+            textComponent.enableAutoSizing = true;
+            textComponent.fontSize = NormalFontSize;
+            textComponent.fontSizeMax = NormalFontSize;
+            textComponent.fontSizeMin = 1;
+            textComponent.fontStyle = FontStyles.Normal;
+            textComponent.text = text;
+
+            container.GetComponent<Graphic>().raycastTarget = false;
+
+            return container;
+        }
+
+        public GameObject CreateListText(string text)
+        {
+            var container = new GameObject("Text");
+
+            var textComponent = container.AddComponent<TextMeshPro>();
+            textComponent.alignment = TextAlignmentOptions.Left;
+            textComponent.enableAutoSizing = false;
+            textComponent.fontSize = 6;
+            textComponent.fontSizeMax = 6;
+            textComponent.fontSizeMin = 5;
+            textComponent.fontStyle = FontStyles.Normal;
             textComponent.text = text;
 
             container.GetComponent<Graphic>().raycastTarget = false;

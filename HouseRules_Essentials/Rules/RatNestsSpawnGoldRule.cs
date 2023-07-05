@@ -8,7 +8,7 @@
 
     public sealed class RatNestsSpawnGoldRule : Rule, IConfigWritable<int>
     {
-        public override string Description => "Rat nests spawn gold";
+        public override string Description => "Rat nests spawn gold (Skirmish Only)";
 
         private readonly int _pileCount;
         private int _originalSpawnAmount;

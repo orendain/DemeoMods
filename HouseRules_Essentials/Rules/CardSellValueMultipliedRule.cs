@@ -7,7 +7,7 @@
 
     public sealed class CardSellValueMultipliedRule : Rule, IConfigWritable<float>, IPatchable
     {
-        public override string Description => "CardConfig sell values are multiplied";
+        public override string Description => "Card sell values are adjusted (Skirmish Only)";
 
         private static float _globalMultiplier;
         private static bool _isActivated;
