@@ -50,18 +50,34 @@
 
             gameObject.AddComponent<FaceLocalPlayer>();
 
-            var numRules = HR.SelectedRuleset.Rules.Count;
+            int numRules = 11;
             int textLength = HR.SelectedRuleset.Longdesc.Length;
             int returnCount = HR.SelectedRuleset.Longdesc.Count(f => f == '\n');
 
-            if (textLength > 650)
+            if (textLength < 1)
             {
-                numRules += (textLength - 650) / 60;
+                numRules = HR.SelectedRuleset.Rules.Count;
             }
-
-            if (returnCount > 0)
+            else if (textLength > 650)
             {
-                numRules += returnCount / 2;
+                numRules += 1 + ((textLength - 650) / 65);
+                ConfigurationMod.Logger.Msg($"{numRules - 11} from text of {textLength}");
+
+                if (returnCount > 0)
+                {
+                    numRules += 2 + (returnCount / 2);
+                    ConfigurationMod.Logger.Msg($"{returnCount} from returns");
+                }
+            }
+            else if (returnCount > 10)
+            {
+                numRules += returnCount - 10;
+                ConfigurationMod.Logger.Msg($"{returnCount - 10} from returns and {textLength / 65} from text of {textLength}");
+            }
+            else if (returnCount + (textLength / (25 * returnCount)) > 10)
+            {
+                numRules += returnCount + (textLength / (25 * returnCount)) - 8;
+                ConfigurationMod.Logger.Msg($"{numRules - 11} from returns and text combined");
             }
 
             var background = new GameObject("Background");
