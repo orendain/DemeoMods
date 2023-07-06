@@ -12,6 +12,7 @@
         {
             const string name = "Hunter's Paradise";
             const string description = "Pets, pets, pets! And hunter's mark.";
+            const string longdesc = "";
 
             var startCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -89,6 +90,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 startingCardsRule,
                 statusEffectsRule,
                 noGuardianArmorRule,

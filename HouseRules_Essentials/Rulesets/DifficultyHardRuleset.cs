@@ -10,6 +10,7 @@
         {
             const string name = "Difficulty: Hard";
             const string description = "Increased game difficulty for a greater challenge.";
+            const string longdesc = "Less fountains on floor 2 and less chests and gold per floor!\n\n80% energy gained for attacks and recycled cards!\n\nEnemies at 180% normal health and they hit 50% harder!";
 
             var cardEnergyAttack = new CardEnergyFromAttackMultipliedRule(0.8f);
             var cardEnergyRecycle = new CardEnergyFromRecyclingMultipliedRule(0.8f);
@@ -32,6 +33,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 cardEnergyAttack,
                 cardEnergyRecycle,
                 enemyScaleAttack,

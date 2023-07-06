@@ -11,6 +11,7 @@
         {
             const string name = "Hardcore";
             const string description = "You only get one life. No knockdowns. Can your team survive?";
+            const string longdesc = "";
 
             var pieceDownedCountRule = new PieceDownedCountAdjustedRule(new Dictionary<BoardPieceId, int>
             {
@@ -26,6 +27,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 pieceDownedCountRule);
         }
     }

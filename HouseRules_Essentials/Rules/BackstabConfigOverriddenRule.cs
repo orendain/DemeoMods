@@ -10,7 +10,7 @@
     public sealed class BackstabConfigOverriddenRule : Rule, IConfigWritable<List<BoardPieceId>>, IPatchable,
         IMultiplayerSafe
     {
-        public override string Description => "Hero ability to backstab is adjusted";
+        public override string Description => "Piece ability to backstab is adjusted";
 
         private static List<BoardPieceId> _globalAdjustments;
         private static bool _isActivated;

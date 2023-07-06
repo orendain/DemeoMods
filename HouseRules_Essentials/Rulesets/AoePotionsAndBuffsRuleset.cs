@@ -11,6 +11,7 @@
         {
             const string name = "3x3 Potions and Buffs";
             const string description = "Heal, Strength, Speed, Adamant, Vitality, Damage Resist, Focus, One More Thing, Antitoxin, Repair Armor and Bard buffs are 3x3 AOE.";
+            const string longdesc = "";
 
             var abilityAoeRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
@@ -39,6 +40,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 abilityAoeRule,
                 abilityMaxedRule);
         }

@@ -13,6 +13,7 @@
         {
             const string name = "It's A Trap!";
             const string description = "Everything you need to build devious traps for your enemies, but try not to kill your friends.";
+            const string longdesc = "";
 
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -361,6 +362,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 abilityActionCostRule,
                 allowedCardsRule,
                 aoePotions,

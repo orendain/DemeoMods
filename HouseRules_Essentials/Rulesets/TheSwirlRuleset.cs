@@ -11,6 +11,7 @@
         {
             const string name = "The Swirl";
             const string description = "Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.";
+            const string longdesc = "";
 
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -109,6 +110,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 startingCardsRule,
                 allowedCardsRule,
                 piecesAdjustedRule,

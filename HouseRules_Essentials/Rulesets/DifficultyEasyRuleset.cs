@@ -10,6 +10,7 @@
         {
             const string name = "Difficulty: Easy";
             const string description = "Decreased game difficulty for a more casual playstyle.";
+            const string longdesc = "More fountains and more gold per floor!\n\n150% energy gained for attacks and recycled cards!\n\nEnemies at 80% normal health and they can't open doors or respawn!";
 
             var cardEnergyAttack = new CardEnergyFromAttackMultipliedRule(1.5f);
             var cardEnergyRecycle = new CardEnergyFromRecyclingMultipliedRule(1.5f);
@@ -31,6 +32,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 cardEnergyAttack,
                 cardEnergyRecycle,
                 enemyScaleHealth,

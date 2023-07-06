@@ -9,10 +9,12 @@ namespace HouseRules.Essentials.Rulesets
         {
             const string name = "No Surprises";
             const string description = "No surprises in the dark or coming through doors.";
+            const string longdesc = "";
 
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 new EnemyDoorOpeningDisabledRule(true),
                 new EnemyRespawnDisabledRule(true));
         }
