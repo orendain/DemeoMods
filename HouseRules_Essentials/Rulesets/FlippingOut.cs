@@ -11,6 +11,7 @@
         {
             const string name = "Flipping Out!";
             const string description = "Coin Flips ONLY! BIG ENEMIES! Heads... or tails?";
+            const string longdesc = "";
 
             var entranceDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
@@ -291,6 +292,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 enemyRespawnDisabledRule,
                 enemyHealthScaledRule,
                 levelPropertiesRule,

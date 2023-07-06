@@ -11,6 +11,7 @@ namespace HouseRules.Essentials.Rulesets
         {
             const string name = "Potion Commotion";
             const string description = "Nothing but potions in the cards you get given. Enemies do not respawn.";
+            const string longdesc = "";
 
             var allowedCards = new List<AbilityKey>
             {
@@ -59,6 +60,7 @@ namespace HouseRules.Essentials.Rulesets
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 levelPropertiesRule,
                 allowedCardsRule,
                 abilityActionCostRule,

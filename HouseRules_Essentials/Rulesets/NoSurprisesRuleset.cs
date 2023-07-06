@@ -10,6 +10,7 @@ namespace HouseRules.Essentials.Rulesets
         {
             const string name = "No Surprises";
             const string description = "No surprises in the dark or coming through doors.";
+            const string longdesc = "";
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
@@ -21,6 +22,7 @@ namespace HouseRules.Essentials.Rulesets
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 levelPropertiesRule,
                 new EnemyDoorOpeningDisabledRule(true),
                 new EnemyRespawnDisabledRule(true));

@@ -17,7 +17,7 @@
     {
         private const string ModdedRoomPropertyKey = "modded";
 
-        private static float welcomeMessageDurationSeconds = 10f;
+        private static float welcomeMessageDurationSeconds = 30f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
@@ -567,7 +567,19 @@
                 sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Name}:", Color.yellow));
                 sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
                 sb.AppendLine();
-                sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Rules.Count} Rules loaded!", gold));
+                if (HR.SelectedRuleset.Longdesc != string.Empty)
+                {
+                    sb.AppendLine(ColorizeString($"<========== Ruleset Creator's Description ==========>", orange));
+                    sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Longdesc}", gold));
+                }
+                else
+                {
+                    sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Rules.Count} Rules loaded!", gold));
+                }
+            }
+            else
+            {
+                welcomeMessageDurationSeconds = 10f;
             }
 
             // Pad lines to raise text higher on PC-Edition screen

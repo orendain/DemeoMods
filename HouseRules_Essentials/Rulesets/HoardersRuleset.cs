@@ -10,6 +10,7 @@ namespace HouseRules.Essentials.Rulesets
         {
             const string name = "Hoarders";
             const string description = "A large hand size but you may not get them fast enough. (SKIRMISH ONLY)";
+            const string longdesc = "";
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
                 {
@@ -21,6 +22,7 @@ namespace HouseRules.Essentials.Rulesets
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 levelPropertiesRule,
                 new CardEnergyFromAttackMultipliedRule(0.9f),
                 new CardEnergyFromRecyclingMultipliedRule(1.5f),

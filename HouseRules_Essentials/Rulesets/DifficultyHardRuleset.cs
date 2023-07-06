@@ -10,6 +10,7 @@
         {
             const string name = "Difficulty: Hard";
             const string description = "Increased game difficulty for a greater challenge.";
+            const string longdesc = "";
 
             var cardEnergyAttack = new CardEnergyFromAttackMultipliedRule(0.8f);
             var cardEnergyRecycle = new CardEnergyFromRecyclingMultipliedRule(0.8f);
@@ -35,6 +36,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 cardEnergyAttack,
                 cardEnergyRecycle,
                 enemyScaleAttack,

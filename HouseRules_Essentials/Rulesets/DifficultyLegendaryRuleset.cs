@@ -10,6 +10,7 @@
         {
             const string name = "Difficulty: Legendary";
             const string description = "Increased game difficulty for those who want to be a legend.";
+            const string longdesc = "";
 
             var levelProperties = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
@@ -32,6 +33,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 cardEnergyAttack,
                 cardEnergyRecycle,
                 enemyScaleAttack,

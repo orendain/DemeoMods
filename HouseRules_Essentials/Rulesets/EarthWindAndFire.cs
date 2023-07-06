@@ -11,6 +11,7 @@
         {
             const string name = "Earth Wind & Fire";
             const string description = "Not the band. Let's get Elemental";
+            const string longdesc = "";
 
             var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 5 } } });
 
@@ -299,6 +300,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 levelPropertiesRule,
                 abilityDamageRule,
                 startingCardsRule,

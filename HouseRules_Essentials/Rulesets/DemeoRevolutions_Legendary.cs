@@ -13,6 +13,7 @@
         {
             const string name = "Demeo Revolutions (LEGENDARY)";
             const string description = "Everything that has a beginning has a LEGENDARY ending.";
+            const string longdesc = "";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -1780,6 +1781,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 tickRule,
                 revolutionsRule,
                 grappleUnhooked,

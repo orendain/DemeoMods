@@ -12,6 +12,7 @@
         {
             const string name = "Demeo Reloaded";
             const string description = "The fight for the future begins...";
+            const string longdesc = "";
 
             var spawnCategoriesRule = new SpawnCategoryOverriddenRule(new Dictionary<BoardPieceId, List<int>>
             {
@@ -703,6 +704,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 spawnCategoriesRule,
                 startingCardsRule,
                 piecesAdjustedRule,

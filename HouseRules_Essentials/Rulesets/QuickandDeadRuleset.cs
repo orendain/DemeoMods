@@ -10,6 +10,7 @@ namespace HouseRules.Essentials.Rulesets
         {
             const string name = "Quick and the Dead";
             const string description = "A mode with a small hand but fast turnaround time on cards means you need to not hesitate.";
+            const string longdesc = "";
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
                 {
@@ -21,6 +22,7 @@ namespace HouseRules.Essentials.Rulesets
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 levelPropertiesRule,
                 new CardEnergyFromAttackMultipliedRule(1.5f),
                 new CardEnergyFromRecyclingMultipliedRule(1.5f),

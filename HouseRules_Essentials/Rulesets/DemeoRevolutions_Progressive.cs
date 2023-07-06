@@ -13,6 +13,7 @@
         {
             const string name = "Demeo Revolutions (PROGRESSIVE)";
             const string description = "Everything that has a beginning has a PROGRESSIVE ending.";
+            const string longdesc = "";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -1775,6 +1776,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 tickRule,
                 revolutionsRule,
                 pieceProgress,

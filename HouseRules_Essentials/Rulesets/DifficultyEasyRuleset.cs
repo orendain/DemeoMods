@@ -10,6 +10,7 @@
         {
             const string name = "Difficulty: Easy";
             const string description = "Decreased game difficulty for a more casual playstyle.";
+            const string longdesc = "";
 
             var cardEnergyAttack = new CardEnergyFromAttackMultipliedRule(1.5f);
             var cardEnergyRecycle = new CardEnergyFromRecyclingMultipliedRule(1.5f);
@@ -34,6 +35,7 @@
             return Ruleset.NewInstance(
                 name,
                 description,
+                longdesc,
                 cardEnergyAttack,
                 cardEnergyRecycle,
                 enemyScaleHealth,

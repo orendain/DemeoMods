@@ -50,8 +50,21 @@
 
             gameObject.AddComponent<FaceLocalPlayer>();
 
-            var background = new GameObject("Background");
             var numRules = HR.SelectedRuleset.Rules.Count;
+            int textLength = HR.SelectedRuleset.Longdesc.Length;
+            int returnCount = HR.SelectedRuleset.Longdesc.Count(f => f == '\n');
+
+            if (textLength > 650)
+            {
+                numRules += (textLength - 650) / 60;
+            }
+
+            if (returnCount > 0)
+            {
+                numRules += returnCount / 2;
+            }
+
+            var background = new GameObject("Background");
             var scale = 1.5f;
             background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
             background.AddComponent<MeshRenderer>().material = _resourceTable.MenuMaterial;
@@ -104,28 +117,36 @@
             rulesetPanel.transform.localPosition = new Vector3(0, ruleset, VrElementCreator.TextZShift);
 
             sb.Clear();
-            int total = 0;
-            if (numRules > 1)
+            if (HR.SelectedRuleset.Longdesc != string.Empty)
             {
-                sb.AppendLine(ColorizeString($"<========== {numRules} Active Rules ==========>", Color.white));
+                sb.AppendLine(ColorizeString($"<========== Ruleset Creator's Description ==========>", Color.white));
+                sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Longdesc}", Color.black));
             }
             else
             {
-                sb.AppendLine(ColorizeString($"<========== 1 Active Rule ==========>", Color.white));
-            }
-
-            foreach (var rule in HR.SelectedRuleset.Rules)
-            {
-                try
+                int total = 0;
+                if (numRules > 1)
                 {
-                    var description = HR.SelectedRuleset.Rules[total].Description;
-                    sb.AppendLine(ColorizeString($"- {description}", Color.black));
-                    total++;
+                    sb.AppendLine(ColorizeString($"<========== {numRules} Active Rules ==========>", Color.white));
                 }
-                catch (Exception e)
+                else
                 {
-                    // TODO(orendain): Consider rolling back or disable rule.
-                    ConfigurationMod.Logger.Warning($"Failed to successfully call on rule [{rule.GetType()}]: {e}");
+                    sb.AppendLine(ColorizeString($"<========== 1 Active Rule ==========>", Color.white));
+                }
+
+                foreach (var rule in HR.SelectedRuleset.Rules)
+                {
+                    try
+                    {
+                        var description = HR.SelectedRuleset.Rules[total].Description;
+                        sb.AppendLine(ColorizeString($"- {description}", Color.black));
+                        total++;
+                    }
+                    catch (Exception e)
+                    {
+                        // TODO(orendain): Consider rolling back or disable rule.
+                        ConfigurationMod.Logger.Warning($"Failed to successfully call on rule [{rule.GetType()}]: {e}");
+                    }
                 }
             }
 
