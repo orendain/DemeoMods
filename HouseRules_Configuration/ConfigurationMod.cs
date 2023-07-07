@@ -66,6 +66,22 @@
             }
 
             UnityEngine.Object.Destroy(transformScreenToRemove.gameObject);
+
+            Transform transformScreenToRemove2 = canvasObject.transform.Find("HouseRulesUiGameVr2");
+            if (transformScreenToRemove == null)
+            {
+                return;
+            }
+
+            UnityEngine.Object.Destroy(transformScreenToRemove2.gameObject);
+
+            Transform transformScreenToRemove3 = canvasObject.transform.Find("HouseRulesUiGameVr3");
+            if (transformScreenToRemove == null)
+            {
+                return;
+            }
+
+            UnityEngine.Object.Destroy(transformScreenToRemove3.gameObject);
         }
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
@@ -102,6 +118,18 @@
                 {
                     Logger.Msg("Recognized modded game in VR. Loading UI.");
                     _ = new GameObject("HouseRulesUiGameVr", typeof(HouseRulesUiGameVr));
+                }
+
+                if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+                {
+                    Logger.Msg("Recognized Revolutions game in VR. Loading UI.");
+                    _ = new GameObject("HouseRulesUiGameVr2", typeof(HouseRulesUiGameVr2));
+                }
+
+                if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
+                {
+                    Logger.Msg("Recognized PROGRESSIVE game in VR. Loading UI.");
+                    _ = new GameObject("HouseRulesUiGameVr3", typeof(HouseRulesUiGameVr3));
                 }
             }
         }

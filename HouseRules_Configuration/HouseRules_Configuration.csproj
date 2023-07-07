@@ -78,6 +78,8 @@
     </Compile>
     <Compile Include="RevolutionsChecker.cs" />
     <Compile Include="UI\HouseRulesUiGameVr.cs" />
+    <Compile Include="UI\HouseRulesUiGameVr2.cs" />
+    <Compile Include="UI\HouseRulesUiGameVr3.cs" />
     <Compile Include="UI\HouseRulesUiHangouts.cs" />
     <Compile Include="UI\HouseRulesUiNonVr.cs" />
     <Compile Include="UI\HouseRulesUiVr.cs" />

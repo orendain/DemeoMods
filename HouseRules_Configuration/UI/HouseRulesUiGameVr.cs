@@ -46,11 +46,11 @@
         private void Initialize()
         {
             transform.SetParent(_anchor, worldPositionStays: true);
-            transform.position = new Vector3(35.6f, 36.4f, -32.2f);
+            transform.position = new Vector3(40.6f, 41.4f, -32.2f);
 
             gameObject.AddComponent<FaceLocalPlayer>();
 
-            int numRules = 11;
+            int numRules = 13;
             int textLength = HR.SelectedRuleset.Longdesc.Length;
             int returnCount = HR.SelectedRuleset.Longdesc.Count(f => f == '\n');
 
@@ -65,7 +65,7 @@
 
                 if (returnCount > 0)
                 {
-                    numRules += 2 + (returnCount / 2);
+                    numRules += returnCount / 2;
                     ConfigurationMod.Logger.Msg($"{returnCount} from returns");
                 }
             }
@@ -76,7 +76,7 @@
             }
             else if (returnCount + (textLength / (25 * returnCount)) > 10)
             {
-                numRules += returnCount + (textLength / (25 * returnCount)) - 8;
+                numRules += returnCount + (textLength / (25 * returnCount)) - 10;
                 ConfigurationMod.Logger.Msg($"{numRules - 11} from returns and text combined");
             }
 
@@ -135,7 +135,7 @@
             sb.Clear();
             if (HR.SelectedRuleset.Longdesc != string.Empty)
             {
-                sb.AppendLine(ColorizeString($"<========== Ruleset Creator's Description ==========>", Color.white));
+                sb.AppendLine(ColorizeString("<========== Ruleset Creator's Description ==========>", Color.white));
                 sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Longdesc}", Color.black));
             }
             else
@@ -147,7 +147,7 @@
                 }
                 else
                 {
-                    sb.AppendLine(ColorizeString($"<========== 1 Active Rule ==========>", Color.white));
+                    sb.AppendLine(ColorizeString("<========== 1 Active Rule ==========>", Color.white));
                 }
 
                 foreach (var rule in HR.SelectedRuleset.Rules)

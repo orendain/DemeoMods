@@ -64,7 +64,7 @@
                 source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                 if (source.boardPieceId == BoardPieceId.HeroBard)
                 {
-                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 2))
+                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && (source.GetStatMax(Stats.Type.CritChance) > 2 || currentAP < 1)))
                     {
                         if (source.HasEffectState(EffectStateType.Fearless))
                         {
@@ -93,7 +93,14 @@
                     {
                         if (myArmor < 9)
                         {
-                            source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 2);
+                            if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 2))
+                            {
+                                source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 2);
+                            }
+                            else
+                            {
+                                source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 1);
+                            }
                         }
                         else if (myArmor == 9)
                         {
@@ -116,33 +123,36 @@
                 }
                 else if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge))
                 {
-                    Inventory.Item value1;
-                    bool hasPower1 = false;
-                    for (int i = 0; i < source.inventory.Items.Count; i++)
+                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 2))
                     {
-                        value1 = source.inventory.Items[i];
-                        if (value1.abilityKey == AbilityKey.WaterBottle)
+                        Inventory.Item value1;
+                        bool hasPower1 = false;
+                        for (int i = 0; i < source.inventory.Items.Count; i++)
                         {
-                            hasPower1 = true;
-                            if (value1.IsReplenishing)
+                            value1 = source.inventory.Items[i];
+                            if (value1.abilityKey == AbilityKey.WaterBottle)
                             {
-                                value1.flags &= (Inventory.ItemFlag)(-3);
-                                source.inventory.Items[i] = value1;
-                                source.AddGold(0);
+                                hasPower1 = true;
+                                if (value1.IsReplenishing)
+                                {
+                                    value1.flags &= (Inventory.ItemFlag)(-3);
+                                    source.inventory.Items[i] = value1;
+                                    source.AddGold(0);
+                                }
+
+                                break;
                             }
-
-                            break;
                         }
-                    }
 
-                    if (!hasPower1)
-                    {
-                        source.TryAddAbilityToInventory(AbilityKey.WaterBottle, showTooltip: true, isReplenishable: true);
-                        return;
-                    }
-                    else
-                    {
-                        return;
+                        if (!hasPower1)
+                        {
+                            source.TryAddAbilityToInventory(AbilityKey.WaterBottle, showTooltip: true, isReplenishable: true);
+                            return;
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
                 }
 
