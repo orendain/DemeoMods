@@ -63,7 +63,7 @@
                     return;
                 }
 
-                range = Random.Range(1.2f, 1.4f);
+                range = Random.Range(1.3f, 1.5f);
             }
             else if (ruleSet.Contains("(HARD"))
             {
@@ -93,15 +93,15 @@
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
-                    range = Random.Range(1.0f, 1.2f);
+                    range = Random.Range(1.0f, 1.3f);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
                 {
-                    range = Random.Range(1.2f, 1.4f);
+                    range = Random.Range(1.3f, 1.6f);
                 }
                 else
                 {
-                    range = Random.Range(1.4f, 1.6f);
+                    range = Random.Range(1.6f, 1.9f);
                 }
             }
             else if (ruleSet.Contains("Demeo Revolutions"))

@@ -687,7 +687,7 @@
             if (rev_progr)
             {
                 int level = piece.GetStatMax(Stats.Type.CritChance);
-                if (level > 7)
+                if (level > 9)
                 {
                     piece.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
