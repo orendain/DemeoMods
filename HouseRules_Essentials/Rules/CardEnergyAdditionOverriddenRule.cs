@@ -18,6 +18,7 @@
 
         private static Dictionary<BoardPieceId, List<AbilityKey>> _globalenergyCards;
         private static bool _isActivated;
+        private static bool _dropchest;
         private static int _numEnergy;
         private readonly Dictionary<BoardPieceId, List<AbilityKey>> _energyCards;
 
@@ -37,6 +38,7 @@
         protected override void OnDeactivate(GameContext gameContext)
         {
             _numEnergy = 0;
+            _dropchest = false;
             _isActivated = false;
         }
 
@@ -303,6 +305,11 @@
                         }
 
                         int randAbil = RandomProvider.GetThreadRandom().Next(5);
+                        if (randAbil == 4 && _dropchest)
+                        {
+                            randAbil = RandomProvider.GetThreadRandom().Next(4);
+                        }
+
                         if (randAbil == 0)
                         {
                             Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
@@ -330,7 +337,7 @@
                             Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                             piece.inventory.Items.Add(new Inventory.Item
                             {
-                                abilityKey = AbilityKey.DropChest,
+                                abilityKey = AbilityKey.DeathFlurry,
                                 flags = (Inventory.ItemFlag)1,
                                 originalOwner = -1,
                                 replenishCooldown = 6,
@@ -349,10 +356,11 @@
                         }
                         else if (randAbil == 4)
                         {
+                            _dropchest = true;
                             Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                             piece.inventory.Items.Add(new Inventory.Item
                             {
-                                abilityKey = AbilityKey.DeathFlurry,
+                                abilityKey = AbilityKey.DropChest,
                                 flags = (Inventory.ItemFlag)1,
                                 originalOwner = -1,
                                 replenishCooldown = 6,

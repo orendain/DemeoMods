@@ -1167,7 +1167,6 @@
                     BoardPieceId.HeroBarbarian, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1181,7 +1180,6 @@
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1195,7 +1193,6 @@
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1209,7 +1206,6 @@
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1223,7 +1219,6 @@
                     BoardPieceId.HeroRogue, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1237,7 +1232,6 @@
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1251,7 +1245,6 @@
                     BoardPieceId.HeroWarlock, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,

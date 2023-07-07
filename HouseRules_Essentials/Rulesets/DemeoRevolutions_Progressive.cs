@@ -13,7 +13,7 @@
         {
             const string name = "Demeo Revolutions (PROGRESSIVE)";
             const string description = "Everything that has a beginning has a PROGRESSIVE ending.";
-            const string longdesc = "You will NOT start with most of the normal Demeo Revolutions abilities and perks. Instead, you will gain them as you LEVEL UP by filling the card mana meter. You start with 1 knockdown instead of 3. Gaining a level heals the party for 2 (if hurt) and will revive downed party members. You will still gain cards when filling the card meter. Discarding cards will only give 20% of the amount indicated (to avoid exploiting levels). If you die and return to pick another character you will start at level 1 again. Party members can see their current levels indicated by a new permanent buff over their heads. Enemy difficulty increases on each new floor.\n\nLevel 1 - Critical hits on your FINAL action function as in normal Demeo Revolutions except the Guardian only gains 1 Action Point instead of 2 (until level 3)\n\nLevel 2 - Gain 1 permanent replenishable ability. Pull, Stealth, Arrow, Zap, Lightning Bolt, Courage Shanty, Feral Charge, and Grapple now cost 0 Action Points\n\nLevel 3 - Gain 1 health and critical hits restore your 0 Action Cost replenishables and/or Action Points (depending on class) as in normal Demeo Revolutions\n\nLevel 4 - Gain 1 knockdown and critical hits also earns you 30 gold OR heal you for 1 if you're on the last floor\n\nLevel 5 - Gain 1 bonus & max bonus to a stat (Strength or Magic depending on class)\n\nLevel 6 - Gain 2 health\n\nLevel 7 - Gain 2 bonus & max bonus to Swiftness\n\nLevel 8 - Gain 1 knockdown and 1 extra Action Point per turn\n\nLevel 9 - Gain 2 health\n\nLevel 10 - Gain 2 bonus & max bonus to a stat (Strength or Magic depending on class) AND a new permanent powerful ability that can only be used once every 6 turns";
+            const string longdesc = "You will NOT start with most of the normal Demeo Revolutions abilities and perks. Instead, you will gain them as you LEVEL UP by filling the card mana meter. You start with 1 knockdown instead of 3. Gaining a level heals the party for 2 (if hurt) and will revive downed party members. You will still gain cards when filling the card meter. Discarding cards will only give 20% of the amount indicated (to avoid exploiting levels). If you die and return to pick another character you will start at level 1 again. Party members can see their current levels indicated by a new permanent buff over their heads. Enemy difficulty increases on each new floor.\n\nLevel 1 - Critical hits on your FINAL action function as in normal Demeo Revolutions except the Guardian only gains 1 Action Point instead of 2 (until level 3)\n\nLevel 2 - Gain 1 permanent replenishable ability. Pull, Stealth, Arrow, Zap, Lightning Bolt, Courage Shanty, Feral Charge, and Grapple now cost 0 Action Points\n\nLevel 3 - Gain 1 max health and critical hits restore your 0 Action Cost replenishables and/or Action Points (depending on class) as in normal Demeo Revolutions\n\nLevel 4 - Gain 1 knockdown and critical hits also earns you 30 gold OR heal you for 1 if you're on the last floor\n\nLevel 5 - Gain 1 bonus & max bonus to a stat (Strength or Magic depending on class)\n\nLevel 6 - Gain 2 max health\n\nLevel 7 - Gain 2 bonus & max bonus to Swiftness\n\nLevel 8 - Gain 1 knockdown and 1 extra Action Point per turn\n\nLevel 9 - Gain 3 max health\n\nLevel 10 - Gain 2 bonus & max bonus to a stat (Strength or Magic depending on class) AND a new permanent powerful ability that can only be used once every 6 turns";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -1163,7 +1163,6 @@
                     BoardPieceId.HeroBarbarian, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1177,7 +1176,6 @@
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1191,7 +1189,6 @@
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1205,8 +1202,7 @@
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
-                        AbilityKey.InvisibilityPotion,
+                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ExtraActionPotion,
@@ -1219,7 +1215,6 @@
                     BoardPieceId.HeroRogue, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1233,7 +1228,6 @@
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
@@ -1247,7 +1241,6 @@
                     BoardPieceId.HeroWarlock, new List<AbilityKey>
                     {
                         AbilityKey.DamageResistPotion,
-                        AbilityKey.Rejuvenation,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
