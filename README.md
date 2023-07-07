@@ -168,11 +168,11 @@ You will **NOT** ***start*** with most of the normal [Demeo Revolutions abilitie
 
 ***`Level 7`*** - Gain 2 bonus & max bonus to Swiftness
 
-***`Level 8`*** - Gain 1 knockdown and 1 extra Action Point per turn
+***`Level 8`*** - Gain 1 knockdown and a new permanent powerful ability that can only be used once every 7 turns
 
 ***`Level 9`*** - Gain 3 health
 
-***`Level 10`*** - Gain 2 bonus & max bonus to stat (Strength or Magic depending on class) AND a new permanent powerful ability that can only be used once every 6 turns
+***`Level 10`*** - Gain 2 bonus & max bonus to stat (Strength or Magic depending on class) AND 1 extra Action Point per turn
 
 
 ### `About the Extra Energy buff given by the Energy Potion`
