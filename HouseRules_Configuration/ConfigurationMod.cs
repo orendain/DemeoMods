@@ -114,21 +114,36 @@
             }
             else
             {
+                bool revolutions = false;
+                bool progressive = false;
                 if (HR.SelectedRuleset != Ruleset.None)
                 {
                     Logger.Msg("Recognized modded game in VR. Loading UI.");
                     _ = new GameObject("HouseRulesUiGameVr", typeof(HouseRulesUiGameVr));
                 }
 
-                if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+                foreach (var rule in HR.SelectedRuleset.Rules)
+                {
+                    if (rule.ToString().Contains("RevolutionsRule"))
+                    {
+                        revolutions = true;
+                    }
+
+                    if (rule.ToString().Contains("PieceProgressRule"))
+                    {
+                        progressive = true;
+                    }
+                }
+
+                if (revolutions)
                 {
                     Logger.Msg("Recognized Revolutions game in VR. Loading UI.");
                     _ = new GameObject("HouseRulesUiGameVr2", typeof(HouseRulesUiGameVr2));
                 }
 
-                if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
+                if (progressive)
                 {
-                    Logger.Msg("Recognized PROGRESSIVE game in VR. Loading UI.");
+                    Logger.Msg("Recognized Progressive game in VR. Loading UI.");
                     _ = new GameObject("HouseRulesUiGameVr3", typeof(HouseRulesUiGameVr3));
                 }
             }
