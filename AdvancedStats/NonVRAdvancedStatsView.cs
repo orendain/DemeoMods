@@ -48,7 +48,7 @@
                     int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
                     var revolutions = myPiece.GetStat(Stats.Type.InnateCounterDamageExtraDamage);
                     int level = myPiece.GetStatMax(Stats.Type.CritChance);
-                    if (myPiece.GetStat(Stats.Type.CritChance) == 33)
+                    if (!myPiece.HasEffectState(EffectStateType.Flying))
                     {
                         level = 0;
                     }
@@ -143,7 +143,34 @@
                     sb.Append(ColorizeString(" Immunities ", Color.white));
                     sb.AppendLine(ColorizeString("--", Color.gray));
 
-                    if (revolutions != 69 && !hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
+                    if (revolutions == 69 || myPiece.HasEffectState(EffectStateType.Flying))
+                    {
+                        switch (myPiece.boardPieceId)
+                        {
+                            case BoardPieceId.HeroGuardian:
+                                sb.Append(ColorizeString("Weaken, Fire", lightblue));
+                                break;
+                            case BoardPieceId.HeroSorcerer:
+                                sb.Append(ColorizeString("Stunned, Electricity", lightblue));
+                                break;
+                            case BoardPieceId.HeroWarlock:
+                                sb.Append(ColorizeString("Corrupted Rage, Corruption", lightblue));
+                                break;
+                            case BoardPieceId.HeroHunter:
+                                sb.Append(ColorizeString("Frozen, Ice", lightblue));
+                                break;
+                            case BoardPieceId.HeroBarbarian:
+                                sb.Append(ColorizeString("Petrify, Slime", lightblue));
+                                break;
+                            case BoardPieceId.HeroRogue:
+                                sb.Append(ColorizeString("Tangled, Netted", lightblue));
+                                break;
+                            case BoardPieceId.HeroBard:
+                                sb.Append(ColorizeString("Poisoned, Blinded", lightblue));
+                                break;
+                        }
+                    }
+                    else if (!hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
                     {
                         sb.AppendLine(ColorizeString("None", lightblue));
 
@@ -160,7 +187,7 @@
                         GameUI.ShowCameraMessage(sb.ToString(), 5);
                         return;
                     }
-                    else if (revolutions != 69)
+                    else
                     {
                         int num = immuneToStatusEffects.Length;
                         bool weak = false;
@@ -196,33 +223,6 @@
 
                                 sb.Append(ColorizeString($"{localizedTitle}", lightblue));
                             }
-                        }
-                    }
-                    else
-                    {
-                        switch (myPiece.boardPieceId)
-                        {
-                            case BoardPieceId.HeroGuardian:
-                                sb.Append(ColorizeString("Weaken, Fire", lightblue));
-                                break;
-                            case BoardPieceId.HeroSorcerer:
-                                sb.Append(ColorizeString("Stunned, Electricity", lightblue));
-                                break;
-                            case BoardPieceId.HeroWarlock:
-                                sb.Append(ColorizeString("Corrupted Rage, Corruption", lightblue));
-                                break;
-                            case BoardPieceId.HeroHunter:
-                                sb.Append(ColorizeString("Frozen, Ice", lightblue));
-                                break;
-                            case BoardPieceId.HeroBarbarian:
-                                sb.Append(ColorizeString("Petrify, Slime", lightblue));
-                                break;
-                            case BoardPieceId.HeroRogue:
-                                sb.Append(ColorizeString("Tangled, Netted", lightblue));
-                                break;
-                            case BoardPieceId.HeroBard:
-                                sb.Append(ColorizeString("Poisoned, Blinded", lightblue));
-                                break;
                         }
                     }
 

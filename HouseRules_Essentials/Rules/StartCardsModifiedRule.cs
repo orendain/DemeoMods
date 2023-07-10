@@ -364,7 +364,6 @@
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, 5 + mage);
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, 5);
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, 5);
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, 69);
                     if (rev_progr)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
@@ -375,6 +374,25 @@
                     }
 
                     piece.AddGold(0);
+                }
+
+                // Handle Host reconnect makes returning players invulnerable when becoming master client again
+                if (_numPlayers > 1 && _isReconnect)
+                {
+                    if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, 69);
+                    }
+                    else
+                    {
+                        piece.effectSink.AddStatusEffect(EffectStateType.Invulnerable1);
+                        piece.effectSink.SetStatusEffectDuration(EffectStateType.Invulnerable1, 1);
+                        _numPlayers--;
+                    }
+                    if (_numPlayers == 1)
+                    {
+                        _isReconnect = false;
+                    }
                 }
 
                 // Remove One-Time replenishables if used
@@ -667,18 +685,6 @@
                             });
                             piece.AddGold(0);
                         }
-                    }
-                }
-
-                // Handle Host reconnect makes returning players invulnerable when becoming master client again
-                if (!piece.IsDead() && _numPlayers > 1 && _isReconnect && !gameContext.pieceAndTurnController.IsMyTurn())
-                {
-                    piece.effectSink.AddStatusEffect(EffectStateType.Invulnerable1);
-                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Invulnerable1, 1);
-                    _numPlayers--;
-                    if (_numPlayers == 1)
-                    {
-                        _isReconnect = false;
                     }
                 }
             }
