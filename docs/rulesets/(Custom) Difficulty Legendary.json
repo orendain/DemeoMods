@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Difficulty: Legendary",
   "Description": "Increased game difficulty for those who want to be a legend.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "CardEnergyFromAttackMultiplied",

@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) 3x3 Potions and Buffs",
   "Description": "Heal, Strength, Speed, Adamant, Vitality, Damage Resist, Focus, One More Thing, Antitoxin, Repair Armor and Bard buffs are 3x3 AOE.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "LevelPropertiesModified",

@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Potion Commotion",
   "Description": "Nothing but potions in the cards you get given. Enemies do not respawn.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "LevelPropertiesModified",

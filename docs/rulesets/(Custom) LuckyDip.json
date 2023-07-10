@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) LuckyDip",
   "Description": "Life is like a box of chocolates + AOE changes, so stay close to your allies",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "AbilityDamageOverridden",

@@ -1,14 +1,65 @@
 {
   "Name": "(Custom) Demeo Revolutions",
-  "Description": "Everything that has a beginning has an end.",
+  "Description": "Everything that has a beginning has an ending.",
+  "Longdesc": "- Some NEW maps and many NEW enemies\n- Some already known enemies now have NEW hidden abilities\n- Each enemy (even if the same type) can have different health AND attack damage\n- Each floor's enemy spawns will be a mix of ALL existing adventures with NO respawns\n- Each floor's map will be from a different adventure\n- No Lamps or Antitoxins as loot\n- Improved chest, energy (mana), and potion stand loot\n- Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3\n- Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3\n- Lamp spawns found throughout each floor are now much more random\n- Pets and charmed creatures will always focus on Hunter's Marked targets\n- Number of chests/stands/fountains/traders per floor changed based on the adventure selected\n- Card energy (mana) gained from attacks reduced by 25%\n- Card energy (mana) gained from recycled cards increased by 25%\n- Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8\n- Reviving a player by any means removes Stunned and Frozen effects\n- Thorns debuff now also does 2 damage per turn\n- Player summons (Ballistas, Detect Enemies, Verochka, etc) inflict effects on enemies who hit them\n- Some abilities (Acid Spit, Sigataur Javelin, Turrets, etc) now have added secondary effects\n- Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)\n- Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively\n- Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin\n- Torches last 15 rounds and placed Torches have 4 health instead of 15\n- Arly Owl's health is now 8 and movement is now 5\n- Arly Owl's panic shot now also Nets non-bosses so they can't move unless they use an ability to do so\n- A NEW Energy Potion loot card that affects all players with mysterious effects\n- Elementals, Giant Slimes, and the Elven Queen will counter-attack for 1 when hit with melee damage\n- Each floor's original keyholder start with 1 innate damage resist and 1 counter-attack to melee\n- All bosses will start with more health, are immune to Barbarian's Net, and have 1 innate damage resist\n- The Elven Queen has new self buffs and abilities to add more of a challenge\n- If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor",
   "Rules": [
-    // (Only affects Demeo Revolutions) Prevents ExtraEnergy from counting down unless special ability was used. Also removes temporary Movement/Magic Bonuses
+    {
+      "Rule": "XpGainDisabled",
+      "Config": true
+    },
     {
       "Rule": "TickAdjusted",
       "Config": true
     },
-	{
+    {
       "Rule": "Revolutions",
+      "Config": true
+    },
+    {
+      "Rule": "GrappleUnhooked",
+      "Config": true
+    },
+    {
+      "Rule": "PieceMagicStatAdded",
+      "Config": {
+        "HeroSorcerer": 1
+      }
+    },
+    {
+      "Rule": "PieceCounterDamage",
+      "Config": {
+        "HeroGuardian": 1,
+        "FireElemental": 1,
+        "IceElemental": 1,
+        "GiantSlime": 1
+      }
+    },
+    {
+      "Rule": "PieceDamageResist",
+      "Config": [
+        "WarlockMinion",
+        "ElvenQueen",
+        "WizardBoss",
+        "BossTown",
+        "MotherCy",
+        "RootLord",
+        "RatKing"
+      ]
+    },
+    {
+      "Rule": "PieceExtraStatsAdjusted",
+      "Config": {
+        "HeroGuardian": 5,
+        "HeroHunter": 5,
+        "HeroBard": 5,
+        "HeroBarbarian": 5,
+        "HeroRogue": 5,
+        "HeroWarlock": 5,
+        "HeroSorcerer": 5
+      }
+    },
+    {
+      "Rule": "ElvenQueenBuffs",
       "Config": true
     },
     {
@@ -17,12 +68,10 @@
         "ReplenishArmor": 4
       }
     },
-	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "GoldPickedUpMultiplied",
       "Config": 1.0
     },
-	// Added Forest and Desert creature types to these enemies so they can spawn on relevant boss maps
     {
       "Rule": "PiecePieceTypeListOverridden",
       "Config": {
@@ -514,12 +563,10 @@
         }
       ]
     },
-	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "CourageShantyAddsHp",
       "Config": 1
     },
-	// Reviving a player removes stun and frozen effects
     {
       "Rule": "ReviveRemovesEffects",
       "Config": true
@@ -535,7 +582,6 @@
         "Target": 0
       }
     },
-	// Now changes the keyholders but doesn't change the end boss (caused lockups)
     {
       "Rule": "MyMonsterDeckOverridden",
       "Config": {
@@ -559,7 +605,7 @@
           "GoblinChieftan": 1,
           "GoblinMadUn": 1,
           "RootBeast": 1,
-          "ScabRat": 2,
+          "ScabRat": 1,
           "Spider": 2,
           "Rat": 1,
           "SpiderEgg": 1,
@@ -653,7 +699,7 @@
           "GoblinChieftan": 1,
           "GoblinMadUn": 1,
           "RootBeast": 1,
-          "ScabRat": 2,
+          "ScabRat": 1,
           "Spider": 2,
           "Rat": 1,
           "SpiderEgg": 1,
@@ -744,7 +790,7 @@
           "GoblinChieftan": 1,
           "GoblinMadUn": 2,
           "RootBeast": 1,
-          "ScabRat": 2,
+          "ScabRat": 1,
           "Spider": 1,
           "Rat": 1,
           "TheUnheard": 2,
@@ -761,14 +807,14 @@
           "GiantSlime": 2,
           "FireElemental": 1,
           "ElvenMarauder": 2,
-          "IceElemental": 2,
+          "IceElemental": 1,
           "GiantSpider": 2,
-          "Cavetroll": 2,
+          "Cavetroll": 1,
           "RootGolem": 2,
           "Brookmare": 2,
-          "Gorgon": 2,
+          "Gorgon": 1,
           "SilentSentinel": 2,
-          "BigBoiMutant": 2,
+          "BigBoiMutant": 1,
           "ServantOfAlfaragh": 2
         },
         "KeyHolderFloor1": "Mimic",
@@ -1451,8 +1497,14 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "TorchPlayer",
@@ -1461,8 +1513,14 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "FireImmunity",
@@ -1471,8 +1529,14 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "IceImmunity",
@@ -1481,8 +1545,14 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Invulnerable3",
@@ -1491,8 +1561,14 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "MarkOfAvalon",
@@ -1501,8 +1577,14 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "ExtraEnergy",
@@ -1511,9 +1593,14 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
           "healthBoost": 2,
-          "applyAfterDissipate": "Thorns"
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Thorns",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Netted",
@@ -1522,8 +1609,14 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Invisibility",
@@ -1532,8 +1625,14 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "PlayerBerserk",
@@ -1542,18 +1641,30 @@
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         },
         {
           "effectStateType": "Thorns",
           "durationTurns": 2,
           "tickWhen": "EndTurn",
           "stacks": false,
-          "damagePerTurn": 1,
+          "damagePerTurn": 0,
           "clearOnNewLevel": false,
+          "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 0
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         }
       ]
     },
@@ -1839,7 +1950,6 @@
         ]
       }
     },
-	// Pieces that get hit cause effects on the enemy that hit them (if they're not immune)
     {
       "Rule": "ApplyEffectOnHitAdjusted",
       "Config": {
@@ -1856,7 +1966,6 @@
         "SellswordArbalestierActive": "Panic"
       }
     },
-	// When these abilities are used they have secondary effects
     {
       "Rule": "AbilityTargetEffects",
       "Config": {
@@ -1883,6 +1992,14 @@
         ],
         "AcidSpit": [
           "Diseased"
+        ],
+        "TauntingScream": [
+          "Weaken2Turns",
+          "Disoriented"
+        ],
+        "WarCry": [
+          "Panic",
+          "Blinded"
         ]
       }
     },
@@ -1898,7 +2015,6 @@
         ]
       }
     },
-	// These additional abilities won't break stealth
     {
       "Rule": "AbilityBreaksStealthAdjusted",
       "Config": {
@@ -1946,7 +2062,6 @@
         "HeroRogue"
       ]
     },
-	// Turn order changes if Mark, Varga, or Deflect card is held by player
     {
       "Rule": "TurnOrderOverridden",
       "Config": {
@@ -1964,7 +2079,6 @@
         "Deflect": 2
       }
     },
-	// Pieces heal for ONE when they hit (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeHealOnHit",
       "Config": [
@@ -1972,7 +2086,6 @@
         "HeroWarlock"
       ]
     },
-	// Pieces heal for ONE when they critical hit (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeHealOnCrit",
       "Config": [
@@ -1981,7 +2094,6 @@
         "HeroBard"
       ]
     },
-	// (ONLY affects Demeo Revolutions ruleset) Replenishes specific abilities on critical hits
     {
       "Rule": "FreeReplenishablesOnCrit",
       "Config": [
@@ -1994,7 +2106,6 @@
         "HeroWarlock"
       ]
     },
-	// Adds ONE action point on critical hit (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeActionPointsOnCrit",
       "Config": [
@@ -2002,7 +2113,6 @@
         "HeroRogue"
       ]
     },
-	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeAbilityOnCrit",
       "Config": {
@@ -2010,7 +2120,7 @@
         "HeroSorcerer": "WaterBottle",
         "HeroBard": "PanicPowder",
         "HeroBarbarian": "SpawnRandomLamp",
-		"HeroWarlock": "SpellPowerPotion"
+        "HeroWarlock": "SpellPowerPotion"
       }
     },
     {
@@ -2062,7 +2172,6 @@
         "Net": 0
       }
     },
-	// Adjusts ability Damage, Crit, SplashDamage, and CritSplashDamage
     {
       "Rule": "AbilityDamageAllOverridden",
       "Config": {
@@ -2134,17 +2243,10 @@
         ]
       }
     },
-	// Grapple and throwing lamps can be use in same turn
-	{
-      "Rule": "GrappleUnhooked",
-      "Config": true
-    },
-	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "PartyElectricityDamageOverridden",
       "Config": true
     },
-	// Adds Fire, Slime/Petrify, Corruption, Electricity, and Ice damage protection to Guardian, Barbarian, Warlock, Sorcerer, and Hunter respectively. Also makes Leviathan tangle enemies that it pulls
     {
       "Rule": "PieceExtraImmunities",
       "Config": true
@@ -2172,73 +2274,6 @@
     {
       "Rule": "EnemyAttackScaled",
       "Config": 1.0
-    },
-	// Elven Queen fight buffs herself between attacks
-	{
-		"Rule": "ElvenQueenBuffs",
-		"Config": true
-	},
-	// Elven Queen enables a super buff when under 33% life
-	{
-		"Rule": "ElvenQueenSuperBuff",
-		"Config": true
-	},
-	// Adds counter-attack damage to pieces
-	{
-      "Rule": "PieceCounterDamage",
-      "Config": {
-        "HeroGuardian": 1,
-		"GiantSlime": 1,
-		"FireElemental": 1,
-		"IceElemental": 1,
-		"GiantSlime": 1,
-        "ElvenQueen": 1,
-        "Mimic": 1,
-		"Wyvern": 1
-      }
-    },
-	// Adds ONE damage resist to pieces
-    {
-      "Rule": "PieceDamageResist",
-      "Config": [
-        "WarlockMinion",
-        "ElvenQueen",
-        "WizardBoss",
-        "BossTown",
-        "MotherCy",
-        "RootLord",
-        "RatKing",
-        "Mimic",
-        "Wyvern"
-      ]
-    },
-	// Changes max stats per piece for Strength, Swiftness, and Magic
-    {
-      "Rule": "PieceExtraStatsAdjusted",
-      "Config": {
-        "HeroGuardian": 5,
-        "HeroHunter": 5,
-        "HeroBard": 5,
-        "HeroBarbarian": 5,
-        "HeroRogue": 5,
-        "HeroWarlock": 5,
-        "HeroSorcerer": 5
-      }
-    },
-	// Add magic bonus damage to pieces and increases maximum magic bonus allowed
-	{
-      "Rule": "PieceMagicStatAdded",
-      "Config": {
-        "HeroSorcerer": 1,
-		"FireElemental": 1,
-		"IceElemental": 1,
-		"ElvenQueen": 1,
-        "WizardBoss": 1,
-		"BossTown": 1,
-		"MotherCy": 1,
-        "Mimic": 1,
-		"Wyvern": 1
-      }
     },
     {
       "Rule": "AbilityRandomPieceList",
@@ -2275,7 +2310,6 @@
         ]
       }
     },
-	// Works as normal *OR* uses random levels from any map/adventure if more or less than 5 floors are listed or when floors 2 and/or 4 are not listed as shops
     {
       "Rule": "LevelSequenceOverridden",
       "Config": [
@@ -2290,10 +2324,11 @@
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
+        "BigGoldPileChance": 0,
         "FloorOneHealingFountains": 1,
         "FloorOnePotionStand": 1,
         "FloorOneMerchant": 0,
-        "FloorOneLootChests": 4,
+        "FloorOneLootChests": 3,
         "FloorOneElvenSummoners": 0,
         "FloorOneSellswords": 1,
         "FloorOneVillagers": 1,
@@ -2301,14 +2336,13 @@
         "FloorTwoPotionStand": 1,
         "FloorTwoMerchant": 1,
         "FloorTwoVillagers": 1,
-        "FloorTwoLootChests": 4,
+        "FloorTwoLootChests": 3,
         "FloorTwoElvenSummoners": 0,
         "FloorThreeHealingFountains": 1,
         "FloorThreePotionStand": 0,
         "FloorThreeMerchant": 0,
         "FloorThreeLootChests": 1,
-        "FloorThreeElvenSummoners": 0,
-        "PacingSpikeSegmentFloorThreeBudget": 12
+        "FloorThreeElvenSummoners": 0
       }
     }
   ]

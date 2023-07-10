@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) It's A Trap!",
   "Description": "Everything you need to build devious traps for your enemies, but try not to kill your friends.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "AbilityActionCostAdjusted",

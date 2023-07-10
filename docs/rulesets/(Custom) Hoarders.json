@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Hoarders",
   "Description": "A large hand size but you may not get them fast enough. (SKIRMISH ONLY)",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "LevelPropertiesModified",

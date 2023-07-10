@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Beat The Clock!",
   "Description": "Ultra health. Ultra card recycling. Only 15 rounds to escape...",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "PieceConfigAdjusted",

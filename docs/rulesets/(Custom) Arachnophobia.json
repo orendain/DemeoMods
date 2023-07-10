@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Arachnophobia",
   "Description": "Money Spiders everywhere. On my face and in my hair.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "AbilityDamageOverridden",

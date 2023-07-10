@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Earth Wind & Fire",
   "Description": "Not the band. Let's get Elemental",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "LevelPropertiesModified",

@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Difficulty: Easy",
   "Description": "Decreased game difficulty for a more casual playstyle.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "CardEnergyFromAttackMultiplied",

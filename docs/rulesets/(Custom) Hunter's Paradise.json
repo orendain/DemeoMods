@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Hunter's Paradise",
   "Description": "Pets, pets, pets! And hunter's mark.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "StartCardsModified",

@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Difficulty: Hard",
   "Description": "Increased game difficulty for a greater challenge.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "CardEnergyFromAttackMultiplied",

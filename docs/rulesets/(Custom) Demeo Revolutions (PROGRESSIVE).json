@@ -1,7 +1,12 @@
 {
   "Name": "(Custom) Demeo Revolutions (PROGRESSIVE)",
   "Description": "Everything that has a beginning has a PROGRESSIVE ending.",
+  "Longdesc": "- Some NEW maps and many NEW enemies\n- Some already known enemies now have NEW hidden abilities\n- Each enemy (even if the same type) can have different health AND attack damage\n- Each floor's enemy spawns will be a mix of ALL existing adventures with NO respawns\n- Each floor's map will be from a different adventure\n- No Lamps or Antitoxins as loot\n- Improved chest, energy (mana), and potion stand loot\n- Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3\n- Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3\n- Lamp spawns found throughout each floor are now much more random\n- Pets and charmed creatures will always focus on Hunter's Marked targets\n- Number of chests/stands/fountains/traders per floor changed based on the adventure selected\n- Card energy (mana) gained from recycled cards reduced by 80%\n- Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8\n- Reviving a player by any means removes Stunned and Frozen effects\n- Thorns debuff now also does 2 damage per turn\n- Player summons (Ballistas, Detect Enemies, Verochka, etc) inflict effects on enemies who hit them\n- Some abilities (Acid Spit, Sigataur Javelin, Turrets, etc) now have added secondary effects\n- Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively\n- Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin\n- Torches last 15 rounds and placed Torches have 4 health instead of 15\n- Arly Owl's health is now 8 and movement is now 5\n- Arly Owl's panic shot now also Nets non-bosses so they can't move unless they use an ability to do so\n- A NEW Energy Potion loot card that affects all players in mysterious ways\n- Elementals, Giant Slimes, and the Elven Queen will counter-attack for 1 when hit with melee damage\n- Each floor's original keyholder start with 1 innate damage resist and 1 counter-attack to melee\n- All bosses will start with more health, are immune to Barbarian's Net, and have 1 innate damage resist\n- The Elven Queen has new self buffs and abilities to add more of a challenge\n- If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor",
   "Rules": [
+    {
+      "Rule": "XpGainDisabled",
+      "Config": true
+    },
     {
       "Rule": "TickAdjusted",
       "Config": true
@@ -464,17 +469,32 @@
         {
           "Piece": "ElvenQueen",
           "Property": "StartHealth",
-          "Value": 60.0
+          "Value": 104.0
+        },
+        {
+          "Piece": "ElvenQueen",
+          "Property": "PowerIndex",
+          "Value": 6.0
         },
         {
           "Piece": "BossTown",
           "Property": "StartHealth",
-          "Value": 140.0
+          "Value": 240.0
+        },
+        {
+          "Piece": "BossTown",
+          "Property": "PowerIndex",
+          "Value": 6.0
         },
         {
           "Piece": "RootLord",
           "Property": "StartHealth",
-          "Value": 70.0
+          "Value": 120.0
+        },
+        {
+          "Piece": "RootLord",
+          "Property": "PowerIndex",
+          "Value": 6.0
         },
         {
           "Piece": "MotherCy",
@@ -482,14 +502,39 @@
           "Value": 60.0
         },
         {
+          "Piece": "MotherCy",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
           "Piece": "RatKing",
           "Property": "StartHealth",
-          "Value": 125.0
+          "Value": 175.0
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "PowerIndex",
+          "Value": 6.0
         },
         {
           "Piece": "WizardBoss",
           "Property": "StartHealth",
-          "Value": 140.0
+          "Value": 267.0
+        },
+        {
+          "Piece": "WizardBoss",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "SnakeBoss",
+          "Property": "PowerIndex",
+          "Value": 3.0
+        },
+        {
+          "Piece": "SnakeTailBoss",
+          "Property": "PowerIndex",
+          "Value": 1.0
         },
         {
           "Piece": "Wyvern",
@@ -529,17 +574,17 @@
         {
           "Piece": "Wyvern",
           "Property": "PowerIndex",
-          "Value": 8.0
+          "Value": 3.0
         },
         {
           "Piece": "Mimic",
           "Property": "PowerIndex",
-          "Value": 8.0
+          "Value": 3.0
         },
         {
           "Piece": "Brookmare",
           "Property": "PowerIndex",
-          "Value": 5.0
+          "Value": 4.0
         },
         {
           "Piece": "BigBoiMutant",
@@ -559,7 +604,7 @@
         {
           "Piece": "GiantSlime",
           "Property": "PowerIndex",
-          "Value": 3.0
+          "Value": 2.0
         },
         {
           "Piece": "GiantSpider",
@@ -569,12 +614,12 @@
         {
           "Piece": "Sigataur",
           "Property": "PowerIndex",
-          "Value": 5.0
+          "Value": 4.0
         },
         {
           "Piece": "RootGolem",
           "Property": "PowerIndex",
-          "Value": 4.0
+          "Value": 3.0
         },
         {
           "Piece": "ServantOfAlfaragh",
@@ -855,8 +900,8 @@
           "Brookmare": 2,
           "Gorgon": 2,
           "SilentSentinel": 2,
-          "BigBoiMutant": 1,
-          "ServantOfAlfaragh": 1
+          "BigBoiMutant": 2,
+          "ServantOfAlfaragh": 2
         },
         "KeyHolderFloor1": "Mimic",
         "KeyHolderFloor2": "Wyvern"
@@ -1051,6 +1096,10 @@
           {
             "Card": "Banish",
             "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Overcharge",
+            "ReplenishFrequency": 1
           }
         ],
         "HeroBarbarian": [
@@ -1420,7 +1469,6 @@
       "Config": {
         "HeroBarbarian": [
           "DamageResistPotion",
-          "Rejuvenation",
           "InvisibilityPotion",
           "AdamantPotion",
           "LuckPotion",
@@ -1431,7 +1479,6 @@
         ],
         "HeroBard": [
           "DamageResistPotion",
-          "Rejuvenation",
           "InvisibilityPotion",
           "AdamantPotion",
           "LuckPotion",
@@ -1442,7 +1489,6 @@
         ],
         "HeroGuardian": [
           "DamageResistPotion",
-          "Rejuvenation",
           "InvisibilityPotion",
           "AdamantPotion",
           "LuckPotion",
@@ -1453,7 +1499,6 @@
         ],
         "HeroHunter": [
           "DamageResistPotion",
-          "Rejuvenation",
           "InvisibilityPotion",
           "AdamantPotion",
           "LuckPotion",
@@ -1464,7 +1509,6 @@
         ],
         "HeroRogue": [
           "DamageResistPotion",
-          "Rejuvenation",
           "InvisibilityPotion",
           "AdamantPotion",
           "LuckPotion",
@@ -1475,7 +1519,6 @@
         ],
         "HeroSorcerer": [
           "DamageResistPotion",
-          "Rejuvenation",
           "InvisibilityPotion",
           "AdamantPotion",
           "LuckPotion",
@@ -1486,7 +1529,6 @@
         ],
         "HeroWarlock": [
           "DamageResistPotion",
-          "Rejuvenation",
           "InvisibilityPotion",
           "AdamantPotion",
           "LuckPotion",
@@ -2002,6 +2044,14 @@
         ],
         "AcidSpit": [
           "Diseased"
+        ],
+        "TauntingScream": [
+          "Weaken2Turns",
+          "Disoriented"
+        ],
+        "WarCry": [
+          "Panic",
+          "Blinded"
         ]
       }
     },
@@ -2037,7 +2087,10 @@
         "DeathBeam": false,
         "FretsOfFire": false,
         "Net": true,
-        "ImplosionExplosionRain": false
+        "ImplosionExplosionRain": false,
+        "Petrify": false,
+        "AcidSpit": false,
+        "DropChest": false
       }
     },
     {
@@ -2236,13 +2289,13 @@
           5,
           5
         ],
-        "DeathFlurry": [
+        "Shockwave": [
           5,
           5,
           5,
           5
         ],
-        "Shockwave": [
+        "DeathFlurry": [
           5,
           5,
           5,
