@@ -17,6 +17,7 @@
         private static Dictionary<BoardPieceId, List<CardConfig>> _globalHeroStartCards;
         private static bool _isActivated;
         private static bool _isReconnect;
+        private static bool _checkPlayers;
         private static int _numPlayers = 1;
 
         private readonly Dictionary<BoardPieceId, List<CardConfig>> _heroStartCards;
@@ -79,12 +80,18 @@
             if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-                _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
+                if (_checkPlayers)
+                {
+                    _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
+                    _checkPlayers = false;
+                }
 
                 if (!piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
                 {
                     _isReconnect = true;
+                    _checkPlayers = true;
                     int mage = 0;
+                    int runner = 0;
                     int diff = 0;
                     if (HR.SelectedRuleset.Name.Contains("(EASY"))
                     {
@@ -223,6 +230,8 @@
                             });
                         }
 
+                        runner = 1;
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, 1);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
                     }
@@ -289,6 +298,8 @@
                             });
                         }
 
+                        runner = 1;
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, 1);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
                     }
@@ -363,7 +374,7 @@
 
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, 5 + mage);
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, 5);
-                    piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, 5);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, 5 + runner);
                     if (rev_progr)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
@@ -377,7 +388,7 @@
                 }
 
                 // Handle Host reconnect makes returning players invulnerable when becoming master client again
-                if (_numPlayers > 1 && _isReconnect)
+                if (_isReconnect)
                 {
                     if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
                     {
@@ -388,10 +399,11 @@
                         piece.effectSink.AddStatusEffect(EffectStateType.Invulnerable1);
                         piece.effectSink.SetStatusEffectDuration(EffectStateType.Invulnerable1, 1);
                         _numPlayers--;
-                    }
-                    if (_numPlayers == 1)
-                    {
-                        _isReconnect = false;
+
+                        if (_numPlayers == 1)
+                        {
+                            _isReconnect = false;
+                        }
                     }
                 }
 
