@@ -1504,6 +1504,8 @@
                 { AbilityKey.Petrify, false },
                 { AbilityKey.AcidSpit, false },
                 { AbilityKey.DropChest, false },
+                { AbilityKey.Shockwave, false },
+                { AbilityKey.DeathFlurry, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>

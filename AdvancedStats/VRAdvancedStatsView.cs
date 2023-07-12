@@ -426,7 +426,7 @@
 
                 if (level > 5)
                 {
-                    hp = hp + 2;
+                    hp += 2;
                 }
 
                 if (level > 6)
@@ -438,22 +438,22 @@
                 {
                     kd++;
                     app = false;
-                    sb.Append(ColorizeString("Gained ", Color.yellow));
-                    sb.Append(ColorizeString("1 Extra Action Point", Color.white));
+                    sb.Append(ColorizeString("Gained a ", Color.yellow));
+                    sb.Append(ColorizeString("Random", Color.white));
+                    sb.Append(ColorizeString(" ability ", Color.yellow));
+                    sb.Append(ColorizeString("(FREE Action/7 turn cooldown)", lightgreen));
                 }
 
                 if (level > 8)
                 {
-                    hp = hp + 3;
+                    hp += 3;
                 }
 
                 if (level > 9)
                 {
                     app = true;
-                    sb.Append(ColorizeString(" and a ", Color.yellow));
-                    sb.Append(ColorizeString("Random", Color.white));
-                    sb.Append(ColorizeString(" ability ", Color.yellow));
-                    sb.AppendLine(ColorizeString("(FREE Action/6 turn cooldown)", lightgreen));
+                    sb.Append(ColorizeString(" and ", Color.yellow));
+                    sb.AppendLine(ColorizeString("1 Extra Action Point", Color.white));
                 }
 
                 if (!app)
@@ -675,8 +675,10 @@
                     {
                         sb.Append(ColorizeString("Gain ", Color.yellow));
                         sb.Append(ColorizeString("1 Knockdown", Color.white));
-                        sb.Append(ColorizeString(" and ", Color.yellow));
-                        sb.AppendLine(ColorizeString("1 Action Point", Color.white));
+                        sb.Append(ColorizeString(" and a ", Color.yellow));
+                        sb.Append(ColorizeString("Random", Color.white));
+                        sb.Append(ColorizeString(" ability ", Color.yellow));
+                        sb.AppendLine(ColorizeString("(FREE Action/7 turn cooldown)", lightgreen));
                     }
 
                     if (level == 8)
@@ -697,10 +699,8 @@
                             sb.Append(ColorizeString("2 Strength", Color.white));
                         }
 
-                        sb.Append(ColorizeString(" and a ", Color.yellow));
-                        sb.Append(ColorizeString("Random", Color.white));
-                        sb.Append(ColorizeString(" ability ", Color.yellow));
-                        sb.AppendLine(ColorizeString("(FREE Action/6 turn cooldown)", lightgreen));
+                        sb.Append(ColorizeString(" and ", Color.yellow));
+                        sb.AppendLine(ColorizeString("1 Action Point", Color.white));
                     }
                 }
             }
