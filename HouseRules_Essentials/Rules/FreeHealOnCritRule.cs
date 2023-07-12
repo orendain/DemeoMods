@@ -60,7 +60,7 @@ namespace HouseRules.Essentials.Rules
             }
 
             int addHeal = 0;
-            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
                 int chance = Random.Range(1, 101);
                 int chance2 = Random.Range(1, 101);

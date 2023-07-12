@@ -59,7 +59,7 @@
                 Traverse.Create(aoe).Field<int>("range").Value += replacement.Value; // Adjust the AOE outline when casting.
                 ability.areaOfEffectRange += replacement.Value; // Adjust value displayed on the card.
 
-                if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+                if (HR.SelectedRuleset.Name.Contains("Revolutions"))
                 {
                     if (replacement.Key == AbilityKey.Net)
                     {

@@ -28,7 +28,7 @@
         {
             Traverse.Create(typeof(AIDirectorConfig))
                 .Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = _originalValue * _multiplier;
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
                 Traverse.Create(typeof(AIDirectorConfig))
                 .Field<float>("CardEnergy_EnergyToGetFromDirectKill").Value = 0.25f;
@@ -41,7 +41,7 @@
         {
             Traverse.Create(typeof(AIDirectorConfig))
                 .Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = _originalValue;
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
                 Traverse.Create(typeof(AIDirectorConfig))
                 .Field<float>("CardEnergy_EnergyToGetFromDirectKill").Value = _directKill;

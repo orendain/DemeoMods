@@ -48,7 +48,7 @@
                 return;
             }
 
-            if (target.piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (target.piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
                 if (Random.Range(1, 101) > 66)
                 {

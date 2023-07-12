@@ -104,7 +104,7 @@
                     range = Random.Range(1.6f, 1.9f);
                 }
             }
-            else if (ruleSet.Contains("Demeo Revolutions"))
+            else if (ruleSet.Contains("Revolutions"))
             {
                 if (config.StartHealth < 5 || config.PowerIndex > 40)
                 {

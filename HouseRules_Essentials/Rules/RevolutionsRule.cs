@@ -7,7 +7,7 @@
 
     public sealed class RevolutionsRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Demeo Revolutions style game is enabled";
+        public override string Description => "Revolutions style game is enabled";
 
         private static bool _isActivated;
 

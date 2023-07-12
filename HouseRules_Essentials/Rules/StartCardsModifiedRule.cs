@@ -77,7 +77,7 @@
                 rev_progr = true;
             }
 
-            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (_checkPlayers)
@@ -97,7 +97,7 @@
                     {
                         diff = 2;
                     }
-                    else if (HR.SelectedRuleset.Name.Equals("Demeo Revolutions"))
+                    else if (HR.SelectedRuleset.Name.Equals("Revolutions"))
                     {
                         diff = 1;
                     }
@@ -901,7 +901,7 @@
                 // 3 : disableCooldown
                 Inventory.ItemFlag flags = 0;
 
-                if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+                if (HR.SelectedRuleset.Name.Contains("Revolutions"))
                 {
                     // Only add Torch in Rat King adventure
                     if (MotherbrainGlobalVars.CurrentConfig != GameConfigType.Sewers && card.Card == AbilityKey.Torch)

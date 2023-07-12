@@ -92,7 +92,7 @@
                     range = Random.Range(0, high);
                 }
             }
-            else if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            else if (HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
                 if (config.PowerIndex > 40)
                 {

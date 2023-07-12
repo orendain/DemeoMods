@@ -112,7 +112,7 @@
             monsterDeck.ShuffleSubDecks(rng);
 
             /* Doesn't work... yet
-            if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions") && floorIndex == 1)
+            if (HR.SelectedRuleset.Name.Contains("Revolutions") && floorIndex == 1)
             {
                 var deckItem = new MonsterDeck.MonsterDeckEntry
                 {

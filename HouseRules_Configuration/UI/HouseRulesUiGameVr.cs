@@ -96,7 +96,7 @@
             background.transform.localScale = new Vector3(4.75f, 1, scale);
 
             var header = 3.6f;
-            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules - Revolutions");
+            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules <u>Revolutions</u>");
             headerText.transform.SetParent(transform, worldPositionStays: false);
             if (numRules > 11)
             {

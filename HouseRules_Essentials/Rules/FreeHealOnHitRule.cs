@@ -60,7 +60,7 @@
             }
 
             int addHeal = 0;
-            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Demeo Revolutions"))
+            if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
                 int chance = Random.Range(1, 101);
                 if (_globalAdjustments.Contains(source.boardPieceId))

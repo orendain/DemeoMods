@@ -67,13 +67,13 @@
                     "Select a ruleset for your next private multiplayer game or skirmish.");
             var rectTransform = (RectTransform)infoText.transform;
             rectTransform.SetParent(container.transform, worldPositionStays: false);
-            rectTransform.sizeDelta = new Vector2(10, 2);
+            rectTransform.sizeDelta = new Vector2(20, 2);
             rectTransform.localPosition = new Vector3(0, 0, VrElementCreator.TextZShift);
 
             var selectedText = _elementCreator.CreateNormalText("Selected ruleset: ");
             rectTransform = (RectTransform)selectedText.transform;
             rectTransform.SetParent(container.transform, worldPositionStays: false);
-            rectTransform.sizeDelta = new Vector2(10, 2);
+            rectTransform.sizeDelta = new Vector2(20, 2);
             rectTransform.localPosition = new Vector3(0, -1.5f, VrElementCreator.TextZShift);
 
             _selectedText = selectedText.GetComponent<TMP_Text>();

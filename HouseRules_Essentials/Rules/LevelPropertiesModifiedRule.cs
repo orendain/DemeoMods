@@ -243,7 +243,7 @@
         private void ModifyDreadMode(ref DreadLevelsData dreadLevel)
         {
             var ruleSet = HR.SelectedRuleset.Name;
-            if (ruleSet.Contains("Demeo Revolutions"))
+            if (ruleSet.Contains("Revolutions"))
             {
                 if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
                 {
