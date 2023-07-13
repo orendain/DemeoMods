@@ -103,7 +103,7 @@
                 return;
             }
 
-            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
+            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
             {
                 int nextLevel = piece.GetStatMax(Stats.Type.CritChance);
                 if (nextLevel < 10)

@@ -113,7 +113,7 @@
             var container = new GameObject(ruleset.Name);
 
             var button = _elementCreator.CreateButton(SelectRulesetAction(ruleset.Name));
-            button.transform.localScale = new Vector2(3f, 0.85f);
+            button.transform.localScale = new Vector2(3f, 0.975f);
             button.transform.SetParent(container.transform, worldPositionStays: false);
             button.transform.localPosition = new Vector2(-325f, 0);
 

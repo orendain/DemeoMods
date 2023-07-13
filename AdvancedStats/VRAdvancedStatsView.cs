@@ -452,6 +452,7 @@
                 if (level > 9)
                 {
                     app = true;
+                    bon += 2;
                     sb.Append(ColorizeString(" and ", Color.yellow));
                     sb.AppendLine(ColorizeString("1 Extra Action Point", Color.white));
                 }

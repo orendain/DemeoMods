@@ -1,6 +1,5 @@
 ﻿namespace HouseRules.Configuration.UI
 {
-    using System;
     using System.Collections;
     using System.Linq;
     using System.Text;
@@ -46,9 +45,9 @@
         private void Initialize()
         {
             transform.SetParent(_anchor, worldPositionStays: true);
-            transform.position = new Vector3(30.6f, 41.4f, -57.2f);
+            transform.position = new Vector3(29f, 41.4f, -44f);
 
-            gameObject.AddComponent<FaceLocalPlayer>();
+            transform.rotation = Quaternion.Euler(0, 135, 0);
 
             string longdesc = string.Empty;
             int numRules = 8;
@@ -88,7 +87,7 @@
 
             background.transform.localScale = new Vector3(4.75f, 1, scale);
 
-            var headerText = _elementCreator.CreateMenuHeaderText("Character Class Changes");
+            var headerText = _elementCreator.CreateMenuHeaderText("<color=#C20FC4>Character Class Changes</color>");
             headerText.transform.SetParent(transform, worldPositionStays: false);
             var header = 3.6f + (float)(0.21f * (numRules - 11));
 

@@ -68,7 +68,7 @@
             UnityEngine.Object.Destroy(transformScreenToRemove.gameObject);
 
             Transform transformScreenToRemove2 = canvasObject.transform.Find("HouseRulesUiGameVr2");
-            if (transformScreenToRemove == null)
+            if (transformScreenToRemove2 == null)
             {
                 return;
             }
@@ -76,7 +76,7 @@
             UnityEngine.Object.Destroy(transformScreenToRemove2.gameObject);
 
             Transform transformScreenToRemove3 = canvasObject.transform.Find("HouseRulesUiGameVr3");
-            if (transformScreenToRemove == null)
+            if (transformScreenToRemove3 == null)
             {
                 return;
             }
