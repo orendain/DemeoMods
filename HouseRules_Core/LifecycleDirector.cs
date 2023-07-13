@@ -347,7 +347,32 @@
 
             IsRulesetActive = true;
 
-            CoreMod.Logger.Warning($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            var setName = HR.SelectedRuleset.Name;
+            if (setName.Contains("<b>None</b>"))
+            {
+                setName = "None";
+            }
+            else if (setName.Contains("Demeo Revolutions"))
+            {
+                if (setName.Contains("(EASY"))
+                {
+                    setName = "Demeo Revolutions (EASY)";
+                }
+                else if (setName.Contains("(HARD"))
+                {
+                    setName = "Demeo Revolutions (HARD)";
+                }
+                else if (setName.Contains("(LEGENDARY"))
+                {
+                    setName = "Demeo Revolutions (LEGENDARY)";
+                }
+                else if (setName.Contains("(PROGRESSIVE"))
+                {
+                    setName = "Demeo Revolutions (PROGRESSIVE)";
+                }
+            }
+
+            CoreMod.Logger.Warning($"Activating ruleset: {setName} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
@@ -384,7 +409,32 @@
                 IsRulesetActive = false;
             }
 
-            CoreMod.Logger.Msg($"Deactivating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            var setName = HR.SelectedRuleset.Name;
+            if (setName.Contains("<b>None</b>"))
+            {
+                setName = "None";
+            }
+            else if (setName.Contains("Demeo Revolutions"))
+            {
+                if (setName.Contains("(EASY"))
+                {
+                    setName = "Demeo Revolutions (EASY)";
+                }
+                else if (setName.Contains("(HARD"))
+                {
+                    setName = "Demeo Revolutions (HARD)";
+                }
+                else if (setName.Contains("(LEGENDARY"))
+                {
+                    setName = "Demeo Revolutions (LEGENDARY)";
+                }
+                else if (setName.Contains("(PROGRESSIVE"))
+                {
+                    setName = "Demeo Revolutions (PROGRESSIVE)";
+                }
+            }
+
+            CoreMod.Logger.Msg($"Deactivating ruleset: {setName} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try

@@ -42,7 +42,32 @@
 
         public void Register(Ruleset ruleset)
         {
-            CoreMod.Logger.Msg($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
+            var setName = ruleset.Name;
+            if (setName.Contains("<b>None</b>"))
+            {
+                setName = "None";
+            }
+            else if (setName.Contains("Demeo Revolutions"))
+            {
+                if (setName.Contains("(EASY"))
+                {
+                    setName = "Demeo Revolutions (EASY)";
+                }
+                else if (setName.Contains("(HARD"))
+                {
+                    setName = "Demeo Revolutions (HARD)";
+                }
+                else if (setName.Contains("(LEGENDARY"))
+                {
+                    setName = "Demeo Revolutions (LEGENDARY)";
+                }
+                else if (setName.Contains("(PROGRESSIVE"))
+                {
+                    setName = "Demeo Revolutions (PROGRESSIVE)";
+                }
+            }
+
+            CoreMod.Logger.Msg($"Registering ruleset: {setName} (with {ruleset.Rules.Count} rules)");
 
             if (IsRulesetRegistered(ruleset.Name))
             {

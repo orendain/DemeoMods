@@ -110,14 +110,34 @@
         private GameObject CreateRulesetRow(Ruleset ruleset)
         {
             var container = new GameObject(ruleset.Name);
+            var setName = ruleset.Name;
+            if (setName.Contains("Demeo Revolutions"))
+            {
+                if (setName.Contains("(EASY"))
+                {
+                    setName = "<color=#086407><b>Demeo Revolutions</b></color>\n<color=#1D21E0><b>(EASY)</b></color>";
+                }
+                else if (setName.Contains("(HARD"))
+                {
+                    setName = "<color=#086407><b>Demeo Revolutions</b></color>\n<color=#5611A2><b>(HARD)</b></color>";
+                }
+                else if (setName.Contains("(LEGENDARY"))
+                {
+                    setName = "<color=#086407><b>Demeo Revolutions</b></color>\n<color=#9F11A2><b>(LEGENDARY)</b></color>";
+                }
+                else if (setName.Contains("(PROGRESSIVE"))
+                {
+                    setName = "<color=#086407><b>Demeo Revolutions</b></color>\n<color=#A2115D><b>(PROGRESSIVE)</b></color>";
+                }
+            }
 
             var button = _elementCreator.CreateButton(SelectRulesetAction(ruleset.Name));
             button.transform.SetParent(container.transform, worldPositionStays: false);
-            button.transform.localScale = new Vector3(1f, 0.6f, 1f);
+            button.transform.localScale = new Vector3(1f, 0.9f, 1f);
             button.transform.localPosition = new Vector3(-4.5f, 0, VrElementCreator.ButtonZShift);
 
             var buttonText =
-                _elementCreator.CreateText(ruleset.Name, Color.white, VrElementCreator.NormalFontSize);
+                _elementCreator.CreateText(setName, Color.white, VrElementCreator.NormalFontSize);
             buttonText.transform.SetParent(container.transform, worldPositionStays: false);
             buttonText.transform.localPosition = new Vector3(
                 -4.5f,
