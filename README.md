@@ -158,9 +158,9 @@ You will **NOT** ***start*** with most of the normal [Demeo Revolutions abilitie
 
 ***`Level 2`*** - Gain 1 permanent replenishable ability. Pull, Stealth, Arrow, Zap, Lightning Bolt, Courage Shanty, Feral Charge, and Grapple now cost 0 Action Points
 
-***`Level 3`*** - Gain 1 health and critical hits restore your 0 Action Cost replenishables and/or Action Points (depending on class) as in normal Demeo Revolutions
+***`Level 3`*** - Gain 1 max health and critical hits also earn you 20 gold OR heal you for 1 if you're on the last floor
 
-***`Level 4`*** - Gain 1 knockdown and critical hits also earns you 30 gold OR heal you for 1 if you're on the last floor
+***`Level 4`*** - Gain 1 knockdown and critical hits restore your 0 Action Cost replenishables and/or Action Points (depending on class)
 
 ***`Level 5`*** - Gain 1 bonus & max bonus to a stat (Strength or Magic depending on class)
 
