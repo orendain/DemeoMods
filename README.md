@@ -156,7 +156,7 @@ You will **NOT** ***start*** with most of the normal [Demeo Revolutions abilitie
 
 ***`Level 1`*** - Critical hits on your FINAL action function as in normal Demeo Revolutions except the Guardian only gains 1 Action Point instead of 2 (until level 3)
 
-***`Level 2`*** - Gain 1 permanent replenishable ability. Pull, Stealth, Arrow, Zap, Lightning Bolt, Courage Shanty, Feral Charge, and Grapple now cost 0 Action Points
+***`Level 2`*** - Gain (or replace) 1 permanent replenishable ability. Pull, Stealth, Arrow, Zap, Lightning Bolt, Courage Shanty, Feral Charge, and Grapple now cost 0 Action Points
 
 ***`Level 3`*** - Gain 1 max health and critical hits also earn you 20 gold OR heal you for 1 if you're on the last floor
 
