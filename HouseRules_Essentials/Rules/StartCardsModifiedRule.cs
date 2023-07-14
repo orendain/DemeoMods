@@ -72,7 +72,7 @@
 
             Inventory.Item value;
             bool rev_progr = false;
-            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
+            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Contains("TEST GAME"))
             {
                 rev_progr = true;
             }
@@ -97,7 +97,7 @@
                     {
                         diff = 2;
                     }
-                    else if (HR.SelectedRuleset.Name.Equals("Revolutions"))
+                    else if (HR.SelectedRuleset.Name.Equals("<color=#339A32><b>Demeo Revolutions</b></color>"))
                     {
                         diff = 1;
                     }
@@ -701,7 +701,7 @@
                 }
             }
 
-            // Progressive Extra Actions and Action Point cost changes per character class
+            // Progressive Health Regeneration, Extra Actions and Action Point cost changes per character class
             if (rev_progr)
             {
                 int level = piece.GetStatMax(Stats.Type.CritChance);
@@ -709,6 +709,16 @@
                 {
                     piece.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
+                }
+
+                if (level > 8)
+                {
+                    if (!piece.HasEffectState(EffectStateType.Downed) && !piece.HasEffectState(EffectStateType.Diseased) && !piece.HasEffectState(EffectStateType.Petrified))
+                    {
+                        piece.effectSink.Heal(1);
+                        piece.DisableEffectState(EffectStateType.Heal);
+                        piece.EnableEffectState(EffectStateType.Heal, 1);
+                    }
                 }
 
                 if (level < 2)

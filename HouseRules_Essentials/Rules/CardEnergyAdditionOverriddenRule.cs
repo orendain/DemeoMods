@@ -121,7 +121,7 @@
                     piece.DisableEffectState(EffectStateType.Heal);
                     piece.EnableEffectState(EffectStateType.Heal, 1);
                     piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, piece.GetStatMax(Stats.Type.CritChance));
-                    if (nextLevel == 3)
+                    if (nextLevel == 4)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
@@ -136,7 +136,7 @@
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 3);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 3);
                     }
-                    else if (nextLevel == 4)
+                    else if (nextLevel == 3)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);

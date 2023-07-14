@@ -70,7 +70,7 @@ namespace HouseRules.Essentials.Rules
 
             if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
             {
-                if (source.GetStatMax(Stats.Type.CritChance) < 3)
+                if (source.GetStatMax(Stats.Type.CritChance) < 4)
                 {
                     return;
                 }

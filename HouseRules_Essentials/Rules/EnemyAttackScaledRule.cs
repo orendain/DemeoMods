@@ -73,23 +73,23 @@
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
                 {
-                    int high = 0;
+                    int high = 1;
                     if (config.AttackDamage > 2 && config.AttackDamage < 7)
                     {
                         high = 2;
                     }
 
-                    range = Random.Range(0, high);
+                    range = Random.Range(1, high);
                 }
                 else
                 {
-                    int high = 0;
+                    int high = 2;
                     if (config.AttackDamage > 2 && config.AttackDamage < 7)
                     {
                         high = 3;
                     }
 
-                    range = Random.Range(0, high);
+                    range = Random.Range(2, high);
                 }
             }
             else if (HR.SelectedRuleset.Name.Contains("Revolutions"))
