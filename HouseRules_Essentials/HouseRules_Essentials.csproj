@@ -78,7 +78,7 @@
     <Compile Include="Rules\PieceAbilityListOverriddenRule.cs" />
     <Compile Include="Rules\PieceDownedCountAdjustedRule.cs" />
     <Compile Include="Rules\RegainAbilityIfMaxxedOutOverriddenRule.cs" />
-    <Compile Include="Rules\StatModifiersOverridenRule.cs" />
+    <Compile Include="Rules\StatModifiersOverriddenRule.cs" />
     <Compile Include="Rules\AbilityRandomPieceListRule.cs" />
     <Compile Include="Rules\CardAdditionOverriddenRule.cs" />
     <Compile Include="Rules\CardEnergyFromAttackMultipliedRule.cs" />
