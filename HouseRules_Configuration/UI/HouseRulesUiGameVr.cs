@@ -49,18 +49,35 @@
 
             gameObject.AddComponent<FaceLocalPlayer>();
 
-            var numRules = HR.SelectedRuleset.Rules.Count;
-            int textLength = HR.SelectedRuleset.Longdesc.Length;
-            int returnCount = HR.SelectedRuleset.Longdesc.Count(f => f == '\n');
-
-            if (textLength > 650)
+            int numRules = 13;
+            int textLength = 0;
+            int returnCount = 0;
+            if (HR.SelectedRuleset.Longdesc != null)
             {
-                numRules += (textLength - 650) / 60;
+                textLength = HR.SelectedRuleset.Longdesc.Length;
+                returnCount = HR.SelectedRuleset.Longdesc.Count(f => f == '\n');
             }
 
-            if (returnCount > 0)
+            if (textLength < 1)
             {
-                numRules += returnCount / 2;
+                numRules = HR.SelectedRuleset.Rules.Count;
+            }
+            else if (textLength > 650)
+            {
+                numRules += 1 + ((textLength - 650) / 65);
+
+                if (returnCount > 0)
+                {
+                    numRules += returnCount / 2;
+                }
+            }
+            else if (returnCount > 10)
+            {
+                numRules += returnCount - 10;
+            }
+            else if (returnCount + (textLength / (25 * returnCount)) > 10)
+            {
+                numRules += returnCount + (textLength / (25 * returnCount)) - 10;
             }
 
             var background = new GameObject("Background");
@@ -116,7 +133,7 @@
             rulesetPanel.transform.localPosition = new Vector3(0, ruleset, VrElementCreator.TextZShift);
 
             sb.Clear();
-            if (HR.SelectedRuleset.Longdesc != string.Empty)
+            if (textLength > 0)
             {
                 sb.AppendLine(ColorizeString($"<========== Ruleset Creator's Description ==========>", Color.white));
                 sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Longdesc}", Color.black));
