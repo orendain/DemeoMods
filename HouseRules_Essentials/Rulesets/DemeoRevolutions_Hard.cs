@@ -1714,7 +1714,7 @@
                 { AbilityKey.InvisibilityPotion, 50 },
             });*/
 
-            var statModifiersRule = new StatModifiersOverridenRule(new Dictionary<AbilityKey, int>
+            var statModifiersRule = new StatModifiersOverriddenRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.ReplenishArmor, 4 },
             });

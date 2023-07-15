@@ -8,7 +8,7 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class StatModifiersOverridenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>,
+    public sealed class StatModifiersOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, int>>,
         IMultiplayerSafe
     {
         public override string Description => "Some stat potions and/or abilities are adjusted";
@@ -17,11 +17,11 @@
         private Dictionary<AbilityKey, int> _originals;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StatModifiersOverridenRule"/> class.
+        /// Initializes a new instance of the <see cref="StatModifiersOverriddenRule"/> class.
         /// </summary>
         /// <param name="adjustments">Key-value pairs mapping the name of a StatModifier and the new additiveBonus setting.
         /// Overwrites existing settings. Some StatModifiers require negative values.</param>
-        public StatModifiersOverridenRule(Dictionary<AbilityKey, int> adjustments)
+        public StatModifiersOverriddenRule(Dictionary<AbilityKey, int> adjustments)
         {
             _adjustments = adjustments;
             _originals = new Dictionary<AbilityKey, int>();
