@@ -47,6 +47,11 @@
                 return;
             }
 
+            if (config.PowerIndex > 40)
+            {
+                return;
+            }
+
             if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.ExplodingLamp) || !config.HasPieceType(PieceType.Creature))
             {
                 return;
@@ -55,16 +60,11 @@
             int range = 0;
             if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
             {
-                if (config.PowerIndex > 40)
-                {
-                    return;
-                }
-
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
                     int high = 0;
-                    if (config.AttackDamage > 2 && config.AttackDamage < 5)
+                    if (config.AttackDamage < 5)
                     {
                         high = 1;
                     }
@@ -74,17 +74,17 @@
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
                 {
                     int high = 1;
-                    if (config.AttackDamage > 2 && config.AttackDamage < 7)
+                    if (config.AttackDamage < 7)
                     {
                         high = 2;
                     }
 
                     range = Random.Range(1, high);
                 }
-                else
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
                     int high = 2;
-                    if (config.AttackDamage > 2 && config.AttackDamage < 7)
+                    if (config.AttackDamage < 7)
                     {
                         high = 3;
                     }
@@ -94,11 +94,6 @@
             }
             else if (HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
-                if (config.PowerIndex > 40)
-                {
-                    return;
-                }
-
                 int high = 0;
                 if (config.AttackDamage < 5)
                 {

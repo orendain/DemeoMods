@@ -49,6 +49,11 @@
                 return;
             }
 
+            if (config.PowerIndex > 40)
+            {
+                return;
+            }
+
             if (config.HasPieceType(PieceType.Player) || config.HasPieceType(PieceType.Bot) || config.HasPieceType(PieceType.Prop) || config.HasPieceType(PieceType.Lure) || !config.HasPieceType(PieceType.Creature))
             {
                 return;
@@ -58,7 +63,7 @@
             var ruleSet = HR.SelectedRuleset.Name;
             if (ruleSet.Contains("(LEGENDARY"))
             {
-                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                if (config.StartHealth < 5)
                 {
                     return;
                 }
@@ -67,7 +72,7 @@
             }
             else if (ruleSet.Contains("(HARD"))
             {
-                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                if (config.StartHealth < 5)
                 {
                     return;
                 }
@@ -76,7 +81,7 @@
             }
             else if (ruleSet.Contains("(EASY"))
             {
-                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                if (config.StartHealth < 5)
                 {
                     return;
                 }
@@ -85,11 +90,6 @@
             }
             else if (ruleSet.Contains("(PROGRESSIVE"))
             {
-                if (config.PowerIndex > 40)
-                {
-                    return;
-                }
-
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
@@ -99,14 +99,14 @@
                 {
                     range = Random.Range(1.3f, 1.6f);
                 }
-                else
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
                     range = Random.Range(1.6f, 1.9f);
                 }
             }
             else if (ruleSet.Contains("Revolutions"))
             {
-                if (config.StartHealth < 5 || config.PowerIndex > 40)
+                if (config.StartHealth < 5)
                 {
                     return;
                 }
