@@ -64,7 +64,7 @@
                 source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                 if (source.boardPieceId == BoardPieceId.HeroBard)
                 {
-                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && (source.GetStatMax(Stats.Type.CritChance) > 3 || currentAP < 1)))
+                    if (currentAP < 1 || !HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && (source.GetStatMax(Stats.Type.CritChance) > 3)))
                     {
                         if (source.HasEffectState(EffectStateType.Fearless))
                         {
