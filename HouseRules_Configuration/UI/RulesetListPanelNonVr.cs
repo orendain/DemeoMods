@@ -118,7 +118,7 @@
             button.transform.localPosition = new Vector2(-325f, 0);
 
             var buttonText =
-                _elementCreator.CreateText(ruleset.Name, Color.white, NonVrElementCreator.NormalFontSize);
+                _elementCreator.CreateText(ruleset.Name, Color.white, NonVrElementCreator.ButtonFontSize);
             buttonText.GetComponent<Graphic>().raycastTarget = false;
             var buttonTextTransform = (RectTransform)buttonText.transform;
             buttonTextTransform.SetParent(container.transform, worldPositionStays: false);
@@ -146,7 +146,36 @@
 
         private void UpdateSelectedText()
         {
-            _selectedText.text = $"Selected ruleset: {HR.SelectedRuleset.Name}";
+            var setName = HR.SelectedRuleset.Name;
+            if (setName.Equals("None"))
+            {
+                setName = "<color=#B31106FF><b>None</b></color>";
+            }
+            else if (setName.Contains("Demeo Revolutions"))
+            {
+                if (setName.Contains("(EASY"))
+                {
+                    setName = "<color=#057004><b>Demeo Revolutions</b></color> <color=#1D21E0><b>(EASY)</b></color>";
+                }
+                else if (setName.Contains("(HARD"))
+                {
+                    setName = "<color=#057004><b>Demeo Revolutions</b></color> <color=#5611A2><b>(HARD)</b></color>";
+                }
+                else if (setName.Contains("(LEGENDARY"))
+                {
+                    setName = "<color=#057004><b>Demeo Revolutions</b></color> <color=#9F11A2><b>(LEGENDARY)</b></color>";
+                }
+                else if (setName.Contains("(PROGRESSIVE"))
+                {
+                    setName = "<color=#057004><b>Demeo Revolutions</b></color> <color=#A2115D><b>(PROGRESSIVE)</b></color>";
+                }
+                else
+                {
+                    setName = "<color=#057004><b>Demeo Revolutions</b></color>";
+                }
+            }
+
+            _selectedText.text = $"Selected ruleset: {setName}";
         }
     }
 }

@@ -43,36 +43,8 @@ namespace HouseRules
             }
 
             SelectedRuleset = Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
-            var setName = SelectedRuleset.Name;
-            if (setName.Contains("<b>None</b>"))
-            {
-                setName = "None";
-            }
-            else if (setName.Contains("Demeo Revolutions"))
-            {
-                if (setName.Contains("(EASY"))
-                {
-                    setName = "Demeo Revolutions (EASY)";
-                }
-                else if (setName.Contains("(HARD"))
-                {
-                    setName = "Demeo Revolutions (HARD)";
-                }
-                else if (setName.Contains("(LEGENDARY"))
-                {
-                    setName = "Demeo Revolutions (LEGENDARY)";
-                }
-                else if (setName.Contains("(PROGRESSIVE"))
-                {
-                    setName = "Demeo Revolutions (PROGRESSIVE)";
-                }
-                else
-                {
-                    setName = "Demeo Revolutions";
-                }
-            }
 
-            CoreMod.Logger.Msg($"Selected ruleset: {setName}");
+            CoreMod.Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
         }
 
         public static void ScheduleBoardSync()

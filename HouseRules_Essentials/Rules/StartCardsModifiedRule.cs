@@ -97,7 +97,7 @@
                     {
                         diff = 2;
                     }
-                    else if (HR.SelectedRuleset.Name.Equals("<color=#339A32><b>Demeo Revolutions</b></color>"))
+                    else if (HR.SelectedRuleset.Name.Equals("Demeo Revolutions"))
                     {
                         diff = 1;
                     }

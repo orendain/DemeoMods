@@ -92,6 +92,40 @@
         /// <returns>The GameObject containing the text component.</returns>
         public GameObject CreateText(string text, Color color, int fontSize)
         {
+            var setName = text;
+            if (setName.Equals("None"))
+            {
+                setName = "<color=#B31106FF><b>None</b></color>";
+            }
+            else if (fontSize == ButtonFontSize)
+            {
+                fontSize = NormalFontSize;
+                if (setName.Contains("Demeo Revolutions"))
+                {
+                    CommonModule.Logger.Msg("Demeo Revolutions...");
+                    if (setName.Contains("(EASY"))
+                    {
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#134BF8><b>(EASY)</b></color>";
+                    }
+                    else if (setName.Contains("(HARD"))
+                    {
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#7E53FB><b>(HARD)</b></color>";
+                    }
+                    else if (setName.Contains("(LEGENDARY"))
+                    {
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#C013F8><b>(LEGENDARY)</b></color>";
+                    }
+                    else if (setName.Contains("(PROGRESSIVE"))
+                    {
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#F813BE><b>(PROGRESSIVE)</b></color>";
+                    }
+                    else
+                    {
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>";
+                    }
+                }
+            }
+
             var container = new GameObject("Text");
 
             var textComponent = container.AddComponent<TextMeshPro>();
@@ -104,7 +138,7 @@
             textComponent.fontSizeMax = fontSize;
             textComponent.fontSizeMin = 1;
             textComponent.fontStyle = FontStyles.Normal;
-            textComponent.text = text;
+            textComponent.text = setName;
             textComponent.transform.localPosition = new Vector3(0, 0, TextZShift);
 
             return container;
