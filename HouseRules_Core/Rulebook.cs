@@ -65,6 +65,10 @@
                 {
                     setName = "Demeo Revolutions (PROGRESSIVE)";
                 }
+                else
+                {
+                    setName = "Demeo Revolutions";
+                }
             }
 
             CoreMod.Logger.Msg($"Registering ruleset: {setName} (with {ruleset.Rules.Count} rules)");

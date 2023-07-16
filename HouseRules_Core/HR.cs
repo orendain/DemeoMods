@@ -66,6 +66,10 @@ namespace HouseRules
                 {
                     setName = "Demeo Revolutions (PROGRESSIVE)";
                 }
+                else
+                {
+                    setName = "Demeo Revolutions";
+                }
             }
 
             CoreMod.Logger.Msg($"Selected ruleset: {setName}");
