@@ -462,7 +462,7 @@
                         if (level > 7)
                         {
                             kd++;
-                            app = false;
+                            app = true;
                             sb.Append(ColorizeString("Gained ", Color.yellow));
                             Inventory.Item value;
                             for (var i = 0; i < myPiece.inventory.Items.Count; i++)
@@ -498,10 +498,7 @@
 
                         if (level > 9)
                         {
-                            app = true;
                             bon += 2;
-                            sb.Append(ColorizeString("Gained ", Color.yellow));
-                            sb.AppendLine(ColorizeString("1 Extra Action Point", Color.white));
                         }
 
                         if (level > 8)
@@ -519,21 +516,14 @@
                             app = true;
                         }
 
-                        if (kd > 0)
+                        if (hp > 0)
                         {
                             app = false;
                             sb.Append(ColorizeString("Gained ", Color.yellow));
-                            if (kd > 1)
-                            {
-                                sb.Append(ColorizeString($"{kd} Knockdowns", Color.white));
-                            }
-                            else
-                            {
-                                sb.Append(ColorizeString($"{kd} Knockdown", Color.white));
-                            }
+                            sb.Append(ColorizeString($"{hp} Max Health", Color.white));
                         }
 
-                        if (hp > 0)
+                        if (kd > 0)
                         {
                             app = false;
                             if (bon > 0)
@@ -545,7 +535,14 @@
                                 sb.Append(ColorizeString(" and ", Color.yellow));
                             }
 
-                            sb.Append(ColorizeString($"{hp} Max Health", Color.white));
+                            if (kd > 1)
+                            {
+                                sb.Append(ColorizeString($"{kd} Knockdowns", Color.white));
+                            }
+                            else
+                            {
+                                sb.Append(ColorizeString($"{kd} Knockdown", Color.white));
+                            }
                         }
 
                         if (bon > 0)
@@ -572,9 +569,16 @@
 
                         if (spd)
                         {
-                            app = false;
+                            app = true;
                             sb.Append(ColorizeString(" and ", Color.yellow));
-                            sb.Append(ColorizeString("2 Swiftness", Color.white));
+                            sb.AppendLine(ColorizeString("2 Swiftness", Color.white));
+                        }
+
+                        if (level > 9)
+                        {
+                            app = true;
+                            sb.Append(ColorizeString("Gained ", Color.yellow));
+                            sb.AppendLine(ColorizeString("1 Extra Action Point", Color.white));
                         }
 
                         if (level < 10)

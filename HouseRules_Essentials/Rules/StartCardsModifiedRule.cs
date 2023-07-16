@@ -711,7 +711,7 @@
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                 }
 
-                if (level > 8)
+                if (level > 8 && piece.GetHealth() < piece.GetMaxHealth())
                 {
                     if (!piece.HasEffectState(EffectStateType.Downed) && !piece.HasEffectState(EffectStateType.Diseased) && !piece.HasEffectState(EffectStateType.Petrified))
                     {
