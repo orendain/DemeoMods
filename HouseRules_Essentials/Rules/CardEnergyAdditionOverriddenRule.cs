@@ -120,7 +120,8 @@
 
                     piece.DisableEffectState(EffectStateType.Heal);
                     piece.EnableEffectState(EffectStateType.Heal, 1);
-                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, piece.GetStatMax(Stats.Type.CritChance));
+                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, nextLevel);
+                    GameUI.ShowCameraMessage("<color=#F0F312>The party has</color> <color=#00FF00>LEVELED UP</color><color=#F0F312>!</color>", 8);
                     if (nextLevel == 3)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
