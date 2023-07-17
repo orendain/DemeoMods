@@ -1148,6 +1148,7 @@
                 {
                     BoardPieceId.HeroBarbarian, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
@@ -1161,6 +1162,7 @@
                 {
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
@@ -1174,6 +1176,7 @@
                 {
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
@@ -1187,8 +1190,9 @@
                 {
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DamageResistPotion,
-                         AbilityKey.InvisibilityPotion,
+                        AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
                         AbilityKey.LuckPotion,
                         AbilityKey.ExtraActionPotion,
@@ -1200,6 +1204,7 @@
                 {
                     BoardPieceId.HeroRogue, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
@@ -1213,6 +1218,7 @@
                 {
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
@@ -1580,6 +1586,7 @@
                 { AbilityKey.LeapHeavy, 1 },
                 { AbilityKey.Leap, 1 },
                 { AbilityKey.Net, 0 },
+                { AbilityKey.Overload, 1 },
             });
 
             var pieceExtraImmunitiesRule = new PieceExtraImmunitiesRule(true);
@@ -1746,6 +1753,7 @@
 
             var revolutionsRule = new RevolutionsRule(true);
             var pieceProgress = new PieceProgressRule(true);
+            var pieceProgressLost = new PieceProgressLostRule(true);
             var goldPickupRule = new GoldPickedUpMultipliedRule(1);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
@@ -1758,6 +1766,7 @@
                 name,
                 description,
                 longdesc,
+                pieceProgressLost,
                 tickRule,
                 revolutionsRule,
                 pieceProgress,

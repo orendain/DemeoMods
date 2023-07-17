@@ -78,6 +78,7 @@
     <Compile Include="Rules\PieceDamageResistRule.cs" />
     <Compile Include="Rules\PieceDownedCountAdjustedRule.cs" />
     <Compile Include="Rules\PieceMagicStatAddedRule.cs" />
+    <Compile Include="Rules\PieceProgressLostRule.cs" />
     <Compile Include="Rules\PieceProgressRule.cs" />
     <Compile Include="Rules\PotionAdditionOverriddenRule.cs" />
     <Compile Include="Rules\ReviveRemovesEffectsRule.cs" />

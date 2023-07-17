@@ -121,7 +121,7 @@
                     piece.DisableEffectState(EffectStateType.Heal);
                     piece.EnableEffectState(EffectStateType.Heal, 1);
                     piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, piece.GetStatMax(Stats.Type.CritChance));
-                    if (nextLevel == 4)
+                    if (nextLevel == 3)
                     {
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
@@ -131,12 +131,7 @@
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 2);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 2);
                     }
-                    else if (nextLevel == 9)
-                    {
-                        piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 3);
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 3);
-                    }
-                    else if (nextLevel == 3)
+                    else if (nextLevel == 4)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
@@ -277,14 +272,11 @@
                                 value = piece.inventory.Items[i];
                                 if (value.abilityKey == AbilityKey.Arrow)
                                 {
-                                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                                     piece.inventory.Items.Remove(value);
-                                    piece.AddGold(0);
                                     break;
                                 }
                             }
 
-                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                             piece.inventory.Items.Add(new Inventory.Item
                             {
                                 abilityKey = AbilityKey.EnemyFireball,
@@ -299,17 +291,35 @@
                         }
                         else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
                         {
+                            int overcharge = 0;
                             Inventory.Item value;
+                            if (piece.HasEffectState(EffectStateType.Overcharge))
+                            {
+                                if (piece.HasEffectState(EffectStateType.Overcharge))
+                                {
+                                    overcharge = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Overcharge);
+                                }
+
+                                piece.effectSink.RemoveStatusEffect(EffectStateType.Overcharge);
+                            }
+
                             for (var i = 0; i < piece.inventory.Items.Count; i++)
                             {
                                 value = piece.inventory.Items[i];
                                 if (value.abilityKey == AbilityKey.Overcharge)
                                 {
+                                    if (value.IsReplenishing)
+                                    {
+                                        value.flags &= (Inventory.ItemFlag)(-3);
+                                        piece.inventory.Items[i] = value;
+                                    }
+
                                     piece.inventory.Items.Remove(value);
                                     break;
                                 }
                             }
 
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                             piece.inventory.Items.Add(new Inventory.Item
                             {
                                 abilityKey = AbilityKey.Electricity,
@@ -317,6 +327,13 @@
                                 originalOwner = -1,
                                 replenishCooldown = 1,
                             });
+
+                            if (overcharge > 0)
+                            {
+                                piece.effectSink.AddStatusEffect(EffectStateType.Overcharge);
+                                piece.effectSink.SetStatusEffectDuration(EffectStateType.Overcharge, overcharge);
+                            }
+
                             piece.AddGold(0);
 
                             AbilityFactory.TryGetAbility(AbilityKey.Zap, out var ability);

@@ -378,7 +378,6 @@
                     if (rev_progr)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.CritChance, 34);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
                         piece.EnableEffectState(EffectStateType.Flying);
                         piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);
@@ -704,6 +703,12 @@
             // Progressive Health Regeneration, Extra Actions and Action Point cost changes per character class
             if (rev_progr)
             {
+                if (piece.HasEffectState(EffectStateType.ConfusedPermanentVisualOnly))
+                {
+                    piece.DisableEffectState(EffectStateType.ConfusedPermanentVisualOnly);
+                    piece.DisableEffectState(EffectStateType.Corruption);
+                }
+
                 int level = piece.GetStatMax(Stats.Type.CritChance);
                 if (level > 9)
                 {
