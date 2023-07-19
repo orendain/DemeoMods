@@ -46,7 +46,7 @@
       }
     },
     {
-      "Rule": "StatModifiersOverriden",
+      "Rule": "StatModifiersOverridden",
       "Config": {
         "ReplenishArmor": 4
       }
