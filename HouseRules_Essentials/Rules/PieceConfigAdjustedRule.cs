@@ -58,12 +58,25 @@
             foreach (var item in pieceConfigChanges)
             {
                 var pieceConfig = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Piece];
-                previousProperties.Add(new PieceProperty
+                if (item.Property == "PreciseHealth")
                 {
-                    Piece = item.Piece,
-                    Property = item.Property,
-                    Value = Convert.ToSingle(Traverse.Create(pieceConfig).Field(item.Property).GetValue()),
-                });
+                    AccessTools.FieldRefAccess<PieceConfigData, int>(pieceConfig, "healthAutoBalanceMode") = 1; // DownOnly
+                    continue;
+                }
+                else if (item.Property == "PreciseAttack")
+                {
+                    AccessTools.FieldRefAccess<PieceConfigData, int>(pieceConfig, "attackDamageAutoBalanceMode") = 1; // None
+                    continue;
+                }
+                else
+                {
+                    previousProperties.Add(new PieceProperty
+                    {
+                        Piece = item.Piece,
+                        Property = item.Property,
+                        Value = Convert.ToSingle(Traverse.Create(pieceConfig).Field(item.Property).GetValue()),
+                    });
+                }
 
                 // EssentialsMod.Logger.Msg($"Configs for {item.Piece}: {item.Property} - {Convert.ToSingle(Traverse.Create(pieceConfig).Field(item.Property).GetValue())}"); // Uncomment to see original Configs
                 ModifyPieceConfig(ref pieceConfig, item.Property, item.Value);

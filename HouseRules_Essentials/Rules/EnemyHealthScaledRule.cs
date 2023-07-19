@@ -15,7 +15,8 @@
 
         private static float _globalMultiplier;
         private static bool _isActivated;
-
+        private static bool _wizardBoss;
+        private static int _wizardHealth;
         private readonly float _multiplier;
 
         public EnemyHealthScaledRule(float multiplier)
@@ -31,7 +32,12 @@
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(GameContext gameContext)
+        {
+            _wizardBoss = false;
+            _wizardHealth = 0;
+            _isActivated = false;
+        }
 
         private static void Patch(Harmony harmony)
         {
@@ -63,11 +69,6 @@
             var ruleSet = HR.SelectedRuleset.Name;
             if (ruleSet.Contains("(LEGENDARY"))
             {
-                if (config.StartHealth < 5)
-                {
-                    return;
-                }
-
                 range = Random.Range(1.3f, 1.5f);
             }
             else if (ruleSet.Contains("(HARD"))
@@ -81,27 +82,22 @@
             }
             else if (ruleSet.Contains("(EASY"))
             {
-                if (config.StartHealth < 5)
-                {
-                    return;
-                }
-
                 range = Random.Range(0.75f, 1f);
             }
-            else if (ruleSet.Contains("(PROGRESSIVE"))
+            else if (ruleSet.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
-                    range = Random.Range(1.0f, 1.3f);
+                    range = Random.Range(1.0f, 1.33f);
                 }
-                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
                 {
-                    range = Random.Range(1.3f, 1.6f);
+                    range = Random.Range(1.34f, 1.66f);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
-                    range = Random.Range(1.6f, 1.9f);
+                    range = Random.Range(1.67f, 2f);
                 }
             }
             else if (ruleSet.Contains("Revolutions"))
@@ -114,9 +110,22 @@
                 range = Random.Range(0.85f, 1.2f);
             }
 
+            if (__result.boardPieceId == BoardPieceId.WizardBoss && _wizardBoss)
+            {
+                __result.effectSink.TrySetStatMaxValue(Stats.Type.Health, _wizardHealth);
+                __result.effectSink.TrySetStatBaseValue(Stats.Type.Health, _wizardHealth);
+                return;
+            }
+
             int newStartHealth = (int)(config.StartHealth * _globalMultiplier * range);
             __result.effectSink.TrySetStatMaxValue(Stats.Type.Health, newStartHealth);
             __result.effectSink.TrySetStatBaseValue(Stats.Type.Health, newStartHealth);
+
+            if (__result.boardPieceId == BoardPieceId.WizardBoss && !_wizardBoss)
+            {
+                _wizardBoss = true;
+                _wizardHealth = newStartHealth;
+            }
         }
     }
 }

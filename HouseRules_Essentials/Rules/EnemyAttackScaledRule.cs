@@ -47,7 +47,7 @@
                 return;
             }
 
-            if (config.PowerIndex > 40)
+            if (config.AttackDamage < 1 || config.PowerIndex > 40)
             {
                 return;
             }
@@ -58,56 +58,38 @@
             }
 
             int range = 0;
-            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
+            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
-                    int high = 0;
-                    if (config.AttackDamage < 5)
-                    {
-                        high = 1;
-                    }
-
-                    range = Random.Range(0, high);
+                    range = Random.Range(0, 2);
                 }
-                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 2)
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
                 {
-                    int high = 1;
-                    if (config.AttackDamage < 7)
-                    {
-                        high = 2;
-                    }
-
-                    range = Random.Range(1, high);
+                    range = Random.Range(2, 4);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
-                    int high = 2;
-                    if (config.AttackDamage < 7)
-                    {
-                        high = 3;
-                    }
-
-                    range = Random.Range(2, high);
+                    range = Random.Range(4, 6);
                 }
             }
             else if (HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
-                int high = 0;
                 if (config.AttackDamage < 5)
                 {
-                    high = 1;
+                    if (Random.Range(1, 101) < 51)
+                    {
+                        range = Random.Range(0, 2);
+                    }
                 }
                 else if (config.AttackDamage < 7)
                 {
-                    if (Random.Range(1, 101) < 21)
+                    if (Random.Range(1, 101) < 26)
                     {
-                        high = 2;
+                        range = Random.Range(0, 3);
                     }
                 }
-
-                range = Random.Range(0, high);
             }
 
             int newAttackDamage = (int)(config.AttackDamage * _globalMultiplier) + range;
