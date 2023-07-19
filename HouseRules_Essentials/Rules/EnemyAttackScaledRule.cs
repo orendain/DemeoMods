@@ -67,16 +67,27 @@
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
                 {
-                    range = Random.Range(2, 4);
+                    range = Random.Range(1, 3);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
-                    range = Random.Range(4, 6);
+                    if (config.HasPieceType(PieceType.Boss))
+                    {
+                        range = 5;
+                    }
+                    else
+                    {
+                        range = Random.Range(2, 5);
+                    }
                 }
             }
             else if (HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
-                if (config.AttackDamage < 5)
+                if (config.HasPieceType(PieceType.Boss))
+                {
+                    range = 3;
+                }
+                else if (config.AttackDamage < 5)
                 {
                     if (Random.Range(1, 101) < 51)
                     {

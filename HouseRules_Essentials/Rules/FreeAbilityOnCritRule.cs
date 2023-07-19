@@ -64,7 +64,7 @@
                 source.effectSink.TryGetStat(Stats.Type.ActionPoints, out int currentAP);
                 if (source.boardPieceId == BoardPieceId.HeroBard)
                 {
-                    if (currentAP < 1 || !HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && (source.GetStatMax(Stats.Type.CritChance) > 3)))
+                    if (currentAP < 1 || !HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || ((HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME")) && (source.GetStatMax(Stats.Type.CritChance) > 3)))
                     {
                         if (source.HasEffectState(EffectStateType.Fearless))
                         {
@@ -93,7 +93,7 @@
                     {
                         if (myArmor < 9)
                         {
-                            if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 3))
+                            if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || ((HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME")) && source.GetStatMax(Stats.Type.CritChance) > 3))
                             {
                                 source.effectSink.TrySetStatBaseValue(Stats.Type.MagicArmor, myArmor + 2);
                             }
@@ -112,7 +112,7 @@
                     }
                     else
                     {
-                        if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 3))
+                        if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || ((HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME")) && source.GetStatMax(Stats.Type.CritChance) > 3))
                         {
                             if (myArmor < 10)
                             {
@@ -123,7 +123,7 @@
                 }
                 else if (source.boardPieceId == BoardPieceId.HeroSorcerer && source.effectSink.HasEffectState(EffectStateType.Overcharge))
                 {
-                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 3))
+                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || ((HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME")) && source.GetStatMax(Stats.Type.CritChance) > 3))
                     {
                         Inventory.Item value1;
                         bool hasPower1 = false;

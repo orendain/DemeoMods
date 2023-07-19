@@ -89,15 +89,22 @@
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
-                    range = Random.Range(1.0f, 1.33f);
+                    range = Random.Range(1.0f, 1.5f);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
                 {
-                    range = Random.Range(1.34f, 1.66f);
+                    range = Random.Range(1.5f, 2f);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
-                    range = Random.Range(1.67f, 2f);
+                    if (config.HasPieceType(PieceType.Boss))
+                    {
+                        range = Random.Range(2.25f, 2.5f);
+                    }
+                    else
+                    {
+                        range = Random.Range(2f, 2.5f);
+                    }
                 }
             }
             else if (ruleSet.Contains("Revolutions"))

@@ -74,7 +74,7 @@ namespace HouseRules.Essentials.Rules
                         source.effectSink.TrySetStatBaseValue(Stats.Type.Armor, myArmor + 1);
                     }
 
-                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 3))
+                    if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || ((HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME")) && source.GetStatMax(Stats.Type.CritChance) > 3))
                     {
                         if (currentAP < 1)
                         {
@@ -85,7 +85,7 @@ namespace HouseRules.Essentials.Rules
                             source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                         }
                     }
-                    else if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) < 4)
+                    else if ((HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME")) && source.GetStatMax(Stats.Type.CritChance) < 4)
                     {
                         if (currentAP < 1)
                         {
@@ -116,7 +116,7 @@ namespace HouseRules.Essentials.Rules
                         source.EnableEffectState(EffectStateType.Invisibility);
                         source.effectSink.SetStatusEffectDuration(EffectStateType.Invisibility, 2);
                     }
-                    else if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && source.GetStatMax(Stats.Type.CritChance) > 3))
+                    else if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || ((HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME")) && source.GetStatMax(Stats.Type.CritChance) > 3))
                     {
                         source.effectSink.TrySetStatBaseValue(Stats.Type.ActionPoints, currentAP + 1);
                     }
