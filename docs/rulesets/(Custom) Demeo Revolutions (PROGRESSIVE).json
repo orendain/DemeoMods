@@ -504,7 +504,7 @@
         {
           "Piece": "ElvenQueen",
           "Property": "StartHealth",
-          "Value": 120.0
+          "Value": 80.0
         },
         {
           "Piece": "ElvenQueen",
@@ -524,7 +524,7 @@
         {
           "Piece": "BossTown",
           "Property": "StartHealth",
-          "Value": 250.0
+          "Value": 160.0
         },
         {
           "Piece": "BossTown",
@@ -532,6 +532,26 @@
           "Value": 6.0
         },
         {
+          "Piece": "MadElvenKingHandLeft",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MadElvenKingHandLeft",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MadElvenKingHandRight",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MadElvenKingHandRight",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
           "Piece": "RootLord",
           "Property": "PreciseHealth",
           "Value": 1.0
@@ -543,68 +563,68 @@
         },
         {
           "Piece": "RootLord",
+          "Property": "StartHealth",
+          "Value": 80.0
+        },
+        {
+          "Piece": "RootLord",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "StartHealth",
+          "Value": 50.0
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "StartHealth",
+          "Value": 135.0
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "WizardBoss",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "WizardBoss",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "WizardBoss",
           "Property": "StartHealth",
           "Value": 125.0
-        },
-        {
-          "Piece": "RootLord",
-          "Property": "PowerIndex",
-          "Value": 6.0
-        },
-        {
-          "Piece": "MotherCy",
-          "Property": "PreciseHealth",
-          "Value": 1.0
-        },
-        {
-          "Piece": "MotherCy",
-          "Property": "PreciseAttack",
-          "Value": 1.0
-        },
-        {
-          "Piece": "MotherCy",
-          "Property": "StartHealth",
-          "Value": 60.0
-        },
-        {
-          "Piece": "MotherCy",
-          "Property": "PowerIndex",
-          "Value": 6.0
-        },
-        {
-          "Piece": "RatKing",
-          "Property": "PreciseHealth",
-          "Value": 1.0
-        },
-        {
-          "Piece": "RatKing",
-          "Property": "PreciseAttack",
-          "Value": 1.0
-        },
-        {
-          "Piece": "RatKing",
-          "Property": "StartHealth",
-          "Value": 200.0
-        },
-        {
-          "Piece": "RatKing",
-          "Property": "PowerIndex",
-          "Value": 6.0
-        },
-        {
-          "Piece": "WizardBoss",
-          "Property": "PreciseHealth",
-          "Value": 1.0
-        },
-        {
-          "Piece": "WizardBoss",
-          "Property": "PreciseAttack",
-          "Value": 1.0
-        },
-        {
-          "Piece": "WizardBoss",
-          "Property": "StartHealth",
-          "Value": 250.0
         },
         {
           "Piece": "WizardBoss",
@@ -625,6 +645,11 @@
           "Piece": "SnakeBoss",
           "Property": "PowerIndex",
           "Value": 3.0
+        },
+        {
+          "Piece": "SnakeTailBoss",
+          "Property": "PreciseHealth",
+          "Value": 1.0
         },
         {
           "Piece": "SnakeTailBoss",
