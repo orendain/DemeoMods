@@ -41,6 +41,17 @@
             int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
             var revolutions = myPiece.GetStat(Stats.Type.InnateCounterDamageExtraDamage);
             int level = myPiece.GetStatMax(Stats.Type.CritChance);
+            var freeSlots = 9;
+            Inventory.Item value2;
+            for (var i = 0; i < myPiece.inventory.Items.Count; i++)
+            {
+                value2 = myPiece.inventory.Items[i];
+                if (!value2.IsReplenishable)
+                {
+                    freeSlots--;
+                }
+            }
+
             if (!myPiece.HasEffectState(EffectStateType.Flying))
             {
                 level = 0;
@@ -90,6 +101,8 @@
                     break;
             }
 
+            sb.Append(ColorizeString("Free card slots: ", mustard));
+            sb.AppendLine(ColorizeString($"{freeSlots}", gold));
             if (myPiece.HasEffectState(EffectStateType.Weaken1Turn) || myPiece.HasEffectState(EffectStateType.Weaken2Turns))
             {
                 sb.Append(ColorizeString("Weakened (Half damage)", mustard));
