@@ -296,11 +296,7 @@
                             Inventory.Item value;
                             if (piece.HasEffectState(EffectStateType.Overcharge))
                             {
-                                if (piece.HasEffectState(EffectStateType.Overcharge))
-                                {
-                                    overcharge = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Overcharge);
-                                }
-
+                                overcharge = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Overcharge);
                                 piece.effectSink.RemoveStatusEffect(EffectStateType.Overcharge);
                             }
 
@@ -320,7 +316,6 @@
                                 }
                             }
 
-                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                             piece.inventory.Items.Add(new Inventory.Item
                             {
                                 abilityKey = AbilityKey.Electricity,

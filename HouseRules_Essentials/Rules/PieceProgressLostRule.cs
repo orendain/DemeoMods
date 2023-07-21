@@ -67,7 +67,7 @@
             piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, level);
             piece.DisableEffectState(EffectStateType.Corruption);
             piece.EnableEffectState(EffectStateType.Corruption, 1);
-            piece.EnableEffectState(EffectStateType.ConfusedPermanentVisualOnly);
+            piece.effectSink.AddStatusEffect(EffectStateType.ConfusedPermanentVisualOnly, -1, false);
             var charType = piece.boardPieceId;
             string textName = "Player";
             switch (charType)
@@ -123,7 +123,14 @@
                 }
                 else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
                 {
+                    int overcharge = 0;
                     Inventory.Item value;
+                    if (piece.HasEffectState(EffectStateType.Overcharge))
+                    {
+                        overcharge = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Overcharge);
+                        piece.effectSink.RemoveStatusEffect(EffectStateType.Overcharge);
+                    }
+
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
@@ -142,6 +149,12 @@
                         originalOwner = -1,
                         replenishCooldown = 1,
                     });
+
+                    if (overcharge > 0)
+                    {
+                        piece.effectSink.AddStatusEffect(EffectStateType.Overcharge);
+                        piece.effectSink.SetStatusEffectDuration(EffectStateType.Overcharge, overcharge);
+                    }
 
                     piece.AddGold(0);
                 }

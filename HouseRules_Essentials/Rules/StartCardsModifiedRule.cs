@@ -18,6 +18,7 @@
         private static bool _isActivated;
         private static bool _isReconnect;
         private static bool _checkPlayers;
+        private static int _keyResist;
         private static int _numPlayers = 1;
 
         private readonly Dictionary<BoardPieceId, List<CardConfig>> _heroStartCards;
@@ -41,7 +42,13 @@
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(GameContext gameContext)
+        {
+            _checkPlayers = false;
+            _keyResist = 0;
+            _numPlayers = 1;
+            _isActivated = false;
+        }
 
         private static void Patch(Harmony harmony)
         {
@@ -384,6 +391,47 @@
                     }
 
                     piece.AddGold(0);
+                }
+
+                // Handle keyholder gets 1 damage resist and 1 counter-attack damage
+                if (piece.HasEffectState(EffectStateType.Locked) && !piece.HasEffectState(EffectStateType.Key))
+                {
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, _keyResist);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.DamageResist, 1);
+                    if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamage, 1);
+                    }
+                    else
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamage, 0);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 0);
+                    }
+
+                    piece.DisableEffectState(EffectStateType.Locked);
+                }
+                else if (piece.HasEffectState(EffectStateType.Key))
+                {
+                    if (!piece.HasEffectState(EffectStateType.Locked))
+                    {
+                        piece.effectSink.AddStatusEffect(EffectStateType.Locked, -1, false);
+                        if (piece.GetStat(Stats.Type.DamageResist) > 0)
+                        {
+                            _keyResist = 1;
+                        }
+                    }
+
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.DamageResist, 2);
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DamageResist, 1 + _keyResist);
+                    if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamage, 2);
+                    }
+                    else
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamage, 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 255);
+                    }
                 }
 
                 // Handle Host reconnect makes returning players invulnerable when becoming master client again
