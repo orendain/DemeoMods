@@ -51,18 +51,8 @@
 
         private static void CreatePiece_RecreatePieceOnNewLevel_Postfix(ref Piece __result)
         {
-            if (!_isActivated)
+            if (!_isActivated || !__result.IsPlayer())
             {
-                return;
-            }
-
-            if (!__result.IsPlayer())
-            {
-                if (__result.boardPieceId == BoardPieceId.FireElemental)
-                {
-                    __result.effectSink.AddStatusEffect(EffectStateType.FireImmunity, 99);
-                }
-
                 return;
             }
 

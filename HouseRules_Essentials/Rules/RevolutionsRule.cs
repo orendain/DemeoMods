@@ -2,6 +2,7 @@
 {
     using Boardgame;
     using Boardgame.BoardEntities;
+    using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
 
@@ -32,8 +33,18 @@
 
         private static void CreatePiece_Revolutions_Postfix(ref Piece __result)
         {
-            if (!_isActivated || !__result.IsPlayer())
+            if (!_isActivated)
             {
+                return;
+            }
+
+            if (!__result.IsPlayer())
+            {
+                if (__result.boardPieceId == BoardPieceId.FireElemental || __result.boardPieceId == BoardPieceId.ServantOfAlfaragh)
+                {
+                    __result.effectSink.AddStatusEffect(EffectStateType.FireImmunity, 99);
+                }
+
                 return;
             }
 
