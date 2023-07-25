@@ -44,6 +44,41 @@
                 {
                     __result.effectSink.AddStatusEffect(EffectStateType.FireImmunity, 99);
                 }
+                else if (__result.boardPieceId == BoardPieceId.Tornado)
+                {
+                    __result.effectSink.AddStatusEffect(EffectStateType.Overcharge, 99);
+                }
+                else if (__result.boardPieceId.ToString().Contains("SummoningRift"))
+                {
+                    __result.effectSink.AddStatusEffect(EffectStateType.Corruption, 99);
+                }
+                else if (!HR.SelectedRuleset.Name.Contains("(EASY"))
+                {
+                    if (__result.boardPieceId == BoardPieceId.ReptileMutantWizard || __result.boardPieceId == BoardPieceId.TheUnseen)
+                    {
+                        __result.effectSink.AddStatusEffect(EffectStateType.MagicShield, 99);
+                    }
+                    else if (__result.boardPieceId.ToString().Contains("Goblin"))
+                    {
+                        __result.effectSink.AddStatusEffect(EffectStateType.Courageous, 99);
+                    }
+                    else if (__result.boardPieceId.ToString().Contains("Druid"))
+                    {
+                        __result.effectSink.AddStatusEffect(EffectStateType.Recovery, 99);
+                    }
+                    else if (__result.boardPieceId.ToString().Contains("Elven"))
+                    {
+                        __result.effectSink.AddStatusEffect(EffectStateType.Heroic, 99);
+                    }
+                }
+
+                if (HR.SelectedRuleset.Name.Contains("(LEGENDARY"))
+                {
+                    if (__result.boardPieceId == BoardPieceId.GoblinMadUn)
+                    {
+                        __result.effectSink.AddStatusEffect(EffectStateType.Enraged, 99);
+                    }
+                }
 
                 return;
             }

@@ -45,6 +45,8 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "MoveRange", Value = 10 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "StartHealth", Value = 9 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Tornado, Property = "ActionPoint", Value = 2 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Tornado, Property = "AliveForRounds", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 30 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
@@ -1463,6 +1465,7 @@
                 { AbilityKey.WeakeningShout, new List<int> { 2, 2, 2, 2 } },
                 { AbilityKey.LeapHeavy, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.ImplosionExplosionRain, new List<int> { 5, 5, 5, 5 } },
+                { AbilityKey.TornadoCharge, new List<int> { 3, 3, 3, 3 } },
             });
 
             var turnOrderRule = new TurnOrderOverriddenRule(new TurnOrderOverriddenRule.Scores
@@ -1664,7 +1667,6 @@
                 name,
                 description,
                 longdesc,
-
                 tickRule,
                 revolutionsRule,
                 grappleUnhooked,
