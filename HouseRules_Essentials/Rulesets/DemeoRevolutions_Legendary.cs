@@ -1363,6 +1363,9 @@
                 { BoardPieceId.GoblinFighter, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyFlashbang } },
                 { BoardPieceId.PoisonousRat, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
                 { BoardPieceId.ElvenSkirmisher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyPikeMeleeAttack } },
+                { BoardPieceId.GiantSpider, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.SpiderWebshot } },
+                { BoardPieceId.Cavetroll, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ElvenKingMeleeWhip } },
+                { BoardPieceId.ScabRat, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
             });
 
             var pieceBehaviourListRule = new PieceBehavioursListOverriddenRule(new Dictionary<BoardPieceId, List<Behaviour>>
@@ -1381,6 +1384,9 @@
                 { BoardPieceId.GoblinFighter, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.SandScorpion, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackAndRetreat } },
                 { BoardPieceId.JeweledScarab, new List<Behaviour> { Behaviour.Patrol, Behaviour.FleeToFOW } },
+                { BoardPieceId.GiantSpider, new List<Behaviour> { Behaviour.Patrol, Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.Cavetroll, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer , Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.ScabRat, new List<Behaviour> { Behaviour.Patrol, Behaviour.Swarm ,Behaviour.AttackPlayer } },
             });
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
@@ -1462,12 +1468,25 @@
                 { AbilityKey.AcidSpit, new List<EffectStateType> { EffectStateType.Diseased } },
                 { AbilityKey.TauntingScream, new List<EffectStateType> { EffectStateType.Weaken2Turns, EffectStateType.Disoriented } },
                 { AbilityKey.WarCry, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Blinded } },
+                { AbilityKey.ExplodingGasLamp, new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Stunned } },
             });
 
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods, AbilityKey.DropChest } },
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.Explosion } },
+                { BoardPieceId.GasLamp, new List<AbilityKey> { AbilityKey.GasLamp, AbilityKey.Overload } },
+                { BoardPieceId.Tornado, new List<AbilityKey> { AbilityKey.LetItRain } },
+                { BoardPieceId.GiantSlime, new List<AbilityKey> { AbilityKey.AcidSpit } },
+                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.CorruptionBomb, AbilityKey.Vortex } },
+                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.Vortex, AbilityKey.Overload } },
+                { BoardPieceId.Brookmare, new List<AbilityKey> { AbilityKey.WaterExplosion } },
+                { BoardPieceId.GiantSpider, new List<AbilityKey> { AbilityKey.SpawnSpiderlings } },
+                { BoardPieceId.Cavetroll, new List<AbilityKey> { AbilityKey.EarthShatter } },
+                { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.ImplosionExplosionRain } },
+                { BoardPieceId.Sigataur, new List<AbilityKey> { AbilityKey.DeathDropJavelin, AbilityKey.RaiseRoots, AbilityKey.LetItRain } },
+                { BoardPieceId.ServantOfAlfaragh, new List<AbilityKey> { AbilityKey.TelekineticBurst } },
+                { BoardPieceId.ScabRat, new List<AbilityKey> { AbilityKey.SpawnRat, AbilityKey.SpawnRat } },
             });
 
             var abilityBreaksStealth = new AbilityBreaksStealthAdjustedRule(new Dictionary<AbilityKey, bool>

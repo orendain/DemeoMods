@@ -1416,12 +1416,15 @@
                 { AbilityKey.TurretHighDamageProjectile, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Blinded } },
                 { AbilityKey.TauntingScream, new List<EffectStateType> { EffectStateType.Weaken2Turns, EffectStateType.Disoriented } },
                 { AbilityKey.WarCry, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Blinded } },
+                { AbilityKey.ExplodingGasLamp, new List<EffectStateType> { EffectStateType.Diseased, EffectStateType.Stunned } },
             });
 
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods, AbilityKey.DropChest } },
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.Explosion } },
+                { BoardPieceId.GasLamp, new List<AbilityKey> { AbilityKey.GasLamp, AbilityKey.Overload } },
+                { BoardPieceId.Tornado, new List<AbilityKey> { AbilityKey.LetItRain } },
             });
 
             var abilityBreaksStealth = new AbilityBreaksStealthAdjustedRule(new Dictionary<AbilityKey, bool>

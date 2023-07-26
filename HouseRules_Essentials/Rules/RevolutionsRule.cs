@@ -40,11 +40,13 @@
 
             if (!__result.IsPlayer())
             {
+                var ruleSet = HR.SelectedRuleset.Name;
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (__result.boardPieceId == BoardPieceId.FireElemental || __result.boardPieceId == BoardPieceId.ServantOfAlfaragh)
                 {
                     __result.effectSink.AddStatusEffect(EffectStateType.FireImmunity, 99);
                 }
-                else if (__result.boardPieceId == BoardPieceId.Tornado)
+                else if (__result.boardPieceId == BoardPieceId.Tornado || __result.boardPieceId == BoardPieceId.GasLamp)
                 {
                     __result.effectSink.AddStatusEffect(EffectStateType.Overcharge, 99);
                 }
@@ -52,31 +54,37 @@
                 {
                     __result.effectSink.AddStatusEffect(EffectStateType.Corruption, 99);
                 }
-                else if (!HR.SelectedRuleset.Name.Contains("(EASY"))
+                else if (ruleSet.Contains("(PROGRESSIVE") || ruleSet.Equals("TEST GAME") || ruleSet.Contains("(LEGENDARY"))
                 {
-                    if (__result.boardPieceId == BoardPieceId.ReptileMutantWizard || __result.boardPieceId == BoardPieceId.TheUnseen)
+                    if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
                     {
-                        __result.effectSink.AddStatusEffect(EffectStateType.MagicShield, 99);
+                        if (__result.boardPieceId == BoardPieceId.ReptileMutantWizard || __result.boardPieceId == BoardPieceId.TheUnseen)
+                        {
+                            __result.effectSink.AddStatusEffect(EffectStateType.MagicShield, 99);
+                        }
+                        else if (__result.boardPieceId.ToString().Contains("Goblin") || __result.boardPieceId.ToString().Contains("Elven"))
+                        {
+                            __result.effectSink.AddStatusEffect(EffectStateType.Courageous, 99);
+                        }
                     }
-                    else if (__result.boardPieceId.ToString().Contains("Goblin"))
+                    else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 5)
                     {
-                        __result.effectSink.AddStatusEffect(EffectStateType.Courageous, 99);
-                    }
-                    else if (__result.boardPieceId.ToString().Contains("Druid"))
-                    {
-                        __result.effectSink.AddStatusEffect(EffectStateType.Recovery, 99);
-                    }
-                    else if (__result.boardPieceId.ToString().Contains("Elven"))
-                    {
-                        __result.effectSink.AddStatusEffect(EffectStateType.Heroic, 99);
-                    }
-                }
-
-                if (HR.SelectedRuleset.Name.Contains("(LEGENDARY"))
-                {
-                    if (__result.boardPieceId == BoardPieceId.GoblinMadUn)
-                    {
-                        __result.effectSink.AddStatusEffect(EffectStateType.Enraged, 99);
+                        if (__result.boardPieceId == BoardPieceId.ReptileMutantWizard || __result.boardPieceId == BoardPieceId.TheUnseen)
+                        {
+                            __result.effectSink.AddStatusEffect(EffectStateType.MagicShield, 99);
+                        }
+                        else if (__result.boardPieceId.ToString().Contains("The"))
+                        {
+                            __result.effectSink.AddStatusEffect(EffectStateType.Courageous, 99);
+                        }
+                        else if (__result.boardPieceId.ToString().Contains("Goblin") || (__result.boardPieceId != BoardPieceId.ElvenQueen && __result.boardPieceId.ToString().Contains("Elven")))
+                        {
+                            __result.effectSink.AddStatusEffect(EffectStateType.Heroic, 99);
+                        }
+                        else if (__result.boardPieceId.ToString().Contains("Druid"))
+                        {
+                            __result.effectSink.AddStatusEffect(EffectStateType.Recovery, 99);
+                        }
                     }
                 }
 
