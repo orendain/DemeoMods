@@ -1665,6 +1665,7 @@
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new TickAdjustedRule(true);
             var grappleUnhooked = new GrappleUnhookedRule(true);
+            var disableDoorsRule = new EnemyDoorOpeningDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
@@ -1672,6 +1673,7 @@
                 longdesc,
                 tickRule,
                 revolutionsRule,
+                disableDoorsRule,
                 grappleUnhooked,
                 pieceMagicStatsRule,
                 pieceCounterDamageRule,

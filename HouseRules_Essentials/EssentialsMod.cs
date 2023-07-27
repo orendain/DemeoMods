@@ -42,6 +42,7 @@
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
             HR.Rulebook.Register(typeof(EnemyCooldownOverriddenRule));
             HR.Rulebook.Register(typeof(EnemyDoorOpeningDisabledRule));
+            HR.Rulebook.Register(typeof(EnemyDoorOpeningEnabledRule));
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
             HR.Rulebook.Register(typeof(FreeAbilityOnCritRule));

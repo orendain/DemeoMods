@@ -1413,7 +1413,7 @@
                 { BoardPieceId.JeweledScarab, new List<Behaviour> { Behaviour.Patrol, Behaviour.FleeToFOW } },
                 { BoardPieceId.GiantSpider, new List<Behaviour> { Behaviour.Patrol, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.GiantSlime, new List<Behaviour> { Behaviour.Patrol, Behaviour.RangedAttackHighPrio } },
-                { BoardPieceId.ScabRat, new List<Behaviour> { Behaviour.Patrol, Behaviour.Swarm ,Behaviour.AttackPlayer } },
+                { BoardPieceId.ScabRat, new List<Behaviour> { Behaviour.Patrol, Behaviour.Swarm, Behaviour.AttackPlayer } },
             });
 
             var pieceImmunityRule = new PieceImmunityListAdjustedRule(new Dictionary<BoardPieceId, List<EffectStateType>>
@@ -1506,7 +1506,7 @@
                 { BoardPieceId.Tornado, new List<AbilityKey> { AbilityKey.LetItRain } },
                 { BoardPieceId.GiantSlime, new List<AbilityKey> { AbilityKey.SpawnSlime } },
                 { BoardPieceId.GiantSpider, new List<AbilityKey> { AbilityKey.SpawnSpiderlings } },
-                { BoardPieceId.ScabRat, new List<AbilityKey> { AbilityKey.SpawnRat } },
+                { BoardPieceId.ScabRat, new List<AbilityKey> { AbilityKey.SpawnRat, AbilityKey.SpawnRat } },
             });
 
             var abilityBreaksStealth = new AbilityBreaksStealthAdjustedRule(new Dictionary<AbilityKey, bool>
@@ -1791,6 +1791,7 @@
             var elvenQueenBuffs = new ElvenQueenBuffsRule(true);
             var elvenQueenSuper = new ElvenQueenSuperBuffRule(true);
             var grappleUnhooked = new GrappleUnhookedRule(true);
+            var enableDoorsRule = new EnemyDoorOpeningEnabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
@@ -1798,6 +1799,7 @@
                 longdesc,
                 tickRule,
                 revolutionsRule,
+                enableDoorsRule,
                 grappleUnhooked,
                 pieceDownedCountRule,
                 pieceMagicStatsRule,

@@ -5,13 +5,13 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class EnemyDoorOpeningDisabledRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
+    public sealed class EnemyDoorOpeningEnabledRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Enemies can't open doors";
+        public override string Description => "All enemies can open doors";
 
         private static bool _isActivated;
 
-        public EnemyDoorOpeningDisabledRule(bool value)
+        public EnemyDoorOpeningEnabledRule(bool value)
         {
         }
 
@@ -26,7 +26,7 @@
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
                 prefix: new HarmonyMethod(
-                    typeof(EnemyDoorOpeningDisabledRule),
+                    typeof(EnemyDoorOpeningEnabledRule),
                     nameof(CreatePiece_CanOpenDoor_Prefix)));
         }
 
@@ -37,7 +37,7 @@
                 return;
             }
 
-            config.CanOpenDoor = false;
+            config.CanOpenDoor = true;
         }
     }
 }

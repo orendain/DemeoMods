@@ -70,6 +70,7 @@
     <Compile Include="Rules\CardChestAdditionOverriddenRule.cs" />
     <Compile Include="Rules\ElvenQueenBuffsRule.cs" />
     <Compile Include="Rules\ElvenQueenSuperBuffRule.cs" />
+    <Compile Include="Rules\EnemyDoorOpeningEnabledRule.cs" />
     <Compile Include="Rules\GrappleUnhookedRule.cs" />
     <Compile Include="Rules\MerchantOfferRarityOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
