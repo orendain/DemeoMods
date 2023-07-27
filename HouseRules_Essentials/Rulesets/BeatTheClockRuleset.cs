@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using DataKeys;
+    using global::Types;
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
 
@@ -23,6 +24,20 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 200 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 200 },
             });
+
+            var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
+            {
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.SelfDestruct,
+                    durationTurns = 15,
+                    damagePerTurn = 0,
+                    stacks = false,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+            });
+
             var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(5);
             var roundLimitRule = new RoundCountLimitedRule(15);
             var levelRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
@@ -39,6 +54,7 @@
                 description,
                 longdesc,
                 healthRule,
+                statusEffectRule,
                 recyclingRule,
                 roundLimitRule,
                 levelRule);

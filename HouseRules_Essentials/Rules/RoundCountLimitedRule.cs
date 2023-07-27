@@ -1,7 +1,9 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using Boardgame;
+    using Boardgame.BoardEntities;
     using Boardgame.SerializableEvents;
+    using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
 
@@ -43,6 +45,23 @@
                 postfix: new HarmonyMethod(
                     typeof(RoundCountLimitedRule),
                     nameof(SerializableEventQueue_RespondToRequest_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(Piece), "CreatePiece"),
+                postfix: new HarmonyMethod(
+                    typeof(RoundCountLimitedRule),
+                    nameof(Piece_CreatePiece_Postfix)));
+        }
+
+        private static void Piece_CreatePiece_Postfix(ref Piece __result)
+        {
+            if (!_isActivated || !__result.IsPlayer())
+            {
+                return;
+            }
+
+            __result.EnableEffectState(EffectStateType.SelfDestruct);
+            __result.effectSink.SetStatusEffectDuration(EffectStateType.SelfDestruct, _globalRoundLimit);
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
