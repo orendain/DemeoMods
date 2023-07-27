@@ -1132,13 +1132,6 @@
                 { BoardPieceId.ScabRat, new List<AbilityKey> { AbilityKey.SpawnRat, AbilityKey.SpawnRat } },
             });
 
-            var breaksStealthRule = new AbilityBreaksStealthAdjustedRule(new Dictionary<AbilityKey, bool>
-            {
-                { AbilityKey.PoisonBomb, false },
-                { AbilityKey.FlashBomb, false },
-                { AbilityKey.DiseasedBite, false },
-            });
-
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Grab, false },
@@ -1196,6 +1189,13 @@
                 { AbilityKey.PiercingVoice, true },
                 { AbilityKey.ShatteringVoice, true },
                 { AbilityKey.DiseasedBite, true },
+            });
+
+            var breaksStealthRule = new AbilityBreaksStealthAdjustedRule(new Dictionary<AbilityKey, bool>
+            {
+                { AbilityKey.PoisonBomb, false },
+                { AbilityKey.FlashBomb, false },
+                { AbilityKey.DiseasedBite, false },
             });
 
             var abilityStealthDamageRule = new AbilityStealthDamageOverriddenRule(new Dictionary<AbilityKey, int>
@@ -1544,13 +1544,11 @@
             var queenSuperRule = new ElvenQueenSuperBuffRule(true);
             var grappleUnhookedRule = new GrappleUnhookedRule(true);
             var enableDoorsRule = new EnemyDoorOpeningEnabledRule(true);
-            var xpGainDisabledRule = new XpGainDisabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 longdesc,
-                xpGainDisabledRule,
                 progressLostRule,
                 tickRule,
                 revolutionsRule,
