@@ -1423,7 +1423,7 @@
             {
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods, AbilityKey.DropChest } },
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.Explosion } },
-                { BoardPieceId.GasLamp, new List<AbilityKey> { AbilityKey.GasLamp, AbilityKey.Overload } },
+                { BoardPieceId.GasLamp, new List<AbilityKey> { AbilityKey.PoisonGas, AbilityKey.Overload } },
                 { BoardPieceId.Tornado, new List<AbilityKey> { AbilityKey.LetItRain } },
             });
 

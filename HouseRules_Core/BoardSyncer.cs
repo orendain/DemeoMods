@@ -257,9 +257,9 @@
                     continue;
                 }
 
-                if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId.ToString().Contains("SandPile"))
+                if (piece.boardPieceId == BoardPieceId.SpiderEgg || piece.boardPieceId.ToString().Contains("SandPile") || piece.boardPieceId == BoardPieceId.ScabRat || piece.boardPieceId.ToString().Contains("Giant"))
                 {
-                    // CoreMod.Logger.Msg("<<<Died>>> SpiderEgg/SandPile");
+                    // CoreMod.Logger.Msg("<<<Piece Died>>>");
                     return true;
                 }
             }

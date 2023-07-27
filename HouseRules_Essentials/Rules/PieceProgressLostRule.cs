@@ -42,18 +42,21 @@
                 return;
             }
 
-            if (!HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") && !HR.SelectedRuleset.Name.Equals("TEST GAME"))
+            var ruleSet = HR.SelectedRuleset.Name;
+            if (!ruleSet.Contains("(PROGRESSIVE") && !ruleSet.Equals("TEST GAME"))
             {
                 return;
             }
 
-            // If magic, a potion or fountain was used then don't lose a level
-            if (sourceAbility != AbilityKey.Revive)
+            // If magic, a potion, or a fountain was used then don't lose a level (except on LEGENDARY)
+            if (!ruleSet.Contains("(LEGENDARY"))
             {
-                return;
+                if (sourceAbility != AbilityKey.Revive)
+                {
+                    return;
+                }
             }
 
-            // If you weren't revived by a player stepping on you then lose a level
             Piece piece = revivedPiece;
             int level = piece.GetStatMax(Stats.Type.CritChance);
 

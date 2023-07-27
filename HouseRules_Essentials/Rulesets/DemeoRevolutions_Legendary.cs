@@ -1365,6 +1365,7 @@
                 { BoardPieceId.ElvenSkirmisher, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.EnemyPikeMeleeAttack } },
                 { BoardPieceId.GiantSpider, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.SpiderWebshot } },
                 { BoardPieceId.Cavetroll, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ElvenKingMeleeWhip } },
+                { BoardPieceId.GiantSlime, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.AcidSpit } },
                 { BoardPieceId.ScabRat, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBite } },
             });
 
@@ -1385,6 +1386,7 @@
                 { BoardPieceId.SandScorpion, new List<Behaviour> { Behaviour.Patrol, Behaviour.FollowPlayerMeleeAttacker, Behaviour.AttackAndRetreat } },
                 { BoardPieceId.JeweledScarab, new List<Behaviour> { Behaviour.Patrol, Behaviour.FleeToFOW } },
                 { BoardPieceId.GiantSpider, new List<Behaviour> { Behaviour.Patrol, Behaviour.RangedAttackHighPrio } },
+                { BoardPieceId.GiantSlime, new List<Behaviour> { Behaviour.Patrol, Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.Cavetroll, new List<Behaviour> { Behaviour.Patrol, Behaviour.AttackPlayer , Behaviour.RangedAttackHighPrio } },
                 { BoardPieceId.ScabRat, new List<Behaviour> { Behaviour.Patrol, Behaviour.Swarm ,Behaviour.AttackPlayer } },
             });
@@ -1475,18 +1477,11 @@
             {
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods, AbilityKey.DropChest } },
                 { BoardPieceId.EarthElemental, new List<AbilityKey> { AbilityKey.Explosion } },
-                { BoardPieceId.GasLamp, new List<AbilityKey> { AbilityKey.GasLamp, AbilityKey.Overload } },
+                { BoardPieceId.GasLamp, new List<AbilityKey> { AbilityKey.PoisonGas, AbilityKey.Overload } },
                 { BoardPieceId.Tornado, new List<AbilityKey> { AbilityKey.LetItRain } },
-                { BoardPieceId.GiantSlime, new List<AbilityKey> { AbilityKey.AcidSpit } },
-                { BoardPieceId.Mimic, new List<AbilityKey> { AbilityKey.CorruptionBomb, AbilityKey.Vortex } },
-                { BoardPieceId.Wyvern, new List<AbilityKey> { AbilityKey.Vortex, AbilityKey.Overload } },
-                { BoardPieceId.Brookmare, new List<AbilityKey> { AbilityKey.WaterExplosion } },
+                { BoardPieceId.GiantSlime, new List<AbilityKey> { AbilityKey.SpawnSlime } },
                 { BoardPieceId.GiantSpider, new List<AbilityKey> { AbilityKey.SpawnSpiderlings } },
-                { BoardPieceId.Cavetroll, new List<AbilityKey> { AbilityKey.EarthShatter } },
-                { BoardPieceId.SilentSentinel, new List<AbilityKey> { AbilityKey.ImplosionExplosionRain } },
-                { BoardPieceId.Sigataur, new List<AbilityKey> { AbilityKey.DeathDropJavelin, AbilityKey.RaiseRoots, AbilityKey.LetItRain } },
-                { BoardPieceId.ServantOfAlfaragh, new List<AbilityKey> { AbilityKey.TelekineticBurst } },
-                { BoardPieceId.ScabRat, new List<AbilityKey> { AbilityKey.SpawnRat, AbilityKey.SpawnRat } },
+                { BoardPieceId.ScabRat, new List<AbilityKey> { AbilityKey.SpawnRat } },
             });
 
             var abilityBreaksStealth = new AbilityBreaksStealthAdjustedRule(new Dictionary<AbilityKey, bool>
