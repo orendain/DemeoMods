@@ -2,6 +2,8 @@
 {
     using Boardgame;
     using Boardgame.BoardEntities;
+    using Boardgame.BoardgameActions;
+    using Boardgame.LevelLoading;
     using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
@@ -51,6 +53,29 @@
                 postfix: new HarmonyMethod(
                     typeof(RoundCountLimitedRule),
                     nameof(Piece_CreatePiece_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(LevelManager), "RecreatePieceOnNewLevel"),
+                postfix: new HarmonyMethod(
+                    typeof(RoundCountLimitedRule),
+                    nameof(Piece_CreatePiece_Postfix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(BoardgameActionRecreateReconnectedPlayerPiece), "RecreatePlayerPiece"),
+                postfix: new HarmonyMethod(
+                    typeof(RoundCountLimitedRule),
+                    nameof(Piece_Reconnect_Postfix)));
+        }
+
+        private static void Piece_Reconnect_Postfix(Piece disconnectedPiece)
+        {
+            if (!_isActivated || !disconnectedPiece.IsPlayer())
+            {
+                return;
+            }
+
+            disconnectedPiece.EnableEffectState(EffectStateType.SelfDestruct);
+            disconnectedPiece.effectSink.SetStatusEffectDuration(EffectStateType.SelfDestruct, _globalRoundLimit - _globalRoundsPlayed);
         }
 
         private static void Piece_CreatePiece_Postfix(ref Piece __result)
@@ -61,7 +86,7 @@
             }
 
             __result.EnableEffectState(EffectStateType.SelfDestruct);
-            __result.effectSink.SetStatusEffectDuration(EffectStateType.SelfDestruct, _globalRoundLimit);
+            __result.effectSink.SetStatusEffectDuration(EffectStateType.SelfDestruct, _globalRoundLimit - _globalRoundsPlayed);
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -101,9 +126,18 @@
         private static void ShowRoundsLeft()
         {
             var roundsLeft = _globalRoundLimit - _globalRoundsPlayed;
-            GameUI.ShowCameraMessage(
-                $"You have {roundsLeft} rounds left to escape...",
-                RoundsLeftMessageDurationSeconds);
+            if (roundsLeft == 1)
+            {
+                GameUI.ShowCameraMessage(
+                    $"This is your LAST round left to escape!!!",
+                    RoundsLeftMessageDurationSeconds);
+            }
+            else
+            {
+                GameUI.ShowCameraMessage(
+                    $"You have {roundsLeft} rounds left to escape...",
+                    RoundsLeftMessageDurationSeconds);
+            }
         }
     }
 }

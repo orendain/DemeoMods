@@ -30,7 +30,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.SelfDestruct,
-                    durationTurns = 15,
+                    durationTurns = 2,
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
@@ -43,10 +43,7 @@
             var levelRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
                 { "FloorOneLootChests", 15 },
-                { "FloorOneElvenSummoners", 0 },
                 { "FloorTwoLootChests", 15 },
-                { "FloorTwoElvenSummoners", 0 },
-                { "FloorThreeElvenSummoners", 0 },
             });
 
             return Ruleset.NewInstance(
