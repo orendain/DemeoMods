@@ -1,54 +1,38 @@
 {
   "Name": "(Custom) Demeo Revolutions",
   "Description": "Everything that has a beginning has an ending.",
-  "Longdesc": "- Some NEW maps and many NEW enemies\n- Some already known enemies now have NEW hidden abilities\n- Each enemy (even if the same type) can have different health AND attack damage\n- Each floor's enemy spawns will be a mix of ALL existing adventures with NO respawns\n- Each floor's map will be from a different adventure\n- No Lamps or Antitoxins as loot\n- Improved chest, energy (mana), and potion stand loot\n- Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3\n- Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3\n- Lamp spawns found throughout each floor are now much more random\n- Pets and charmed creatures will always focus on Hunter's Marked targets\n- Number of chests/stands/fountains/traders per floor changed based on the adventure selected\n- Card energy (mana) gained from attacks reduced by 25%\n- Card energy (mana) gained from recycled cards increased by 25%\n- Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8\n- Reviving a player by any means removes Stunned and Frozen effects\n- Thorns debuff now also does 2 damage per turn\n- Player summons (Ballistas, Detect Enemies, Verochka, etc) inflict effects on enemies who hit them\n- Some abilities (Acid Spit, Sigataur Javelin, Turrets, etc) now have added secondary effects\n- Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)\n- Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively\n- Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin\n- Torches last 15 rounds and placed Torches have 4 health instead of 15\n- Arly Owl's health is now 8 and movement is now 5\n- Arly Owl's panic shot now also Nets non-bosses so they can't move unless they use an ability to do so\n- A NEW Energy Potion loot card that affects all players with mysterious effects\n- Elementals, Giant Slimes, and the Elven Queen will counter-attack for 1 when hit with melee damage\n- Each floor's original keyholder start with 1 innate damage resist and 1 counter-attack to melee\n- All bosses will start with more health, are immune to Barbarian's Net, and have 1 innate damage resist\n- The Elven Queen has new self buffs and abilities to add more of a challenge\n- If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor",
+  "Longdesc": "- Some NEW maps and many NEW enemies\n- Some already known enemies now have NEW hidden abilities\n- Each enemy (even if the same type) can have different health AND attack damage\n- Each floor's enemy spawns will be a mix of ALL existing adventures with NO respawns\n- Each floor's map will be from a different adventure\n- No Lamps or Antitoxins as loot\n- Improved chest, energy (mana), and potion stand loot\n- Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3\n- Lamp spawns found throughout each floor are now much more random\n- Pets and charmed creatures will always focus on Hunter's Marked targets\n- Number of chests/stands/fountains/traders per floor changed based on the adventure selected\n- Card energy (mana) gained from attacks reduced by 25%\n- Card energy (mana) gained from recycled cards increased by 25%\n- Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8\n- Reviving a player by any means removes Stunned and Frozen effects\n- Thorns debuff now also does 2 damage per turn\n- Player summons (Ballistas, Detect Enemies, Verochka, etc) inflict effects on enemies who hit them\n- Some abilities (Acid Spit, Sigataur Javelin, Turrets, etc) now have added secondary effects\n- Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)\n- Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively\n- Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin\n- Torches last 20 rounds and placed Torches have 8 health instead of 15\n- Arly Owl's health is now 9 and movement is now 5\n- Arly Owl's panic shot now also Nets non-bosses so they can't move unless they use an ability to do so\n- A NEW Energy Potion loot card that affects all players with mysterious effects\n- When a player is holding a key they gain 1 damage resist and 1 counter-attack to melee\n- All bosses are immune to Barbarian's Net\n- The Elven Queen has new self buffs and abilities to add more of a challenge\n- If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor",
   "Rules": [
-    // (Only affects Demeo Revolutions) Prevents ExtraEnergy from counting down unless special ability was used. Also removes temporary Movement/Magic Bonuses
     {
       "Rule": "TickAdjusted",
       "Config": true
     },
-	// Used by other rules to identify that a Revolutions game is being played
     {
       "Rule": "Revolutions",
       "Config": true
     },
-	// Allows the Barbarian to Grapple and aunch a lamp in the same move
     {
       "Rule": "GrappleUnhooked",
       "Config": true
     },
-	// Add Magic stat (and equal max magic stat) to Heroes
     {
       "Rule": "PieceMagicStatAdded",
       "Config": {
         "HeroSorcerer": 1
       }
     },
-	// Adds counter-attack damage when piece gets melee'd
     {
       "Rule": "PieceCounterDamage",
       "Config": {
-        "HeroGuardian": 1,
-        "FireElemental": 1,
-        "IceElemental": 1,
-        "GiantSlime": 1
+        "HeroGuardian": 1
       }
     },
-	// Adds 1 damage resist to a piece
     {
       "Rule": "PieceDamageResist",
       "Config": [
-        "WarlockMinion",
-        "ElvenQueen",
-        "WizardBoss",
-        "BossTown",
-        "MotherCy",
-        "RootLord",
-        "RatKing"
+        "WarlockMinion"
       ]
     },
-	// Changes the max increase in stats allows for Strength, Swiftness, and Magic for Heroes
     {
       "Rule": "PieceExtraStatsAdjusted",
       "Config": {
@@ -61,23 +45,10 @@
         "HeroSorcerer": 5
       }
     },
-	// Adds self-buffs to the Elven Queen each round
     {
       "Rule": "ElvenQueenBuffs",
       "Config": true
     },
-	// Elven Queen enables a super buff when under 33% life (Enabled only in Hard, Legendary, and Progressive)
-	/*{
-		"Rule": "ElvenQueenSuperBuff",
-		"Config": true
-	},*/
-    {
-      "Rule": "StatModifiersOverridden",
-      "Config": {
-        "ReplenishArmor": 4
-      }
-    },
-	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "GoldPickedUpMultiplied",
       "Config": 1.0
@@ -284,7 +255,7 @@
         {
           "Piece": "Torch",
           "Property": "StartHealth",
-          "Value": 4.0
+          "Value": 8.0
         },
         {
           "Piece": "SellswordArbalestierActive",
@@ -442,44 +413,24 @@
           "Value": 8.0
         },
         {
+          "Piece": "Tornado",
+          "Property": "ActionPoint",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Tornado",
+          "Property": "AliveForRounds",
+          "Value": 2.0
+        },
+        {
           "Piece": "Barricade",
           "Property": "StartHealth",
-          "Value": 8.0
+          "Value": 9.0
         },
         {
           "Piece": "Lure",
           "Property": "StartHealth",
-          "Value": 12.0
-        },
-        {
-          "Piece": "ElvenQueen",
-          "Property": "StartHealth",
-          "Value": 60.0
-        },
-        {
-          "Piece": "BossTown",
-          "Property": "StartHealth",
-          "Value": 140.0
-        },
-        {
-          "Piece": "RootLord",
-          "Property": "StartHealth",
-          "Value": 70.0
-        },
-        {
-          "Piece": "MotherCy",
-          "Property": "StartHealth",
-          "Value": 60.0
-        },
-        {
-          "Piece": "RatKing",
-          "Property": "StartHealth",
-          "Value": 125.0
-        },
-        {
-          "Piece": "WizardBoss",
-          "Property": "StartHealth",
-          "Value": 140.0
+          "Value": 13.0
         },
         {
           "Piece": "Wyvern",
@@ -573,12 +524,10 @@
         }
       ]
     },
-	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "CourageShantyAddsHp",
       "Config": 1
     },
-	// Reviving a player removes stun and frozen effects
     {
       "Rule": "ReviveRemovesEffects",
       "Config": true
@@ -1567,38 +1516,6 @@
           "useOnDissipate": 0
         },
         {
-          "effectStateType": "Invulnerable3",
-          "durationTurns": 2,
-          "tickWhen": "StartTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "MarkOfAvalon",
-          "durationTurns": 2,
-          "tickWhen": "EndTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
           "effectStateType": "ExtraEnergy",
           "durationTurns": 3,
           "tickWhen": "EndTurn",
@@ -1618,22 +1535,6 @@
           "effectStateType": "Netted",
           "durationTurns": 1,
           "tickWhen": "EndTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "Invisibility",
-          "durationTurns": 2,
-          "tickWhen": "StartTurn",
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
@@ -1962,7 +1863,6 @@
         ]
       }
     },
-	// Pieces that get hit cause effects on the enemy that hit them (if they're not immune)
     {
       "Rule": "ApplyEffectOnHitAdjusted",
       "Config": {
@@ -1979,7 +1879,6 @@
         "SellswordArbalestierActive": "Panic"
       }
     },
-	// When these abilities are used they have secondary effects
     {
       "Rule": "AbilityTargetEffects",
       "Config": {
@@ -2014,6 +1913,10 @@
         "WarCry": [
           "Panic",
           "Blinded"
+        ],
+        "ExplodingGasLamp": [
+          "Diseased",
+          "Stunned"
         ]
       }
     },
@@ -2026,6 +1929,13 @@
         ],
         "EarthElemental": [
           "Explosion"
+        ],
+        "GasLamp": [
+          "PoisonGas",
+          "Overload"
+        ],
+        "Tornado": [
+          "LetItRain"
         ]
       }
     },
@@ -2059,7 +1969,6 @@
         "ImplosionExplosionRain": false
       }
     },
-	// These additional abilities won't break stealth
     {
       "Rule": "AbilityHealOverridden",
       "Config": {
@@ -2077,7 +1986,6 @@
         "HeroRogue"
       ]
     },
-	// Turn order changes if Mark, Varga, or Astral Barrier card is held by player
     {
       "Rule": "TurnOrderOverridden",
       "Config": {
@@ -2095,7 +2003,6 @@
         "Deflect": 2
       }
     },
-	// Pieces heal for ONE when they hit (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeHealOnHit",
       "Config": [
@@ -2103,7 +2010,6 @@
         "HeroWarlock"
       ]
     },
-	// Pieces heal for ONE when they critical hit (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeHealOnCrit",
       "Config": [
@@ -2112,7 +2018,6 @@
         "HeroBard"
       ]
     },
-	// (ONLY affects Demeo Revolutions ruleset) Replenishes specific abilities on critical hits
     {
       "Rule": "FreeReplenishablesOnCrit",
       "Config": [
@@ -2125,7 +2030,6 @@
         "HeroWarlock"
       ]
     },
-	// Adds ONE action point to a Hero on critical hit (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeActionPointsOnCrit",
       "Config": [
@@ -2133,7 +2037,6 @@
         "HeroRogue"
       ]
     },
-	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "FreeAbilityOnCrit",
       "Config": {
@@ -2173,7 +2076,7 @@
         "Petrify": 2,
         "Net": 2,
         "Grapple": 2,
-        "ElvenSummonerDeflect": 5,
+        "ElvenSummonerDeflect": 3,
         "PlayerLeap": 2
       }
     },
@@ -2193,7 +2096,6 @@
         "Net": 0
       }
     },
-	// Adjusts ability Damage, Crit, SplashDamage, and CritSplashDamage
     {
       "Rule": "AbilityDamageAllOverridden",
       "Config": {
@@ -2262,15 +2164,19 @@
           5,
           5,
           5
+        ],
+        "TornadoCharge": [
+          3,
+          3,
+          3,
+          3
         ]
       }
     },
-	// Just like the normal rule (Behaves differently in Demeo Revolutions ruleset)
     {
       "Rule": "PartyElectricityDamageOverridden",
       "Config": true
     },
-	// Adds Fire, Slime/Petrify, Corruption, Electricity, and Ice damage protection to Guardian, Barbarian, Warlock, Sorcerer, and Hunter respectively. Also makes Leviathan tangle enemies that it pulls
     {
       "Rule": "PieceExtraImmunities",
       "Config": true
