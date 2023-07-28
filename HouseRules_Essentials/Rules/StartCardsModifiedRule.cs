@@ -414,7 +414,7 @@
                 {
                     if (!piece.HasEffectState(EffectStateType.Locked))
                     {
-                        piece.effectSink.AddStatusEffect(EffectStateType.Locked, -1, false);
+                        piece.effectSink.AddStatusEffect(EffectStateType.Locked, -1);
                         if (piece.GetStat(Stats.Type.DamageResist) > 0)
                         {
                             _keyResist = 1;

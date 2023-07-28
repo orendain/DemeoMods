@@ -19,9 +19,13 @@
 
             foreach (var ruleset in HR.Rulebook.Rulesets)
             {
-                var newName = $"(Custom) {ruleset.Name}";
-                var rulesetCopy = Ruleset.NewInstance(newName, ruleset.Description, ruleset.Longdesc, ruleset.Rules);
-                ConfigurationMod.ConfigManager.ExportRuleset(rulesetCopy, ExampleRulesetDirectory);
+                // if (ruleset.Name.Contains("(PROGRESSIVE"))
+                // {
+                    var newName = $"(Custom) {ruleset.Name}";
+                    var rulesetCopy = Ruleset.NewInstance(newName, ruleset.Description, ruleset.Longdesc, ruleset.Rules);
+                    ConfigurationMod.ConfigManager.ExportRuleset(rulesetCopy, ExampleRulesetDirectory);
+
+                // }
             }
         }
     }

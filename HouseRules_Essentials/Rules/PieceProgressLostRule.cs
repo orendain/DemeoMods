@@ -70,7 +70,7 @@
             piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, level);
             piece.DisableEffectState(EffectStateType.Corruption);
             piece.EnableEffectState(EffectStateType.Corruption, 1);
-            piece.effectSink.AddStatusEffect(EffectStateType.ConfusedPermanentVisualOnly, -1, false);
+            piece.effectSink.AddStatusEffect(EffectStateType.ConfusedPermanentVisualOnly, -1);
             var charType = piece.boardPieceId;
             string textName = "Player";
             switch (charType)
