@@ -44,6 +44,7 @@
 
         protected override void OnDeactivate(GameContext gameContext)
         {
+            _isReconnect = false;
             _checkPlayers = false;
             _keyResist = 0;
             _numPlayers = 1;
@@ -84,7 +85,7 @@
                 rev_progr = true;
             }
 
-            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions"))
+            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions") || HR.SelectedRuleset.Name.Contains("TEST GAME"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (_checkPlayers)
@@ -140,6 +141,8 @@
                             });
                         }
 
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.CritDamage, 3);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, 1);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 6 + diff);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 6 + diff);
@@ -195,6 +198,8 @@
                             });
                         }
 
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.CritDamage, 3);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 6 + diff);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 6 + diff);
                     }
@@ -238,7 +243,9 @@
                         }
 
                         runner = 1;
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, 2);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.CritDamage, 5);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, 5);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
                     }
@@ -272,6 +279,9 @@
                             });
                         }
 
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, 5);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, 2);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.CritDamage, 5);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
                     }
@@ -306,7 +316,7 @@
                         }
 
                         runner = 1;
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, 1);
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.MoveRange, 5);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
                     }
@@ -340,6 +350,7 @@
                             });
                         }
 
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.CritDamage, 9);
                         piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 7 + diff);
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 7 + diff);
                     }
