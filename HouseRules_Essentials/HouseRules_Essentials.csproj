@@ -42,6 +42,7 @@
     <Compile Include="Rulesets\DemeoRevolutions_Hard.cs" />
     <Compile Include="Rulesets\DemeoRevolutions_Legendary.cs" />
     <Compile Include="Rulesets\DemeoRevolutions_Progressive.cs" />
+    <Compile Include="Rulesets\DemeoRevolutions_Small_Progressive.cs" />
     <Compile Include="Rulesets\EarthWindAndFire.cs" />
     <Compile Include="Rulesets\BeatTheClockRuleset.cs" />
     <Compile Include="Rulesets\BetterSorcererRuleset.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Rules\ReviveRemovesEffectsRule.cs" />
     <Compile Include="Rules\PieceExtraStatsAdjustedRule.cs" />
     <Compile Include="Rules\RevolutionsRule.cs" />
+    <Compile Include="Rules\SmallLevelSequenceOverriddenRule.cs" />
     <Compile Include="Rules\TickAdjustedRule.cs" />
     <Compile Include="Rules\PieceUseOnCreatedOverriddenRule.cs" />
     <Compile Include="Rules\MyMonsterDeckOverriddenRule.cs" />

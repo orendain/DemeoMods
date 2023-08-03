@@ -43,7 +43,7 @@
             }
 
             var ruleSet = HR.SelectedRuleset.Name;
-            if (!ruleSet.Contains("(PROGRESSIVE") && !ruleSet.Equals("TEST GAME"))
+            if (!ruleSet.Contains("PROGRESSIVE") && !ruleSet.Equals("TEST GAME"))
             {
                 return;
             }

@@ -7,12 +7,12 @@
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
 
-    internal static class DemeoRevolutions_Progressive
+    internal static class DemeoRevolutions_Small_Progressive
     {
         internal static Ruleset Create()
         {
-            const string name = "Demeo Revolutions (PROGRESSIVE)";
-            const string description = "Everything that has a beginning has a PROGRESSIVE ending.";
+            const string name = "Demeo Revolutions (Small PROGRESSIVE)";
+            const string description = "Everything that has a beginning has a small PROGRESSIVE ending.";
             const string longdesc = "- Some NEW maps and many NEW enemies\n- Some already known enemies now have NEW hidden abilities\n- Each enemy (even if the same type) can have different health AND attack damage\n- Each floor's enemy spawns will be a mix of ALL existing adventures with NO respawns\n- Each floor's map will be from a different adventure\n- No Lamps or Antitoxins as loot\n- Improved chest, energy (mana), and potion stand loot\n- Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3\n- Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3\n- Lamp spawns found throughout each floor are now much more random\n- Pets and charmed creatures will always focus on Hunter's Marked targets\n- Number of chests/stands/fountains/traders per floor changed based on the adventure selected\n- Card energy (mana) gained from attack reduced by 20%\n- Card energy (mana) gained from recycled cards reduced by 80%\n- Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8\n- Reviving a player by any means removes Stunned and Frozen effects\n- Thorns debuff now also does 2 damage per turn\n- Player summons (Ballistas, Detect Enemies, Verochka, etc) inflict effects on enemies who hit them\n- Some abilities (Acid Spit, Sigataur Javelin, Turrets, etc) now have added secondary effects\n- Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively\n- Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin\n- Torches last 15 rounds and placed Torches have 4 health instead of 15\n- Arly Owl's health is now 8 and movement is now 5\n- Arly Owl's panic shot now also Nets non-bosses so they can't move unless they use an ability to do so\n- A NEW Energy Potion loot card that affects all players in mysterious ways\n- Elementals, Giant Slimes, and the Elven Queen will counter-attack for 1 when hit with melee damage\n- Each floor's original keyholder start with 1 innate damage resist and 1 counter-attack to melee\n- When a player is holding a key they gain 1 damage resist and 1 counter-attack to melee\n- All bosses will start with more health, are immune to Barbarian's Net, and have 1 innate damage resist\n- The Elven Queen has new self buffs and abilities to add more of a challenge\n- If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
@@ -1468,7 +1468,7 @@
                 },
             });
 
-            var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
+            var smallLevelSequenceRule = new SmallLevelSequenceOverriddenRule(new List<string>
             {
                 "ElvenFloor17",
                 "SewersFloor08",
@@ -1511,8 +1511,8 @@
             var partyElectricityRule = new PartyElectricityDamageOverriddenRule(true);
             var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
-            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(0.8f);
-            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.2f);
+            var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(1.0f);
+            var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.3f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var revolutionsRule = new RevolutionsRule(true);
@@ -1523,9 +1523,7 @@
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new TickAdjustedRule(true);
             var queenBuffsRule = new ElvenQueenBuffsRule(true);
-            var queenSuperRule = new ElvenQueenSuperBuffRule(true);
             var grappleUnhookedRule = new GrappleUnhookedRule(true);
-            var enableDoorsRule = new EnemyDoorOpeningEnabledRule(true);
 
             return Ruleset.NewInstance(
                 name,
@@ -1535,7 +1533,6 @@
                 tickRule,
                 revolutionsRule,
                 progressRule,
-                enableDoorsRule,
                 grappleUnhookedRule,
                 pieceDownedCountRule,
                 pieceMagicStatsRule,
@@ -1543,7 +1540,6 @@
                 pieceDamageResistRule,
                 pieceExtraStatsRule,
                 queenBuffsRule,
-                queenSuperRule,
                 statModifiersRule,
                 goldPickupRule,
                 piecePieceTypeRule,
@@ -1588,7 +1584,7 @@
                 enemyAttackScaledRule,
                 abilityRandomPieceRule,
                 lampTypesRule,
-                levelSequenceOverriddenRule,
+                smallLevelSequenceRule,
                 levelPropertiesRule);
         }
     }

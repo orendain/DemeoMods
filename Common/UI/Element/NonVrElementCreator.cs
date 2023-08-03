@@ -89,19 +89,23 @@
                 {
                     if (setName.Contains("(EASY"))
                     {
-                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color> <color=#567FFD><b>(EASY)</b></color>";
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#567FFD><b>(EASY)</b></color>";
                     }
                     else if (setName.Contains("(HARD"))
                     {
-                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color> <color=#8156FD><b>(HARD)</b></color>";
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#8156FD><b>(HARD)</b></color>";
                     }
                     else if (setName.Contains("(LEGENDARY"))
                     {
-                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color> <color=#D456FD><b>(LEGENDARY)</b></color>";
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#D456FD><b>(LEGENDARY)</b></color>";
                     }
-                    else if (setName.Contains("(PROGRESSIVE"))
+                    else if (setName.Contains("(Small"))
                     {
-                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color> <color=#FD56D3><b>(PROGRESSIVE)</b></color>";
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#FD56D3><b>(Small PROGRESSIVE)</b></color>";
+                    }
+                    else if (setName.Contains("PROGRESSIVE"))
+                    {
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#FD56D3><b>(PROGRESSIVE)</b></color>";
                     }
                     else
                     {

@@ -152,7 +152,7 @@
                 }
                 else if (randNum > 97)
                 {
-                    if (_numVigor < 3 && HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
+                    if (_numVigor < 3 && HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
                     {
                         // Invisibility and Damage Resist Potions
                         _numVigor++;
@@ -164,7 +164,7 @@
                         _numVigor++;
                         rand = RandomProvider.GetThreadRandom().Next(replacementAbilityKeys.Count - 21, replacementAbilityKeys.Count - 19);
                     }
-                    else if (_numAlags < 2 && !HR.SelectedRuleset.Name.Contains("(PROGRESSIVE"))
+                    else if (_numAlags < 2 && !HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
                     {
                         // Rejuv and Damage Resist Potions
                         _numAlags++;

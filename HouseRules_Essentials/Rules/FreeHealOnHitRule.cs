@@ -59,6 +59,11 @@
                 return;
             }
 
+            if (source.GetHealth() == source.GetMaxHealth())
+            {
+                return;
+            }
+
             int addHeal = 0;
             if (source.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions"))
             {

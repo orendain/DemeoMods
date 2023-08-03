@@ -58,7 +58,7 @@
             }
 
             int range = 0;
-            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
+            if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)

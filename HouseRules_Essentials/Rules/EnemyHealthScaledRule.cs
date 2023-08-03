@@ -69,41 +69,36 @@
             var ruleSet = HR.SelectedRuleset.Name;
             if (ruleSet.Contains("(LEGENDARY"))
             {
-                range = Random.Range(1.3f, 1.5f);
+                range = Random.Range(1.334f, 1.667f);
             }
             else if (ruleSet.Contains("(HARD"))
             {
-                if (config.StartHealth < 5)
-                {
-                    return;
-                }
-
-                range = Random.Range(1f, 1.3f);
+                range = Random.Range(1.25f, 1.5f);
             }
             else if (ruleSet.Contains("(EASY"))
             {
                 range = Random.Range(0.75f, 1f);
             }
-            else if (ruleSet.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
+            else if (ruleSet.Contains("PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
                 {
-                    range = Random.Range(1.0f, 1.5f);
+                    range = Random.Range(1.0f, 1.3f);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
                 {
-                    range = Random.Range(1.5f, 2f);
+                    range = Random.Range(1.3f, 1.6f);
                 }
                 else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
                     if (config.HasPieceType(PieceType.Boss))
                     {
-                        range = Random.Range(2.25f, 2.5f);
+                        range = Random.Range(1.9f, 2.25f);
                     }
                     else
                     {
-                        range = Random.Range(2f, 2.5f);
+                        range = Random.Range(1.6f, 2f);
                     }
                 }
             }

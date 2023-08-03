@@ -56,6 +56,7 @@
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(LevelSequenceOverriddenRule));
+            HR.Rulebook.Register(typeof(SmallLevelSequenceOverriddenRule));
             HR.Rulebook.Register(typeof(MerchantOfferRarityOverriddenRule));
             HR.Rulebook.Register(typeof(MonsterDeckOverriddenRule));
             HR.Rulebook.Register(typeof(MyMonsterDeckOverriddenRule));
@@ -98,6 +99,7 @@
             HR.Rulebook.Register(DemeoRevolutions_Hard.Create());
             HR.Rulebook.Register(DemeoRevolutions_Legendary.Create());
             HR.Rulebook.Register(DemeoRevolutions_Progressive.Create());
+            HR.Rulebook.Register(DemeoRevolutions_Small_Progressive.Create());
             HR.Rulebook.Register(HardcoreRuleset.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(LuckyDip.Create());

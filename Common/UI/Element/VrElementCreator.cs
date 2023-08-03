@@ -115,7 +115,11 @@
                     {
                         setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#C013F8><b>(LEGENDARY)</b></color>";
                     }
-                    else if (setName.Contains("(PROGRESSIVE"))
+                    else if (setName.Contains("(Small"))
+                    {
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#F813BE><b>(Small PROGRESSIVE)</b></color>";
+                    }
+                    else if (setName.Contains("PROGRESSIVE"))
                     {
                         setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#F813BE><b>(PROGRESSIVE)</b></color>";
                     }

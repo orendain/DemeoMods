@@ -19,13 +19,12 @@
 
             foreach (var ruleset in HR.Rulebook.Rulesets)
             {
-                // if (ruleset.Name.Contains("(PROGRESSIVE"))
-                // {
+                if (ruleset.Name.Contains("Demeo Revolutions"))
+                {
                     var newName = $"(Custom) {ruleset.Name}";
                     var rulesetCopy = Ruleset.NewInstance(newName, ruleset.Description, ruleset.Longdesc, ruleset.Rules);
                     ConfigurationMod.ConfigManager.ExportRuleset(rulesetCopy, ExampleRulesetDirectory);
-
-                // }
+                }
             }
         }
     }

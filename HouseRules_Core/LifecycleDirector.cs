@@ -281,6 +281,12 @@
                 return;
             }
 
+            if (GameHub.GetGameMode != GameHub.GameMode.Multiplayer)
+            {
+                DeactivateRuleset();
+                return;
+            }
+
             if (!GameStateMachine.IsMasterClient)
             {
                 return;

@@ -68,7 +68,7 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
-            if (HR.SelectedRuleset.Name.Contains("(PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
+            if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
             {
                 if (source.GetStatMax(Stats.Type.CritChance) < 4)
                 {

@@ -255,7 +255,7 @@
                                modification.Value;
                         }
                     }
-                    else if (ruleSet.Contains("(HARD") || ruleSet.Contains("(PROGRESSIVE"))
+                    else if (ruleSet.Contains("(HARD") || ruleSet.Contains("PROGRESSIVE"))
                     {
                         foreach (var modification in _ratKingHard)
                         {
@@ -292,7 +292,7 @@
                                modification.Value;
                         }
                     }
-                    else if (ruleSet.Contains("(HARD") || ruleSet.Contains("(PROGRESSIVE"))
+                    else if (ruleSet.Contains("(HARD") || ruleSet.Contains("PROGRESSIVE"))
                     {
                         foreach (var modification in _elvenKingHard)
                         {

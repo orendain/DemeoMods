@@ -48,20 +48,34 @@
                 return;
             }
 
-            if (target.piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions"))
+            var piece = target.piece;
+            if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions"))
             {
                 if (Random.Range(1, 101) > 66)
                 {
-                    target.piece.effectSink.Heal(_globalAdjustments);
-                    target.piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
-                    target.DisableEffectState(EffectStateType.Heal);
-                    target.EnableEffectState(EffectStateType.Heal);
+                    if (piece.GetHealth() < piece.GetMaxHealth())
+                    {
+                        piece.DisableEffectState(EffectStateType.Heal);
+                        piece.EnableEffectState(EffectStateType.Heal);
+                        piece.effectSink.Heal(_globalAdjustments);
+                        piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
+                        piece.effectSink.RemoveStatusEffect(EffectStateType.Stunned);
+                        piece.effectSink.RemoveStatusEffect(EffectStateType.Frozen);
+                    }
+
                     HR.ScheduleBoardSync();
                 }
             }
             else
             {
-                target.piece.effectSink.Heal(_globalAdjustments);
+                if (piece.GetHealth() < piece.GetMaxHealth())
+                {
+                    piece.DisableEffectState(EffectStateType.Heal);
+                    piece.EnableEffectState(EffectStateType.Heal);
+                    piece.effectSink.Heal(_globalAdjustments);
+                    piece.effectSink.RemoveStatusEffect(EffectStateType.Downed);
+                }
+
                 HR.ScheduleBoardSync();
             }
         }
