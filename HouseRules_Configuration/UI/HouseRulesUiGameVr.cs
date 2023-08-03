@@ -123,7 +123,7 @@
             Color indigo = new Color(0.294f, 0f, 0.51f);
             Color brown = new Color(0.0392f, 0.0157f, 0, 1);
             var sb = new StringBuilder();
-            sb.Append(ColorizeString("You're playing ", brown));
+            sb.Append(ColorizeString("Playing ", brown));
             sb.Append(ColorizeString($"<u>{HR.SelectedRuleset.Name}</u>", indigo));
             sb.AppendLine(ColorizeString(" ruleset!", brown));
             sb.AppendLine(ColorizeString($"<i>{HR.SelectedRuleset.Description}</i>", Color.blue));

@@ -41,6 +41,7 @@
     <Compile Include="Rulesets\DemeoRevolutions_Easy.cs" />
     <Compile Include="Rulesets\DemeoRevolutions_Hard.cs" />
     <Compile Include="Rulesets\DemeoRevolutions_Legendary.cs" />
+    <Compile Include="Rulesets\DemeoRevolutions_Legendary_Progressive.cs" />
     <Compile Include="Rulesets\DemeoRevolutions_Progressive.cs" />
     <Compile Include="Rulesets\DemeoRevolutions_Small_Progressive.cs" />
     <Compile Include="Rulesets\EarthWindAndFire.cs" />

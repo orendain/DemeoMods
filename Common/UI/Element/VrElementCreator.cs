@@ -99,7 +99,7 @@
             }
             else if (fontSize == ButtonFontSize)
             {
-                fontSize = NormalFontSize;
+                fontSize = 18;
                 if (setName.Contains("Demeo Revolutions"))
                 {
                     CommonModule.Logger.Msg("Demeo Revolutions...");
@@ -111,13 +111,19 @@
                     {
                         setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#7E53FB><b>(HARD)</b></color>";
                     }
+                    else if (setName.Contains("(LEGENDARY PROGRESSIVE"))
+                    {
+                        fontSize = 16;
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#C013F8><b>(LEGENDARY PROGRESSIVE)</b></color>";
+                    }
                     else if (setName.Contains("(LEGENDARY"))
                     {
                         setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#C013F8><b>(LEGENDARY)</b></color>";
                     }
-                    else if (setName.Contains("(Small"))
+                    else if (setName.Contains("(SMALL"))
                     {
-                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#F813BE><b>(Small PROGRESSIVE)</b></color>";
+                        fontSize = 16;
+                        setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#134BF8><b>(SMALL PROGRESSIVE)</b></color>";
                     }
                     else if (setName.Contains("PROGRESSIVE"))
                     {
@@ -125,6 +131,7 @@
                     }
                     else
                     {
+                        fontSize = 22;
                         setName = "<color=#00FF00><b>Demeo Revolutions</b></color>";
                     }
                 }
