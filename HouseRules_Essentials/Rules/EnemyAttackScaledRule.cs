@@ -58,7 +58,30 @@
             }
 
             int range = 0;
-            if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
+            if (HR.SelectedRuleset.Name.Contains("LEGENDARY") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
+            {
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
+                {
+                    range = Random.Range(1, 2);
+                }
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
+                {
+                    range = Random.Range(2, 3);
+                }
+                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
+                {
+                    if (config.HasPieceType(PieceType.Boss))
+                    {
+                        range = 5;
+                    }
+                    else
+                    {
+                        range = Random.Range(3, 5);
+                    }
+                }
+            }
+            else if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)

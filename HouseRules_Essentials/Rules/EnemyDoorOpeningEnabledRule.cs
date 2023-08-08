@@ -7,7 +7,7 @@
 
     public sealed class EnemyDoorOpeningEnabledRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "All enemies can open doors";
+        public override string Description => "All moving pieces can open doors";
 
         private static bool _isActivated;
 

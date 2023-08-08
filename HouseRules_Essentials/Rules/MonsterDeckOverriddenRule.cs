@@ -2,11 +2,11 @@
 {
     using System.Collections.Generic;
     using Boardgame;
-    /*using Boardgame.AIDirector;
+    using Boardgame.AIDirector;
     using Boardgame.Board;
     using Boardgame.BoardEntities;
     using Boardgame.Data;
-    using Data.GameData;*/
+    using Data.GameData;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -55,11 +55,11 @@
                 prefix: new HarmonyMethod(
                     typeof(MonsterDeckOverriddenRule),
                     nameof(AIDirectorDeckConstructor_ConstructMonsterDeck_Prefix)));
-            /*harmony.Patch(
+            harmony.Patch(
                 original: AccessTools.Method(typeof(AIDirectorController2), "SpawnBossAndMinions"),
                 prefix: new HarmonyMethod(
                     typeof(MonsterDeckOverriddenRule),
-                    nameof(AIDirectorController2_SpawnBossAndMinions_Prefix)));*/
+                    nameof(AIDirectorController2_SpawnBossAndMinions_Prefix)));
         }
 
         private static List<MonsterDeck.MonsterDeckEntry> CreateSubDeck(Dictionary<BoardPieceId, int> subdeck)
@@ -125,7 +125,7 @@
             return false; // We returned an user-adjusted config.
         }
 
-        /*private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorContext context, ref TransientBoardState boardState, IRnd rng)
+        private static bool AIDirectorController2_SpawnBossAndMinions_Prefix(ref AIDirectorContext context, ref TransientBoardState boardState, IRnd rng)
         {
             if (!_isActivated)
             {
@@ -204,6 +204,6 @@
             PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, Team.Two).SetSpawnTile(keyHolderPosition).SetRandomRotation(rng).SetHasBloodhound(PieceSpawnSettings.BloodHoundStatus.Enabled).AddEffectState(EffectStateType.AIDirectorAmbientEnemy).AddEffectState(EffectStateType.UnitLeader).AddEffectState(EffectStateType.KeyEndChest);
             context.spawner.SpawnPiece(context, spawnSettings, ref boardState);
             return false; // We returned an user-adjusted config.
-        }*/
+        }
     }
 }

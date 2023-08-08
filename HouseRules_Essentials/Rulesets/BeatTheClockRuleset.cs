@@ -32,6 +32,7 @@
                     effectStateType = EffectStateType.SelfDestruct,
                     durationTurns = 2,
                     damagePerTurn = 0,
+                    killOnExpire = true,
                     stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
