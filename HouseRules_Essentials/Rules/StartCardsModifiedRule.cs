@@ -176,6 +176,18 @@
         {
             var inventory = new Inventory();
 
+            if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
+            {
+                inventory.Items.Add(new Inventory.Item
+                {
+                    abilityKey = AbilityKey.Torch,
+                    flags = 0,
+                    originalOwner = -1,
+                    replenishCooldown = 0,
+
+                });
+            }
+
             foreach (var card in _globalHeroStartCards[boardPieceId])
             {
                 // flag bits
@@ -184,15 +196,6 @@
                 // 2 : abilityDisabledOnStatusEffect
                 // 3 : disableCooldown
                 Inventory.ItemFlag flags = 0;
-
-                if (HR.SelectedRuleset.Name.Contains("Revolutions"))
-                {
-                    // Only add Torch in Rat King adventure
-                    if (MotherbrainGlobalVars.CurrentConfig != GameConfigType.Sewers && card.Card == AbilityKey.Torch)
-                    {
-                        continue;
-                    }
-                }
 
                 if (card.ReplenishFrequency > 0)
                 {

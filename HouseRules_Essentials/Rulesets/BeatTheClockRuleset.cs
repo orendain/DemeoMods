@@ -23,20 +23,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 200 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 200 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 200 },
-            });
-
-            var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
-            {
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.SelfDestruct,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    killOnExpire = true,
-                    stacks = false,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
-                },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 100 },
             });
 
             var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(5);
@@ -52,7 +39,6 @@
                 description,
                 longdesc,
                 healthRule,
-                statusEffectRule,
                 recyclingRule,
                 roundLimitRule,
                 levelRule);

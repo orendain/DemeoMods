@@ -40,27 +40,11 @@
           "Piece": "HeroWarlock",
           "Property": "StartHealth",
           "Value": 200.0
-        }
-      ]
-    },
-    {
-      "Rule": "StatusEffectConfig",
-      "Config": [
+        },
         {
-          "effectStateType": "SelfDestruct",
-          "durationTurns": 2,
-          "tickWhen": "EndTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
+          "Piece": "WarlockMinion",
+          "Property": "StartHealth",
+          "Value": 100.0
         }
       ]
     },

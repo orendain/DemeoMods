@@ -1,19 +1,26 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
+    using System.Collections.Generic;
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardgameActions;
     using Boardgame.LevelLoading;
     using Boardgame.SerializableEvents;
     using DataKeys;
+    using global::Types;
     using HarmonyLib;
     using HouseRules.Types;
 
     public sealed class RoundCountLimitedRule : Rule, IConfigWritable<int>, IPatchable, IMultiplayerSafe
     {
+        private const float RoundsLeftMessageDurationSeconds = 5f;
+
         public override string Description => "Round count is limited";
 
-        private const float RoundsLeftMessageDurationSeconds = 5f;
+        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.StatusEffectDataModified;
+
+        private readonly List<StatusEffectData> _adjustments = new List<StatusEffectData> { new StatusEffectData { effectStateType = EffectStateType.SelfDestruct, durationTurns = 2, damagePerTurn = 0, killOnExpire = true, stacks = false, clearOnNewLevel = false, tickWhen = StatusEffectsConfig.TickWhen.EndTurn } };
+        private List<StatusEffectData> _originals;
         private static int _globalRoundLimit;
         private static int _globalRoundsPlayed;
         private static bool _isActivated;
@@ -31,10 +38,20 @@
         {
             _globalRoundLimit = _roundLimit;
             _globalRoundsPlayed = 0;
+            _originals = new List<StatusEffectData>();
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(GameContext gameContext)
+        {
+            UpdateStatusEffectConfig(_originals);
+            _isActivated = false;
+        }
+
+        protected override void OnPostGameCreated(GameContext gameContext)
+        {
+            _originals = UpdateStatusEffectConfig(_adjustments);
+        }
 
         private static void Patch(Harmony harmony)
         {
@@ -119,8 +136,26 @@
                 }
 
                 EssentialsMod.Logger.Msg("EVERYONE DIES NOW!");
-                _gameContext.serializableEventQueue.SendResponseEvent(new SerializableEventEndGame());
             }
+        }
+
+        private static List<StatusEffectData> UpdateStatusEffectConfig(List<StatusEffectData> adjustments)
+        {
+            var effectsConfigs = Traverse.Create(typeof(StatusEffectsConfig)).Field<StatusEffectData[]>("effectsConfig").Value;
+            var previousConfigs = new List<StatusEffectData>();
+            for (var i = 0; i < effectsConfigs.Length; i++)
+            {
+                var matchingIndex = adjustments.FindIndex(a => a.effectStateType == effectsConfigs[i].effectStateType);
+                if (matchingIndex < 0)
+                {
+                    continue;
+                }
+
+                previousConfigs.Add(effectsConfigs[i]);
+                effectsConfigs[i] = adjustments[matchingIndex];
+            }
+
+            return previousConfigs;
         }
 
         private static void ShowRoundsLeft()
@@ -129,13 +164,19 @@
             if (roundsLeft == 1)
             {
                 GameUI.ShowCameraMessage(
-                    $"This is your LAST round left to escape!!!",
+                    $"<color=#FFFF00>This is your</color> <color=#B31106FF><b>LAST</b></color> <color=#FFFF00>round left to escape!</color>",
+                    RoundsLeftMessageDurationSeconds);
+            }
+            else if (roundsLeft > 0)
+            {
+                GameUI.ShowCameraMessage(
+                    $"<color=#7CFC00>You have</color> <color=#FFC125><b>{roundsLeft}</b></color> <color=#7CFC00>rounds left to escape...</color>",
                     RoundsLeftMessageDurationSeconds);
             }
             else
             {
                 GameUI.ShowCameraMessage(
-                    $"You have {roundsLeft} rounds left to escape...",
+                    $"<color=#B31106><b>YOU HAVE FAILED</b></color>",
                     RoundsLeftMessageDurationSeconds);
             }
         }
