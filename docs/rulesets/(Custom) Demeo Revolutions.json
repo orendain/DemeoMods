@@ -795,10 +795,6 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
@@ -827,10 +823,6 @@
           {
             "Card": "CourageShanty",
             "ReplenishFrequency": 1
-          },
-          {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
           },
           {
             "Card": "HealingPotion",
@@ -863,10 +855,6 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
@@ -895,10 +883,6 @@
           {
             "Card": "Arrow",
             "ReplenishFrequency": 1
-          },
-          {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
           },
           {
             "Card": "HealingPotion",
@@ -931,10 +915,6 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
@@ -965,10 +945,6 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
@@ -997,10 +973,6 @@
           {
             "Card": "Grapple",
             "ReplenishFrequency": 1
-          },
-          {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
           },
           {
             "Card": "HealingPotion",

@@ -1560,10 +1560,6 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
@@ -1594,10 +1590,6 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
@@ -1619,10 +1611,6 @@
           }
         ],
         "HeroGuardian": [
-          {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
-          },
           {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
@@ -1658,10 +1646,6 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
@@ -1688,10 +1672,6 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
-          },
-          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
@@ -1716,10 +1696,6 @@
           {
             "Card": "Zap",
             "ReplenishFrequency": 1
-          },
-          {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
           },
           {
             "Card": "HealingPotion",
@@ -1750,10 +1726,6 @@
           {
             "Card": "Grapple",
             "ReplenishFrequency": 1
-          },
-          {
-            "Card": "Torch",
-            "ReplenishFrequency": 0
           },
           {
             "Card": "HealingPotion",
@@ -1973,7 +1945,6 @@
       "Rule": "CardEnergyAdditionOverridden",
       "Config": {
         "HeroBarbarian": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -1991,7 +1962,6 @@
           "MarkOfVerga"
         ],
         "HeroGuardian": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -2008,7 +1978,6 @@
           "WhirlwindAttack"
         ],
         "HeroBard": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -2025,7 +1994,6 @@
           "ScrollOfCharm"
         ],
         "HeroHunter": [
-          "EnergyPotion",
           "WebBomb",
           "Barricade",
           "RepeatingBallista",
@@ -2041,7 +2009,6 @@
           "HuntersMark"
         ],
         "HeroRogue": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "RepeatingBallista",
@@ -2058,7 +2025,6 @@
           "Blink"
         ],
         "HeroSorcerer": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -2075,7 +2041,6 @@
           "Fireball"
         ],
         "HeroWarlock": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -2272,22 +2237,6 @@
           "counterAttackDirections": 0,
           "counterAttackDamage": 0,
           "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "ExtraEnergy",
-          "durationTurns": 3,
-          "tickWhen": "EndTurn",
-          "stacks": false,
-          "damagePerTurn": 0,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 2,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Thorns",
           "useOnDissipate": 0
         },
         {

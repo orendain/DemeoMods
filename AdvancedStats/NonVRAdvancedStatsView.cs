@@ -59,7 +59,7 @@
                         }
                     }
 
-                    if (!myPiece.HasEffectState(EffectStateType.Flying))
+                    if (!myPiece.HasEffectState(EffectStateType.Flying) || myPiece.HasEffectState(EffectStateType.StrengthInNumbers))
                     {
                         level = 0;
                     }
@@ -791,6 +791,24 @@
                                 sb.AppendLine(ColorizeString("1 Action Point", Color.white));
                             }
                         }
+                    }
+
+                    if (myPiece.HasEffectState(EffectStateType.StrengthInNumbers))
+                    {
+                        int points = myPiece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
+                        sb.AppendLine();
+                        sb.Append(ColorizeString("--", Color.gray));
+                        sb.Append(ColorizeString(" Character Points: ", pink));
+                        if (points > 0 && points < 999)
+                        {
+                            sb.Append(ColorizeString($"{points}", orange));
+                        }
+                        else
+                        {
+                            sb.Append(ColorizeString($"0", orange));
+                        }
+
+                        sb.AppendLine(ColorizeString("--", Color.gray));
                     }
 
                     // Pad lines to raise text higher on PC-Edition screen

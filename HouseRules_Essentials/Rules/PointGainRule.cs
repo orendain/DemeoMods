@@ -201,7 +201,7 @@
                         EssentialsMod.Logger.Msg($"{source.boardPieceId} hurt player {targets[i].boardPieceId} (+{_globalConfig.HurtPlayer})");
                         pointCount += _globalConfig.HurtPlayer;
                     }
-                    else if (targets[i].IsPlayer() && targets[i] == source)
+                    else if (targets[i].IsPlayer() && targets[i] == source && !source.IsDowned())
                     {
                         if (pointCount > 0)
                         {

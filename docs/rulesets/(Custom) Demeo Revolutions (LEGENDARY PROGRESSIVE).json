@@ -1,8 +1,12 @@
 {
-  "Name": "(Custom) Demeo Revolutions (EASY)",
-  "Description": "Everything that has a beginning has an EASY ending.",
-  "Longdesc": "- Some NEW maps and many NEW enemies\n- Some already known enemies now have NEW hidden abilities\n- Each enemy (even if the same type) can have different health AND attack damage\n- Each floor's enemy spawns will be a mix of ALL existing adventures with NO respawns\n- Each floor's map will be from a different adventure\n- No Lamps or Antitoxins as loot\n- Improved chest, energy (mana), and potion stand loot\n- Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3\n- Lamp spawns found throughout each floor are now much more random\n- Pets and charmed creatures will always focus on Hunter's Marked targets\n- Number of chests/stands/fountains/traders per floor changed based on the adventure selected\n- Card energy (mana) gained from recycled cards increased by 40%\n- Reviving a player by any means removes Stunned and Frozen effects\n- Player summons (Ballistas, Detect Enemies, Verochka, etc) inflict effects on enemies who hit them\n- Some abilities (Sigataur Javelin, Turrets, etc) now have added secondary effects\n- Critical hits award 10 gold to that player or if on the last map will heal that player for 1 (if hurt)\n- Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively\n- Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin\n- Torches last 30 rounds\n- Arly Owl's movement is now 5\n- Arly Owl's panic shot now also Nets non-bosses so they can't move unless they use an ability to do so\n- A NEW Energy Potion loot card that affects all players with mysterious effects\n- When a player is holding a key they gain 1 damage resist and 1 counter-attack to melee\n- All bosses are immune to Barbarian's Net\n- If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor",
+  "Name": "(Custom) Demeo Revolutions (LEGENDARY PROGRESSIVE)",
+  "Description": "PROGRESSIVE, but with tougher enemies, slower energy gain, and 0 knockdowns until level 4 for a REAL challenge!",
+  "Longdesc": "- Some NEW maps and many NEW enemies\n- Some already known enemies now have NEW hidden abilities\n- Each enemy (even if the same type) can have different health AND attack damage\n- Each floor's enemy spawns will be a mix of ALL existing adventures with NO respawns\n- Each floor's map will be from a different adventure\n- No Lamps or Antitoxins as loot\n- Improved chest, energy (mana), and potion stand loot\n- Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3\n- Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3\n- Lamp spawns found throughout each floor are now much more random\n- Pets and charmed creatures will always focus on Hunter's Marked targets\n- Number of chests/stands/fountains/traders per floor changed based on the adventure selected\n- Card energy (mana) gained from attack reduced by 20%\n- Card energy (mana) gained from recycled cards reduced by 80%\n- Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8\n- Reviving a player by any means removes Stunned and Frozen effects\n- Thorns debuff now also does 2 damage per turn\n- Player summons (Ballistas, Detect Enemies, Verochka, etc) inflict effects on enemies who hit them\n- Some abilities (Acid Spit, Sigataur Javelin, Turrets, etc) now have added secondary effects\n- Attacks and critical hits always have a 2% chance to heal players for 1 and 2 health respectively\n- Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin\n- Torches last 15 rounds and placed Torches have 4 health instead of 15\n- Arly Owl's health is now 8 and movement is now 5\n- Arly Owl's panic shot now also Nets non-bosses so they can't move unless they use an ability to do so\n- A NEW Energy Potion loot card that affects all players in mysterious ways\n- Elementals, Giant Slimes, and the Elven Queen will counter-attack for 1 when hit with melee damage\n- Each floor's original keyholder start with 1 innate damage resist and 1 counter-attack to melee\n- When a player is holding a key they gain 1 damage resist and 1 counter-attack to melee\n- All bosses will start with more health, are immune to Barbarian's Net, and have 1 innate damage resist\n- The Elven Queen has new self buffs and abilities to add more of a challenge\n- If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor",
   "Rules": [
+    {
+      "Rule": "PieceProgressLost",
+      "Config": true
+    },
     {
       "Rule": "TickAdjusted",
       "Config": true
@@ -12,12 +16,24 @@
       "Config": true
     },
     {
-      "Rule": "EnemyDoorOpeningDisabled",
+      "Rule": "PieceProgress",
       "Config": true
     },
     {
       "Rule": "GrappleUnhooked",
       "Config": true
+    },
+    {
+      "Rule": "PieceDownedCountAdjusted",
+      "Config": {
+        "HeroGuardian": 0,
+        "HeroHunter": 0,
+        "HeroBard": 0,
+        "HeroBarbarian": 0,
+        "HeroRogue": 0,
+        "HeroWarlock": 0,
+        "HeroSorcerer": 0
+      }
     },
     {
       "Rule": "PieceMagicStatAdded",
@@ -28,13 +44,27 @@
     {
       "Rule": "PieceCounterDamage",
       "Config": {
-        "HeroGuardian": 1
+        "HeroGuardian": 1,
+        "FireElemental": 1,
+        "IceElemental": 1,
+        "GiantSlime": 1,
+        "ElvenQueen": 1,
+        "Mimic": 1,
+        "Wyvern": 1
       }
     },
     {
       "Rule": "PieceDamageResist",
       "Config": [
-        "WarlockMinion"
+        "WarlockMinion",
+        "ElvenQueen",
+        "WizardBoss",
+        "BossTown",
+        "MotherCy",
+        "RootLord",
+        "RatKing",
+        "Mimic",
+        "Wyvern"
       ]
     },
     {
@@ -50,8 +80,26 @@
       }
     },
     {
+      "Rule": "EnemyDoorOpeningEnabled",
+      "Config": true
+    },
+    {
+      "Rule": "ElvenQueenBuffs",
+      "Config": true
+    },
+    {
+      "Rule": "ElvenQueenSuperBuff",
+      "Config": true
+    },
+    {
+      "Rule": "StatModifiersOverridden",
+      "Config": {
+        "ReplenishArmor": 4
+      }
+    },
+    {
       "Rule": "GoldPickedUpMultiplied",
-      "Config": 1.25
+      "Config": 1.0
     },
     {
       "Rule": "PiecePieceTypeListOverridden",
@@ -253,19 +301,24 @@
       "Rule": "PieceConfigAdjusted",
       "Config": [
         {
+          "Piece": "Torch",
+          "Property": "StartHealth",
+          "Value": 4.0
+        },
+        {
+          "Piece": "SellswordArbalestierActive",
+          "Property": "StartHealth",
+          "Value": 8.0
+        },
+        {
           "Piece": "SellswordArbalestierActive",
           "Property": "MoveRange",
           "Value": 5.0
         },
         {
-          "Piece": "PoisonousRat",
-          "Property": "StartHealth",
-          "Value": 2.0
-        },
-        {
           "Piece": "HeroBarbarian",
           "Property": "StartHealth",
-          "Value": 9.0
+          "Value": 7.0
         },
         {
           "Piece": "HeroBarbarian",
@@ -285,67 +338,67 @@
         {
           "Piece": "HeroWarlock",
           "Property": "StartHealth",
-          "Value": 8.0
+          "Value": 6.0
         },
         {
           "Piece": "HeroBard",
           "Property": "StartHealth",
-          "Value": 9.0
+          "Value": 7.0
         },
         {
           "Piece": "HeroGuardian",
           "Property": "StartHealth",
-          "Value": 10.0
+          "Value": 8.0
         },
         {
           "Piece": "HeroRogue",
           "Property": "StartHealth",
-          "Value": 9.0
+          "Value": 7.0
         },
         {
           "Piece": "HeroHunter",
           "Property": "StartHealth",
-          "Value": 9.0
+          "Value": 7.0
         },
         {
           "Piece": "HeroSorcerer",
           "Property": "StartHealth",
-          "Value": 8.0
-        },
-        {
-          "Piece": "HeroSorcerer",
-          "Property": "AttackDamage",
-          "Value": 2.0
-        },
-        {
-          "Piece": "HeroSorcerer",
-          "Property": "CriticalHitDamage",
-          "Value": 4.0
-        },
-        {
-          "Piece": "HeroWarlock",
-          "Property": "AttackDamage",
-          "Value": 2.0
-        },
-        {
-          "Piece": "HeroWarlock",
-          "Property": "CriticalHitDamage",
-          "Value": 4.0
-        },
-        {
-          "Piece": "HeroHunter",
-          "Property": "AttackDamage",
-          "Value": 3.0
-        },
-        {
-          "Piece": "HeroBard",
-          "Property": "AttackDamage",
-          "Value": 3.0
-        },
-        {
-          "Piece": "HeroBard",
-          "Property": "CriticalHitDamage",
           "Value": 6.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "AttackDamage",
+          "Value": 1.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "CriticalHitDamage",
+          "Value": 3.0
+        },
+        {
+          "Piece": "HeroWarlock",
+          "Property": "AttackDamage",
+          "Value": 1.0
+        },
+        {
+          "Piece": "HeroWarlock",
+          "Property": "CriticalHitDamage",
+          "Value": 3.0
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "AttackDamage",
+          "Value": 2.0
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "AttackDamage",
+          "Value": 2.0
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "CriticalHitDamage",
+          "Value": 5.0
         },
         {
           "Piece": "HeroGuardian",
@@ -360,22 +413,7 @@
         {
           "Piece": "HeroHunter",
           "Property": "CriticalHitDamage",
-          "Value": 6.0
-        },
-        {
-          "Piece": "Mimic",
-          "Property": "StartHealth",
-          "Value": 30.0
-        },
-        {
-          "Piece": "Mimic",
-          "Property": "AttackDamage",
-          "Value": 4.0
-        },
-        {
-          "Piece": "Mimic",
-          "Property": "MoveRange",
-          "Value": 3.0
+          "Value": 5.0
         },
         {
           "Piece": "WarlockMinion",
@@ -390,7 +428,7 @@
         {
           "Piece": "Verochka",
           "Property": "StartHealth",
-          "Value": 9.0
+          "Value": 7.0
         },
         {
           "Piece": "Tornado",
@@ -403,14 +441,304 @@
           "Value": 2.0
         },
         {
+          "Piece": "Barricade",
+          "Property": "StartHealth",
+          "Value": 8.0
+        },
+        {
+          "Piece": "Lure",
+          "Property": "StartHealth",
+          "Value": 12.0
+        },
+        {
+          "Piece": "PoisonousRat",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "PoisonousRat",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "PoisonousRat",
+          "Property": "StartHealth",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.99
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "StartHealth",
+          "Value": 40.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "BarkArmor",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "AttackDamage",
+          "Value": 5.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "MoveRange",
+          "Value": 3.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "PowerIndex",
+          "Value": 3.0
+        },
+        {
+          "Piece": "ElvenQueen",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenQueen",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenQueen",
+          "Property": "StartHealth",
+          "Value": 80.0
+        },
+        {
+          "Piece": "ElvenQueen",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "ElvenQueen",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.667
+        },
+        {
+          "Piece": "BossTown",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "BossTown",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "BossTown",
+          "Property": "StartHealth",
+          "Value": 160.0
+        },
+        {
+          "Piece": "BossTown",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "BossTown",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.667
+        },
+        {
+          "Piece": "MadElvenKingHandLeft",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MadElvenKingHandLeft",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MadElvenKingHandRight",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MadElvenKingHandRight",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootLord",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootLord",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootLord",
+          "Property": "StartHealth",
+          "Value": 80.0
+        },
+        {
+          "Piece": "RootLord",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "RootLord",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.667
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "StartHealth",
+          "Value": 50.0
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "MotherCy",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.667
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "StartHealth",
+          "Value": 135.0
+        },
+        {
+          "Piece": "RatKing",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "WizardBoss",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "WizardBoss",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "WizardBoss",
+          "Property": "StartHealth",
+          "Value": 125.0
+        },
+        {
+          "Piece": "WizardBoss",
+          "Property": "PowerIndex",
+          "Value": 6.0
+        },
+        {
+          "Piece": "SnakeBoss",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SnakeBoss",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SnakeBoss",
+          "Property": "PowerIndex",
+          "Value": 3.0
+        },
+        {
+          "Piece": "SnakeTailBoss",
+          "Property": "PowerIndex",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SnakeTailBoss",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SnakeTailBoss",
+          "Property": "BarkArmor",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
           "Piece": "Wyvern",
           "Property": "StartHealth",
-          "Value": 30.0
+          "Value": 50.0
         },
         {
           "Piece": "Wyvern",
           "Property": "MoveRange",
           "Value": 4.0
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "BarkArmor",
+          "Value": 3.0
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "Wyvern",
+          "Property": "PowerIndex",
+          "Value": 3.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "PreciseAttack",
+          "Value": 1.0
         },
         {
           "Piece": "EarthElemental",
@@ -420,22 +748,617 @@
         {
           "Piece": "EarthElemental",
           "Property": "PowerIndex",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "PowerIndex",
+          "Value": 5.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "Brookmare",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Brookmare",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Brookmare",
+          "Property": "PowerIndex",
+          "Value": 4.0
+        },
+        {
+          "Piece": "Brookmare",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "BigBoiMutant",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "BigBoiMutant",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "BigBoiMutant",
+          "Property": "StartHealth",
+          "Value": 32.0
+        },
+        {
+          "Piece": "BigBoiMutant",
+          "Property": "PowerIndex",
+          "Value": 5.0
+        },
+        {
+          "Piece": "BigBoiMutant",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "Cavetroll",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Cavetroll",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Cavetroll",
+          "Property": "PowerIndex",
+          "Value": 5.0
+        },
+        {
+          "Piece": "Cavetroll",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "ElvenMarauder",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenMarauder",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenMarauder",
+          "Property": "StartHealth",
+          "Value": 25.0
+        },
+        {
+          "Piece": "ElvenMarauder",
+          "Property": "PowerIndex",
+          "Value": 3.0
+        },
+        {
+          "Piece": "ElvenMarauder",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "GiantSlime",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GiantSlime",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GiantSlime",
+          "Property": "StartHealth",
+          "Value": 22.0
+        },
+        {
+          "Piece": "GiantSlime",
+          "Property": "PowerIndex",
           "Value": 2.0
         },
         {
-          "Piece": "Wyvern",
-          "Property": "PowerIndex",
-          "Value": 9.0
+          "Piece": "GiantSlime",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
         },
         {
-          "Piece": "Mimic",
+          "Piece": "GiantSpider",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GiantSpider",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GiantSpider",
+          "Property": "StartHealth",
+          "Value": 28.0
+        },
+        {
+          "Piece": "GiantSpider",
           "Property": "PowerIndex",
-          "Value": 9.0
+          "Value": 3.0
+        },
+        {
+          "Piece": "GiantSpider",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "Sigataur",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Sigataur",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Sigataur",
+          "Property": "StartHealth",
+          "Value": 30.0
+        },
+        {
+          "Piece": "Sigataur",
+          "Property": "PowerIndex",
+          "Value": 4.0
+        },
+        {
+          "Piece": "Sigataur",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "RootGolem",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootGolem",
+          "Property": "PreciseAttack",
+          "Value": 1.0
         },
         {
           "Piece": "RootGolem",
           "Property": "PowerIndex",
-          "Value": 6.0
+          "Value": 3.0
+        },
+        {
+          "Piece": "RootGolem",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "ServantOfAlfaragh",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ServantOfAlfaragh",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ServantOfAlfaragh",
+          "Property": "PowerIndex",
+          "Value": 3.0
+        },
+        {
+          "Piece": "ServantOfAlfaragh",
+          "Property": "StartHealth",
+          "Value": 27.0
+        },
+        {
+          "Piece": "ServantOfAlfaragh",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.99
+        },
+        {
+          "Piece": "ElvenSkirmisher",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenSkirmisher",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenSkirmisher",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "ScabRat",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ScabRat",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ScabRat",
+          "Property": "StartHealth",
+          "Value": 20.0
+        },
+        {
+          "Piece": "ScabRat",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "GoblinMadUn",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinMadUn",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinMadUn",
+          "Property": "StartHealth",
+          "Value": 15.0
+        },
+        {
+          "Piece": "GoblinMadUn",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.75
+        },
+        {
+          "Piece": "ReptileArcher",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ReptileArcher",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ReptileMutantWizard",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ReptileMutantWizard",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GeneralRonthian",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GeneralRonthian",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "TheUnheard",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "TheUnseen",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "TheUnseen",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "TheUnspoken",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootBeast",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootBeast",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootHound",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootHound",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootMage",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootMage",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "DruidArcher",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "DruidArcher",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "DruidHoundMaster",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "DruidHoundMaster",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinChieftan",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinChieftan",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinFighter",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinFighter",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinRanger",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinRanger",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Spider",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Spider",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Rat",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Rat",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Slimeling",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Slimeling",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Bandit",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Bandit",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Thug",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Thug",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenArcher",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenArcher",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenCultist",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenCultist",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenHound",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenHound",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenMystic",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenPriest",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenPriest",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenSpearman",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenSpearman",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenSummoner",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenSummoner",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "CultMemberElder",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "CultMemberElder",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "KillerBee",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "KillerBee",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "FireElemental",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "FireElemental",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "IceElemental",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "IceElemental",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ChestGoblin",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ChestGoblin",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "LargeCorruption",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SmallCorruption",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RatNest",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SummoningRiftBig",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SummoningRiftMedium",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SummoningRiftSmall",
+          "Property": "PreciseHealth",
+          "Value": 1.0
         }
       ]
     },
@@ -462,14 +1385,9 @@
       "Rule": "MyMonsterDeckOverridden",
       "Config": {
         "EntranceDeckFloor1": {
-          "ScarabSandPile": 1,
-          "EmptySandPile": 2,
-          "ScorpionSandPile": 1,
           "LargeCorruption": 1,
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
-          "GoldSandPile": 1,
-          "SmallCorruption": 1,
           "GeneralRonthian": 1,
           "TheUnseen": 2,
           "ElvenArcher": 1,
@@ -482,11 +1400,8 @@
           "GoblinChieftan": 1,
           "GoblinMadUn": 1,
           "RootBeast": 1,
-          "ScabRat": 1,
+          "ScabRat": 2,
           "Spider": 2,
-          "Rat": 1,
-          "SpiderEgg": 1,
-          "RatNest": 1,
           "TheUnheard": 2,
           "Slimeling": 1,
           "Thug": 2,
@@ -511,35 +1426,29 @@
           "ServantOfAlfaragh": 1
         },
         "ExitDeckFloor1": {
-          "ScarabSandPile": 1,
-          "ScorpionSandPile": 1,
           "ElvenSpearman": 2,
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
-          "SmallCorruption": 1,
+          "LargeCorruption": 1,
           "GeneralRonthian": 1,
           "TheUnseen": 2,
           "ElvenArcher": 1,
           "ElvenHound": 1,
-          "RootHound": 1,
           "Bandit": 1,
           "DruidArcher": 1,
           "DruidHoundMaster": 1,
           "GoblinChieftan": 1,
           "GoblinMadUn": 2,
           "RootBeast": 1,
-          "ScabRat": 1,
+          "ScabRat": 2,
           "Spider": 1,
           "Rat": 1,
           "TheUnheard": 2,
-          "Slimeling": 1,
           "Thug": 1,
           "ElvenPriest": 1,
           "ElvenSkirmisher": 1,
           "GoblinFighter": 1,
           "GoblinRanger": 1,
-          "SpiderEgg": 1,
-          "RatNest": 1,
           "CultMemberElder": 1,
           "RootMage": 1,
           "KillerBee": 1,
@@ -555,15 +1464,11 @@
           "ServantOfAlfaragh": 1
         },
         "EntranceDeckFloor2": {
-          "ScarabSandPile": 1,
-          "EmptySandPile": 1,
-          "ScorpionSandPile": 1,
           "ElvenSpearman": 2,
-          "LargeCorruption": 1,
+          "LargeCorruption": 2,
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
           "GoldSandPile": 1,
-          "SmallCorruption": 1,
           "GeneralRonthian": 1,
           "TheUnseen": 2,
           "ElvenArcher": 2,
@@ -577,10 +1482,7 @@
           "GoblinMadUn": 1,
           "RootBeast": 1,
           "ScabRat": 2,
-          "Spider": 1,
-          "Rat": 1,
-          "SpiderEgg": 1,
-          "RatNest": 1,
+          "Spider": 2,
           "TheUnheard": 2,
           "Slimeling": 1,
           "Thug": 2,
@@ -592,14 +1494,15 @@
           "CultMemberElder": 2,
           "RootMage": 1,
           "KillerBee": 2,
-          "EarthElemental": 1,
+          "EarthElemental": 2,
           "Sigataur": 1,
           "GiantSlime": 1,
           "FireElemental": 1,
-          "IceElemental": 1,
-          "ElvenMarauder": 1,
-          "GiantSpider": 1,
+          "IceElemental": 2,
+          "ElvenMarauder": 2,
+          "GiantSpider": 2,
           "Cavetroll": 1,
+          "Gorgon": 1,
           "Brookmare": 1,
           "SilentSentinel": 1,
           "BigBoiMutant": 1,
@@ -607,7 +1510,6 @@
         },
         "ExitDeckFloor2": {
           "ScarabSandPile": 1,
-          "ScorpionSandPile": 1,
           "ElvenSpearman": 2,
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
@@ -616,7 +1518,6 @@
           "TheUnseen": 1,
           "ElvenArcher": 2,
           "ElvenHound": 1,
-          "RootHound": 1,
           "Bandit": 1,
           "DruidArcher": 1,
           "DruidHoundMaster": 1,
@@ -627,7 +1528,6 @@
           "Spider": 1,
           "Rat": 1,
           "TheUnheard": 2,
-          "Slimeling": 1,
           "Thug": 1,
           "ElvenPriest": 1,
           "ElvenSkirmisher": 1,
@@ -641,35 +1541,33 @@
           "Sigataur": 2,
           "GiantSlime": 2,
           "FireElemental": 1,
-          "ElvenMarauder": 1,
-          "IceElemental": 1,
-          "GiantSpider": 1,
-          "Cavetroll": 1,
-          "RootGolem": 1,
-          "Brookmare": 1,
-          "SilentSentinel": 1,
-          "BigBoiMutant": 1,
-          "ServantOfAlfaragh": 1
+          "ElvenMarauder": 2,
+          "IceElemental": 2,
+          "GiantSpider": 2,
+          "Cavetroll": 2,
+          "RootGolem": 2,
+          "Brookmare": 2,
+          "Gorgon": 2,
+          "SilentSentinel": 2,
+          "BigBoiMutant": 2,
+          "ServantOfAlfaragh": 2
         },
         "BossDeck": {
           "ReptileArcher": 1,
           "ReptileMutantWizard": 1,
           "GeneralRonthian": 1,
-          "TheUnseen": 1,
-          "ElvenArcher": 1,
+          "TheUnseen": 2,
+          "ElvenArcher": 2,
           "ElvenHound": 1,
-          "RootHound": 1,
           "TheUnspoken": 1,
           "DruidArcher": 1,
           "DruidHoundMaster": 1,
           "GoblinChieftan": 1,
           "GoblinMadUn": 2,
           "RootBeast": 1,
-          "ScabRat": 1,
+          "ScabRat": 2,
           "Spider": 1,
-          "Rat": 1,
           "TheUnheard": 2,
-          "Slimeling": 1,
           "Thug": 1,
           "ElvenMystic": 1,
           "ElvenPriest": 1,
@@ -678,19 +1576,19 @@
           "RootMage": 1,
           "KillerBee": 1,
           "EarthElemental": 1,
-          "Sigataur": 1,
-          "GiantSlime": 1,
+          "Sigataur": 2,
+          "GiantSlime": 2,
           "FireElemental": 1,
-          "ElvenMarauder": 1,
-          "IceElemental": 1,
-          "GiantSpider": 1,
-          "Cavetroll": 1,
-          "RootGolem": 1,
-          "Brookmare": 1,
-          "Gorgon": 1,
-          "SilentSentinel": 1,
-          "BigBoiMutant": 1,
-          "ServantOfAlfaragh": 1
+          "ElvenMarauder": 2,
+          "IceElemental": 2,
+          "GiantSpider": 2,
+          "Cavetroll": 2,
+          "RootGolem": 2,
+          "Brookmare": 2,
+          "Gorgon": 2,
+          "SilentSentinel": 2,
+          "BigBoiMutant": 2,
+          "ServantOfAlfaragh": 2
         },
         "KeyHolderFloor1": "Mimic",
         "KeyHolderFloor2": "Wyvern"
@@ -700,10 +1598,6 @@
       "Rule": "StartCardsModified",
       "Config": {
         "HeroWarlock": [
-          {
-            "Card": "MinionCharge",
-            "ReplenishFrequency": 1
-          },
           {
             "Card": "GuidingLight",
             "ReplenishFrequency": 0
@@ -757,17 +1651,9 @@
           {
             "Card": "PiercingVoice",
             "ReplenishFrequency": 0
-          },
-          {
-            "Card": "EnemyFlashbang",
-            "ReplenishFrequency": 3
           }
         ],
         "HeroGuardian": [
-          {
-            "Card": "Grab",
-            "ReplenishFrequency": 1
-          },
           {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
@@ -799,6 +1685,10 @@
             "ReplenishFrequency": 1
           },
           {
+            "Card": "Arrow",
+            "ReplenishFrequency": 1
+          },
+          {
             "Card": "HealingPotion",
             "ReplenishFrequency": 0
           },
@@ -817,10 +1707,6 @@
           {
             "Card": "Lure",
             "ReplenishFrequency": 0
-          },
-          {
-            "Card": "EnemyFireball",
-            "ReplenishFrequency": 1
           }
         ],
         "HeroRogue": [
@@ -847,10 +1733,6 @@
           {
             "Card": "FlashBomb",
             "ReplenishFrequency": 0
-          },
-          {
-            "Card": "DiseasedBite",
-            "ReplenishFrequency": 3
           }
         ],
         "HeroSorcerer": [
@@ -879,7 +1761,7 @@
             "ReplenishFrequency": 0
           },
           {
-            "Card": "Electricity",
+            "Card": "Overcharge",
             "ReplenishFrequency": 1
           }
         ],
@@ -911,10 +1793,6 @@
           {
             "Card": "ExplodingLampPlaceholder",
             "ReplenishFrequency": 1
-          },
-          {
-            "Card": "Net",
-            "ReplenishFrequency": 3
           }
         ]
       }
@@ -926,10 +1804,8 @@
           "DetectEnemies",
           "HealingPotion",
           "Teleportation",
-          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
-          "VigorPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "ExtraActionPotion",
@@ -954,10 +1830,8 @@
           "DetectEnemies",
           "HealingPotion",
           "Teleportation",
-          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
-          "VigorPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "ExtraActionPotion",
@@ -982,10 +1856,8 @@
           "DetectEnemies",
           "HealingPotion",
           "Teleportation",
-          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
-          "VigorPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "ExtraActionPotion",
@@ -1010,10 +1882,8 @@
           "DetectEnemies",
           "HealingPotion",
           "Teleportation",
-          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
-          "VigorPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "ExtraActionPotion",
@@ -1038,10 +1908,8 @@
           "DetectEnemies",
           "HealingPotion",
           "Teleportation",
-          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
-          "VigorPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "ExtraActionPotion",
@@ -1066,10 +1934,8 @@
           "DetectEnemies",
           "HealingPotion",
           "Teleportation",
-          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
-          "VigorPotion",
           "SwiftnessPotion",
           "ExtraActionPotion",
           "HeavensFury",
@@ -1094,10 +1960,8 @@
           "DetectEnemies",
           "HealingPotion",
           "Teleportation",
-          "Rejuvenation",
           "DamageResistPotion",
           "InvisibilityPotion",
-          "VigorPotion",
           "SwiftnessPotion",
           "ExtraActionPotion",
           "HeavensFury",
@@ -1124,7 +1988,6 @@
       "Rule": "CardEnergyAdditionOverridden",
       "Config": {
         "HeroBarbarian": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -1137,13 +2000,11 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "MarkOfVerga"
         ],
         "HeroGuardian": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -1155,13 +2016,11 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "WhirlwindAttack"
         ],
         "HeroBard": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -1173,13 +2032,11 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "ScrollOfCharm"
         ],
         "HeroHunter": [
-          "EnergyPotion",
           "WebBomb",
           "Barricade",
           "RepeatingBallista",
@@ -1190,13 +2047,11 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "HuntersMark"
         ],
         "HeroRogue": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "RepeatingBallista",
@@ -1208,13 +2063,11 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "StrengthPotion",
           "LuckPotion",
           "ScrollElectricity",
           "Blink"
         ],
         "HeroSorcerer": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -1226,13 +2079,11 @@
           "FireImmunePotion",
           "ScrollTsunami",
           "Regroup",
-          "MagicPotion",
           "LuckPotion",
           "ScrollElectricity",
           "Fireball"
         ],
         "HeroWarlock": [
-          "EnergyPotion",
           "Bone",
           "WebBomb",
           "Barricade",
@@ -1245,7 +2096,6 @@
           "ScrollTsunami",
           "Regroup",
           "WaterBottle",
-          "MagicPotion",
           "LuckPotion",
           "ScrollElectricity",
           "Portal"
@@ -1256,60 +2106,66 @@
       "Rule": "PotionAdditionOverridden",
       "Config": {
         "HeroBarbarian": [
-          "DamageResistPotion",
           "Rejuvenation",
+          "DamageResistPotion",
           "InvisibilityPotion",
           "AdamantPotion",
+          "LuckPotion",
           "ExtraActionPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "VigorPotion"
         ],
         "HeroBard": [
-          "DamageResistPotion",
           "Rejuvenation",
+          "DamageResistPotion",
           "InvisibilityPotion",
           "AdamantPotion",
+          "LuckPotion",
           "ExtraActionPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "VigorPotion"
         ],
         "HeroGuardian": [
-          "DamageResistPotion",
           "Rejuvenation",
+          "DamageResistPotion",
           "InvisibilityPotion",
           "AdamantPotion",
+          "LuckPotion",
           "ExtraActionPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "VigorPotion"
         ],
         "HeroHunter": [
-          "DamageResistPotion",
           "Rejuvenation",
+          "DamageResistPotion",
           "InvisibilityPotion",
           "AdamantPotion",
+          "LuckPotion",
           "ExtraActionPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "VigorPotion"
         ],
         "HeroRogue": [
-          "DamageResistPotion",
           "Rejuvenation",
+          "DamageResistPotion",
           "InvisibilityPotion",
           "AdamantPotion",
+          "LuckPotion",
           "ExtraActionPotion",
           "StrengthPotion",
           "SwiftnessPotion",
           "VigorPotion"
         ],
         "HeroSorcerer": [
-          "DamageResistPotion",
           "Rejuvenation",
+          "DamageResistPotion",
           "InvisibilityPotion",
           "AdamantPotion",
+          "LuckPotion",
           "ExtraActionPotion",
           "MagicPotion",
           "SwiftnessPotion",
@@ -1317,9 +2173,9 @@
         ],
         "HeroWarlock": [
           "DamageResistPotion",
-          "Rejuvenation",
           "InvisibilityPotion",
           "AdamantPotion",
+          "LuckPotion",
           "ExtraActionPotion",
           "MagicPotion",
           "SwiftnessPotion",
@@ -1332,7 +2188,7 @@
       "Config": [
         {
           "effectStateType": "Torch",
-          "durationTurns": 30,
+          "durationTurns": 15,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -1348,7 +2204,7 @@
         },
         {
           "effectStateType": "TorchPlayer",
-          "durationTurns": 30,
+          "durationTurns": 15,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -1364,7 +2220,7 @@
         },
         {
           "effectStateType": "FireImmunity",
-          "durationTurns": 18,
+          "durationTurns": 12,
           "tickWhen": "StartTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -1380,7 +2236,7 @@
         },
         {
           "effectStateType": "IceImmunity",
-          "durationTurns": 18,
+          "durationTurns": 12,
           "tickWhen": "StartTurn",
           "stacks": false,
           "damagePerTurn": 0,
@@ -1395,25 +2251,57 @@
           "useOnDissipate": 0
         },
         {
-          "effectStateType": "ExtraEnergy",
-          "durationTurns": 3,
+          "effectStateType": "Invulnerable3",
+          "durationTurns": 2,
+          "tickWhen": "StartTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
+        },
+        {
+          "effectStateType": "MarkOfAvalon",
+          "durationTurns": 2,
           "tickWhen": "EndTurn",
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
           "healPerTurn": 0,
-          "healthBoost": 2,
+          "healthBoost": 0,
           "killOnExpire": false,
           "counterAttackDirections": 0,
           "counterAttackDamage": 0,
-          "applyAfterDissipate": "Thorns",
+          "applyAfterDissipate": "Diseased",
           "useOnDissipate": 0
         },
         {
           "effectStateType": "Netted",
           "durationTurns": 1,
           "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
+        },
+        {
+          "effectStateType": "Invisibility",
+          "durationTurns": 2,
+          "tickWhen": "StartTurn",
           "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
@@ -1441,6 +2329,22 @@
           "counterAttackDamage": 0,
           "applyAfterDissipate": "Diseased",
           "useOnDissipate": 0
+        },
+        {
+          "effectStateType": "Thorns",
+          "durationTurns": 2,
+          "tickWhen": "EndTurn",
+          "stacks": false,
+          "damagePerTurn": 1,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         }
       ]
     },
@@ -1455,11 +2359,15 @@
         "EarthElemental": [
           "EnemyMelee",
           "EnemyKnockbackMelee",
-          "EarthShatter"
+          "EarthShatter",
+          "Grapple"
         ],
         "Mimic": [
           "EnemyMelee",
           "AcidSpit",
+          "Grapple",
+          "PlayerLeap",
+          "EnemyFrostball",
           "Zap"
         ],
         "RootMage": [
@@ -1469,20 +2377,49 @@
         ],
         "ChestGoblin": [
           "EnemyMelee",
-          "EnemyStealGold"
+          "EnemyStealGold",
+          "Net"
         ],
         "KillerBee": [
           "EnemyMelee",
-          "ThornPowder"
+          "ThornPowder",
+          "Net"
         ],
         "CultMemberElder": [
           "EnemyMelee",
-          "Weaken"
+          "Weaken",
+          "EnemyFireball"
         ],
         "Wyvern": [
           "EnemyMelee",
           "DiseasedBite",
-          "Leap"
+          "LightningBolt",
+          "LeapHeavy",
+          "Grapple"
+        ],
+        "SilentSentinel": [
+          "EnemyMelee",
+          "LeapHeavy",
+          "Grab"
+        ],
+        "ElvenArcher": [
+          "EnemyMelee",
+          "EnemyArrowSnipe",
+          "EnemyFrostball"
+        ],
+        "ElvenCultist": [
+          "EnemyMelee",
+          "LeechMelee"
+        ],
+        "TheUnseen": [
+          "EnemyMelee",
+          "Zap"
+        ],
+        "ElvenQueen": [
+          "SummonBossMinions",
+          "LightningBolt",
+          "Shockwave",
+          "EnemyFrostball"
         ],
         "GoblinFighter": [
           "EnemyMelee",
@@ -1491,12 +2428,37 @@
         "PoisonousRat": [
           "EnemyMelee",
           "DiseasedBite"
+        ],
+        "ElvenSkirmisher": [
+          "EnemyMelee",
+          "EnemyPikeMeleeAttack"
+        ],
+        "GiantSpider": [
+          "EnemyKnockbackMelee",
+          "SpiderWebshot"
+        ],
+        "GiantSlime": [
+          "EnemyMelee",
+          "AcidSpit"
+        ],
+        "Cavetroll": [
+          "EnemyMelee",
+          "ElvenKingMeleeWhip"
+        ],
+        "ScabRat": [
+          "EnemyMelee",
+          "DiseasedBite"
         ]
       }
     },
     {
       "Rule": "PieceBehavioursListOverridden",
       "Config": {
+        "ElvenSkirmisher": [
+          "Patrol",
+          "AttackPlayer",
+          "PikeAttack"
+        ],
         "EarthElemental": [
           "Patrol",
           "AttackPlayer",
@@ -1535,6 +2497,21 @@
           "AttackAndRetreat",
           "RangedSpellCaster"
         ],
+        "SilentSentinel": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedSpellCaster"
+        ],
+        "ElvenArcher": [
+          "Patrol",
+          "RangedSpellCaster",
+          "FollowPlayerRangedAttacker"
+        ],
+        "TheUnseen": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedSpellCaster"
+        ],
         "GoblinFighter": [
           "Patrol",
           "AttackPlayer",
@@ -1548,6 +2525,26 @@
         "JeweledScarab": [
           "Patrol",
           "FleeToFOW"
+        ],
+        "GiantSpider": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedAttackHighPrio"
+        ],
+        "GiantSlime": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedAttackHighPrio"
+        ],
+        "Cavetroll": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedAttackHighPrio"
+        ],
+        "ScabRat": [
+          "Patrol",
+          "Swarm",
+          "AttackPlayer"
         ]
       }
     },
@@ -1709,6 +2706,9 @@
           "Panic",
           "Blinded"
         ],
+        "AcidSpit": [
+          "Diseased"
+        ],
         "TauntingScream": [
           "Weaken2Turns",
           "Disoriented"
@@ -1739,6 +2739,16 @@
         ],
         "Tornado": [
           "LetItRain"
+        ],
+        "GiantSlime": [
+          "SpawnSlime"
+        ],
+        "GiantSpider": [
+          "SpawnSpiderlings"
+        ],
+        "ScabRat": [
+          "SpawnRat",
+          "SpawnRat"
         ]
       }
     },
@@ -1753,13 +2763,7 @@
     {
       "Rule": "AbilityActionCostAdjusted",
       "Config": {
-        "Zap": false,
-        "LightningBolt": false,
-        "Sneak": false,
         "Grab": false,
-        "Arrow": false,
-        "CourageShanty": false,
-        "MinionCharge": false,
         "SpellPowerPotion": false,
         "PVPBlink": false,
         "WeakeningShout": false,
@@ -1767,9 +2771,23 @@
         "SpawnRandomLamp": false,
         "DeathBeam": false,
         "FretsOfFire": false,
-        "Grapple": false,
         "Net": true,
-        "ImplosionExplosionRain": false
+        "ImplosionExplosionRain": false,
+        "Petrify": false,
+        "AcidSpit": false,
+        "DropChest": false,
+        "Shockwave": false,
+        "DeathFlurry": false
+      }
+    },
+    {
+      "Rule": "AbilityHealOverridden",
+      "Config": {
+        "HealingPotion": 5,
+        "Rejuvenation": 8,
+        "AltarHeal": 8,
+        "WaterBottle": 2,
+        "TurretHealProjectile": 2
       }
     },
     {
@@ -1886,7 +2904,8 @@
         "BlockAbilities": 1,
         "LeapHeavy": 1,
         "Leap": 1,
-        "Net": 0
+        "Net": 0,
+        "Overload": 1
       }
     },
     {
@@ -1958,6 +2977,18 @@
           5,
           5
         ],
+        "Shockwave": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "DeathFlurry": [
+          5,
+          5,
+          5,
+          5
+        ],
         "TornadoCharge": [
           3,
           3,
@@ -1983,12 +3014,20 @@
       "Config": true
     },
     {
+      "Rule": "CardEnergyFromAttackMultiplied",
+      "Config": 0.6
+    },
+    {
       "Rule": "CardEnergyFromRecyclingMultiplied",
-      "Config": 1.4
+      "Config": 0.1
     },
     {
       "Rule": "EnemyHealthScaled",
-      "Config": 0.8
+      "Config": 1.2
+    },
+    {
+      "Rule": "EnemyAttackScaled",
+      "Config": 1.2
     },
     {
       "Rule": "AbilityRandomPieceList",
@@ -2026,7 +3065,7 @@
       }
     },
     {
-      "Rule": "LevelSequenceOverridden",
+      "Rule": "SmallLevelSequenceOverridden",
       "Config": [
         "ElvenFloor17",
         "SewersFloor08",
@@ -2039,24 +3078,28 @@
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
+        "BigGoldPileChance": 0,
         "FloorOneHealingFountains": 1,
         "FloorOnePotionStand": 1,
         "FloorOneMerchant": 0,
         "FloorOneLootChests": 4,
+        "FloorOneGoldMaxAmount": 550,
         "FloorOneElvenSummoners": 0,
         "FloorOneSellswords": 1,
         "FloorOneVillagers": 1,
-        "FloorTwoHealingFountains": 2,
+        "FloorTwoHealingFountains": 1,
         "FloorTwoPotionStand": 1,
         "FloorTwoMerchant": 1,
         "FloorTwoVillagers": 1,
-        "FloorTwoLootChests": 5,
+        "FloorTwoLootChests": 4,
+        "FloorTwoGoldMaxAmount": 900,
         "FloorTwoElvenSummoners": 0,
         "FloorThreeHealingFountains": 1,
         "FloorThreePotionStand": 0,
         "FloorThreeMerchant": 0,
-        "FloorThreeLootChests": 2,
-        "FloorThreeElvenSummoners": 0
+        "FloorThreeLootChests": 1,
+        "FloorThreeElvenSummoners": 0,
+        "PacingSpikeSegmentFloorThreeBudget": 12
       }
     }
   ]
