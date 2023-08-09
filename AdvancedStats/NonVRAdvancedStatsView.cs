@@ -796,16 +796,18 @@
                     if (myPiece.HasEffectState(EffectStateType.StrengthInNumbers))
                     {
                         int points = myPiece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
+                        var id = myPiece.networkID;
                         sb.AppendLine();
                         sb.Append(ColorizeString("--", Color.gray));
-                        sb.Append(ColorizeString(" Character Points: ", pink));
+                        sb.Append(ColorizeString($" [ID: {id}]", Color.cyan));
+                        sb.Append(ColorizeString(" Character Points: ", Color.yellow));
                         if (points > 0 && points < 999)
                         {
-                            sb.Append(ColorizeString($"{points}", orange));
+                            sb.Append(ColorizeString($"{points} ", Color.white));
                         }
                         else
                         {
-                            sb.Append(ColorizeString($"0", orange));
+                            sb.Append(ColorizeString($"0 ", Color.white));
                         }
 
                         sb.AppendLine(ColorizeString("--", Color.gray));
