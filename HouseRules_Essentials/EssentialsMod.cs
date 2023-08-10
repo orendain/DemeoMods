@@ -77,7 +77,7 @@
             HR.Rulebook.Register(typeof(PieceProgressLostRule));
             HR.Rulebook.Register(typeof(PieceUseOnCreatedOverriddenRule));
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));
-            HR.Rulebook.Register(typeof(PointGainRule));
+            HR.Rulebook.Register(typeof(PointGainRule)); 
             HR.Rulebook.Register(typeof(PotionAdditionOverriddenRule));
             HR.Rulebook.Register(typeof(RatNestsSpawnGoldRule));
             HR.Rulebook.Register(typeof(RegainAbilityIfMaxxedOutOverriddenRule));
