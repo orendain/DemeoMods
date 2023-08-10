@@ -138,6 +138,11 @@
                 return;
             }
 
+            if (revivedPiece == sourcePiece)
+            {
+                return;
+            }
+
             var startPoints = sourcePiece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
             if (startPoints > 998)
             {

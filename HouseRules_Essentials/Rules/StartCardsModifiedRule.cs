@@ -184,7 +184,6 @@
                     flags = 0,
                     originalOwner = -1,
                     replenishCooldown = 0,
-
                 });
             }
 
