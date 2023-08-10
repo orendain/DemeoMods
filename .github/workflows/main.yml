@@ -1,0 +1,63 @@
+name: Build HouseRules
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # every day at 2AM
+  pull_request:
+    paths:
+      - 'HouseRules*/**'
+      - '.github/workflows/houserules.yml'
+  push:
+    branches:
+      - 'DemeoRevolutions'
+  workflow_dispatch:  # on button click
+
+defaults:
+  run:
+    shell: cmd
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  
+          
+      - run: git checkout origin/DemeoRevolutions
+      
+      - name: Set Up MSBuild
+        uses: microsoft/setup-msbuild@v1.3.1
+
+      - name: Add Build Dependencies
+        run: |
+          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/eab432f1b7df70451905531f1e77bb05102747ec/ws.zip
+          7z x ws.zip
+      - name: Build HouseRules_Core
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Core\HouseRules_Core.csproj
+
+      - name: Build HouseRules_Essentials
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Essentials\HouseRules_Essentials.csproj
+
+      - name: Build HouseRules_Configuration
+        run: msbuild -restore -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Configuration\HouseRules_Configuration.csproj
+
+      - name: Retrieve Newtonsoft
+        run: |
+          C:\msys64\usr\bin\wget.exe https://github.com/jilleJr/Newtonsoft.Json-for-Unity/archive/refs/tags/13.0.102.zip
+          7z e 13.0.102.zip -o. "Newtonsoft.Json-for-Unity-13.0.102\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.dll"
+      - name: Assemble into Bundle
+        run: |
+          mkdir Bundle\Mods
+          xcopy HouseRules_Core\bin\Release\HouseRules_Core.dll Bundle\Mods
+          xcopy HouseRules_Essentials\bin\Release\HouseRules_Essentials.dll Bundle\Mods
+          xcopy HouseRules_Configuration\bin\Release\HouseRules_Configuration.dll Bundle\Mods
+          mkdir Bundle\UserLibs
+          xcopy Newtonsoft.Json.dll Bundle\UserLibs
+          mkdir Bundle\UserData\HouseRules\ExampleRulesets
+          xcopy docs\rulesets\* Bundle\UserData\HouseRules\ExampleRulesets
+      - name: Upload Bundle
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: HouseRules
+          path: Bundle\*
