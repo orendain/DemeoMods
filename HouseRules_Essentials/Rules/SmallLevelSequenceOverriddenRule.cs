@@ -34,7 +34,7 @@
                     { "ForestFloor01", "ForestFloor02", "ForestFloor07", "ForestFloor08" };
 
         private readonly List<string> sewersFloors1 = new List<string>
-                    { "SewersFloor01"};
+                    { "SewersFloor01" };
 
         private readonly List<string> sewersFloors2 = new List<string>
                     { "SewersFloor01" };

@@ -96,7 +96,7 @@
                     nameof(MotherTracker_TrackRevive_Prefix)));
 
             harmony.Patch(
-                original: AccessTools.Constructor(typeof(BoardgameActionPiecePickup), new[] { typeof(GameContext), typeof(int), typeof(IntPoint2D), typeof(int), typeof(int) }), 
+                original: AccessTools.Constructor(typeof(BoardgameActionPiecePickup), new[] { typeof(GameContext), typeof(int), typeof(IntPoint2D), typeof(int), typeof(int) }),
                 prefix: new HarmonyMethod(
                     typeof(PointGainRule),
                     nameof(BoardgameActionPiecePickup_Prefix)));
