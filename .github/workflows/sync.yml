@@ -1,0 +1,41 @@
+name: Sync Fork
+on:
+  schedule:
+    - cron: '0 0 * * *' # every day at midnight
+  workflow_dispatch: # on button click
+    
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env: 
+      CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+      CI_COMMIT_AUTHOR: Continuous Integration
+    
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0        
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - run: ls ${{ github.workspace }}
+      - run: cd ${{ github.workspace }} 
+      - run: pwd
+      - run: git branch
+      - run: git branch -a
+      - run: git remote add upstream https://github.com/TheGrayAlien/DemeoMods/
+      - run: git fetch upstream
+      - run: git fetch --tags upstream
+      - run: git checkout origin/DemeoRevolutions
+      - run: git log --oneline --graph --decorate --all --date=relative 
+      - run: git merge --ff-only upstream/DemeoRevolutions 
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: git log --oneline --graph --decorate --all --date=relative 
+      - run: git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+      - run: git config --global user.email "username@users.noreply.github.com"
+      - run: git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}" || true
+      - run: git push origin HEAD:DemeoRevolutions
+      - run: git push --tags
