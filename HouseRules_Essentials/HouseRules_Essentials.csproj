@@ -83,6 +83,7 @@
     <Compile Include="Rules\PieceMagicStatAddedRule.cs" />
     <Compile Include="Rules\PieceProgressLostRule.cs" />
     <Compile Include="Rules\PieceProgressRule.cs" />
+    <Compile Include="Rules\PointGainRule.cs" />
     <Compile Include="Rules\PotionAdditionOverriddenRule.cs" />
     <Compile Include="Rules\ReviveRemovesEffectsRule.cs" />
     <Compile Include="Rules\PieceExtraStatsAdjustedRule.cs" />

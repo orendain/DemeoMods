@@ -758,6 +758,10 @@
                 {
                     __result.effectSink.AddStatusEffect(EffectStateType.Overcharge, 99);
                 }
+                else if (__result.boardPieceId == BoardPieceId.IceElemental)
+                {
+                    __result.effectSink.AddStatusEffect(EffectStateType.IceImmunity, 99);
+                }
                 else if (__result.boardPieceId.ToString().Contains("SummoningRift"))
                 {
                     __result.effectSink.AddStatusEffect(EffectStateType.Corruption, 99);

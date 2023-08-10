@@ -103,7 +103,7 @@
             int rand;
             AbilityKey replacementAbilityKey;
             int randNum = RandomProvider.GetThreadRandom().Next(101);
-            if ((piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions")) && !HR.SelectedRuleset.Name.Contains("PROGRESSIVE") && !HR.SelectedRuleset.Name.Equals("TEST GAME"))
+            if ((piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) == 69 || HR.SelectedRuleset.Name.Contains("Revolutions") || HR.SelectedRuleset.Name.Equals("TEST GAME")) && !HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
             {
                 if (randNum > 90 && _numEnergy < 2)
                 {

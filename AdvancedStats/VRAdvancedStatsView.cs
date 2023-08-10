@@ -52,7 +52,7 @@
                 }
             }
 
-            if (!myPiece.HasEffectState(EffectStateType.Flying) || myPiece.HasEffectState(EffectStateType.StrengthInNumbers))
+            if (!myPiece.HasEffectState(EffectStateType.Flying))
             {
                 level = 0;
             }
@@ -179,8 +179,6 @@
             else if (!hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
             {
                 sb.AppendLine(ColorizeString("None", lightblue));
-                GameUI.ShowCameraMessage(sb.ToString(), 5);
-                return;
             }
             else
             {

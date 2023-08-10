@@ -3,7 +3,10 @@
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
+    using Boardgame.BoardEntities.AI;
+    using Boardgame.BoardgameActions;
     using Boardgame.Data;
+    using Boardgame.SerializableEvents;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -35,6 +38,11 @@
             public int KillBoss;
             public int HurtSelf;
             public int KillSelf;
+            public int LootGold;
+            public int LootChest;
+            public int LootStand;
+            public int OpenDoor;
+            public int RevivePlayer;
         }
 
         public PointGainRule(Points points)
@@ -80,6 +88,93 @@
                 prefix: new HarmonyMethod(
                     typeof(PointGainRule),
                     nameof(Interactable_OnInteraction_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(MotherTracker), "TrackRevive"),
+                prefix: new HarmonyMethod(
+                    typeof(PointGainRule),
+                    nameof(MotherTracker_TrackRevive_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools.Constructor(typeof(BoardgameActionPiecePickup), new[] { typeof(GameContext), typeof(int), typeof(IntPoint2D), typeof(int), typeof(int) }), 
+                prefix: new HarmonyMethod(
+                    typeof(PointGainRule),
+                    nameof(BoardgameActionPiecePickup_Prefix)));
+        }
+
+        private static void BoardgameActionPiecePickup_Prefix(GameContext gameContext, int pieceId)
+        {
+            if (!_isActivated)
+            {
+                return;
+            }
+
+            if (!gameContext.pieceAndTurnController.TryGetPiece(pieceId, out var piece))
+            {
+                return;
+            }
+
+            var startPoints = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
+            if (startPoints > 998)
+            {
+                startPoints = 0;
+            }
+
+            var pointCount = startPoints;
+            EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted gold (+{_globalConfig.LootGold})");
+            pointCount += _globalConfig.LootGold;
+            if (pointCount != startPoints)
+            {
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] total points: {pointCount}");
+                piece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
+                piece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
+            }
+        }
+
+        private static void MotherTracker_TrackRevive_Prefix(Piece revivedPiece, Piece sourcePiece)
+        {
+            if (!_isActivated)
+            {
+                return;
+            }
+
+            var startPoints = sourcePiece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
+            if (startPoints > 998)
+            {
+                startPoints = 0;
+            }
+
+            var pointCount = startPoints;
+            EssentialsMod.Logger.Msg($"{sourcePiece.boardPieceId} [ID: {sourcePiece.networkID}] revived player {revivedPiece.boardPieceId} (+{_globalConfig.RevivePlayer})");
+            pointCount += _globalConfig.RevivePlayer;
+
+            if (pointCount != startPoints)
+            {
+                EssentialsMod.Logger.Msg($"{sourcePiece.boardPieceId} [ID: {sourcePiece.networkID}] total points: {pointCount}");
+                sourcePiece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
+                sourcePiece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
+            }
+
+            var startPoints2 = revivedPiece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
+            if (startPoints2 > 998)
+            {
+                startPoints2 = 0;
+            }
+
+            var pointCount2 = startPoints2;
+            EssentialsMod.Logger.Msg($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] was revived by player {sourcePiece.boardPieceId} (-{_globalConfig.RevivePlayer})");
+            pointCount2 -= _globalConfig.RevivePlayer;
+            if (pointCount2 < 0)
+            {
+                pointCount2 = 0;
+            }
+
+            if (pointCount2 != startPoints2)
+            {
+                EssentialsMod.Logger.Msg($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] total points: {pointCount2}");
+                revivedPiece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
+                revivedPiece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount2);
+            }
         }
 
         private static void Interactable_OnInteraction_Prefix(
@@ -103,28 +198,49 @@
                 return;
             }
 
+            if (!piece.IsPlayer())
+            {
+                return;
+            }
+
+            var startPoints = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
+            if (startPoints > 998)
+            {
+                startPoints = 0;
+            }
+
+            var pointCount = startPoints;
             if (interactable.type == Interactable.Type.LevelExit)
             {
-                if (!piece.IsPlayer() || !piece.HasEffectState(EffectStateType.Key))
+                if (!piece.HasEffectState(EffectStateType.Key))
                 {
                     return;
                 }
 
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked door (+{_globalConfig.UnlockDoor})");
-                var startPoints = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
-                if (startPoints > 998)
-                {
-                    startPoints = 0;
-                }
-
-                var pointCount = startPoints;
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door (+{_globalConfig.UnlockDoor})");
                 pointCount += _globalConfig.UnlockDoor;
-                if (pointCount != startPoints)
-                {
-                    EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] total points: {pointCount}");
-                    piece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
-                    piece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
-                }
+            }
+            else if (interactable.type == Interactable.Type.Chest)
+            {
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted a chest (+{_globalConfig.LootChest})");
+                pointCount += _globalConfig.LootChest;
+            }
+            else if (interactable.type == Interactable.Type.PotionStand)
+            {
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted a potion stand (+{_globalConfig.LootStand})");
+                pointCount += _globalConfig.LootStand;
+            }
+            else if (interactable.type == Interactable.Type.Door)
+            {
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] opened a door (+{_globalConfig.OpenDoor})");
+                pointCount += _globalConfig.OpenDoor;
+            }
+
+            if (pointCount != startPoints)
+            {
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] total points: {pointCount}");
+                piece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
+                piece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
             }
         }
 
@@ -156,22 +272,11 @@
                     EssentialsMod.Logger.Msg($"Enemy was the BOSS (+{_globalConfig.KillBoss})");
                     pointCount += _globalConfig.KillBoss;
                 }
-
-                if (attackerUnit.HasEffectState(EffectStateType.Key))
-                {
-                    EssentialsMod.Logger.Msg($"Keyholder bonus (+{_globalConfig.Keyholder})");
-                    pointCount += _globalConfig.Keyholder;
-                }
             }
             else if (defeatedUnit != attackerUnit)
             {
                 EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed PLAYER {defeatedUnit.boardPieceId} (+{_globalConfig.KillPlayer})");
                 pointCount += _globalConfig.KillPlayer;
-                if (attackerUnit.HasEffectState(EffectStateType.Key))
-                {
-                    EssentialsMod.Logger.Msg($"Keyholder bonus (+{_globalConfig.Keyholder})");
-                    pointCount += _globalConfig.Keyholder;
-                }
             }
             else
             {
@@ -180,6 +285,17 @@
                     EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed self {defeatedUnit.boardPieceId} ({_globalConfig.KillSelf})");
                     pointCount += _globalConfig.KillSelf;
                 }
+            }
+
+            if (attackerUnit.HasEffectState(EffectStateType.Key))
+            {
+                EssentialsMod.Logger.Msg($"Keyholder bonus (+{_globalConfig.Keyholder})");
+                pointCount += _globalConfig.Keyholder;
+            }
+
+            if (pointCount < 0)
+            {
+                pointCount = 0;
             }
 
             if (pointCount != startPoints)
@@ -232,6 +348,11 @@
                         }
                     }
                 }
+            }
+
+            if (pointCount < 0)
+            {
+                pointCount = 0;
             }
 
             if (pointCount != startPoints)

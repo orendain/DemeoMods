@@ -59,7 +59,7 @@
                         }
                     }
 
-                    if (!myPiece.HasEffectState(EffectStateType.Flying) || myPiece.HasEffectState(EffectStateType.StrengthInNumbers))
+                    if (!myPiece.HasEffectState(EffectStateType.Flying))
                     {
                         level = 0;
                     }
@@ -186,19 +186,6 @@
                     else if (!hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
                     {
                         sb.AppendLine(ColorizeString("None", lightblue));
-
-                        // Pad lines to raise text higher on PC-Edition screen
-                        sb.AppendLine();
-                        sb.AppendLine();
-                        sb.AppendLine();
-                        sb.AppendLine();
-                        sb.AppendLine();
-                        sb.AppendLine();
-                        sb.AppendLine();
-                        sb.AppendLine();
-                        sb.AppendLine(ColorizeString(" ", Color.clear));
-                        GameUI.ShowCameraMessage(sb.ToString(), 5);
-                        return;
                     }
                     else
                     {
