@@ -51,6 +51,7 @@
     <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
     <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
     <Compile Include="Rulesets\FlippingOut.cs" />
+    <Compile Include="Rulesets\FriendlyCompetition.cs" />
     <Compile Include="Rulesets\HardcoreRuleset.cs" />
     <Compile Include="Rulesets\HoardersRuleset.cs" />
     <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
