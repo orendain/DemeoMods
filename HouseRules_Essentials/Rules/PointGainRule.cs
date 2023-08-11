@@ -31,6 +31,7 @@
         public struct Points
         {
             public int KillEnemy;
+            public int HurtEnemy;
             public int KillPlayer;
             public int HurtPlayer;
             public int Keyholder;
@@ -42,6 +43,7 @@
             public int LootChest;
             public int LootStand;
             public int OpenDoor;
+            public int UseFountain;
             public int RevivePlayer;
         }
 
@@ -121,8 +123,13 @@
             }
 
             var pointCount = startPoints;
-            EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted gold (+{_globalConfig.LootGold})");
+            EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted gold ({_globalConfig.LootGold})");
             pointCount += _globalConfig.LootGold;
+            if (pointCount < 0)
+            {
+                pointCount = 0;
+            }
+
             if (pointCount != startPoints)
             {
                 EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] total points: {pointCount}");
@@ -150,8 +157,13 @@
             }
 
             var pointCount = startPoints;
-            EssentialsMod.Logger.Msg($"{sourcePiece.boardPieceId} [ID: {sourcePiece.networkID}] revived player {revivedPiece.boardPieceId} (+{_globalConfig.RevivePlayer})");
+            EssentialsMod.Logger.Msg($"{sourcePiece.boardPieceId} [ID: {sourcePiece.networkID}] revived player {revivedPiece.boardPieceId} ({_globalConfig.RevivePlayer})");
             pointCount += _globalConfig.RevivePlayer;
+
+            if (pointCount < 0)
+            {
+                pointCount = 0;
+            }
 
             if (pointCount != startPoints)
             {
@@ -222,23 +234,39 @@
                     return;
                 }
 
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door (+{_globalConfig.UnlockDoor})");
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door ({_globalConfig.UnlockDoor})");
                 pointCount += _globalConfig.UnlockDoor;
             }
             else if (interactable.type == Interactable.Type.Chest)
             {
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted a chest (+{_globalConfig.LootChest})");
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted a chest ({_globalConfig.LootChest})");
                 pointCount += _globalConfig.LootChest;
             }
             else if (interactable.type == Interactable.Type.PotionStand)
             {
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted a potion stand (+{_globalConfig.LootStand})");
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted a potion stand ({_globalConfig.LootStand})");
                 pointCount += _globalConfig.LootStand;
             }
             else if (interactable.type == Interactable.Type.Door)
             {
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] opened a door (+{_globalConfig.OpenDoor})");
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] opened a door ({_globalConfig.OpenDoor})");
                 pointCount += _globalConfig.OpenDoor;
+            }
+            else if (interactable.type == Interactable.Type.AltarOfBlessing)
+            {
+                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] used a fountain ({_globalConfig.UseFountain})");
+                pointCount += _globalConfig.UseFountain;
+            }
+
+            if (piece.HasEffectState(EffectStateType.Key))
+            {
+                EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
+                pointCount += _globalConfig.Keyholder;
+            }
+
+            if (pointCount < 0)
+            {
+                pointCount = 0;
             }
 
             if (pointCount != startPoints)
@@ -270,17 +298,17 @@
             var pointCount = startPoints;
             if (!defeatedUnit.IsPlayer())
             {
-                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed enemy {defeatedUnit.boardPieceId} (+{_globalConfig.KillEnemy})");
+                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed enemy {defeatedUnit.boardPieceId} ({_globalConfig.KillEnemy})");
                 pointCount += _globalConfig.KillEnemy;
                 if (defeatedUnit.HasPieceType(PieceType.Boss))
                 {
-                    EssentialsMod.Logger.Msg($"Enemy was the BOSS (+{_globalConfig.KillBoss})");
+                    EssentialsMod.Logger.Msg($"Enemy was the BOSS ({_globalConfig.KillBoss})");
                     pointCount += _globalConfig.KillBoss;
                 }
             }
             else if (defeatedUnit != attackerUnit)
             {
-                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed PLAYER {defeatedUnit.boardPieceId} (+{_globalConfig.KillPlayer})");
+                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed PLAYER {defeatedUnit.boardPieceId} ({_globalConfig.KillPlayer})");
                 pointCount += _globalConfig.KillPlayer;
             }
             else
@@ -294,7 +322,7 @@
 
             if (attackerUnit.HasEffectState(EffectStateType.Key))
             {
-                EssentialsMod.Logger.Msg($"Keyholder bonus (+{_globalConfig.Keyholder})");
+                EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
                 pointCount += _globalConfig.Keyholder;
             }
 
@@ -336,21 +364,23 @@
                 {
                     if (targets[i].IsPlayer() && targets[i] != source && !targets[i].IsDowned() && !targets[i].IsImmuneToDamage())
                     {
-                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt player {targets[i].boardPieceId} (+{_globalConfig.HurtPlayer})");
+                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed player {targets[i].boardPieceId} ({_globalConfig.HurtPlayer})");
                         pointCount += _globalConfig.HurtPlayer;
                         if (source.HasEffectState(EffectStateType.Key))
                         {
-                            EssentialsMod.Logger.Msg($"Keyholder bonus (+{_globalConfig.Keyholder})");
+                            EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
                             pointCount += _globalConfig.Keyholder;
                         }
                     }
-                    else if (targets[i].IsPlayer() && targets[i] == source && !source.IsDowned() && diceResult != Dice.Outcome.None)
+                    else if (targets[i] == source && !source.IsDowned() && diceResult != Dice.Outcome.None)
                     {
-                        if (pointCount > 0)
-                        {
-                            EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt self ({_globalConfig.HurtSelf})");
-                            pointCount += _globalConfig.HurtSelf;
-                        }
+                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed self ({_globalConfig.HurtSelf})");
+                        pointCount += _globalConfig.HurtSelf;
+                    }
+                    else if (!targets[i].IsPlayer() && !targets[i].IsBot() && !targets[i].IsProp())
+                    {
+                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt enemy {targets[i].boardPieceId} ({_globalConfig.HurtEnemy})");
+                        pointCount += _globalConfig.HurtEnemy;
                     }
                 }
             }

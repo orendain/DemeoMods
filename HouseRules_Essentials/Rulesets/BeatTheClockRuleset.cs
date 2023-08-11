@@ -26,12 +26,14 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 100 },
             });
 
-            var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(5);
+            var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(3);
             var roundLimitRule = new RoundCountLimitedRule(15);
             var levelRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
-                { "FloorOneLootChests", 15 },
-                { "FloorTwoLootChests", 15 },
+                { "FloorOneLootChests", 12 },
+                { "FloorOnePotionStand", 3 },
+                { "FloorTwoLootChests", 12 },
+                { "FloorTwoPotionStand", 3 },
             });
 
             return Ruleset.NewInstance(

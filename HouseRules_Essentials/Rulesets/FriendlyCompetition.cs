@@ -1444,7 +1444,6 @@
                     damagePerTurn = 0,
                     stacks = false,
                     clearOnNewLevel = false,
-                    applyAfterDissipate = EffectStateType.Tangled,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
                 new StatusEffectData
@@ -1504,7 +1503,7 @@
                 { BoardPieceId.WaterLamp, EffectStateType.Recovery },
             });
 
-            var levelSequenceOverriddenRule = new LevelSequenceOverriddenRule(new List<string>
+            var smallLevelSequenceRule = new SmallLevelSequenceOverriddenRule(new List<string>
             {
                 "ElvenFloor17",
                 "SewersFloor08",
@@ -1539,7 +1538,7 @@
             });
 
             var pointGainRule = new PointGainRule(new PointGainRule.Points
-            { KillEnemy = 1, KillPlayer = 1, KillSelf = -1, KillBoss = 3, HurtPlayer = 1, HurtSelf = -1, Keyholder = 1, UnlockDoor = 2, LootGold = 1, LootChest = 1, LootStand = 2, OpenDoor = 1, RevivePlayer = 5 });
+            { KillEnemy = 1, KillPlayer = 8, KillSelf = -10, KillBoss = 20, HurtEnemy = 1, HurtPlayer = 2, HurtSelf = -5, Keyholder = 1, UnlockDoor = 15, LootGold = 2, LootChest = 2, LootStand = 3, OpenDoor = 1, UseFountain = 5, RevivePlayer = 4 });
 
             var roundLimitRule = new RoundCountLimitedRule(25);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
@@ -1566,7 +1565,7 @@
                 freeHealOnCritRule,
                 cardEnergyFromAttackRule,
                 cardEnergyFromRecyclingRule,
-                levelSequenceOverriddenRule,
+                smallLevelSequenceRule,
                 statusEffectRule,
                 statModifiersRule,
                 backstabConfigRule,
