@@ -1358,6 +1358,7 @@
                 { AbilityKey.TornadoCharge, false },
                 { AbilityKey.Sneak, false },
                 { AbilityKey.Grab, false },
+                { AbilityKey.Telekinesis, false },
             });
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
