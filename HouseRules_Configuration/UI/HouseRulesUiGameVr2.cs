@@ -3,6 +3,7 @@
     using System.Collections;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
     using Common.UI;
     using Common.UI.Element;
     using Revolutions;
@@ -69,12 +70,22 @@
             }
 
             int textLength = longdesc.Length;
-            int returnCount = longdesc.Count(f => f == '\n');
 
-            numRules += 1 + ((textLength - 650) / 65);
-            ConfigurationMod.Logger.Msg($"{numRules - 11} from text of {textLength}");
-            numRules += returnCount / 2;
-            ConfigurationMod.Logger.Msg($"{returnCount} from returns");
+            // Count how many return characters are in the string
+            int returnCount = longdesc.Count(f => f == '\n');
+            foreach (Match match in Regex.Matches(longdesc, "<color=", RegexOptions.None))
+            {
+                // Subtract colorization code from textLength
+                textLength -= 23;
+            }
+
+            foreach (Match match in Regex.Matches(longdesc, "\n\n", RegexOptions.None))
+            {
+                // Subtract 1 from returnCount if double return characters
+                returnCount -= 1;
+            }
+
+            numRules += ((textLength - 650) / 65) + returnCount;
 
             var background = new GameObject("Background");
             var scale = 1.5f + (float)(0.09 * (numRules - 11));

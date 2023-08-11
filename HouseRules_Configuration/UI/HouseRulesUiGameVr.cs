@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
     using Common.UI;
     using Common.UI.Element;
     using Revolutions;
@@ -45,16 +46,15 @@
 
         private void Initialize()
         {
+
+            transform.SetParent(_anchor, worldPositionStays: true);
+            transform.position = new Vector3(38f, 41.4f, -22f);
             if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
             {
-                transform.SetParent(_anchor, worldPositionStays: true);
-                transform.position = new Vector3(38f, 41.4f, -22f);
                 transform.rotation = Quaternion.Euler(0, 90, 0);
             }
             else
             {
-                transform.SetParent(_anchor, worldPositionStays: true);
-                transform.position = new Vector3(40.6f, 31.4f, -32.2f);
                 gameObject.AddComponent<FaceLocalPlayer>();
             }
 
@@ -64,36 +64,48 @@
             if (HR.SelectedRuleset.Longdesc != null && HR.SelectedRuleset.Longdesc != string.Empty)
             {
                 textLength = HR.SelectedRuleset.Longdesc.Length;
-                returnCount = HR.SelectedRuleset.Longdesc.Count(f => f == '\n');
             }
 
             if (textLength < 1)
             {
                 numRules = HR.SelectedRuleset.Rules.Count;
             }
-            else if (textLength > 650)
+            else
             {
-                numRules += 1 + ((textLength - 650) / 65);
-
-                // ConfigurationMod.Logger.Msg($"{numRules - 11} from text of {textLength}");
-                if (returnCount > 0)
+                // Count how many return characters are in the string
+                returnCount = HR.SelectedRuleset.Longdesc.Count(f => f == '\n');
+                foreach (Match match in Regex.Matches(HR.SelectedRuleset.Longdesc, "<color=", RegexOptions.None))
                 {
-                    numRules += returnCount / 2;
-
-                   // ConfigurationMod.Logger.Msg($"{returnCount} from returns");
+                    // Subtract colorization code from textLength
+                    textLength -= 23;
                 }
-            }
-            else if (returnCount > 10)
-            {
-                numRules += returnCount - 10;
 
-                // ConfigurationMod.Logger.Msg($"{returnCount - 10} from returns and {textLength / 65} from text of {textLength}");
-            }
-            else if (returnCount + (textLength / (25 * returnCount)) > 10)
-            {
-                numRules += returnCount + (textLength / (25 * returnCount)) - 10;
+                foreach (Match match in Regex.Matches(HR.SelectedRuleset.Longdesc, "\n\n", RegexOptions.None))
+                {
+                    // Subtract 1 from returnCount if double return characters
+                    returnCount -= 1;
+                }
 
-                // ConfigurationMod.Logger.Msg($"{numRules - 11} from returns and text combined");
+                if (textLength > 975 || returnCount > 12)
+                {
+                    // ConfigurationMod.Logger.Msg($"{((textLength - 650) / 65)} from text of {textLength}");
+                    numRules += 1 + ((textLength - 650) / 65);
+                    if (returnCount > 12)
+                    {
+                        // ConfigurationMod.Logger.Msg($"{returnCount - 12)} from returns");
+                        numRules += returnCount - 12;
+                    }
+                }
+                else if (returnCount > 12)
+                {
+                    // ConfigurationMod.Logger.Msg($"{returnCount - 12} from JUST returns");
+                    numRules += returnCount - 12;
+                }
+                else if (returnCount + (textLength / (25 * returnCount)) > 12)
+                {
+                    // ConfigurationMod.Logger.Msg($"{returnCount + (textLength / (25 * returnCount)) - 12} from returns and text combined");
+                    numRules += returnCount + (textLength / (25 * returnCount)) - 12;
+                }
             }
 
             var background = new GameObject("Background");
@@ -104,9 +116,14 @@
             background.transform.localPosition = new Vector3(0, 0, 0);
             background.transform.localRotation =
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
-            if (numRules > 11)
+            if (numRules > 12)
             {
-                scale = 1.5f + (float)(0.09 * (numRules - 11));
+                scale += (float)(0.09 * (numRules - 12));
+                if (scale > 10f)
+                {
+                    scale = 10f;
+                    numRules = 110;
+                }
             }
 
             background.transform.localScale = new Vector3(4.75f, 1, scale);
@@ -114,9 +131,9 @@
             var header = 3.6f;
             var headerText = _elementCreator.CreateMenuHeaderText("HouseRules <u>Revolutions</u>");
             headerText.transform.SetParent(transform, worldPositionStays: false);
-            if (numRules > 11)
+            if (numRules > 12)
             {
-                header = 3.6f + (float)(0.21f * (numRules - 11));
+                header = 3.6f + (float)(0.21f * (numRules - 12));
             }
 
             headerText.transform.localPosition = new Vector3(0, header, VrElementCreator.TextZShift);
@@ -128,17 +145,17 @@
             sb.AppendLine(ColorizeString(" ruleset!", brown));
             sb.AppendLine(ColorizeString($"<i>{HR.SelectedRuleset.Description}</i>", Color.blue));
             sb.AppendLine();
-            var ruleset = 1.25f;
-            var drift = 1.25f;
+            float ruleset = 0;
+            float drift = 1.25f;
             var rulesetPanel = _elementCreator.CreateNewText(sb.ToString());
             rulesetPanel.transform.SetParent(transform, worldPositionStays: false);
             if (numRules > 40)
             {
-                drift = 1.25f - (float)(0.035f * (numRules - 20));
+                drift -= (float)(0.035f * (numRules - 20));
             }
             else if (numRules > 20)
             {
-                drift = 1.25f - (float)(0.045f * (numRules - 20));
+                drift -= (float)(0.045f * (numRules - 20));
             }
 
             if (numRules > 11)
@@ -218,7 +235,7 @@
         {
             return string.Concat(new string[]
             {
-        "<color=#",
+        " <color=#",
         ColorUtility.ToHtmlStringRGB(color),
         ">",
         text,

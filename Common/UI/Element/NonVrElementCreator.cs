@@ -119,6 +119,10 @@
                         setName = "<color=#00FF00><b>Demeo Revolutions</b></color>";
                     }
                 }
+                else if (setName.Equals("Friendly Competition"))
+                {
+                    setName = "<color=#FFFF00><b>Friendly Competition</b></color>";
+                }
             }
 
             var container = new GameObject("Text");

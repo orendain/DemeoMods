@@ -181,6 +181,10 @@
                     setName = "<color=#01550A><b>Demeo Revolutions</b></color>";
                 }
             }
+            else if (setName.Equals("Friendly Competition"))
+            {
+                setName = "<color=#1D1E00><b>Friendly Competition</b></color>";
+            }
 
             _selectedText.text = $"Selected ruleset: {setName}";
         }
