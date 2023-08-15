@@ -12,7 +12,7 @@
         {
             const string name = "Friendly Competition";
             const string description = "Get the key and be the first to the door to earn points and bragging rights! Only 25 rounds to escape...";
-            const string longdesc = "<color=#FFF68F>Friendly Competition\nv1.5 by</color> <color=#FFFF00><u><b>BobtheBunny</b></u></color>\n\n<color=#000000>You only have 25 rounds to complete the game. Be the first to grab the key and get to the door! Watch out for the other heroes, they want the key too!\n\nToss bones, teleport lamps, and use your cunning wit to hinder the other heroes.\n\n--------------</color>\n\n<color=#4B0082><b>Suggested Rules:</b></color>\n<color=#000000>Call a truce until the key is found.\nBanish refreshes in 5 turns; use it on yourself at the start to scatter the heroes.\nUse Banish only on yourself.\nIf you die, will you wait for the next floor or rejoin the game?\n\n--------------\n\nMaps and bosses are determined by the Demeo Book chosen.\nAll monsters are weaker and may do unexpected things!\nEach Hero has more health and 3 rounds to be revived or crawl towards help!\nStrike Lamps to gain immunities and other effects.\nFocus Potions cause Tangled when they wear off.\nCourage is a 3x3 radius and counts as hitting another player or players and (possibly) yourself.\nSneak costs 0 Action Points.\nStats increase to a maximum of +5, and stat potions increase +2 each time.\n\n--------------\n\n<b>Guardian:</b> Priotitizes survivability and utility.\n<b>Hunter:</b> Roots, beasts, and tricks.\n<b>Assassin:</b> Blades, traps, and speed.\n<b>Sorcerer:</b> Elemental spells and destruction.\n<b>Bard:</b> Songs, scrolls, tornados, and water.\n<b>Warlock:</b> Wields strange magics gifted from an ancient source.\n<b>Barbarian:</b> Hooks lamps, prone to anger and corruption.\n\n----------------</color>\n\n<color=#FFFFFF><u><b>What's the Point?</b></u></color>\n\n<color=#021F04><b>+1 point</color> <color=#070E38>for damaging enemies</color>\n<color=#021F04>+1 point</color> <color=#070E38>for slaying enemies</color>\n<color=#021F04>+1 point</color> <color=#070E38>for opening doors</color>\n<color=#021F04>+1 point</color> <color=#070E38>for picking up gold</color>\n<color=#021F04>+2 points</color> <color=#070E38>for damaging another player</color>\n<color=#021F04>+2 points</color> <color=#070E38>for opening chests</color>\n<color=#021F04>+3 points</color> <color=#070E38>for looting potion stands</color>\n<color=#021F04>+5 points</color> <color=#070E38>for reviving another player</color> <color=#8B0000>(they lose 5 points)</color>\n<color=#021F04>+5 points</color> <color=#070E38>for using a fountain</color>\n<color=#021F04>+8 points</color> <color=#070E38>for slaying/downing another player</color>\n<color=#021F04>+1 <u>BONUS</u> point</color> <color=#070E38>for</color> <color=#ADFF2F>anything above</color> <color=#070E38>while you have the key</color>\n\n<color=#021F04>-5 points</color> <color=#070E38>if you hurt yourself</color>\n<color=#021F04>-10 points</color> <color=#070E38>if you kill yourself</color>\n<color=#021F04>+15 points</color> <color=#070E38>for unlocking the exit door</color>\n<color=#021F04>+20 points</color> <color=#070E38>for striking the killing blow on a boss";
+            const string longdesc = "<color=#FFF68F>Friendly Competition\nv1.7 by</color> <color=#FFFF00><u><b>BobtheBunny</b></u></color>\n\n<color=#000000>You only have 25 rounds to complete the game. Be the first to grab the key and get to the door! Watch out for the other heroes, they want the key too!\n\nToss bones, teleport lamps, and use your cunning wit to hinder the other heroes.\n\n--------------</color>\n\n<color=#4B0082><b>Suggested Rules:</b></color>\n<color=#000000>Call a truce until the key is found.\nBanish refreshes in 5 turns; use it on yourself at the start to scatter the heroes.\nUse Banish only on yourself.\nIf you die, will you wait for the next floor or rejoin the game?\n\n--------------\n\nMaps and bosses are determined by the Demeo Book chosen.\nAll monsters are weaker and may do unexpected things!\nEach Hero has more health and 3 rounds to be revived or crawl towards help!\nStrike Lamps to gain immunities and other effects.\nFocus Potions cause Tangled when they wear off.\nCourage is a 3x3 radius and counts as hitting another player or players and (possibly) yourself.\nSneak costs 0 Action Points.\nStats increase to a maximum of +5, and Strength and Swiftness increase +2 each time.\n\n--------------\n\n<b>Guardian:</b> Priotitizes survivability and utility.\n<b>Hunter:</b> Roots, beasts, and tricks.\n<b>Assassin:</b> Blades, alchemy, and speed.\n<b>Sorcerer:</b> Elemental spells and destruction.\n<b>Bard:</b> Songs, scrolls, tornados, and water.\n<b>Warlock:</b> Strange magics gifted from an ancient source.\n<b>Barbarian:</b> Hooks lamps, prone to anger and corruption.\n\n----------------</color>\n\n<color=#FFFFFF><u><b>What's the Point?</b></u></color>\n\n<color=#021F04><b>+1 point</color> <color=#070E38>for damaging enemies</color>\n<color=#021F04>+1 point</color> <color=#070E38>for slaying enemies</color>\n<color=#021F04>+1 point</color> <color=#070E38>for opening doors</color>\n<color=#021F04>+2 point</color> <color=#070E38>for picking up gold</color>\n<color=#021F04>+2 points</color> <color=#070E38>for damaging another player</color>\n<color=#021F04>+3 points</color> <color=#070E38>for opening chests</color>\n<color=#021F04>+4 points</color> <color=#070E38>for looting potion stands</color>\n<color=#021F04>+4 points</color> <color=#070E38>for reviving another player</color> <color=#8B0000>(they lose 4 points)</color>\n<color=#021F04>+6 points</color> <color=#070E38>for using a fountain</color>\n<color=#021F04>+8 points</color> <color=#070E38>for slaying/downing another player</color>\n<color=#021F04>+1 <u>BONUS</u> point</color> <color=#070E38>for</color> <color=#ADFF2F>anything above</color> <color=#070E38>while you have the key</color>\n\n<color=#021F04>-5 points</color> <color=#070E38>if you hurt yourself</color>\n<color=#021F04>-10 points</color> <color=#070E38>if you kill yourself</color>\n<color=#021F04>+15 points</color> <color=#070E38>for unlocking the exit door</color>\n<color=#021F04>+20 points</color> <color=#070E38>for striking the killing blow on a boss";
 
             var healthRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -29,29 +29,30 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "AttackDamage", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HealingBeacon, Property = "StartHealth", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HealingBeacon, Property = "AliveForRounds", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 140 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 110 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "AttackDamage", Value = 7 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "ActionPoint", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 100 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "ActionPoint", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 90 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "AttackDamage", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "BerserkBelowHealth", Value = 0.9f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "MoveRange", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 110 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 90 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "AttackDamage", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "ActionPoint", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 90 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 80 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "AttackDamage", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "ActionPoint", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 150 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 100 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "AttackDamage", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "BerserkBelowHealth", Value = 0.9f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "ActionPoint", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "ActionPoint", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 160 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "AttackDamage", Value = 4 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "StartHealth", Value = 50 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "ActionPoint", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 120 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "AttackDamage", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "MoveRange", Value = 2 },
             });
@@ -98,7 +99,6 @@
                         AbilityKey.MarkOfVerga,
                         AbilityKey.MarkOfVerga,
                         AbilityKey.AcidSpit,
-                        AbilityKey.Banish,
                         AbilityKey.Barrage,
                         AbilityKey.Bone,
                         AbilityKey.Deflect,
@@ -196,7 +196,6 @@
                         AbilityKey.PoisonBomb,
                         AbilityKey.PoisonBomb,
                         AbilityKey.AcidSpit,
-                        AbilityKey.Banish,
                         AbilityKey.Barrage,
                         AbilityKey.Bone,
                         AbilityKey.Deflect,
@@ -286,7 +285,6 @@
                         AbilityKey.Electricity,
                         AbilityKey.Electricity,
                         AbilityKey.AcidSpit,
-                        AbilityKey.Banish,
                         AbilityKey.Barrage,
                         AbilityKey.Bone,
                         AbilityKey.Deflect,
@@ -370,7 +368,6 @@
                         AbilityKey.Whip,
                         AbilityKey.Whip,
                         AbilityKey.AcidSpit,
-                        AbilityKey.Banish,
                         AbilityKey.Barrage,
                         AbilityKey.Bone,
                         AbilityKey.Deflect,
@@ -444,6 +441,7 @@
                         AbilityKey.VortexDust,
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.ExtraActionPotion,
+                        AbilityKey.ExtraActionPotion,
                         AbilityKey.WebBomb,
                         AbilityKey.WebBomb,
                         AbilityKey.WebBomb,
@@ -453,7 +451,6 @@
                         AbilityKey.Charge,
                         AbilityKey.Charge,
                         AbilityKey.AcidSpit,
-                        AbilityKey.Banish,
                         AbilityKey.Barrage,
                         AbilityKey.Bone,
                         AbilityKey.Deflect,
@@ -490,6 +487,7 @@
                         AbilityKey.VortexLamp,
                         AbilityKey.WaterLamp,
                         AbilityKey.OneMoreThing,
+                        AbilityKey.OneMoreThing,
                         AbilityKey.StrengthPotion,
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.VigorPotion,
@@ -501,6 +499,8 @@
                 {
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
+                        AbilityKey.TeleportLamp,
+                        AbilityKey.TeleportLamp,
                         AbilityKey.Fireball,
                         AbilityKey.Fireball,
                         AbilityKey.Fireball,
@@ -537,7 +537,6 @@
                         AbilityKey.DeathBeam,
                         AbilityKey.DeathBeam,
                         AbilityKey.AcidSpit,
-                        AbilityKey.Banish,
                         AbilityKey.Barrage,
                         AbilityKey.Bone,
                         AbilityKey.Deflect,
@@ -628,10 +627,13 @@
                         AbilityKey.VortexDust,
                         AbilityKey.Shockwave,
                         AbilityKey.Shockwave,
+                        AbilityKey.Shockwave,
+                        AbilityKey.ScrollTsunami,
                         AbilityKey.ScrollTsunami,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.MagicBarrier,
                         AbilityKey.MagicBarrier,
+                        AbilityKey.ImplosionExplosionRain,
                         AbilityKey.ImplosionExplosionRain,
                         AbilityKey.ImplosionExplosionRain,
                         AbilityKey.GuidingLight,
@@ -642,7 +644,6 @@
                         AbilityKey.DrainingKiss,
                         AbilityKey.DrainingKiss,
                         AbilityKey.AcidSpit,
-                        AbilityKey.Banish,
                         AbilityKey.Barrage,
                         AbilityKey.Bone,
                         AbilityKey.Deflect,
@@ -1111,7 +1112,6 @@
                 {
                     BoardPieceId.HeroBarbarian, new List<AbilityKey>
                     {
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.HealingPotion,
                         AbilityKey.MagicPotion,
                         AbilityKey.AdamantPotion,
@@ -1124,7 +1124,6 @@
                 {
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.HealingPotion,
                         AbilityKey.MagicPotion,
                         AbilityKey.AdamantPotion,
@@ -1137,7 +1136,6 @@
                 {
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.HealingPotion,
                         AbilityKey.MagicPotion,
                         AbilityKey.AdamantPotion,
@@ -1150,7 +1148,6 @@
                 {
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.HealingPotion,
                         AbilityKey.MagicPotion,
                         AbilityKey.AdamantPotion,
@@ -1163,7 +1160,6 @@
                 {
                     BoardPieceId.HeroRogue, new List<AbilityKey>
                     {
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.HealingPotion,
                         AbilityKey.MagicPotion,
                         AbilityKey.AdamantPotion,
@@ -1176,7 +1172,6 @@
                 {
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.HealingPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.AdamantPotion,
@@ -1189,7 +1184,6 @@
                 {
                     BoardPieceId.HeroWarlock, new List<AbilityKey>
                     {
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.HealingPotion,
                         AbilityKey.StrengthPotion,
                         AbilityKey.AdamantPotion,
@@ -1207,21 +1201,23 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PlayerLeap, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SnakeBossShortRange, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
             };
 
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Telekinesis, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ImplosionExplosionRain, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 4 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MissileSwarm, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
             };
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1231,9 +1227,10 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterBottle, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TornadoCharge, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 4 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
             };
 
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1242,10 +1239,11 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grab, ReplenishFrequency = 4 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingWard, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingThrow, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyJavelin, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterBottle, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 4 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
             };
 
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1255,9 +1253,10 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WebBomb, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.RootWall, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Whip, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 4 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
             };
 
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1269,7 +1268,8 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExtraActionPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 4 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.AcidSpit, ReplenishFrequency = 4 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
             };
 
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1278,10 +1278,10 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Telekinesis, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 4 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Overcharge, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
             };
 
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
@@ -1378,6 +1378,8 @@
                 { AbilityKey.Petrify, new List<int> { 0, 4 } },
                 { AbilityKey.EnemyJavelin, new List<int> { 2, 4 } },
                 { AbilityKey.Banish, new List<int> { 0, 0 } },
+                { AbilityKey.AcidSpit, new List<int> { 3, 4 } },
+                { AbilityKey.PiercingThrow, new List<int> { 3, 7 } },
             });
 
             var pieceExtraStatsRule = new PieceExtraStatsAdjustedRule(new Dictionary<BoardPieceId, int>
@@ -1487,7 +1489,7 @@
             {
                 { AbilityKey.StrengthPotion, 2 },
                 { AbilityKey.SwiftnessPotion, 2 },
-                { AbilityKey.MagicPotion, 2 },
+                { AbilityKey.MagicPotion, 1 },
             });
 
             var applyEffectOnHitRule = new ApplyEffectOnHitAdjustedRule(new Dictionary<BoardPieceId, EffectStateType>
@@ -1539,7 +1541,7 @@
             });
 
             var pointGainRule = new PointGainRule(new PointGainRule.Points
-            { KillEnemy = 1, KillPlayer = 8, KillSelf = -10, KillBoss = 20, HurtEnemy = 1, HurtPlayer = 2, HurtSelf = -5, Keyholder = 1, UnlockDoor = 15, LootGold = 2, LootChest = 2, LootStand = 3, OpenDoor = 1, UseFountain = 5, RevivePlayer = 4 });
+            { KillEnemy = 1, KillPlayer = 8, KillSelf = -10, KillBoss = 20, HurtEnemy = 1, HurtPlayer = 2, HurtSelf = -5, Keyholder = 1, UnlockDoor = 15, LootGold = 2, LootChest = 3, LootStand = 4, OpenDoor = 1, UseFountain = 6, RevivePlayer = 4 });
 
             var roundLimitRule = new RoundCountLimitedRule(25);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);

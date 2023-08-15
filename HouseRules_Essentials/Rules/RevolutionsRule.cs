@@ -423,6 +423,7 @@
             {
                 if (!piece.HasEffectState(EffectStateType.Locked))
                 {
+                    _keyResist = 0;
                     piece.effectSink.AddStatusEffect(EffectStateType.Locked, -1);
                     if (piece.GetStat(Stats.Type.DamageResist) > 0)
                     {
