@@ -3,6 +3,7 @@
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
+    using Boardgame.BoardEntities.AI;
     using Boardgame.BoardgameActions;
     using Boardgame.Data;
     using DataKeys;
@@ -70,7 +71,7 @@
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
                 postfix: new HarmonyMethod(
                     typeof(PointGainRule),
-                    nameof(CreatePiece_Revolutions_Postfix)));
+                    nameof(Piece_CreatePiece_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(Ability), "GenerateAttackDamage"),
@@ -115,6 +116,21 @@
                 return;
             }
 
+            Piece piece2 = null;
+            if (piece.boardPieceId == BoardPieceId.WarlockMinion)
+            {
+                PieceAI pieceAI = piece.pieceAI;
+                if (pieceAI == null)
+                {
+                    return;
+                }
+                else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
+                {
+                    EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece2.networkID}]'s minion is attacking...");
+                    piece = piece2;
+                }
+            }
+
             var pointCount = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
             if (pointCount > 998)
             {
@@ -123,6 +139,12 @@
 
             EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted gold ({_globalConfig.LootGold})");
             pointCount += _globalConfig.LootGold;
+            if (piece.HasEffectState(EffectStateType.Key))
+            {
+                EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
+                pointCount += _globalConfig.Keyholder;
+            }
+
             if (pointCount < 0)
             {
                 pointCount = 0;
@@ -291,7 +313,25 @@
 
             if (!attackerUnit.IsPlayer())
             {
-                return;
+                if (attackerUnit.boardPieceId == BoardPieceId.WarlockMinion)
+                {
+                    Piece piece2 = null;
+                    var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                    PieceAI pieceAI = attackerUnit.pieceAI;
+                    if (pieceAI == null)
+                    {
+                        return;
+                    }
+                    else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
+                    {
+                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is attacking...");
+                        attackerUnit = piece2;
+                    }
+                }
+                else
+                {
+                    return;
+                }
             }
 
             var pointCount = attackerUnit.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
@@ -353,7 +393,25 @@
 
             if (!source.IsPlayer())
             {
-                return;
+                if (source.boardPieceId == BoardPieceId.WarlockMinion)
+                {
+                    Piece piece2 = null;
+                    var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                    PieceAI pieceAI = source.pieceAI;
+                    if (pieceAI == null)
+                    {
+                        return;
+                    }
+                    else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
+                    {
+                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is attacking...");
+                        source = piece2;
+                    }
+                }
+                else
+                {
+                    return;
+                }
             }
 
             var pointCount = source.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.StrengthInNumbers);
@@ -417,7 +475,7 @@
             }
         }
 
-        private static void CreatePiece_Revolutions_Postfix(ref Piece __result)
+        private static void Piece_CreatePiece_Postfix(ref Piece __result)
         {
             if (!_isActivated)
             {
