@@ -81,6 +81,7 @@
     <Compile Include="Rules\PieceCounterDamageRule.cs" />
     <Compile Include="Rules\PieceDamageResistRule.cs" />
     <Compile Include="Rules\PieceDownedCountAdjustedRule.cs" />
+    <Compile Include="Rules\PieceKeyholderRule.cs" />
     <Compile Include="Rules\PieceMagicStatAddedRule.cs" />
     <Compile Include="Rules\PieceProgressLostRule.cs" />
     <Compile Include="Rules\PieceProgressRule.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Rules\SmallLevelSequenceOverriddenRule.cs" />
     <Compile Include="Rules\TickAdjustedRule.cs" />
     <Compile Include="Rules\PieceUseOnCreatedOverriddenRule.cs" />
+    <Compile Include="Rules\TurnOrderRandomizedRule.cs" />
     <Compile Include="Rules\MyMonsterDeckOverriddenRule.cs" />
     <Compile Include="Rules\PieceExtraImmunitiesRule.cs" />
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />

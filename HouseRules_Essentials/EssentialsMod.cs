@@ -92,6 +92,7 @@
             HR.Rulebook.Register(typeof(TickAdjustedRule));
             HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
+            HR.Rulebook.Register(typeof(TurnOrderRandomizedRule));
         }
 
         private static void RegisterRulesets()

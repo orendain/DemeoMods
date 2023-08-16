@@ -1550,11 +1550,13 @@
             var enemyHealthScaledRule = new EnemyHealthScaledRule(0.5f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(0.35f);
             var pieceKeyholderRule = new PieceKeyholderRule(true);
+            var orderRandomizedRule = new TurnOrderRandomizedRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 longdesc,
+                orderRandomizedRule,
                 pieceKeyholderRule,
                 allowedChestCardsRule,
                 allowedEnergyCardsRule,
