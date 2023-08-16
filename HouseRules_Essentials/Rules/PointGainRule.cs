@@ -34,6 +34,7 @@
             public int HurtPlayer;
             public int Keyholder;
             public int UnlockDoor;
+            public int HurtBoss;
             public int KillBoss;
             public int HurtSelf;
             public int KillSelf;
@@ -379,13 +380,19 @@
                     }
                     else if (targets[i] == source && !source.IsDowned() && diceResult != Dice.Outcome.None)
                     {
-                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed self ({_globalConfig.HurtSelf})");
+                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed themself ({_globalConfig.HurtSelf})");
                         flag = true;
                         pointCount += _globalConfig.HurtSelf;
                     }
+                    else if (!targets[i].IsPlayer() && targets[i].HasPieceType(PieceType.Boss))
+                    {
+                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt a boss {targets[i].boardPieceId} ({_globalConfig.HurtBoss})");
+                        flag = true;
+                        pointCount += _globalConfig.HurtBoss;
+                    }
                     else if (!targets[i].IsPlayer() && !targets[i].IsBot() && !targets[i].IsProp())
                     {
-                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt enemy {targets[i].boardPieceId} ({_globalConfig.HurtEnemy})");
+                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt an enemy {targets[i].boardPieceId} ({_globalConfig.HurtEnemy})");
                         flag = true;
                         pointCount += _globalConfig.HurtEnemy;
                         if (source.HasEffectState(EffectStateType.Key))
