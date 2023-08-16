@@ -1516,13 +1516,15 @@
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new TickAdjustedRule(true);
             var queenBuffsRule = new ElvenQueenBuffsRule(true);
-            var queenSuperBuffRule = new ElvenQueenSuperBuffRule (true);
+            var queenSuperBuffRule = new ElvenQueenSuperBuffRule(true);
             var grappleUnhookedRule = new GrappleUnhookedRule(true);
+            var pieceKeyholderRule = new PieceKeyholderRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 longdesc,
+                pieceKeyholderRule,
                 progressLostRule,
                 tickRule,
                 revolutionsRule,

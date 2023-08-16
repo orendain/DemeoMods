@@ -1402,11 +1402,13 @@
             var queenSuperRule = new ElvenQueenSuperBuffRule(true);
             var grappleUnhookedRule = new GrappleUnhookedRule(true);
             var enableDoorsRule = new EnemyDoorOpeningEnabledRule(true);
+            var pieceKeyholderRule = new PieceKeyholderRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 longdesc,
+                pieceKeyholderRule,
                 tickRule,
                 revolutionsRule,
                 enableDoorsRule,

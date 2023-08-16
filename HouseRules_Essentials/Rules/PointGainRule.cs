@@ -15,7 +15,7 @@
     {
         public override string Description => "Players can gain points for certain actions";
 
-        private static Points _globalConfig;
+        internal static Points _globalConfig;
         private static bool _isActivated;
 
         internal static int Player1 { get; private set; }
@@ -222,9 +222,22 @@
                     return;
                 }
 
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door ({_globalConfig.UnlockDoor})");
-                flag = true;
-                pointCount += _globalConfig.UnlockDoor;
+                if (piece.HasEffectState(EffectStateType.Locked))
+                {
+                    var keyCount = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Locked);
+                    if (keyCount > 0)
+                    {
+                        EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door ({keyCount})");
+                        flag = true;
+                        pointCount += keyCount;
+                    }
+                }
+                else
+                {
+                    EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door ({_globalConfig.UnlockDoor})");
+                    flag = true;
+                    pointCount += _globalConfig.UnlockDoor;
+                }
             }
             else if (interactable.type == Interactable.Type.Chest)
             {
@@ -251,7 +264,7 @@
                 pointCount += _globalConfig.UseFountain;
             }
 
-            if (flag && piece.HasEffectState(EffectStateType.Key))
+            if (flag && piece.HasEffectState(EffectStateType.Key) && interactable.type != Interactable.Type.LevelExit)
             {
                 EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
                 pointCount += _globalConfig.Keyholder;
@@ -377,6 +390,11 @@
                         EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt enemy {targets[i].boardPieceId} ({_globalConfig.HurtEnemy})");
                         flag = true;
                         pointCount += _globalConfig.HurtEnemy;
+                        if (source.HasEffectState(EffectStateType.Key))
+                        {
+                            EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
+                            pointCount += _globalConfig.Keyholder;
+                        }
                     }
                 }
             }

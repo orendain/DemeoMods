@@ -1297,11 +1297,13 @@
             var tickRule = new TickAdjustedRule(true);
             var grappleUnhookedRule = new GrappleUnhookedRule(true);
             var disableDoorsRule = new EnemyDoorOpeningDisabledRule(true);
+            var pieceKeyholderRule = new PieceKeyholderRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 longdesc,
+                pieceKeyholderRule,
                 tickRule,
                 revolutionsRule,
                 disableDoorsRule,

@@ -1355,11 +1355,13 @@
             var tickRule = new TickAdjustedRule(true);
             var queenBuffsRule = new ElvenQueenBuffsRule(true);
             var grappleUnhookedRule = new GrappleUnhookedRule(true);
+            var pieceKeyholderRule = new PieceKeyholderRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 longdesc,
+                pieceKeyholderRule,
                 tickRule,
                 revolutionsRule,
                 grappleUnhookedRule,
