@@ -139,7 +139,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ExtraActionPotion,
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.AdamantPotion,
                     }
                 },
@@ -236,7 +235,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ExtraActionPotion,
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.AdamantPotion,
                     }
                 },
@@ -325,7 +323,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ExtraActionPotion,
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.AdamantPotion,
                     }
                 },
@@ -408,7 +405,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ExtraActionPotion,
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.AdamantPotion,
                     }
                 },
@@ -492,7 +488,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ExtraActionPotion,
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.AdamantPotion,
                     }
                 },
@@ -577,7 +572,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ExtraActionPotion,
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.AdamantPotion,
                     }
                 },
@@ -684,7 +678,6 @@
                         AbilityKey.SwiftnessPotion,
                         AbilityKey.VigorPotion,
                         AbilityKey.ExtraActionPotion,
-                        AbilityKey.DamageResistPotion,
                         AbilityKey.AdamantPotion,
                     }
                 },
