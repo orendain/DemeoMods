@@ -116,7 +116,7 @@
                 return;
             }
 
-            Piece piece2 = null;
+            Piece piece2;
             if (piece.boardPieceId == BoardPieceId.WarlockMinion)
             {
                 PieceAI pieceAI = piece.pieceAI;
@@ -126,8 +126,12 @@
                 }
                 else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                 {
-                    EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece2.networkID}]'s minion is attacking...");
+                    EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is attacking...");
                     piece = piece2;
+                }
+                else
+                {
+                    return;
                 }
             }
 
@@ -313,10 +317,10 @@
 
             if (!attackerUnit.IsPlayer())
             {
+                Piece piece2;
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (attackerUnit.boardPieceId == BoardPieceId.WarlockMinion)
                 {
-                    Piece piece2 = null;
-                    var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                     PieceAI pieceAI = attackerUnit.pieceAI;
                     if (pieceAI == null)
                     {
@@ -326,6 +330,27 @@
                     {
                         EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is attacking...");
                         attackerUnit = piece2;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else if (attackerUnit.boardPieceId == BoardPieceId.SellswordArbalestierActive)
+                {
+                    PieceAI pieceAI = attackerUnit.pieceAI;
+                    if (pieceAI == null)
+                    {
+                        return;
+                    }
+                    else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
+                    {
+                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s Arly Owl is attacking...");
+                        attackerUnit = piece2;
+                    }
+                    else
+                    {
+                        return;
                     }
                 }
                 else
@@ -340,7 +365,7 @@
                 pointCount = 0;
             }
 
-            bool flag = false;
+            bool flag;
             if (!defeatedUnit.IsPlayer())
             {
                 EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed enemy {defeatedUnit.boardPieceId} ({_globalConfig.KillEnemy})");
@@ -354,7 +379,7 @@
             }
             else if (defeatedUnit != attackerUnit)
             {
-                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed PLAYER {defeatedUnit.boardPieceId} ({_globalConfig.KillPlayer})");
+                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed player {defeatedUnit.boardPieceId} ({_globalConfig.KillPlayer})");
                 flag = true;
                 pointCount += _globalConfig.KillPlayer;
             }
@@ -393,10 +418,10 @@
 
             if (!source.IsPlayer())
             {
+                Piece piece2;
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 if (source.boardPieceId == BoardPieceId.WarlockMinion)
                 {
-                    Piece piece2 = null;
-                    var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                     PieceAI pieceAI = source.pieceAI;
                     if (pieceAI == null)
                     {
@@ -406,6 +431,27 @@
                     {
                         EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is attacking...");
                         source = piece2;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else if (source.boardPieceId == BoardPieceId.SellswordArbalestierActive)
+                {
+                    PieceAI pieceAI = source.pieceAI;
+                    if (pieceAI == null)
+                    {
+                        return;
+                    }
+                    else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
+                    {
+                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s Arly Owl is attacking...");
+                        source = piece2;
+                    }
+                    else
+                    {
+                        return;
                     }
                 }
                 else

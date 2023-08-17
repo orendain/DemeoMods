@@ -46,7 +46,6 @@
 
         private void Initialize()
         {
-
             transform.SetParent(_anchor, worldPositionStays: true);
             transform.position = new Vector3(38f, 41.4f, -22f);
             if (HR.SelectedRuleset.Name.Contains("Demeo Revolutions") || HR.SelectedRuleset.Name.Equals("TEST GAME"))

@@ -8,7 +8,7 @@
 
     public sealed class PieceKeyholderRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "A Demeo Revolutions style game is enabled";
+        public override string Description => "Holding the key gives certain advantages...";
 
         private static bool _isActivated;
         private static int _keyResist;
@@ -74,7 +74,7 @@
                         piece.DisableEffectState(EffectStateType.Locked);
                     }
                 }
-                else
+                else if (piece.HasEffectState(EffectStateType.StrengthInNumbers))
                 {
                     var pointCount = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Locked);
                     if (pointCount > 1)
