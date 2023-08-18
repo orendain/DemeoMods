@@ -78,6 +78,7 @@
     <Compile Include="Rules\MerchantOfferRarityOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
     <Compile Include="Rules\EnemyCooldownOverriddenRule.cs" />
+    <Compile Include="Rules\PieceReplenishAbilityEveryLevelRule.cs" />
     <Compile Include="Rules\PieceCounterDamageRule.cs" />
     <Compile Include="Rules\PieceDamageResistRule.cs" />
     <Compile Include="Rules\PieceDownedCountAdjustedRule.cs" />

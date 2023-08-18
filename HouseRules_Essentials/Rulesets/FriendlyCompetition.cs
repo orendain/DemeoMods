@@ -1197,7 +1197,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 24 },
             };
 
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1210,7 +1210,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 24 },
             };
 
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1223,7 +1223,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 4 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 24 },
             };
 
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1236,7 +1236,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 4 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 24 },
             };
 
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1249,7 +1249,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 4 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 24 },
             };
 
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
@@ -1259,7 +1259,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WebBomb, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExtraActionPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 24 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.AcidSpit, ReplenishFrequency = 4 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 5 },
@@ -1268,7 +1268,7 @@
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 5 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 24 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Bone, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Telekinesis, ReplenishFrequency = 0 },
@@ -1533,6 +1533,17 @@
                 { "FloorThreeMerchant", 1 },
             });
 
+            var pieceReplenishRule = new PieceReplenishAbilityEveryLevelRule(new Dictionary<BoardPieceId, AbilityKey>
+            {
+                { BoardPieceId.HeroHunter, AbilityKey.Banish },
+                { BoardPieceId.HeroSorcerer, AbilityKey.Banish },
+                { BoardPieceId.HeroBard, AbilityKey.Banish },
+                { BoardPieceId.HeroBarbarian, AbilityKey.Banish },
+                { BoardPieceId.HeroWarlock, AbilityKey.Banish },
+                { BoardPieceId.HeroGuardian, AbilityKey.Banish },
+                { BoardPieceId.HeroRogue, AbilityKey.Banish },
+            });
+
             var pointGainRule = new PointGainRule(new PointGainRule.Points
             { KillEnemy = 1, KillPlayer = 8, KillSelf = -10, KillBoss = 20, HurtEnemy = 1, HurtPlayer = 2, HurtSelf = -5,  HurtBoss = 3, Keyholder = 1, UnlockDoor = 15, LootGold = 2, LootChest = 3, LootStand = 4, OpenDoor = 1, UseFountain = 6, RevivePlayer = 4 });
 
@@ -1549,6 +1560,7 @@
                 name,
                 description,
                 longdesc,
+                pieceReplenishRule,
                 orderRandomizedRule,
                 pieceKeyholderRule,
                 allowedChestCardsRule,
