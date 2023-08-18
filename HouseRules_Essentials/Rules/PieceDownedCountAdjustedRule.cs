@@ -80,19 +80,21 @@
                         break;
                 }
 
-                if (replacement.Key == __result.boardPieceId)
+                if (HR.SelectedRuleset.Name.Contains("PROGRESSIVE"))
                 {
-                    if (__result.GetStatMax(Stats.Type.CritChance) > 7)
+                    if (replacement.Key == __result.boardPieceId)
                     {
-                        countReplacement--;
-                    }
+                        if (__result.GetStatMax(Stats.Type.CritChance) > 7)
+                        {
+                            countReplacement -= 2;
+                        }
+                        else if (__result.GetStatMax(Stats.Type.CritChance) > 3)
+                        {
+                            countReplacement--;
+                        }
 
-                    if (__result.GetStatMax(Stats.Type.CritChance) > 3)
-                    {
-                        countReplacement--;
+                        __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, countReplacement);
                     }
-
-                    __result.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, countReplacement);
                 }
             }
         }
