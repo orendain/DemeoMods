@@ -10,9 +10,7 @@
 
     public sealed class PieceReplenishAbilityEveryLevelRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "Replenishes a specific card per class at the start of a new level";
-
-        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
+        public override string Description => "A specific card per class is replenished at the start of new floors";
 
         private static Dictionary<BoardPieceId, AbilityKey> _globalAdjustments;
         private static bool _isActivated;
