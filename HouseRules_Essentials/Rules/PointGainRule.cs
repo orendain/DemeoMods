@@ -116,18 +116,42 @@
                 return;
             }
 
-            Piece piece2;
-            if (piece.boardPieceId == BoardPieceId.WarlockMinion)
+            if (!piece.IsPlayer())
             {
-                PieceAI pieceAI = piece.pieceAI;
-                if (pieceAI == null)
+                Piece piece2;
+                if (piece.boardPieceId == BoardPieceId.WarlockMinion)
                 {
-                    return;
+                    PieceAI pieceAI = piece.pieceAI;
+                    if (pieceAI == null)
+                    {
+                        return;
+                    }
+                    else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
+                    {
+                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is picking up gold...");
+                        piece = piece2;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
-                else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
+                else if (piece.boardPieceId == BoardPieceId.SellswordArbalestierActive)
                 {
-                    EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is attacking...");
-                    piece = piece2;
+                    PieceAI pieceAI = piece.pieceAI;
+                    if (pieceAI == null)
+                    {
+                        return;
+                    }
+                    else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
+                    {
+                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s Arly Owl is picking up gold...");
+                        piece = piece2;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 else
                 {
@@ -328,7 +352,7 @@
                     }
                     else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                     {
-                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is attacking...");
+                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion defeated enemy {defeatedUnit.boardPieceId}...");
                         attackerUnit = piece2;
                     }
                     else
@@ -345,7 +369,7 @@
                     }
                     else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                     {
-                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s Arly Owl is attacking...");
+                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s Arly Owl defeated enemy {defeatedUnit.boardPieceId}...");
                         attackerUnit = piece2;
                     }
                     else

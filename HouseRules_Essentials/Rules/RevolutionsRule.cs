@@ -391,7 +391,15 @@
 
                 if (rev_progr)
                 {
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
+                    if (HR.SelectedRuleset.Name.Contains("(LEGENDARY"))
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 3);
+                    }
+                    else
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
+                    }
+
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
                     piece.EnableEffectState(EffectStateType.Flying);
                     piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);
