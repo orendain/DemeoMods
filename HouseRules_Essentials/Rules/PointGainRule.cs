@@ -339,6 +339,11 @@
                 return;
             }
 
+            if (defeatedUnit.HasEffectState(EffectStateType.WizardDoppelganger))
+            {
+                return;
+            }
+
             if (!attackerUnit.IsPlayer())
             {
                 Piece piece2;
@@ -495,7 +500,7 @@
             {
                 for (int i = 0; i < targets.Length; i++)
                 {
-                    if (targets[i].boardPieceId == BoardPieceId.GoldPile)
+                    if (targets[i].boardPieceId == BoardPieceId.GoldPile || targets[i].HasEffectState(EffectStateType.WizardDoppelganger))
                     {
                         continue;
                     }
