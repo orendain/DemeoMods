@@ -444,7 +444,7 @@
             {
                 Piece piece2;
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-                if (source.boardPieceId == BoardPieceId.WarlockMinion)
+                if (source.boardPieceId == BoardPieceId.WarlockMinion && source.GetHealth() > 0)
                 {
                     PieceAI pieceAI = source.pieceAI;
                     if (pieceAI == null)
@@ -495,7 +495,11 @@
             {
                 for (int i = 0; i < targets.Length; i++)
                 {
-                    if (targets[i].IsPlayer() && targets[i] != source && !targets[i].IsDowned() && !targets[i].IsImmuneToDamage())
+                    if (targets[i].boardPieceId == BoardPieceId.GoldPile)
+                    {
+                        continue;
+                    }
+                    else if (targets[i].IsPlayer() && targets[i] != source && !targets[i].IsDowned() && !targets[i].IsImmuneToDamage())
                     {
                         EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed player {targets[i].boardPieceId} ({_globalConfig.HurtPlayer})");
                         flag = true;

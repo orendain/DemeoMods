@@ -6,13 +6,34 @@
     {
       "Rule": "PieceReplenishAbilityEveryLevel",
       "Config": {
-        "HeroHunter": "Banish",
-        "HeroSorcerer": "Banish",
-        "HeroBard": "Banish",
-        "HeroBarbarian": "Banish",
-        "HeroWarlock": "Banish",
-        "HeroGuardian": "Banish",
-        "HeroRogue": "Banish"
+        "HeroHunter": [
+		  "Banish",
+		  "MagicShield"
+	    ],
+        "HeroSorcerer": [
+		  "Banish",
+		  "MagicShield"
+	    ],
+        "HeroBard": [
+		  "Banish",
+		  "MagicShield"
+	    ],
+        "HeroBarbarian": [
+		  "Banish",
+		  "MagicShield"
+	    ],
+        "HeroWarlock": [
+		  "Banish",
+		  "MagicShield"
+	    ],
+        "HeroGuardian": [
+		  "Banish",
+		  "MagicShield"
+	    ],
+        "HeroRogue": [
+		  "Banish",
+		  "MagicShield"
+	    ]
       }
     },
     {
@@ -1628,9 +1649,9 @@
         "KillPlayer": 8,
         "HurtPlayer": 2,
         "Keyholder": 1,
-        "UnlockDoor": 15,
+        "UnlockDoor": 20,
         "HurtBoss": 3,
-        "KillBoss": 20,
+        "KillBoss": 25,
         "HurtSelf": -5,
         "KillSelf": -10,
         "LootGold": 2,

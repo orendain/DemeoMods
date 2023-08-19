@@ -8,21 +8,21 @@
     using HarmonyLib;
     using HouseRules.Types;
 
-    public sealed class PieceReplenishAbilityEveryLevelRule : Rule, IConfigWritable<Dictionary<BoardPieceId, AbilityKey>>, IPatchable, IMultiplayerSafe
+    public sealed class PieceReplenishAbilityEveryLevelRule : Rule, IConfigWritable<Dictionary<BoardPieceId, List<AbilityKey>>>, IPatchable, IMultiplayerSafe
     {
-        public override string Description => "A specific card per class is replenished at the start of new floors";
+        public override string Description => "Specific cards per class are replenished at the start of new floors";
 
-        private static Dictionary<BoardPieceId, AbilityKey> _globalAdjustments;
+        private static Dictionary<BoardPieceId, List<AbilityKey>> _globalAdjustments;
         private static bool _isActivated;
 
-        public PieceReplenishAbilityEveryLevelRule(Dictionary<BoardPieceId, AbilityKey> adjustments)
+        public PieceReplenishAbilityEveryLevelRule(Dictionary<BoardPieceId, List<AbilityKey>> adjustments)
         {
             _adjustments = adjustments;
         }
 
-        private readonly Dictionary<BoardPieceId, AbilityKey> _adjustments;
+        private readonly Dictionary<BoardPieceId, List<AbilityKey>> _adjustments;
 
-        public Dictionary<BoardPieceId, AbilityKey> GetConfigObject() => _adjustments;
+        public Dictionary<BoardPieceId, List<AbilityKey>> GetConfigObject() => _adjustments;
 
         protected override void OnActivate(GameContext gameContext)
         {
@@ -56,19 +56,23 @@
             Inventory.Item value;
             foreach (var replacement in _globalAdjustments)
             {
-                for (int i = 0; i < __result.inventory.Items.Count; i++)
+                if (replacement.Key == __result.boardPieceId)
                 {
-                    value = __result.inventory.Items[i];
-                    if (value.abilityKey == replacement.Value)
+                    for (int i = 0; i < __result.inventory.Items.Count; i++)
                     {
-                        if (value.IsReplenishing)
+                        value = __result.inventory.Items[i];
+                        foreach (var ability in replacement.Value)
                         {
-                            value.flags &= (Inventory.ItemFlag)(-3);
-                            __result.inventory.Items[i] = value;
-                            __result.AddGold(0);
+                            if (value.abilityKey == ability)
+                            {
+                                if (value.IsReplenishing)
+                                {
+                                    value.flags &= (Inventory.ItemFlag)(-3);
+                                    __result.inventory.Items[i] = value;
+                                    __result.AddGold(0);
+                                }
+                            }
                         }
-
-                        break;
                     }
                 }
             }
