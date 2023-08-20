@@ -22,10 +22,10 @@
         private readonly List<string> _adjustments;
 
         private readonly List<string> elvenFloors1 = new List<string>
-                    { "ElvenFloor01", "ElvenFloor04", "ElvenFloor14", "ElvenFloor16", "ElvenFloor15" };
+                    { "ElvenFloor01", "ElvenFloor04", "ElvenFloor14", "ElvenFloor16" };
 
         private readonly List<string> elvenFloors2 = new List<string>
-                    { "ElvenFloor03", "ElvenFloor07", "ElvenFloor13", "ElvenFloor17", "ElvenFloor15", "ElvenFloor14" };
+                    { "ElvenFloor03", "ElvenFloor07", "ElvenFloor13", "ElvenFloor17", "ElvenFloor14" };
 
         private readonly List<string> forestFloors1 = new List<string>
                     { "ForestFloor01", "ForestFloor07" };
