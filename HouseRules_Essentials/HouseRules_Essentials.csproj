@@ -49,6 +49,7 @@
     <Compile Include="Rulesets\DemeoReloaded.cs" />
     <Compile Include="Rulesets\ItsATrapRuleset.cs" />
     <Compile Include="Rulesets\LuckyDip.cs" />
+    <Compile Include="Rulesets\NakedRunRuleset.cs" />
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rulesets\PotionCommotionRuleset.cs" />
