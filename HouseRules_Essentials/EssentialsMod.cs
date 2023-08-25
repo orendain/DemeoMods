@@ -125,6 +125,7 @@
             HR.Rulebook.Register(NoSurprisesRuleset.Create());
             HR.Rulebook.Register(QuickAndDeadRuleset.Create());
             HR.Rulebook.Register(PotionCommotionRuleset.Create());
+            HR.Rulebook.Register(NakedRunRuleset.Create());
         }
     }
 }
