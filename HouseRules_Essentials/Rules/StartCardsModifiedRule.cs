@@ -148,6 +148,17 @@
         private static Inventory CreateInventory(BoardPieceId boardPieceId)
         {
             var inventory = new Inventory();
+            if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
+            {
+                inventory.Items.Add(new Inventory.Item
+                {
+                    abilityKey = AbilityKey.Torch,
+                    flags = 0,
+                    originalOwner = -1,
+                    replenishCooldown = 0,
+                });
+            }
+
             foreach (var card in _globalHeroStartCards[boardPieceId])
             {
                 // flag bits

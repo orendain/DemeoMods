@@ -88,6 +88,7 @@
             HR.Rulebook.Register(QuickAndDeadRuleset.Create());
             HR.Rulebook.Register(PotionCommotionRuleset.Create());
             HR.Rulebook.Register(HardcoreRuleset.Create());
+            HR.Rulebook.Register(NakedRunRuleset.Create());
         }
     }
 }
