@@ -78,7 +78,7 @@
             {
                 { "BigGoldPileChance", 1 },
                 { "FloorOnePotionStand", 0 },
-                { "FloorOneHealingFountains", 0},
+                { "FloorOneHealingFountains", 0 },
                 { "FloorOneLootChests", 0 },
                 { "FloorOneGoldMaxAmount", 1 },
                 { "FloorTwoPotionStand", 0 },

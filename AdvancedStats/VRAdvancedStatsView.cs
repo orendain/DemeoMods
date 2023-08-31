@@ -176,9 +176,36 @@
                         break;
                 }
             }
+            else if (revolutions == 42)
+            {
+                switch (myPiece.boardPieceId)
+                {
+                    case BoardPieceId.HeroGuardian:
+                        sb.Append(ColorizeString("Weaken", lightblue));
+                        break;
+                    case BoardPieceId.HeroSorcerer:
+                        sb.Append(ColorizeString("Stunned", lightblue));
+                        break;
+                    case BoardPieceId.HeroWarlock:
+                        sb.Append(ColorizeString("Corrupted Rage", lightblue));
+                        break;
+                    case BoardPieceId.HeroHunter:
+                        sb.Append(ColorizeString("Frozen", lightblue));
+                        break;
+                    case BoardPieceId.HeroBarbarian:
+                        sb.Append(ColorizeString("Netted", lightblue));
+                        break;
+                    case BoardPieceId.HeroRogue:
+                        sb.Append(ColorizeString("Tangled", lightblue));
+                        break;
+                    case BoardPieceId.HeroBard:
+                        sb.Append(ColorizeString("Poisoned", lightblue));
+                        break;
+                }
+            }
             else if (!hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
             {
-                sb.AppendLine(ColorizeString("None", lightblue));
+                sb.AppendLine(ColorizeString("Unknown...", lightblue));
             }
             else
             {
