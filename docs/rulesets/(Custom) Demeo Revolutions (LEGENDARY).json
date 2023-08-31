@@ -13,7 +13,7 @@
     },
     {
       "Rule": "Revolutions",
-      "Config": true
+      "Config": 42
     },
     {
       "Rule": "EnemyDoorOpeningEnabled",
@@ -379,12 +379,12 @@
         {
           "Piece": "HeroWarlock",
           "Property": "AttackDamage",
-          "Value": 1.0
+          "Value": 2.0
         },
         {
           "Piece": "HeroWarlock",
           "Property": "CriticalHitDamage",
-          "Value": 3.0
+          "Value": 5.0
         },
         {
           "Piece": "HeroHunter",

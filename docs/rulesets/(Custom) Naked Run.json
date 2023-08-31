@@ -1,0 +1,98 @@
+{
+  "Name": "(Custom) Naked Run",
+  "Description": "No Chests, No Healing Fountains, One pile of Gold and only the 1 life...",
+  "Longdesc": "By KennGuy and ShaunSheep\n\nYou get no chests, no healing fountains, no potion racks, ONE pile of gold, no starting cards, and only ONE life.\nThe rest of the gameplay and maps are the same.\nYou can get more class cards as the mana pool fills.\nBe afraid. Be resourceful.",
+  "Rules": [
+    {
+      "Rule": "StartCardsModified",
+      "Config": {
+        "HeroBarbarian": [
+          {
+            "Card": "ExplodingLampPlaceholder",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Grapple",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroBard": [
+          {
+            "Card": "CourageShanty",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroGuardian": [
+          {
+            "Card": "ReplenishArmor",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroHunter": [
+          {
+            "Card": "Arrow",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Arrow",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroRogue": [
+          {
+            "Card": "Sneak",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroSorcerer": [
+          {
+            "Card": "Overcharge",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Zap",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroWarlock": [
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          }
+        ]
+      }
+    },
+    {
+      "Rule": "PieceDownedCountAdjusted",
+      "Config": {
+        "HeroBarbarian": 0,
+        "HeroGuardian": 0,
+        "HeroHunter": 0,
+        "HeroRogue": 0,
+        "HeroSorcerer": 0,
+        "HeroWarlock": 0,
+        "HeroBard": 0
+      }
+    },
+    {
+      "Rule": "LevelPropertiesModified",
+      "Config": {
+        "BigGoldPileChance": 1,
+        "FloorOnePotionStand": 0,
+        "FloorOneHealingFountains": 0,
+        "FloorOneLootChests": 0,
+        "FloorOneGoldMaxAmount": 1,
+        "FloorTwoPotionStand": 0,
+        "FloorTwoHealingFountains": 0,
+        "FloorTwoLootChests": 0,
+        "FloorTwoGoldMaxAmount": 1,
+        "FloorThreeHealingFountains": 0,
+        "FloorThreeLootChests": 0
+      }
+    }
+  ]
+}

@@ -13,7 +13,7 @@
     },
     {
       "Rule": "Revolutions",
-      "Config": true
+      "Config": 42
     },
     {
       "Rule": "EnemyDoorOpeningDisabled",
