@@ -110,7 +110,7 @@
             }
 
             // Handle fixing character stats and cards when the Host reconnects and becomes the Master Client again
-            if (!piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 42 && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
+            if (GameStateMachine.IsMasterClient && !piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 42 && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
             {
                 _isReconnect = true;
                 _checkPlayers = true;

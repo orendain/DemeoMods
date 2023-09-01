@@ -212,7 +212,14 @@
                     }
                     else if (!hasimmunities && !myPiece.HasEffectState(EffectStateType.FireImmunity) && !myPiece.HasEffectState(EffectStateType.IceImmunity))
                     {
-                        sb.AppendLine(ColorizeString("Unknown...", lightblue));
+                        if (!GameStateMachine.IsMasterClient)
+                        {
+                            sb.AppendLine(ColorizeString("Unknown (You are not HOST!)", lightblue));
+                        }
+                        else
+                        {
+                            sb.AppendLine(ColorizeString("None", lightblue));
+                        }
                     }
                     else
                     {
