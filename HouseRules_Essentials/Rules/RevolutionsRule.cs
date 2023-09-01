@@ -60,9 +60,14 @@
                 return true;
             }
 
+            var ruleSet = HR.SelectedRuleset.Name;
+            if (!ruleSet.Contains("Demeo Re") && !ruleSet.Contains("TEST GAME"))
+            {
+                return true;
+            }
+
             bool rev_progr = false;
             bool reloaded = false;
-            var ruleSet = HR.SelectedRuleset.Name;
             if (ruleSet.Contains("PROGRESSIVE") || ruleSet.Contains("TEST GAME"))
             {
                 rev_progr = true;
