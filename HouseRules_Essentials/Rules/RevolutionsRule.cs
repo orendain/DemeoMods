@@ -60,30 +60,6 @@
                 return true;
             }
 
-            Inventory.Item value;
-            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-            if (_checkPlayers)
-            {
-                _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
-                _checkPlayers = false;
-            }
-
-            // Handle Host reconnect makes returning players invulnerable when becoming master client again
-            if (_isReconnect)
-            {
-                if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
-                {
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, 69);
-                    _isReconnect = false;
-                }
-                else if (_numPlayers > 1)
-                {
-                    piece.effectSink.AddStatusEffect(EffectStateType.Invulnerable1);
-                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Invulnerable1, 1);
-                    _numPlayers--;
-                }
-            }
-
             bool rev_progr = false;
             bool reloaded = false;
             var ruleSet = HR.SelectedRuleset.Name;
@@ -96,8 +72,40 @@
                 reloaded = true;
             }
 
+            Inventory.Item value;
+            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+            if (_checkPlayers)
+            {
+                _numPlayers = gameContext.pieceAndTurnController.GetNumberOfPlayerPieces();
+                _checkPlayers = false;
+            }
+
+            // Handle Host reconnect makes returning players invulnerable when becoming master client again
+            if (_isReconnect)
+            {
+                if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 42 && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
+                {
+                    if (reloaded)
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, 42);
+                    }
+                    else
+                    {
+                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, 69);
+                    }
+
+                    _isReconnect = false;
+                }
+                else if (_numPlayers > 1)
+                {
+                    piece.effectSink.AddStatusEffect(EffectStateType.Invulnerable1);
+                    piece.effectSink.SetStatusEffectDuration(EffectStateType.Invulnerable1, 1);
+                    _numPlayers--;
+                }
+            }
+
             // Handle fixing character stats and cards when the Host reconnects and becomes the Master Client again
-            if (!piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
+            if (!piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 42 && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
             {
                 _isReconnect = true;
                 _checkPlayers = true;
