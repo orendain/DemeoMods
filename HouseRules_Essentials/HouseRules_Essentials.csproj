@@ -36,6 +36,7 @@
     <Compile Include="EssentialsMod.cs" />
     <Compile Include="Rulesets\AoePotionsAndBuffsRuleset.cs" />
     <Compile Include="Rulesets\Arachnophobia.cs" />
+    <Compile Include="Rulesets\DarkestDankestDemeoRuleset.cs" />
     <Compile Include="Rulesets\DemeoReloaded.cs" />
     <Compile Include="Rulesets\DemeoRevolutions.cs" />
     <Compile Include="Rulesets\DemeoRevolutions_Easy.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Rules\ApplyEffectOnHitAdjustedRule.cs" />
     <Compile Include="Rules\CardAdditionOverriddenRule.cs" />
     <Compile Include="Rules\CardChestAdditionOverriddenRule.cs" />
+    <Compile Include="Rules\DarknessRule.cs" />
     <Compile Include="Rules\ElvenQueenBuffsRule.cs" />
     <Compile Include="Rules\ElvenQueenSuperBuffRule.cs" />
     <Compile Include="Rules\EnemyDoorOpeningEnabledRule.cs" />
