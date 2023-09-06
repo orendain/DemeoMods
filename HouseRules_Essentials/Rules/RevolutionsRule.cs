@@ -841,7 +841,7 @@
             if (!__result.IsPlayer())
             {
                 var ruleSet = HR.SelectedRuleset.Name;
-                if (ruleSet.Contains("Demeo Re"))
+                if (ruleSet.Contains("Demeo Re") || ruleSet.Equals("TEST GAME"))
                 {
                     if (__result.boardPieceId == BoardPieceId.FireElemental || __result.boardPieceId == BoardPieceId.ServantOfAlfaragh)
                     {
@@ -859,7 +859,7 @@
                     {
                         __result.effectSink.AddStatusEffect(EffectStateType.Corruption, 99);
                     }
-                    else if (ruleSet.Contains("PROGRESSIVE") || ruleSet.Equals("TEST GAME") || ruleSet.Contains("(LEGENDARY"))
+                    else if (ruleSet.Contains("PROGRESSIVE") || ruleSet.Contains("(LEGENDARY") || ruleSet.Equals("TEST GAME"))
                     {
                         var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                         if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)

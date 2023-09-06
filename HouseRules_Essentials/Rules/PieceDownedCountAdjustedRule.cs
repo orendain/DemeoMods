@@ -14,6 +14,7 @@
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.NewPieceModified;
 
+        private readonly Dictionary<BoardPieceId, int> _adjustments;
         private static Dictionary<BoardPieceId, int> _globalAdjustments;
         private static bool _isActivated;
 
@@ -21,8 +22,6 @@
         {
             _adjustments = adjustments;
         }
-
-        private readonly Dictionary<BoardPieceId, int> _adjustments;
 
         public Dictionary<BoardPieceId, int> GetConfigObject() => _adjustments;
 

@@ -37,6 +37,7 @@
             HR.Rulebook.Register(typeof(CardEnergyFromRecyclingMultipliedRule));
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
+            HR.Rulebook.Register(typeof(DarknessRule));
             HR.Rulebook.Register(typeof(ElvenQueenBuffsRule));
             HR.Rulebook.Register(typeof(ElvenQueenSuperBuffRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
@@ -106,6 +107,7 @@
             HR.Rulebook.Register(DemeoRevolutions_Small_Progressive.Create());
             HR.Rulebook.Register(DemeoRevolutions_Legendary_Progressive.Create());
             HR.Rulebook.Register(FriendlyCompetition.Create());
+            HR.Rulebook.Register(DarkestDankestDemeoRuleset.Create());
             HR.Rulebook.Register(HardcoreRuleset.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(LuckyDip.Create());

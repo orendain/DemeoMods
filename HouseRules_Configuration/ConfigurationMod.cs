@@ -135,7 +135,7 @@
                     }
                 }
 
-                if (revolutions)
+                if (revolutions && !HR.SelectedRuleset.Name.Equals("Demeo Reloaded"))
                 {
                     Logger.Msg("Recognized Revolutions game in VR. Loading UI.");
                     _ = new GameObject("HouseRulesUiGameVr2", typeof(HouseRulesUiGameVr2));
