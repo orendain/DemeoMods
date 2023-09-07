@@ -50,7 +50,7 @@
     },
     {
       "Rule": "CardEnergyFromRecyclingMultiplied",
-      "Config": 5.0
+      "Config": 3.0
     },
     {
       "Rule": "RoundCountLimited",
@@ -59,8 +59,10 @@
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
-        "FloorOneLootChests": 15,
-        "FloorTwoLootChests": 15
+        "FloorOneLootChests": 12,
+        "FloorOnePotionStand": 3,
+        "FloorTwoLootChests": 12,
+        "FloorTwoPotionStand": 3
       }
     }
   ]

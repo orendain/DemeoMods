@@ -1,0 +1,1195 @@
+{
+  "Name": "(Custom) Darkest Dankest Demeo",
+  "Description": "Watch your step... Can you defeat the darkness?",
+  "Longdesc": "Gain temporary vision range increases by defeating enemies\n",
+  "Rules": [
+    {
+      "Rule": "PieceConfigAdjusted",
+      "Config": [
+        {
+          "Piece": "Torch",
+          "Property": "StartHealth",
+          "Value": 4.0
+        },
+        {
+          "Piece": "HeroBarbarian",
+          "Property": "VisionRange",
+          "Value": 1.0
+        },
+        {
+          "Piece": "HeroBard",
+          "Property": "VisionRange",
+          "Value": 1.0
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "VisionRange",
+          "Value": 1.0
+        },
+        {
+          "Piece": "HeroHunter",
+          "Property": "VisionRange",
+          "Value": 1.0
+        },
+        {
+          "Piece": "HeroGuardian",
+          "Property": "VisionRange",
+          "Value": 1.0
+        },
+        {
+          "Piece": "HeroSorcerer",
+          "Property": "VisionRange",
+          "Value": 1.0
+        },
+        {
+          "Piece": "HeroWarlock",
+          "Property": "VisionRange",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinChieftan",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "GoblinRanger",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "GoblinFighter",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "GoblinMadUn",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "ElvenMystic",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "ElvenHound",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "ElvenCultist",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "Rat",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "Spider",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "ScabRat",
+          "Property": "WaterTrailChance",
+          "Value": 0.3
+        },
+        {
+          "Piece": "ReptileArcher",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "ReptileMutantWizard",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "GeneralRonthian",
+          "Property": "WaterTrailChance",
+          "Value": 0.5
+        },
+        {
+          "Piece": "ElvenSpearman",
+          "Property": "WaterTrailChance",
+          "Value": 0.3
+        },
+        {
+          "Piece": "DruidArcher",
+          "Property": "WaterTrailChance",
+          "Value": 0.2
+        },
+        {
+          "Piece": "DruidHoundMaster",
+          "Property": "WaterTrailChance",
+          "Value": 0.3
+        },
+        {
+          "Piece": "RootHound",
+          "Property": "WaterTrailChance",
+          "Value": 0.3
+        },
+        {
+          "Piece": "GoblinChieftan",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinRanger",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinFighter",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GoblinMadUn",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenMystic",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenHound",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenCultist",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Rat",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Spider",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ScabRat",
+          "Property": "WaterTrailChance",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ReptileArcher",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ReptileMutantWizard",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "GeneralRonthian",
+          "Property": "WaterTrailChance",
+          "Value": 1.0
+        },
+        {
+          "Piece": "ElvenSpearman",
+          "Property": "WaterTrailChance",
+          "Value": 1.0
+        },
+        {
+          "Piece": "DruidArcher",
+          "Property": "WaterTrailTiles",
+          "Value": 1.0
+        },
+        {
+          "Piece": "DruidHoundMaster",
+          "Property": "WaterTrailChance",
+          "Value": 1.0
+        },
+        {
+          "Piece": "RootHound",
+          "Property": "WaterTrailChance",
+          "Value": 1.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "AttackDamage",
+          "Value": 3.0
+        },
+        {
+          "Piece": "EarthElemental",
+          "Property": "PowerIndex",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "StartHealth",
+          "Value": 35.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "StartArmor",
+          "Value": 5.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "AttackDamage",
+          "Value": 7.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "PowerIndex",
+          "Value": 3.0
+        },
+        {
+          "Piece": "SilentSentinel",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.5
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "PreciseHealth",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "PreciseAttack",
+          "Value": 1.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "BerserkBelowHealth",
+          "Value": 0.99
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "StartHealth",
+          "Value": 55.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "BarkArmor",
+          "Value": 2.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "AttackDamage",
+          "Value": 8.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "MoveRange",
+          "Value": 4.0
+        },
+        {
+          "Piece": "Mimic",
+          "Property": "PowerIndex",
+          "Value": 3.0
+        }
+      ]
+    },
+    {
+      "Rule": "MyMonsterDeckOverridden",
+      "Config": {
+        "EntranceDeckFloor1": {
+          "ElvenSpearman": 1,
+          "LargeCorruption": 2,
+          "ReptileArcher": 1,
+          "ReptileMutantWizard": 1,
+          "SmallCorruption": 2,
+          "GeneralRonthian": 1,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 2,
+          "TheUnspoken": 2,
+          "Bandit": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 2,
+          "ScabRat": 1,
+          "Spider": 2,
+          "Rat": 1,
+          "TheUnheard": 2,
+          "Slimeling": 1,
+          "Thug": 1,
+          "SporeFungus": 2,
+          "ElvenMystic": 1,
+          "ElvenSkirmisher": 1,
+          "GoblinFighter": 1,
+          "GoblinRanger": 1,
+          "ChestGoblin": 1,
+          "EarthElemental": 1,
+          "Sigataur": 1,
+          "GiantSlime": 1,
+          "ElvenMarauder": 1,
+          "IceElemental": 2,
+          "GiantSpider": 1,
+          "Gorgon": 1,
+          "Cavetroll": 1,
+          "BigBoiMutant": 1,
+          "ServantOfAlfaragh": 1
+        },
+        "ExitDeckFloor1": {
+          "ElvenSpearman": 2,
+          "ReptileArcher": 1,
+          "ReptileMutantWizard": 1,
+          "LargeCorruption": 2,
+          "SmallCorruption": 2,
+          "GeneralRonthian": 1,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 2,
+          "TheUnspoken": 2,
+          "Bandit": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 1,
+          "ScabRat": 1,
+          "Spider": 1,
+          "Rat": 1,
+          "TheUnheard": 2,
+          "Slimeling": 1,
+          "Thug": 1,
+          "ElvenMystic": 1,
+          "ElvenPriest": 1,
+          "ElvenSkirmisher": 1,
+          "GoblinFighter": 1,
+          "GoblinRanger": 1,
+          "SporeFungus": 2,
+          "EarthElemental": 1,
+          "Cavetroll": 1,
+          "ElvenMarauder": 1,
+          "Sigataur": 1,
+          "GiantSlime": 1,
+          "Brookmare": 1,
+          "Gorgon": 1,
+          "BigBoiMutant": 1,
+          "ServantOfAlfaragh": 1
+        },
+        "EntranceDeckFloor2": {
+          "ElvenSpearman": 2,
+          "LargeCorruption": 2,
+          "ReptileArcher": 1,
+          "ReptileMutantWizard": 1,
+          "SmallCorruption": 2,
+          "GeneralRonthian": 1,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 2,
+          "TheUnspoken": 2,
+          "Bandit": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 1,
+          "ScabRat": 2,
+          "Spider": 1,
+          "Rat": 1,
+          "TheUnheard": 2,
+          "Slimeling": 1,
+          "Thug": 1,
+          "SporeFungus": 2,
+          "ElvenMystic": 2,
+          "ElvenPriest": 1,
+          "ElvenSkirmisher": 1,
+          "GoblinFighter": 1,
+          "GoblinRanger": 2,
+          "Sigataur": 1,
+          "GiantSlime": 1,
+          "IceElemental": 2,
+          "ElvenMarauder": 2,
+          "GiantSpider": 2,
+          "Cavetroll": 1,
+          "Gorgon": 1,
+          "Brookmare": 1,
+          "BigBoiMutant": 1,
+          "ServantOfAlfaragh": 1
+        },
+        "ExitDeckFloor2": {
+          "ElvenSpearman": 2,
+          "ReptileArcher": 1,
+          "ReptileMutantWizard": 1,
+          "LargeCorruption": 2,
+          "SmallCorruption": 2,
+          "GeneralRonthian": 1,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 2,
+          "TheUnspoken": 1,
+          "Bandit": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 1,
+          "ScabRat": 2,
+          "Spider": 1,
+          "Rat": 1,
+          "TheUnheard": 2,
+          "Slimeling": 1,
+          "Thug": 1,
+          "ElvenMystic": 1,
+          "ElvenPriest": 1,
+          "ElvenSkirmisher": 1,
+          "GoblinFighter": 1,
+          "GoblinRanger": 1,
+          "SporeFungus": 2,
+          "ChestGoblin": 1,
+          "EarthElemental": 1,
+          "Sigataur": 1,
+          "GiantSlime": 1,
+          "ElvenMarauder": 1,
+          "IceElemental": 1,
+          "GiantSpider": 1,
+          "Cavetroll": 1,
+          "RootGolem": 1,
+          "Brookmare": 1,
+          "Gorgon": 1,
+          "BigBoiMutant": 1,
+          "ServantOfAlfaragh": 1
+        },
+        "BossDeck": {
+          "ReptileArcher": 1,
+          "ReptileMutantWizard": 1,
+          "LargeCorruption": 1,
+          "SmallCorruption": 1,
+          "GeneralRonthian": 1,
+          "ElvenArcher": 1,
+          "ElvenHound": 1,
+          "RootHound": 1,
+          "TheUnspoken": 1,
+          "DruidArcher": 1,
+          "DruidHoundMaster": 1,
+          "GoblinChieftan": 1,
+          "GoblinMadUn": 1,
+          "RootBeast": 1,
+          "ScabRat": 2,
+          "Spider": 1,
+          "Rat": 2,
+          "TheUnheard": 2,
+          "Slimeling": 1,
+          "Thug": 1,
+          "ElvenMystic": 1,
+          "ElvenPriest": 1,
+          "ElvenSkirmisher": 1,
+          "EarthElemental": 1,
+          "Sigataur": 1,
+          "GiantSlime": 1,
+          "ElvenMarauder": 2,
+          "IceElemental": 2,
+          "GiantSpider": 2,
+          "Cavetroll": 1,
+          "Brookmare": 1,
+          "Gorgon": 1,
+          "BigBoiMutant": 1,
+          "ServantOfAlfaragh": 1
+        },
+        "KeyHolderFloor1": "SilentSentinel",
+        "KeyHolderFloor2": "Mimic"
+      }
+    },
+    {
+      "Rule": "StartCardsModified",
+      "Config": {
+        "HeroWarlock": [
+          {
+            "Card": "GuidingLight",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Implode",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "MissileSwarm",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Deflect",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "MagicMissile",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroBard": [
+          {
+            "Card": "CourageShanty",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HurricaneAnthem",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "SongOfRecovery",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "ShatteringVoice",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "PiercingVoice",
+            "ReplenishFrequency": 0
+          }
+        ],
+        "HeroGuardian": [
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "WhirlwindAttack",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "PiercingThrow",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Charge",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "WarCry",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "ReplenishArmor",
+            "ReplenishFrequency": 1
+          }
+        ],
+        "HeroHunter": [
+          {
+            "Card": "Arrow",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "Arrow",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "HailOfArrows",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "PoisonedTip",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CallCompanion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Lure",
+            "ReplenishFrequency": 0
+          }
+        ],
+        "HeroRogue": [
+          {
+            "Card": "Sneak",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Blink",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "PoisonBomb",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "CursedDagger",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "FlashBomb",
+            "ReplenishFrequency": 0
+          }
+        ],
+        "HeroSorcerer": [
+          {
+            "Card": "Zap",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Fireball",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Freeze",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Vortex",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Banish",
+            "ReplenishFrequency": 0
+          }
+        ],
+        "HeroBarbarian": [
+          {
+            "Card": "Grapple",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "HealingPotion",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GrapplingPush",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GrapplingSmash",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "GrapplingTotem",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "PlayerLeap",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "ExplodingLampPlaceholder",
+            "ReplenishFrequency": 1
+          }
+        ]
+      }
+    },
+    {
+      "Rule": "PieceAbilityListOverridden",
+      "Config": {
+        "EarthElemental": [
+          "EnemyMelee",
+          "EnemyKnockbackMelee",
+          "EarthShatter",
+          "Grapple"
+        ],
+        "Mimic": [
+          "EnemyMelee",
+          "AcidSpit",
+          "Grapple",
+          "PlayerLeap",
+          "EnemyFrostball",
+          "Zap"
+        ],
+        "ChestGoblin": [
+          "EnemyMelee",
+          "EnemyStealGold",
+          "Net"
+        ],
+        "SilentSentinel": [
+          "EnemyMelee",
+          "Leap",
+          "Grab",
+          "LightningBolt"
+        ],
+        "ElvenArcher": [
+          "EnemyMelee",
+          "EnemyArrowSnipe",
+          "EnemyFrostball"
+        ],
+        "ElvenQueen": [
+          "SummonBossMinions",
+          "LightningBolt",
+          "Shockwave",
+          "EnemyFrostball"
+        ],
+        "GoblinFighter": [
+          "EnemyMelee",
+          "EnemyFlashbang"
+        ],
+        "Rat": [
+          "EnemyMelee",
+          "DiseasedBite"
+        ],
+        "Spider": [
+          "EnemyMelee",
+          "DiseasedBite"
+        ],
+        "GiantSpider": [
+          "EnemyMelee",
+          "SpiderWebshot"
+        ],
+        "Cavetroll": [
+          "EnemyMelee",
+          "ElvenKingMeleeWhip"
+        ],
+        "ScabRat": [
+          "EnemyMelee",
+          "DiseasedBite"
+        ]
+      }
+    },
+    {
+      "Rule": "PieceBehavioursListOverridden",
+      "Config": {
+        "EarthElemental": [
+          "Patrol",
+          "AttackPlayer",
+          "EarthShatter",
+          "RangedAttackHighPrio"
+        ],
+        "Mimic": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedAttackHighPrio"
+        ],
+        "ChestGoblin": [
+          "Patrol",
+          "FollowPlayerMeleeAttacker",
+          "AttackAndRetreat",
+          "RangedAttackHighPrio"
+        ],
+        "SilentSentinel": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedSpellCaster"
+        ],
+        "ElvenArcher": [
+          "Patrol",
+          "RangedSpellCaster",
+          "FollowPlayerRangedAttacker"
+        ],
+        "GoblinFighter": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedAttackHighPrio"
+        ],
+        "GiantSpider": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedAttackHighPrio"
+        ],
+        "Cavetroll": [
+          "Patrol",
+          "AttackPlayer",
+          "RangedAttackHighPrio"
+        ],
+        "ScabRat": [
+          "Patrol",
+          "Swarm",
+          "AttackPlayer"
+        ]
+      }
+    },
+    {
+      "Rule": "PiecePieceTypeListOverridden",
+      "Config": {
+        "Mimic": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "ReptileArcher": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Reptile",
+          "ValidCorruptionTarget"
+        ],
+        "ReptileMutantWizard": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Reptile",
+          "ValidCorruptionTarget"
+        ],
+        "GeneralRonthian": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "RootBeast": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "RootCreeper": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "RootHound": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "RootVine": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "DruidArcher": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "DruidHoundMaster": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "ElvenArcher": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "ElvenHound": [
+          "SmallSlime",
+          "Creature",
+          "Canine",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "TheUnspoken": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "GoblinChieftan": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Goblin",
+          "ValidCorruptionTarget"
+        ],
+        "GoblinMadUn": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Goblin",
+          "ValidCorruptionTarget"
+        ],
+        "ScabRat": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Rat",
+          "ValidCorruptionTarget"
+        ],
+        "Spider": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "Rat": [
+          "SmallSlime",
+          "Creature",
+          "Rat",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "TheUnheard": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Rat",
+          "ValidCorruptionTarget"
+        ],
+        "Slimeling": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "SmallSlime"
+        ],
+        "Thug": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Thief",
+          "ValidCorruptionTarget"
+        ],
+        "ElvenMystic": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "NonTeleportable"
+        ],
+        "ElvenPriest": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "ElvenSkirmisher": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "ElvenSpearman": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "EarthElemental": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature"
+        ],
+        "Cavetroll": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget",
+          "TooHeavyToGrapple"
+        ],
+        "BigBoiMutant": [
+          "GiantSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Reptile",
+          "ValidCorruptionTarget",
+          "TooHeavyToGrapple"
+        ],
+        "SilentSentinel": [
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "TooHeavyToGrapple"
+        ],
+        "ServantOfAlfaragh": [
+          "GiantSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "NonTeleportable",
+          "TooHeavyToGrapple"
+        ],
+        "GiantSlime": [
+          "GiantSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "GiantSlime",
+          "ValidCorruptionTarget"
+        ],
+        "GiantSpider": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget",
+          "TooHeavyToGrapple"
+        ],
+        "ElvenMarauder": [
+          "GiantSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "Gorgon": [
+          "GiantSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "Sigataur": [
+          "GiantSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "ValidCorruptionTarget"
+        ],
+        "IceElemental": [
+          "SmallSlime",
+          "Creature",
+          "ForestCreature",
+          "DesertCreature",
+          "Brittle"
+        ]
+      }
+    },
+    {
+      "Rule": "PieceUseWhenKilledOverridden",
+      "Config": {
+        "ChestGoblin": [
+          "EnemyDropStolenGoods",
+          "DropChest"
+        ],
+        "EarthElemental": [
+          "Explosion"
+        ]
+      }
+    },
+    {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "Torch",
+          "durationTurns": 5,
+          "tickWhen": "StartTurn",
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
+        },
+        {
+          "effectStateType": "TorchPlayer",
+          "durationTurns": 4,
+          "tickWhen": "StartTurn",
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
+        }
+      ]
+    },
+    {
+      "Rule": "LampTypesOverridden",
+      "Config": {
+        "1": [
+          "SporeFungus",
+          "SporeFungus",
+          "VortexLamp",
+          "WaterLamp",
+          "IceLamp"
+        ],
+        "2": [
+          "SporeFungus",
+          "SporeFungus",
+          "VortexLamp",
+          "WaterLamp",
+          "IceLamp"
+        ],
+        "3": [
+          "SporeFungus",
+          "SporeFungus",
+          "VortexLamp",
+          "WaterLamp",
+          "IceLamp"
+        ]
+      }
+    },
+    {
+      "Rule": "TileEffectDurationOverridden",
+      "Config": {
+        "Gas": 3,
+        "Acid": 15,
+        "Web": 3,
+        "Water": 4,
+        "Corruption": 5,
+        "Target": 0
+      }
+    },
+    {
+      "Rule": "Darkness",
+      "Config": {
+        "HeroGuardian": 1,
+        "HeroHunter": 1,
+        "HeroBard": 1,
+        "HeroBarbarian": 1,
+        "HeroRogue": 1,
+        "HeroWarlock": 1,
+        "HeroSorcerer": 1
+      }
+    }
+  ]
+}

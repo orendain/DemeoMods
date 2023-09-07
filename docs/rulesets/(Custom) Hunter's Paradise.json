@@ -113,7 +113,6 @@
           "effectStateType": "MarkOfAvalon",
           "durationTurns": 2,
           "tickWhen": "EndTurn",
-          "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": true,
           "damageTags": null,
