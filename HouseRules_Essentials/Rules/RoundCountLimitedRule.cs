@@ -19,7 +19,7 @@
 
         protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.StatusEffectDataModified;
 
-        private readonly List<StatusEffectData> _adjustments = new List<StatusEffectData> { new StatusEffectData { effectStateType = EffectStateType.SelfDestruct, durationTurns = 2, damagePerTurn = 0, killOnExpire = true, stacks = false, clearOnNewLevel = false, tickWhen = StatusEffectsConfig.TickWhen.EndTurn } };
+        private readonly List<StatusEffectData> _adjustments = new List<StatusEffectData> { new StatusEffectData { effectStateType = EffectStateType.SelfDestruct, durationTurns = 2, damagePerTurn = 0, killOnExpire = true, clearOnNewLevel = false, tickWhen = StatusEffectsConfig.TickWhen.EndTurn } };
         private List<StatusEffectData> _originals;
         private static int _globalRoundLimit;
         private static int _globalRoundsPlayed;
@@ -72,7 +72,7 @@
                     nameof(Piece_CreatePiece_Postfix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(LevelManager), "RecreatePieceOnNewLevel"),
+                original: AccessTools.Method(typeof(LevelLoaderAndInitializer), "RecreatePieceOnNewLevel"),
                 postfix: new HarmonyMethod(
                     typeof(RoundCountLimitedRule),
                     nameof(Piece_CreatePiece_Postfix)));
