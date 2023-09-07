@@ -42,7 +42,7 @@
                     nameof(CreatePiece_RecreatePieceOnNewLevel_Postfix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(LevelManager), "RecreatePieceOnNewLevel"),
+                original: AccessTools.Method(typeof(LevelLoaderAndInitializer), "RecreatePieceOnNewLevel"),
                 postfix: new HarmonyMethod(
                     typeof(PieceDownedCountAdjustedRule),
                     nameof(CreatePiece_RecreatePieceOnNewLevel_Postfix)));

@@ -44,7 +44,6 @@
                     effectStateType = EffectStateType.MarkOfAvalon,
                     durationTurns = 2,
                     damagePerTurn = 0,
-                    stacks = false,
                     clearOnNewLevel = true,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },

@@ -176,7 +176,7 @@
         {
             var inventory = new Inventory();
 
-            if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
+            if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers && !HR.SelectedRuleset.Name.Equals("Darkest Dankest Demeo"))
             {
                 inventory.Items.Add(new Inventory.Item
                 {

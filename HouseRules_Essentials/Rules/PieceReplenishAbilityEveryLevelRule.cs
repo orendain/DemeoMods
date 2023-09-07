@@ -35,7 +35,7 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(LevelManager), "RecreatePieceOnNewLevel"),
+                original: AccessTools.Method(typeof(LevelLoaderAndInitializer), "RecreatePieceOnNewLevel"),
                 postfix: new HarmonyMethod(
                     typeof(PieceReplenishAbilityEveryLevelRule),
                     nameof(CreatePiece_RecreatePieceOnNewLevel_Postfix)));

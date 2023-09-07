@@ -110,21 +110,6 @@
                 Keyholder = keyHolder,
             };
             monsterDeck.ShuffleSubDecks(rng);
-
-            /* Doesn't work... yet
-            if (HR.SelectedRuleset.Name.Contains("Revolutions") && floorIndex == 1)
-            {
-                var deckItem = new MonsterDeck.MonsterDeckEntry
-                {
-                    BoardPieceId = BoardPieceId.ScarabSandPile,
-                    enemyWeight = EnemyWeight.Light,
-                    isRedrawEnabled = false,
-                };
-
-                MelonLoader.MelonLogger.Msg("Scarab added");
-                monsterDeck.monsterDeckStandard.Add(deckItem);
-            }*/
-
             __result = monsterDeck;
             return false; // We returned an user-adjusted config.
         }

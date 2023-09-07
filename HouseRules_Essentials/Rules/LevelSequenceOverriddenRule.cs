@@ -112,7 +112,7 @@
                 return true;
             }
 
-            __result = gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel
+            __result = gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIsLastLevel
                 ? sequenceDefinitions[sequenceDefinitions.Length - 1]
                 : sequenceDefinitions[sequenceDefinitions.Length - 3];
 
@@ -174,7 +174,8 @@
                     _globalAdjustments.Prepend(originalSequence[0]).ToArray();
             }
 
-            eventQueue.SendEventRequest(new SerializableEventStartNewGame(gsmLevelSequence));
+            var gameState = gameContext.gameStateMachine.GetCurrentGameState();
+            eventQueue.SendEventRequest(new SerializableEventStartNewGame(gsmLevelSequence, gameState));
             return false;
         }
 

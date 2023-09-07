@@ -2,7 +2,7 @@
 {
     public static class RevolutionsVersion
     {
-        public const string Version = "1.8.3";
-        public const string MajorMinorVersion = "1.8";
+        public const string Version = "2.0.0";
+        public const string MajorMinorVersion = "2.0";
     }
 }

@@ -82,15 +82,15 @@
             else if (ruleSet.Contains("PROGRESSIVE") || HR.SelectedRuleset.Name.Equals("TEST GAME"))
             {
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-                if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 1)
+                if (gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIndex == 1)
                 {
                     range = Random.Range(1.0f, 1.3f);
                 }
-                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
+                else if (gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIndex == 3)
                 {
                     range = Random.Range(1.3f, 1.6f);
                 }
-                else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
+                else if (gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
                     if (config.HasPieceType(PieceType.Boss))
                     {

@@ -70,7 +70,7 @@ namespace HouseRules.Essentials.Rules
                 int chance = Random.Range(1, 101);
                 int chance2 = Random.Range(1, 101);
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-                if (gameContext.levelManager.GetLevelSequence().CurrentLevelIsLastLevel)
+                if (gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIsLastLevel)
                 {
                     addHeal++;
                 }

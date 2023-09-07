@@ -6,6 +6,7 @@
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.AI;
     using Boardgame.LevelLoading;
+    using Boardgame.TurnOrder;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Types;
@@ -18,6 +19,8 @@
         private readonly Dictionary<BoardPieceId, int> _adjustments;
         private static Dictionary<BoardPieceId, int> _globalAdjustments;
         private static bool _isActivated;
+        private static bool _check;
+        private static List<Piece> _playerPieces;
 
         public DarknessRule(Dictionary<BoardPieceId, int> adjustments)
         {
@@ -40,10 +43,10 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(LevelManager), "GetFloorTileEffects"),
+                original: AccessTools.Method(typeof(LevelLoaderAndInitializer), "GetFloorTileEffects"),
                 postfix: new HarmonyMethod(
                     typeof(DarknessRule),
-                    nameof(LevelManager_GetFloorTileEffects_Postfix)));
+                    nameof(LevelLoaderAndInitializer_GetFloorTileEffects_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(Piece), "CreatePiece"),
@@ -52,7 +55,7 @@
                     nameof(Piece_CreatePiece_Postfix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(LevelManager), "RecreatePieceOnNewLevel"),
+                original: AccessTools.Method(typeof(LevelLoaderAndInitializer), "RecreatePieceOnNewLevel"),
                 postfix: new HarmonyMethod(
                     typeof(DarknessRule),
                     nameof(Piece_CreatePiece_Postfix)));
@@ -62,9 +65,29 @@
                 prefix: new HarmonyMethod(
                     typeof(DarknessRule),
                     nameof(MotherTracker_TrackUnitDefeated_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools.Constructor(typeof(RearrangePlayerTurnOrder), new[] { typeof(TurnQueue) }),
+                prefix: new HarmonyMethod(
+                    typeof(DarknessRule),
+                    nameof(RearrangePlayerTurnOrder_Constructor_Prefix)));
         }
 
-        private static void LevelManager_GetFloorTileEffects_Postfix(out float prob, out List<TileEffect> list)
+        private static bool RearrangePlayerTurnOrder_Constructor_Prefix(
+            RearrangePlayerTurnOrder __instance,
+            TurnQueue turnQueue)
+        {
+            if (!_isActivated)
+            {
+                return true;
+            }
+
+            _playerPieces = turnQueue.GetPlayerPieces();
+
+            return true;
+        }
+
+        private static void LevelLoaderAndInitializer_GetFloorTileEffects_Postfix(out float prob, out List<TileEffect> list)
         {
             if (!_isActivated)
             {
@@ -190,9 +213,26 @@
                     }
                     else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                     {
+                        _check = true;
                         attackerUnit = piece2;
                     }
                     else
+                    {
+                        return;
+                    }
+                }
+                else if (attackerUnit.boardPieceId == BoardPieceId.Verochka)
+                {
+                    foreach (var piece in _playerPieces)
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                        {
+                            _check = true;
+                            attackerUnit = piece;
+                        }
+                    }
+
+                    if (!_check)
                     {
                         return;
                     }
@@ -206,10 +246,10 @@
             if (attackerUnit.HasEffectState(EffectStateType.TorchPlayer))
             {
                 var torched = attackerUnit.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.TorchPlayer);
-                if (torched < 7)
+                if (torched < 8)
                 {
                     attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
-                    attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, torched + 2);
+                    attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, torched + 1);
                 }
                 else
                 {
@@ -217,10 +257,16 @@
                     attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 8);
                 }
             }
-            else
+            else if (!_check)
             {
                 attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
-                attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 3);
+                attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 2);
+            }
+            else
+            {
+                _check = false;
+                attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
+                attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 1);
             }
         }
     }

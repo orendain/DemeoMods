@@ -862,7 +862,7 @@
                     else if (ruleSet.Contains("PROGRESSIVE") || ruleSet.Contains("(LEGENDARY") || ruleSet.Equals("TEST GAME"))
                     {
                         var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-                        if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 3)
+                        if (gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIndex == 3)
                         {
                             if (__result.boardPieceId == BoardPieceId.ReptileMutantWizard || __result.boardPieceId == BoardPieceId.TheUnseen)
                             {
@@ -873,7 +873,7 @@
                                 __result.effectSink.AddStatusEffect(EffectStateType.Courageous, 99);
                             }
                         }
-                        else if (gameContext.levelManager.GetLevelSequence().CurrentLevelIndex == 5)
+                        else if (gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIndex == 5)
                         {
                             if (__result.boardPieceId == BoardPieceId.ReptileMutantWizard || __result.boardPieceId == BoardPieceId.TheUnseen)
                             {
