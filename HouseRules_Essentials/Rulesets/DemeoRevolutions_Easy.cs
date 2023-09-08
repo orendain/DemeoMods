@@ -1072,40 +1072,6 @@
                 { AbilityKey.BeastWhisperer, new List<BoardPieceId> { BoardPieceId.PoisonousRat, BoardPieceId.Spider } },
             });
 
-            var lampTypesRule = new LampTypesOverriddenRule(new Dictionary<int, List<BoardPieceId>>
-            {
-                {
-                    1, new List<BoardPieceId>
-                    {
-                        BoardPieceId.GasLamp,
-                        BoardPieceId.OilLamp,
-                        BoardPieceId.VortexLamp,
-                        BoardPieceId.WaterLamp,
-                        BoardPieceId.IceLamp,
-                    }
-                },
-                {
-                    2, new List<BoardPieceId>
-                    {
-                        BoardPieceId.GasLamp,
-                        BoardPieceId.OilLamp,
-                        BoardPieceId.VortexLamp,
-                        BoardPieceId.WaterLamp,
-                        BoardPieceId.IceLamp,
-                    }
-                },
-                {
-                    3, new List<BoardPieceId>
-                    {
-                        BoardPieceId.GasLamp,
-                        BoardPieceId.OilLamp,
-                        BoardPieceId.VortexLamp,
-                        BoardPieceId.WaterLamp,
-                        BoardPieceId.IceLamp,
-                    }
-                },
-            });
-
             var tileEffectRule = new TileEffectDurationOverriddenRule(new Dictionary<TileEffect, int>
             {
                 { TileEffect.Gas, 3 },
@@ -1344,7 +1310,6 @@
                 cardEnergyFromRecyclingRule,
                 enemyHealthScaledRule,
                 abilityRandomPieceRule,
-                lampTypesRule,
                 levelSequenceOverriddenRule,
                 levelPropertiesRule);
         }

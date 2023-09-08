@@ -120,11 +120,6 @@
                 return;
             }
 
-            if (!__result.IsPlayer())
-            {
-                return;
-            }
-
             if (!_globalAdjustments.ContainsKey(__result.boardPieceId))
             {
                 return;
@@ -261,14 +256,13 @@
                     attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 8);
                 }
             }
-            else if (_check && !attackerUnit.HasEffectState(EffectStateType.TorchPlayer))
+            else if (_check && attackerUnit.HasEffectState(EffectStateType.TorchPlayer))
             {
                 attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
                 attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 1);
             }
             else
             {
-
                 attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
                 attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 2);
             }

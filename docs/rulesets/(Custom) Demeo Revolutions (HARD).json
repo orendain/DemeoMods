@@ -2340,32 +2340,6 @@
       }
     },
     {
-      "Rule": "LampTypesOverridden",
-      "Config": {
-        "1": [
-          "GasLamp",
-          "OilLamp",
-          "VortexLamp",
-          "WaterLamp",
-          "IceLamp"
-        ],
-        "2": [
-          "GasLamp",
-          "OilLamp",
-          "VortexLamp",
-          "WaterLamp",
-          "IceLamp"
-        ],
-        "3": [
-          "GasLamp",
-          "OilLamp",
-          "VortexLamp",
-          "WaterLamp",
-          "IceLamp"
-        ]
-      }
-    },
-    {
       "Rule": "LevelSequenceOverridden",
       "Config": [
         "ElvenFloor17",

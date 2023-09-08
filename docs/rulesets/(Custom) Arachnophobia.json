@@ -224,7 +224,6 @@
       "Config": {
         "StrengthPotion": false,
         "SwiftnessPotion": false,
-        "VigorPotion": false,
         "DamageResistPotion": false
       }
     },

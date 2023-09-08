@@ -240,7 +240,6 @@
 
             _isCreatingGame = false;
             OnPostGameCreated();
-            ShowWelcomeMessage();
         }
 
         private static void GameStateMachine_GoToShoppingState_Postfix()
@@ -252,7 +251,6 @@
 
             _isLoadingGame = false;
             OnPostGameCreated();
-            ShowWelcomeMessage();
         }
 
         private static void PostGameControllerBase_OnPlayAgainClicked_Postfix()
@@ -477,6 +475,8 @@
                     CoreMod.Logger.Warning($"Failed to successfully call OnPreGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
+
+            ShowWelcomeMessage();
         }
 
         private static void OnPostGameCreated()
