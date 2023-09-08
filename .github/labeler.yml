@@ -6,7 +6,7 @@
 - Common/**
 
 'area: houserules/configuration':
-- .github/worklows/houserules.yml
+- .github/workflows/houserules.yml
 - HouseRules_Configuration/**
 
 'area: houserules/core':
@@ -14,7 +14,7 @@
 - HouseRules_Core/**
 
 'area: houserules/essentials':
-- .github/workfows/houserules.yml
+- .github/workflows/houserules.yml
 - HouseRules_Essentials/**
 
 'area: roomcode':
