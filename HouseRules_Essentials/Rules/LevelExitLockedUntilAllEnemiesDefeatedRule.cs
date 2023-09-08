@@ -29,10 +29,10 @@
         private static void Patch(Harmony harmony)
         {
             harmony.Patch(
-                original: AccessTools.Method(typeof(LevelManager), "LoadAndSetupLevel"),
+                original: AccessTools.Method(typeof(LevelLoaderAndInitializer), "LoadAndSetupLevel"),
                 postfix: new HarmonyMethod(
                     typeof(LevelExitLockedUntilAllEnemiesDefeatedRule),
-                    nameof(LevelManager_LoadAndSetupLevel_Postfix)));
+                    nameof(LevelLoaderAndInitializer_LoadAndSetupLevel_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Constructor(
@@ -46,7 +46,7 @@
                     nameof(BoardgameActionPieceDied_Constructor_Postfix)));
         }
 
-        private static void LevelManager_LoadAndSetupLevel_Postfix(LevelManager __instance, ref IEnumerator __result)
+        private static void LevelLoaderAndInitializer_LoadAndSetupLevel_Postfix(LevelLoaderAndInitializer __instance, ref IEnumerator __result)
         {
             if (!_isActivated)
             {
@@ -98,7 +98,7 @@
                 return;
             }
 
-            if (gameContext.levelManager.IsBossLevel())
+            if (gameContext.levelLoaderAndInitializer.IsBossLevel())
             {
                 return;
             }
