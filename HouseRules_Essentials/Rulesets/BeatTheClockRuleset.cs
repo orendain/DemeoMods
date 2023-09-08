@@ -26,6 +26,18 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 100 },
             });
 
+            var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
+            {
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.SelfDestruct,
+                    durationTurns = 15,
+                    damagePerTurn = 0,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+            });
+
             var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(3);
             var roundLimitRule = new RoundCountLimitedRule(15);
             var levelRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
@@ -41,6 +53,7 @@
                 description,
                 longdesc,
                 healthRule,
+                statusEffectRule,
                 recyclingRule,
                 roundLimitRule,
                 levelRule);
