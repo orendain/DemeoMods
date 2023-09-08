@@ -122,8 +122,12 @@
         private static void RefreshRoomList()
         {
             RoomFinderMod.SharedState.IsRefreshingRoomList = true;
+            var lobbyMenuController = Traverse
+                .Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby)
+                .Field<LobbyMenuController>("lobbyMenuController")
+                .Value;
             var lobbyMenuContext = Traverse
-                .Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby) // GetLobbyMenuController moved?
+                .Create(lobbyMenuController)
                 .Field<LobbyMenu.ILobbyMenuContext>("lobbyMenuContext")
                 .Value;
 
