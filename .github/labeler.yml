@@ -1,23 +1,30 @@
 'area: advancedstats':
+- .github/workflows/advancedstats.yml
 - AdvancedStats/**
 
 'area: common':
 - Common/**
 
 'area: houserules/configuration':
+- .github/worklows/houserules.yml
 - HouseRules_Configuration/**
 
 'area: houserules/core':
+- .github/workflows/houserules.yml
 - HouseRules_Core/**
 
 'area: houserules/essentials':
+- .github/workfows/houserules.yml
 - HouseRules_Essentials/**
 
 'area: roomcode':
+- .github/workflows/roomcode.yml
 - RoomCode/**
 
 'area: roomfinder':
+- .github/workflows/roomfinder.yml
 - RoomFinder/**
 
 'area: skipintro':
+- .github/workflows/skipintro.yml
 - SkipIntro/**
