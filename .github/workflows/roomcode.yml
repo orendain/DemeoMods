@@ -25,8 +25,8 @@ jobs:
 
       - name: Add Build Dependencies
         run: |
-          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/601ee2ff5f7e7ca8b1946a239bb8c8b68c440a76/2023-09-07.zip
-          7z x ws.zip
+          C:\msys64\usr\bin\wget.exe -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/180eb5a6465eda285066704d89cef8d5b9109ee6/2023-09-07.zip
+          7z x deps.zip
 
       - name: Build Project
         run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" RoomCode\RoomCode.csproj
