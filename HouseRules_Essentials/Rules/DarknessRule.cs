@@ -68,23 +68,21 @@
 
             harmony.Patch(
                 original: AccessTools.Constructor(typeof(RearrangePlayerTurnOrder), new[] { typeof(TurnQueue) }),
-                prefix: new HarmonyMethod(
+                postfix: new HarmonyMethod(
                     typeof(DarknessRule),
-                    nameof(RearrangePlayerTurnOrder_Constructor_Prefix)));
+                    nameof(RearrangePlayerTurnOrder_Constructor_Postfix)));
         }
 
-        private static bool RearrangePlayerTurnOrder_Constructor_Prefix(
+        private static void RearrangePlayerTurnOrder_Constructor_Postfix(
             RearrangePlayerTurnOrder __instance,
             TurnQueue turnQueue)
         {
             if (!_isActivated)
             {
-                return true;
+                return;
             }
 
             _playerPieces = turnQueue.GetPlayerPieces();
-
-            return true;
         }
 
         private static void LevelLoaderAndInitializer_GetFloorTileEffects_Postfix(out float prob, out List<TileEffect> list)
@@ -124,37 +122,6 @@
 
             if (!__result.IsPlayer())
             {
-                if (__result.boardPieceId == BoardPieceId.WarlockMinion)
-                {
-                    foreach (var replacement in _globalAdjustments)
-                    {
-                        if (replacement.Key == BoardPieceId.HeroWarlock)
-                        {
-                            __result.effectSink.TrySetStatBaseValue(Stats.Type.VisionRange, replacement.Value);
-                            break;
-                        }
-                    }
-                }
-                else if (__result.boardPieceId == BoardPieceId.Verochka)
-                {
-                    foreach (var replacement in _globalAdjustments)
-                    {
-                        if (replacement.Key == BoardPieceId.HeroHunter)
-                        {
-                            __result.effectSink.TrySetStatBaseValue(Stats.Type.VisionRange, replacement.Value);
-                            break;
-                        }
-                    }
-                }
-                else if (__result.boardPieceId == BoardPieceId.SellswordArbalestierActive)
-                {
-                    __result.effectSink.TrySetStatBaseValue(Stats.Type.VisionRange, 1);
-                }
-                else if (__result.boardPieceId == BoardPieceId.EyeOfAvalon)
-                {
-                    __result.effectSink.TrySetStatBaseValue(Stats.Type.VisionRange, 4);
-                }
-
                 return;
             }
 
@@ -237,7 +204,44 @@
                         return;
                     }
                 }
+                else if (attackerUnit.boardPieceId == BoardPieceId.Tornado)
+                {
+                    foreach (var piece in _playerPieces)
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroBard)
+                        {
+                            _check = true;
+                            attackerUnit = piece;
+                        }
+                    }
+
+                    if (!_check)
+                    {
+                        return;
+                    }
+                }
+                else if (attackerUnit.boardPieceId == BoardPieceId.GrapplingTotem)
+                {
+                    foreach (var piece in _playerPieces)
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                        {
+                            _check = true;
+                            attackerUnit = piece;
+                        }
+                    }
+
+                    if (!_check)
+                    {
+                        return;
+                    }
+                }
                 else
+                {
+                    return;
+                }
+
+                if (!attackerUnit.IsPlayer())
                 {
                     return;
                 }
@@ -257,17 +261,19 @@
                     attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 8);
                 }
             }
-            else if (!_check)
+            else if (_check && !attackerUnit.HasEffectState(EffectStateType.TorchPlayer))
             {
-                attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
-                attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 2);
-            }
-            else
-            {
-                _check = false;
                 attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
                 attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 1);
             }
+            else
+            {
+
+                attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
+                attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, 2);
+            }
+
+            _check = false;
         }
     }
 }
