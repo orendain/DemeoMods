@@ -110,7 +110,6 @@
             {
                 { AbilityKey.StrengthPotion, false },
                 { AbilityKey.SwiftnessPotion, false },
-                { AbilityKey.VigorPotion, false },
                 { AbilityKey.DamageResistPotion, false },
             });
 
