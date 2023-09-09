@@ -1297,7 +1297,7 @@
                 {
                     effectStateType = EffectStateType.Thorns,
                     durationTurns = 2,
-                    damagePerTurn = 1,
+                    damagePerTurn = 0,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
