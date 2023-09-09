@@ -13,7 +13,7 @@
         {
             const string name = "Darkest Dankest Demeo";
             const string description = "Watch your step in this filthy dungeon... Can you defeat the darkness?";
-            const string longdesc = "<color=#994499>* * * * * * </color><color=#FF0000><b>YOU'RE ALL BLIND!</b></color> <color=#994499>* * * * * *</color>\n\nGain temporary vision range increases by defeating enemies\nMost of these unclean enemies can be destroyed with Lye";
+            const string longdesc = "\n<color=#FF99FF>* * * * * * </color><color=#FF0000><b>YOU'RE ALL BLIND!</b></color> <color=#FF99FF>* * * * * *</color>\n\n[[HIGHLY RECOMMENDED]] --- DON'T PLAY MULTIPLE OF THE SAME CLASS\nGain temporary vision range increases by defeating enemies\nThe BIGGER unclean enemies can be instantly destroyed with Lye";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -300,7 +300,7 @@
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GuidingLight, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implode, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MissileSwarm, ReplenishFrequency = 0 },
@@ -459,13 +459,11 @@
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.HeavensFury,
                         AbilityKey.ScrollOfCharm,
-                        AbilityKey.BeastWhisperer,
                         AbilityKey.CallCompanion,
                         AbilityKey.PoisonedTip,
                         AbilityKey.HuntersMark,
                         AbilityKey.Lure,
                         AbilityKey.ScrollOfCharm,
-                        AbilityKey.BeastWhisperer,
                         AbilityKey.HailOfArrows,
                         AbilityKey.CallCompanion,
                         AbilityKey.PoisonedTip,
@@ -491,6 +489,7 @@
                         AbilityKey.CursedDagger,
                         AbilityKey.BoobyTrap,
                         AbilityKey.FlashBomb,
+                        AbilityKey.RepeatingBallista,
                         AbilityKey.Blink,
                         AbilityKey.PoisonBomb,
                         AbilityKey.CursedDagger,
@@ -500,6 +499,7 @@
                         AbilityKey.CursedDagger,
                         AbilityKey.BoobyTrap,
                         AbilityKey.FlashBomb,
+                        AbilityKey.RepeatingBallista,
                     }
                 },
                 {
@@ -516,6 +516,7 @@
                         AbilityKey.Fireball,
                         AbilityKey.Freeze,
                         AbilityKey.Vortex,
+                        AbilityKey.SummonElemental,
                         AbilityKey.Banish,
                         AbilityKey.Fireball,
                         AbilityKey.Freeze,
@@ -527,6 +528,7 @@
                         AbilityKey.Freeze,
                         AbilityKey.MagicBarrier,
                         AbilityKey.Vortex,
+                        AbilityKey.SummonElemental,
                     }
                 },
                 {
@@ -544,16 +546,19 @@
                         AbilityKey.Implode,
                         AbilityKey.MissileSwarm,
                         AbilityKey.Portal,
+                        AbilityKey.MinionCharge,
                         AbilityKey.Deflect,
                         AbilityKey.GuidingLight,
                         AbilityKey.Implode,
                         AbilityKey.MissileSwarm,
                         AbilityKey.Portal,
+                        AbilityKey.MinionCharge,
                         AbilityKey.Deflect,
                         AbilityKey.GuidingLight,
                         AbilityKey.Implode,
                         AbilityKey.MissileSwarm,
                         AbilityKey.Portal,
+                        AbilityKey.MinionCharge,
                     }
                 },
             });
@@ -566,8 +571,8 @@
                         AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.BottleOfLye,
-                        AbilityKey.RepeatingBallista,
                         AbilityKey.OneMoreThing,
+                        AbilityKey.GrapplingTotem,
                         AbilityKey.PanicPowder,
                         AbilityKey.BottleOfLye,
                         AbilityKey.IceImmunePotion,
@@ -586,8 +591,8 @@
                         AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.BottleOfLye,
-                        AbilityKey.RepeatingBallista,
                         AbilityKey.OneMoreThing,
+                        AbilityKey.TheBehemoth,
                         AbilityKey.PanicPowder,
                         AbilityKey.BottleOfLye,
                         AbilityKey.IceImmunePotion,
@@ -605,7 +610,7 @@
                         AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.BottleOfLye,
-                        AbilityKey.RepeatingBallista,
+                        AbilityKey.HurricaneAnthem,
                         AbilityKey.OneMoreThing,
                         AbilityKey.BottleOfLye,
                         AbilityKey.IceImmunePotion,
@@ -623,8 +628,8 @@
                     {
                         AbilityKey.WebBomb,
                         AbilityKey.BottleOfLye,
-                        AbilityKey.RepeatingBallista,
                         AbilityKey.OneMoreThing,
+                        AbilityKey.BeastWhisperer,
                         AbilityKey.PanicPowder,
                         AbilityKey.BottleOfLye,
                         AbilityKey.FireImmunePotion,
@@ -662,7 +667,7 @@
                         AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.BottleOfLye,
-                        AbilityKey.RepeatingBallista,
+                        AbilityKey.SummonElemental,
                         AbilityKey.OneMoreThing,
                         AbilityKey.PanicPowder,
                         AbilityKey.BottleOfLye,
@@ -681,8 +686,8 @@
                         AbilityKey.Bone,
                         AbilityKey.WebBomb,
                         AbilityKey.BottleOfLye,
-                        AbilityKey.RepeatingBallista,
                         AbilityKey.OneMoreThing,
+                        AbilityKey.MinionCharge,
                         AbilityKey.PanicPowder,
                         AbilityKey.BottleOfLye,
                         AbilityKey.IceImmunePotion,
@@ -786,6 +791,7 @@
                 {
                     BoardPieceId.HeroWarlock, new List<AbilityKey>
                     {
+                        AbilityKey.Rejuvenation,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.InvisibilityPotion,
                         AbilityKey.AdamantPotion,
@@ -838,9 +844,8 @@
                 { BoardPieceId.ReptileMutantWizard, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Reptile, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.GeneralRonthian, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.RootBeast, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
-                { BoardPieceId.RootCreeper, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
                 { BoardPieceId.RootHound, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
-                { BoardPieceId.RootVine, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
+                { BoardPieceId.RootVine, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Rootling } },
                 { BoardPieceId.DruidArcher, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
                 { BoardPieceId.DruidHoundMaster, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
                 { BoardPieceId.ElvenArcher, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },

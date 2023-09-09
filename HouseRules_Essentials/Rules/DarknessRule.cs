@@ -231,6 +231,54 @@
                         return;
                     }
                 }
+                else if (attackerUnit.boardPieceId == BoardPieceId.SwordOfAvalon)
+                {
+                    foreach (var piece in _playerPieces)
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                        {
+                            _check = true;
+                            attackerUnit = piece;
+                        }
+                    }
+
+                    if (!_check)
+                    {
+                        return;
+                    }
+                }
+                else if (attackerUnit.boardPieceId == BoardPieceId.SmiteWard)
+                {
+                    foreach (var piece in _playerPieces)
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                        {
+                            _check = true;
+                            attackerUnit = piece;
+                        }
+                    }
+
+                    if (!_check)
+                    {
+                        return;
+                    }
+                }
+                else if (attackerUnit.HasEffectState(EffectStateType.ConfusedPermanentVisualOnly) && (attackerUnit.boardPieceId == BoardPieceId.IceElemental || attackerUnit.boardPieceId == BoardPieceId.FireElemental))
+                {
+                    foreach (var piece in _playerPieces)
+                    {
+                        if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                        {
+                            _check = true;
+                            attackerUnit = piece;
+                        }
+                    }
+
+                    if (!_check)
+                    {
+                        return;
+                    }
+                }
                 else
                 {
                     return;
