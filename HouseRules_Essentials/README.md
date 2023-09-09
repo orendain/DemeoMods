@@ -748,6 +748,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "HeroBarbarian": "0"
     }
   },
+```
   
 #### __PieceImmunityListAdjusted__: Allows the list of immunities for any ♟️BoardPiece to be overridden
   - Allows customization of many the list of immunities for each game Piece. 🤢Diseased, 😵Stunned, 🤕Weaken1Turn, 🥶Frozen, 🧶Tangled, 💤Petrified , etc

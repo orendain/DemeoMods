@@ -110,7 +110,6 @@
             {
                 { AbilityKey.StrengthPotion, false },
                 { AbilityKey.SwiftnessPotion, false },
-                { AbilityKey.VigorPotion, false },
                 { AbilityKey.DamageResistPotion, false },
             });
 
@@ -268,7 +267,6 @@
                     effectStateType = EffectStateType.HealingSong,
                     durationTurns = 5,
                     healPerTurn = 3,
-                    stacks = true,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
@@ -276,7 +274,6 @@
                 {
                     effectStateType = EffectStateType.Courageous,
                     durationTurns = 2,
-                    stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
@@ -284,7 +281,6 @@
                 {
                     effectStateType = EffectStateType.Heroic,
                     durationTurns = 4,
-                    stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
@@ -292,7 +288,6 @@
                 {
                     effectStateType = EffectStateType.Fearless,
                     durationTurns = 6,
-                    stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
@@ -300,7 +295,6 @@
                 {
                     effectStateType = EffectStateType.Invulnerable1,
                     durationTurns = 2,
-                    stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
@@ -309,7 +303,6 @@
                     effectStateType = EffectStateType.Recovery,
                     durationTurns = 5,
                     healPerTurn = 3,
-                    stacks = false,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },

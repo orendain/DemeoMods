@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using DataKeys;
+    using global::Types;
     using HouseRules.Essentials.Rules;
     using HouseRules.Types;
 
@@ -22,13 +23,29 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 200 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 200 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 200 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 100 },
             });
-            var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(5);
+
+            var statusEffectRule = new StatusEffectConfigRule(new List<StatusEffectData>
+            {
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.SelfDestruct,
+                    durationTurns = 15,
+                    damagePerTurn = 0,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+            });
+
+            var recyclingRule = new CardEnergyFromRecyclingMultipliedRule(3);
             var roundLimitRule = new RoundCountLimitedRule(15);
             var levelRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
-                { "FloorOneLootChests", 15 },
-                { "FloorTwoLootChests", 15 },
+                { "FloorOneLootChests", 12 },
+                { "FloorOnePotionStand", 3 },
+                { "FloorTwoLootChests", 12 },
+                { "FloorTwoPotionStand", 3 },
             });
 
             return Ruleset.NewInstance(
@@ -36,6 +53,7 @@
                 description,
                 longdesc,
                 healthRule,
+                statusEffectRule,
                 recyclingRule,
                 roundLimitRule,
                 levelRule);

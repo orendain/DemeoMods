@@ -21,12 +21,12 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Set Up MSBuild
-        uses: microsoft/setup-msbuild@v1.3.1
+        uses: microsoft/setup-msbuild@v1
 
       - name: Add Build Dependencies
         run: |
-          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/eab432f1b7df70451905531f1e77bb05102747ec/ws.zip
-          7z x ws.zip
+          C:\msys64\usr\bin\wget.exe -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/180eb5a6465eda285066704d89cef8d5b9109ee6/2023-09-07.zip
+          7z x deps.zip
 
       - name: Build Project
         run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" SkipIntro\SkipIntro.csproj
@@ -37,7 +37,7 @@ jobs:
           xcopy SkipIntro\bin\Release\SkipIntro.dll Bundle\Mods
 
       - name: Upload Bundle
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v3
         with:
           name: SkipIntro
           path: Bundle\*
