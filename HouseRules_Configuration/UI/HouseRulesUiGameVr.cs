@@ -52,7 +52,7 @@
             int numRules = 13;
             int textLength = 0;
             int returnCount = 0;
-            if (HR.SelectedRuleset.Longdesc != null && HR.SelectedRuleset.Longdesc != string.Empty)
+            if (HR.SelectedRuleset.Longdesc != string.IsNullOrEmpty())
             {
                 textLength = HR.SelectedRuleset.Longdesc.Length;
                 returnCount = HR.SelectedRuleset.Longdesc.Count(f => f == '\n');
