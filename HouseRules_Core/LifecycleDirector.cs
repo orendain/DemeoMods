@@ -412,7 +412,7 @@
                 sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
                 sb.AppendLine();
 
-                if (HR.SelectedRuleset.Longdesc != null && HR.SelectedRuleset.Longdesc != string.Empty)
+                if (HR.SelectedRuleset.Longdesc != string.IsNullOrEmpty())
                 {
                     sb.AppendLine(ColorizeString($"<========== Ruleset Creator's Description ==========>", orange));
                     sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Longdesc}", gold));
