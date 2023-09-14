@@ -13,7 +13,7 @@
         {
             const string name = "Darkest Dankest Demeo";
             const string description = "Watch your step in this filthy dungeon... Can you defeat the darkness?";
-            const string longdesc = "\n<color=#FF99FF>* * * * * * </color><color=#FF0000><b>YOU'RE ALL BLIND!</b></color> <color=#FF99FF>* * * * * *</color>\n\n[[HIGHLY RECOMMENDED]] --- DON'T PLAY MULTIPLE OF THE SAME CLASS\nGain temporary vision range increases by defeating enemies\nThe BIGGER unclean enemies can be instantly destroyed with Lye";
+            const string longdesc = "\n<color=#FF99FF>* * * * * * </color><color=#FF0000><b>YOU'RE ALL BLIND!</b></color> <color=#FF99FF>* * * * * *</color>\n\n[[HIGHLY RECOMMENDED]] --- DON'T PLAY MULTIPLE OF THE SAME CLASS\nGain temporary vision range increases by defeating enemies\nThe BIGGER unclean enemies can be instantly destroyed with Lye\n\n<color=#00FF00><b><u>Other ways to gain Light:</u></b></color>\n\n<color=#FFFFFF>Assassin - Ballista kills\nBarbarian - Leviathan kills\nBard - Tornado kills\nGuardian - Behemoth kills\nHunter - Verochka kills\nSorcerer - Summoned Elemental kills\nWarlock - Cana kills\nWhoever hires him - Arly Owl kills</color>";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -322,7 +322,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WhirlwindAttack, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PiercingThrow, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Charge, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TheBehemoth, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WarCry, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, ReplenishFrequency = 1 },
             };
@@ -341,7 +341,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonBomb, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.RepeatingBallista, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CursedDagger, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.FlashBomb, ReplenishFrequency = 0 },
             };
@@ -352,7 +352,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Freeze, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Banish, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SummonElemental, ReplenishFrequency = 0 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {

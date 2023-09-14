@@ -91,7 +91,7 @@
             {
                 if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Desert)
                 {
-                    prob = 0.05f;
+                    prob = 0.02f;
                     list = new List<TileEffect> { TileEffect.Corruption };
                     return;
                 }
