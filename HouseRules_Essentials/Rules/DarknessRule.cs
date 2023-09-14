@@ -89,13 +89,7 @@
         {
             if (!_isActivated)
             {
-                if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Desert)
-                {
-                    prob = 0.02f;
-                    list = new List<TileEffect> { TileEffect.Corruption };
-                    return;
-                }
-                else if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Forest)
+                if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Forest)
                 {
                     prob = 0.1f;
                     list = new List<TileEffect> { TileEffect.Water };
