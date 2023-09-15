@@ -1024,11 +1024,10 @@
                 { "FloorOneSellswords", 1 },
                 { "FloorTwoPotionStand", 1 },
                 { "FloorTwoVillagers", 1 },
-                { "FloorTwoLootChests", 5 },
+                { "FloorTwoLootChests", 6 },
                 { "FloorTwoSellswords", 1 },
                 { "FloorThreeHealingFountains", 1 },
                 { "FloorThreeLootChests", 2 },
-                { "PacingSpikeSegmentFloorThreeBudget", 12 },
             });
 
             return Ruleset.NewInstance(

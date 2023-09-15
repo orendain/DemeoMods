@@ -205,6 +205,22 @@
                 { "FloorThreeElvenSummoners", 0 },
         };
 
+        private readonly Dictionary<string, int> _serpentLord = new Dictionary<string, int>
+        {
+                { "FloorOnePotionStand", 1 },
+                { "FloorOneMerchant", 0 },
+                { "FloorOneLootChests", 5 },
+                { "FloorOneGoldMaxAmount", 800 },
+                { "FloorOneSellswords", 1 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoVillagers", 1 },
+                { "FloorTwoLootChests", 6 },
+                { "FloorTwoGoldMaxAmount", 1100 },
+                { "FloorTwoSellswords", 1 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreeLootChests", 2 },
+        };
+
         public LevelPropertiesModifiedRule(Dictionary<string, int> levelProperties)
         {
             _levelProperties = levelProperties;
@@ -315,6 +331,19 @@
                             AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
                                modification.Value;
                         }
+                    }
+
+                    return;
+                }
+            }
+            else if (ruleSet.Equals("Darkest Dankest Demeo"))
+            {
+                if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Desert)
+                {
+                    foreach (var modification in _serpentLord)
+                    {
+                        AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
+                           modification.Value;
                     }
 
                     return;
