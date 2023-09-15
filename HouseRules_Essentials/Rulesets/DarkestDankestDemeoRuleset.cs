@@ -629,6 +629,7 @@
                         AbilityKey.WebBomb,
                         AbilityKey.BottleOfLye,
                         AbilityKey.OneMoreThing,
+                        AbilityKey.CallCompanion,
                         AbilityKey.PanicPowder,
                         AbilityKey.BottleOfLye,
                         AbilityKey.FireImmunePotion,
