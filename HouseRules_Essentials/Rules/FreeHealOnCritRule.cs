@@ -54,6 +54,11 @@ namespace HouseRules.Essentials.Rules
                 return;
             }
 
+            if (source.GetHealth() >= source.GetMaxHealth())
+            {
+                return;
+            }
+
             if (diceResult != Dice.Outcome.Crit)
             {
                 return;

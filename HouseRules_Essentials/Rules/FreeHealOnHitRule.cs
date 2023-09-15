@@ -59,6 +59,11 @@
                 return;
             }
 
+            if (source.GetHealth() >= source.GetMaxHealth())
+            {
+                return;
+            }
+
             if (source.GetHealth() == source.GetMaxHealth())
             {
                 return;

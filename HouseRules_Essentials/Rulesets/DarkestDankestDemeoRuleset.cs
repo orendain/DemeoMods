@@ -13,7 +13,7 @@
         {
             const string name = "Darkest Dankest Demeo";
             const string description = "Watch your step in this filthy dungeon... Can you defeat the darkness?";
-            const string longdesc = "\n<color=#FF99FF>* * * * * * </color><color=#FF0000><b>YOU'RE ALL BLIND!</b></color> <color=#FF99FF>* * * * * *</color>\n\n[[HIGHLY RECOMMENDED]] --- DON'T PLAY MULTIPLE OF THE SAME CLASS\nGain temporary vision range increases by defeating enemies\nThe BIGGER unclean enemies can be instantly destroyed with Lye\n\n<color=#00FF00><b><u>Other ways to gain Light:</u></b></color>\n\n<color=#FFFFFF>Assassin - Ballista kills\nBarbarian - Leviathan kills\nBard - Tornado kills\nGuardian - Behemoth kills\nHunter - Verochka kills\nSorcerer - Summoned Elemental kills\nWarlock - Cana kills\nWhoever hires him - Arly Owl kills</color>";
+            const string longdesc = "<color=#FF99FF><b>* * * * * * </color><color=#FF0000>YOU'RE ALL BLIND!</color> <color=#FF99FF>* * * * * *</color>\nHIGHLY RECOMMENDED:</b> DON'T PLAY MULTIPLE OF THE SAME CLASS\nGain Torch buffs by defeating enemies\nThe BIGGER non-keyholders can be instantly destroyed with Lye\nCritical hits will heal you for one (if hurt)\n\n<color=#FFFFFF><b><u>Other ways to gain Torch:</u></b></color>\n<color=#00FF00>Assassin - Ballista kills\nBarbarian - Leviathan kills\nBard - Tornado kills\nGuardian - Behemoth kills\nHunter - Verochka kills\nSorcerer - Summoned Elemental kills\nWarlock - Cana kills\nWhoever hires him - Arly Owl kills</color>";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -1000,6 +1000,7 @@
                 { BoardPieceId.Torch, EffectStateType.Panic },
             });
 
+            var freeHealOnCritRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroBarbarian, BoardPieceId.HeroBard, BoardPieceId.HeroRogue, BoardPieceId.HeroGuardian, BoardPieceId.HeroSorcerer, BoardPieceId.HeroHunter, BoardPieceId.HeroWarlock });
             var enemyHealthScaledRule = new EnemyHealthScaledRule(1.0f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
             var enableDoorsRule = new EnemyDoorOpeningEnabledRule(true);
@@ -1054,8 +1055,9 @@
                 targetEffectRule,
                 applyEffectOnHitRule,
                 enemyCooldownRule,
-                enemyAttackScaledRule,
+                freeHealOnCritRule,
                 enemyHealthScaledRule,
+                enemyAttackScaledRule,
                 enableDoorsRule,
                 pieceKeyholderRule,
                 enemyRespawnDisabledRule,
