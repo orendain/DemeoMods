@@ -13,7 +13,7 @@
         {
             const string name = "Darkest Dankest Demeo";
             const string description = "Watch your step in this filthy dungeon... Can you defeat the darkness?";
-            const string longdesc = "<color=#FF99FF><b>* * * * * * </color><color=#FF0000>YOU'RE ALL BLIND!</color> <color=#FF99FF>* * * * * *</color>\nHIGHLY RECOMMENDED:</b> DON'T PLAY MULTIPLE OF THE SAME CLASS\nGain Torch buffs by defeating enemies\nThe BIGGER non-keyholders can be instantly destroyed with Lye\nCritical hits will heal you for one (if hurt)\n\n<color=#FFFFFF><b><u>Other ways to gain Torch:</u></b></color>\n<color=#00FF00>Assassin - Ballista kills\nBarbarian - Leviathan kills\nBard - Tornado kills\nGuardian - Behemoth kills\nHunter - Verochka kills\nSorcerer - Summoned Elemental kills\nWarlock - Cana kills\nWhoever hires him - Arly Owl kills</color>";
+            const string longdesc = "<color=#FF99FF><b>* * * * * * </color><color=#FF0000>YOU'RE ALL BLIND!</color> <color=#FF99FF>* * * * * *</color>\nHIGHLY RECOMMENDED:</b> DON'T PLAY MULTIPLE OF THE SAME CLASS\nGain Torch buffs by defeating enemies\nLye destroys all BIG enemies except Keyholders and Bosses\nCritical hits will heal you for one (if hurt)\n\n<color=#FFFFFF><b><u>Other ways to gain Torch:</u></b></color>\n<color=#00FF00>Assassin - Ballista kills\nBarbarian - Leviathan kills\nBard - Tornado kills\nGuardian - Behemoth kills\nHunter - Verochka kills\nSorcerer - Summoned Elemental kills\nWarlock - Cana kills\nWhoever hires him - Arly Owl kills</color>";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -844,8 +844,7 @@
                 { BoardPieceId.ReptileMutantWizard, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Reptile, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.GeneralRonthian, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.RootBeast, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
-                { BoardPieceId.RootHound, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
-                { BoardPieceId.RootVine, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Rootling } },
+                { BoardPieceId.RootHound, new List<PieceType> { PieceType.Creature, PieceType.Canine, PieceType.Rootling, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.DruidArcher, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
                 { BoardPieceId.DruidHoundMaster, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
                 { BoardPieceId.ElvenArcher, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
@@ -857,7 +856,7 @@
                 { BoardPieceId.Spider, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.Rat, new List<PieceType> { PieceType.Creature, PieceType.Rat, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.TheUnheard, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Rat, PieceType.ValidCorruptionTarget } },
-                { BoardPieceId.Slimeling, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.GiantSlime } },
+                { BoardPieceId.Slimeling, new List<PieceType> { PieceType.SmallSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature } },
                 { BoardPieceId.Thug, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Thief, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.Bandit, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Thief, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.ElvenMystic, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.NonTeleportable } },
@@ -869,7 +868,7 @@
                 { BoardPieceId.BigBoiMutant, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.Reptile, PieceType.ValidCorruptionTarget, PieceType.TooHeavyToGrapple } },
                 { BoardPieceId.SilentSentinel, new List<PieceType> { PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.TooHeavyToGrapple } },
                 { BoardPieceId.ServantOfAlfaragh, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.NonTeleportable, PieceType.TooHeavyToGrapple } },
-                { BoardPieceId.GiantSlime, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.GiantSlime, PieceType.ValidCorruptionTarget } },
+                { BoardPieceId.GiantSlime, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.GiantSpider, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget, PieceType.TooHeavyToGrapple } },
                 { BoardPieceId.ElvenMarauder, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
                 { BoardPieceId.Gorgon, new List<PieceType> { PieceType.GiantSlime, PieceType.Creature, PieceType.ForestCreature, PieceType.DesertCreature, PieceType.ValidCorruptionTarget } },
@@ -948,29 +947,12 @@
                 { TileEffect.Target, 0 },
             });
 
-            var darknessRule = new DarknessRule(new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.HeroGuardian, 1 },
-                { BoardPieceId.HeroHunter, 1 },
-                { BoardPieceId.HeroBard, 1 },
-                { BoardPieceId.HeroBarbarian, 1 },
-                { BoardPieceId.HeroRogue, 1 },
-                { BoardPieceId.HeroWarlock, 1 },
-                { BoardPieceId.HeroSorcerer, 1 },
-                { BoardPieceId.GuidingLight, 4 },
-                { BoardPieceId.EyeOfAvalon, 4 },
-                { BoardPieceId.Verochka, 1 },
-                { BoardPieceId.WarlockMinion, 1 },
-                { BoardPieceId.SellswordArbalestierActive, 1 },
-            });
-
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.EnemyFlashbang, 2 },
-                { AbilityKey.BlindingLight, 1 },
+                { AbilityKey.BlindingLight, 2 },
                 { AbilityKey.LeapHeavy, 1 },
                 { AbilityKey.Leap, 1 },
-                { AbilityKey.BlindingLight, 2 },
                 { AbilityKey.Net, 0 },
             });
 
@@ -998,6 +980,22 @@
             var applyEffectOnHitRule = new ApplyEffectOnHitAdjustedRule(new Dictionary<BoardPieceId, EffectStateType>
             {
                 { BoardPieceId.Torch, EffectStateType.Panic },
+            });
+
+            var darknessRule = new DarknessRule(new Dictionary<BoardPieceId, int>
+            {
+                { BoardPieceId.HeroGuardian, 1 },
+                { BoardPieceId.HeroHunter, 1 },
+                { BoardPieceId.HeroBard, 1 },
+                { BoardPieceId.HeroBarbarian, 1 },
+                { BoardPieceId.HeroRogue, 1 },
+                { BoardPieceId.HeroWarlock, 1 },
+                { BoardPieceId.HeroSorcerer, 1 },
+                { BoardPieceId.GuidingLight, 4 },
+                { BoardPieceId.EyeOfAvalon, 4 },
+                { BoardPieceId.Verochka, 1 },
+                { BoardPieceId.WarlockMinion, 1 },
+                { BoardPieceId.SellswordArbalestierActive, 1 },
             });
 
             var freeHealOnCritRule = new FreeHealOnHitRule(new List<BoardPieceId> { BoardPieceId.HeroBarbarian, BoardPieceId.HeroBard, BoardPieceId.HeroRogue, BoardPieceId.HeroGuardian, BoardPieceId.HeroSorcerer, BoardPieceId.HeroHunter, BoardPieceId.HeroWarlock });
@@ -1049,11 +1047,11 @@
                 pieceUseWhenKilledRule,
                 statusEffectRule,
                 tileEffectDuration,
-                darknessRule,
                 aoeAdjustedRule,
                 targetEffectRule,
                 applyEffectOnHitRule,
                 enemyCooldownRule,
+                darknessRule,
                 freeHealOnCritRule,
                 enemyHealthScaledRule,
                 enemyAttackScaledRule,
