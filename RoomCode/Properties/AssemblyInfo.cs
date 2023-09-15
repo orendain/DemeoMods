@@ -9,7 +9,7 @@ using RoomCode;
 [assembly: AssemblyTitle("RoomCode")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Orendain")]
+[assembly: AssemblyCompany("DemeoMods Team")]
 [assembly: AssemblyProduct("RoomCode")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
@@ -37,7 +37,7 @@ using RoomCode;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 // Melon Loader.
-[assembly: MelonInfo(typeof(RoomCodeMod), "RoomCode", "1.1.0", "Orendain", "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(RoomCodeMod), "RoomCode", "1.1.0","DemeoMods Team", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("581308")]

@@ -9,7 +9,7 @@ using MelonLoader;
 [assembly: AssemblyTitle("AdvancedStats")]
 [assembly: AssemblyDescription("Show text with more stats for player pieces.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TheGrayAlien")]
+[assembly: AssemblyCompany("DemeoMods Team")]
 [assembly: AssemblyProduct("AdvancedStats")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
@@ -37,7 +37,7 @@ using MelonLoader;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 // Melon Loader.
-[assembly: MelonInfo(typeof(AdvancedStatsMod), "AdvancedStats", "1.0.0", "TheGrayAlien", "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(AdvancedStatsMod), "AdvancedStats", "1.0.0", "DemeoMods Team", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: VerifyLoaderVersion("0.5.7", true)]
