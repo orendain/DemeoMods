@@ -287,7 +287,12 @@
             if (attackerUnit.HasEffectState(EffectStateType.TorchPlayer))
             {
                 var torched = attackerUnit.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.TorchPlayer);
-                if (torched < 8)
+                if (torched == 1)
+                {
+                    attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
+                    attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, torched + 2);
+                }
+                else if (torched < 8)
                 {
                     attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.TorchPlayer);
                     attackerUnit.effectSink.AddStatusEffect(EffectStateType.TorchPlayer, torched + 1);

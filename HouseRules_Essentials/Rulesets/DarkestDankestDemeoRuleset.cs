@@ -970,6 +970,7 @@
                 { AbilityKey.BlindingLight, 1 },
                 { AbilityKey.LeapHeavy, 1 },
                 { AbilityKey.Leap, 1 },
+                { AbilityKey.BlindingLight, 2 },
                 { AbilityKey.Net, 0 },
             });
 
@@ -1004,6 +1005,30 @@
             var enableDoorsRule = new EnemyDoorOpeningEnabledRule(true);
             var pieceKeyholderRule = new PieceKeyholderRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
+            var smallLevelSequenceRule = new SmallLevelSequenceOverriddenRule(new List<string>
+            {
+                "TownsFloor05",
+                "SewersFloor08",
+                "SewersFloor11",
+                "ForestFloor02",
+                "ForestFloor01",
+                "ElvenFloor14",
+            });
+
+            var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
+            {
+                { "FloorOnePotionStand", 1 },
+                { "FloorOneMerchant", 0 },
+                { "FloorOneLootChests", 5 },
+                { "FloorOneSellswords", 1 },
+                { "FloorTwoPotionStand", 1 },
+                { "FloorTwoVillagers", 1 },
+                { "FloorTwoLootChests", 5 },
+                { "FloorTwoSellswords", 1 },
+                { "FloorThreeHealingFountains", 1 },
+                { "FloorThreeLootChests", 2 },
+                { "PacingSpikeSegmentFloorThreeBudget", 12 },
+            });
 
             return Ruleset.NewInstance(
                 name,
@@ -1033,7 +1058,9 @@
                 enemyHealthScaledRule,
                 enableDoorsRule,
                 pieceKeyholderRule,
-                enemyRespawnDisabledRule);
+                enemyRespawnDisabledRule,
+                smallLevelSequenceRule,
+                levelPropertiesRule);
         }
     }
 }
