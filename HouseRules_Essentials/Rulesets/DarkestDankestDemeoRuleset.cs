@@ -12,8 +12,8 @@
         internal static Ruleset Create()
         {
             const string name = "Darkest Dankest Demeo";
-            const string description = "Watch your step in this filthy dungeon... Can you defeat the darkness?";
-            const string longdesc = "<color=#FF99FF><b>* * * * * * </color><color=#FF0000>YOU'RE ALL BLIND!</color> <color=#FF99FF>* * * * * *</color>\nHIGHLY RECOMMENDED:</b> DON'T PLAY MULTIPLE OF THE SAME CLASS\n\n<color=#003300>Gain Torch buffs by defeating enemies\nLye will destroy all enemies except Keyholders and Bosses\nCritical hits will heal you for one (if hurt)</color>\n\n<color=#FFFFFF><b><u>Other ways to gain Torch:</u></b></color>\n<color=#00FF00>Assassin - Ballista kills\nBarbarian - Leviathan kills\nBard - Tornado kills\nGuardian - Behemoth kills\nHunter - Verochka kills\nSorcerer - Summoned Elemental kills\nWarlock - Cana kills\nWhoever hires him - Arly Owl kills</color>";
+            const string description = "Can you defeat the darkness in this filthy dungeon?";
+            const string longdesc = "\n<color=#770077>* * </color><color=#FF0000>A DARK GLOOMY MUSTINESS ENGULFS THE DUNGEON!</color> <color=#770077>* *</color>\n<u><b>RECOMMENDED:</u></b> Don't play multiple of the same class\n\n<color=#003300>Gain Torch buffs by defeating enemies\nLye will destroy all enemies except Keyholders and Bosses\nCritical hits will heal you for one (if hurt)</color>\n\n<color=#FFFFFF><b><u>Other ways to gain Torch:</u></b></color>\n<color=#090900>Assassin - Ballista kills\nBarbarian - Leviathan kills\nBard - Tornado kills\nGuardian - Behemoth kills\nHunter - Verochka kills\nSorcerer - Summoned Elemental kills\nWarlock - Cana kills\nWhoever hires him - Arly Owl kills</color>";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {

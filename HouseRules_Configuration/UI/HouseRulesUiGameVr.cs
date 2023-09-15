@@ -79,13 +79,7 @@
                     textLength -= 23;
                 }
 
-                foreach (Match match in Regex.Matches(HR.SelectedRuleset.Longdesc, "\n\n", RegexOptions.None))
-                {
-                    // Subtract 1 from returnCount if double return characters
-                    returnCount -= 1;
-                }
-
-                if (textLength > 975 || returnCount > 11)
+                if (textLength > 975)
                 {
                     // ConfigurationMod.Logger.Msg($"{(textLength - 650) / 65} from text of {textLength}");
                     numRules += 3 + ((textLength - 650) / 65);
@@ -97,16 +91,17 @@
                 }
                 else if (returnCount > 11)
                 {
-                    // ConfigurationMod.Logger.Msg($"{returnCount - 12} from JUST returns");
+                    // ConfigurationMod.Logger.Msg($"{returnCount - 11} from JUST returns");
                     numRules += returnCount - 11;
                 }
                 else if (returnCount + (textLength / (25 * returnCount)) > 11)
                 {
-                    // ConfigurationMod.Logger.Msg($"{returnCount + (textLength / (25 * returnCount)) - 12} from returns and text combined");
+                    // ConfigurationMod.Logger.Msg($"{returnCount + (textLength / (25 * returnCount)) - 11} from returns and text combined");
                     numRules += returnCount + (textLength / (25 * returnCount)) - 11;
                 }
             }
 
+            // ConfigurationMod.Logger.Msg($"returnCount: {returnCount} numRules: {numRules}");
             var background = new GameObject("Background");
             var scale = 1.5f;
             background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
