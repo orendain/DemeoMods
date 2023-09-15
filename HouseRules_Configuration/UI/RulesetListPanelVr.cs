@@ -185,6 +185,10 @@
             {
                 setName = "<color=#1D1E00><b>Friendly Competition</b></color>";
             }
+            else if (setName.Equals("Darkest Dankest Demeo"))
+            {
+                setName = "<color=#222200><b>Darkest Dankest Demeo</b></color>";
+            }
 
             _selectedText.text = $"Selected ruleset: {setName}";
         }

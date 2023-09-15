@@ -138,6 +138,10 @@
                 {
                     setName = "<color=#FFFF00><b>Friendly Competition</b></color>";
                 }
+                else if (setName.Equals("Darkest Dankest Demeo"))
+                {
+                    setName = "<color=#000000><b>Darkest Dankest Demeo</b></color>";
+                }
             }
 
             var container = new GameObject("Text");
