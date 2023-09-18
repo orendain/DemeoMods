@@ -53,6 +53,31 @@
             Vector3 position)
         {
             var actionSelect = Traverse.Create(__instance).Field<ActionSelect>("actionSelect").Value;
+            OnMiniatureGrabMoved(actionSelect, position);
+        }
+
+        private static void GrabbableMiniature_OnGrabMoved_Postfix(
+            GrabbableMiniature __instance,
+            Vector3 pos)
+        {
+            var actionSelect = Traverse.Create(__instance).Field<ActionSelect>("actionSelect").Value;
+            OnMiniatureGrabMoved(actionSelect, pos);
+        }
+
+        private static void BaseGrabbableMiniature_OnGrabStatusChanged_Postfix(bool status)
+        {
+            // Do not react when piece is first picked up.
+            if (status)
+            {
+                return;
+            }
+
+            var currentPiece = _gameContext.pieceAndTurnController.CurrentPiece;
+            _gameContext.tileHighlightController.UpdatePlayerMoveOutline(currentPiece);
+        }
+
+        private static void OnMiniatureGrabMoved(ActionSelect actionSelect, Vector3 position)
+        {
             if (actionSelect == null)
             {
                 return;
@@ -81,53 +106,6 @@
 
             _lastHoveredTile = hoveredTile;
             UpdatePlayerMoveOutline(hoveredTile);
-        }
-
-        private static void GrabbableMiniature_OnGrabMoved_Postfix(
-            GrabbableMiniature __instance,
-            Vector3 pos)
-        {
-            var actionSelect = Traverse.Create(__instance).Field<ActionSelect>("actionSelect").Value;
-            if (actionSelect == null)
-            {
-                return;
-            }
-
-            var hoveredTile = _gameContext.boardModel.GetTileHoverData(pos).tile;
-            var isMoveInvalid = !actionSelect.MovesInRange.IsMove(hoveredTile);
-            if (isMoveInvalid)
-            {
-                // No redraw required.
-                if (_lastHoveredTile == IntPoint2D.Invalid)
-                {
-                    return;
-                }
-
-                _lastHoveredTile = IntPoint2D.Invalid;
-                ResetPlayerMoveOutline();
-                return;
-            }
-
-            // No redraw required.
-            if (_lastHoveredTile == hoveredTile)
-            {
-                return;
-            }
-
-            _lastHoveredTile = hoveredTile;
-            UpdatePlayerMoveOutline(hoveredTile);
-        }
-
-        private static void BaseGrabbableMiniature_OnGrabStatusChanged_Postfix(bool status)
-        {
-            // Do not react when piece is first picked up.
-            if (status)
-            {
-                return;
-            }
-
-            var currentPiece = _gameContext.pieceAndTurnController.CurrentPiece;
-            _gameContext.tileHighlightController.UpdatePlayerMoveOutline(currentPiece);
         }
 
         private static void ResetPlayerMoveOutline()
