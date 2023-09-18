@@ -5,6 +5,10 @@
 'area: common':
 - Common/**
 
+'area: highlighter':
+  - .github/workflows/highlighter.yml
+  - Highlighter/**
+
 'area: houserules/configuration':
 - .github/workflows/houserules.yml
 - HouseRules_Configuration/**
