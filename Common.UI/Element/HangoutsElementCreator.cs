@@ -6,7 +6,7 @@
     using Bowser.Legacy;
     using UnityEngine;
 
-    internal class HangoutsElementCreator : IElementCreator
+    public class HangoutsElementCreator : IElementCreator
     {
         private const int CollisionLayer = 30;
 
@@ -40,7 +40,7 @@
         /// <summary>
         /// Returns true if the all UI dependencies are met.
         /// </summary>
-        internal static bool IsReady()
+        public static bool IsReady()
         {
             return VrElementCreator.IsReady();
         }
