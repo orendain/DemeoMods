@@ -85,10 +85,10 @@
     <Compile Include="UI\RoomFinderUiNonVr.cs" />
     <Compile Include="UI\RoomListPanelVr.cs" />
     <Compile Include="UI\RoomFinderUiVr.cs" />
+    <Compile Include="..\Common.UI\**\*.cs" Exclude="..\Common.UI\Properties\AssemblyInfo.cs;..\Common.UI\bin\**\*.*;..\Common.UI\obj\**\*.*;..\Common.UI\**\*.csproj;..\Common.UI\**\*.user;..\Common.UI\**\*.vstemplate">
+      <Link>Common.UI\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
     <Compile Include="UI\RoomListPanelNonVr.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common.UI\Common.UI.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="CopyToModsDir" AfterTargets="Build">
