@@ -23,6 +23,7 @@
             {
                 if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
                 {
+                    Logger.Msg($"buildIndex: {buildIndex}");
                     return;
                 }
 

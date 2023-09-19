@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
+    using Boardgame.Ui.LobbyMenu;
     using Common.UI;
     using Common.UI.Element;
     using HarmonyLib;
@@ -147,7 +148,7 @@
         private IEnumerable<List<Room>> PartitionRooms()
         {
             return _rooms
-                .Select((value, index) => new { group = index / MaxRoomsPerPage,  value })
+                .Select((value, index) => new { group = index / MaxRoomsPerPage, value })
                 .GroupBy(pair => pair.group)
                 .Select(group => group.Select(g => g.value).ToList());
         }
@@ -250,7 +251,11 @@
             return () =>
             {
                 RoomFinderMod.Logger.Msg($"Joining room [{roomCode}].");
-                Traverse.Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby.GetLobbyMenuController)
+                var lobbyMenuController = Traverse
+                    .Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby)
+                    .Field<LobbyMenuController>("lobbyMenuController")
+                    .Value;
+                Traverse.Create(lobbyMenuController)
                     .Method("JoinGame", roomCode, true)
                     .GetValue();
             };

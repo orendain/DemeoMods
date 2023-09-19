@@ -1,10 +1,13 @@
 ﻿namespace RoomFinder
 {
     using Boardgame;
+    using Boardgame.Ui.LobbyMenu;
 
     internal class SharedState
     {
         internal GameContext GameContext { get; set; }
+
+        internal LobbyMenuController LobbyMenuController { get; set; }
 
         internal LobbyMatchmakingController LobbyMatchmakingController { get; set; }
 
