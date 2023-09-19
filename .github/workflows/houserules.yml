@@ -28,14 +28,14 @@ jobs:
           C:\msys64\usr\bin\wget.exe -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/180eb5a6465eda285066704d89cef8d5b9109ee6/2023-09-07.zip
           7z x deps.zip
 
-      - name: Build HouseRules_Core
-        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Core\HouseRules_Core.csproj
+      - name: Build HouseRules.Core
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules.Core\HouseRules.Core.csproj
 
-      - name: Build HouseRules_Essentials
-        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Essentials\HouseRules_Essentials.csproj
+      - name: Build HouseRules.Essentials
+        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules.Essentials\HouseRules.Essentials.csproj
 
-      - name: Build HouseRules_Configuration
-        run: msbuild -restore -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules_Configuration\HouseRules_Configuration.csproj
+      - name: Build HouseRules.Configuration
+        run: msbuild -restore -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" HouseRules.Configuration\HouseRules.Configuration.csproj
 
       - name: Retrieve Newtonsoft
         run: |
@@ -45,9 +45,9 @@ jobs:
       - name: Assemble into Bundle
         run: |
           mkdir Bundle\Mods
-          xcopy HouseRules_Core\bin\Release\HouseRules_Core.dll Bundle\Mods
-          xcopy HouseRules_Essentials\bin\Release\HouseRules_Essentials.dll Bundle\Mods
-          xcopy HouseRules_Configuration\bin\Release\HouseRules_Configuration.dll Bundle\Mods
+          xcopy HouseRules.Core\bin\Release\HouseRules.Core.dll Bundle\Mods
+          xcopy HouseRules.Essentials\bin\Release\HouseRules.Essentials.dll Bundle\Mods
+          xcopy HouseRules.Configuration\bin\Release\HouseRules.Configuration.dll Bundle\Mods
           mkdir Bundle\UserLibs
           xcopy Newtonsoft.Json.dll Bundle\UserLibs
           mkdir Bundle\UserData\HouseRules\ExampleRulesets
