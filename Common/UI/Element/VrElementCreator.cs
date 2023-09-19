@@ -1,6 +1,7 @@
 ﻿namespace Common.UI.Element
 {
     using System;
+    using System.Text;
     using TMPro;
     using UnityEngine;
 
