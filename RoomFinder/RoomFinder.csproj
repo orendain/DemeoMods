@@ -31,7 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>$(DemeoVrDir)\MelonLoader\0Harmony.dll</HintPath>
