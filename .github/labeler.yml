@@ -2,8 +2,8 @@
 - .github/workflows/advancedstats.yml
 - AdvancedStats/**
 
-'area: common':
-- Common/**
+'area: common/ui':
+- Common.UI/**
 
 'area: highlighter':
   - .github/workflows/highlighter.yml
