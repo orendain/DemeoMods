@@ -1,7 +1,6 @@
 ﻿namespace Common.UI.Element
 {
     using System;
-    using System.Text;
     using UnityEngine;
 
     public interface IElementCreator
