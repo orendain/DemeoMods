@@ -7,7 +7,7 @@
     using UnityEngine;
     using UnityEngine.UI;
 
-    internal class NonVrElementCreator : IElementCreator
+    public class NonVrElementCreator : IElementCreator
     {
         public const int NormalFontSize = 22;
         public const int ButtonFontSize = 35;
@@ -45,7 +45,7 @@
         /// <summary>
         /// Returns true if the all UI dependencies are met.
         /// </summary>
-        internal static bool IsReady()
+        public static bool IsReady()
         {
             return NonVrResourceTable.IsReady();
         }

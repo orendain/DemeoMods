@@ -6,8 +6,8 @@
 - Common.UI/**
 
 'area: highlighter':
-  - .github/workflows/highlighter.yml
-  - Highlighter/**
+- .github/workflows/highlighter.yml
+- Highlighter/**
 
 'area: houserules/configuration':
 - .github/workflows/houserules.yml
