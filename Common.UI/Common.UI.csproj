@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common</AssemblyName>
+    <AssemblyName>Common.UI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -68,17 +68,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Element\HangoutsElementCreator.cs" />
+    <Compile Include="Element\IElementCreator.cs" />
+    <Compile Include="Element\NonVrElementCreator.cs" />
+    <Compile Include="Element\VrElementCreator.cs" />
+    <Compile Include="Environments.cs" />
+    <Compile Include="PageStack.cs" />
+    <Compile Include="PageStackNavigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CommonModule.cs" />
-    <Compile Include="UI\PageStack.cs" />
-    <Compile Include="UI\Element\HangoutsElementCreator.cs" />
-    <Compile Include="UI\Element\IElementCreator.cs" />
-    <Compile Include="UI\Element\NonVrElementCreator.cs" />
-    <Compile Include="UI\Element\VrElementCreator.cs" />
-    <Compile Include="UI\PageStackNavigation.cs" />
-    <Compile Include="UI\Resource\NonVrResourceTable.cs" />
-    <Compile Include="UI\Resource\VrResourceTable.cs" />
-    <Compile Include="UI\Environments.cs" />
+    <Compile Include="Resource\NonVrResourceTable.cs" />
+    <Compile Include="Resource\VrResourceTable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

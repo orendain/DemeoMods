@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{45B0C288-5514-4914-92BB-2FCF1E696C28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.UI", "Common.UI\Common.UI.csproj", "{45B0C288-5514-4914-92BB-2FCF1E696C28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomFinder", "RoomFinder\RoomFinder.csproj", "{5D106A6F-2A66-4731-877A-3C315F0CB18C}"
 EndProject

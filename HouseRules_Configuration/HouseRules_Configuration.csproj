@@ -73,8 +73,8 @@
     <Compile Include="ConfigurationMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExampleRulesetExporter.cs" />
-    <Compile Include="..\Common\**\*.cs" Exclude="..\Common\Properties\AssemblyInfo.cs;..\Common\bin\**\*.*;..\Common\obj\**\*.*;..\Common\**\*.csproj;..\Common\**\*.user;..\Common\**\*.vstemplate">
-      <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    <Compile Include="..\Common.UI\**\*.cs" Exclude="..\Common.UI\Properties\AssemblyInfo.cs;..\Common.UI\bin\**\*.*;..\Common.UI\obj\**\*.*;..\Common.UI\**\*.csproj;..\Common.UI\**\*.user;..\Common.UI\**\*.vstemplate">
+      <Link>Common.UI\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Compile>
     <Compile Include="RevolutionsChecker.cs" />
     <Compile Include="UI\HouseRulesUiGameVr.cs" />
