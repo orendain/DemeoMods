@@ -2273,21 +2273,6 @@
           "counterAttackDamage": 0,
           "applyAfterDissipate": "Diseased",
           "useOnDissipate": 0
-        },
-        {
-          "effectStateType": "Thorns",
-          "durationTurns": 2,
-          "tickWhen": "EndTurn",
-          "damagePerTurn": 1,
-          "clearOnNewLevel": false,
-          "damageTags": null,
-          "healPerTurn": 0,
-          "healthBoost": 0,
-          "killOnExpire": false,
-          "counterAttackDirections": 0,
-          "counterAttackDamage": 0,
-          "applyAfterDissipate": "Diseased",
-          "useOnDissipate": 0
         }
       ]
     },
