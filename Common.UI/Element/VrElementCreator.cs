@@ -7,7 +7,7 @@
 
     // Helpful discussion on transforms:
     // https://forum.unity.com/threads/whats-the-best-practice-for-moving-recttransforms-in-script.264495
-    internal class VrElementCreator : IElementCreator
+    public class VrElementCreator : IElementCreator
     {
         public const int NormalFontSize = 5;
         public const int ButtonFontSize = 7;
@@ -47,7 +47,7 @@
         /// <summary>
         /// Returns true if the all UI dependencies are met.
         /// </summary>
-        internal static bool IsReady()
+        public static bool IsReady()
         {
             return VrResourceTable.IsReady();
         }

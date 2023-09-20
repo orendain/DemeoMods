@@ -4,7 +4,7 @@
     using System.Linq;
     using UnityEngine;
 
-    internal class NonVrResourceTable
+    public class NonVrResourceTable
     {
         private static NonVrResourceTable _instance;
 

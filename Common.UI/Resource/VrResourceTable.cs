@@ -5,7 +5,7 @@
     using TMPro;
     using UnityEngine;
 
-    internal class VrResourceTable
+    public class VrResourceTable
     {
         private static VrResourceTable _instance;
 
