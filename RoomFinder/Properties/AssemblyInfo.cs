@@ -37,7 +37,7 @@ using RoomFinder;
 [assembly: AssemblyFileVersion(BuildVersion.Version)]
 
 // Melon Loader.
-[assembly: MelonInfo(typeof(RoomFinderMod), "RoomFinder", BuildVersion.Version,"DemeoMods Team", "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(RoomFinderMod), "RoomFinder", BuildVersion.Version, "DemeoMods Team", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("566788")]

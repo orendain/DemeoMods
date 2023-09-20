@@ -37,7 +37,7 @@ using MelonLoader;
 [assembly: AssemblyFileVersion(BuildVersion.Version)]
 
 // Melon Loader.
-[assembly: MelonInfo(typeof(CoreMod), "HouseRules: Core", BuildVersion.Version,"DemeoMods Team", "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(CoreMod), "HouseRules: Core", BuildVersion.Version, "DemeoMods Team", "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("574512")]
