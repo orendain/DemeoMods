@@ -5,17 +5,21 @@
 'area: common/ui':
 - Common.UI/**
 
+'area: highlighter':
+- .github/workflows/highlighter.yml
+- Highlighter/**
+
 'area: houserules/configuration':
 - .github/workflows/houserules.yml
-- HouseRules_Configuration/**
+- HouseRules.Configuration/**
 
 'area: houserules/core':
 - .github/workflows/houserules.yml
-- HouseRules_Core/**
+- HouseRules.Core/**
 
 'area: houserules/essentials':
 - .github/workflows/houserules.yml
-- HouseRules_Essentials/**
+- HouseRules.Essentials/**
 
 'area: roomcode':
 - .github/workflows/roomcode.yml

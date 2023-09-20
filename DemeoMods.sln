@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.UI", "Common.UI\Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomFinder", "RoomFinder\RoomFinder.csproj", "{5D106A6F-2A66-4731-877A-3C315F0CB18C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules_Core", "HouseRules_Core\HouseRules_Core.csproj", "{B412463F-A4F7-46CE-AC4E-37448762B45B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules.Core", "HouseRules.Core\HouseRules.Core.csproj", "{B412463F-A4F7-46CE-AC4E-37448762B45B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules_Essentials", "HouseRules_Essentials\HouseRules_Essentials.csproj", "{8FC09405-8E06-4090-BB68-94882F0A52D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules.Essentials", "HouseRules.Essentials\HouseRules.Essentials.csproj", "{8FC09405-8E06-4090-BB68-94882F0A52D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkipIntro", "SkipIntro\SkipIntro.csproj", "{E986568C-684F-4DD3-980C-8D8443982EC6}"
 EndProject
@@ -34,7 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5
 		docs\images\skipintro_icon.jpg = docs\images\skipintro_icon.jpg
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules_Configuration", "HouseRules_Configuration\HouseRules_Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules.Configuration", "HouseRules.Configuration\HouseRules.Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomCode", "RoomCode\RoomCode.csproj", "{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}"
 EndProject
@@ -59,6 +59,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExampleRulesets", "ExampleR
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedStats", "AdvancedStats\AdvancedStats.csproj", "{A1850892-02BC-41F0-9131-E63CDD61E8DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Highlighter", "Highlighter\Highlighter.csproj", "{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +100,10 @@ Global
 		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
