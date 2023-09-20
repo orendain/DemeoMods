@@ -11,10 +11,11 @@
         public override string Description => "A Reloaded/Revolutions style game is enabled";
 
         private static bool _isActivated;
+        private static float _globalGameType;
         private static bool _isReconnect;
         private static bool _checkPlayers;
         private static int _numPlayers = 1;
-        private static int _gameType;
+        private readonly int _gameType;
 
         public RevolutionsRule(int gameType)
         {
@@ -23,7 +24,11 @@
 
         public int GetConfigObject() => _gameType;
 
-        protected override void OnActivate(GameContext gameContext) => _isActivated = true;
+        protected override void OnActivate(GameContext gameContext)
+        {
+            _globalGameType = _gameType;
+            _isActivated = true;
+        }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
@@ -109,7 +114,7 @@
                 }
             }
 
-            // Handle fixing character stats and cards when the Host reconnects and becomes the Master Client again
+            // Handle fixing character stats for and cards Revolutions/Reloaded game when the Host reconnects and becomes the Master Client again
             if (GameStateMachine.IsMasterClient && !piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 42 && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
             {
                 _isReconnect = true;
@@ -168,6 +173,19 @@
                             originalOwner = -1,
                             replenishCooldown = 1,
                         });
+
+                        if (piece.inventory.HasAbility(AbilityKey.Overcharge))
+                        {
+                            for (var i = 0; i < piece.inventory.Items.Count; i++)
+                            {
+                                value = piece.inventory.Items[i];
+                                if (value.abilityKey == AbilityKey.Overcharge)
+                                {
+                                    piece.inventory.Items.Remove(value);
+                                    break;
+                                }
+                            }
+                        }
                     }
 
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, 1);
@@ -898,7 +916,7 @@
                 return;
             }
 
-            __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, _gameType);
+            __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, _globalGameType);
         }
     }
 }

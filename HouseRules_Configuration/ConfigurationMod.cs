@@ -96,6 +96,7 @@
             {
                 if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
                 {
+                    // Logger.Msg($"PC buildIndex: {buildIndex}");
                     return;
                 }
 
@@ -114,6 +115,7 @@
             }
             else
             {
+                // Logger.Msg($"VR buildIndex: {buildIndex}");
                 bool revolutions = false;
                 bool progressive = false;
                 if (HR.SelectedRuleset != Ruleset.None)
