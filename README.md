@@ -69,10 +69,10 @@ This framework allows the definition of modular gameplay modifications (or
 
 Rulesets can be configured as JSON files stored within the game's directory.
 
-See the [HouseRules_Core readme](HouseRules_Core/README.md) for information about the
+See the [HouseRules.Core readme](HouseRules.Core/README.md) for information about the
 HouseRules framework.
 
-See the [HouseRules_Essentials readme](HouseRules_Essentials/README.md) for a list of all predefined rules and rulesets.
+See the [HouseRules.Essentials readme](HouseRules.Essentials/README.md) for a list of all predefined rules and rulesets.
 
 #### How it works
 
