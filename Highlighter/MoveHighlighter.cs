@@ -72,8 +72,7 @@
                 return;
             }
 
-            var currentPiece = _gameContext.pieceAndTurnController.CurrentPiece;
-            _gameContext.tileHighlightController.UpdatePlayerMoveOutline(currentPiece);
+            ClearHighlightedLineOfSight();
         }
 
         private static void OnMiniatureGrabMoved(ActionSelect actionSelect, Vector3 position)
@@ -94,7 +93,7 @@
                 }
 
                 _lastHoveredTile = IntPoint2D.Invalid;
-                ResetPlayerMoveOutline();
+                ClearHighlightedLineOfSight();
                 return;
             }
 
@@ -105,25 +104,15 @@
             }
 
             _lastHoveredTile = hoveredTile;
-            UpdatePlayerMoveOutline(hoveredTile);
+            HighlightLineOfSight(hoveredTile);
         }
 
-        private static void ResetPlayerMoveOutline()
+        private static void ClearHighlightedLineOfSight()
         {
-            var currentPiece = _gameContext.pieceAndTurnController.CurrentPiece;
-            var moveSet = _gameContext.boardModel.GetMovesInRange(
-                    currentPiece.gridPos,
-                    currentPiece.GetMoveRange(),
-                    currentPiece);
-            TileHighlightController.PlayerPieceTurnHighlight?.UpdateHighlights(
-                moveSet,
-                TileHighlight.HighlightType.Friendly,
-                null,
-                _gameContext.boardModel);
-            TileHighlightController.PlayerPieceTurnHighlight?.FadeIn();
+            TileHighlightController.TileHighLight?.Clear();
         }
 
-        private static void UpdatePlayerMoveOutline(IntPoint2D hoveredTile)
+        private static void HighlightLineOfSight(IntPoint2D hoveredTile)
         {
             var currentPiece = _gameContext.pieceAndTurnController.CurrentPiece;
             var originalGridPos = currentPiece.gridPos;
@@ -134,12 +123,12 @@
                 .CreateMoveSet(currentPiece, _gameContext.pieceAndTurnController, _gameContext.boardModel);
             currentPiece.gridPos = originalGridPos;
 
-            TileHighlightController.PlayerPieceTurnHighlight?.UpdateHighlights(
+            TileHighlightController.TileHighLight?.UpdateHighlights(
                 moveSet,
                 TileHighlight.HighlightType.ElvenKingShockwave,
                 null,
                 _gameContext.boardModel);
-            TileHighlightController.PlayerPieceTurnHighlight?.FadeIn();
+            TileHighlightController.TileHighLight?.FadeIn();
         }
     }
 }
