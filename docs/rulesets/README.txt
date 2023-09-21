@@ -8,7 +8,7 @@ An introduction to creating rulesets:
 https://github.com/orendain/DemeoMods/wiki/Creating-Custom-Rulesets-for-HouseRules
 
 A list of rules available to use, and how to configure them:
-https://github.com/orendain/DemeoMods/tree/main/HouseRules_Essentials#rules-and-configurations
+https://github.com/orendain/DemeoMods/tree/main/HouseRules.Essentials#rules-and-configurations
 
 To have HouseRules load your custom ruleset, take the file and move it out of
 this `ExampleRulesets` folder. Your custom ruleset file should be in the
