@@ -1,7 +1,6 @@
 ﻿namespace RoomCode
 {
     using System.Linq;
-    using System.Reflection;
     using HarmonyLib;
 
     internal static class ModPatcher
@@ -33,14 +32,14 @@
 
             if (_roomCodeAttempts >= RoomCodeMod.RoomCodes.Count)
             {
-                RoomCodeMod.Logger.Msg("All proposed room codes unavailable.");
+                RoomCodeMod.Log.LogInfo("All proposed room codes unavailable.");
                 return true;
             }
 
             __result = RoomCodeMod.RoomCodes.ElementAt(_roomCodeAttempts);
             ++_roomCodeAttempts;
 
-            RoomCodeMod.Logger.Msg($"Proposing room code: {__result}");
+            RoomCodeMod.Log.LogDebug($"Proposing room code: {__result}");
             return false;
         }
 

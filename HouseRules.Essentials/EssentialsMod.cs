@@ -1,18 +1,28 @@
 ﻿namespace HouseRules.Essentials
 {
+    using BepInEx;
+    using BepInEx.Logging;
     using HouseRules.Core;
     using HouseRules.Essentials.Rules;
     using HouseRules.Essentials.Rulesets;
-    using MelonLoader;
 
-    internal class EssentialsMod : MelonMod
+    [BepInPlugin("com.orendain.demeomods.houserules.essentials", "HouseRules.Essentials", "2.0.0")]
+    [BepInDependency("com.orendain.demeomods.houserules.core", "2.0.0")]
+    public class EssentialsMod : BaseUnityPlugin
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Essentials");
+        internal static ManualLogSource Log { get; private set; }
 
-        public override void OnInitializeMelon()
+        private void Awake()
         {
+            Log = Logger;
             RegisterRuleTypes();
+            Log.LogDebug("Done registering rules.");
+        }
+
+        private void Start()
+        {
             RegisterRulesets();
+            Log.LogDebug("Done registering rulesets.");
         }
 
         private static void RegisterRuleTypes()

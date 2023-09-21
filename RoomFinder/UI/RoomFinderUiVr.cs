@@ -30,11 +30,11 @@
                        .FindObjectsOfTypeAll<charactersoundlistener>()
                        .Count(x => x.name == "MenuBox_BindPose") < 2)
             {
-                RoomFinderMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
+                RoomFinderMod.Log.LogDebug("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            RoomFinderMod.Logger.Msg("UI dependencies ready. Proceeding with initialization.");
+            RoomFinderMod.Log.LogDebug("UI dependencies ready. Proceeding with initialization.");
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = VrElementCreator.Instance();
@@ -44,7 +44,7 @@
                 .First(x => x.name == "MenuBox_BindPose").transform;
 
             Initialize();
-            RoomFinderMod.Logger.Msg("Initialization complete.");
+            RoomFinderMod.Log.LogDebug("Initialization complete.");
         }
 
         private void Update()
@@ -128,8 +128,8 @@
                     .Select(Room.Parse)
                     .ToList();
 
-            RoomFinderMod.Logger.Msg($"Found {unfilteredRooms.Count} total rooms.");
-            RoomFinderMod.Logger.Msg($"Listing {filteredRooms.Count} available rooms.");
+            RoomFinderMod.Log.LogInfo($"Found {unfilteredRooms.Count} total rooms.");
+            RoomFinderMod.Log.LogInfo($"Listing {filteredRooms.Count} available rooms.");
 
             _roomListPanel.UpdateRooms(filteredRooms);
         }

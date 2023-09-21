@@ -1,14 +1,19 @@
 ﻿namespace SkipIntro
 {
-    using MelonLoader;
+    using BepInEx;
+    using BepInEx.Logging;
+    using HarmonyLib;
 
-    internal class SkipIntroMod : MelonMod
+    [BepInPlugin("com.orendain.demeomods.skipintro", "SkipIntro", "2.0.0")]
+    public class SkipIntroMod : BaseUnityPlugin
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("SkipIntro");
+        internal static ManualLogSource Log { get; private set; }
 
-        public override void OnInitializeMelon()
+        private void Awake()
         {
-            ModPatcher.Patch(HarmonyInstance);
+            Log = Logger;
+            var harmony = new Harmony("com.orendain.demeomods.skipintro");
+            ModPatcher.Patch(harmony);
         }
     }
 }

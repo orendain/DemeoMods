@@ -250,7 +250,7 @@
         {
             return () =>
             {
-                RoomFinderMod.Logger.Msg($"Joining room [{roomCode}].");
+                RoomFinderMod.Log.LogDebug($"Joining room [{roomCode}].");
                 var lobbyMenuController = Traverse
                     .Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby)
                     .Field<LobbyMenuController>("lobbyMenuController")

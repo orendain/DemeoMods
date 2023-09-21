@@ -1,12 +1,15 @@
 ﻿namespace Highlighter
 {
-    using MelonLoader;
+    using BepInEx;
+    using HarmonyLib;
 
-    internal class HighlighterMod : MelonMod
+    [BepInPlugin("com.orendain.demeomods.highlighter", "Highlighter", "2.0.0")]
+    public class HighlighterMod : BaseUnityPlugin
     {
-        public override void OnInitializeMelon()
+        private void Awake()
         {
-            MoveHighlighter.Patch(HarmonyInstance);
+            var harmony = new Harmony("com.orendain.demeomods.highlighter");
+            MoveHighlighter.Patch(harmony);
         }
     }
 }

@@ -1,20 +1,31 @@
 ﻿namespace AdvancedStats
 {
-    using MelonLoader;
+    using BepInEx;
+    using HarmonyLib;
+    using UnityEngine.SceneManagement;
 
-    internal class AdvancedStatsMod : MelonMod
+    [BepInPlugin("com.orendain.demeomods.advancedstats", "AdvancedStats", "2.0.0")]
+    public class AdvancedStatsMod : BaseUnityPlugin
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("AdvancedStats");
+        private Harmony _harmony;
 
-        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+        private void Awake()
         {
+            _harmony = new Harmony("com.orendain.demeomods.advancedstats");
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            var sceneName = scene.name;
+
             if (sceneName == "StartupDesktop")
             {
-                NonVRAdvancedStatsView.Patch(HarmonyInstance);
+                NonVRAdvancedStatsView.Patch(_harmony);
             }
             else if (sceneName.Contains("Startup"))
             {
-                VRAdvancedStatsView.Patch(HarmonyInstance);
+                VRAdvancedStatsView.Patch(_harmony);
             }
         }
     }

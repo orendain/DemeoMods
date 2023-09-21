@@ -23,18 +23,18 @@
         {
             while (!NonVrElementCreator.IsReady())
             {
-                ConfigurationMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
+                ConfigurationMod.Log.LogDebug("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            ConfigurationMod.Logger.Msg("UI dependencies ready. Proceeding with initialization.");
+            ConfigurationMod.Log.LogDebug("UI dependencies ready. Proceeding with initialization.");
 
             _resourceTable = NonVrResourceTable.Instance();
             _elementCreator = NonVrElementCreator.Instance();
             _rulesetPanel = RulesetListPanelNonVr.NewInstance(HR.Rulebook, _elementCreator);
 
             Initialize();
-            ConfigurationMod.Logger.Msg("Initialization complete.");
+            ConfigurationMod.Log.LogDebug("Initialization complete.");
         }
 
         private void Initialize()

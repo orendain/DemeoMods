@@ -27,11 +27,11 @@
                        .FindObjectsOfTypeAll<GameObject>()
                        .Count(x => x.name == "~LeanTween") < 1)
             {
-                ConfigurationMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
+                ConfigurationMod.Log.LogDebug("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            ConfigurationMod.Logger.Msg("UI dependencies ready. Proceeding with initialization.");
+            ConfigurationMod.Log.LogDebug("UI dependencies ready. Proceeding with initialization.");
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = VrElementCreator.Instance();
@@ -40,7 +40,7 @@
                 .First(x => x.name == "~LeanTween").transform;
 
             Initialize();
-            ConfigurationMod.Logger.Msg("Initialization complete.");
+            ConfigurationMod.Log.LogDebug("Initialization complete.");
         }
 
         private void Initialize()
@@ -163,7 +163,7 @@
                     catch (Exception e)
                     {
                         // TODO(orendain): Consider rolling back or disable rule.
-                        ConfigurationMod.Logger.Warning($"Failed to successfully call on rule [{rule.GetType()}]: {e}");
+                        ConfigurationMod.Log.LogWarning($"Failed to successfully call on rule [{rule.GetType()}]: {e}");
                     }
                 }
             }

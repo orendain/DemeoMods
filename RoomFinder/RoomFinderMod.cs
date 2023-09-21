@@ -1,33 +1,43 @@
 ﻿namespace RoomFinder
 {
-    using MelonLoader;
+    using BepInEx;
+    using BepInEx.Logging;
+    using HarmonyLib;
     using RoomFinder.UI;
     using UnityEngine;
+    using UnityEngine.SceneManagement;
 
-    internal class RoomFinderMod : MelonMod
+    [BepInPlugin("com.orendain.demeomods.roomfinder", "RoomFinder", "2.0.0")]
+    public class RoomFinderMod : BaseUnityPlugin
     {
         private const int PC1LobbySceneIndex = 1;
         private const int PC2LobbySceneIndex = 3;
 
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("RoomFinder");
+        internal static ManualLogSource Log { get; private set; }
+
         internal static readonly SharedState SharedState = SharedState.NewInstance();
 
-        public override void OnInitializeMelon()
+        private void Awake()
         {
-            Patcher.Patch(HarmonyInstance);
+            Log = Logger;
+            var harmony = new Harmony("com.orendain.demeomods.roomfinder");
+            Patcher.Patch(harmony);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            var buildIndex = scene.buildIndex;
+
             if (MotherbrainGlobalVars.IsRunningOnNonVRPlatform)
             {
                 if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
                 {
-                    MelonLogger.Msg($"{buildIndex} scene failed to load PC lobby");
+                    Logger.LogInfo($"{buildIndex} scene failed to load PC lobby");
                     return;
                 }
 
-                Logger.Msg("Recognized lobby in PC. Loading UI.");
+                Logger.LogDebug("Recognized lobby in PC. Loading UI.");
                 _ = new GameObject("RoomFinderUiNonVr", typeof(RoomFinderUiNonVr));
                 return;
             }
@@ -37,7 +47,7 @@
                 return;
             }
 
-            Logger.Msg("Recognized lobby in VR. Loading UI.");
+            Logger.LogDebug("Recognized lobby in VR. Loading UI.");
             _ = new GameObject("RoomFinderUiVr", typeof(RoomFinderUiVr));
         }
     }

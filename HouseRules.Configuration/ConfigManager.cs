@@ -4,18 +4,16 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using BepInEx;
     using HarmonyLib;
+    using HouseRules.Core;
     using HouseRules.Core.Types;
-    using MelonLoader;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     public class ConfigManager
     {
-        internal static readonly string RulesetDirectory = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules");
-
-        private readonly MelonPreferences_Entry<string> _defaultRulesetEntry;
-        private readonly MelonPreferences_Entry<bool> _loadRulesetsFromConfigEntry;
+        internal static readonly string RulesetDirectory = Path.Combine(Paths.ConfigPath, "HouseRules");
 
         internal static ConfigManager NewInstance()
         {
@@ -24,21 +22,8 @@
 
         private ConfigManager()
         {
-            var configCategory = MelonPreferences.CreateCategory("HouseRules");
-            _defaultRulesetEntry = configCategory.CreateEntry("defaultRuleset", string.Empty);
-            _loadRulesetsFromConfigEntry = configCategory.CreateEntry("loadRulesetsFromConfig", true);
             Directory.CreateDirectory(RulesetDirectory);
             SetDefaultSerializationSettings();
-        }
-
-        internal string GetDefaultRuleset()
-        {
-            return _defaultRulesetEntry.Value;
-        }
-
-        internal bool GetLoadRulesetsFromConfig()
-        {
-            return _loadRulesetsFromConfigEntry.Value;
         }
 
         /// <summary>
@@ -86,7 +71,7 @@
                 }
                 catch (Exception e)
                 {
-                    ConfigurationMod.Logger.Warning($"Failed to write rule entry {rule.GetType().Name} to config. Skipping that rule: {e}");
+                    ConfigurationMod.Log.LogWarning($"Failed to write rule entry {rule.GetType().Name} to config. Skipping that rule: {e}");
                 }
             }
 
@@ -102,7 +87,7 @@
             var rulesetFilePath = Path.Combine(directory, $"{rulesetFilename}.json");
             File.WriteAllText(rulesetFilePath, serializedRuleset);
 
-            ConfigurationMod.Logger.Msg($"Successfully exported ruleset to: {rulesetFilePath}");
+            ConfigurationMod.Log.LogInfo($"Successfully exported ruleset to: {rulesetFilePath}");
             return rulesetFilePath;
         }
 
@@ -138,26 +123,19 @@
                         throw new InvalidOperationException($"Failed to read rule entry [{ruleConfigEntry.Rule}] of ruleset [{rulesetConfig.Name}].", e);
                     }
 
-                    ConfigurationMod.Logger.Warning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
+                    ConfigurationMod.Log.LogWarning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
                 }
             }
 
-            ConfigurationMod.Logger.Msg($"Successfully imported ruleset from: {fileName}");
+            ConfigurationMod.Log.LogInfo($"Successfully imported ruleset from: {fileName}");
             return Ruleset.NewInstance(rulesetConfig.Name, rulesetConfig.Description, rulesetConfig.Longdesc, rules);
         }
 
         private static (Type RuleType, Type ConfigType) FindRuleAndConfigType(string ruleName)
         {
-            var ruleType = AccessTools.TypeByName(ruleName) ?? AccessTools.TypeByName(ExpandRuleName(ruleName));
-
-            if (ruleType == null)
+            if (!TryFindRuleType(ruleName, out var ruleType))
             {
-                throw new ArgumentException($"Could not find a rule type represented by the name: {ruleName}");
-            }
-
-            if (!typeof(Rule).IsAssignableFrom(ruleType))
-            {
-                throw new ArgumentException($"Failed to recognize the type found as representing a rule: {ruleType.FullName}");
+                throw new ArgumentException($"Could not find a registered rule represented by name: {ruleName}");
             }
 
             foreach (var i in ruleType.GetInterfaces())
@@ -204,6 +182,25 @@
                 Formatting = Formatting.Indented,
                 Converters = { new Newtonsoft.Json.Converters.StringEnumConverter() },
             };
+        }
+
+        /// <summary>
+        /// Finds the registered rule type represented by the specified rule name, returning false
+        /// if no matching rule has been registered.
+        /// </summary>
+        private static bool TryFindRuleType(string ruleName, out Type ruleType)
+        {
+            foreach (var r in HR.Rulebook.RuleTypes)
+            {
+                if (ruleName.Equals(r.Name) || ExpandRuleName(ruleName).Equals(r.Name))
+                {
+                    ruleType = r;
+                    return true;
+                }
+            }
+
+            ruleType = null;
+            return false;
         }
 
         /// <summary>

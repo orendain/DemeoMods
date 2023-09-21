@@ -1,100 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5D106A6F-2A66-4731-877A-3C315F0CB18C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RoomFinder</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>RoomFinder</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <Description>Lists all public rooms and select the one to join.</Description>
+    <Version>2.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>$(DemeoVrDir)\MelonLoader\0Harmony.dll</HintPath>
-    </Reference>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
+    <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile" />
+    <PackageReference Include="Fody" Version="6.8.0" />
+    <PackageReference Include="Costura.Fody" Version="5.7.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common.UI\Common.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="BowserCore">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserCore.dll</HintPath>
-    </Reference>
-    <Reference Include="BowserCoreDataTypesRuntime">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserCoreDataTypesRuntime.dll</HintPath>
+      <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="BowserInteractionRuntime">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserInteractionRuntime.dll</HintPath>
+      <HintPath>$(DemeoAssembliesPath)\BowserInteractionRuntime.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="BowserLegacyRuntime">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\BowserLegacyRuntime.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
+      <HintPath>$(DemeoAssembliesPath)\BowserLegacyRuntime.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Photon3Unity3D.dll</HintPath>
+      <HintPath>$(DemeoAssembliesPath)\Photon3Unity3D.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="PhotonRealtime">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonRealtime.dll</HintPath>
-    </Reference>
-    <Reference Include="PhotonUnityNetworking">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>$(DemeoAssembliesPath)\PhotonRealtime.dll</HintPath>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(DemeoAssembliesPath)\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(DemeoAssembliesPath)\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BuildVersion.cs" />
-    <Compile Include="RoomFinderMod.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Patcher.cs" />
-    <Compile Include="SharedState.cs" />
-    <Compile Include="UI\Room.cs" />
-    <Compile Include="UI\RoomFinderUiNonVr.cs" />
-    <Compile Include="UI\RoomListPanelVr.cs" />
-    <Compile Include="UI\RoomFinderUiVr.cs" />
-    <Compile Include="..\Common.UI\**\*.cs" Exclude="..\Common.UI\Properties\AssemblyInfo.cs;..\Common.UI\bin\**\*.*;..\Common.UI\obj\**\*.*;..\Common.UI\**\*.csproj;..\Common.UI\**\*.user;..\Common.UI\**\*.vstemplate">
-      <Link>Common.UI\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </Compile>
-    <Compile Include="UI\RoomListPanelNonVr.cs" />
+
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="CopyToModsDir" AfterTargets="Build">
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoVrDir)\Mods" />
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoPcDir)\Mods" />
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusVrDir)\Mods" />
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusPcDir)\Mods" />
-  </Target>
 </Project>

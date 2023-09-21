@@ -7,7 +7,7 @@
 
     public class Rulebook
     {
-        internal HashSet<Type> RuleTypes { get; }
+        public HashSet<Type> RuleTypes { get; }
 
         public HashSet<Ruleset> Rulesets { get; }
 
@@ -25,7 +25,7 @@
         // TODO(orendain): Disallow registration after a certain point in init process.
         public void Register(Type ruleType)
         {
-            CoreMod.Logger.Msg($"Registering rule type: {ruleType}");
+            CoreMod.Log.LogInfo($"Registering rule type: {ruleType}");
 
             if (RuleTypes.Contains(ruleType))
             {
@@ -42,7 +42,7 @@
 
         public void Register(Ruleset ruleset)
         {
-            CoreMod.Logger.Msg($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
+            CoreMod.Log.LogInfo($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
 
             if (IsRulesetRegistered(ruleset.Name))
             {

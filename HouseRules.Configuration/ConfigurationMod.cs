@@ -2,40 +2,54 @@
 {
     using System;
     using System.Collections.Generic;
+    using BepInEx;
+    using BepInEx.Configuration;
+    using BepInEx.Logging;
     using Common.UI;
     using HouseRules.Configuration.UI;
     using HouseRules.Core;
     using HouseRules.Core.Types;
-    using MelonLoader;
     using UnityEngine;
+    using UnityEngine.SceneManagement;
 
-    internal class ConfigurationMod : MelonMod
+    [BepInPlugin("com.orendain.demeomods.houserules.configuration", "HouseRules.Configuration", "2.0.0")]
+    [BepInDependency("com.orendain.demeomods.houserules.core", "2.0.0")]
+    public class ConfigurationMod : BaseUnityPlugin
     {
         private const int PC1LobbySceneIndex = 1;
         private const int PC2LobbySceneIndex = 3;
 
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Configuration");
         internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
         internal static bool IsUpdateAvailable { get; private set; }
 
-        public override void OnInitializeMelon()
+        internal static ManualLogSource Log { get; private set; }
+
+        private ConfigEntry<string> DefaultRulesetEntry { get; set; }
+
+        private ConfigEntry<bool> LoadRulesetsFromConfigEntry { get; set; }
+
+        private void Awake()
         {
+            Log = Logger;
             DetermineIfUpdateAvailable();
+
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
+            ExampleRulesetExporter.ExportExampleRulesetsIfNeeded();
         }
 
-        public override void OnLateInitializeMelon()
+        private void Start()
         {
-            ExampleRulesetExporter.ExportExampleRulesetsIfNeeded();
-
-            var loadRulesetsFromConfig = ConfigManager.GetLoadRulesetsFromConfig();
-            if (loadRulesetsFromConfig)
+            LoadConfig();
+            if (LoadRulesetsFromConfigEntry.Value)
             {
                 LoadRulesetsFromConfig();
             }
 
-            var rulesetName = ConfigManager.GetDefaultRuleset();
+            var rulesetName = DefaultRulesetEntry.Value;
             if (string.IsNullOrEmpty(rulesetName))
             {
                 return;
@@ -47,11 +61,25 @@
             }
             catch (ArgumentException e)
             {
-                Logger.Warning($"Failed to select default ruleset [{rulesetName}] specified in config: {e}");
+                Log.LogWarning($"Failed to select default ruleset [{rulesetName}] specified in config: {e}");
             }
         }
 
-        public override void OnSceneWasUnloaded(int buildIndex, string sceneName)
+        private void LoadConfig()
+        {
+            DefaultRulesetEntry = Config.Bind(
+                "General",
+                "DefaultRuleset",
+                string.Empty,
+                "Default ruleset to have selected.");
+            LoadRulesetsFromConfigEntry = Config.Bind(
+                "General",
+                "LoadRulesetsFromConfig",
+                true,
+                "Whether or not to load rulesets from config files.");
+        }
+
+        public void OnSceneUnloaded(Scene scene)
         {
             // Logger.Msg($"Scene unloaded {buildIndex} - {sceneName}");
             GameObject canvasObject = GameObject.Find("~LeanTween");
@@ -70,8 +98,11 @@
             UnityEngine.Object.Destroy(transformScreenToRemove.gameObject);
         }
 
-        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+        public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            var buildIndex = scene.buildIndex;
+            var sceneName = scene.name;
+
             // Logger.Msg($"buildIndex {buildIndex} - sceneName {sceneName}");
             if (buildIndex == 0 || sceneName.Contains("Startup"))
             {
@@ -85,24 +116,24 @@
                     return;
                 }
 
-                Logger.Msg("Recognized lobby in PC. Loading UI.");
+                Log.LogDebug("Recognized lobby in PC. Loading UI.");
                 _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
             }
             else if (Environments.IsInHangouts() || sceneName.Contains("HobbyShop"))
             {
-                Logger.Msg("Recognized lobby in Hangouts. Loading UI.");
+                Log.LogDebug("Recognized lobby in Hangouts. Loading UI.");
                 _ = new GameObject("HouseRulesUiHangouts", typeof(HouseRulesUiHangouts));
             }
             else if (sceneName.Contains("Lobby"))
             {
-                Logger.Msg("Recognized lobby in VR. Loading UI.");
+                Log.LogDebug("Recognized lobby in VR. Loading UI.");
                 _ = new GameObject("HouseRulesUiVr", typeof(HouseRulesUiVr));
             }
             else
             {
                 if (HR.SelectedRuleset != Ruleset.None)
                 {
-                    Logger.Msg("Recognized modded game in VR. Loading UI.");
+                    Logger.LogDebug("Recognized modded game in VR. Loading UI.");
                     _ = new GameObject("HouseRulesUiGameVr", typeof(HouseRulesUiGameVr));
                 }
             }
@@ -111,13 +142,13 @@
         private static async void DetermineIfUpdateAvailable()
         {
             IsUpdateAvailable = await VersionChecker.IsUpdateAvailable();
-            Logger.Msg($"{(IsUpdateAvailable ? "New" : "No new")} HouseRules update found.");
+            Log.LogDebug($"{(IsUpdateAvailable ? "New" : "No new")} HouseRules update found.");
         }
 
         private static void LoadRulesetsFromConfig()
         {
             var rulesetFiles = ConfigManager.RulesetFiles;
-            Logger.Msg($"Found [{rulesetFiles.Count}] ruleset files in configuration.");
+            Log.LogInfo($"Found [{rulesetFiles.Count}] ruleset files in configuration.");
 
             foreach (var file in rulesetFiles)
             {
@@ -129,7 +160,7 @@
                 catch (Exception e)
                 {
                     FailedRulesetFiles.Add(file);
-                    Logger.Warning(
+                    Log.LogWarning(
                         $"Failed to import and register ruleset from file [{file}]. Skipping that ruleset: {e}");
                 }
             }
