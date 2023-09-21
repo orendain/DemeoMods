@@ -44,7 +44,7 @@ Rulesets can be selected dynamically from the in-game menu and default ruleset m
 * A selection of rulesets are built-in, but you can also define your own in JSON.
 * Both built-in and JSON rulesets are displayed on the menu.
 
-![HouseRules_Menu_ Screenshot](../docs/images/houserules_menu_screenshot.jpg)
+![HouseRules_Menu_Screenshot](../docs/images/houserules_menu_screenshot.jpg)
 
 ## MelonLoader Preferences
 
@@ -64,7 +64,7 @@ loadRulesetsFromConfig = true
 ```
 
 A list of out-of-the-box Ruleset names can be found in the
-[HouseRules_Essentials readme](../HouseRules_Essentials/README.md).
+[HouseRules.Essentials readme](../HouseRules.Essentials/README.md).
 
 The name of a default ruleset can be set in `defaultRuleset` - alternatively, use empty quotes `""` to specify no ruleset should be used.
 The `loadRulesetsFromConfig` flag can be set to `false` to prevent loading of JSON rulesets.
@@ -96,7 +96,7 @@ Saving the above contents as `UserData/HouseRules/SuperZap.json` will allow this
 A further complete [LuckyDip Ruleset](../docs/rulesets/(Custom)%20LuckyDip.json) is also provided as a reference.
 
 Example JSON samples for each rule type can be found in the
-[HouseRules_Essentials readme](../HouseRules_Essentials/README.md).
+[HouseRules.Essentials readme](../HouseRules.Essentials/README.md).
 
 ## Rules vs Mods
 
