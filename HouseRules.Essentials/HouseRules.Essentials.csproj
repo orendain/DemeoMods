@@ -62,7 +62,6 @@
     <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
     <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
     <Compile Include="Rulesets\PotionCommotionRuleset.cs" />
-    <Compile Include="Rulesets\TESTGAME.cs" />
     <Compile Include="Rulesets\TheSwirlRuleset.cs" />
     <Compile Include="Rules\AbilityBackstabAdjustedRule.cs" />
     <Compile Include="Rules\AbilityBreaksStealthAdjustedRule.cs" />
@@ -99,7 +98,6 @@
     <Compile Include="Rules\TickAdjustedRule.cs" />
     <Compile Include="Rules\PieceUseOnCreatedOverriddenRule.cs" />
     <Compile Include="Rules\TurnOrderRandomizedRule.cs" />
-    <Compile Include="Rules\XpGainDisabledRule.cs" />
     <Compile Include="Rules\MyMonsterDeckOverriddenRule.cs" />
     <Compile Include="Rules\PieceExtraImmunitiesRule.cs" />
     <Compile Include="Rules\FreeAbilityOnCritRule.cs" />
