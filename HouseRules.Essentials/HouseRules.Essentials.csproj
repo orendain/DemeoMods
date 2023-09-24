@@ -78,6 +78,7 @@
     <Compile Include="Rules\ElvenQueenSuperBuffRule.cs" />
     <Compile Include="Rules\EnemyDoorOpeningEnabledRule.cs" />
     <Compile Include="Rules\GrappleUnhookedRule.cs" />
+    <Compile Include="Rules\LevelExitLockedUntilOneHeroRemainsRule.cs" />
     <Compile Include="Rules\MerchantOfferRarityOverriddenRule.cs" />
     <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
     <Compile Include="Rules\EnemyCooldownOverriddenRule.cs" />
