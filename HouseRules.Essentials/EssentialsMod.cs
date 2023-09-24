@@ -44,6 +44,7 @@
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
             HR.Rulebook.Register(typeof(LampTypesOverriddenRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
+            HR.Rulebook.Register(typeof(LevelExitLockedUntilOneHeroRemainsRule));
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(LevelSequenceOverriddenRule));
             HR.Rulebook.Register(typeof(MonsterDeckOverriddenRule));
