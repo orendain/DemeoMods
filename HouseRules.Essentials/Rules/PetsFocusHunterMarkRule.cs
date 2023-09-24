@@ -41,7 +41,7 @@
             }
             catch (Exception e)
             {
-                EssentialsMod.Logger.Warning(
+                HouseRulesEssentialsCore.LogWarning(
                     $"This should not have happened. Please submit this log to HouseRules developers: {e}");
                 return true;
             }

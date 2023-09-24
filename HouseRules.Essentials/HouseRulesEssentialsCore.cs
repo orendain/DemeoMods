@@ -1,21 +1,51 @@
 ﻿namespace HouseRules.Essentials
 {
+    using System;
+    using HarmonyLib;
     using HouseRules.Core;
     using HouseRules.Essentials.Rules;
     using HouseRules.Essentials.Rulesets;
-    using MelonLoader;
 
-    internal class EssentialsMod : MelonMod
+    internal static class HouseRulesEssentialsCore
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Essentials");
+        internal const string ModId = "com.orendain.demeomods.houserules.essentials";
+        internal const string ModName = "HouseRules.Essentials";
+        internal const string ModVersion = "1.8.0";
+        internal const string ModAuthor = "DemeoMods Team";
 
-        public override void OnInitializeMelon()
+        internal static Action<object> LogMessage;
+        internal static Action<object> LogInfo;
+        internal static Action<object> LogDebug;
+        internal static Action<object> LogWarning;
+        internal static Action<object> LogError;
+
+        internal static void Init(object loader)
         {
-            RegisterRuleTypes();
-            RegisterRulesets();
+#if BEPINEX
+            if (loader is BepInExPlugin plugin)
+            {
+                LogMessage = plugin.Log.LogMessage;
+                LogInfo = plugin.Log.LogInfo;
+                LogDebug = plugin.Log.LogDebug;
+                LogWarning = plugin.Log.LogWarning;
+                LogError = plugin.Log.LogError;
+            }
+#endif
+
+#if MELONLOADER
+            if (loader is MelonLoaderMod mod)
+            {
+                LogMessage = mod.LoggerInstance.Msg;
+                LogInfo = mod.LoggerInstance.Msg;
+                LogDebug = mod.LoggerInstance.Msg;
+                LogWarning = mod.LoggerInstance.Warning;
+                LogError = mod.LoggerInstance.Error;
+            }
+#endif
         }
 
-        private static void RegisterRuleTypes()
+
+        internal static void RegisterRuleTypes()
         {
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityBackstabAdjustedRule));
@@ -68,7 +98,7 @@
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
         }
 
-        private static void RegisterRulesets()
+        internal static void RegisterRulesets()
         {
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(LuckyDip.Create());

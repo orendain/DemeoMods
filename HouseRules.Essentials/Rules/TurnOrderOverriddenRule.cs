@@ -143,14 +143,14 @@
 
                 if (!pieceScores.TryGetValue(piece1.networkID, out var piece1Score))
                 {
-                    EssentialsMod.Logger.Warning(
+                    HouseRulesEssentialsCore.LogWarning(
                         $"[TurnOrderOverridden] Could not find a turn order score for piece [{piece1.networkID}]. Resulting order may be unexpected.");
                     return 1;
                 }
 
                 if (!pieceScores.TryGetValue(piece2.networkID, out var piece2Score))
                 {
-                    EssentialsMod.Logger.Warning(
+                    HouseRulesEssentialsCore.LogWarning(
                         $"[TurnOrderOverridden] Could not find a turn order score for piece [{piece2.networkID}]. Resulting order may be unexpected.");
                     return 1;
                 }
