@@ -8,7 +8,7 @@
 
     internal static class Patcher
     {
-        internal static void Patch(Harmony harmony)
+        internal static void Patch(HarmonyLib.Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
@@ -42,27 +42,27 @@
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
-            RoomFinderMod.SharedState.GameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
+            RoomFinderCore.SharedState.GameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
         }
 
         private static void MatchmakingController_Constructor_Postfix(MatchmakingController __instance)
         {
-            RoomFinderMod.SharedState.LobbyMatchmakingController = __instance.LobbyMatchmakingController;
+            RoomFinderCore.SharedState.LobbyMatchmakingController = __instance.LobbyMatchmakingController;
         }
 
         private static void LobbyMatchmakingController_OnRoomListUpdated_Postfix()
         {
-            RoomFinderMod.SharedState.HasRoomListUpdated = true;
+            RoomFinderCore.SharedState.HasRoomListUpdated = true;
         }
 
         private static bool MatchMakingState_OnMatchmakingRoomCodesUpdated_Prefix()
         {
-            if (!RoomFinderMod.SharedState.IsRefreshingRoomList)
+            if (!RoomFinderCore.SharedState.IsRefreshingRoomList)
             {
                 return true;
             }
 
-            RoomFinderMod.SharedState.GameContext.gameStateMachine.goBackToMenuState = true;
+            RoomFinderCore.SharedState.GameContext.gameStateMachine.goBackToMenuState = true;
             return false;
         }
     }

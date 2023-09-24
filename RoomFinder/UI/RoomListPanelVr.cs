@@ -9,7 +9,6 @@
     using Common.UI.Element;
     using HarmonyLib;
     using UnityEngine;
-    using Object = UnityEngine.Object;
 
     internal class RoomListPanelVr
     {
@@ -59,7 +58,7 @@
         {
             foreach (Transform child in Panel.transform)
             {
-                Object.Destroy(child.gameObject);
+                UnityEngine.Object.Destroy(child.gameObject);
             }
 
             var header = CreateHeader();
@@ -83,7 +82,7 @@
 
             foreach (Transform child in _roomPages.transform)
             {
-                Object.Destroy(child.gameObject);
+                UnityEngine.Object.Destroy(child.gameObject);
             }
 
             var roomPartitions = PartitionRooms();
@@ -148,7 +147,7 @@
         private IEnumerable<List<Room>> PartitionRooms()
         {
             return _rooms
-                .Select((value, index) => new { group = index / MaxRoomsPerPage,  value })
+                .Select((value, index) => new { group = index / MaxRoomsPerPage, value })
                 .GroupBy(pair => pair.group)
                 .Select(group => group.Select(g => g.value).ToList());
         }
@@ -250,9 +249,9 @@
         {
             return () =>
             {
-                RoomFinderMod.Logger.Msg($"Joining room [{roomCode}].");
+                RoomFinderCore.LogDebug($"Joining room [{roomCode}].");
                 var lobbyMenuController = Traverse
-                    .Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby)
+                    .Create(RoomFinderCore.SharedState.GameContext.gameStateMachine.lobby)
                     .Field<LobbyMenuController>("lobbyMenuController")
                     .Value;
                 Traverse.Create(lobbyMenuController)
