@@ -27,7 +27,7 @@
             }
             catch (Exception e)
             {
-                ConfigurationMod.Logger.Warning($"Failed to determine if an update is available: {e}");
+                HouseRulesConfigurationCore.LogWarning($"Failed to determine if an update is available: {e}");
                 return false;
             }
         }
@@ -37,7 +37,7 @@
         /// </summary>
         private static async Task<string> FindLatestReleaseVersion()
         {
-            ConfigurationMod.Logger.Msg("Searching for the latest HouseRules release.");
+            HouseRulesConfigurationCore.LogDebug("Searching for the latest HouseRules release.");
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
@@ -58,7 +58,7 @@
                     continue;
                 }
 
-                ConfigurationMod.Logger.Msg($"Found the latest HouseRules release: {version}");
+                HouseRulesConfigurationCore.LogDebug($"Found the latest HouseRules release: {version}");
                 return version;
             }
 

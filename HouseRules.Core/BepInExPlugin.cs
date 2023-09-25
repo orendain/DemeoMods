@@ -19,10 +19,10 @@ namespace HouseRules.Core
             HouseRulesCoreCore.Init(this);
         }
 
-        // public override void OnLateInitializeMelon()
-        // {
-        //     HouseRulesCoreCore.PatchRegisteredRules();
-        // }
+        private void Start()
+        {
+            HouseRulesCoreCore.PatchRegisteredRules();
+        }
     }
 }
 #endif

@@ -86,7 +86,7 @@
                 }
                 catch (Exception e)
                 {
-                    ConfigurationMod.Logger.Warning($"Failed to write rule entry {rule.GetType().Name} to config. Skipping that rule: {e}");
+                    HouseRulesConfigurationCore.LogWarning($"Failed to write rule entry {rule.GetType().Name} to config. Skipping that rule: {e}");
                 }
             }
 
@@ -102,7 +102,7 @@
             var rulesetFilePath = Path.Combine(directory, $"{rulesetFilename}.json");
             File.WriteAllText(rulesetFilePath, serializedRuleset);
 
-            ConfigurationMod.Logger.Msg($"Successfully exported ruleset to: {rulesetFilePath}");
+            HouseRulesConfigurationCore.LogWarning($"Successfully exported ruleset to: {rulesetFilePath}");
             return rulesetFilePath;
         }
 
@@ -138,11 +138,11 @@
                         throw new InvalidOperationException($"Failed to read rule entry [{ruleConfigEntry.Rule}] of ruleset [{rulesetConfig.Name}].", e);
                     }
 
-                    ConfigurationMod.Logger.Warning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
+                    HouseRulesConfigurationCore.LogWarning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
                 }
             }
 
-            ConfigurationMod.Logger.Msg($"Successfully imported ruleset from: {fileName}");
+            HouseRulesConfigurationCore.LogDebug($"Successfully imported ruleset from: {fileName}");
             return Ruleset.NewInstance(rulesetConfig.Name, rulesetConfig.Description, rulesetConfig.Longdesc, rules);
         }
 

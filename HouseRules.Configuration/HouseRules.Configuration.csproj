@@ -1,60 +1,88 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
-    <Configurations>BepInEx;MelonLoader</Configurations>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <Configurations>BepInEx;MelonLoader</Configurations>
+    </PropertyGroup>
 
-  <!-- BepInEx 5.x build config -->
-  <PropertyGroup Condition="'$(Configuration)'=='BepInEx'">
-    <OutputPath>bin</OutputPath>
-    <DefineConstants>BEPINEX</DefineConstants>
-    <AssemblyName>HouseRules.Configuration.BepInEx</AssemblyName>
-  </PropertyGroup>
-  <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
-    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
-    <PackageReference Include="BepInEx.Core" Version="5.*"/>
-    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*"/>
-    <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
-    <ProjectReference Include="..\HouseRules.Core\HouseRules.Core.csproj">
-      <Private>false</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-  </ItemGroup>
+    <!-- BepInEx 5.x build config -->
+    <PropertyGroup Condition="'$(Configuration)'=='BepInEx'">
+        <OutputPath>bin</OutputPath>
+        <DefineConstants>BEPINEX</DefineConstants>
+        <AssemblyName>HouseRules.Configuration.BepInEx</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
+        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
+        <ProjectReference Include="..\Common.UI\Common.UI.csproj"/>
+        <ProjectReference Include="..\HouseRules.Core\HouseRules.Core.csproj">
+            <Private>false</Private>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="BowserCore">
+            <HintPath>$(DemeoAssembliesPath)\BowserCore.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(DemeoAssembliesPath)\UnityEngine.UI.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>$(DemeoAssembliesPath)\Unity.TextMeshPro.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
 
-  <!-- MelonLoader 0.5.7 build config -->
-  <PropertyGroup Condition="'$(Configuration)'=='MelonLoader'">
-    <OutputPath>bin</OutputPath>
-    <DefineConstants>MELONLOADER</DefineConstants>
-    <AssemblyName>HouseRules.Configuration.MelonLoader</AssemblyName>
-  </PropertyGroup>
-  <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
-    <PackageReference Include="HarmonyX" Version="2.10.1" IncludeAssets="compile"/>
-    <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
-    <ProjectReference Include="..\HouseRules.Core\HouseRules.Core.csproj">
-      <Private>false</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>$(DemeoAssembliesPath)\..\..\MelonLoader\MelonLoader.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-  </ItemGroup>
+    <!-- MelonLoader 0.5.7 build config -->
+    <PropertyGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <OutputPath>bin</OutputPath>
+        <DefineConstants>MELONLOADER</DefineConstants>
+        <AssemblyName>HouseRules.Configuration.MelonLoader</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <PackageReference Include="HarmonyX" Version="2.10.1" IncludeAssets="compile"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <ProjectReference Include="..\Common.UI\Common.UI.csproj"/>
+        <ProjectReference Include="..\HouseRules.Core\HouseRules.Core.csproj">
+            <Private>false</Private>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="BowserCore">
+            <HintPath>$(DemeoAssembliesPath)\BowserCore.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(DemeoAssembliesPath)\UnityEngine.UI.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>$(DemeoAssembliesPath)\Unity.TextMeshPro.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="MelonLoader">
+            <HintPath>$(DemeoAssembliesPath)\..\..\MelonLoader\MelonLoader.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
 
 </Project>
