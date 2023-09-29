@@ -8,7 +8,7 @@
 
     internal static class Patcher
     {
-        internal static void Patch(HarmonyLib.Harmony harmony)
+        internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
