@@ -9,6 +9,7 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
+        <AssemblySearchPaths>../libs;$(AssemblySearchPaths)</AssemblySearchPaths>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,23 +18,18 @@
 
     <ItemGroup>
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="BowserInteractionRuntime">
-            <HintPath>$(DemeoAssembliesPath)\BowserInteractionRuntime.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="BowserLegacyRuntime">
-            <HintPath>$(DemeoAssembliesPath)\BowserLegacyRuntime.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="UnityEngine.UI">
-            <HintPath>$(DemeoAssembliesPath)\UnityEngine.UI.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="Unity.TextMeshPro">
-            <HintPath>$(DemeoAssembliesPath)\Unity.TextMeshPro.dll</HintPath>
             <Private>false</Private>
         </Reference>
     </ItemGroup>

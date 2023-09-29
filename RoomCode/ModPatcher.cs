@@ -20,26 +20,26 @@
 
         private static bool NetworkRoomUtils_GetRandomRoomCode_Prefix(ref string __result)
         {
-            if (!RoomCode.Enabled)
+            if (!RoomCodeBase.Enabled)
             {
                 return true;
             }
 
-            if (!RoomCode.RoomCodes.Any())
+            if (!RoomCodeBase.RoomCodes.Any())
             {
                 return true;
             }
 
-            if (_roomCodeAttempts >= RoomCode.RoomCodes.Count)
+            if (_roomCodeAttempts >= RoomCodeBase.RoomCodes.Count)
             {
-                RoomCode.LogInfo("All proposed room codes unavailable.");
+                RoomCodeBase.LogInfo("All proposed room codes unavailable.");
                 return true;
             }
 
-            __result = RoomCode.RoomCodes.ElementAt(_roomCodeAttempts);
+            __result = RoomCodeBase.RoomCodes.ElementAt(_roomCodeAttempts);
             ++_roomCodeAttempts;
 
-            RoomCode.LogDebug($"Proposing room code: {__result}");
+            RoomCodeBase.LogDebug($"Proposing room code: {__result}");
             return false;
         }
 

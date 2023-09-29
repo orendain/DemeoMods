@@ -5,13 +5,14 @@
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <Configurations>BepInEx;MelonLoader</Configurations>
+        <AssemblySearchPaths>../libs;$(AssemblySearchPaths)</AssemblySearchPaths>
     </PropertyGroup>
 
     <!-- BepInEx 5.x build config -->
     <PropertyGroup Condition="'$(Configuration)'=='BepInEx'">
         <OutputPath>bin</OutputPath>
         <DefineConstants>BEPINEX</DefineConstants>
-        <AssemblyName>RoomFinder.BepInEx</AssemblyName>
+        <AssemblyName>RoomFinder.BIE</AssemblyName>
     </PropertyGroup>
     <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
         <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
@@ -21,19 +22,15 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="Photon3Unity3D">
-            <HintPath>$(DemeoAssembliesPath)\Photon3Unity3D.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="PhotonRealtime">
-            <HintPath>$(DemeoAssembliesPath)\PhotonRealtime.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="UnityEngine.UI">
-            <HintPath>$(DemeoAssembliesPath)\UnityEngine.UI.dll</HintPath>
             <Private>false</Private>
         </Reference>
     </ItemGroup>
@@ -42,7 +39,7 @@
     <PropertyGroup Condition="'$(Configuration)'=='MelonLoader'">
         <OutputPath>bin</OutputPath>
         <DefineConstants>MELONLOADER</DefineConstants>
-        <AssemblyName>RoomFinder.MelonLoader</AssemblyName>
+        <AssemblyName>RoomFinder.ML</AssemblyName>
     </PropertyGroup>
     <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
         <PackageReference Include="HarmonyX" Version="2.10.1" IncludeAssets="compile" />
@@ -53,23 +50,18 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="Photon3Unity3D">
-            <HintPath>$(DemeoAssembliesPath)\Photon3Unity3D.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="PhotonRealtime">
-            <HintPath>$(DemeoAssembliesPath)\PhotonRealtime.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="UnityEngine.UI">
-            <HintPath>$(DemeoAssembliesPath)\UnityEngine.UI.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="MelonLoader">
-            <HintPath>$(DemeoAssembliesPath)\..\..\MelonLoader\MelonLoader.dll</HintPath>
             <Private>false</Private>
         </Reference>
     </ItemGroup>
