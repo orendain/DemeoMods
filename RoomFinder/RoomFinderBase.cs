@@ -4,18 +4,19 @@
     using RoomFinder.UI;
     using UnityEngine;
 
-    internal static class RoomFinderCore
+    internal static class RoomFinderBase
     {
         internal const string ModId = "com.orendain.demeomods.roomfinder";
         internal const string ModName = "RoomFinder";
         internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
-        internal static Action<object> LogMessage;
-        internal static Action<object> LogInfo;
-        internal static Action<object> LogDebug;
-        internal static Action<object> LogWarning;
-        internal static Action<object> LogError;
+        private static Action<object>? _logInfo;
+        private static Action<object>? _logDebug;
+
+        internal static void LogInfo(object data) => _logInfo?.Invoke(data);
+
+        internal static void LogDebug(object data) => _logDebug?.Invoke(data);
 
         internal static readonly SharedState SharedState = SharedState.NewInstance();
 
@@ -24,31 +25,31 @@
 
         internal static void Init(object loader)
         {
-#if BEPINEX
+            #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
-                LogMessage = plugin.Log.LogMessage;
-                LogInfo = plugin.Log.LogInfo;
-                LogDebug = plugin.Log.LogDebug;
-                LogWarning = plugin.Log.LogWarning;
-                LogError = plugin.Log.LogError;
+                if (plugin.Log != null)
+                {
+                    _logInfo = plugin.Log.LogInfo;
+                    _logDebug = plugin.Log.LogDebug;
+                }
 
-                Patcher.Patch(plugin.Harmony);
+                if (plugin.Harmony != null)
+                {
+                    Patcher.Patch(plugin.Harmony);
+                }
             }
-#endif
+            #endif
 
-#if MELONLOADER
+            #if MELONLOADER
             if (loader is MelonLoaderMod mod)
             {
-                LogMessage = mod.LoggerInstance.Msg;
-                LogInfo = mod.LoggerInstance.Msg;
-                LogDebug = mod.LoggerInstance.Msg;
-                LogWarning = mod.LoggerInstance.Warning;
-                LogError = mod.LoggerInstance.Error;
+                _logInfo = mod.LoggerInstance.Msg;
+                _logDebug = mod.LoggerInstance.Msg;
 
                 Patcher.Patch(mod.HarmonyInstance);
             }
-#endif
+            #endif
         }
 
         internal static void OnSceneLoaded(int buildIndex)

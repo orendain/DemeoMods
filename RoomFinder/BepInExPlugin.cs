@@ -6,24 +6,24 @@ namespace RoomFinder
     using HarmonyLib;
     using UnityEngine.SceneManagement;
 
-    [BepInPlugin(RoomFinderCore.ModId, RoomFinderCore.ModName, RoomFinderCore.ModVersion)]
-    public class BepInExPlugin : BaseUnityPlugin
+    [BepInPlugin(RoomFinderBase.ModId, RoomFinderBase.ModName, RoomFinderBase.ModVersion)]
+    internal class BepInExPlugin : BaseUnityPlugin
     {
-        internal ManualLogSource Log { get; private set; }
+        internal ManualLogSource? Log { get; private set; }
 
-        internal Harmony Harmony { get; private set; }
+        internal Harmony? Harmony { get; private set; }
 
         private void Awake()
         {
             Log = Logger;
-            Harmony = new Harmony(RoomFinderCore.ModId);
-            RoomFinderCore.Init(this);
+            Harmony = new Harmony(RoomFinderBase.ModId);
+            RoomFinderBase.Init(this);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            RoomFinderCore.OnSceneLoaded(scene.buildIndex);
+            RoomFinderBase.OnSceneLoaded(scene.buildIndex);
         }
     }
 }
