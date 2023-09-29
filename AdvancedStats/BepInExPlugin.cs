@@ -5,21 +5,21 @@ namespace AdvancedStats
     using HarmonyLib;
     using UnityEngine.SceneManagement;
 
-    [BepInPlugin(AdvancedStatsCore.ModId, AdvancedStatsCore.ModName, AdvancedStatsCore.ModVersion)]
-    public class BepInExPlugin : BaseUnityPlugin
+    [BepInPlugin(AdvancedStatsBase.ModId, AdvancedStatsBase.ModName, AdvancedStatsBase.ModVersion)]
+    internal class BepInExPlugin : BaseUnityPlugin
     {
         internal Harmony Harmony { get; private set; }
 
         private void Awake()
         {
-            Harmony = new Harmony(AdvancedStatsCore.ModId);
-            AdvancedStatsCore.Init(this);
+            Harmony = new Harmony(AdvancedStatsBase.ModId);
+            AdvancedStatsBase.Init(this);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            AdvancedStatsCore.OnSceneLoaded(scene.name);
+            AdvancedStatsBase.OnSceneLoaded(scene.name);
         }
     }
 }

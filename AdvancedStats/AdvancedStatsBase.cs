@@ -3,7 +3,7 @@
     using System;
     using HarmonyLib;
 
-    internal static class AdvancedStatsCore
+    internal static class AdvancedStatsBase
     {
         internal const string ModId = "com.orendain.demeomods.advancedstats";
         internal const string ModName = "AdvancedStats";
@@ -14,19 +14,19 @@
 
         internal static void Init(object loader)
         {
-#if BEPINEX
+            #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
                 _harmony = plugin.Harmony;
             }
-#endif
+            #endif
 
-#if MELONLOADER
+            #if MELONLOADER
             if (loader is MelonLoaderMod mod)
             {
                 _harmony = mod.HarmonyInstance;
             }
-#endif
+            #endif
         }
 
         internal static void OnSceneLoaded(string sceneName)
