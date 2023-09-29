@@ -28,59 +28,34 @@
         {
             while (!NonVrElementCreator.IsReady())
             {
-<<<<<<< HEAD
-                RoomFinderCore.LogDebug("UI dependencies not yet ready. Waiting...");
-                yield return new WaitForSecondsRealtime(1);
-            }
-
-            RoomFinderCore.LogDebug("UI dependencies ready. Proceeding with initialization.");
-=======
                 RoomFinderBase.LogDebug("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
             RoomFinderBase.LogDebug("UI dependencies ready. Proceeding with initialization.");
->>>>>>> main
 
             _resourceTable = NonVrResourceTable.Instance();
             _elementCreator = NonVrElementCreator.Instance();
             _roomListPanel = RoomListPanelNonVr.NewInstance(_elementCreator, RefreshRoomList);
 
             Initialize();
-<<<<<<< HEAD
-            RoomFinderCore.LogDebug("Initialization complete.");
-=======
             RoomFinderBase.LogDebug("Initialization complete.");
->>>>>>> main
         }
 
         private void Update()
         {
-<<<<<<< HEAD
-            if (!RoomFinderCore.SharedState.IsRefreshingRoomList)
-=======
             if (!RoomFinderBase.SharedState.IsRefreshingRoomList)
->>>>>>> main
             {
                 return;
             }
 
-<<<<<<< HEAD
-            if (!RoomFinderCore.SharedState.HasRoomListUpdated)
-=======
             if (!RoomFinderBase.SharedState.HasRoomListUpdated)
->>>>>>> main
             {
                 return;
             }
 
-<<<<<<< HEAD
-            RoomFinderCore.SharedState.IsRefreshingRoomList = false;
-            RoomFinderCore.SharedState.HasRoomListUpdated = false;
-=======
             RoomFinderBase.SharedState.IsRefreshingRoomList = false;
             RoomFinderBase.SharedState.HasRoomListUpdated = false;
->>>>>>> main
             PopulateRoomList();
         }
 
@@ -104,11 +79,7 @@
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
             selectionPanel.transform.localPosition = new Vector2(0, 230f);
 
-<<<<<<< HEAD
-            var versionText = _elementCreator.CreateNormalText($"v{RoomFinderCore.ModVersion}");
-=======
             var versionText = _elementCreator.CreateNormalText($"v{RoomFinderBase.ModVersion}");
->>>>>>> main
             versionText.transform.SetParent(transform, worldPositionStays: false);
             versionText.transform.localPosition = new Vector2(-615, -400);
 
@@ -150,15 +121,9 @@
 
         private static void RefreshRoomList()
         {
-<<<<<<< HEAD
-            RoomFinderCore.SharedState.IsRefreshingRoomList = true;
-            var lobbyMenuController = Traverse
-                .Create(RoomFinderCore.SharedState.GameContext.gameStateMachine.lobby)
-=======
             RoomFinderBase.SharedState.IsRefreshingRoomList = true;
             var lobbyMenuController = Traverse
                 .Create(RoomFinderBase.SharedState.GameContext.gameStateMachine.lobby)
->>>>>>> main
                 .Field<LobbyMenuController>("lobbyMenuController")
                 .Value;
             var lobbyMenuContext = Traverse
@@ -176,19 +141,11 @@
         private void PopulateRoomList()
         {
             var unfilteredRooms =
-<<<<<<< HEAD
-                Traverse.Create(RoomFinderCore.SharedState.LobbyMatchmakingController)
-                    .Field<List<RoomInfo>>("roomList").Value;
-
-            var isRoomValidMethod =
-                Traverse.Create(RoomFinderCore.SharedState.LobbyMatchmakingController)
-=======
                 Traverse.Create(RoomFinderBase.SharedState.LobbyMatchmakingController)
                     .Field<List<RoomInfo>>("roomList").Value;
 
             var isRoomValidMethod =
                 Traverse.Create(RoomFinderBase.SharedState.LobbyMatchmakingController)
->>>>>>> main
                     .Method("IsRoomValidWithCurrentConfiguration", new[] { typeof(RoomInfo) });
 
             var filteredRooms =
@@ -196,13 +153,8 @@
                     .Select(Room.Parse)
                     .ToList();
 
-<<<<<<< HEAD
-            RoomFinderCore.LogInfo($"Found {unfilteredRooms.Count} total rooms.");
-            RoomFinderCore.LogInfo($"Listing {filteredRooms.Count} available rooms.");
-=======
             RoomFinderBase.LogInfo($"Found {unfilteredRooms.Count} total rooms.");
             RoomFinderBase.LogInfo($"Listing {filteredRooms.Count} available rooms.");
->>>>>>> main
 
             _roomListPanel.UpdateRooms(filteredRooms);
         }

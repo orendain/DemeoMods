@@ -20,36 +20,16 @@
 
         private static bool NetworkRoomUtils_GetRandomRoomCode_Prefix(ref string __result)
         {
-<<<<<<< HEAD
-            if (!RoomCode.Enabled)
-=======
             if (!RoomCodeBase.Enabled)
->>>>>>> main
             {
                 return true;
             }
 
-<<<<<<< HEAD
-            if (!RoomCode.RoomCodes.Any())
-=======
             if (!RoomCodeBase.RoomCodes.Any())
->>>>>>> main
             {
                 return true;
             }
 
-<<<<<<< HEAD
-            if (_roomCodeAttempts >= RoomCode.RoomCodes.Count)
-            {
-                RoomCode.LogInfo("All proposed room codes unavailable.");
-                return true;
-            }
-
-            __result = RoomCode.RoomCodes.ElementAt(_roomCodeAttempts);
-            ++_roomCodeAttempts;
-
-            RoomCode.LogDebug($"Proposing room code: {__result}");
-=======
             if (_roomCodeAttempts >= RoomCodeBase.RoomCodes.Count)
             {
                 RoomCodeBase.LogInfo("All proposed room codes unavailable.");
@@ -60,7 +40,6 @@
             ++_roomCodeAttempts;
 
             RoomCodeBase.LogDebug($"Proposing room code: {__result}");
->>>>>>> main
             return false;
         }
 
