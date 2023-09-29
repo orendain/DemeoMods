@@ -5,17 +5,17 @@ namespace SkipIntro
     using BepInEx.Logging;
     using HarmonyLib;
 
-    [BepInPlugin(SkipIntro.ModId, SkipIntro.ModName, SkipIntro.ModVersion)]
-    public class BepInExPlugin : BaseUnityPlugin
+    [BepInPlugin(SkipIntroBase.ModId, SkipIntroBase.ModName, SkipIntroBase.ModVersion)]
+    internal class BepInExPlugin : BaseUnityPlugin
     {
-        internal ManualLogSource Log { get; private set; }
+        internal ManualLogSource? Log { get; private set; }
 
         private void Awake()
         {
             Log = Logger;
-            SkipIntro.Init(this);
+            SkipIntroBase.Init(this);
 
-            var harmony = new Harmony(SkipIntro.ModId);
+            var harmony = new Harmony(SkipIntroBase.ModId);
             ModPatcher.Patch(harmony);
         }
     }
