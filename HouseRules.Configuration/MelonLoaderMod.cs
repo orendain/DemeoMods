@@ -2,7 +2,7 @@
 using HouseRules.Configuration;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(MelonLoaderMod), HouseRulesConfigurationCore.ModName, HouseRulesConfigurationCore.ModVersion, HouseRulesConfigurationCore.ModAuthor, "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(MelonLoaderMod), HouseRulesConfigurationBase.ModName, HouseRulesConfigurationBase.ModVersion, HouseRulesConfigurationBase.ModAuthor, "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("574512")]
@@ -14,22 +14,22 @@ namespace HouseRules.Configuration
     {
         public override void OnInitializeMelon()
         {
-            HouseRulesConfigurationCore.Init(this);
+            HouseRulesConfigurationBase.Init(this);
         }
 
         public override void OnLateInitializeMelon()
         {
-            HouseRulesConfigurationCore.LoadConfiguration();
+            HouseRulesConfigurationBase.LoadConfiguration();
         }
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            HouseRulesConfigurationCore.OnSceneLoaded(buildIndex, sceneName);
+            HouseRulesConfigurationBase.OnSceneLoaded(buildIndex, sceneName);
         }
 
         public override void OnSceneWasUnloaded(int buildIndex, string sceneName)
         {
-            HouseRulesConfigurationCore.OnSceneUnloaded(buildIndex, sceneName);
+            HouseRulesConfigurationBase.OnSceneUnloaded(buildIndex, sceneName);
         }
     }
 }

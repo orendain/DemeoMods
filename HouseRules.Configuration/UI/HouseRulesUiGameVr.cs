@@ -27,11 +27,11 @@
                        .FindObjectsOfTypeAll<GameObject>()
                        .Count(x => x.name == "~LeanTween") < 1)
             {
-                HouseRulesConfigurationCore.LogDebug("UI dependencies not yet ready. Waiting...");
+                HouseRulesConfigurationBase.LogDebug("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            HouseRulesConfigurationCore.LogDebug("UI dependencies ready. Proceeding with initialization.");
+            HouseRulesConfigurationBase.LogDebug("UI dependencies ready. Proceeding with initialization.");
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = VrElementCreator.Instance();
@@ -40,7 +40,7 @@
                 .First(x => x.name == "~LeanTween").transform;
 
             Initialize();
-            HouseRulesConfigurationCore.LogDebug("Initialization complete.");
+            HouseRulesConfigurationBase.LogDebug("Initialization complete.");
         }
 
         private void Initialize()
@@ -163,7 +163,7 @@
                     catch (Exception e)
                     {
                         // TODO(orendain): Consider rolling back or disable rule.
-                        HouseRulesConfigurationCore.LogWarning($"Failed to successfully call on rule [{rule.GetType()}]: {e}");
+                        HouseRulesConfigurationBase.LogWarning($"Failed to successfully call on rule [{rule.GetType()}]: {e}");
                     }
                 }
             }
@@ -186,7 +186,7 @@
 
             versionText.transform.localPosition = new Vector3(-7, version, VrElementCreator.TextZShift);
 
-            if (HouseRulesConfigurationCore.IsUpdateAvailable)
+            if (HouseRulesConfigurationBase.IsUpdateAvailable)
             {
                 sb.Clear();
                 sb.Append(ColorizeString("NEW UPDATE AVAILABLE", Color.green));

@@ -25,7 +25,7 @@
         // TODO(orendain): Disallow registration after a certain point in init process.
         public void Register(Type ruleType)
         {
-            HouseRulesCoreCore.LogDebug($"Registering rule type: {ruleType}");
+            HouseRulesCoreBase.LogDebug($"Registering rule type: {ruleType}");
 
             if (RuleTypes.Contains(ruleType))
             {
@@ -42,7 +42,7 @@
 
         public void Register(Ruleset ruleset)
         {
-            HouseRulesCoreCore.LogDebug($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
+            HouseRulesCoreBase.LogDebug($"Registering ruleset: {ruleset.Name} (with {ruleset.Rules.Count} rules)");
 
             if (IsRulesetRegistered(ruleset.Name))
             {

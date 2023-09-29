@@ -8,18 +8,25 @@
     using HouseRules.Core.Types;
     using UnityEngine;
 
-    internal static class HouseRulesConfigurationCore
+    internal static class HouseRulesConfigurationBase
     {
         internal const string ModId = "com.orendain.demeomods.houserules.configuration";
         internal const string ModName = "HouseRules.Configuration";
         internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
-        internal static Action<object> LogMessage;
-        internal static Action<object> LogInfo;
-        internal static Action<object> LogDebug;
-        internal static Action<object> LogWarning;
-        internal static Action<object> LogError;
+        private static Action<object>? _logInfo;
+        private static Action<object>? _logDebug;
+        private static Action<object>? _logWarning;
+        private static Action<object>? _logError;
+
+        internal static void LogInfo(object data) => _logInfo?.Invoke(data);
+
+        internal static void LogDebug(object data) => _logDebug?.Invoke(data);
+
+        internal static void LogWarning(object data) => _logWarning?.Invoke(data);
+
+        internal static void LogError(object data) => _logError?.Invoke(data);
 
         private const int PC1LobbySceneIndex = 1;
         private const int PC2LobbySceneIndex = 3;
@@ -31,27 +38,25 @@
 
         internal static void Init(object loader)
         {
-#if BEPINEX
+            #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
-                LogMessage = plugin.Log.LogMessage;
-                LogInfo = plugin.Log.LogInfo;
-                LogDebug = plugin.Log.LogDebug;
-                LogWarning = plugin.Log.LogWarning;
-                LogError = plugin.Log.LogError;
+                _logInfo = plugin.Log.LogInfo;
+                _logDebug = plugin.Log.LogDebug;
+                _logWarning = plugin.Log.LogWarning;
+                _logError = plugin.Log.LogError;
             }
-#endif
+            #endif
 
-#if MELONLOADER
+            #if MELONLOADER
             if (loader is MelonLoaderMod mod)
             {
-                LogMessage = mod.LoggerInstance.Msg;
-                LogInfo = mod.LoggerInstance.Msg;
-                LogDebug = mod.LoggerInstance.Msg;
-                LogWarning = mod.LoggerInstance.Warning;
-                LogError = mod.LoggerInstance.Error;
+                _logInfo = mod.LoggerInstance.Msg;
+                _logDebug = mod.LoggerInstance.Msg;
+                _logWarning = mod.LoggerInstance.Warning;
+                _logError = mod.LoggerInstance.Error;
             }
-#endif
+            #endif
 
             DetermineIfUpdateAvailable();
         }

@@ -6,46 +6,48 @@
     using HouseRules.Essentials.Rules;
     using HouseRules.Essentials.Rulesets;
 
-    internal static class HouseRulesEssentialsCore
+    internal static class HouseRulesEssentialsBase
     {
         internal const string ModId = "com.orendain.demeomods.houserules.essentials";
         internal const string ModName = "HouseRules.Essentials";
         internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
-        internal static Action<object> LogMessage;
-        internal static Action<object> LogInfo;
-        internal static Action<object> LogDebug;
-        internal static Action<object> LogWarning;
-        internal static Action<object> LogError;
+        private static Action<object>? _logDebug;
+        private static Action<object>? _logWarning;
+
+        internal static void LogDebug(object data) => _logDebug?.Invoke(data);
+
+        internal static void LogWarning(object data) => _logWarning?.Invoke(data);
+
 
         internal static void Init(object loader)
         {
-#if BEPINEX
+            #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
-                LogMessage = plugin.Log.LogMessage;
-                LogInfo = plugin.Log.LogInfo;
-                LogDebug = plugin.Log.LogDebug;
-                LogWarning = plugin.Log.LogWarning;
-                LogError = plugin.Log.LogError;
+                if (plugin.Log != null)
+                {
+                    _logDebug = plugin.Log.LogDebug;
+                    _logWarning = plugin.Log.LogWarning;
+                }
             }
-#endif
+            #endif
 
-#if MELONLOADER
+            #if MELONLOADER
             if (loader is MelonLoaderMod mod)
             {
-                LogMessage = mod.LoggerInstance.Msg;
-                LogInfo = mod.LoggerInstance.Msg;
-                LogDebug = mod.LoggerInstance.Msg;
-                LogWarning = mod.LoggerInstance.Warning;
-                LogError = mod.LoggerInstance.Error;
+                _logDebug = mod.LoggerInstance.Msg;
+                _logWarning = mod.LoggerInstance.Warning;
             }
-#endif
+            #endif
+
+            RegisterRuleTypes();
+            RegisterRulesets();
         }
 
 
-        internal static void RegisterRuleTypes()
+        private static void RegisterRuleTypes()
         {
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));
             HR.Rulebook.Register(typeof(AbilityBackstabAdjustedRule));
@@ -98,7 +100,7 @@
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
         }
 
-        internal static void RegisterRulesets()
+        private static void RegisterRulesets()
         {
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(LuckyDip.Create());

@@ -22,7 +22,7 @@
             {
                 var newName = $"(Custom) {ruleset.Name}";
                 var rulesetCopy = Ruleset.NewInstance(newName, ruleset.Description, ruleset.Longdesc, ruleset.Rules);
-                HouseRulesConfigurationCore.ConfigManager.ExportRuleset(rulesetCopy, ExampleRulesetDirectory);
+                HouseRulesConfigurationBase.ConfigManager.ExportRuleset(rulesetCopy, ExampleRulesetDirectory);
             }
         }
     }

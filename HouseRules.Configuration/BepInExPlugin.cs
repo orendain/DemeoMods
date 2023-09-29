@@ -6,15 +6,15 @@ namespace HouseRules.Configuration
     using HarmonyLib;
     using UnityEngine.SceneManagement;
 
-    [BepInPlugin(HouseRulesConfigurationCore.ModId, HouseRulesConfigurationCore.ModName, HouseRulesConfigurationCore.ModVersion)]
-    public class BepInExPlugin : BaseUnityPlugin
+    [BepInPlugin(HouseRulesConfigurationBase.ModId, HouseRulesConfigurationBase.ModName, HouseRulesConfigurationBase.ModVersion)]
+    internal class BepInExPlugin : BaseUnityPlugin
     {
         internal ManualLogSource Log { get; private set; }
 
         private void Awake()
         {
             Log = Logger;
-            HouseRulesConfigurationCore.Init(this);
+            HouseRulesConfigurationBase.Init(this);
 
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
@@ -22,17 +22,17 @@ namespace HouseRules.Configuration
 
         private void Start()
         {
-            HouseRulesConfigurationCore.LoadConfiguration();
+            HouseRulesConfigurationBase.LoadConfiguration();
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            HouseRulesConfigurationCore.OnSceneLoaded(scene.buildIndex, scene.name);
+            HouseRulesConfigurationBase.OnSceneLoaded(scene.buildIndex, scene.name);
         }
 
         private void OnSceneUnloaded(Scene scene)
         {
-            HouseRulesConfigurationCore.OnSceneUnloaded(scene.buildIndex, scene.name);
+            HouseRulesConfigurationBase.OnSceneUnloaded(scene.buildIndex, scene.name);
         }
     }
 }

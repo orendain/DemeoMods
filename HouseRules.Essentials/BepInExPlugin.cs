@@ -4,18 +4,16 @@ namespace HouseRules.Essentials
     using BepInEx;
     using BepInEx.Logging;
 
-    [BepInPlugin(HouseRulesEssentialsCore.ModId, HouseRulesEssentialsCore.ModName, HouseRulesEssentialsCore.ModVersion)]
+    [BepInPlugin(HouseRulesEssentialsBase.ModId, HouseRulesEssentialsBase.ModName, HouseRulesEssentialsBase.ModVersion)]
     public class BepInExPlugin : BaseUnityPlugin
     {
 
-        internal ManualLogSource Log { get; private set; }
+        internal ManualLogSource? Log { get; private set; }
 
         private void Awake()
         {
             Log = Logger;
-            HouseRulesEssentialsCore.Init(this);
-            HouseRulesEssentialsCore.RegisterRuleTypes();
-            HouseRulesEssentialsCore.RegisterRulesets();
+            HouseRulesEssentialsBase.Init(this);
         }
     }
 }

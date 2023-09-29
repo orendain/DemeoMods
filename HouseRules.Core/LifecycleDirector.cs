@@ -114,7 +114,7 @@
             var gameStateTraverse = Traverse.Create(_gameContext.gameStateMachine).Field("creatingGameState");
             if (!gameStateTraverse.FieldExists())
             {
-                HouseRulesCoreCore.LogError("Failed to find required \"creatingGameState\" field.");
+                HouseRulesCoreBase.LogError("Failed to find required \"creatingGameState\" field.");
                 return;
             }
 
@@ -223,7 +223,7 @@
 
             if (roomOptions.CustomRoomPropertiesForLobby.Contains(ModdedRoomPropertyKey))
             {
-                HouseRulesCoreCore.LogWarning($"Room options already include custom property: {ModdedRoomPropertyKey}");
+                HouseRulesCoreBase.LogWarning($"Room options already include custom property: {ModdedRoomPropertyKey}");
                 return;
             }
 
@@ -239,7 +239,7 @@
         {
             if (IsRulesetActive)
             {
-                HouseRulesCoreCore.LogWarning("Ruleset activation was attempted whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
+                HouseRulesCoreBase.LogWarning("Ruleset activation was attempted whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
                 return;
             }
 
@@ -250,24 +250,24 @@
 
             if (GameHub.GetGameMode == GameHub.GameMode.Multiplayer && !HR.SelectedRuleset.IsSafeForMultiplayer)
             {
-                HouseRulesCoreCore.LogWarning($"The selected ruleset [{HR.SelectedRuleset.Name}] is not safe for multiplayer games. Skipping activation.");
+                HouseRulesCoreBase.LogWarning($"The selected ruleset [{HR.SelectedRuleset.Name}] is not safe for multiplayer games. Skipping activation.");
                 return;
             }
 
             IsRulesetActive = true;
 
-            HouseRulesCoreCore.LogInfo($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            HouseRulesCoreBase.LogInfo($"Activating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
                 {
-                    HouseRulesCoreCore.LogDebug($"Activating rule type: {rule.GetType()}");
+                    HouseRulesCoreBase.LogDebug($"Activating rule type: {rule.GetType()}");
                     rule.OnActivate(_gameContext);
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    HouseRulesCoreCore.LogWarning($"Failed to activate rule [{rule.GetType()}]: {e}");
+                    HouseRulesCoreBase.LogWarning($"Failed to activate rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -281,18 +281,18 @@
 
             IsRulesetActive = false;
 
-            HouseRulesCoreCore.LogInfo($"Deactivating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            HouseRulesCoreBase.LogInfo($"Deactivating ruleset: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
                 {
-                    HouseRulesCoreCore.LogDebug($"Deactivating rule type: {rule.GetType()}");
+                    HouseRulesCoreBase.LogDebug($"Deactivating rule type: {rule.GetType()}");
                     rule.OnDeactivate(_gameContext);
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    HouseRulesCoreCore.LogWarning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
+                    HouseRulesCoreBase.LogWarning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -313,13 +313,13 @@
             {
                 try
                 {
-                    HouseRulesCoreCore.LogDebug($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
+                    HouseRulesCoreBase.LogDebug($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
                     rule.OnPreGameCreated(_gameContext);
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    HouseRulesCoreCore.LogWarning($"Failed to successfully call OnPreGameCreated on rule [{rule.GetType()}]: {e}");
+                    HouseRulesCoreBase.LogWarning($"Failed to successfully call OnPreGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -340,13 +340,13 @@
             {
                 try
                 {
-                    HouseRulesCoreCore.LogDebug($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
+                    HouseRulesCoreBase.LogDebug($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
                     rule.OnPostGameCreated(_gameContext);
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    HouseRulesCoreCore.LogWarning($"Failed to successfully call OnPostGameCreated on rule [{rule.GetType()}]: {e}");
+                    HouseRulesCoreBase.LogWarning($"Failed to successfully call OnPostGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
         }

@@ -5,13 +5,14 @@
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <Configurations>BepInEx;MelonLoader</Configurations>
+        <AssemblySearchPaths>../libs;$(AssemblySearchPaths)</AssemblySearchPaths>
     </PropertyGroup>
 
     <!-- BepInEx 5.x build config -->
     <PropertyGroup Condition="'$(Configuration)'=='BepInEx'">
         <OutputPath>bin</OutputPath>
         <DefineConstants>BEPINEX</DefineConstants>
-        <AssemblyName>HouseRules.Essentials.BepInEx</AssemblyName>
+        <AssemblyName>HouseRules.Essentials.BIE</AssemblyName>
     </PropertyGroup>
     <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
         <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
@@ -26,7 +27,6 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
             <Private>false</Private>
         </Reference>
     </ItemGroup>
@@ -35,7 +35,7 @@
     <PropertyGroup Condition="'$(Configuration)'=='MelonLoader'">
         <OutputPath>bin</OutputPath>
         <DefineConstants>MELONLOADER</DefineConstants>
-        <AssemblyName>HouseRules.Essentials.MelonLoader</AssemblyName>
+        <AssemblyName>HouseRules.Essentials.ML</AssemblyName>
     </PropertyGroup>
     <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
         <PackageReference Include="HarmonyX" Version="2.10.1" IncludeAssets="compile"/>
@@ -48,11 +48,9 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(DemeoAssembliesPath)\Assembly-CSharp.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="MelonLoader">
-            <HintPath>$(DemeoAssembliesPath)\..\..\MelonLoader\MelonLoader.dll</HintPath>
             <Private>false</Private>
         </Reference>
     </ItemGroup>

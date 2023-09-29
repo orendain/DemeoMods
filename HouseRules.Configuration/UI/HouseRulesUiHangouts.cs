@@ -24,11 +24,11 @@
             while (!HangoutsElementCreator.IsReady()
                    || !Resources.FindObjectsOfTypeAll<GameObject>().Any(x => x.name == "GroupLaunchTable"))
             {
-                HouseRulesConfigurationCore.LogDebug("UI dependencies not yet ready. Waiting...");
+                HouseRulesConfigurationBase.LogDebug("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            HouseRulesConfigurationCore.LogDebug("UI dependencies ready. Proceeding with initialization.");
+            HouseRulesConfigurationBase.LogDebug("UI dependencies ready. Proceeding with initialization.");
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = HangoutsElementCreator.Instance();
@@ -36,7 +36,7 @@
             _anchor = Resources.FindObjectsOfTypeAll<GameObject>().First(x => x.name == "GroupLaunchTable").transform;
 
             Initialize();
-            HouseRulesConfigurationCore.LogDebug("Initialization complete.");
+            HouseRulesConfigurationBase.LogDebug("Initialization complete.");
         }
 
         private void Initialize()
@@ -67,7 +67,7 @@
             versionText.transform.SetParent(transform, worldPositionStays: false);
             versionText.transform.localPosition = new Vector3(-7, -15.85f, VrElementCreator.TextZShift);
 
-            if (HouseRulesConfigurationCore.IsUpdateAvailable)
+            if (HouseRulesConfigurationBase.IsUpdateAvailable)
             {
                 var updateText = _elementCreator.CreateNormalText("NEW UPDATE AVAILABLE!");
                 updateText.transform.SetParent(transform, worldPositionStays: false);

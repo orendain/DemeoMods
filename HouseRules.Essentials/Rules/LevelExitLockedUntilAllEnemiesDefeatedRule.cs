@@ -79,7 +79,7 @@
                 gameContext.pieceAndTurnController.FindFirstPiece(p => p.HasEffectState(EffectStateType.Key));
             if (keyHolder == null)
             {
-                HouseRulesEssentialsCore.LogWarning(
+                HouseRulesEssentialsBase.LogWarning(
                     "[LevelExitLockedUntilAllEnemiesDefeated] Could not find key holder on this level. Skipping.");
                 return;
             }

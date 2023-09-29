@@ -128,15 +128,15 @@
 
             if (request.type == SerializableEvent.Type.EndRound)
             {
-                HouseRulesEssentialsCore.LogDebug("Next turn!");
+                HouseRulesEssentialsBase.LogDebug("Next turn!");
                 _globalRoundsPlayed += 1;
                 if (_globalRoundsPlayed < _globalRoundLimit)
                 {
-                    HouseRulesEssentialsCore.LogDebug($"<--- {_globalRoundLimit - _globalRoundsPlayed} turns left --->");
+                    HouseRulesEssentialsBase.LogDebug($"<--- {_globalRoundLimit - _globalRoundsPlayed} turns left --->");
                     return;
                 }
 
-                HouseRulesEssentialsCore.LogDebug("EVERYONE DIES NOW!");
+                HouseRulesEssentialsBase.LogDebug("EVERYONE DIES NOW!");
             }
         }
 

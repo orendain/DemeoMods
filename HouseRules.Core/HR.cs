@@ -24,7 +24,7 @@ namespace HouseRules.Core
             if (Ruleset.None.Name.Equals(ruleset, StringComparison.OrdinalIgnoreCase))
             {
                 SelectedRuleset = Ruleset.None;
-                HouseRulesCoreCore.LogInfo("Cleared selected ruleset.");
+                HouseRulesCoreBase.LogInfo("Cleared selected ruleset.");
                 return;
             }
 
@@ -34,7 +34,7 @@ namespace HouseRules.Core
             }
 
             SelectedRuleset = Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
-            HouseRulesCoreCore.LogInfo($"Selected ruleset: {SelectedRuleset.Name}");
+            HouseRulesCoreBase.LogInfo($"Selected ruleset: {SelectedRuleset.Name}");
         }
 
         public static void ScheduleBoardSync()
