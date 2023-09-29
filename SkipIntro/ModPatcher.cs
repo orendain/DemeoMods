@@ -25,7 +25,7 @@
 
         private static bool MotherbrainSceneUtil_LoadIntro_Prefix(ref AsyncOperation __result)
         {
-            SkipIntro.LogDebug("Skipping the intro scene.");
+            SkipIntroBase.LogDebug("Skipping the intro scene.");
             __result = MotherbrainSceneUtil.LoadLobby();
             return false;
         }
@@ -33,13 +33,13 @@
         private static void NonVrBoot_Constructor_Prefix()
         {
             MotherbrainGlobalVars.isRunningBrainTests = true;
-            SkipIntro.LogDebug("Temporarily setting a field required to skip the intro scene.");
+            SkipIntroBase.LogDebug("Temporarily setting a field required to skip the intro scene.");
         }
 
         private static void GlobalCanvasSystem_RunLoading_Prefix()
         {
             MotherbrainGlobalVars.isRunningBrainTests = false;
-            SkipIntro.LogDebug("Reverting temporarily field setting.");
+            SkipIntroBase.LogDebug("Reverting temporarily field setting.");
         }
     }
 }
