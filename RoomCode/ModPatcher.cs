@@ -1,7 +1,6 @@
 ﻿namespace RoomCode
 {
     using System.Linq;
-    using System.Reflection;
     using HarmonyLib;
 
     internal static class ModPatcher
@@ -21,26 +20,26 @@
 
         private static bool NetworkRoomUtils_GetRandomRoomCode_Prefix(ref string __result)
         {
-            if (!RoomCodeMod.Enabled)
+            if (!RoomCodeBase.Enabled)
             {
                 return true;
             }
 
-            if (!RoomCodeMod.RoomCodes.Any())
+            if (!RoomCodeBase.RoomCodes.Any())
             {
                 return true;
             }
 
-            if (_roomCodeAttempts >= RoomCodeMod.RoomCodes.Count)
+            if (_roomCodeAttempts >= RoomCodeBase.RoomCodes.Count)
             {
-                RoomCodeMod.Logger.Msg("All proposed room codes unavailable.");
+                RoomCodeBase.LogInfo("All proposed room codes unavailable.");
                 return true;
             }
 
-            __result = RoomCodeMod.RoomCodes.ElementAt(_roomCodeAttempts);
+            __result = RoomCodeBase.RoomCodes.ElementAt(_roomCodeAttempts);
             ++_roomCodeAttempts;
 
-            RoomCodeMod.Logger.Msg($"Proposing room code: {__result}");
+            RoomCodeBase.LogDebug($"Proposing room code: {__result}");
             return false;
         }
 
