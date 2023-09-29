@@ -4,28 +4,27 @@ namespace RoomCode
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using BepInEx;
     using BepInEx.Logging;
     using HarmonyLib;
 
-    [BepInPlugin(RoomCode.ModId, RoomCode.ModName, RoomCode.ModVersion)]
-    public class BepInExPlugin : BaseUnityPlugin
+    [BepInPlugin(RoomCodeBase.ModId, RoomCodeBase.ModName, RoomCodeBase.ModVersion)]
+    internal class BepInExPlugin : BaseUnityPlugin
     {
-        internal ManualLogSource Log { get; private set; }
+        internal ManualLogSource? Log { get; private set; }
 
-        internal Harmony Harmony { get; private set; }
+        internal Harmony? Harmony { get; private set; }
 
         internal bool Enabled { get; private set; }
 
-        internal List<string> RoomCodes { get; private set; }
+        internal List<string> RoomCodes { get; private set; } = new();
 
         private void Awake()
         {
             Log = Logger;
-            Harmony = new Harmony(RoomCode.ModId);
+            Harmony = new Harmony(RoomCodeBase.ModId);
             LoadConfiguration();
-            RoomCode.Init(this);
+            RoomCodeBase.Init(this);
         }
 
         private void LoadConfiguration()
