@@ -30,11 +30,11 @@
                        .FindObjectsOfTypeAll<charactersoundlistener>()
                        .Count(x => x.name == "MenuBox_BindPose") < 2)
             {
-                RoomFinderCore.LogDebug("UI dependencies not yet ready. Waiting...");
+                RoomFinderBase.LogDebug("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            RoomFinderCore.LogDebug("UI dependencies ready. Proceeding with initialization.");
+            RoomFinderBase.LogDebug("UI dependencies ready. Proceeding with initialization.");
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = VrElementCreator.Instance();
@@ -44,23 +44,23 @@
                 .First(x => x.name == "MenuBox_BindPose").transform;
 
             Initialize();
-            RoomFinderCore.LogDebug("Initialization complete.");
+            RoomFinderBase.LogDebug("Initialization complete.");
         }
 
         private void Update()
         {
-            if (!RoomFinderCore.SharedState.IsRefreshingRoomList)
+            if (!RoomFinderBase.SharedState.IsRefreshingRoomList)
             {
                 return;
             }
 
-            if (!RoomFinderCore.SharedState.HasRoomListUpdated)
+            if (!RoomFinderBase.SharedState.HasRoomListUpdated)
             {
                 return;
             }
 
-            RoomFinderCore.SharedState.IsRefreshingRoomList = false;
-            RoomFinderCore.SharedState.HasRoomListUpdated = false;
+            RoomFinderBase.SharedState.IsRefreshingRoomList = false;
+            RoomFinderBase.SharedState.HasRoomListUpdated = false;
             PopulateRoomList();
         }
 
@@ -86,7 +86,7 @@
             var selectionPanel = _roomListPanel.Panel;
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
 
-            var versionText = _elementCreator.CreateNormalText($"v{RoomFinderCore.ModVersion}");
+            var versionText = _elementCreator.CreateNormalText($"v{RoomFinderBase.ModVersion}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
             versionText.transform.localPosition = new Vector3(-3.25f, -19.5f, VrElementCreator.TextZShift);
 
@@ -96,9 +96,9 @@
 
         private static void RefreshRoomList()
         {
-            RoomFinderCore.SharedState.IsRefreshingRoomList = true;
+            RoomFinderBase.SharedState.IsRefreshingRoomList = true;
             var lobbyMenuController = Traverse
-                .Create(RoomFinderCore.SharedState.GameContext.gameStateMachine.lobby)
+                .Create(RoomFinderBase.SharedState.GameContext.gameStateMachine.lobby)
                 .Field<LobbyMenuController>("lobbyMenuController")
                 .Value;
             var lobbyMenuContext = Traverse
@@ -116,11 +116,11 @@
         private void PopulateRoomList()
         {
             var unfilteredRooms =
-                Traverse.Create(RoomFinderCore.SharedState.LobbyMatchmakingController)
+                Traverse.Create(RoomFinderBase.SharedState.LobbyMatchmakingController)
                     .Field<List<RoomInfo>>("roomList").Value;
 
             var isRoomValidMethod =
-                Traverse.Create(RoomFinderCore.SharedState.LobbyMatchmakingController)
+                Traverse.Create(RoomFinderBase.SharedState.LobbyMatchmakingController)
                     .Method("IsRoomValidWithCurrentConfiguration", new[] { typeof(RoomInfo) });
 
             var filteredRooms =
@@ -128,8 +128,8 @@
                     .Select(Room.Parse)
                     .ToList();
 
-            RoomFinderCore.LogInfo($"Found {unfilteredRooms.Count} total rooms.");
-            RoomFinderCore.LogInfo($"Listing {filteredRooms.Count} available rooms.");
+            RoomFinderBase.LogInfo($"Found {unfilteredRooms.Count} total rooms.");
+            RoomFinderBase.LogInfo($"Listing {filteredRooms.Count} available rooms.");
 
             _roomListPanel.UpdateRooms(filteredRooms);
         }

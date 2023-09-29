@@ -8,36 +8,37 @@ on:
   push:
     branches:
       - 'main'
-  workflow_dispatch:
-
-defaults:
-  run:
-    shell: cmd
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Set Up MSBuild
-        uses: microsoft/setup-msbuild@v1
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
 
-      - name: Add Build Dependencies
+      - name: Add Dependencies
         run: |
-          C:\msys64\usr\bin\wget.exe -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/180eb5a6465eda285066704d89cef8d5b9109ee6/2023-09-07.zip
-          7z x deps.zip
+          wget -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/1d94aee9fe14b23affdb975d57aa6b4c5f6c04f2/2023-09-07.zip
+          7z x deps.zip -o./libs
 
-      - name: Build Project
-        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoVrDir="%GITHUB_WORKSPACE%" Highlighter\Highlighter.csproj
+      - name: Build BepInEx Plugin
+        run: dotnet build Highlighter/Highlighter.csproj -c BepInEx -v d
 
-      - name: Assemble into Bundle
-        run: |
-          mkdir Bundle\Mods
-          xcopy Highlighter\bin\Release\Highlighter.dll Bundle\Mods
+      - name: Build MelonLoader Mod
+        run: dotnet build Highlighter/Highlighter.csproj -c MelonLoader -v d
 
-      - name: Upload Bundle
+      - name: Upload BepInEx DLL
         uses: actions/upload-artifact@v3
         with:
-          name: Highlighter
-          path: Bundle\*
+          name: Highlighter.BIE.dll
+          path: Highlighter/bin/netstandard2.1/Highlighter.BIE.dll
+
+      - name: Upload MelonLoader DLL
+        uses: actions/upload-artifact@v3
+        with:
+          name: Highlighter.ML.dll
+          path: Highlighter/bin/netstandard2.1/Highlighter.ML.dll
