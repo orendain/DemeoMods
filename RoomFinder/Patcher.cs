@@ -42,27 +42,27 @@
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
-            RoomFinderMod.SharedState.GameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
+            RoomFinderBase.SharedState.GameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
         }
 
         private static void MatchmakingController_Constructor_Postfix(MatchmakingController __instance)
         {
-            RoomFinderMod.SharedState.LobbyMatchmakingController = __instance.LobbyMatchmakingController;
+            RoomFinderBase.SharedState.LobbyMatchmakingController = __instance.LobbyMatchmakingController;
         }
 
         private static void LobbyMatchmakingController_OnRoomListUpdated_Postfix()
         {
-            RoomFinderMod.SharedState.HasRoomListUpdated = true;
+            RoomFinderBase.SharedState.HasRoomListUpdated = true;
         }
 
         private static bool MatchMakingState_OnMatchmakingRoomCodesUpdated_Prefix()
         {
-            if (!RoomFinderMod.SharedState.IsRefreshingRoomList)
+            if (!RoomFinderBase.SharedState.IsRefreshingRoomList)
             {
                 return true;
             }
 
-            RoomFinderMod.SharedState.GameContext.gameStateMachine.goBackToMenuState = true;
+            RoomFinderBase.SharedState.GameContext.gameStateMachine.goBackToMenuState = true;
             return false;
         }
     }
