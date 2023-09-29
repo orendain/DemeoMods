@@ -68,14 +68,14 @@ Global
 		Release_MelonLoader|Any CPU = Release_MelonLoader|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
 		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release_BepInEx|Any CPU.ActiveCfg = Any CPU
 		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release_BepInEx|Any CPU.Build.0 = Any CPU
 		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release_MelonLoader|Any CPU.ActiveCfg = Any CPU
 		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release_MelonLoader|Any CPU.Build.0 = Any CPU
-		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
-		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
-		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
-		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
 		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
 		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
 		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
@@ -88,6 +88,10 @@ Global
 		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
 		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
 		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
 		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
 		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
 		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU

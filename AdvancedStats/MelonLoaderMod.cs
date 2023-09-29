@@ -1,25 +1,24 @@
 ﻿#if MELONLOADER
+using AdvancedStats;
 using MelonLoader;
-using RoomFinder;
 
-[assembly: MelonInfo(typeof(MelonLoaderMod), RoomFinderBase.ModName, RoomFinderBase.ModVersion, RoomFinderBase.ModAuthor, "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(MelonLoaderMod), AdvancedStatsBase.ModName, AdvancedStatsBase.ModVersion, AdvancedStatsBase.ModAuthor, "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
-[assembly: MelonID("566788")]
-[assembly: VerifyLoaderVersion("0.5.3", true)]
+[assembly: VerifyLoaderVersion("0.5.7", true)]
 
-namespace RoomFinder
+namespace AdvancedStats
 {
     internal class MelonLoaderMod : MelonMod
     {
         public override void OnInitializeMelon()
         {
-            RoomFinderBase.Init(this);
+            AdvancedStatsBase.Init(this);
         }
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            RoomFinderBase.OnSceneLoaded(buildIndex);
+            AdvancedStatsBase.OnSceneLoaded(sceneName);
         }
     }
 }

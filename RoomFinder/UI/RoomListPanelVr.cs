@@ -249,9 +249,15 @@
         {
             return () =>
             {
+<<<<<<< HEAD
                 RoomFinderCore.LogDebug($"Joining room [{roomCode}].");
                 var lobbyMenuController = Traverse
                     .Create(RoomFinderCore.SharedState.GameContext.gameStateMachine.lobby)
+=======
+                RoomFinderBase.LogDebug($"Joining room [{roomCode}].");
+                var lobbyMenuController = Traverse
+                    .Create(RoomFinderBase.SharedState.GameContext.gameStateMachine.lobby)
+>>>>>>> main
                     .Field<LobbyMenuController>("lobbyMenuController")
                     .Value;
                 Traverse.Create(lobbyMenuController)

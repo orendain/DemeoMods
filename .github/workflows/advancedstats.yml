@@ -8,36 +8,38 @@ on:
   push:
     branches:
       - 'main'
-  workflow_dispatch:
-
-defaults:
-  run:
-    shell: cmd
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Set Up MSBuild
-        uses: microsoft/setup-msbuild@v1.3.1
-
-      - name: Add Build Dependencies
-        run: |
-          C:\msys64\usr\bin\wget.exe https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/eab432f1b7df70451905531f1e77bb05102747ec/ws.zip
-          7z x ws.zip
-
-      - name: Build Project
-        run: msbuild -m -v:d -p:Configuration=Release -p:DemeoPcDir="%GITHUB_WORKSPACE%" AdvancedStats\AdvancedStats.csproj
-
-      - name: Assemble into Bundle
-        run: |
-          mkdir Bundle\Mods
-          xcopy AdvancedStats\bin\Release\AdvancedStats.dll Bundle\Mods
-
-      - name: Upload Bundle
-        uses: actions/upload-artifact@v3.1.2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
         with:
-          name: AdvancedStats
-          path: Bundle\*
+          dotnet-version: '7.0.x'
+
+      - name: Add Dependencies
+        run: |
+          wget -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/1d94aee9fe14b23affdb975d57aa6b4c5f6c04f2/2023-09-07.zip
+          7z x deps.zip -o./libs
+
+      - name: Build BepInEx Plugin
+        run: dotnet build AdvancedStats/AdvancedStats.csproj -c BepInEx -v d
+
+      - name: Build MelonLoader Mod
+        run: dotnet build AdvancedStats/AdvancedStats.csproj -c MelonLoader -v d
+
+      - name: Upload BepInEx DLL
+        uses: actions/upload-artifact@v3
+        with:
+          name: AdvancedStats.BIE.dll
+          path: AdvancedStats/bin/netstandard2.1/AdvancedStats.BIE.dll
+
+      - name: Upload MelonLoader DLL
+        uses: actions/upload-artifact@v3
+        with:
+          name: AdvancedStats.ML.dll
+          path: AdvancedStats/bin/netstandard2.1/AdvancedStats.ML.dll
+

@@ -3,33 +3,34 @@
     using System;
     using System.Collections.Generic;
 
-    internal static class RoomCode
+    internal static class RoomCodeBase
     {
         internal const string ModId = "com.orendain.demeomods.roomcode";
         internal const string ModName = "RoomCode";
         internal const string ModVersion = "1.2.1";
         internal const string ModAuthor = "DemeoMods Team";
 
-        internal static Action<object> LogMessage;
-        internal static Action<object> LogInfo;
-        internal static Action<object> LogDebug;
-        internal static Action<object> LogWarning;
-        internal static Action<object> LogError;
+        private static Action<object>? _logInfo;
+        private static Action<object>? _logDebug;
+
+        internal static void LogInfo(object data) => _logInfo?.Invoke(data);
+
+        internal static void LogDebug(object data) => _logDebug?.Invoke(data);
 
         internal static bool Enabled { get; private set; }
 
-        internal static List<string> RoomCodes { get; private set; }
+        internal static List<string> RoomCodes { get; private set; } = new();
 
         internal static void Init(object loader)
         {
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
-                LogMessage = plugin.Log.LogMessage;
-                LogInfo = plugin.Log.LogInfo;
-                LogDebug = plugin.Log.LogDebug;
-                LogWarning = plugin.Log.LogWarning;
-                LogError = plugin.Log.LogError;
+                if (plugin.Log != null)
+                {
+                    _logInfo = plugin.Log.LogInfo;
+                    _logDebug = plugin.Log.LogDebug;
+                }
 
                 Enabled = plugin.Enabled;
                 RoomCodes = plugin.RoomCodes;
@@ -41,11 +42,8 @@
             #if MELONLOADER
             if (loader is MelonLoaderMod mod)
             {
-                LogMessage = mod.LoggerInstance.Msg;
-                LogInfo = mod.LoggerInstance.Msg;
-                LogDebug = mod.LoggerInstance.Msg;
-                LogWarning = mod.LoggerInstance.Warning;
-                LogError = mod.LoggerInstance.Error;
+                _logInfo = mod.LoggerInstance.Msg;
+                _logDebug = mod.LoggerInstance.Msg;
 
                 Enabled = mod.Enabled.Value;
                 RoomCodes = mod.RoomCodes.Value;
