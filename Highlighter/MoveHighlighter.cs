@@ -10,7 +10,7 @@
     using HarmonyLib;
     using UnityEngine;
 
-    public static class MoveHighlighter
+    internal static class MoveHighlighter
     {
         private static GameContext _gameContext;
         private static IntPoint2D _lastHoveredTile;

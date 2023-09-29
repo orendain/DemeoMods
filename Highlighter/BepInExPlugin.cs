@@ -5,7 +5,7 @@ namespace Highlighter
     using HarmonyLib;
 
     [BepInPlugin(HighlighterBase.ModId, HighlighterBase.ModName, HighlighterBase.ModVersion)]
-    public class BepInExPlugin : BaseUnityPlugin
+    internal class BepInExPlugin : BaseUnityPlugin
     {
         internal Harmony? Harmony { get; private set; }
 
