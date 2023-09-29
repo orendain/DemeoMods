@@ -1,6 +1,6 @@
 ﻿namespace Highlighter
 {
-    internal static class HighlighterCore
+    internal static class HighlighterBase
     {
         internal const string ModId = "com.orendain.demeomods.highlighter";
         internal const string ModName = "Highlighter";
@@ -9,19 +9,19 @@
 
         internal static void Init(object loader)
         {
-#if BEPINEX
+            #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
                 MoveHighlighter.Patch(plugin.Harmony);
             }
-#endif
+            #endif
 
-#if MELONLOADER
+            #if MELONLOADER
             if (loader is MelonLoaderMod mod)
             {
                 MoveHighlighter.Patch(mod.HarmonyInstance);
             }
-#endif
+            #endif
         }
     }
 }

@@ -2,7 +2,7 @@
 using Highlighter;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(MelonLoaderMod), HighlighterCore.ModName, HighlighterCore.ModVersion, HighlighterCore.ModAuthor, "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(typeof(MelonLoaderMod), HighlighterBase.ModName, HighlighterBase.ModVersion, HighlighterBase.ModAuthor, "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: VerifyLoaderVersion("0.5.3", true)]
@@ -13,7 +13,7 @@ namespace Highlighter
     {
         public override void OnInitializeMelon()
         {
-            HighlighterCore.Init(this);
+            HighlighterBase.Init(this);
         }
     }
 }

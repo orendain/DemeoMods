@@ -17,9 +17,6 @@
 
         internal static void Patch(Harmony harmony)
         {
-            // To allow mid-game hooking.
-            _gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
                 postfix: new HarmonyMethod(typeof(MoveHighlighter), nameof(GameStartup_InitializeGame_Postfix)));
