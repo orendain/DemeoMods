@@ -10,13 +10,16 @@
     using HarmonyLib;
     using UnityEngine;
 
-    internal static class MoveHighlighter
+    public static class MoveHighlighter
     {
         private static GameContext _gameContext;
         private static IntPoint2D _lastHoveredTile;
 
         internal static void Patch(Harmony harmony)
         {
+            // To allow mid-game hooking.
+            _gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+
             harmony.Patch(
                 original: AccessTools.Method(typeof(GameStartup), "InitializeGame"),
                 postfix: new HarmonyMethod(typeof(MoveHighlighter), nameof(GameStartup_InitializeGame_Postfix)));
