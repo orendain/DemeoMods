@@ -38,9 +38,6 @@ jobs:
       - name: Build HouseRules.Essentials MelonLoader Mod
         run: dotnet build HouseRules.Essentials/HouseRules.Essentials.csproj -c MelonLoader -v d
 
-      - name: Build HouseRules.Configuration BepInEx Plugin
-        run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c BepInEx -v d
-
       - name: Build HouseRules.Configuration MelonLoader Mod
         run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c MelonLoader -v d
 
@@ -49,7 +46,6 @@ jobs:
           mkdir BIEBundle/BepInEx/plugins
           xcopy HouseRules.Core/bin/netstandard2.1/HouseRules.Core.BIE.dll BIEBundle/BepInEx/plugins
           xcopy HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.BIE.dll BIEBundle/BepInEx/plugins
-          xcopy HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.BIE.dll BIEBundle/BepInEx/plugins
           mkdir BIEBundle/BepInEx/config/HouseRules/ExampleRulesets
           xcopy docs/rulesets/* BIEBundle/BepInEx/config/HouseRules/ExampleRulesets
 
