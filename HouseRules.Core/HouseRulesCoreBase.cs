@@ -43,8 +43,6 @@
                 if (plugin.Harmony != null)
                 {
                     _harmony = plugin.Harmony;
-                    LifecycleDirector.Patch(_harmony);
-                    BoardSyncer.Patch(_harmony);
                 }
             }
             #endif
@@ -58,11 +56,11 @@
                 _logError = mod.LoggerInstance.Error;
 
                 _harmony = mod.HarmonyInstance;
-                LifecycleDirector.Patch(_harmony);
-                BoardSyncer.Patch(_harmony);
             }
             #endif
 
+            LifecycleDirector.Patch(_harmony);
+            BoardSyncer.Patch(_harmony);
             HR.Rulebook.Register(Ruleset.None);
         }
 
