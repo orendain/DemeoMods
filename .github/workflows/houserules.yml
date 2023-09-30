@@ -62,11 +62,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: HouseRules.BepInEx.zip
-          path: Bundle/BIEBundle
+          path: BIEBundle
 
       - name: Upload MelonLoader Bundle
         uses: actions/upload-artifact@v3
         with:
           name: HouseRules.MelonLoader.zip
-          path: Bundle/MLBundle
+          path: MLBundle
 
