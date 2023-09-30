@@ -43,20 +43,20 @@ jobs:
 
       - name: Assemble into BepInEx Bundle
         run: |
-          mkdir BIEBundle/BepInEx/plugins
-          xcopy HouseRules.Core/bin/netstandard2.1/HouseRules.Core.BIE.dll BIEBundle/BepInEx/plugins
-          xcopy HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.BIE.dll BIEBundle/BepInEx/plugins
-          mkdir BIEBundle/BepInEx/config/HouseRules/ExampleRulesets
-          xcopy docs/rulesets/* BIEBundle/BepInEx/config/HouseRules/ExampleRulesets
+          mkdir -p BIEBundle/BepInEx/plugins
+          cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.BIE.dll BIEBundle/BepInEx/plugins
+          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.BIE.dll BIEBundle/BepInEx/plugins
+          mkdir -p BIEBundle/BepInEx/config/HouseRules/ExampleRulesets
+          cp docs/rulesets/* BIEBundle/BepInEx/config/HouseRules/ExampleRulesets
 
       - name: Assemble into MelonLoader Bundle
         run: |
-          mkdir MLBundle/Mods
-          xcopy HouseRules.Core/bin/netstandard2.1/HouseRules.Core.ML.dll MLBundle/Mods
-          xcopy HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.ML.dll MLBundle/Mods
-          xcopy HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.ML.dll MLBundle/Mods
-          mkdir MLBundle/UserData/HouseRules/ExampleRulesets
-          xcopy docs/rulesets/* MLBundle/UserData/HouseRules/ExampleRulesets
+          mkdir -p MLBundle/Mods
+          cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.ML.dll MLBundle/Mods
+          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.ML.dll MLBundle/Mods
+          cp HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.ML.dll MLBundle/Mods
+          mkdir -p MLBundle/UserData/HouseRules/ExampleRulesets
+          cp docs/rulesets/* MLBundle/UserData/HouseRules/ExampleRulesets
 
       - name: Upload BepInEx Bundle
         uses: actions/upload-artifact@v3
