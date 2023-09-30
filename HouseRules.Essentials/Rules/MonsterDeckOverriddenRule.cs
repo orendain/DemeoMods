@@ -142,7 +142,7 @@
                 SpawnZone spawnZone3 = list[i];
                 if (spawnZone3.GetAllFreeTiles(ref boardState).Count == 0)
                 {
-                    EssentialsMod.Logger.Msg(string.Format("Spawn zone doesn't contain any free tiles, removing it! {0}", spawnZone3.TileRect));
+                    HouseRulesEssentialsBase.LogDebug(string.Format("Spawn zone doesn't contain any free tiles, removing it! {0}", spawnZone3.TileRect));
                     list.RemoveAt(i);
                 }
             }
@@ -169,7 +169,7 @@
                         break;
                     }
 
-                    EssentialsMod.Logger.Msg(string.Concat(new string[]
+                    HouseRulesEssentialsBase.LogDebug(string.Concat(new string[]
                     {
                         "Spawnzone had only ",
                         allFreeTiles.Count.ToString(),
@@ -198,7 +198,7 @@
 
             if (spawnZone == null)
             {
-                EssentialsMod.Logger.Msg("MD: Could not find a spawn zone to spawn the boss");
+                HouseRulesEssentialsBase.LogWarning("MD: Could not find a spawn zone to spawn the boss");
             }
 
             PieceSpawnSettings spawnSettings = new PieceSpawnSettings(_globalAdjustments.Boss, Team.Two).SetSpawnTile(keyHolderPosition).SetRandomRotation(rng).SetHasBloodhound(PieceSpawnSettings.BloodHoundStatus.Enabled).AddEffectState(EffectStateType.AIDirectorAmbientEnemy).AddEffectState(EffectStateType.UnitLeader).AddEffectState(EffectStateType.KeyEndChest);

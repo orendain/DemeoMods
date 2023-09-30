@@ -1,19 +1,51 @@
 ﻿namespace HouseRules.Essentials
 {
+    using System;
+    using HarmonyLib;
     using HouseRules.Core;
     using HouseRules.Essentials.Rules;
     using HouseRules.Essentials.Rulesets;
-    using MelonLoader;
 
-    internal class EssentialsMod : MelonMod
+    internal static class HouseRulesEssentialsBase
     {
-        internal static readonly MelonLogger.Instance Logger = new MelonLogger.Instance("HouseRules:Essentials");
+        internal const string ModId = "com.orendain.demeomods.houserules.essentials";
+        internal const string ModName = "HouseRules.Essentials";
+        internal const string ModVersion = "1.8.0";
+        internal const string ModAuthor = "DemeoMods Team";
 
-        public override void OnInitializeMelon()
+        private static Action<object>? _logDebug;
+        private static Action<object>? _logWarning;
+
+        internal static void LogDebug(object data) => _logDebug?.Invoke(data);
+
+        internal static void LogWarning(object data) => _logWarning?.Invoke(data);
+
+
+        internal static void Init(object loader)
         {
+            #if BEPINEX
+            if (loader is BepInExPlugin plugin)
+            {
+                if (plugin.Log != null)
+                {
+                    _logDebug = plugin.Log.LogDebug;
+                    _logWarning = plugin.Log.LogWarning;
+                }
+            }
+            #endif
+
+            #if MELONLOADER
+            if (loader is MelonLoaderMod mod)
+            {
+                _logDebug = mod.LoggerInstance.Msg;
+                _logWarning = mod.LoggerInstance.Warning;
+            }
+            #endif
+
             RegisterRuleTypes();
             RegisterRulesets();
         }
+
 
         private static void RegisterRuleTypes()
         {

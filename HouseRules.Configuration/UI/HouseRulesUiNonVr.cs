@@ -23,18 +23,18 @@
         {
             while (!NonVrElementCreator.IsReady())
             {
-                ConfigurationMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
+                HouseRulesConfigurationBase.LogDebug("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            ConfigurationMod.Logger.Msg("UI dependencies ready. Proceeding with initialization.");
+            HouseRulesConfigurationBase.LogDebug("UI dependencies ready. Proceeding with initialization.");
 
             _resourceTable = NonVrResourceTable.Instance();
             _elementCreator = NonVrElementCreator.Instance();
             _rulesetPanel = RulesetListPanelNonVr.NewInstance(HR.Rulebook, _elementCreator);
 
             Initialize();
-            ConfigurationMod.Logger.Msg("Initialization complete.");
+            HouseRulesConfigurationBase.LogDebug("Initialization complete.");
         }
 
         private void Initialize()
@@ -61,7 +61,7 @@
             versionText.transform.SetParent(transform, worldPositionStays: false);
             versionText.transform.localPosition = new Vector2(-615, -400);
 
-            if (ConfigurationMod.IsUpdateAvailable)
+            if (HouseRulesConfigurationBase.IsUpdateAvailable)
             {
                 var updateText = _elementCreator.CreateNormalText("NEW UPDATE AVAILABLE!");
                 updateText.transform.SetParent(transform, worldPositionStays: false);

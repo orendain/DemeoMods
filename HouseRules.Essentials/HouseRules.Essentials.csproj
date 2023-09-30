@@ -1,143 +1,58 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8FC09405-8E06-4090-BB68-94882F0A52D8}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HouseRules.Essentials</RootNamespace>
-    <AssemblyName>HouseRules.Essentials</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EssentialsMod.cs" />
-    <Compile Include="Rulesets\AoePotionsAndBuffsRuleset.cs" />
-    <Compile Include="Rulesets\Arachnophobia.cs" />
-    <Compile Include="Rulesets\EarthWindAndFire.cs" />
-    <Compile Include="Rulesets\BeatTheClockRuleset.cs" />
-    <Compile Include="Rulesets\BetterSorcererRuleset.cs" />
-    <Compile Include="Rulesets\DifficultyEasyRuleset.cs" />
-    <Compile Include="Rulesets\DifficultyHardRuleset.cs" />
-    <Compile Include="Rulesets\DifficultyLegendaryRuleset.cs" />
-    <Compile Include="Rulesets\FlippingOut.cs" />
-    <Compile Include="Rulesets\HardcoreRuleset.cs" />
-    <Compile Include="Rulesets\HoardersRuleset.cs" />
-    <Compile Include="Rulesets\HuntersParadiseRuleset.cs" />
-    <Compile Include="Rulesets\DemeoReloaded.cs" />
-    <Compile Include="Rulesets\ItsATrapRuleset.cs" />
-    <Compile Include="Rulesets\LuckyDip.cs" />
-    <Compile Include="Rulesets\NakedRunRuleset.cs" />
-    <Compile Include="Rulesets\QuickAndDeadRuleset.cs" />
-    <Compile Include="Rulesets\NoSurprisesRuleset.cs" />
-    <Compile Include="Rulesets\PotionCommotionRuleset.cs" />
-    <Compile Include="Rulesets\TheSwirlRuleset.cs" />
-    <Compile Include="Rules\AbilityBackstabAdjustedRule.cs" />
-    <Compile Include="Rules\AbilityDamageOverriddenRule.cs" />
-    <Compile Include="Rules\AbilityStealthDamageOverriddenRule.cs" />
-    <Compile Include="Rules\AbilityHealOverriddenRule.cs" />
-    <Compile Include="Rules\ApplyEffectOnHitAdjustedRule.cs" />
-    <Compile Include="Rules\CardChestAdditionOverriddenRule.cs" />
-    <Compile Include="Rules\CardClassRestrictionOverriddenRule.cs" />
-    <Compile Include="Rules\CardEnergyAdditionOverriddenRule.cs" />
-    <Compile Include="Rules\EnemyCooldownOverriddenRule.cs" />
-    <Compile Include="Rules\LevelExitLockedUntilOneHeroRemainsRule.cs" />
-    <Compile Include="Rules\PartyElectricityDamageOverriddenRule.cs" />
-    <Compile Include="Rules\FreeAbilityOnCritRule.cs" />
-    <Compile Include="Rules\CourageShantyAddsHPRule.cs" />
-    <Compile Include="Rules\PotionAdditionOverriddenRule.cs" />
-    <Compile Include="Rules\TileEffectDurationOverriddenRule.cs" />
-    <Compile Include="Rules\LampTypesOverriddenRule.cs" />
-    <Compile Include="Rules\LevelSequenceOverriddenRule.cs" />
-    <Compile Include="Rules\PieceUseWhenKilledOverriddenRule.cs" />
-    <Compile Include="Rules\MonsterDeckOverriddenRule.cs" />
-    <Compile Include="Rules\SpawnCategoryOverriddenRule.cs" />
-    <Compile Include="Rules\AbilityActionCostAdjustedRule.cs" />
-    <Compile Include="Rules\PiecePieceTypeListOverriddenRule.cs" />
-    <Compile Include="Rules\PieceBehavioursListOverriddenRule.cs" />
-    <Compile Include="Rules\PieceAbilityListOverriddenRule.cs" />
-    <Compile Include="Rules\PieceDownedCountAdjustedRule.cs" />
-    <Compile Include="Rules\RegainAbilityIfMaxxedOutOverriddenRule.cs" />
-    <Compile Include="Rules\StatModifiersOverriddenRule.cs" />
-    <Compile Include="Rules\AbilityRandomPieceListRule.cs" />
-    <Compile Include="Rules\CardAdditionOverriddenRule.cs" />
-    <Compile Include="Rules\CardEnergyFromAttackMultipliedRule.cs" />
-    <Compile Include="Rules\LevelExitLockedUntilAllEnemiesDefeatedRule.cs" />
-    <Compile Include="Rules\PetsFocusHunterMarkRule.cs" />
-    <Compile Include="Rules\BackstabConfigOverriddenRule.cs" />
-    <Compile Include="Rules\StatusEffectConfigRule.cs" />
-    <Compile Include="Rules\CardEnergyFromRecyclingMultipliedRule.cs" />
-    <Compile Include="Rules\CardLimitModifiedRule.cs" />
-    <Compile Include="Rules\CardSellValueMultipliedRule.cs" />
-    <Compile Include="Rules\AbilityAoeAdjustedRule.cs" />
-    <Compile Include="Rules\EnemyAttackScaledRule.cs" />
-    <Compile Include="Rules\EnemyDoorOpeningDisabledRule.cs" />
-    <Compile Include="Rules\EnemyHealthScaledRule.cs" />
-    <Compile Include="Rules\EnemyRespawnDisabledRule.cs" />
-    <Compile Include="Rules\GoldPickedUpMultipliedRule.cs" />
-    <Compile Include="Rules\LevelPropertiesModifiedRule.cs" />
-    <Compile Include="Rules\PieceImmunityListAdjustedRule.cs" />
-    <Compile Include="Rules\PieceConfigAdjustedRule.cs" />
-    <Compile Include="Rules\RatNestsSpawnGoldRule.cs" />
-    <Compile Include="Rules\RoundCountLimitedRule.cs" />
-    <Compile Include="Rules\SampleRule.cs" />
-    <Compile Include="Rules\StartCardsModifiedRule.cs" />
-    <Compile Include="Rules\TurnOrderOverriddenRule.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>$(DemeoVrDir)\MelonLoader\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="PhotonUnityNetworking">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\PhotonUnityNetworking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(DemeoVrDir)\demeo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HouseRules.Core\HouseRules.Core.csproj">
-      <Project>{b412463f-a4f7-46ce-ac4e-37448762b45b}</Project>
-      <Name>HouseRules.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="README.md" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="CopyToModsDir" AfterTargets="Build">
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoVrDir)\Mods" />
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoPcDir)\Mods" />
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusVrDir)\Mods" />
-    <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusPcDir)\Mods" />
-  </Target>
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <Configurations>BepInEx;MelonLoader</Configurations>
+        <AssemblySearchPaths>../libs;$(AssemblySearchPaths)</AssemblySearchPaths>
+    </PropertyGroup>
+
+    <!-- BepInEx 5.x build config -->
+    <PropertyGroup Condition="'$(Configuration)'=='BepInEx'">
+        <OutputPath>bin</OutputPath>
+        <DefineConstants>BEPINEX</DefineConstants>
+        <AssemblyName>HouseRules.Essentials.BIE</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
+        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
+        <ProjectReference Include="..\HouseRules.Core\HouseRules.Core.csproj">
+            <Private>false</Private>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
+        <Reference Include="Assembly-CSharp">
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+    <!-- MelonLoader 0.5.7 build config -->
+    <PropertyGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <OutputPath>bin</OutputPath>
+        <DefineConstants>MELONLOADER</DefineConstants>
+        <AssemblyName>HouseRules.Essentials.ML</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <PackageReference Include="HarmonyX" Version="2.10.1" IncludeAssets="compile"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <ProjectReference Include="..\HouseRules.Core\HouseRules.Core.csproj">
+            <Private>false</Private>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <Reference Include="Assembly-CSharp">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="MelonLoader">
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
 </Project>
