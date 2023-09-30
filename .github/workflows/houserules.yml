@@ -43,30 +43,30 @@ jobs:
 
       - name: Assemble into BepInEx Bundle
         run: |
-          mkdir -p BIEBundle/BepInEx/plugins
-          cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.BIE.dll BIEBundle/BepInEx/plugins
-          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.BIE.dll BIEBundle/BepInEx/plugins
-          mkdir -p BIEBundle/BepInEx/config/HouseRules/ExampleRulesets
-          cp docs/rulesets/* BIEBundle/BepInEx/config/HouseRules/ExampleRulesets
+          mkdir -p HouseRules.BepInEx/BepInEx/plugins
+          cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          mkdir -p HouseRules.BepInEx/BepInEx/config/HouseRules/ExampleRulesets
+          cp docs/rulesets/* HouseRules.BepInEx/BepInEx/config/HouseRules/ExampleRulesets
 
       - name: Assemble into MelonLoader Bundle
         run: |
-          mkdir -p MLBundle/Mods
-          cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.ML.dll MLBundle/Mods
-          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.ML.dll MLBundle/Mods
-          cp HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.ML.dll MLBundle/Mods
-          mkdir -p MLBundle/UserData/HouseRules/ExampleRulesets
-          cp docs/rulesets/* MLBundle/UserData/HouseRules/ExampleRulesets
+          mkdir -p HouseRules.MelonLoader/Mods
+          cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.ML.dll HouseRules.MelonLoader/Mods
+          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.ML.dll HouseRules.MelonLoader/Mods
+          cp HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.ML.dll HouseRules.MelonLoader/Mods
+          mkdir -p HouseRules.MelonLoader/UserData/HouseRules/ExampleRulesets
+          cp docs/rulesets/* HouseRules.MelonLoader/UserData/HouseRules/ExampleRulesets
 
       - name: Upload BepInEx Bundle
         uses: actions/upload-artifact@v3
         with:
-          name: HouseRules.BepInEx.zip
-          path: BIEBundle
+          name: HouseRules.BepInEx
+          path: HouseRules.BepInEx
 
       - name: Upload MelonLoader Bundle
         uses: actions/upload-artifact@v3
         with:
-          name: HouseRules.MelonLoader.zip
-          path: MLBundle
+          name: HouseRules.MelonLoader
+          path: HouseRules.MelonLoader
 
