@@ -19,6 +19,8 @@
         <PackageReference Include="BepInEx.Core" Version="5.*" />
         <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
         <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile" />
+        <PackageReference Include="Fody" Version="6.8.0" />
+        <PackageReference Include="Costura.Fody" Version="5.7.0" />
     </ItemGroup>
     <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
         <Reference Include="Assembly-CSharp">
@@ -44,6 +46,8 @@
     <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
         <PackageReference Include="HarmonyX" Version="2.10.1" IncludeAssets="compile" />
         <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile" />
+        <PackageReference Include="Fody" Version="6.8.0" />
+        <PackageReference Include="Costura.Fody" Version="5.7.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Common.UI\Common.UI.csproj" />
