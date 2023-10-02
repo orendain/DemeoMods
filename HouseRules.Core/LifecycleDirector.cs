@@ -65,30 +65,8 @@
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(HandSettingsPageController), "<SetupGameButtons>g__ToggleGamePrivacy|16_4"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_SetupGameButtons_Prefix)));
-        }
-
-        private static bool HandSettingsPageController_SetupGameButtons_Prefix()
-        {
-            if (HR.SelectedRuleset == Ruleset.None)
-            {
-                return true;
-            }
-
-            // Don't allow PCVR privacy settings to change from Private to Public
-            return false;
-        }
-
-        private static bool NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix()
-        {
-            if (HR.SelectedRuleset == Ruleset.None)
-            {
-                return true;
-            }
-
-            // Don't allow PC-Edition privacy settings to change from Private to Public
-            return false;
+                original: AccessTools.Method(typeof(HandSettingsPageController), "ToggleGamePrivacy"),
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_ToggleGamePrivacy_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -206,6 +184,28 @@
         private static void SerializableEventQueue_DisconnectLocalPlayer_Prefix()
         {
             DeactivateRuleset();
+        }
+
+        private static bool NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix()
+        {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return true;
+            }
+
+            // Don't allow PC-Edition privacy settings to change from Private to Public.
+            return false;
+        }
+
+        private static bool HandSettingsPageController_ToggleGamePrivacy_Prefix()
+        {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return true;
+            }
+
+            // Don't allow PCVR privacy settings to change from Private to Public.
+            return false;
         }
 
         /// <summary>
