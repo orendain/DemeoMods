@@ -32,18 +32,23 @@
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
-                if (plugin.Log != null)
+                if (plugin.Log == null)
                 {
-                    _logInfo = plugin.Log.LogInfo;
-                    _logDebug = plugin.Log.LogDebug;
-                    _logWarning = plugin.Log.LogWarning;
-                    _logError = plugin.Log.LogError;
+                    LogError("Logger instance is invalid. Cannot initialize.");
+                    return;
                 }
 
-                if (plugin.Harmony != null)
+                if (plugin.Harmony == null)
                 {
-                    _harmony = plugin.Harmony;
+                    LogError("Harmony instance is invalid. Cannot initialize.");
+                    return;
                 }
+
+                _logInfo = plugin.Log.LogInfo;
+                _logDebug = plugin.Log.LogDebug;
+                _logWarning = plugin.Log.LogWarning;
+                _logError = plugin.Log.LogError;
+                _harmony = plugin.Harmony;
             }
             #endif
 

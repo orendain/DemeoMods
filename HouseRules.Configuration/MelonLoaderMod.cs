@@ -10,8 +10,14 @@ using MelonLoader;
 
 namespace HouseRules.Configuration
 {
+    using System;
+    using System.IO;
+    using HouseRules.Core;
+
     internal class MelonLoaderMod : MelonMod
     {
+        internal static readonly string RulesetDirectory = Path.Combine(MelonUtils.BaseDirectory, "HouseRules");
+
         public override void OnInitializeMelon()
         {
             HouseRulesConfigurationBase.Init(this);
@@ -19,7 +25,7 @@ namespace HouseRules.Configuration
 
         public override void OnLateInitializeMelon()
         {
-            HouseRulesConfigurationBase.LoadConfiguration();
+            LoadConfiguration();
         }
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
@@ -30,6 +36,31 @@ namespace HouseRules.Configuration
         public override void OnSceneWasUnloaded(int buildIndex, string sceneName)
         {
             HouseRulesConfigurationBase.OnSceneUnloaded(buildIndex, sceneName);
+        }
+
+        private void LoadConfiguration()
+        {
+            var configCategory = MelonPreferences.CreateCategory("HouseRules");
+            var shouldLoadRulesetsFromConfig = configCategory.CreateEntry("loadRulesetsFromConfig", true).Value;
+            if (shouldLoadRulesetsFromConfig)
+            {
+                HouseRulesConfigurationBase.LoadRulesetsFromDirectory(RulesetDirectory);
+            }
+
+            var defaultRuleset = configCategory.CreateEntry("defaultRuleset", string.Empty).Value;
+            if (string.IsNullOrEmpty(defaultRuleset))
+            {
+                return;
+            }
+
+            try
+            {
+                HR.SelectRuleset(defaultRuleset);
+            }
+            catch (ArgumentException e)
+            {
+                HouseRulesConfigurationBase.LogWarning($"Failed to select default ruleset [{defaultRuleset}] specified in config: {e}");
+            }
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace HouseRules.Essentials
 {
     using System;
-    using HarmonyLib;
     using HouseRules.Core;
     using HouseRules.Essentials.Rules;
     using HouseRules.Essentials.Rulesets;
@@ -15,22 +14,28 @@
 
         private static Action<object>? _logDebug;
         private static Action<object>? _logWarning;
+        private static Action<object>? _logError;
 
         internal static void LogDebug(object data) => _logDebug?.Invoke(data);
 
         internal static void LogWarning(object data) => _logWarning?.Invoke(data);
 
+        internal static void LogError(object data) => _logError?.Invoke(data);
 
         internal static void Init(object loader)
         {
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
-                if (plugin.Log != null)
+                if (plugin.Log == null)
                 {
-                    _logDebug = plugin.Log.LogDebug;
-                    _logWarning = plugin.Log.LogWarning;
+                    LogError("Logger instance is invalid. Cannot initialize.");
+                    return;
                 }
+
+                _logDebug = plugin.Log.LogDebug;
+                _logWarning = plugin.Log.LogWarning;
+                _logError = plugin.Log.LogError;
             }
             #endif
 
@@ -39,13 +44,13 @@
             {
                 _logDebug = mod.LoggerInstance.Msg;
                 _logWarning = mod.LoggerInstance.Warning;
+                _logError = mod.LoggerInstance.Error;
             }
             #endif
 
             RegisterRuleTypes();
             RegisterRulesets();
         }
-
 
         private static void RegisterRuleTypes()
         {
