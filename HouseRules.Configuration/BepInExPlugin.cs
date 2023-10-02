@@ -50,7 +50,7 @@ namespace HouseRules.Configuration
             var shouldLoadRulesetsFromConfig = loadRulesetsFromConfigEntry.Value;
             if (shouldLoadRulesetsFromConfig)
             {
-                HouseRulesConfigurationBase.LoadRulesetsFromConfig(RulesetDirectory);
+                HouseRulesConfigurationBase.LoadRulesetsFromDirectory(RulesetDirectory);
             }
 
             var defaultRulesetEntry = Config.Bind(
