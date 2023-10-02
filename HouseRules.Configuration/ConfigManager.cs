@@ -6,45 +6,29 @@
     using System.Linq;
     using HarmonyLib;
     using HouseRules.Core.Types;
-    using MelonLoader;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     public class ConfigManager
     {
-        internal static readonly string RulesetDirectory = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules");
+        private readonly string _rulesetDirectory;
 
-        private readonly MelonPreferences_Entry<string> _defaultRulesetEntry;
-        private readonly MelonPreferences_Entry<bool> _loadRulesetsFromConfigEntry;
-
-        internal static ConfigManager NewInstance()
+        internal static ConfigManager NewInstance(string rulesetDirectory)
         {
-            return new ConfigManager();
+            return new ConfigManager(rulesetDirectory);
         }
 
-        private ConfigManager()
+        private ConfigManager(string rulesetDirectory)
         {
-            var configCategory = MelonPreferences.CreateCategory("HouseRules");
-            _defaultRulesetEntry = configCategory.CreateEntry("defaultRuleset", string.Empty);
-            _loadRulesetsFromConfigEntry = configCategory.CreateEntry("loadRulesetsFromConfig", true);
-            Directory.CreateDirectory(RulesetDirectory);
+            _rulesetDirectory = rulesetDirectory;
+            Directory.CreateDirectory(rulesetDirectory);
             SetDefaultSerializationSettings();
-        }
-
-        internal string GetDefaultRuleset()
-        {
-            return _defaultRulesetEntry.Value;
-        }
-
-        internal bool GetLoadRulesetsFromConfig()
-        {
-            return _loadRulesetsFromConfigEntry.Value;
         }
 
         /// <summary>
         /// Gets a list of all ruleset files founds.
         /// </summary>
-        internal static List<string> RulesetFiles => Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
+        internal List<string> RulesetFiles => Directory.EnumerateFiles(_rulesetDirectory, "*.json").ToList();
 
         /// <summary>
         /// Exports the specified ruleset by writing it to a file in the default ruleset directory.
@@ -53,7 +37,7 @@
         /// <returns>The path of the file that the ruleset was written to.</returns>
         internal string ExportRuleset(Ruleset ruleset)
         {
-            return ExportRuleset(ruleset, RulesetDirectory);
+            return ExportRuleset(ruleset, _rulesetDirectory);
         }
 
         /// <summary>
@@ -116,7 +100,7 @@
         /// <param name="fileName">The full file name of the JSON file to load as a ruleset.</param>
         /// <param name="tolerateFailures">Whether or not to tolerate partial failures.</param>
         /// <returns>The imported ruleset.</returns>
-        internal static Ruleset ImportRuleset(string fileName, bool tolerateFailures)
+        internal Ruleset ImportRuleset(string fileName, bool tolerateFailures)
         {
             var rulesetJson = File.ReadAllText(fileName);
             var rulesetConfig = JsonConvert.DeserializeObject<RulesetConfig>(rulesetJson);

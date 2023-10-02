@@ -46,7 +46,6 @@
             RegisterRulesets();
         }
 
-
         private static void RegisterRuleTypes()
         {
             HR.Rulebook.Register(typeof(AbilityAoeAdjustedRule));

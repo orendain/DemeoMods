@@ -31,7 +31,6 @@
         private const int PC1LobbySceneIndex = 1;
         private const int PC2LobbySceneIndex = 3;
 
-        internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
         private static readonly List<string> FailedRulesetFiles = new List<string>();
 
         internal static bool IsUpdateAvailable { get; private set; }
@@ -65,32 +64,6 @@
         {
             IsUpdateAvailable = await VersionChecker.IsUpdateAvailable();
             LogInfo($"{(IsUpdateAvailable ? "New" : "No new")} HouseRules update found.");
-        }
-
-        public static void LoadConfiguration()
-        {
-            ExampleRulesetExporter.ExportExampleRulesetsIfNeeded();
-
-            var loadRulesetsFromConfig = ConfigManager.GetLoadRulesetsFromConfig();
-            if (loadRulesetsFromConfig)
-            {
-                LoadRulesetsFromConfig();
-            }
-
-            var rulesetName = ConfigManager.GetDefaultRuleset();
-            if (string.IsNullOrEmpty(rulesetName))
-            {
-                return;
-            }
-
-            try
-            {
-                HR.SelectRuleset(rulesetName);
-            }
-            catch (ArgumentException e)
-            {
-                LogWarning($"Failed to select default ruleset [{rulesetName}] specified in config: {e}");
-            }
         }
 
         internal static void OnSceneUnloaded(int buildIndex, string sceneName)
@@ -150,16 +123,17 @@
             }
         }
 
-        private static void LoadRulesetsFromConfig()
+        internal static void LoadRulesetsFromConfig(string rulesetDirectory)
         {
-            var rulesetFiles = ConfigManager.RulesetFiles;
+            var configManager = ConfigManager.NewInstance(rulesetDirectory);
+            var rulesetFiles = configManager.RulesetFiles;
             LogInfo($"Found [{rulesetFiles.Count}] ruleset files in configuration.");
 
             foreach (var file in rulesetFiles)
             {
                 try
                 {
-                    var ruleset = ConfigManager.ImportRuleset(file, tolerateFailures: false);
+                    var ruleset = configManager.ImportRuleset(file, tolerateFailures: false);
                     HR.Rulebook.Register(ruleset);
                 }
                 catch (Exception e)

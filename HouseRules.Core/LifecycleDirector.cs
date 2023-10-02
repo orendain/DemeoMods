@@ -64,9 +64,9 @@
                 original: AccessTools.Method(typeof(NonVrGameSettingsPageController), "ToggleGamePrivacy"),
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix)));
 
-            harmony.Patch(
-                original: AccessTools.Method(typeof(HandSettingsPageController), "<SetupGameButtons>g__ToggleGamePrivacy|16_4"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_SetupGameButtons_Prefix)));
+            // harmony.Patch(
+            //     original: AccessTools.Method(typeof(HandSettingsPageController), "<SetupGameButtons>g__ToggleGamePrivacy|16_4"),
+            //     prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_SetupGameButtons_Prefix)));
         }
 
         private static bool HandSettingsPageController_SetupGameButtons_Prefix()
