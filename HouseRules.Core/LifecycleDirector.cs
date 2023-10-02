@@ -66,7 +66,7 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(HandSettingsPageController), "ToggleGamePrivacy"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_SetupGameButtons_Prefix)));
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_ToggleGamePrivacy_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -197,7 +197,7 @@
             return false;
         }
 
-        private static bool HandSettingsPageController_SetupGameButtons_Prefix()
+        private static bool HandSettingsPageController_ToggleGamePrivacy_Prefix()
         {
             if (HR.SelectedRuleset == Ruleset.None)
             {
