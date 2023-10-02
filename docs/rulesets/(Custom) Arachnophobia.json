@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Arachnophobia",
   "Description": "Money Spiders everywhere. On my face and in my hair.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "AbilityDamageOverridden",
@@ -223,7 +224,6 @@
       "Config": {
         "StrengthPotion": false,
         "SwiftnessPotion": false,
-        "VigorPotion": false,
         "DamageResistPotion": false
       }
     },
@@ -524,7 +524,6 @@
           "effectStateType": "HealingSong",
           "durationTurns": 5,
           "tickWhen": "EndTurn",
-          "stacks": true,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
@@ -540,7 +539,6 @@
           "effectStateType": "Courageous",
           "durationTurns": 2,
           "tickWhen": "EndTurn",
-          "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
@@ -556,7 +554,6 @@
           "effectStateType": "Heroic",
           "durationTurns": 4,
           "tickWhen": "EndTurn",
-          "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
@@ -572,7 +569,6 @@
           "effectStateType": "Fearless",
           "durationTurns": 6,
           "tickWhen": "EndTurn",
-          "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
@@ -588,7 +584,6 @@
           "effectStateType": "Invulnerable1",
           "durationTurns": 2,
           "tickWhen": "EndTurn",
-          "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,
@@ -604,7 +599,6 @@
           "effectStateType": "Recovery",
           "durationTurns": 5,
           "tickWhen": "EndTurn",
-          "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": false,
           "damageTags": null,

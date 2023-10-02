@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) The Swirl",
   "Description": "Only poison, fireballs and vortexes. Health and POIs aplenty, but must defeat all enemies to escape.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "StartCardsModified",

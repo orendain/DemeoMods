@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Flipping Out!",
   "Description": "Coin Flips ONLY! BIG ENEMIES! Heads... or tails?",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "EnemyRespawnDisabled",

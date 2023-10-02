@@ -136,7 +136,7 @@
         internal static void LoadRulesetsFromDirectory(string directory)
         {
             var rulesetFiles = RulesetImporter.ListRulesets(directory);
-            LogInfo($"Found [{rulesetFiles.Count}] ruleset files in configuration.");
+            LogInfo($"Found [{rulesetFiles.Count}] custom ruleset files to load.");
 
             foreach (var file in rulesetFiles)
             {
