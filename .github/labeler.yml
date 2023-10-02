@@ -5,6 +5,10 @@
 'area: common/ui':
 - Common.UI/**
 
+'area: freecamera':
+- .github/workflows/freecamera.yml
+- FreeCamera/**
+
 'area: highlighter':
 - .github/workflows/highlighter.yml
 - Highlighter/**
