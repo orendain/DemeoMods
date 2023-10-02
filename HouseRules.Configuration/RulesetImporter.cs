@@ -5,6 +5,7 @@
     using System.IO;
     using System.Linq;
     using HarmonyLib;
+    using HouseRules.Core;
     using HouseRules.Core.Types;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -117,16 +118,9 @@
 
         private static (Type RuleType, Type ConfigType) FindRuleAndConfigType(string ruleName)
         {
-            var ruleType = AccessTools.TypeByName(ruleName) ?? AccessTools.TypeByName(ExpandRuleName(ruleName));
-
-            if (ruleType == null)
+            if (!TryFindRuleType(ruleName, out var ruleType))
             {
-                throw new ArgumentException($"Could not find a rule type represented by the name: {ruleName}");
-            }
-
-            if (!typeof(Rule).IsAssignableFrom(ruleType))
-            {
-                throw new ArgumentException($"Failed to recognize the type found as representing a rule: {ruleType.FullName}");
+                throw new ArgumentException($"Could not find a registered rule represented by name: {ruleName}");
             }
 
             foreach (var i in ruleType.GetInterfaces())
@@ -173,6 +167,25 @@
                 Formatting = Formatting.Indented,
                 Converters = { new Newtonsoft.Json.Converters.StringEnumConverter() },
             };
+        }
+
+        /// <summary>
+        /// Finds the registered rule type represented by the specified rule name, returning false
+        /// if no matching rule has been registered.
+        /// </summary>
+        private static bool TryFindRuleType(string ruleName, out Type ruleType)
+        {
+            foreach (var r in HR.Rulebook.RuleTypes)
+            {
+                if (ExpandRuleName(ruleName).Equals(r.Name) || ruleName.Equals(r.Name))
+                {
+                    ruleType = r;
+                    return true;
+                }
+            }
+
+            ruleType = null;
+            return false;
         }
 
         /// <summary>
