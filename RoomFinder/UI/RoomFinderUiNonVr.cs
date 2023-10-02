@@ -2,13 +2,8 @@
 {
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using Boardgame;
-    using Boardgame.Ui.LobbyMenu;
     using Common.UI;
     using Common.UI.Element;
-    using HarmonyLib;
-    using Photon.Realtime;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -22,6 +17,7 @@
         private void Start()
         {
             StartCoroutine(WaitAndInitialize());
+            RoomManager.RoomListUpdated += OnRoomListUpdated;
         }
 
         private IEnumerator WaitAndInitialize()
@@ -36,27 +32,10 @@
 
             _resourceTable = NonVrResourceTable.Instance();
             _elementCreator = NonVrElementCreator.Instance();
-            _roomListPanel = RoomListPanelNonVr.NewInstance(_elementCreator, RefreshRoomList);
+            _roomListPanel = RoomListPanelNonVr.NewInstance(_elementCreator, RoomManager.RefreshRoomList);
 
             Initialize();
             RoomFinderBase.LogDebug("Initialization complete.");
-        }
-
-        private void Update()
-        {
-            if (!RoomFinderBase.SharedState.IsRefreshingRoomList)
-            {
-                return;
-            }
-
-            if (!RoomFinderBase.SharedState.HasRoomListUpdated)
-            {
-                return;
-            }
-
-            RoomFinderBase.SharedState.IsRefreshingRoomList = false;
-            RoomFinderBase.SharedState.HasRoomListUpdated = false;
-            PopulateRoomList();
         }
 
         private void Initialize()
@@ -119,44 +98,10 @@
             }
         }
 
-        private static void RefreshRoomList()
+        private void OnRoomListUpdated(List<Room> rooms)
         {
-            RoomFinderBase.SharedState.IsRefreshingRoomList = true;
-            var lobbyMenuController = Traverse
-                .Create(RoomFinderBase.SharedState.GameContext.gameStateMachine.lobby)
-                .Field<LobbyMenuController>("lobbyMenuController")
-                .Value;
-            var lobbyMenuContext = Traverse
-                .Create(lobbyMenuController)
-                .Field<LobbyMenu.ILobbyMenuContext>("lobbyMenuContext")
-                .Value;
-
-            lobbyMenuContext.QuickPlay(
-                LevelSequence.GameType.Invalid,
-                LevelSequence.ControlType.OneHero,
-                matchMakeAnyGame: true,
-                onError: null);
-        }
-
-        private void PopulateRoomList()
-        {
-            var unfilteredRooms =
-                Traverse.Create(RoomFinderBase.SharedState.LobbyMatchmakingController)
-                    .Field<List<RoomInfo>>("roomList").Value;
-
-            var isRoomValidMethod =
-                Traverse.Create(RoomFinderBase.SharedState.LobbyMatchmakingController)
-                    .Method("IsRoomValidWithCurrentConfiguration", new[] { typeof(RoomInfo) });
-
-            var filteredRooms =
-                unfilteredRooms.Where(info => isRoomValidMethod.GetValue<bool>(info))
-                    .Select(Room.Parse)
-                    .ToList();
-
-            RoomFinderBase.LogInfo($"Found {unfilteredRooms.Count} total rooms.");
-            RoomFinderBase.LogInfo($"Listing {filteredRooms.Count} available rooms.");
-
-            _roomListPanel.UpdateRooms(filteredRooms);
+            RoomFinderBase.LogInfo($"Listing {rooms.Count} available rooms.");
+            _roomListPanel.UpdateRooms(rooms);
         }
     }
 }
