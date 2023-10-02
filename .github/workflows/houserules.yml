@@ -49,7 +49,7 @@ jobs:
           mkdir -p HouseRules.BepInEx/BepInEx/plugins
           cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.BIE.dll HouseRules.BepInEx/BepInEx/plugins
           cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.BIE.dll HouseRules.BepInEx/BepInEx/plugins
-          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Configuration.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          cp HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.BIE.dll HouseRules.BepInEx/BepInEx/plugins
           mkdir -p HouseRules.BepInEx/HouseRules/ExampleRulesets
           cp docs/rulesets/* HouseRules.BepInEx/HouseRules/ExampleRulesets
 
