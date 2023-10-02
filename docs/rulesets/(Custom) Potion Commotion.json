@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Potion Commotion",
   "Description": "All your cards are potions. 1.5x CardEnergy. Free Sneak on Crit. Enemies do not respawn.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "CardAdditionOverridden",

@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Beat The Clock!",
   "Description": "Ultra health. Ultra card recycling. Only 15 rounds to escape...",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "PieceConfigAdjusted",
@@ -39,12 +40,37 @@
           "Piece": "HeroWarlock",
           "Property": "StartHealth",
           "Value": 200.0
+        },
+        {
+          "Piece": "WarlockMinion",
+          "Property": "StartHealth",
+          "Value": 100.0
+        }
+      ]
+    },
+    {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "SelfDestruct",
+          "durationTurns": 15,
+          "tickWhen": "EndTurn",
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         }
       ]
     },
     {
       "Rule": "CardEnergyFromRecyclingMultiplied",
-      "Config": 5.0
+      "Config": 3.0
     },
     {
       "Rule": "RoundCountLimited",
@@ -53,8 +79,10 @@
     {
       "Rule": "LevelPropertiesModified",
       "Config": {
-        "FloorOneLootChests": 15,
-        "FloorTwoLootChests": 15
+        "FloorOneLootChests": 12,
+        "FloorOnePotionStand": 3,
+        "FloorTwoLootChests": 12,
+        "FloorTwoPotionStand": 3
       }
     }
   ]
