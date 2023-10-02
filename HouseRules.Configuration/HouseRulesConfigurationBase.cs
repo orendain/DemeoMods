@@ -15,6 +15,9 @@
         internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
+        private const int PC1LobbySceneIndex = 1;
+        private const int PC2LobbySceneIndex = 3;
+
         private static Action<object>? _logInfo;
         private static Action<object>? _logDebug;
         private static Action<object>? _logWarning;
@@ -28,10 +31,7 @@
 
         internal static void LogError(object data) => _logError?.Invoke(data);
 
-        private const int PC1LobbySceneIndex = 1;
-        private const int PC2LobbySceneIndex = 3;
-
-        private static readonly List<string> FailedRulesetFiles = new List<string>();
+        private static readonly List<string> FailedRulesetFiles = new();
 
         internal static bool IsUpdateAvailable { get; private set; }
 
@@ -40,6 +40,12 @@
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
+                if (plugin.Log == null)
+                {
+                    LogError("Logger instance is invalid. Cannot initialize.");
+                    return;
+                }
+
                 _logInfo = plugin.Log.LogInfo;
                 _logDebug = plugin.Log.LogDebug;
                 _logWarning = plugin.Log.LogWarning;
