@@ -38,6 +38,9 @@ jobs:
       - name: Build HouseRules.Essentials MelonLoader Mod
         run: dotnet build HouseRules.Essentials/HouseRules.Essentials.csproj -c MelonLoader -v d
 
+      - name: Build HouseRules.Configuration BepInEx Mod
+        run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c BepInEx -v d
+
       - name: Build HouseRules.Configuration MelonLoader Mod
         run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c MelonLoader -v d
 
@@ -46,8 +49,9 @@ jobs:
           mkdir -p HouseRules.BepInEx/BepInEx/plugins
           cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.BIE.dll HouseRules.BepInEx/BepInEx/plugins
           cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.BIE.dll HouseRules.BepInEx/BepInEx/plugins
-          mkdir -p HouseRules.BepInEx/BepInEx/config/HouseRules/ExampleRulesets
-          cp docs/rulesets/* HouseRules.BepInEx/BepInEx/config/HouseRules/ExampleRulesets
+          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Configuration.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          mkdir -p HouseRules.BepInEx/HouseRules/ExampleRulesets
+          cp docs/rulesets/* HouseRules.BepInEx/HouseRules/ExampleRulesets
 
       - name: Assemble into MelonLoader Bundle
         run: |
@@ -55,8 +59,8 @@ jobs:
           cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.ML.dll HouseRules.MelonLoader/Mods
           cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.ML.dll HouseRules.MelonLoader/Mods
           cp HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.ML.dll HouseRules.MelonLoader/Mods
-          mkdir -p HouseRules.MelonLoader/UserData/HouseRules/ExampleRulesets
-          cp docs/rulesets/* HouseRules.MelonLoader/UserData/HouseRules/ExampleRulesets
+          mkdir -p HouseRules.MelonLoader/HouseRules/ExampleRulesets
+          cp docs/rulesets/* HouseRules.MelonLoader/HouseRules/ExampleRulesets
 
       - name: Upload BepInEx Bundle
         uses: actions/upload-artifact@v3
