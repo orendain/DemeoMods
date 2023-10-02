@@ -5,9 +5,9 @@ namespace HouseRules.Essentials
     using BepInEx.Logging;
 
     [BepInPlugin(HouseRulesEssentialsBase.ModId, HouseRulesEssentialsBase.ModName, HouseRulesEssentialsBase.ModVersion)]
+    [BepInDependency("com.orendain.demeomods.houserules.core")]
     public class BepInExPlugin : BaseUnityPlugin
     {
-
         internal ManualLogSource? Log { get; private set; }
 
         private void Awake()
