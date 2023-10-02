@@ -44,7 +44,7 @@ namespace HouseRules.Configuration
             var shouldLoadRulesetsFromConfig = configCategory.CreateEntry("loadRulesetsFromConfig", true).Value;
             if (shouldLoadRulesetsFromConfig)
             {
-                HouseRulesConfigurationBase.LoadRulesetsFromConfig(RulesetDirectory);
+                HouseRulesConfigurationBase.LoadRulesetsFromDirectory(RulesetDirectory);
             }
 
             var defaultRuleset = configCategory.CreateEntry("defaultRuleset", string.Empty).Value;

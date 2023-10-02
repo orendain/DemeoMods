@@ -129,17 +129,20 @@
             }
         }
 
-        internal static void LoadRulesetsFromConfig(string rulesetDirectory)
+        /// <summary>
+        /// Load and register all rulesets found in the given directory.
+        /// </summary>
+        /// <param name="directory">Path of the directory from which to load rulesets.</param>
+        internal static void LoadRulesetsFromDirectory(string directory)
         {
-            var configManager = ConfigManager.NewInstance(rulesetDirectory);
-            var rulesetFiles = configManager.RulesetFiles;
+            var rulesetFiles = RulesetImporter.ListRulesets(directory);
             LogInfo($"Found [{rulesetFiles.Count}] ruleset files in configuration.");
 
             foreach (var file in rulesetFiles)
             {
                 try
                 {
-                    var ruleset = configManager.ImportRuleset(file, tolerateFailures: false);
+                    var ruleset = RulesetImporter.Read(file, tolerateFailures: false);
                     HR.Rulebook.Register(ruleset);
                 }
                 catch (Exception e)
