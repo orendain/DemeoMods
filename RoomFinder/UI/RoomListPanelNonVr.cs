@@ -4,10 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
-    using Boardgame.Ui.LobbyMenu;
     using Common.UI;
     using Common.UI.Element;
-    using HarmonyLib;
     using UnityEngine;
 
     internal class RoomListPanelNonVr
@@ -168,7 +166,7 @@
         {
             var container = new GameObject(room.Name);
 
-            var joinButton = _elementCreator.CreateButton(JoinRoomAction(room.Name));
+            var joinButton = _elementCreator.CreateButton(() => RoomManager.JoinRoom(room.Name));
             joinButton.transform.SetParent(container.transform, worldPositionStays: false);
             joinButton.transform.localScale = new Vector2(1.2f, 0.65f);
             joinButton.transform.localPosition = new Vector2(-150f, 0);
@@ -236,21 +234,6 @@
             _rooms = _isDescendingOrder
                 ? _rooms.OrderByDescending(_sortOrder).ToList()
                 : _rooms.OrderBy(_sortOrder).ToList();
-        }
-
-        private static Action JoinRoomAction(string roomCode)
-        {
-            return () =>
-            {
-                RoomFinderBase.LogDebug($"Joining room [{roomCode}].");
-                var lobbyMenuController = Traverse
-                    .Create(RoomFinderBase.SharedState.GameContext.gameStateMachine.lobby)
-                    .Field<LobbyMenuController>("lobbyMenuController")
-                    .Value;
-                Traverse.Create(lobbyMenuController)
-                    .Method("JoinGame", roomCode, true)
-                    .GetValue();
-            };
         }
     }
 }

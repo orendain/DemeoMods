@@ -11,33 +11,44 @@
         internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
+        private const int PC1LobbySceneIndex = 1;
+        private const int PC2LobbySceneIndex = 3;
+
         private static Action<object>? _logInfo;
         private static Action<object>? _logDebug;
+        private static Action<object>? _logWarning;
+        private static Action<object>? _logError;
 
         internal static void LogInfo(object data) => _logInfo?.Invoke(data);
 
         internal static void LogDebug(object data) => _logDebug?.Invoke(data);
 
-        internal static readonly SharedState SharedState = SharedState.NewInstance();
+        internal static void LogWarning(object data) => _logWarning?.Invoke(data);
 
-        private const int PC1LobbySceneIndex = 1;
-        private const int PC2LobbySceneIndex = 3;
+        internal static void LogError(object data) => _logError?.Invoke(data);
 
         internal static void Init(object loader)
         {
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
-                if (plugin.Log != null)
+                if (plugin.Log == null)
                 {
-                    _logInfo = plugin.Log.LogInfo;
-                    _logDebug = plugin.Log.LogDebug;
+                    return;
                 }
 
-                if (plugin.Harmony != null)
+                _logInfo = plugin.Log.LogInfo;
+                _logDebug = plugin.Log.LogDebug;
+                _logWarning = plugin.Log.LogWarning;
+                _logError = plugin.Log.LogError;
+
+                if (plugin.Harmony == null)
                 {
-                    Patcher.Patch(plugin.Harmony);
+                    LogError("Harmony instance is invalid. Cannot initialize.");
+                    return;
                 }
+
+                RoomManager.Patch(plugin.Harmony);
             }
             #endif
 
@@ -46,8 +57,10 @@
             {
                 _logInfo = mod.LoggerInstance.Msg;
                 _logDebug = mod.LoggerInstance.Msg;
+                _logWarning = mod.LoggerInstance.Warning;
+                _logError = mod.LoggerInstance.Error;
 
-                Patcher.Patch(mod.HarmonyInstance);
+                RoomManager.Patch(mod.HarmonyInstance);
             }
             #endif
         }
