@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Quick and the Dead",
   "Description": "A mode with a small hand but fast turnaround time on cards means you need to not hesitate.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "CardEnergyFromAttackMultiplied",

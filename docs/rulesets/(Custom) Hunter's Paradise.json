@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Hunter's Paradise",
   "Description": "Pets, pets, pets! And hunter's mark.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "StartCardsModified",
@@ -112,7 +113,6 @@
           "effectStateType": "MarkOfAvalon",
           "durationTurns": 2,
           "tickWhen": "EndTurn",
-          "stacks": false,
           "damagePerTurn": 0,
           "clearOnNewLevel": true,
           "damageTags": null,

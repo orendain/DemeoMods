@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Difficulty: Easy",
   "Description": "Decreased game difficulty for a more casual playstyle.",
+  "Longdesc": "More fountains and more gold per floor!\n\n150% energy gained for attacks and recycled cards!\n\nEnemies at 80% normal health and they can't open doors or respawn!",
   "Rules": [
     {
       "Rule": "CardEnergyFromAttackMultiplied",

@@ -42,7 +42,7 @@
             {
                 try
                 {
-                    FindRuleAndConfigType(rule.GetType().FullName);
+                    FindRuleAndConfigType(rule.GetType().Name);
                     var configObject = Traverse.Create(rule).Method("GetConfigObject").GetValue();
                     var configJson = JToken.FromObject(configObject);
                     var ruleEntry = new RuleConfigEntry
@@ -70,7 +70,7 @@
             var rulesetFilePath = Path.Combine(directory, $"{rulesetFilename}.json");
             File.WriteAllText(rulesetFilePath, serializedRuleset);
 
-            HouseRulesConfigurationBase.LogWarning($"Successfully exported ruleset to: {rulesetFilePath}");
+            HouseRulesConfigurationBase.LogInfo($"Successfully exported ruleset to: {rulesetFilePath}");
             return rulesetFilePath;
         }
 

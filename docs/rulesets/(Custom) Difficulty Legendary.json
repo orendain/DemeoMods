@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) Difficulty: Legendary",
   "Description": "Increased game difficulty for those who want to be a legend.",
+  "Longdesc": "No fountains except 1 on floor 2 and less chests and gold per floor!\n\n50% energy gained for attacks and recycled cards!\n\nEnemies at 220% normal health and they hit 100% harder!",
   "Rules": [
     {
       "Rule": "CardEnergyFromAttackMultiplied",
