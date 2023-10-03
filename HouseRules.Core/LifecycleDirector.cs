@@ -64,11 +64,17 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(NonVrGameSettingsPageController), "ToggleGamePrivacy"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix)));
+                prefix: new HarmonyMethod(
+                    typeof(LifecycleDirector),
+                    nameof(NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(HandSettingsPageController), "UpdatePrivacyText"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_UpdatePrivacyText_Prefix)));
+                original: AccessTools.Method(
+                    typeof(HandSettingsPageController),
+                    "<SetupGameButtons>g__ToggleGamePrivacy|18_4"),
+                prefix: new HarmonyMethod(
+                    typeof(LifecycleDirector),
+                    nameof(HandSettingsPageController_ToggleGamePrivacy_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -199,27 +205,15 @@
             return false;
         }
 
-        private static void HandSettingsPageController_UpdatePrivacyText_Prefix()
+        private static bool HandSettingsPageController_ToggleGamePrivacy_Prefix()
         {
-            HouseRulesCoreBase.LogWarning("HandSettingsPageController_UpdatePrivacyText_Prefix");
-
             if (HR.SelectedRuleset == Ruleset.None)
             {
-                return;
+                return true;
             }
-
-            var currentRoom = PhotonNetwork.CurrentRoom;
-            if (currentRoom == null)
-            {
-                return;
-            }
-
-            currentRoom.IsVisible = false;
-            HouseRulesCoreBase.LogWarning("---------- set it");
-
 
             // Don't allow PCVR privacy settings to change from Private to Public.
-            return;
+            return false;
         }
 
         /// <summary>
