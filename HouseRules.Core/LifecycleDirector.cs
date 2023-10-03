@@ -2,14 +2,12 @@
 {
     using System;
     using System.Linq;
-    using System.Net;
     using System.Text;
     using Boardgame;
     using Boardgame.Networking;
     using Boardgame.NonVR.Ui.Settings;
     using HarmonyLib;
     using HouseRules.Core.Types;
-    using Photon.Pun;
     using Photon.Realtime;
     using UnityEngine;
 
