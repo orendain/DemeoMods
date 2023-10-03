@@ -11,7 +11,7 @@ using SkipIntro;
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("566782")]
-[assembly: VerifyLoaderVersion("0.5.3", true)]
+[assembly: VerifyLoaderVersion("0.5.7", true)]
 
 namespace SkipIntro
 {
