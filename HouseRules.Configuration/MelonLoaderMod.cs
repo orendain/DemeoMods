@@ -2,7 +2,12 @@
 using HouseRules.Configuration;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(MelonLoaderMod), HouseRulesConfigurationBase.ModName, HouseRulesConfigurationBase.ModVersion, HouseRulesConfigurationBase.ModAuthor, "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(
+    typeof(MelonLoaderMod),
+    HouseRulesConfigurationBase.ModName,
+    HouseRulesConfigurationBase.ModVersion,
+    HouseRulesConfigurationBase.ModAuthor,
+    "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("574512")]
