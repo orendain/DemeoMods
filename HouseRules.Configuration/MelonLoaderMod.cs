@@ -2,7 +2,12 @@
 using HouseRules.Configuration;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(MelonLoaderMod), HouseRulesConfigurationBase.ModName, HouseRulesConfigurationBase.ModVersion, HouseRulesConfigurationBase.ModAuthor, "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(
+    typeof(MelonLoaderMod),
+    HouseRulesConfigurationBase.ModName,
+    HouseRulesConfigurationBase.ModVersion,
+    HouseRulesConfigurationBase.ModAuthor,
+    "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("574512")]
@@ -16,7 +21,7 @@ namespace HouseRules.Configuration
 
     internal class MelonLoaderMod : MelonMod
     {
-        internal static readonly string RulesetDirectory = Path.Combine(MelonUtils.BaseDirectory, "HouseRules");
+        private static readonly string RulesetDirectory = Path.Combine(MelonUtils.BaseDirectory, "HouseRules");
 
         public override void OnInitializeMelon()
         {

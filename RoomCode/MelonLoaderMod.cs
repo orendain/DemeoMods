@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using MelonLoader;
 using RoomCode;
 
-[assembly: MelonInfo(typeof(MelonLoaderMod), RoomCodeBase.ModName, RoomCodeBase.ModVersion, RoomCodeBase.ModAuthor, "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(
+    typeof(MelonLoaderMod),
+    RoomCodeBase.ModName,
+    RoomCodeBase.ModVersion,
+    RoomCodeBase.ModAuthor,
+    "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("581308")]

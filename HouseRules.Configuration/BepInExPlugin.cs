@@ -8,7 +8,10 @@ namespace HouseRules.Configuration
     using HouseRules.Core;
     using UnityEngine.SceneManagement;
 
-    [BepInPlugin(HouseRulesConfigurationBase.ModId, HouseRulesConfigurationBase.ModName, HouseRulesConfigurationBase.ModVersion)]
+    [BepInPlugin(
+        HouseRulesConfigurationBase.ModId,
+        HouseRulesConfigurationBase.ModName,
+        HouseRulesConfigurationBase.ModVersion)]
     [BepInDependency("com.orendain.demeomods.houserules.core")]
     internal class BepInExPlugin : BaseUnityPlugin
     {
@@ -70,7 +73,8 @@ namespace HouseRules.Configuration
             }
             catch (ArgumentException e)
             {
-                HouseRulesConfigurationBase.LogWarning($"Failed to select default ruleset [{defaultRuleset}] specified in config: {e}");
+                HouseRulesConfigurationBase.LogWarning(
+                    $"Failed to select default ruleset [{defaultRuleset}] specified in config: {e}");
             }
         }
     }
