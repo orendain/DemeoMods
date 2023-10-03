@@ -42,13 +42,14 @@
                 _logDebug = plugin.Log.LogDebug;
                 _logWarning = plugin.Log.LogWarning;
                 _logError = plugin.Log.LogError;
-                _harmony = plugin.Harmony;
 
                 if (plugin.Harmony == null)
                 {
                     LogError("Harmony instance is invalid. Cannot initialize.");
                     return;
                 }
+
+                _harmony = plugin.Harmony;
             }
             #endif
 
