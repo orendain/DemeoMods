@@ -21,7 +21,7 @@ namespace HouseRules.Configuration
 
     internal class MelonLoaderMod : MelonMod
     {
-        internal static readonly string RulesetDirectory = Path.Combine(MelonUtils.BaseDirectory, "HouseRules");
+        private static readonly string RulesetDirectory = Path.Combine(MelonUtils.BaseDirectory, "HouseRules");
 
         public override void OnInitializeMelon()
         {
