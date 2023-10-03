@@ -40,10 +40,12 @@
             HouseRulesConfigurationBase.LogDebug("Searching for the latest HouseRules release.");
 
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
             client.DefaultRequestHeaders.Add("User-Agent", "HouseRules");
 
-            var responseString = await client.GetStringAsync("https://api.github.com/repos/orendain/DemeoMods/releases");
+            var responseString =
+                await client.GetStringAsync("https://api.github.com/repos/orendain/DemeoMods/releases");
             var responseJson = JArray.Parse(responseString);
             foreach (var obj in responseJson.Children<JObject>())
             {

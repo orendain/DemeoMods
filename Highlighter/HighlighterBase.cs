@@ -12,6 +12,11 @@
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
+                if (plugin.Harmony == null)
+                {
+                    return;
+                }
+
                 MoveHighlighter.Patch(plugin.Harmony);
             }
             #endif
