@@ -17,6 +17,8 @@
         private static Action<object>? _logWarning;
         private static Action<object>? _logError;
 
+        private static Harmony _harmony;
+
         internal static void LogInfo(object data) => _logInfo?.Invoke(data);
 
         internal static void LogDebug(object data) => _logDebug?.Invoke(data);
@@ -24,8 +26,6 @@
         internal static void LogWarning(object data) => _logWarning?.Invoke(data);
 
         internal static void LogError(object data) => _logError?.Invoke(data);
-
-        private static Harmony? _harmony;
 
         internal static void Init(object loader)
         {
@@ -38,16 +38,17 @@
                     return;
                 }
 
+                _logInfo = plugin.Log.LogInfo;
+                _logDebug = plugin.Log.LogDebug;
+                _logWarning = plugin.Log.LogWarning;
+                _logError = plugin.Log.LogError;
+
                 if (plugin.Harmony == null)
                 {
                     LogError("Harmony instance is invalid. Cannot initialize.");
                     return;
                 }
 
-                _logInfo = plugin.Log.LogInfo;
-                _logDebug = plugin.Log.LogDebug;
-                _logWarning = plugin.Log.LogWarning;
-                _logError = plugin.Log.LogError;
                 _harmony = plugin.Harmony;
             }
             #endif

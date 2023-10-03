@@ -1,6 +1,5 @@
 ﻿namespace AdvancedStats
 {
-    using System;
     using HarmonyLib;
 
     internal static class AdvancedStatsBase
@@ -17,6 +16,11 @@
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
+                if (plugin.Harmony == null)
+                {
+                    return;
+                }
+
                 _harmony = plugin.Harmony;
             }
             #endif

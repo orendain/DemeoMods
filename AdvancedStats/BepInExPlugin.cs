@@ -8,7 +8,7 @@ namespace AdvancedStats
     [BepInPlugin(AdvancedStatsBase.ModId, AdvancedStatsBase.ModName, AdvancedStatsBase.ModVersion)]
     internal class BepInExPlugin : BaseUnityPlugin
     {
-        internal Harmony Harmony { get; private set; }
+        internal Harmony? Harmony { get; private set; }
 
         private void Awake()
         {

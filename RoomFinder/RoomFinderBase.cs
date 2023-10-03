@@ -1,6 +1,7 @@
 ﻿namespace RoomFinder
 {
     using System;
+    using HarmonyLib;
     using RoomFinder.UI;
     using UnityEngine;
 
@@ -18,6 +19,8 @@
         private static Action<object>? _logDebug;
         private static Action<object>? _logWarning;
         private static Action<object>? _logError;
+
+        private static Harmony _harmony;
 
         internal static void LogInfo(object data) => _logInfo?.Invoke(data);
 
@@ -48,7 +51,7 @@
                     return;
                 }
 
-                RoomManager.Patch(plugin.Harmony);
+                _harmony = plugin.Harmony;
             }
             #endif
 
@@ -60,9 +63,11 @@
                 _logWarning = mod.LoggerInstance.Warning;
                 _logError = mod.LoggerInstance.Error;
 
-                RoomManager.Patch(mod.HarmonyInstance);
+                _harmony = mod.HarmonyInstance;
             }
             #endif
+
+            RoomManager.Patch(_harmony);
         }
 
         internal static void OnSceneLoaded(int buildIndex)

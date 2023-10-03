@@ -54,7 +54,8 @@
                 }
                 catch (Exception e)
                 {
-                    HouseRulesConfigurationBase.LogWarning($"Failed to write rule entry {rule.GetType().Name} to config. Skipping that rule: {e}");
+                    HouseRulesConfigurationBase.LogWarning(
+                        $"Failed to write rule entry {rule.GetType().Name} to config. Skipping that rule: {e}");
                 }
             }
 
@@ -105,10 +106,13 @@
                 {
                     if (!tolerateFailures)
                     {
-                        throw new InvalidOperationException($"Failed to read rule entry [{ruleConfigEntry.Rule}] of ruleset [{rulesetConfig.Name}].", e);
+                        throw new InvalidOperationException(
+                            $"Failed to read rule entry [{ruleConfigEntry.Rule}] of ruleset [{rulesetConfig.Name}].",
+                            e);
                     }
 
-                    HouseRulesConfigurationBase.LogWarning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
+                    HouseRulesConfigurationBase.LogWarning(
+                        $"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
                 }
             }
 
@@ -156,7 +160,8 @@
             }
             catch (Exception e)
             {
-                throw new ArgumentException($"Failed to call rule [{ruleType}] constructor with type [{configType}]: {e}");
+                throw new ArgumentException(
+                    $"Failed to call rule [{ruleType}] constructor with type [{configType}]: {e}");
             }
         }
 
@@ -204,7 +209,8 @@
         private static string SanitizeRulesetFilename(string rulesetName)
         {
             var invalids = Path.GetInvalidFileNameChars();
-            return string.Join(string.Empty, rulesetName.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
+            var validParts = rulesetName.Split(invalids, StringSplitOptions.RemoveEmptyEntries);
+            return string.Join(string.Empty, validParts).TrimEnd('.');
         }
 
         /// <summary>
