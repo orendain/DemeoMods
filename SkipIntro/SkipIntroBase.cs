@@ -18,10 +18,12 @@
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
-                if (plugin.Log != null)
+                if (plugin.Log == null)
                 {
-                    _logDebug = plugin.Log.LogDebug;
+                    return;
                 }
+
+                _logDebug = plugin.Log.LogDebug;
             }
             #endif
 

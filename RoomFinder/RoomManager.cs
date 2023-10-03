@@ -72,11 +72,15 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(LobbyMatchmakingController), "OnRoomListUpdated"),
-                postfix: new HarmonyMethod(typeof(RoomManager), nameof(LobbyMatchmakingController_OnRoomListUpdated_Postfix)));
+                postfix: new HarmonyMethod(
+                    typeof(RoomManager),
+                    nameof(LobbyMatchmakingController_OnRoomListUpdated_Postfix)));
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(MatchMakingState), "OnMatchmakingRoomCodesUpdated"),
-                prefix: new HarmonyMethod(typeof(RoomManager), nameof(MatchMakingState_OnMatchmakingRoomCodesUpdated_Prefix)));
+                prefix: new HarmonyMethod(
+                    typeof(RoomManager),
+                    nameof(MatchMakingState_OnMatchmakingRoomCodesUpdated_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
