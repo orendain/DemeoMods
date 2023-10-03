@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
- 
+
       - uses: actions/checkout@v4
 
       - name: Setup dotnet
@@ -73,4 +73,3 @@ jobs:
         with:
           name: HouseRules.MelonLoader
           path: HouseRules.MelonLoader
-
