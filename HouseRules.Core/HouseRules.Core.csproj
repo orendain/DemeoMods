@@ -30,6 +30,9 @@
         <Reference Include="PhotonRealtime">
             <Private>false</Private>
         </Reference>
+        <Reference Include="PhotonUnityNetworking">
+            <Private>false</Private>
+        </Reference>
     </ItemGroup>
 
     <!-- MelonLoader 0.5.7 build config -->

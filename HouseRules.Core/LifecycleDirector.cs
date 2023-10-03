@@ -2,12 +2,14 @@
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Text;
     using Boardgame;
     using Boardgame.Networking;
     using Boardgame.NonVR.Ui.Settings;
     using HarmonyLib;
     using HouseRules.Core.Types;
+    using Photon.Pun;
     using Photon.Realtime;
     using UnityEngine;
 
@@ -65,8 +67,8 @@
                 prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(HandSettingsPageController), "ToggleGamePrivacy"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_ToggleGamePrivacy_Prefix)));
+                original: AccessTools.Method(typeof(HandSettingsPageController), "UpdatePrivacyText"),
+                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_UpdatePrivacyText_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -197,15 +199,27 @@
             return false;
         }
 
-        private static bool HandSettingsPageController_ToggleGamePrivacy_Prefix()
+        private static void HandSettingsPageController_UpdatePrivacyText_Prefix()
         {
+            HouseRulesCoreBase.LogWarning("HandSettingsPageController_UpdatePrivacyText_Prefix");
+
             if (HR.SelectedRuleset == Ruleset.None)
             {
-                return true;
+                return;
             }
 
+            var currentRoom = PhotonNetwork.CurrentRoom;
+            if (currentRoom == null)
+            {
+                return;
+            }
+
+            currentRoom.IsVisible = false;
+            HouseRulesCoreBase.LogWarning("---------- set it");
+
+
             // Don't allow PCVR privacy settings to change from Private to Public.
-            return false;
+            return;
         }
 
         /// <summary>
