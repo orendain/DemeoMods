@@ -52,7 +52,13 @@
             return new Ruleset(name, description, longdesc, rules, safeForMultiplayer, syncables);
         }
 
-        private Ruleset(string name, string description, string longdesc, List<Rule> rules, bool isSafeForMultiplayer, SyncableTrigger modifiedSyncables)
+        private Ruleset(
+            string name,
+            string description,
+            string longdesc,
+            List<Rule> rules,
+            bool isSafeForMultiplayer,
+            SyncableTrigger modifiedSyncables)
         {
             Name = name;
             Description = description;

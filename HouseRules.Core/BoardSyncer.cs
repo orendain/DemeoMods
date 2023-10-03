@@ -95,7 +95,8 @@
 
         private static void Piece_IsImmuneToStatusEffect_Postfix()
         {
-            var isEffectImmunityCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
+            var isEffectImmunityCheckRequired =
+                (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectImmunityModified) > 0;
             if (isEffectImmunityCheckRequired)
             {
                 _isSyncScheduled = true;
@@ -104,7 +105,8 @@
 
         private static void EffectSink_AddStatusEffect_Postfix()
         {
-            var isEffectDataCheckRequired = (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
+            var isEffectDataCheckRequired =
+                (HR.SelectedRuleset.ModifiedSyncables & SyncableTrigger.StatusEffectDataModified) > 0;
             if (isEffectDataCheckRequired)
             {
                 _isSyncScheduled = true;
@@ -230,7 +232,8 @@
 
         private static bool IsSyncOpportunity(SerializableEvent serializableEvent)
         {
-            if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 && !_gameContext.pieceAndTurnController.IsPlayersTurn())
+            if (_gameContext.pieceAndTurnController.GetCurrentIndexFromTurnQueue() >= 0 &&
+                !_gameContext.pieceAndTurnController.IsPlayersTurn())
             {
                 return serializableEvent.type == SerializableEvent.Type.EndTurn;
             }
