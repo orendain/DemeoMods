@@ -15,6 +15,7 @@
         public override string Description => "Players can gain points for certain actions";
 
         internal static Points _globalConfig;
+
         private static bool _isActivated;
 
         internal static int Player1 { get; private set; }
@@ -128,7 +129,7 @@
                     }
                     else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                     {
-                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is picking up gold...");
+                        HouseRulesEssentialsBase.LogDebug($"[ID: {piece2.networkID}]'s minion is picking up gold...");
                         piece = piece2;
                     }
                     else
@@ -145,7 +146,7 @@
                     }
                     else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                     {
-                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s Arly Owl is picking up gold...");
+                        HouseRulesEssentialsBase.LogDebug($"[ID: {piece2.networkID}]'s Arly Owl is picking up gold...");
                         piece = piece2;
                     }
                     else
@@ -165,11 +166,11 @@
                 pointCount = 0;
             }
 
-            EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted gold ({_globalConfig.LootGold})");
+            HouseRulesEssentialsBase.LogDebug($"{piece.boardPieceId} [ID: {piece.networkID}] looted gold ({_globalConfig.LootGold})");
             pointCount += _globalConfig.LootGold;
             if (piece.HasEffectState(EffectStateType.Key))
             {
-                EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
+                HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
                 pointCount += _globalConfig.Keyholder;
             }
 
@@ -178,7 +179,7 @@
                 pointCount = 0;
             }
 
-            EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] total points: {pointCount}");
+            HouseRulesEssentialsBase.LogDebug($"{piece.boardPieceId} [ID: {piece.networkID}] total points: {pointCount}");
             piece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
             piece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
         }
@@ -201,7 +202,7 @@
                 pointCount = 0;
             }
 
-            EssentialsMod.Logger.Msg($"{sourcePiece.boardPieceId} [ID: {sourcePiece.networkID}] revived player {revivedPiece.boardPieceId} ({_globalConfig.RevivePlayer})");
+            HouseRulesEssentialsBase.LogDebug($"{sourcePiece.boardPieceId} [ID: {sourcePiece.networkID}] revived player {revivedPiece.boardPieceId} ({_globalConfig.RevivePlayer})");
             pointCount += _globalConfig.RevivePlayer;
 
             if (pointCount < 0)
@@ -209,7 +210,7 @@
                 pointCount = 0;
             }
 
-            EssentialsMod.Logger.Msg($"{sourcePiece.boardPieceId} [ID: {sourcePiece.networkID}] total points: {pointCount}");
+            HouseRulesEssentialsBase.LogDebug($"{sourcePiece.boardPieceId} [ID: {sourcePiece.networkID}] total points: {pointCount}");
             sourcePiece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
             sourcePiece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
 
@@ -219,14 +220,14 @@
                 pointCount = 0;
             }
 
-            EssentialsMod.Logger.Msg($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] was revived by player {sourcePiece.boardPieceId} (-{_globalConfig.RevivePlayer})");
+            HouseRulesEssentialsBase.LogDebug($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] was revived by player {sourcePiece.boardPieceId} (-{_globalConfig.RevivePlayer})");
             pointCount -= _globalConfig.RevivePlayer;
             if (pointCount < 0)
             {
                 pointCount = 0;
             }
 
-            EssentialsMod.Logger.Msg($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] total points: {pointCount}");
+            HouseRulesEssentialsBase.LogDebug($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] total points: {pointCount}");
             revivedPiece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
             revivedPiece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
         }
@@ -276,46 +277,46 @@
                     var keyCount = piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.Locked);
                     if (keyCount > 0)
                     {
-                        EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door ({keyCount})");
+                        HouseRulesEssentialsBase.LogDebug($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door ({keyCount})");
                         flag = true;
                         pointCount += keyCount;
                     }
                 }
                 else
                 {
-                    EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door ({_globalConfig.UnlockDoor})");
+                    HouseRulesEssentialsBase.LogDebug($"{piece.boardPieceId} [ID: {piece.networkID}] unlocked the exit door ({_globalConfig.UnlockDoor})");
                     flag = true;
                     pointCount += _globalConfig.UnlockDoor;
                 }
             }
             else if (interactable.type == Interactable.Type.Chest)
             {
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted a chest ({_globalConfig.LootChest})");
+                HouseRulesEssentialsBase.LogDebug($"{piece.boardPieceId} [ID: {piece.networkID}] looted a chest ({_globalConfig.LootChest})");
                 flag = true;
                 pointCount += _globalConfig.LootChest;
             }
             else if (interactable.type == Interactable.Type.PotionStand)
             {
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] looted a potion stand ({_globalConfig.LootStand})");
+                HouseRulesEssentialsBase.LogDebug($"{piece.boardPieceId} [ID: {piece.networkID}] looted a potion stand ({_globalConfig.LootStand})");
                 flag = true;
                 pointCount += _globalConfig.LootStand;
             }
             else if (interactable.type == Interactable.Type.Door)
             {
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] opened a door ({_globalConfig.OpenDoor})");
+                HouseRulesEssentialsBase.LogDebug($"{piece.boardPieceId} [ID: {piece.networkID}] opened a door ({_globalConfig.OpenDoor})");
                 flag = true;
                 pointCount += _globalConfig.OpenDoor;
             }
             else if (interactable.type == Interactable.Type.AltarOfBlessing)
             {
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] used a fountain ({_globalConfig.UseFountain})");
+                HouseRulesEssentialsBase.LogDebug($"{piece.boardPieceId} [ID: {piece.networkID}] used a fountain ({_globalConfig.UseFountain})");
                 flag = true;
                 pointCount += _globalConfig.UseFountain;
             }
 
             if (flag && piece.HasEffectState(EffectStateType.Key) && interactable.type != Interactable.Type.LevelExit)
             {
-                EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
+                HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
                 pointCount += _globalConfig.Keyholder;
             }
 
@@ -326,7 +327,7 @@
 
             if (flag)
             {
-                EssentialsMod.Logger.Msg($"{piece.boardPieceId} [ID: {piece.networkID}] total points: {pointCount}");
+                HouseRulesEssentialsBase.LogDebug($"{piece.boardPieceId} [ID: {piece.networkID}] total points: {pointCount}");
                 piece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
                 piece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
             }
@@ -357,7 +358,7 @@
                     }
                     else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                     {
-                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion defeated enemy {defeatedUnit.boardPieceId}...");
+                        HouseRulesEssentialsBase.LogDebug($"[ID: {piece2.networkID}]'s minion defeated enemy {defeatedUnit.boardPieceId}...");
                         attackerUnit = piece2;
                     }
                     else
@@ -374,7 +375,7 @@
                     }
                     else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                     {
-                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s Arly Owl defeated enemy {defeatedUnit.boardPieceId}...");
+                        HouseRulesEssentialsBase.LogDebug($"[ID: {piece2.networkID}]'s Arly Owl defeated enemy {defeatedUnit.boardPieceId}...");
                         attackerUnit = piece2;
                     }
                     else
@@ -397,31 +398,31 @@
             bool flag;
             if (!defeatedUnit.IsPlayer())
             {
-                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed enemy {defeatedUnit.boardPieceId} ({_globalConfig.KillEnemy})");
+                HouseRulesEssentialsBase.LogDebug($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed enemy {defeatedUnit.boardPieceId} ({_globalConfig.KillEnemy})");
                 flag = true;
                 pointCount += _globalConfig.KillEnemy;
                 if (defeatedUnit.HasPieceType(PieceType.Boss))
                 {
-                    EssentialsMod.Logger.Msg($"Enemy was the BOSS ({_globalConfig.KillBoss})");
+                    HouseRulesEssentialsBase.LogDebug($"Enemy was the BOSS ({_globalConfig.KillBoss})");
                     pointCount += _globalConfig.KillBoss;
                 }
             }
             else if (defeatedUnit != attackerUnit)
             {
-                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed player {defeatedUnit.boardPieceId} ({_globalConfig.KillPlayer})");
+                HouseRulesEssentialsBase.LogDebug($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed player {defeatedUnit.boardPieceId} ({_globalConfig.KillPlayer})");
                 flag = true;
                 pointCount += _globalConfig.KillPlayer;
             }
             else
             {
-                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed self {defeatedUnit.boardPieceId} ({_globalConfig.KillSelf})");
+                HouseRulesEssentialsBase.LogDebug($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed self {defeatedUnit.boardPieceId} ({_globalConfig.KillSelf})");
                 flag = true;
                 pointCount += _globalConfig.KillSelf;
             }
 
             if (flag && attackerUnit.HasEffectState(EffectStateType.Key))
             {
-                EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
+                HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
                 pointCount += _globalConfig.Keyholder;
             }
 
@@ -432,7 +433,7 @@
 
             if (flag)
             {
-                EssentialsMod.Logger.Msg($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] total points: {pointCount}");
+                HouseRulesEssentialsBase.LogDebug($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] total points: {pointCount}");
                 attackerUnit.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
                 attackerUnit.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
             }
@@ -458,7 +459,7 @@
                     }
                     else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                     {
-                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s minion is attacking...");
+                        HouseRulesEssentialsBase.LogDebug($"[ID: {piece2.networkID}]'s minion is attacking...");
                         source = piece2;
                     }
                     else
@@ -475,7 +476,7 @@
                     }
                     else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                     {
-                        EssentialsMod.Logger.Msg($"[ID: {piece2.networkID}]'s Arly Owl is attacking...");
+                        HouseRulesEssentialsBase.LogDebug($"[ID: {piece2.networkID}]'s Arly Owl is attacking...");
                         source = piece2;
                     }
                     else
@@ -496,7 +497,12 @@
             }
 
             bool flag = false;
-            if (source != null && targets.Length != 0)
+            if (source == null)
+            {
+                return;
+            }
+
+            if (targets.Length != 0)
             {
                 for (int i = 0; i < targets.Length; i++)
                 {
@@ -506,35 +512,35 @@
                     }
                     else if (targets[i].IsPlayer() && targets[i] != source && !targets[i].IsDowned() && !targets[i].IsImmuneToDamage())
                     {
-                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed player {targets[i].boardPieceId} ({_globalConfig.HurtPlayer})");
+                        HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed player {targets[i].boardPieceId} ({_globalConfig.HurtPlayer})");
                         flag = true;
                         pointCount += _globalConfig.HurtPlayer;
                         if (source.HasEffectState(EffectStateType.Key))
                         {
-                            EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
+                            HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
                             pointCount += _globalConfig.Keyholder;
                         }
                     }
                     else if (targets[i] == source && !source.IsDowned() && diceResult != Dice.Outcome.None)
                     {
-                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed themself ({_globalConfig.HurtSelf})");
+                        HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed themself ({_globalConfig.HurtSelf})");
                         flag = true;
                         pointCount += _globalConfig.HurtSelf;
                     }
                     else if (!targets[i].IsPlayer() && targets[i].HasPieceType(PieceType.Boss))
                     {
-                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt a boss {targets[i].boardPieceId} ({_globalConfig.HurtBoss})");
+                        HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt a boss {targets[i].boardPieceId} ({_globalConfig.HurtBoss})");
                         flag = true;
                         pointCount += _globalConfig.HurtBoss;
                     }
                     else if (!targets[i].IsPlayer() && !targets[i].IsBot() && !targets[i].IsProp())
                     {
-                        EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] hurt an enemy {targets[i].boardPieceId} ({_globalConfig.HurtEnemy})");
+                        HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt an enemy {targets[i].boardPieceId} ({_globalConfig.HurtEnemy})");
                         flag = true;
                         pointCount += _globalConfig.HurtEnemy;
                         if (source.HasEffectState(EffectStateType.Key))
                         {
-                            EssentialsMod.Logger.Msg($"Keyholder bonus ({_globalConfig.Keyholder})");
+                            HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
                             pointCount += _globalConfig.Keyholder;
                         }
                     }
@@ -548,7 +554,7 @@
 
             if (flag)
             {
-                EssentialsMod.Logger.Msg($"{source.boardPieceId} [ID: {source.networkID}] total points: {pointCount}");
+                HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] total points: {pointCount}");
                 source.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
                 source.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
             }

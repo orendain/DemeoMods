@@ -1,15 +1,12 @@
-﻿namespace RoomFinder.UI
+﻿﻿namespace RoomFinder.UI
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Boardgame;
-    using Boardgame.Ui.LobbyMenu;
     using Common.UI;
     using Common.UI.Element;
-    using HarmonyLib;
     using UnityEngine;
-    using Object = UnityEngine.Object;
 
     internal class RoomListPanelNonVr
     {
@@ -62,7 +59,7 @@
         {
             foreach (Transform child in Panel.transform)
             {
-                Object.Destroy(child.gameObject);
+                UnityEngine.Object.Destroy(child.gameObject);
             }
 
             var header = CreateHeader();
@@ -86,7 +83,7 @@
 
             foreach (Transform child in _roomPages.transform)
             {
-                Object.Destroy(child.gameObject);
+                UnityEngine.Object.Destroy(child.gameObject);
             }
 
             var roomPartitions = PartitionRooms();
@@ -145,7 +142,7 @@
         private IEnumerable<List<Room>> PartitionRooms()
         {
             return _rooms
-                .Select((value, index) => new { group = index / MaxRoomsPerPage, value })
+                .Select((value, index) => new { group = index / MaxRoomsPerPage,  value })
                 .GroupBy(pair => pair.group)
                 .Select(group => group.Select(g => g.value).ToList());
         }
@@ -169,7 +166,7 @@
         {
             var container = new GameObject(room.Name);
 
-            var joinButton = _elementCreator.CreateButton(JoinRoomAction(room.Name));
+            var joinButton = _elementCreator.CreateButton(() => RoomManager.JoinRoom(room.Name));
             joinButton.transform.SetParent(container.transform, worldPositionStays: false);
             joinButton.transform.localScale = new Vector2(1.2f, 0.65f);
             joinButton.transform.localPosition = new Vector2(-150f, 0);
@@ -237,21 +234,6 @@
             _rooms = _isDescendingOrder
                 ? _rooms.OrderByDescending(_sortOrder).ToList()
                 : _rooms.OrderBy(_sortOrder).ToList();
-        }
-
-        private static Action JoinRoomAction(string roomCode)
-        {
-            return () =>
-            {
-                RoomFinderMod.Logger.Msg($"Joining room [{roomCode}].");
-                var lobbyMenuController = Traverse
-                    .Create(RoomFinderMod.SharedState.GameContext.gameStateMachine.lobby)
-                    .Field<LobbyMenuController>("lobbyMenuController")
-                    .Value;
-                Traverse.Create(lobbyMenuController)
-                    .Method("JoinGame", roomCode, true)
-                    .GetValue();
-            };
         }
     }
 }

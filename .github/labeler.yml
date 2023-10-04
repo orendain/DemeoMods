@@ -1,0 +1,34 @@
+'area: advancedstats':
+- .github/workflows/advancedstats.yml
+- AdvancedStats/**
+
+'area: common/ui':
+- Common.UI/**
+
+'area: highlighter':
+- .github/workflows/highlighter.yml
+- Highlighter/**
+
+'area: houserules/configuration':
+- .github/workflows/houserules.yml
+- HouseRules.Configuration/**
+
+'area: houserules/core':
+- .github/workflows/houserules.yml
+- HouseRules.Core/**
+
+'area: houserules/essentials':
+- .github/workflows/houserules.yml
+- HouseRules.Essentials/**
+
+'area: roomcode':
+- .github/workflows/roomcode.yml
+- RoomCode/**
+
+'area: roomfinder':
+- .github/workflows/roomfinder.yml
+- RoomFinder/**
+
+'area: skipintro':
+- .github/workflows/skipintro.yml
+- SkipIntro/**

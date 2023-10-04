@@ -49,7 +49,7 @@
                 var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.UseWhenCreated.ToList();
 
-                // EssentialsMod.Logger.Msg($"Abilities for {item.Key}: {string.Join(", ", previousProperties[item.Key])}"); // Uncomment to see original OnCreate Abilities
+                // HouseRulesEssentialsBase.LogDebug($"Abilities for {item.Key}: {string.Join(", ", previousProperties[item.Key])}"); // Uncomment to see original OnCreate Abilities
                 pieceConfigDto.UseWhenCreated = item.Value.ToArray();
                 gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }

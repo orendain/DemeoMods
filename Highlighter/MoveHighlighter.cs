@@ -1,4 +1,4 @@
-namespace Highlighter
+﻿namespace Highlighter
 {
     using Boardgame;
     using Boardgame.BoardEntities.Abilities;

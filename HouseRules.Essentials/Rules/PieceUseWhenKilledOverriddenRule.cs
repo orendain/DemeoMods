@@ -57,7 +57,7 @@
                 var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.UseWhenKilled.ToList();
 
-                // EssentialsMod.Logger.Msg($"Abilities for {item.Key}: {string.Join(", ", previousProperties[item.Key])}"); // Uncomment to see original WhenKilled Abilities
+                // HouseRulesEssentialsBase.LogDebug($"Abilities for {item.Key}: {string.Join(", ", previousProperties[item.Key])}"); // Uncomment to see original WhenKilled Abilities
                 pieceConfigDto.UseWhenKilled = item.Value.ToArray();
                 gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }

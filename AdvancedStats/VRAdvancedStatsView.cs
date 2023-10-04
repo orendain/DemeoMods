@@ -72,12 +72,12 @@
                 hasbonuses = false;
             }
 
-            Color lightblue = new Color(0f, 0.75f, 1f);
-            Color lightgreen = new Color(0f, 1f, 0.5f);
-            Color orange = new Color(1f, 0.499f, 0f);
-            Color pink = new Color(0.984f, 0.3765f, 0.498f);
-            Color gold = new Color(1f, 1f, 0.6f);
-            Color mustard = new Color(0.73f, 0.55f, 0.07f);
+            Color lightblue = new(0f, 0.75f, 1f);
+            Color lightgreen = new(0f, 1f, 0.5f);
+            Color orange = new(1f, 0.499f, 0f);
+            Color pink = new(0.984f, 0.3765f, 0.498f);
+            Color gold = new(1f, 1f, 0.6f);
+            Color mustard = new(0.73f, 0.55f, 0.07f);
             string name = pieceNameController.GetPieceName();
             var sb = new StringBuilder();
             sb.AppendLine(ColorizeString($"<u>{name}</u>", Color.yellow));
@@ -216,39 +216,42 @@
             }
             else
             {
-                int num = immuneToStatusEffects.Length;
-                bool weak = false;
-                List<string> list = new List<string>();
-
-                for (int i = 0; i < num; i++)
+                if (immuneToStatusEffects != null)
                 {
-                    string localizedTitle = StatusEffectsConfig.GetLocalizedTitle(immuneToStatusEffects[i]);
-                    if (!list.Contains(localizedTitle))
+                    int num = immuneToStatusEffects.Length;
+                    bool weak = false;
+                    List<string> list = new();
+
+                    for (int i = 0; i < num; i++)
                     {
-                        if (localizedTitle.Contains("Netted"))
+                        string localizedTitle = StatusEffectsConfig.GetLocalizedTitle(immuneToStatusEffects[i]);
+                        if (!list.Contains(localizedTitle))
                         {
-                            localizedTitle = ColorizeString("Netted", lightblue);
-                        }
-                        else if (localizedTitle.Contains("Undefined"))
-                        {
-                            continue;
-                        }
-                        else if (localizedTitle.Contains("Weaken"))
-                        {
-                            if (weak)
+                            if (localizedTitle.Contains("Netted"))
+                            {
+                                localizedTitle = ColorizeString("Netted", lightblue);
+                            }
+                            else if (localizedTitle.Contains("Undefined"))
                             {
                                 continue;
                             }
+                            else if (localizedTitle.Contains("Weaken"))
+                            {
+                                if (weak)
+                                {
+                                    continue;
+                                }
 
-                            weak = true;
+                                weak = true;
+                            }
+
+                            if (i != 0)
+                            {
+                                sb.Append(ColorizeString(", ", lightblue));
+                            }
+
+                            sb.Append(ColorizeString($"{localizedTitle}", lightblue));
                         }
-
-                        if (i != 0)
-                        {
-                            sb.Append(ColorizeString(", ", lightblue));
-                        }
-
-                        sb.Append(ColorizeString($"{localizedTitle}", lightblue));
                     }
                 }
             }

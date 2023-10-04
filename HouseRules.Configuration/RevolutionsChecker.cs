@@ -27,7 +27,7 @@
             }
             catch (Exception e)
             {
-                ConfigurationMod.Logger.Warning($"Failed to determine if an update is available: {e}");
+                HouseRulesConfigurationBase.LogWarning($"Failed to determine if an update is available: {e}");
                 return false;
             }
         }
@@ -37,13 +37,15 @@
         /// </summary>
         private static async Task<string> FindLatestReleaseVersion()
         {
-            ConfigurationMod.Logger.Msg("Searching for the latest Revolutions release.");
+            HouseRulesConfigurationBase.LogDebug("Searching for the latest Revolutions release.");
 
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
             client.DefaultRequestHeaders.Add("User-Agent", "Demeo Revolutions");
 
-            var responseString = await client.GetStringAsync("https://api.github.com/repos/TheGrayAlien/DemeoMods/releases");
+            var responseString =
+                await client.GetStringAsync("https://api.github.com/repos/TheGrayAlien/DemeoMods/releases");
             var responseJson = JArray.Parse(responseString);
             foreach (var obj in responseJson.Children<JObject>())
             {
@@ -58,7 +60,7 @@
                     continue;
                 }
 
-                ConfigurationMod.Logger.Msg($"Found the latest Revolutions release: {version}");
+                HouseRulesConfigurationBase.LogDebug($"Found the latest Revolutions release: {version}");
                 return version;
             }
 

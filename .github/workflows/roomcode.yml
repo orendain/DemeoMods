@@ -1,0 +1,44 @@
+name: RoomCode
+
+on:
+  pull_request:
+    paths:
+      - 'RoomCode/**'
+      - '.github/workflows/roomcode.yml'
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Add Dependencies
+        run: |
+          wget -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/1d94aee9fe14b23affdb975d57aa6b4c5f6c04f2/2023-09-07.zip
+          7z x deps.zip -o./libs
+
+      - name: Build BepInEx Plugin
+        run: dotnet build RoomCode/RoomCode.csproj -c BepInEx -v d
+
+      - name: Build MelonLoader Mod
+        run: dotnet build RoomCode/RoomCode.csproj -c MelonLoader -v d
+
+      - name: Upload BepInEx DLL
+        uses: actions/upload-artifact@v3
+        with:
+          name: RoomCode.BIE.dll
+          path: RoomCode/bin/netstandard2.1/RoomCode.BIE.dll
+
+      - name: Upload MelonLoader DLL
+        uses: actions/upload-artifact@v3
+        with:
+          name: RoomCode.ML.dll
+          path: RoomCode/bin/netstandard2.1/RoomCode.ML.dll

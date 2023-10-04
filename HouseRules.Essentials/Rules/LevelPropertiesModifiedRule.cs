@@ -233,7 +233,7 @@
         {
             Traverse.Create(gameContext.playerDataController)
                 .Field<Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>>("mergedDreadDataCollection")
-                .Value = null;
+                .Value = new Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>(); // was null
             Traverse.Create(gameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
         }
 
@@ -354,7 +354,7 @@
             foreach (var modification in _levelProperties)
             {
                 // int value1 = AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key);
-                // EssentialsMod.Logger.Msg($"{modification.Key} = {value1}");
+                // HouseRulesEssentialsBase.LogDebug($"{modification.Key} = {value1}");
                 AccessTools.FieldRefAccess<DreadLevelsData, int>(dreadLevel, modification.Key) =
                     modification.Value;
             }

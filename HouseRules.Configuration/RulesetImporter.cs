@@ -5,65 +5,33 @@
     using System.IO;
     using System.Linq;
     using HarmonyLib;
+    using HouseRules.Core;
     using HouseRules.Core.Types;
-    using MelonLoader;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    public class ConfigManager
+    internal static class RulesetImporter
     {
-        internal static readonly string RulesetDirectory = Path.Combine(MelonUtils.UserDataDirectory, "HouseRules");
-
-        private readonly MelonPreferences_Entry<string> _defaultRulesetEntry;
-        private readonly MelonPreferences_Entry<bool> _loadRulesetsFromConfigEntry;
-
-        internal static ConfigManager NewInstance()
-        {
-            return new ConfigManager();
-        }
-
-        private ConfigManager()
-        {
-            var configCategory = MelonPreferences.CreateCategory("HouseRules");
-            _defaultRulesetEntry = configCategory.CreateEntry("defaultRuleset", string.Empty);
-            _loadRulesetsFromConfigEntry = configCategory.CreateEntry("loadRulesetsFromConfig", true);
-            Directory.CreateDirectory(RulesetDirectory);
-            SetDefaultSerializationSettings();
-        }
-
-        internal string GetDefaultRuleset()
-        {
-            return _defaultRulesetEntry.Value;
-        }
-
-        internal bool GetLoadRulesetsFromConfig()
-        {
-            return _loadRulesetsFromConfigEntry.Value;
-        }
-
         /// <summary>
-        /// Gets a list of all ruleset files founds.
+        /// Returns a list of all files in the specified directory that may qualify as ruleset files.
         /// </summary>
-        internal static List<string> RulesetFiles => Directory.EnumerateFiles(RulesetDirectory, "*.json").ToList();
-
-        /// <summary>
-        /// Exports the specified ruleset by writing it to a file in the default ruleset directory.
-        /// </summary>
-        /// <param name="ruleset">The ruleset to export.</param>
-        /// <returns>The path of the file that the ruleset was written to.</returns>
-        internal string ExportRuleset(Ruleset ruleset)
+        /// <param name="directory">Path to the directory to search for rulesets.</param>
+        /// <returns>A list of full file paths to all ruleset files found.</returns>
+        internal static List<string> ListRulesets(string directory)
         {
-            return ExportRuleset(ruleset, RulesetDirectory);
+            return Directory.EnumerateFiles(directory, "*.json").ToList();
         }
 
         /// <summary>
-        /// Exports the specified ruleset by writing it to a file in the specified directory.
+        /// Write the specified ruleset to the specified directory.
         /// </summary>
         /// <param name="ruleset">The ruleset to export.</param>
         /// <param name="directory">The path of the directory to export to.</param>
         /// <returns>The path of the file that the ruleset was written to.</returns>
-        internal string ExportRuleset(Ruleset ruleset, string directory)
+        internal static string WriteToDirectory(Ruleset ruleset, string directory)
         {
+            SetDefaultSerializationSettings();
+
             if (string.IsNullOrEmpty(ruleset.Name))
             {
                 throw new ArgumentException("Ruleset name must not be empty.");
@@ -74,7 +42,7 @@
             {
                 try
                 {
-                    FindRuleAndConfigType(rule.GetType().FullName);
+                    FindRuleAndConfigType(rule.GetType().Name);
                     var configObject = Traverse.Create(rule).Method("GetConfigObject").GetValue();
                     var configJson = JToken.FromObject(configObject);
                     var ruleEntry = new RuleConfigEntry
@@ -86,7 +54,8 @@
                 }
                 catch (Exception e)
                 {
-                    ConfigurationMod.Logger.Warning($"Failed to write rule entry {rule.GetType().Name} to config. Skipping that rule: {e}");
+                    HouseRulesConfigurationBase.LogWarning(
+                        $"Failed to write rule entry {rule.GetType().Name} to config. Skipping that rule: {e}");
                 }
             }
 
@@ -102,12 +71,12 @@
             var rulesetFilePath = Path.Combine(directory, $"{rulesetFilename}.json");
             File.WriteAllText(rulesetFilePath, serializedRuleset);
 
-            ConfigurationMod.Logger.Msg($"Successfully exported ruleset to: {rulesetFilePath}");
+            HouseRulesConfigurationBase.LogInfo($"Successfully exported ruleset to: {rulesetFilePath}");
             return rulesetFilePath;
         }
 
         /// <summary>
-        /// Imports a ruleset by full file name.
+        /// Reads a ruleset from the specified full file name.
         /// </summary>
         /// <remarks>
         /// Tolerating failures via <c>tolerateFailures</c> continues importing the ruleset even
@@ -116,8 +85,10 @@
         /// <param name="fileName">The full file name of the JSON file to load as a ruleset.</param>
         /// <param name="tolerateFailures">Whether or not to tolerate partial failures.</param>
         /// <returns>The imported ruleset.</returns>
-        internal static Ruleset ImportRuleset(string fileName, bool tolerateFailures)
+        internal static Ruleset Read(string fileName, bool tolerateFailures)
         {
+            SetDefaultSerializationSettings();
+
             var rulesetJson = File.ReadAllText(fileName);
             var rulesetConfig = JsonConvert.DeserializeObject<RulesetConfig>(rulesetJson);
 
@@ -135,29 +106,25 @@
                 {
                     if (!tolerateFailures)
                     {
-                        throw new InvalidOperationException($"Failed to read rule entry [{ruleConfigEntry.Rule}] of ruleset [{rulesetConfig.Name}].", e);
+                        throw new InvalidOperationException(
+                            $"Failed to read rule entry [{ruleConfigEntry.Rule}] of ruleset [{rulesetConfig.Name}].",
+                            e);
                     }
 
-                    ConfigurationMod.Logger.Warning($"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
+                    HouseRulesConfigurationBase.LogWarning(
+                        $"Failed to read rule entry [{ruleConfigEntry.Rule}] from config. Tolerating failures by skipping that rule: {e}");
                 }
             }
 
-            ConfigurationMod.Logger.Msg($"Successfully imported ruleset from: {fileName}");
+            HouseRulesConfigurationBase.LogDebug($"Successfully imported ruleset from: {fileName}");
             return Ruleset.NewInstance(rulesetConfig.Name, rulesetConfig.Description, rulesetConfig.Longdesc, rules);
         }
 
         private static (Type RuleType, Type ConfigType) FindRuleAndConfigType(string ruleName)
         {
-            var ruleType = AccessTools.TypeByName(ruleName) ?? AccessTools.TypeByName(ExpandRuleName(ruleName));
-
-            if (ruleType == null)
+            if (!TryFindRuleType(ruleName, out var ruleType))
             {
-                throw new ArgumentException($"Could not find a rule type represented by the name: {ruleName}");
-            }
-
-            if (!typeof(Rule).IsAssignableFrom(ruleType))
-            {
-                throw new ArgumentException($"Failed to recognize the type found as representing a rule: {ruleType.FullName}");
+                throw new ArgumentException($"Could not find a registered rule represented by name: {ruleName}");
             }
 
             foreach (var i in ruleType.GetInterfaces())
@@ -193,7 +160,8 @@
             }
             catch (Exception e)
             {
-                throw new ArgumentException($"Failed to call rule [{ruleType}] constructor with type [{configType}]: {e}");
+                throw new ArgumentException(
+                    $"Failed to call rule [{ruleType}] constructor with type [{configType}]: {e}");
             }
         }
 
@@ -204,6 +172,25 @@
                 Formatting = Formatting.Indented,
                 Converters = { new Newtonsoft.Json.Converters.StringEnumConverter() },
             };
+        }
+
+        /// <summary>
+        /// Finds the registered rule type represented by the specified rule name, returning false
+        /// if no matching rule has been registered.
+        /// </summary>
+        private static bool TryFindRuleType(string ruleName, out Type ruleType)
+        {
+            foreach (var r in HR.Rulebook.RuleTypes)
+            {
+                if (ExpandRuleName(ruleName).Equals(r.Name) || ruleName.Equals(r.Name))
+                {
+                    ruleType = r;
+                    return true;
+                }
+            }
+
+            ruleType = null;
+            return false;
         }
 
         /// <summary>
@@ -222,7 +209,8 @@
         private static string SanitizeRulesetFilename(string rulesetName)
         {
             var invalids = Path.GetInvalidFileNameChars();
-            return string.Join(string.Empty, rulesetName.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
+            var validParts = rulesetName.Split(invalids, StringSplitOptions.RemoveEmptyEntries);
+            return string.Join(string.Empty, validParts).TrimEnd('.');
         }
 
         /// <summary>

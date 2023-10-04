@@ -21,8 +21,8 @@
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
-        private static string roomCode;
-        private static string lastCode;
+        private static string _roomCode;
+        private static string _lastCode;
 
         internal static bool IsRulesetActive { get; private set; }
 
@@ -76,33 +76,17 @@
 
             harmony.Patch(
                 original: AccessTools.Method(typeof(NonVrGameSettingsPageController), "ToggleGamePrivacy"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix)));
+                prefix: new HarmonyMethod(
+                    typeof(LifecycleDirector),
+                    nameof(NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix)));
 
             harmony.Patch(
-                original: AccessTools.Method(typeof(HandSettingsPageController), "<SetupGameButtons>g__ToggleGamePrivacy|16_4"),
-                prefix: new HarmonyMethod(typeof(LifecycleDirector), nameof(HandSettingsPageController_SetupGameButtons_Prefix)));
-        }
-
-        private static bool HandSettingsPageController_SetupGameButtons_Prefix()
-        {
-            if (HR.SelectedRuleset == Ruleset.None)
-            {
-                return true;
-            }
-
-            // Don't allow PCVR privacy settings to change from Private to Public
-            return false;
-        }
-
-        private static bool NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix()
-        {
-            if (HR.SelectedRuleset == Ruleset.None)
-            {
-                return true;
-            }
-
-            // Don't allow PC-Edition privacy settings to change from Private to Public
-            return false;
+                original: AccessTools.Method(
+                    typeof(HandSettingsPageController),
+                    "<SetupGameButtons>g__ToggleGamePrivacy|18_4"),
+                prefix: new HarmonyMethod(
+                    typeof(LifecycleDirector),
+                    nameof(HandSettingsPageController_ToggleGamePrivacy_Prefix)));
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
@@ -123,10 +107,10 @@
                 return;
             }
 
-            lastCode = PhotonNetwork.CurrentRoom.Name;
-            if (lastCode != roomCode)
+            _lastCode = PhotonNetwork.CurrentRoom.Name;
+            if (_lastCode != _roomCode)
             {
-                CoreMod.Logger.Warning($"Room {lastCode} doesn't match original room {roomCode}. Deactivating reconnection rules!");
+                HouseRulesCoreBase.LogWarning($"Room {_lastCode} doesn't match original room {_roomCode}. Deactivating reconnection rules!");
                 DeactivateReconnect();
             }
         }
@@ -148,7 +132,7 @@
             var gameStateTraverse = Traverse.Create(_gameContext.gameStateMachine).Field("creatingGameState");
             if (!gameStateTraverse.FieldExists())
             {
-                CoreMod.Logger.Error("Failed to find required \"creatingGameState\" field.");
+                HouseRulesCoreBase.LogError("Failed to find required \"creatingGameState\" field.");
                 return;
             }
 
@@ -195,8 +179,8 @@
                 DeactivateReconnect();
             }
 
-            roomCode = PhotonNetwork.CurrentRoom.Name;
-            CoreMod.Logger.Msg($"New game in room {roomCode} started");
+            _roomCode = PhotonNetwork.CurrentRoom.Name;
+            HouseRulesCoreBase.LogDebug($"New game in room {_roomCode} started");
             ActivateRuleset();
             OnPreGameCreated();
         }
@@ -223,7 +207,7 @@
                 return;
             }
 
-            CoreMod.Logger.Warning($"<--- Resuming ruleset after disconnection from room {roomCode} --->");
+            HouseRulesCoreBase.LogWarning($"<--- Resuming ruleset after disconnection from room {_roomCode} --->");
 
             ActivateRuleset();
             OnPreGameCreated();
@@ -292,16 +276,38 @@
 
             if (context == BoardgameActionOnLocalPlayerDisconnect.DisconnectContext.ReconnectState)
             {
-                CoreMod.Logger.Warning($"<- Disconnected from room {roomCode} ->");
+                HouseRulesCoreBase.LogWarning($"<- Disconnected from room {_roomCode} ->");
                 IsReconnect = true;
                 DeactivateRuleset();
             }
             else
             {
-                CoreMod.Logger.Msg($"<- MANUALLY disconnected from room {roomCode} ->");
+                HouseRulesCoreBase.LogDebug($"<- MANUALLY disconnected from room {_roomCode} ->");
                 IsReconnect = true;
                 DeactivateRuleset();
             }
+        }
+
+        private static bool NonVrGameSettingsPageController_ToggleGamePrivacy_Prefix()
+        {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return true;
+            }
+
+            // Don't allow PC-Edition privacy settings to change from Private to Public.
+            return false;
+        }
+
+        private static bool HandSettingsPageController_ToggleGamePrivacy_Prefix()
+        {
+            if (HR.SelectedRuleset == Ruleset.None)
+            {
+                return true;
+            }
+
+            // Don't allow PCVR privacy settings to change from Private to Public.
+            return false;
         }
 
         /// <summary>
@@ -319,7 +325,7 @@
 
             if (roomOptions.CustomRoomPropertiesForLobby.Contains(ModdedRoomPropertyKey))
             {
-                CoreMod.Logger.Warning($"Room options already include custom property: {ModdedRoomPropertyKey}");
+                HouseRulesCoreBase.LogWarning($"Room options already include custom property: {ModdedRoomPropertyKey}");
                 return;
             }
 
@@ -334,7 +340,7 @@
         {
             if (IsRulesetActive && !IsReconnect)
             {
-                CoreMod.Logger.Warning("Ruleset activation was attempted whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
+                HouseRulesCoreBase.LogWarning("Ruleset activation was attempted whilst a ruleset was already activated. This should not happen. Please report this to HouseRules developers.");
                 return;
             }
 
@@ -345,14 +351,14 @@
 
             if (GameHub.GetGameMode == GameHub.GameMode.Multiplayer && !HR.SelectedRuleset.IsSafeForMultiplayer)
             {
-                CoreMod.Logger.Warning($"The selected ruleset [{HR.SelectedRuleset.Name}] is not safe for multiplayer games. Skipping activation.");
+                HouseRulesCoreBase.LogWarning($"The selected ruleset [{HR.SelectedRuleset.Name}] is not safe for multiplayer games. Skipping activation.");
                 return;
             }
 
             IsRulesetActive = true;
 
             var setName = HR.SelectedRuleset.Name;
-            CoreMod.Logger.Warning($"Activating ruleset: {setName} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            HouseRulesCoreBase.LogWarning($"Activating ruleset: {setName} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
@@ -360,19 +366,19 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (IsReconnect && isDisabled)
                     {
-                        CoreMod.Logger.Msg($"Skip activating rule type: {rule.GetType()}");
+                        HouseRulesCoreBase.LogDebug($"Skip activating rule type: {rule.GetType()}");
                         continue;
                     }
                     else
                     {
-                        CoreMod.Logger.Msg($"Activating rule type: {rule.GetType()}");
+                        HouseRulesCoreBase.LogDebug($"Activating rule type: {rule.GetType()}");
                         rule.OnActivate(_gameContext);
                     }
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    CoreMod.Logger.Warning($"Failed to activate rule [{rule.GetType()}]: {e}");
+                    HouseRulesCoreBase.LogWarning($"Failed to activate rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -390,7 +396,7 @@
             }
 
             var setName = HR.SelectedRuleset.Name;
-            CoreMod.Logger.Msg($"Deactivating ruleset: {setName} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            HouseRulesCoreBase.LogDebug($"Deactivating ruleset: {setName} (with {HR.SelectedRuleset.Rules.Count} rules)");
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
                 try
@@ -398,19 +404,19 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (IsReconnect && isDisabled)
                     {
-                        CoreMod.Logger.Msg($"Skip deactivating rule type: {rule.GetType()}");
+                        HouseRulesCoreBase.LogDebug($"Skip deactivating rule type: {rule.GetType()}");
                         continue;
                     }
                     else
                     {
-                        CoreMod.Logger.Msg($"Deactivating rule type: {rule.GetType()}");
+                        HouseRulesCoreBase.LogDebug($"Deactivating rule type: {rule.GetType()}");
                         rule.OnDeactivate(_gameContext);
                     }
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    CoreMod.Logger.Warning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
+                    HouseRulesCoreBase.LogWarning($"Failed to deactivate rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -420,7 +426,7 @@
             IsReconnect = false;
             IsRulesetActive = false;
 
-            CoreMod.Logger.Warning($"Deactivating reconnection: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
+            HouseRulesCoreBase.LogWarning($"Deactivating reconnection: {HR.SelectedRuleset.Name} (with {HR.SelectedRuleset.Rules.Count} rules)");
 
             foreach (var rule in HR.SelectedRuleset.Rules)
             {
@@ -429,14 +435,14 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (isDisabled)
                     {
-                        CoreMod.Logger.Msg($"Deactivating reconnection for rule type: {rule.GetType()}");
+                        HouseRulesCoreBase.LogDebug($"Deactivating reconnection for rule type: {rule.GetType()}");
                         rule.OnDeactivate(_gameContext);
                     }
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    CoreMod.Logger.Warning($"Failed to deactivate reconnection for rule [{rule.GetType()}]: {e}");
+                    HouseRulesCoreBase.LogWarning($"Failed to deactivate reconnection for rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -460,19 +466,19 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (IsReconnect && isDisabled)
                     {
-                        CoreMod.Logger.Msg($"Skip OnPreGameCreated for rule type: {rule.GetType()}");
+                        HouseRulesCoreBase.LogDebug($"Skip OnPreGameCreated for rule type: {rule.GetType()}");
                         continue;
                     }
                     else
                     {
-                        CoreMod.Logger.Msg($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
+                        HouseRulesCoreBase.LogDebug($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
                         rule.OnPreGameCreated(_gameContext);
                     }
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    CoreMod.Logger.Warning($"Failed to successfully call OnPreGameCreated on rule [{rule.GetType()}]: {e}");
+                    HouseRulesCoreBase.LogWarning($"Failed to successfully call OnPreGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
 
@@ -498,19 +504,19 @@
                     var isDisabled = rule is IDisableOnReconnect;
                     if (IsReconnect && isDisabled)
                     {
-                        CoreMod.Logger.Msg($"Skip OnPostGameCreated for rule type: {rule.GetType()}");
+                        HouseRulesCoreBase.LogDebug($"Skip OnPostGameCreated for rule type: {rule.GetType()}");
                         continue;
                     }
                     else
                     {
-                        CoreMod.Logger.Msg($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
+                        HouseRulesCoreBase.LogDebug($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
                         rule.OnPostGameCreated(_gameContext);
                     }
                 }
                 catch (Exception e)
                 {
                     // TODO(orendain): Consider rolling back or disable rule.
-                    CoreMod.Logger.Warning($"Failed to successfully call OnPostGameCreated on rule [{rule.GetType()}]: {e}");
+                    HouseRulesCoreBase.LogWarning($"Failed to successfully call OnPostGameCreated on rule [{rule.GetType()}]: {e}");
                 }
             }
         }
@@ -533,7 +539,7 @@
 
         private static string NotSafeForMultiplayerMessage()
         {
-            Color orange = new Color(1f, 0.499f, 0f);
+            Color orange = new(1f, 0.499f, 0f);
             return new StringBuilder()
                 .Append(ColorizeString("*** ", orange))
                 .Append(ColorizeString("ATTENTION", Color.red))
@@ -551,10 +557,10 @@
 
         private static string RulesetActiveMessage()
         {
-            Color violet = new Color(0.8f, 0f, 0.8f);
-            Color lightblue = new Color(0f, 0.75f, 1f);
-            Color orange = new Color(1f, 0.499f, 0f);
-            Color gold = new Color(1f, 1f, 0.6f);
+            Color violet = new(0.8f, 0f, 0.8f);
+            Color lightblue = new(0f, 0.75f, 1f);
+            Color orange = new(1f, 0.499f, 0f);
+            Color gold = new(1f, 1f, 0.6f);
             var sb = new StringBuilder();
             sb.AppendLine(ColorizeString("Welcome to a game using", Color.cyan));
             sb.Append(ColorizeString("H", violet));
@@ -575,7 +581,7 @@
                 sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Name}:", Color.yellow));
                 sb.AppendLine(ColorizeString(HR.SelectedRuleset.Description, Color.white));
                 sb.AppendLine();
-                if (HR.SelectedRuleset.Longdesc != null && HR.SelectedRuleset.Longdesc != string.Empty)
+                if (!string.IsNullOrEmpty(HR.SelectedRuleset.Longdesc))
                 {
                     sb.AppendLine(ColorizeString($"<========== Ruleset Creator's Description ==========>", orange));
                     sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Longdesc}", gold));

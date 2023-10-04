@@ -79,7 +79,7 @@
                     });
                 }
 
-                // EssentialsMod.Logger.Msg($"Configs for {item.Piece}: {item.Property} - {Convert.ToSingle(Traverse.Create(pieceConfig).Field(item.Property).GetValue())}"); // Uncomment to see original Configs
+                // HouseRulesEssentialsBase.LogDebug($"Configs for {item.Piece}: {item.Property} - {Convert.ToSingle(Traverse.Create(pieceConfig).Field(item.Property).GetValue())}"); // Uncomment to see original Configs
                 ModifyPieceConfig(ref pieceConfig, item.Property, item.Value);
                 gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Piece] = pieceConfig;
             }

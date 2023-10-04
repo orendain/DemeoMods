@@ -1,24 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.2.32616.157
+VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedStats", "AdvancedStats\AdvancedStats.csproj", "{A1850892-02BC-41F0-9131-E63CDD61E8DC}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.UI", "Common.UI\Common.UI.csproj", "{45B0C288-5514-4914-92BB-2FCF1E696C28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomFinder", "RoomFinder\RoomFinder.csproj", "{5D106A6F-2A66-4731-877A-3C315F0CB18C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Highlighter", "Highlighter\Highlighter.csproj", "{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules.Configuration", "HouseRules.Configuration\HouseRules.Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules.Core", "HouseRules.Core\HouseRules.Core.csproj", "{B412463F-A4F7-46CE-AC4E-37448762B45B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules.Essentials", "HouseRules.Essentials\HouseRules.Essentials.csproj", "{8FC09405-8E06-4090-BB68-94882F0A52D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomCode", "RoomCode\RoomCode.csproj", "{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomFinder", "RoomFinder\RoomFinder.csproj", "{5D106A6F-2A66-4731-877A-3C315F0CB18C}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkipIntro", "SkipIntro\SkipIntro.csproj", "{E986568C-684F-4DD3-980C-8D8443982EC6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{550F1D71-6355-4D67-91BB-15D2E1891870}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".workflows", ".workflows", "{704400AE-213D-4015-A6A6-2F5659641B56}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		Directory.Build.props = Directory.Build.props
-		README.md = README.md
-		RELEASE.md = RELEASE.md
+		.github\workflows\highlighter.yml = .github\workflows\highlighter.yml
+		.github\workflows\roomcode.yml = .github\workflows\roomcode.yml
+		.github\workflows\labeler.yml = .github\workflows\labeler.yml
+		.github\workflows\skipintro.yml = .github\workflows\skipintro.yml
+		.github\workflows\advancedstats.yml = .github\workflows\advancedstats.yml
+		.github\workflows\curseforge.yml = .github\workflows\curseforge.yml
+		.github\workflows\houserules.yml = .github\workflows\houserules.yml
+		.github\workflows\roomfinder.yml = .github\workflows\roomfinder.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5EF5-4AED-8B59-43EB164F7EC5}"
@@ -30,13 +42,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8C7F69F7-5
 		docs\LevelNames.md = docs\LevelNames.md
 		docs\LevelProperties.md = docs\LevelProperties.md
 		docs\PieceConfig.md = docs\PieceConfig.md
+		docs\SettingsReference.md = docs\SettingsReference.md
 		docs\images\roomfinder_screenshot.jpg = docs\images\roomfinder_screenshot.jpg
 		docs\images\skipintro_icon.jpg = docs\images\skipintro_icon.jpg
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRules.Configuration", "HouseRules.Configuration\HouseRules.Configuration.csproj", "{ED5D884D-FC02-4095-886E-C18369F4051D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomCode", "RoomCode\RoomCode.csproj", "{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExampleRulesets", "ExampleRulesets", "{E7D18184-0810-48D2-8D4F-24A60219776D}"
 	ProjectSection(SolutionItems) = preProject
@@ -45,7 +54,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExampleRulesets", "ExampleR
 		docs\rulesets\(Custom) Beat The Clock!.json = docs\rulesets\(Custom) Beat The Clock!.json
 		docs\rulesets\(Custom) Better Sorcerer.json = docs\rulesets\(Custom) Better Sorcerer.json
 		docs\rulesets\(Custom) Demeo Reloaded.json = docs\rulesets\(Custom) Demeo Reloaded.json
-		docs\rulesets\(Custom) Demeo Revolutions.json = docs\rulesets\(Custom) Demeo Revolutions.json
 		docs\rulesets\(Custom) Difficulty Easy.json = docs\rulesets\(Custom) Difficulty Easy.json
 		docs\rulesets\(Custom) Difficulty Hard.json = docs\rulesets\(Custom) Difficulty Hard.json
 		docs\rulesets\(Custom) Difficulty Legendary.json = docs\rulesets\(Custom) Difficulty Legendary.json
@@ -59,52 +67,57 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExampleRulesets", "ExampleR
 		docs\rulesets\README.txt = docs\rulesets\README.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedStats", "AdvancedStats\AdvancedStats.csproj", "{A1850892-02BC-41F0-9131-E63CDD61E8DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Highlighter", "Highlighter\Highlighter.csproj", "{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{550F1D71-6355-4D67-91BB-15D2E1891870}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		NuGet.Config = NuGet.Config
+		README.md = README.md
+		RELEASE.md = RELEASE.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Release_BepInEx|Any CPU = Release_BepInEx|Any CPU
+		Release_MelonLoader|Any CPU = Release_MelonLoader|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D106A6F-2A66-4731-877A-3C315F0CB18C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D106A6F-2A66-4731-877A-3C315F0CB18C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D106A6F-2A66-4731-877A-3C315F0CB18C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D106A6F-2A66-4731-877A-3C315F0CB18C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B412463F-A4F7-46CE-AC4E-37448762B45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B412463F-A4F7-46CE-AC4E-37448762B45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B412463F-A4F7-46CE-AC4E-37448762B45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B412463F-A4F7-46CE-AC4E-37448762B45B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E986568C-684F-4DD3-980C-8D8443982EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E986568C-684F-4DD3-980C-8D8443982EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ED5D884D-FC02-4095-886E-C18369F4051D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED5D884D-FC02-4095-886E-C18369F4051D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{A1850892-02BC-41F0-9131-E63CDD61E8DC}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release_BepInEx|Any CPU.ActiveCfg = Release|Any CPU
+		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release_BepInEx|Any CPU.Build.0 = Release|Any CPU
+		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release_MelonLoader|Any CPU.ActiveCfg = Release|Any CPU
+		{45B0C288-5514-4914-92BB-2FCF1E696C28}.Release_MelonLoader|Any CPU.Build.0 = Release|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{E9D15E52-072A-4CC7-A7C3-21A4AA44FA79}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{ED5D884D-FC02-4095-886E-C18369F4051D}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{B412463F-A4F7-46CE-AC4E-37448762B45B}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{B412463F-A4F7-46CE-AC4E-37448762B45B}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{B412463F-A4F7-46CE-AC4E-37448762B45B}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{B412463F-A4F7-46CE-AC4E-37448762B45B}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{8FC09405-8E06-4090-BB68-94882F0A52D8}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{5D106A6F-2A66-4731-877A-3C315F0CB18C}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{5D106A6F-2A66-4731-877A-3C315F0CB18C}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{5D106A6F-2A66-4731-877A-3C315F0CB18C}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{5D106A6F-2A66-4731-877A-3C315F0CB18C}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
+		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release_BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release_BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release_MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{E986568C-684F-4DD3-980C-8D8443982EC6}.Release_MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

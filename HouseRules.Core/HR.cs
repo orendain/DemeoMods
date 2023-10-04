@@ -14,7 +14,7 @@ namespace HouseRules.Core
 
         internal static bool IsReconnect => LifecycleDirector.IsReconnect;
 
-        public static void ScheduleResync() => BoardSyncer.ScheduleSync();
+        public static void ScheduleBoardSync() => BoardSyncer.ScheduleSync();
 
         public static void SelectRuleset(string ruleset)
         {
@@ -33,7 +33,7 @@ namespace HouseRules.Core
             if (Ruleset.None.Name.Equals(ruleset, StringComparison.OrdinalIgnoreCase))
             {
                 SelectedRuleset = Ruleset.None;
-                CoreMod.Logger.Msg("Cleared selected ruleset.");
+                HouseRulesCoreBase.LogInfo("Cleared selected ruleset.");
                 return;
             }
 
@@ -42,14 +42,10 @@ namespace HouseRules.Core
                 throw new ArgumentException("Ruleset must first be registered.");
             }
 
-            SelectedRuleset = Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
+            SelectedRuleset =
+                Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
 
-            CoreMod.Logger.Msg($"Selected ruleset: {SelectedRuleset.Name}");
-        }
-
-        public static void ScheduleBoardSync()
-        {
-            BoardSyncer.ScheduleSync();
+            HouseRulesCoreBase.LogInfo($"Selected ruleset: {SelectedRuleset.Name}");
         }
     }
 }

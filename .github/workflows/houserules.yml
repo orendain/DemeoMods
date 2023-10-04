@@ -1,0 +1,75 @@
+name: HouseRules
+
+on:
+  pull_request:
+    paths:
+      - 'HouseRules*/**'
+      - '.github/workflows/houserules.yml'
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Add Dependencies
+        run: |
+          wget -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/1d94aee9fe14b23affdb975d57aa6b4c5f6c04f2/2023-09-07.zip
+          7z x deps.zip -o./libs
+
+      - name: Build HouseRules.Core BepInEx Plugin
+        run: dotnet build HouseRules.Core/HouseRules.Core.csproj -c BepInEx -v d
+
+      - name: Build HouseRules.Core MelonLoader Mod
+        run: dotnet build HouseRules.Core/HouseRules.Core.csproj -c MelonLoader -v d
+
+      - name: Build HouseRules.Essentials BepInEx Plugin
+        run: dotnet build HouseRules.Essentials/HouseRules.Essentials.csproj -c BepInEx -v d
+
+      - name: Build HouseRules.Essentials MelonLoader Mod
+        run: dotnet build HouseRules.Essentials/HouseRules.Essentials.csproj -c MelonLoader -v d
+
+      - name: Build HouseRules.Configuration BepInEx Mod
+        run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c BepInEx -v d
+
+      - name: Build HouseRules.Configuration MelonLoader Mod
+        run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c MelonLoader -v d
+
+      - name: Assemble into BepInEx Bundle
+        run: |
+          mkdir -p HouseRules.BepInEx/BepInEx/plugins
+          cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          cp HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          mkdir -p HouseRules.BepInEx/HouseRules/ExampleRulesets
+          cp docs/rulesets/* HouseRules.BepInEx/HouseRules/ExampleRulesets
+
+      - name: Assemble into MelonLoader Bundle
+        run: |
+          mkdir -p HouseRules.MelonLoader/Mods
+          cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.ML.dll HouseRules.MelonLoader/Mods
+          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.ML.dll HouseRules.MelonLoader/Mods
+          cp HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.ML.dll HouseRules.MelonLoader/Mods
+          mkdir -p HouseRules.MelonLoader/HouseRules/ExampleRulesets
+          cp docs/rulesets/* HouseRules.MelonLoader/HouseRules/ExampleRulesets
+
+      - name: Upload BepInEx Bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: HouseRules.BepInEx
+          path: HouseRules.BepInEx
+
+      - name: Upload MelonLoader Bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: HouseRules.MelonLoader
+          path: HouseRules.MelonLoader

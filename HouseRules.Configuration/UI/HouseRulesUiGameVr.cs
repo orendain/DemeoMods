@@ -29,11 +29,11 @@
                        .FindObjectsOfTypeAll<GameObject>()
                        .Count(x => x.name == "~LeanTween") < 1)
             {
-                ConfigurationMod.Logger.Msg("UI dependencies not yet ready. Waiting...");
+                HouseRulesConfigurationBase.LogDebug("UI dependencies not yet ready. Waiting...");
                 yield return new WaitForSecondsRealtime(1);
             }
 
-            ConfigurationMod.Logger.Msg("UI dependencies ready. Proceeding with initialization.");
+            HouseRulesConfigurationBase.LogDebug("UI dependencies ready. Proceeding with initialization.");
 
             _resourceTable = VrResourceTable.Instance();
             _elementCreator = VrElementCreator.Instance();
@@ -42,7 +42,7 @@
                 .First(x => x.name == "~LeanTween").transform;
 
             Initialize();
-            ConfigurationMod.Logger.Msg("Initialization complete.");
+            HouseRulesConfigurationBase.LogDebug("Initialization complete.");
         }
 
         private void Initialize()
@@ -61,7 +61,7 @@
             int numRules = 11;
             int textLength = 0;
             int returnCount = 0;
-            if (HR.SelectedRuleset.Longdesc != null && HR.SelectedRuleset.Longdesc != string.Empty)
+            if (!string.IsNullOrEmpty(HR.SelectedRuleset.Longdesc))
             {
                 textLength = HR.SelectedRuleset.Longdesc.Length;
             }
@@ -82,27 +82,27 @@
 
                 if (textLength > 975)
                 {
-                    // ConfigurationMod.Logger.Msg($"{(textLength - 650) / 65} from text of {textLength}");
+                    // HouseRulesConfigurationBase.LogDebug($"{(textLength - 650) / 65} from text of {textLength}");
                     numRules += 3 + ((textLength - 650) / 65);
                     if (returnCount > 11)
                     {
-                        // ConfigurationMod.Logger.Msg($"{returnCount - 11} from returns");
+                        // HouseRulesConfigurationBase.LogDebug($"{returnCount - 11} from returns");
                         numRules += returnCount - 11;
                     }
                 }
                 else if (returnCount > 11)
                 {
-                    // ConfigurationMod.Logger.Msg($"{returnCount - 11} from JUST returns");
+                    // HouseRulesConfigurationBase.LogDebug($"{returnCount - 11} from JUST returns");
                     numRules += returnCount - 11;
                 }
                 else if (returnCount + (textLength / (25 * returnCount)) > 11)
                 {
-                    // ConfigurationMod.Logger.Msg($"{returnCount + (textLength / (25 * returnCount)) - 11} from returns and text combined");
+                    // HouseRulesConfigurationBase.LogDebug($"{returnCount + (textLength / (25 * returnCount)) - 11} from returns and text combined");
                     numRules += returnCount + (textLength / (25 * returnCount)) - 11;
                 }
             }
 
-            // ConfigurationMod.Logger.Msg($"returnCount: {returnCount} numRules: {numRules}");
+            // HouseRulesConfigurationBase.LogDebug($"returnCount: {returnCount} numRules: {numRules}");
             var background = new GameObject("Background");
             var scale = 1.5f;
             background.AddComponent<MeshFilter>().mesh = _resourceTable.MenuMesh;
@@ -193,7 +193,7 @@
                     catch (Exception e)
                     {
                         // TODO(orendain): Consider rolling back or disable rule.
-                        ConfigurationMod.Logger.Warning($"Failed to successfully call on rule [{rule.GetType()}]: {e}");
+                        HouseRulesConfigurationBase.LogWarning($"Failed to successfully call on rule [{rule.GetType()}]: {e}");
                     }
                 }
             }
@@ -216,7 +216,7 @@
 
             versionText.transform.localPosition = new Vector3(-7, version, VrElementCreator.TextZShift);
 
-            if (ConfigurationMod.IsUpdateAvailable)
+            if (HouseRulesConfigurationBase.IsUpdateAvailable)
             {
                 sb.Clear();
                 sb.Append(ColorizeString("NEW UPDATE AVAILABLE", Color.green));

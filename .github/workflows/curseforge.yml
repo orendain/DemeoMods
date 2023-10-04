@@ -1,0 +1,50 @@
+# A workflow which triggers on release published and upload zips to Curseforge.
+
+name: "Curseforge Upload"
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  curseforge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Show Release Details"
+        id: print
+        run: "echo Name: ${{ github.event.release.tag_name }} Tag: ${{ github.event.release.name }}"
+
+      - name: Download Zip Release
+        id: download
+        uses: robinraju/release-downloader@v1.4
+        with:
+          repository: "orendain/DemeoMods"
+          tag: ${{ github.event.release.tag_name }}
+          filename: "*.zip"
+
+      - name: Find Zip
+        id: find_zip
+        run: echo "::set-output name=zipfile::$(echo *.zip)"
+
+      - name: Get CF Project ID
+        id: get_project_id
+        run: |
+              project_name=$(echo ${{ github.event.release.tag_name }} | awk -F- '{print $2}')
+              echo "CF Project Name: ${project_name}"
+              project_id=$(grep $project_name <<< ${CF_PROJECT_IDS} | awk -F: '{print $2}' )
+              echo "CF Project ID: ${project_id}"
+              echo "::set-output name=project_id::${project_id}"
+        env:
+          CF_PROJECT_IDS: ${{ secrets.CF_PROJECT_IDS }}
+
+      - name: "Upload to CurseForge"
+        uses: itsmeow/curseforge-upload@v3
+        with:
+          file_path: "${{ steps.find_zip.outputs.zipfile }}"
+          game_endpoint: "www"
+          game_versions: "Demeo 1.15"
+          release_type: release
+          changelog: ${{ github.event.release.body }}
+          changelog_type: markdown
+          project_id: "${{ steps.get_project_id.outputs.project_id }}"
+          token: "${{ secrets.CF_API_TOKEN }}"

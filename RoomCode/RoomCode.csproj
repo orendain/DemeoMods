@@ -1,60 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
     <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{B2A6BA28-0902-4271-94AB-C91F5F2A2B30}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>RoomCode</RootNamespace>
-        <AssemblyName>RoomCode</AssemblyName>
-        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <Configurations>BepInEx;MelonLoader</Configurations>
+        <AssemblySearchPaths>../libs;$(AssemblySearchPaths)</AssemblySearchPaths>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
+
+    <!-- BepInEx 5.x build config -->
+    <PropertyGroup Condition="'$(Configuration)'=='BepInEx'">
+        <OutputPath>bin</OutputPath>
+        <DefineConstants>BEPINEX</DefineConstants>
+        <AssemblyName>RoomCode.BIE</AssemblyName>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="0Harmony">
-            <HintPath>$(DemeoVrDir)\MelonLoader\0Harmony.dll</HintPath>
-        </Reference>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
+        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
         <Reference Include="Assembly-CSharp">
-            <HintPath>$(DemeoVrDir)\demeo_Data\Managed\Assembly-CSharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+    <!-- MelonLoader 0.5.7 build config -->
+    <PropertyGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <OutputPath>bin</OutputPath>
+        <DefineConstants>MELONLOADER</DefineConstants>
+        <AssemblyName>RoomCode.ML</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <PackageReference Include="HarmonyX" Version="2.10.1" IncludeAssets="compile"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <Reference Include="Assembly-CSharp">
+            <Private>false</Private>
         </Reference>
         <Reference Include="MelonLoader">
-            <HintPath>$(DemeoVrDir)\MelonLoader\MelonLoader.dll</HintPath>
+            <Private>false</Private>
         </Reference>
     </ItemGroup>
-    <ItemGroup>
-        <Compile Include="ModPatcher.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="RoomCodeMod.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="README.md" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <Target Name="CopyToModsDir" AfterTargets="Build">
-        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoVrDir)\Mods" />
-        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoPcDir)\Mods" />
-		<Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusVrDir)\Mods" />
-        <Copy SourceFiles="$(OutputPath)\$(ProjectName).dll" DestinationFolder="$(DemeoOculusPcDir)\Mods" />
-    </Target>
+
 </Project>

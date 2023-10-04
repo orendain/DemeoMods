@@ -201,8 +201,8 @@
                     replacements[4] = "TownsBossFloor01";
                 }
 
-                EssentialsMod.Logger.Warning("User configured specific level sequence loaded");
-                EssentialsMod.Logger.Warning($"Map1: {replacements[0]} Shop1: {replacements[1]} Map2: {replacements[2]} Shop2: {replacements[3]} Map3: {replacements[4]}");
+                HouseRulesEssentialsBase.LogWarning("User configured specific level sequence loaded");
+                HouseRulesEssentialsBase.LogWarning($"Map1: {replacements[0]} Shop1: {replacements[1]} Map2: {replacements[2]} Shop2: {replacements[3]} Map3: {replacements[4]}");
                 Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 replacements.Prepend(originalSequence[0]).ToArray();
                 return originalSequence.ToList();
@@ -470,8 +470,8 @@
                     break;
             }
 
-            // EssentialsMod.Logger.Warning("Randomly generated level sequence loaded");
-            // EssentialsMod.Logger.Warning($"Map1: {_randomMaps[0]} Shop1: {_randomMaps[1]} Map2: {_randomMaps[2]} Shop2: {_randomMaps[3]} Map3: {_randomMaps[4]}");
+            // HouseRulesEssentialsBase.LogWarning("Randomly generated level sequence loaded");
+            // HouseRulesEssentialsBase.LogWarning($"Map1: {_randomMaps[0]} Shop1: {_randomMaps[1]} Map2: {_randomMaps[2]} Shop2: {_randomMaps[3]} Map3: {_randomMaps[4]}");
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 _randomMaps.Prepend(originalSequence[0]).ToArray();
             return originalSequence.ToList();
