@@ -62,11 +62,11 @@ namespace HouseRules.Core
                 _logError = mod.LoggerInstance.Error;
 
                 _harmony = mod.HarmonyInstance;
-                LifecycleDirector.Patch(_harmony);
-                BoardSyncer.Patch(_harmony);
             }
             #endif
 
+            LifecycleDirector.Patch(_harmony);
+            BoardSyncer.Patch(_harmony);
             HR.Rulebook.Register(Ruleset.None);
         }
 
