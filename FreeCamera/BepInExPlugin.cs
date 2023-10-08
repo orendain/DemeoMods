@@ -16,7 +16,19 @@ namespace FreeCamera
         {
             Log = Logger;
             Harmony = new Harmony(FreeCameraBase.ModId);
+            LoadConfiguration();
             FreeCameraBase.Init(this);
+        }
+
+        private void LoadConfiguration()
+        {
+            var sensitivity = Config.Bind(
+                "General",
+                "Sensitivity",
+                12.0,
+                "Input sensitivity.");
+
+            NonVrMouseSupporter.InterpolationScaler = (float)sensitivity.Value;
         }
     }
 }

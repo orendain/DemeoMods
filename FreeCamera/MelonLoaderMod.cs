@@ -13,7 +13,15 @@ namespace FreeCamera
     {
         public override void OnInitializeMelon()
         {
+            LoadConfiguration();
             FreeCameraBase.Init(this);
+        }
+
+        private void LoadConfiguration()
+        {
+            var configCategory = MelonPreferences.CreateCategory("FreeCamera");
+            var sensitivity = configCategory.CreateEntry("sensitivity", 12.0);
+            NonVrMouseSupporter.InterpolationScaler = (float)sensitivity.Value;
         }
     }
 }

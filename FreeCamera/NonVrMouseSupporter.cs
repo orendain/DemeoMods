@@ -16,6 +16,8 @@
         private static GameContext _gameContext;
         private static ContinuousInputAction<float> _tiltContinuousInputAction;
 
+        internal static float InterpolationScaler { get; set; }
+
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
@@ -109,7 +111,7 @@
 
         private static void UnityInputProvider_Update_Postfix()
         {
-            var interpolation = (float)(Time.deltaTime * 60.0 * 0.2f);
+            var interpolation = Time.deltaTime * InterpolationScaler;
             _rotateCache = Mathf.Lerp(_rotateCache, _tiltMouseAction.ReadValue<float>(), interpolation);
             _tiltContinuousInputAction.Update(_rotateCache);
         }
