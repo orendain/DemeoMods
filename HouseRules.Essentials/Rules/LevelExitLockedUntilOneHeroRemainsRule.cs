@@ -66,6 +66,12 @@
                 return;
             }
 
+            var interactable = _gameContext.pieceAndTurnController.GetInteractableAtPosition(interactEvent.targetTile);
+            if (interactable.type != Interactable.Type.LevelExit)
+            {
+                return;
+            }
+
             if (IsPieceLastHeroAlive(interactEvent.pieceId))
             {
                 return;
