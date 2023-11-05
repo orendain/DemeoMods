@@ -9,7 +9,6 @@
     {
         internal const string ModId = "com.orendain.demeomods.houserules.core";
         internal const string ModName = "HouseRules.Core";
-        internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
         private static Action<object>? _logInfo;

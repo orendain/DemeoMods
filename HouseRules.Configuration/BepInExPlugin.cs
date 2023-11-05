@@ -8,10 +8,7 @@ namespace HouseRules.Configuration
     using HouseRules.Core;
     using UnityEngine.SceneManagement;
 
-    [BepInPlugin(
-        HouseRulesConfigurationBase.ModId,
-        HouseRulesConfigurationBase.ModName,
-        HouseRulesConfigurationBase.ModVersion)]
+    [BepInPlugin(HouseRulesConfigurationBase.ModId, HouseRulesConfigurationBase.ModName, BuildVersion.Version)]
     [BepInDependency("com.orendain.demeomods.houserules.core")]
     internal class BepInExPlugin : BaseUnityPlugin
     {
