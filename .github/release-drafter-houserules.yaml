@@ -1,0 +1,8 @@
+_extends: demeomods:.github/release-drafter.yaml
+name-template: 'HouseRules v$RESOLVED_VERSION'
+tag-template: 'houserules-v$RESOLVED_VERSION'
+tag-prefix: 'houserules-v'
+include-labels:
+  - 'area: houserules/configuration'
+  - 'area: houserules/core'
+  - 'area: houserules/essentials'

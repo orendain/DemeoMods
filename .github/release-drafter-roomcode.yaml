@@ -1,0 +1,5 @@
+_extends: demeomods:.github/release-drafter.yaml
+name-template: 'RoomCode v$RESOLVED_VERSION'
+tag-template: 'roomcode-v$RESOLVED_VERSION'
+tag-prefix: 'roomcode-v'
+include-labels: ['area: roomcode']
