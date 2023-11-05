@@ -1,0 +1,5 @@
+_extends: demeomods:.github/release-drafter.yaml
+name-template: 'SkipIntro v$RESOLVED_VERSION'
+tag-template: 'skipintro-v$RESOLVED_VERSION'
+tag-prefix: 'skipintro-v'
+include-labels: ['area: skipintro']

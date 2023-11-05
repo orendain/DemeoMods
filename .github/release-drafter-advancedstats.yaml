@@ -1,0 +1,5 @@
+_extends: demeomods:.github/release-drafter.yaml
+name-template: 'AdvancedStats v$RESOLVED_VERSION'
+tag-template: 'advancedstats-v$RESOLVED_VERSION'
+tag-prefix: 'advancedstats-v'
+include-labels: ['area: advancedstats']
