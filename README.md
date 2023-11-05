@@ -54,7 +54,7 @@ The difference between the two is negligible to most people, so there is no need
 Follow [these installation instructions](https://docs.bepinex.dev/articles/user_guide/installation/index.html#installing-bepinex-1) to install BepInEx `5.x`.
 - Make sure you install one of the `5.x` versions and _not_ a `6.x` version.
 - Step `3.` in the instructions above show how to check for generated files to confirm that BepInEx was successfully installed.  **Make sure to check.**
-- In order for BepInEx to work, you **MUST** make some tweaks to `BepInEx/config/BepInEx.cfg`.  Replace the default `BepInEx.cfg` file with this Demeo-compatible `BepInEx.cfg` file.
+- In order for BepInEx to work, you **MUST** make some tweaks to `BepInEx/config/BepInEx.cfg`.  Replace the default `BepInEx.cfg` file [with this Demeo-compatible `BepInEx.cfg` file](docs/BepInEx.cfg).
 
 When correctly installed, the final layout of your Demeo game directory should look like the following:
 
