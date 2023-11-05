@@ -12,7 +12,6 @@
     {
         internal const string ModId = "com.orendain.demeomods.houserules.configuration";
         internal const string ModName = "HouseRules.Configuration";
-        internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
         private const int PC1LobbySceneIndex = 1;
