@@ -9,7 +9,7 @@
     {
         internal const string ModId = "com.orendain.demeomods.roomfinder";
         internal const string ModName = "RoomFinder";
-        internal const string ModVersion = "1.8.0";
+        internal const string ModVersion = "1.9.0";
         internal const string ModAuthor = "DemeoMods Team";
 
         private const int PC1LobbySceneIndex = 1;
