@@ -1,0 +1,35 @@
+name: RoomFinder Tag
+
+on:
+  push:
+    tags:
+      - 'roomfinder-v*'
+
+jobs:
+  capture_version:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.capture_version.outputs.tag }}
+      version: ${{ steps.capture_version.outputs.version }}
+    steps:
+      - name: Capture Version
+        id: capture_version
+        run: |
+          echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "version=${GITHUB_REF#refs/tags/roomfinder-v}" >> $GITHUB_OUTPUT
+
+  draft:
+    name: Draft Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    needs: capture_version
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release-drafter-roomfinder.yaml
+          tag: ${{ needs.capture_version.outputs.tag }}
+          version: ${{ needs.capture_version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
