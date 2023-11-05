@@ -1,0 +1,5 @@
+_extends: demeomods:.github/release-drafter.yaml
+name-template: 'RoomFinder v$RESOLVED_VERSION'
+tag-template: 'roomfinder-v$RESOLVED_VERSION'
+tag-prefix: 'roomfinder-v'
+include-labels: ['area: roomfinder']
