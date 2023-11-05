@@ -9,8 +9,6 @@ category-template: '### $TITLE'
 change-template: '- $TITLE (#$NUMBER)'
 exclude-labels: ['type: amendment']
 template: |
-  ## Changes
-
   $CHANGES
 
   ---
