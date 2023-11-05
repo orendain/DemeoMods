@@ -8,4 +8,27 @@ categories:
 category-template: '### $TITLE'
 change-template: '- $TITLE (#$NUMBER)'
 exclude-labels: ['type: amendment']
-template: '$CHANGES'
+template: |
+  ## Changes
+
+  $CHANGES
+
+  ---
+
+  ### How To Install
+
+  > [!IMPORTANT]
+  > First, make sure you have installed either one of two modloaders: BepInEx or MelonLoader.
+  > If you have not, [go here for instructions on how to do that first](https://github.com/orendain/demeomods/blob/main/README.md#installing-a-modloader).
+
+  <details>
+  <summary><b>If you have BepInEx</b></summary><p></p>
+
+  Download the DLL file ending in `.BIE.dll` below and place it into your `BepInEx/plugins` folder, located in Demeo's root game directory.
+  </details>
+
+  <details>
+  <summary><b>If you have MelonLoader</b></summary><p></p>
+
+  Download the DLL file ending in `.ML.dll` below and place it into your `Mods` folder, located in Demeo's root game directory.
+  </details>
