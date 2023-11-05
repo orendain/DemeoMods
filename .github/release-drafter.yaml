@@ -1,0 +1,11 @@
+categories:
+  - title: '✨ Features/Enhancements'
+    labels: ['type: feature']
+  - title: '🐛 Fixes'
+    labels: ['type: bug']
+  - title: '🧰 Maintenance'
+    labels: ['type: chore', 'type: documentation']
+category-template: '### $TITLE'
+change-template: '- $TITLE (#$NUMBER)'
+exclude-labels: ['type: amendment']
+template: '$CHANGES'
