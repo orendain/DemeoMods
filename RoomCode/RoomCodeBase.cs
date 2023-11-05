@@ -7,7 +7,7 @@
     {
         internal const string ModId = "com.orendain.demeomods.roomcode";
         internal const string ModName = "RoomCode";
-        internal const string ModVersion = "1.2.1";
+        internal const string ModVersion = "1.3.0";
         internal const string ModAuthor = "DemeoMods Team";
 
         private static Action<object>? _logInfo;
