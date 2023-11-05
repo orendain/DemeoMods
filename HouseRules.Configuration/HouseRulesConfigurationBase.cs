@@ -12,7 +12,6 @@
     {
         internal const string ModId = "com.orendain.demeomods.houserules.configuration";
         internal const string ModName = "HouseRules.Configuration";
-        internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
         private const int PC1LobbySceneIndex = 1;
@@ -74,7 +73,7 @@
 
         internal static void OnSceneUnloaded(int buildIndex, string sceneName)
         {
-            // Logger.Msg($"Scene unloaded {buildIndex} - {sceneName}");
+            // LogDebug($"Scene unloaded {buildIndex} - {sceneName}");
             GameObject canvasObject = GameObject.Find("~LeanTween");
             if (canvasObject == null)
             {
@@ -109,7 +108,7 @@
 
         internal static void OnSceneLoaded(int buildIndex, string sceneName)
         {
-            // Logger.Msg($"buildIndex {buildIndex} - sceneName {sceneName}");
+            // LogDebug($"buildIndex {buildIndex} - sceneName {sceneName}");
             if (buildIndex == 0 || sceneName.Contains("Startup"))
             {
                 return;
@@ -137,7 +136,7 @@
             }
             else
             {
-                // Logger.Msg($"VR buildIndex: {buildIndex}");
+                // LogDebug($"VR buildIndex: {buildIndex}");
                 bool revolutions = false;
                 bool progressive = false;
                 if (HR.SelectedRuleset != Ruleset.None)

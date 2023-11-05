@@ -5,7 +5,7 @@ namespace HouseRules.Core
     using BepInEx.Logging;
     using HarmonyLib;
 
-    [BepInPlugin(HouseRulesCoreBase.ModId, HouseRulesCoreBase.ModName, HouseRulesCoreBase.ModVersion)]
+    [BepInPlugin(HouseRulesCoreBase.ModId, HouseRulesCoreBase.ModName, BuildVersion.Version)]
     internal class BepInExPlugin : BaseUnityPlugin
     {
         internal ManualLogSource? Log { get; private set; }

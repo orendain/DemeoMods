@@ -9,6 +9,8 @@
     {
         public override string Description => "Grapple & throwing lamps can be used in the same turn";
 
+        private static bool _isActivated;
+
         public GrappleUnhookedRule(bool value)
         {
         }
@@ -17,16 +19,23 @@
 
         protected override void OnActivate(GameContext gameContext)
         {
+            _isActivated = true;
             GrappleUnhooked();
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
+            _isActivated = false;
             GrappleRehooked();
         }
 
         private static void GrappleUnhooked()
         {
+            if (!_isActivated)
+            {
+                return;
+            }
+
             AbilityFactory.TryGetAbility(AbilityKey.Grapple, out var grapple);
             grapple.effectAppliedToSelf = EffectStateType.It;
             AbilityFactory.TryGetAbility(AbilityKey.ExplodingIceLamp, out var launchIce);

@@ -7,7 +7,7 @@ namespace AdvancedStats
     {
         internal const string ModId = "com.orendain.demeomods.advancedstats";
         internal const string ModName = "AdvancedStats";
-        internal const string ModVersion = "1.0.0";
+        internal const string ModVersion = "1.1.0";
         internal const string ModAuthor = "TheGrayAlien";
 
         private static Harmony _harmony;

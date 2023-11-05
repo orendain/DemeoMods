@@ -9,7 +9,6 @@
     {
         internal const string ModId = "com.orendain.demeomods.houserules.essentials";
         internal const string ModName = "HouseRules.Essentials";
-        internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
         private static Action<object>? _logDebug;
@@ -134,10 +133,12 @@
             HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderRandomizedRule));
+            HR.Rulebook.Register(typeof(XpGainDisabledRule));
         }
 
         private static void RegisterRulesets()
         {
+            HR.Rulebook.Register(TESTGAME.Create());
             HR.Rulebook.Register(DemeoRevolutions.Create());
             HR.Rulebook.Register(DemeoRevolutions_Easy.Create());
             HR.Rulebook.Register(DemeoRevolutions_Hard.Create());

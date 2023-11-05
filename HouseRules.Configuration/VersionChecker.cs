@@ -72,13 +72,13 @@
         /// </summary>
         private static bool TryParseVersion(string tag, out string version)
         {
-            if (!tag.EndsWith("-houserules"))
+            if (!tag.StartsWith("houserules-"))
             {
                 version = string.Empty;
                 return false;
             }
 
-            version = tag.Substring(1).Replace("-houserules", string.Empty);
+            version = tag.Replace("houserules-v", string.Empty);
             return true;
         }
 

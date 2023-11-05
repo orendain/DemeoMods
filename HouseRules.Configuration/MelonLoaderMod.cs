@@ -5,7 +5,7 @@ using MelonLoader;
 [assembly: MelonInfo(
     typeof(MelonLoaderMod),
     HouseRulesConfigurationBase.ModName,
-    HouseRulesConfigurationBase.ModVersion,
+    HouseRules.Core.BuildVersion.Version,
     HouseRulesConfigurationBase.ModAuthor,
     "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
