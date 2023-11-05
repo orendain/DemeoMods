@@ -1,134 +1,188 @@
 # DemeoMods
 
-A collection of mods for Demeo.
+Mods for the game of Demeo, as well as the Demeo modding framework, HouseRules.
 
-Join the Demeo modding community if you are looking for support, other Demeo
-mods, or are interested in learning to build your own.
+Join the Demeo modding community if you are looking for support, other Demeo mods, or are interested in learning to build your own.
 
 [![Discord](https://img.shields.io/discord/841011788195823626?logo=discord&logoColor=fff&style=for-the-badge)](https://discord.gg/4BNSwmr784)
 
-[![Latest Build](https://img.shields.io/github/workflow/status/orendain/demeomods/Build%20Mods/main?label=latest%20build&style=for-the-badge)](https://github.com/orendain/DemeoMods/actions/workflows/build.yml)
+## Sections
 
-## Contents
-- [Installation](#installation)
-- [Mods](#mods)
-  - [HouseRules](#houserules)
-  - [SkipIntro](#skipintro)
-  - [RoomFinder](#roomfinder)
-  - [RoomCode](#roomcode)
-- [For Developers](#for-developers)
-- [Shoutouts](#shoutouts)
+- [Latest Releases](#latest-releases)
+- [Installing a Modloader](#installing-a-modloader)
+  - [Installing BepInEx 5.x](#installing-a-modloader)
+  - [Installing MelonLoader 0.5.7](#installing-a-modloader)
+- [Mod Descriptions](#mod-descriptions)
+  - [HouseRules](#mod-descriptions)
+  - [RoomFinder](#mod-descriptions)
+  - [AdvancedStats](#mod-descriptions)
+  - [Highlighter](#mod-descriptions)
+  - [RoomCode](#mod-descriptions)
+  - [SkipIntro](#mod-descriptions)
 
-## Installation
+## Latest Releases
 
-> Note: Only the PCVR and PC Edition versions of Demeo are currently supported.
+> [!IMPORTANT]
+> Only the PCVR and PC Edition versions of Demeo are supported.  
 > E.g., playing on a Quest2 works, but only when linked to a PC.
 
-1. Install [MelonLoader](https://github.com/LavaGang/MelonLoader#how-to-use-the-installer)
-2. Download the latest [Nightly MelonLoader Alpha](https://nightly.link/LavaGang/MelonLoader/workflows/build/alpha-development) and unzip into the root of your Demeo game directory (allow overwrite).
-   (must be 0.5.7 or later)
-3. Download the latest version of the mod you want from the table below.
-4. Unzip the downloaded files/folders into the root of your Demeo game directory.
-5. Done. The mods will automatically load upon starting Demeo.
+Listed below are the latest releases for each mod.  Click to go to their respective download pages.
 
-| Mod        | Latest Release                                                                 | Direct Download Link                                                                                                   |
-|------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| HouseRules | [v1.5.0](https://github.com/orendain/DemeoMods/releases/tag/v1.5.0-houserules) | [HouseRules_1.5.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.5.0-houserules/HouseRules_1.5.0.zip) |
-| SkipInto   | [v1.4.0](https://github.com/orendain/DemeoMods/releases/tag/v1.4.0-skipintro)  | [SkipIntro_1.4.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.4.0-skipintro/SkipIntro_1.4.0.zip)    |
-| RoomFinder | [v1.7.0](https://github.com/orendain/DemeoMods/releases/tag/v1.7.0-roomfinder) | [RoomFinder_1.7.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.7.0-roomfinder/RoomFinder_1.7.zip) |
-| RoomCode   | [v1.2.0](https://github.com/orendain/DemeoMods/releases/tag/v1.2.0-roomcode)   | [RoomCode_1.2.0.zip](https://github.com/orendain/DemeoMods/releases/download/v1.2.0-roomcode/RoomCode_1.2.0.zip)       |
+However, before you do, [make sure you have installed a modloader](#installing-a-modloader).
 
-## Mods
+[<img alt="latest houserules release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*houserules*&style=for-the-badge&label=houserules" />](https://github.com/orendain/DemeoMods/releases?q=houserules)
 
-### HouseRules
+[<img alt="latest roomfinder release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*roomfinder*&style=for-the-badge&label=roomfinder" />](https://github.com/orendain/DemeoMods/releases?q=roomfinder)
 
-![HouseRules Logo](docs/images/house-rules-logo2.png)
+[<img alt="latest advancedstats release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*advancedstats*&style=for-the-badge&label=advancedstats" />](https://github.com/orendain/DemeoMods/releases?q=advancedstats)
+
+[<img alt="latest highlighter release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*highlighter*&style=for-the-badge&label=highlighter" />](https://github.com/orendain/DemeoMods/releases?q=highlighter)
+
+[<img alt="latest roomcode release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*roomcode*&style=for-the-badge&label=roomcode" />](https://github.com/orendain/DemeoMods/releases?q=roomcode)
+
+[<img alt="latest skipintro release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*skipintro*&style=for-the-badge&label=skipintro" />](https://github.com/orendain/DemeoMods/releases?q=skipintro)
+
+## Installing a Modloader
+
+In order to use any of the mods in this repository, you must have one of either two modloaders:  **BepInEx 5.x** or **MelonLoader 0.5.7**.
+
+The difference between the two is negligible to most people, so there is no need to contemplate the selection.  Choose whichever one you have an easier time installing.
+
+<details>
+<summary><b>Installing BepInEx 5.x</b></summary><p></p>
+
+Follow [these installation instructions](https://docs.bepinex.dev/articles/user_guide/installation/index.html#installing-bepinex-1) to install BepInEx `5.x`.
+- Make sure you install one of the `5.x` versions and _not_ a `6.x` version.
+- Step `3.` in the instructions above show how to check for generated files to confirm that BepInEx was successfully installed.  **Make sure to check.**
+- In order for BepInEx to work, you **MUST** make some tweaks to `BepInEx/config/BepInEx.cfg`.  Replace the default `BepInEx.cfg` file with this Demeo-compatible `BepInEx.cfg` file.
+
+When correctly installed, the final layout of your Demeo game directory should look like the following:
+
+```
+<Demeo Game Directory>/
+├── BepInEx/
+│   ├── cache/
+│   ├── config/
+│   │  └── BepInEx.cfg
+│   ├── core/
+│   ├── LogOutput.log
+│   ├── patchers/
+│   ├── plugins/
+│   └── scripts/
+├── demeo_Data/
+├── Demeo.exe
+├── doorstop_config.ini
+├── MonoBleedingEdge/
+├── UnityCrashHandler64.exe
+├── UnityPlayer.dll
+└── winhttp.dll
+```
+</details>
+
+<details>
+<summary><b>Installing MelonLoader 0.5.7</b></summary><p></p>
+
+Follow [these installation instructions](https://melonwiki.xyz/#/?id=automated-installation) to install MelonLoader `0.5.7`.
+- Make sure to install version `0.5.7` specifically and _not_ a `0.6.x` version.
+
+When correctly installed, the final layout of your Demeo game directory should look like the following:
+
+```
+<Demeo Game Directory>/
+├── demeo_Data/
+├── Demeo.exe
+├── MelonLoader/
+├── Mods/
+├── MonoBleedingEdge/
+├── Plugins/
+├── UnityCrashHandler64.exe
+├── UnityPlayer.dll
+├── UserData/
+├── UserLibs/
+└── version.dll
+```
+</details>
+
+## Mod Descriptions
+
+Expand the sections below to read more about each mod.
+
+<details>
+<summary><b>HouseRules</b></summary><p></p>
+
+![HouseRules Logo](docs/images/house-rules-logo2.png)  
 
 Set your own challenges and be the Dungeon Master of your own game. Make your own rules and challenge your friends.
 
-HouseRules applies customisations to many settings, values and toggles used within the Demeo code.
+HouseRules allows players to customize many settings, values and toggles used within the Demeo code.
 
 ![HouseRules Screenshot](docs/images/houserules_screenshot.jpg)
 
-- Change the size of your card hand (Skirmish Mode Only)
+- Change how many cards you can hold
 - Adjust HP, AttackDamage, ActionPoints etc on a per-character basis
 - Scale gold/mana/chests up/down
 - Change starting cards dealt and max-cards allowed
-- Add/Adjust AOE effects for abilities.
+- Add/Adjust AOE effects for abilities
 - Remove/add casting cost for cards
-- Beat-the-clock Game Timer modes
+- Beat-the-clock game timer modes
 - Specify cards distributed to players
-- Change immunities for different pieces
+- Change immunities for any piece
 - Prevent enemies respawing
 - Keep the exit locked until all of the enemies are dead
-- ... and many more.
+- ... and much more.
 
-This framework allows the definition of modular gameplay modifications (or
-"rules") and the ability to group them to create custom gamemodes (or
-"rulesets").
+This framework allows the definition of modular gameplay modifications (or "rules") and the ability to group them to create custom gamemodes (or "rulesets").
 
 Rulesets can be configured as JSON files stored within the game's directory.
 
-See the [HouseRules.Core readme](HouseRules.Core/README.md) for information about the
-HouseRules framework.
+As long as the player hosting the game is running this mod, *ALL* Demeo players, whether modded or not, may join the room and experience the modded game.
+
+See the [HouseRules.Core readme](HouseRules.Core/README.md) for information about the HouseRules framework.
 
 See the [HouseRules.Essentials readme](HouseRules.Essentials/README.md) for a list of all predefined rules and rulesets.
 
-#### How it works
+Many in the Demeo modding community have created their own custom rulesets using HouseRules.  Join the Demeo Modding discord to explore these and share your own.
+</details>
 
-HouseRules creates multiplayer games which are playable by ALL Demeo players (both Quest and PC), but the mod itself currently runs only on PC. In order to play with a modified ruleset, the player hosting the game must be on a PC running this mod. Unmodded clients are able to join the modded game as normal and play with new game rules.
+<details>
+<summary><b>RoomFinder</b></summary><p></p>
 
-🚨🛑 __IMPORTANT__ - During gameplay client machines will update their board state internally - They are sent frequent updates from the host to resynchronise board states. Some rules may cause temporary inconsistencies with clients seeing a different board view to the host. These inconsistencies are generally short lived and do not adversely affect gameplay.🛑🚨
+Tired of Demeo's "Quickjoin" endlessly placing you into random games? This mod lists all public rooms, along with their properties, so you can pick which one to join.
 
-#### Get in Touch
+![RoomFinder Screenshot](docs/images/roomfinder_screenshot.jpg)
+</details>
 
-We have a dedicated [HouseRules Discord Channel ![Discord](https://img.shields.io/discord/841011788195823626.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/N9DZB5ebmj) to chat about gameplay, new rule ideas, report bugs or maybe get involved with writing some new rules. Come over and say 👋 'Hi' 👋
+<details>
+<summary><b>AdvancedStats</b></summary><p></p>
 
-### SkipIntro
+Displays extra information about heroes when hovering over their pieces.
+
+![AdvancedStats Screenshot](docs/images/advancedstats_screenshot.jpg)
+</details>
+
+<details>
+<summary><b>Highlighter</b></summary><p></p>
+
+Provides in-game highlighting/coloring. This includes highlighting all squares that would be in a character's line-of-sight when hovering the piece over a square.
+
+![Highlighter Screenshot](docs/images/highlighter_screenshot.jpg)
+
+</details>
+
+<details>
+<summary><b>RoomCode</b></summary><p></p>
+
+Set your own room code, skipping Demeo's random room code generation.  
+
+See the [RoomCode readme](RoomCode/README.md) for more information and configuration options.
+</details>
+
+<details>
+<summary><b>SkipIntro</b></summary><p></p>
 
 The Elven Necropolis is a very welcoming place... some might say it's too welcoming.
 
-The SkipIntro mod skips the intro loading scene and takes you straight into the main menu.
+This mod skips the intro loading scene and takes you straight into the main menu.
 
 You will never again need to ![SkipIntro Icon](docs/images/skipintro_icon.jpg)
-
-### RoomFinder
-
-Tired of Demeo's "Quickjoin" endlessly placing you into random games? This mod
-lists all public rooms, along with their properties, so you can pick which one
-to join.
-
-![RoomFinder Screenshot](docs/images/roomfinder_screenshot.jpg)
-
-### RoomCode
-
-Set your own room code, skipping Demeo's random room code generation.
-
-See the [RoomCode readme](RoomCode/README.md) for more information and configuration
-options.
-
-## For Developers
-
-### `/Common`
-
-A library shared by more than one mod. This is compiled as part of each mod.
-
-Should there be any interest by other developers to reuse this library, the
-author of this project can extract it into a common/util mod or
-a NuGet.
-
-Please file an issue if interested.
-
-### `/Common/UI`
-
-The start of a UI library, before the author decided too much time was being
-spent on it :wink:. Now a set of helpers to make development of Unity views for
-Demeo significantly easier.
-
-## Shoutouts
-
-- Thanks to [PyrrhaDevs](https://github.com/PyrrhaDevs) for fostering the Demeo
-  modding community.
-- Thanks to [Pokachi](https://github.com/Pokachi) for heavy early exploration of
-  Demeo+Unity in the context of modding, and making those findings available to
-  the community.
+</details>
