@@ -15,8 +15,8 @@
         internal const string ModName = "HouseRules.Configuration";
         internal const string ModAuthor = "DemeoMods Team";
 
-        private const int PC1LobbySceneIndex = 1;
-        private const int PC2LobbySceneIndex = 3;
+        private const int NonVrSteamLobbySceneIndex = 1;
+        private const int NonVrCombinedSteamLobbySceneIndex = 3;
 
         private static Action<object>? _logInfo;
         private static Action<object>? _logDebug;
@@ -74,7 +74,6 @@
 
         internal static void OnSceneUnloaded(int buildIndex, string sceneName)
         {
-            // Logger.Msg($"Scene unloaded {buildIndex} - {sceneName}");
             GameObject canvasObject = GameObject.Find("~LeanTween");
             if (canvasObject == null)
             {
@@ -93,7 +92,6 @@
 
         internal static void OnSceneLoaded(int buildIndex, string sceneName)
         {
-            // Logger.Msg($"buildIndex {buildIndex} - sceneName {sceneName}");
             if (buildIndex == 0 || sceneName.Contains("Startup"))
             {
                 return;
@@ -101,13 +99,11 @@
 
             if (Environments.IsPcEdition())
             {
-                if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
+                if (buildIndex == NonVrSteamLobbySceneIndex || buildIndex == NonVrCombinedSteamLobbySceneIndex)
                 {
-                    return;
+                    LogDebug("Recognized lobby in PC. Loading UI.");
+                    _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
                 }
-
-                LogDebug("Recognized lobby in PC. Loading UI.");
-                _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
             }
             else if (Environments.IsInHangouts() || sceneName.Contains("HobbyShop"))
             {
