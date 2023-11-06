@@ -19,6 +19,7 @@ Join the Demeo modding community if you are looking for support, other Demeo mod
   - [Highlighter](#mod-descriptions)
   - [RoomCode](#mod-descriptions)
   - [SkipIntro](#mod-descriptions)
+  - [FreeCamera](#mod-descriptions)
 
 ## Latest Releases
 
@@ -41,6 +42,8 @@ However, before you do, [make sure you have installed a modloader](#installing-a
 [<img alt="latest roomcode release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*roomcode*&style=for-the-badge&label=roomcode" />](https://github.com/orendain/DemeoMods/releases?q=roomcode)
 
 [<img alt="latest skipintro release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*skipintro*&style=for-the-badge&label=skipintro" />](https://github.com/orendain/DemeoMods/releases?q=skipintro)
+
+[<img alt="latest freecamera release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*freecamera*&style=for-the-badge&label=freecamera" />](https://github.com/orendain/DemeoMods/releases?q=skipintro)
 
 ## Installing a Modloader
 
@@ -185,4 +188,10 @@ The Elven Necropolis is a very welcoming place... some might say it's too welcom
 This mod skips the intro loading scene and takes you straight into the main menu.
 
 You will never again need to ![SkipIntro Icon](docs/images/skipintro_icon.jpg)
+</details>
+
+<details>
+<summary><b>FreeCamera</b></summary><p></p>
+
+Enables NonVR versions of Demeo to vertically tilt their cameras.
 </details>
