@@ -43,7 +43,7 @@ However, before you do, [make sure you have installed a modloader](#installing-a
 
 [<img alt="latest skipintro release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*skipintro*&style=for-the-badge&label=skipintro" />](https://github.com/orendain/DemeoMods/releases?q=skipintro)
 
-[<img alt="latest freecamera release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*freecamera*&style=for-the-badge&label=freecamera" />](https://github.com/orendain/DemeoMods/releases?q=skipintro)
+[<img alt="latest freecamera release" src="https://img.shields.io/github/v/release/orendain/demeomods?filter=*freecamera*&style=for-the-badge&label=freecamera" />](https://github.com/orendain/DemeoMods/releases?q=freecamera)
 
 ## Installing a Modloader
 
