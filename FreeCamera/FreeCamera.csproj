@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <Configurations>BepInEx;MelonLoader</Configurations>
+        <AssemblySearchPaths>../libs;$(AssemblySearchPaths)</AssemblySearchPaths>
+    </PropertyGroup>
+
+    <!-- BepInEx 5.x build config -->
+    <PropertyGroup Condition="'$(Configuration)'=='BepInEx'">
+        <OutputPath>bin</OutputPath>
+        <DefineConstants>BEPINEX</DefineConstants>
+        <AssemblyName>FreeCamera.BIE</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
+        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='BepInEx'">
+        <Reference Include="Assembly-CSharp">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Unity.InputSystem">
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+    <!-- MelonLoader 0.5.7 build config -->
+    <PropertyGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <OutputPath>bin</OutputPath>
+        <DefineConstants>MELONLOADER</DefineConstants>
+        <AssemblyName>FreeCamera.ML</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <PackageReference Include="HarmonyX" Version="2.10.1" IncludeAssets="compile"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2021.3.27" IncludeAssets="compile"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='MelonLoader'">
+        <Reference Include="Assembly-CSharp">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Unity.InputSystem">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="MelonLoader">
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+</Project>
