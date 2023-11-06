@@ -1,0 +1,5 @@
+_extends: demeomods:.github/release-drafter.yaml
+name-template: 'FreeCamera v$RESOLVED_VERSION'
+tag-template: 'freecamera-v$RESOLVED_VERSION'
+tag-prefix: 'freecamera-v'
+include-labels: ['area: freecamera']
