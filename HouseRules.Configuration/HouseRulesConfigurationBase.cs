@@ -1,4 +1,6 @@
-﻿namespace HouseRules.Configuration
+﻿using System.IO;
+
+namespace HouseRules.Configuration
 {
     using System;
     using System.Collections.Generic;
@@ -134,6 +136,12 @@
         /// <param name="directory">Path of the directory from which to load rulesets.</param>
         internal static void LoadRulesetsFromDirectory(string directory)
         {
+            if (!Directory.Exists(directory))
+            {
+                LogWarning($"Directory [{directory}] does not exist. Skipping ruleset loading.");
+                return;
+            }
+
             var rulesetFiles = RulesetImporter.ListRulesets(directory);
             LogInfo($"Found [{rulesetFiles.Count}] custom ruleset files to load.");
 
