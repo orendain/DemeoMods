@@ -1,9 +1,8 @@
-﻿using System.IO;
-
-namespace HouseRules.Configuration
+﻿namespace HouseRules.Configuration
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using Common.UI;
     using HouseRules.Configuration.UI;
     using HouseRules.Core;
