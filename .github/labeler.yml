@@ -6,7 +6,7 @@
 - Common.UI/**
 
 'area: freecamera':
-- .github/workflows/freecamera.yml
+- .github/workflows/freecamera.yaml
 - FreeCamera/**
 
 'area: highlighter':

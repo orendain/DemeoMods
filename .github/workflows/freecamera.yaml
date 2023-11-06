@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'FreeCamera/**'
-      - '.github/workflows/FreeCamera.yml'
+      - '.github/workflows/FreeCamera.yaml'
   push:
     branches:
       - 'main'

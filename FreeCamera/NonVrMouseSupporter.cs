@@ -16,8 +16,6 @@
         private static GameContext _gameContext;
         private static ContinuousInputAction<float> _tiltContinuousInputAction;
 
-        internal static float InterpolationScaler { get; set; }
-
         internal static void Patch(Harmony harmony)
         {
             harmony.Patch(
@@ -111,7 +109,7 @@
 
         private static void UnityInputProvider_Update_Postfix()
         {
-            var interpolation = Time.deltaTime * InterpolationScaler;
+            var interpolation = Time.deltaTime * 1f;
             _rotateCache = Mathf.Lerp(_rotateCache, _tiltMouseAction.ReadValue<float>(), interpolation);
             _tiltContinuousInputAction.Update(_rotateCache);
         }
@@ -152,7 +150,8 @@
                 .Value;
             if (slowDownInput)
             {
-                value *= settings.slowDownWithButtonMultiplier;
+                FreeCameraBase.LogError(settings.slowDownWithButtonMultiplier);
+                // value *= settings.slowDownWithButtonMultiplier;
             }
 
             var utils = Traverse.Create(cameraBehaviour).Field<NonVrCameraUtils>("utils").Value;
