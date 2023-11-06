@@ -72,7 +72,6 @@
 
         internal static void OnSceneLoaded(int buildIndex)
         {
-            LogDebug("OnSceneLoaded");
             if (MotherbrainGlobalVars.IsRunningOnNonVRPlatform)
             {
                 if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
