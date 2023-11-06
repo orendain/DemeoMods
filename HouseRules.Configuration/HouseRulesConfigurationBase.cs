@@ -138,8 +138,7 @@ namespace HouseRules.Configuration
         {
             if (!Directory.Exists(directory))
             {
-                LogWarning($"Directory [{directory}] does not exist. Skipping ruleset loading.");
-                return;
+                Directory.CreateDirectory(directory);
             }
 
             var rulesetFiles = RulesetImporter.ListRulesets(directory);
