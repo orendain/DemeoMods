@@ -1,10 +1,10 @@
-name: Highlighter
+name: RoomFinder
 
 on:
   pull_request:
     paths:
-      - 'Highlighter/**'
-      - '.github/workflows/highlighter.yml'
+      - 'RoomFinder/**'
+      - '.github/workflows/roomfinder.yaml'
   push:
     branches:
       - 'main'
@@ -26,19 +26,19 @@ jobs:
           7z x deps.zip -o./libs
 
       - name: Build BepInEx Plugin
-        run: dotnet build Highlighter/Highlighter.csproj -c BepInEx -v d
+        run: dotnet build RoomFinder/RoomFinder.csproj -c BepInEx -v d
 
       - name: Build MelonLoader Mod
-        run: dotnet build Highlighter/Highlighter.csproj -c MelonLoader -v d
+        run: dotnet build RoomFinder/RoomFinder.csproj -c MelonLoader -v d
 
       - name: Upload BepInEx DLL
         uses: actions/upload-artifact@v3
         with:
-          name: Highlighter.BIE.dll
-          path: Highlighter/bin/netstandard2.1/Highlighter.BIE.dll
+          name: RoomFinder.BIE.dll
+          path: RoomFinder/bin/netstandard2.1/RoomFinder.BIE.dll
 
       - name: Upload MelonLoader DLL
         uses: actions/upload-artifact@v3
         with:
-          name: Highlighter.ML.dll
-          path: Highlighter/bin/netstandard2.1/Highlighter.ML.dll
+          name: RoomFinder.ML.dll
+          path: RoomFinder/bin/netstandard2.1/RoomFinder.ML.dll
