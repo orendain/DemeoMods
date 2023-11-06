@@ -42,4 +42,3 @@ jobs:
         with:
           name: AdvancedStats.ML.dll
           path: AdvancedStats/bin/netstandard2.1/AdvancedStats.ML.dll
-

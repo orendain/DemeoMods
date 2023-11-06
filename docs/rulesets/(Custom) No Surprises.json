@@ -1,6 +1,7 @@
 {
   "Name": "(Custom) No Surprises",
   "Description": "No surprises in the dark or coming through doors.",
+  "Longdesc": "",
   "Rules": [
     {
       "Rule": "EnemyDoorOpeningDisabled",

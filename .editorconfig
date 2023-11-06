@@ -23,6 +23,9 @@ dotnet_diagnostic.SA1204.severity = None
 # SA1309FieldNamesMustNotBeginWithUnderscore.
 dotnet_diagnostic.SA1309.severity = None
 
+# SA1313ParameterNamesMustBeginWithLowerCaseLetter.
+dotnet_diagnostic.SA1313.severity = None
+
 # SA1600ElementsMustBeDocumented.
 dotnet_diagnostic.SA1600.severity = None
 

@@ -9,13 +9,14 @@
     {
         internal const string ModId = "com.orendain.demeomods.houserules.core";
         internal const string ModName = "HouseRules.Core";
-        internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
 
         private static Action<object>? _logInfo;
         private static Action<object>? _logDebug;
         private static Action<object>? _logWarning;
         private static Action<object>? _logError;
+
+        private static Harmony _harmony;
 
         internal static void LogInfo(object data) => _logInfo?.Invoke(data);
 
@@ -25,25 +26,29 @@
 
         internal static void LogError(object data) => _logError?.Invoke(data);
 
-        private static Harmony? _harmony;
-
         internal static void Init(object loader)
         {
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
-                if (plugin.Log != null)
+                if (plugin.Log == null)
                 {
-                    _logInfo = plugin.Log.LogInfo;
-                    _logDebug = plugin.Log.LogDebug;
-                    _logWarning = plugin.Log.LogWarning;
-                    _logError = plugin.Log.LogError;
+                    LogError("Logger instance is invalid. Cannot initialize.");
+                    return;
                 }
 
-                if (plugin.Harmony != null)
+                _logInfo = plugin.Log.LogInfo;
+                _logDebug = plugin.Log.LogDebug;
+                _logWarning = plugin.Log.LogWarning;
+                _logError = plugin.Log.LogError;
+
+                if (plugin.Harmony == null)
                 {
-                    _harmony = plugin.Harmony;
+                    LogError("Harmony instance is invalid. Cannot initialize.");
+                    return;
                 }
+
+                _harmony = plugin.Harmony;
             }
             #endif
 

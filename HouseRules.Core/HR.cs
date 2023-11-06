@@ -12,7 +12,7 @@ namespace HouseRules.Core
 
         internal static bool IsRulesetActive => LifecycleDirector.IsRulesetActive;
 
-        public static void ScheduleResync() => BoardSyncer.ScheduleSync();
+        public static void ScheduleBoardSync() => BoardSyncer.ScheduleSync();
 
         public static void SelectRuleset(string ruleset)
         {
@@ -33,13 +33,9 @@ namespace HouseRules.Core
                 throw new ArgumentException("Ruleset must first be registered.");
             }
 
-            SelectedRuleset = Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
+            SelectedRuleset =
+                Rulebook.Rulesets.First(r => string.Equals(r.Name, ruleset, StringComparison.OrdinalIgnoreCase));
             HouseRulesCoreBase.LogInfo($"Selected ruleset: {SelectedRuleset.Name}");
-        }
-
-        public static void ScheduleBoardSync()
-        {
-            BoardSyncer.ScheduleSync();
         }
     }
 }

@@ -7,7 +7,7 @@
 
     public class Rulebook
     {
-        internal HashSet<Type> RuleTypes { get; }
+        public HashSet<Type> RuleTypes { get; }
 
         public HashSet<Ruleset> Rulesets { get; }
 

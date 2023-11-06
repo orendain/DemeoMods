@@ -12,8 +12,10 @@
     {
         internal const string ModId = "com.orendain.demeomods.houserules.configuration";
         internal const string ModName = "HouseRules.Configuration";
-        internal const string ModVersion = "1.8.0";
         internal const string ModAuthor = "DemeoMods Team";
+
+        private const int PC1LobbySceneIndex = 1;
+        private const int PC2LobbySceneIndex = 3;
 
         private static Action<object>? _logInfo;
         private static Action<object>? _logDebug;
@@ -28,11 +30,7 @@
 
         internal static void LogError(object data) => _logError?.Invoke(data);
 
-        private const int PC1LobbySceneIndex = 1;
-        private const int PC2LobbySceneIndex = 3;
-
-        internal static readonly ConfigManager ConfigManager = ConfigManager.NewInstance();
-        private static readonly List<string> FailedRulesetFiles = new List<string>();
+        private static readonly List<string> FailedRulesetFiles = new();
 
         internal static bool IsUpdateAvailable { get; private set; }
 
@@ -41,6 +39,12 @@
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
+                if (plugin.Log == null)
+                {
+                    LogError("Logger instance is invalid. Cannot initialize.");
+                    return;
+                }
+
                 _logInfo = plugin.Log.LogInfo;
                 _logDebug = plugin.Log.LogDebug;
                 _logWarning = plugin.Log.LogWarning;
@@ -65,32 +69,6 @@
         {
             IsUpdateAvailable = await VersionChecker.IsUpdateAvailable();
             LogInfo($"{(IsUpdateAvailable ? "New" : "No new")} HouseRules update found.");
-        }
-
-        public static void LoadConfiguration()
-        {
-            ExampleRulesetExporter.ExportExampleRulesetsIfNeeded();
-
-            var loadRulesetsFromConfig = ConfigManager.GetLoadRulesetsFromConfig();
-            if (loadRulesetsFromConfig)
-            {
-                LoadRulesetsFromConfig();
-            }
-
-            var rulesetName = ConfigManager.GetDefaultRuleset();
-            if (string.IsNullOrEmpty(rulesetName))
-            {
-                return;
-            }
-
-            try
-            {
-                HR.SelectRuleset(rulesetName);
-            }
-            catch (ArgumentException e)
-            {
-                LogWarning($"Failed to select default ruleset [{rulesetName}] specified in config: {e}");
-            }
         }
 
         internal static void OnSceneUnloaded(int buildIndex, string sceneName)
@@ -150,16 +128,20 @@
             }
         }
 
-        private static void LoadRulesetsFromConfig()
+        /// <summary>
+        /// Load and register all rulesets found in the given directory.
+        /// </summary>
+        /// <param name="directory">Path of the directory from which to load rulesets.</param>
+        internal static void LoadRulesetsFromDirectory(string directory)
         {
-            var rulesetFiles = ConfigManager.RulesetFiles;
-            LogInfo($"Found [{rulesetFiles.Count}] ruleset files in configuration.");
+            var rulesetFiles = RulesetImporter.ListRulesets(directory);
+            LogInfo($"Found [{rulesetFiles.Count}] custom ruleset files to load.");
 
             foreach (var file in rulesetFiles)
             {
                 try
                 {
-                    var ruleset = ConfigManager.ImportRuleset(file, tolerateFailures: false);
+                    var ruleset = RulesetImporter.Read(file, tolerateFailures: false);
                     HR.Rulebook.Register(ruleset);
                 }
                 catch (Exception e)

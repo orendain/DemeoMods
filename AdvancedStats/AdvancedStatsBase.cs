@@ -1,13 +1,12 @@
 ﻿namespace AdvancedStats
 {
-    using System;
     using HarmonyLib;
 
     internal static class AdvancedStatsBase
     {
         internal const string ModId = "com.orendain.demeomods.advancedstats";
         internal const string ModName = "AdvancedStats";
-        internal const string ModVersion = "1.0.0";
+        internal const string ModVersion = "1.1.0";
         internal const string ModAuthor = "TheGrayAlien";
 
         private static Harmony _harmony;
@@ -17,6 +16,11 @@
             #if BEPINEX
             if (loader is BepInExPlugin plugin)
             {
+                if (plugin.Harmony == null)
+                {
+                    return;
+                }
+
                 _harmony = plugin.Harmony;
             }
             #endif

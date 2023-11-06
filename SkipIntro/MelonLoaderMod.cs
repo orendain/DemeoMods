@@ -2,11 +2,16 @@
 using MelonLoader;
 using SkipIntro;
 
-[assembly: MelonInfo(typeof(MelonLoaderMod), SkipIntroBase.ModName, SkipIntroBase.ModVersion, SkipIntroBase.ModAuthor, "https://github.com/orendain/DemeoMods")]
+[assembly: MelonInfo(
+    typeof(MelonLoaderMod),
+    SkipIntroBase.ModName,
+    SkipIntroBase.ModVersion,
+    SkipIntroBase.ModAuthor,
+    "https://github.com/orendain/DemeoMods")]
 [assembly: MelonGame("Resolution Games", "Demeo")]
 [assembly: MelonGame("Resolution Games", "Demeo PC Edition")]
 [assembly: MelonID("566782")]
-[assembly: VerifyLoaderVersion("0.5.3", true)]
+[assembly: VerifyLoaderVersion("0.5.7", true)]
 
 namespace SkipIntro
 {
