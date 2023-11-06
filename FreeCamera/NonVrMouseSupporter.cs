@@ -1,6 +1,5 @@
 ﻿namespace FreeCamera
 {
-    using System;
     using Boardgame;
     using Boardgame.InputActions;
     using Boardgame.NonVR;
@@ -11,6 +10,8 @@
 
     internal static class NonVrMouseSupporter
     {
+        private const float TiltSpeed = 15f;
+
         private static InputAction _tiltMouseAction;
         private static float _rotateCache;
         private static GameContext _gameContext;
@@ -109,7 +110,7 @@
 
         private static void UnityInputProvider_Update_Postfix()
         {
-            var interpolation = Time.deltaTime * 1f;
+            var interpolation = Time.deltaTime * TiltSpeed;
             _rotateCache = Mathf.Lerp(_rotateCache, _tiltMouseAction.ReadValue<float>(), interpolation);
             _tiltContinuousInputAction.Update(_rotateCache);
         }
@@ -135,45 +136,8 @@
 
         private static void UpdateTiltInput(float value)
         {
-            var cameraBehaviour = _gameContext.nonVr.cameraBehaviour;
-            var canMoveCamera = Traverse.Create(cameraBehaviour.cameraBehaviorFocus)
-                .Property<bool>("CanMoveCamera")
-                .Value;
-            if (!canMoveCamera)
-            {
-                return;
-            }
-
-            var settings = _gameContext.nonVr.settings.cameraControlSettings;
-            var slowDownInput = Traverse.Create(cameraBehaviour.cameraBehaviorFocus)
-                .Property<bool>("slowDownInput")
-                .Value;
-            if (slowDownInput)
-            {
-                FreeCameraBase.LogError(settings.slowDownWithButtonMultiplier);
-                // value *= settings.slowDownWithButtonMultiplier;
-            }
-
-            var utils = Traverse.Create(cameraBehaviour).Field<NonVrCameraUtils>("utils").Value;
-            var data = settings.Data;
-
-            data.PitchAngle += value;
-            data.PitchAngle = utils.CleanUpAngle(data.PitchAngle);
-
-            if (data.PitchAngle > 180f)
-            {
-                if (data.PitchAngle < settings.pitchAngleDownLimit)
-                {
-                    data.PitchAngle = settings.pitchAngleDownLimit;
-                }
-            }
-            else if (data.PitchAngle > settings.pitchAngleUpLimit)
-            {
-                data.PitchAngle = settings.pitchAngleUpLimit;
-            }
-
-            data.PitchAngle = (float)Math.Round(data.PitchAngle, 2);
-            settings.UserPreferred.PitchAngle = data.PitchAngle;
+            var cameraBehaviorFocus = _gameContext.nonVr.cameraBehaviour.cameraBehaviorFocus;
+            Traverse.Create(cameraBehaviorFocus).Method("UpdateTiltInput", value).GetValue();
         }
     }
 }
