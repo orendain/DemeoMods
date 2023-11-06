@@ -12,8 +12,10 @@
         internal const string ModVersion = "1.9.0";
         internal const string ModAuthor = "DemeoMods Team";
 
-        private const int PC1LobbySceneIndex = 1;
-        private const int PC2LobbySceneIndex = 3;
+        private const int NonVrSteamLobbySceneIndex = 1;
+        private const int NonVrCombinedSteamLobbySceneIndex = 3;
+        private const int VrSteamLobbySceneIndex = 1;
+        private const int VrQuestLobbySceneIndex = 1;
 
         private static Action<object>? _logInfo;
         private static Action<object>? _logDebug;
@@ -72,27 +74,25 @@
 
         internal static void OnSceneLoaded(int buildIndex)
         {
-            LogDebug("OnSceneLoaded");
             if (MotherbrainGlobalVars.IsRunningOnNonVRPlatform)
             {
-                if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
+                if (buildIndex == NonVrSteamLobbySceneIndex || buildIndex == NonVrCombinedSteamLobbySceneIndex)
                 {
-                    LogInfo($"{buildIndex} scene failed to load PC lobby");
-                    return;
+                    LogDebug("Recognized lobby in PC. Loading UI.");
+                    _ = new GameObject("RoomFinderUiNonVr", typeof(RoomFinderUiNonVr));
                 }
 
-                LogDebug("Recognized lobby in PC. Loading UI.");
-                _ = new GameObject("RoomFinderUiNonVr", typeof(RoomFinderUiNonVr));
                 return;
             }
 
-            if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
+            if (MotherbrainGlobalVars.IsRunningOnVRPlatform)
             {
-                return;
+                if (buildIndex == VrSteamLobbySceneIndex || buildIndex == VrQuestLobbySceneIndex)
+                {
+                    LogDebug("Recognized lobby in VR. Loading UI.");
+                    _ = new GameObject("RoomFinderUiVr", typeof(RoomFinderUiVr));
+                }
             }
-
-            LogDebug("Recognized lobby in VR. Loading UI.");
-            _ = new GameObject("RoomFinderUiVr", typeof(RoomFinderUiVr));
         }
     }
 }

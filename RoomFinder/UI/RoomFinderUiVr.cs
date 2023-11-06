@@ -20,6 +20,11 @@
             RoomManager.RoomListUpdated += OnRoomListUpdated;
         }
 
+        private void OnDestroy()
+        {
+            RoomManager.RoomListUpdated -= OnRoomListUpdated;
+        }
+
         private IEnumerator WaitAndInitialize()
         {
             while (!VrElementCreator.IsReady()
