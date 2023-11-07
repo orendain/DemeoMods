@@ -1,34 +1,38 @@
 'area: advancedstats':
-- .github/workflows/advancedstats.yml
+- .github/workflows/advancedstats.yaml
 - AdvancedStats/**
 
 'area: common/ui':
 - Common.UI/**
 
+'area: freecamera':
+- .github/workflows/freecamera.yaml
+- FreeCamera/**
+
 'area: highlighter':
-- .github/workflows/highlighter.yml
+- .github/workflows/highlighter.yaml
 - Highlighter/**
 
 'area: houserules/configuration':
-- .github/workflows/houserules.yml
+- .github/workflows/houserules.yaml
 - HouseRules.Configuration/**
 
 'area: houserules/core':
-- .github/workflows/houserules.yml
+- .github/workflows/houserules.yaml
 - HouseRules.Core/**
 
 'area: houserules/essentials':
-- .github/workflows/houserules.yml
+- .github/workflows/houserules.yaml
 - HouseRules.Essentials/**
 
 'area: roomcode':
-- .github/workflows/roomcode.yml
+- .github/workflows/roomcode.yaml
 - RoomCode/**
 
 'area: roomfinder':
-- .github/workflows/roomfinder.yml
+- .github/workflows/roomfinder.yaml
 - RoomFinder/**
 
 'area: skipintro':
-- .github/workflows/skipintro.yml
+- .github/workflows/skipintro.yaml
 - SkipIntro/**

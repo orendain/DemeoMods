@@ -1,10 +1,10 @@
-name: RoomFinder
+name: RoomCode
 
 on:
   pull_request:
     paths:
-      - 'RoomFinder/**'
-      - '.github/workflows/roomfinder.yml'
+      - 'RoomCode/**'
+      - '.github/workflows/roomcode.yaml'
   push:
     branches:
       - 'main'
@@ -26,19 +26,19 @@ jobs:
           7z x deps.zip -o./libs
 
       - name: Build BepInEx Plugin
-        run: dotnet build RoomFinder/RoomFinder.csproj -c BepInEx -v d
+        run: dotnet build RoomCode/RoomCode.csproj -c BepInEx -v d
 
       - name: Build MelonLoader Mod
-        run: dotnet build RoomFinder/RoomFinder.csproj -c MelonLoader -v d
+        run: dotnet build RoomCode/RoomCode.csproj -c MelonLoader -v d
 
       - name: Upload BepInEx DLL
         uses: actions/upload-artifact@v3
         with:
-          name: RoomFinder.BIE.dll
-          path: RoomFinder/bin/netstandard2.1/RoomFinder.BIE.dll
+          name: RoomCode.BIE.dll
+          path: RoomCode/bin/netstandard2.1/RoomCode.BIE.dll
 
       - name: Upload MelonLoader DLL
         uses: actions/upload-artifact@v3
         with:
-          name: RoomFinder.ML.dll
-          path: RoomFinder/bin/netstandard2.1/RoomFinder.ML.dll
+          name: RoomCode.ML.dll
+          path: RoomCode/bin/netstandard2.1/RoomCode.ML.dll

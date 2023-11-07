@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using Common.UI;
     using HouseRules.Configuration.UI;
     using HouseRules.Core;
@@ -14,8 +15,8 @@
         internal const string ModName = "HouseRules.Configuration";
         internal const string ModAuthor = "DemeoMods Team";
 
-        private const int PC1LobbySceneIndex = 1;
-        private const int PC2LobbySceneIndex = 3;
+        private const int NonVrSteamLobbySceneIndex = 1;
+        private const int NonVrCombinedSteamLobbySceneIndex = 3;
 
         private static Action<object>? _logInfo;
         private static Action<object>? _logDebug;
@@ -116,9 +117,10 @@
 
             if (Environments.IsPcEdition())
             {
-                if (buildIndex != PC1LobbySceneIndex && buildIndex != PC2LobbySceneIndex)
+                if (buildIndex == NonVrSteamLobbySceneIndex || buildIndex == NonVrCombinedSteamLobbySceneIndex)
                 {
-                    return;
+                    LogDebug("Recognized lobby in PC. Loading UI.");
+                    _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
                 }
 
                 LogDebug("Recognized lobby in PC. Loading UI.");
@@ -178,6 +180,11 @@
         /// <param name="directory">Path of the directory from which to load rulesets.</param>
         internal static void LoadRulesetsFromDirectory(string directory)
         {
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             HouseRulesConfigurationBase.LogDebug("LoadRulesetsFromDirectory");
             var rulesetFiles = RulesetImporter.ListRulesets(directory);
             LogInfo($"Found [{rulesetFiles.Count}] custom ruleset files to load.");

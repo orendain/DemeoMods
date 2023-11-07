@@ -1,10 +1,10 @@
-name: RoomCode
+name: FreeCamera
 
 on:
   pull_request:
     paths:
-      - 'RoomCode/**'
-      - '.github/workflows/roomcode.yml'
+      - 'FreeCamera/**'
+      - '.github/workflows/FreeCamera.yaml'
   push:
     branches:
       - 'main'
@@ -26,19 +26,19 @@ jobs:
           7z x deps.zip -o./libs
 
       - name: Build BepInEx Plugin
-        run: dotnet build RoomCode/RoomCode.csproj -c BepInEx -v d
+        run: dotnet build FreeCamera/FreeCamera.csproj -c BepInEx -v d
 
       - name: Build MelonLoader Mod
-        run: dotnet build RoomCode/RoomCode.csproj -c MelonLoader -v d
+        run: dotnet build FreeCamera/FreeCamera.csproj -c MelonLoader -v d
 
       - name: Upload BepInEx DLL
         uses: actions/upload-artifact@v3
         with:
-          name: RoomCode.BIE.dll
-          path: RoomCode/bin/netstandard2.1/RoomCode.BIE.dll
+          name: FreeCamera.BIE.dll
+          path: FreeCamera/bin/netstandard2.1/FreeCamera.BIE.dll
 
       - name: Upload MelonLoader DLL
         uses: actions/upload-artifact@v3
         with:
-          name: RoomCode.ML.dll
-          path: RoomCode/bin/netstandard2.1/RoomCode.ML.dll
+          name: FreeCamera.ML.dll
+          path: FreeCamera/bin/netstandard2.1/FreeCamera.ML.dll
