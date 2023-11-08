@@ -17,11 +17,6 @@
         private const float RoundsLeftMessageDurationSeconds = 5f;
 
         public override string Description => "Round count is limited";
-
-        protected override SyncableTrigger ModifiedSyncables => SyncableTrigger.StatusEffectDataModified;
-
-        private readonly List<StatusEffectData> _adjustments = new List<StatusEffectData> { new StatusEffectData { effectStateType = EffectStateType.SelfDestruct, durationTurns = 2, damagePerTurn = 0, killOnExpire = true, clearOnNewLevel = false, tickWhen = StatusEffectsConfig.TickWhen.EndTurn } };
-        private List<StatusEffectData> _originals;
         private static int _globalRoundLimit;
         private static int _globalRoundsPlayed;
         private static bool _isActivated;
@@ -39,19 +34,12 @@
         {
             _globalRoundLimit = _roundLimit;
             _globalRoundsPlayed = 0;
-            _originals = new List<StatusEffectData>();
             _isActivated = true;
         }
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            UpdateStatusEffectConfig(_originals);
             _isActivated = false;
-        }
-
-        protected override void OnPostGameCreated(GameContext gameContext)
-        {
-            _originals = UpdateStatusEffectConfig(_adjustments);
         }
 
         private static void Patch(Harmony harmony)
@@ -92,8 +80,8 @@
                 return;
             }
 
-            disconnectedPiece.EnableEffectState(EffectStateType.SelfDestruct);
-            disconnectedPiece.effectSink.SetStatusEffectDuration(EffectStateType.SelfDestruct, _globalRoundLimit - _globalRoundsPlayed);
+            disconnectedPiece.EnableEffectState(EffectStateType.Venom);
+            disconnectedPiece.effectSink.SetStatusEffectDuration(EffectStateType.Venom, _globalRoundLimit - _globalRoundsPlayed);
         }
 
         private static void Piece_CreatePiece_Postfix(ref Piece __result)
@@ -103,8 +91,8 @@
                 return;
             }
 
-            __result.EnableEffectState(EffectStateType.SelfDestruct);
-            __result.effectSink.SetStatusEffectDuration(EffectStateType.SelfDestruct, _globalRoundLimit - _globalRoundsPlayed);
+            __result.EnableEffectState(EffectStateType.Venom);
+            __result.effectSink.SetStatusEffectDuration(EffectStateType.Venom, _globalRoundLimit - _globalRoundsPlayed);
         }
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)

@@ -30,9 +30,10 @@
             {
                 new StatusEffectData
                 {
-                    effectStateType = EffectStateType.SelfDestruct,
+                    effectStateType = EffectStateType.Venom,
                     durationTurns = 15,
                     damagePerTurn = 0,
+                    killOnExpire = true,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },

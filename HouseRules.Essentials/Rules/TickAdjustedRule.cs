@@ -9,7 +9,7 @@
 
     public sealed class TickAdjustedRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe, IDisableOnReconnect
     {
-        public override string Description => "Handle how the Energy Potion buff counts down";
+        public override string Description => "Handle how the various buffs count down and are removed";
 
         private static bool _isActivated;
 
@@ -45,6 +45,11 @@
             var pieceId = Traverse.Create(__instance).Field<int>("sourcePieceId").Value;
             var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
             Piece piece = pieceAndTurnController.GetPiece(pieceId);
+            if (piece == null)
+            {
+                return;
+            }
+
             if (!piece.IsPlayer())
             {
                 return;
@@ -52,7 +57,7 @@
 
             if (__instance.effectStateType == EffectStateType.ExtraEnergy)
             {
-                if (piece == null || (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69 && !HR.SelectedRuleset.Name.Contains("Revolutions")))
+                if (piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69 && !HR.SelectedRuleset.Name.Contains("Revolutions"))
                 {
                     return;
                 }
@@ -236,11 +241,6 @@
             }
             else if (__instance.effectStateType == EffectStateType.PlayerBerserk)
             {
-                if (piece == null)
-                {
-                    return;
-                }
-
                 if (piece.boardPieceId == BoardPieceId.HeroGuardian)
                 {
                     piece.effectSink.TryGetStat(Stats.Type.MoveRange, out int myMoveRange);
@@ -251,11 +251,6 @@
             }
             else if (__instance.effectStateType == EffectStateType.SpawnBuildUp)
             {
-                if (piece == null)
-                {
-                    return;
-                }
-
                 if (piece.boardPieceId == BoardPieceId.HeroWarlock)
                 {
                     if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.SpawnBuildUp) == 1)
@@ -269,11 +264,6 @@
             }
             else if (__instance.effectStateType == EffectStateType.DeflectionBarrier)
             {
-                if (piece == null)
-                {
-                    return;
-                }
-
                 if (piece.boardPieceId == BoardPieceId.HeroBard)
                 {
                     if (piece.effectSink.GetEffectStateDurationTurnsLeft(EffectStateType.DeflectionBarrier) == 1)
