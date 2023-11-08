@@ -8,7 +8,6 @@
     using Common.UI;
     using Common.UI.Element;
     using HouseRules.Core;
-    using Revolutions;
     using UnityEngine;
 
     internal class HouseRulesUiGameVr : MonoBehaviour

@@ -6,8 +6,8 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
+    using HouseRules.Core;
     using Newtonsoft.Json.Linq;
-    using Revolutions;
 
     internal static class RevolutionsChecker
     {
