@@ -74,13 +74,14 @@
 
         internal static void OnSceneUnloaded(int buildIndex, string sceneName)
         {
-            // LogDebug($"Scene unloaded {buildIndex} - {sceneName}");
+            // LogDebug("OnSceneUnloaded");
             GameObject canvasObject = GameObject.Find("~LeanTween");
             if (canvasObject == null)
             {
                 return;
             }
 
+            // LogDebug($"Scene unloaded {buildIndex} - {sceneName}");
             // Prevent Game VR object from trying to appear at main menu and hangouts
             Transform transformScreenToRemove = canvasObject.transform.Find("HouseRulesUiGameVr");
             if (transformScreenToRemove == null)
@@ -109,7 +110,7 @@
 
         internal static void OnSceneLoaded(int buildIndex, string sceneName)
         {
-            // LogDebug($"buildIndex {buildIndex} - sceneName {sceneName}");
+            // LogDebug("OnSceneLoaded");
             if (buildIndex == 0 || sceneName.Contains("Startup"))
             {
                 return;
@@ -122,9 +123,6 @@
                     LogDebug("Recognized lobby in PC. Loading UI.");
                     _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
                 }
-
-                LogDebug("Recognized lobby in PC. Loading UI.");
-                _ = new GameObject("HouseRulesUiNonVr", typeof(HouseRulesUiNonVr));
             }
             else if (Environments.IsInHangouts() || sceneName.Contains("HobbyShop"))
             {
