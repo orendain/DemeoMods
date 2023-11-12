@@ -128,10 +128,15 @@
                     {
                         setName = "<color=#00FF00><b>Demeo Revolutions</b></color>\n<color=#F813BE><b>(PROGRESSIVE)</b></color>";
                     }
-                    else
+                    else if (setName.Equals("Demeo Revolutions"))
                     {
                         fontSize = 6;
                         setName = "<color=#00FF00><b>Demeo Revolutions</b></color>";
+                    }
+                    else
+                    {
+                        fontSize = 4;
+                        setName = "<color=#00FFFF><b>" + setName + "</b></color>";
                     }
                 }
                 else if (setName.Equals("Friendly Competition"))

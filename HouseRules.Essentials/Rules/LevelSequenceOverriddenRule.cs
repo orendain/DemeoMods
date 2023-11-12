@@ -470,8 +470,8 @@
                     break;
             }
 
-            // HouseRulesEssentialsBase.LogWarning("Randomly generated level sequence loaded");
-            // HouseRulesEssentialsBase.LogWarning($"Map1: {_randomMaps[0]} Shop1: {_randomMaps[1]} Map2: {_randomMaps[2]} Shop2: {_randomMaps[3]} Map3: {_randomMaps[4]}");
+            HouseRulesEssentialsBase.LogWarning("Randomly generated level sequence loaded");
+            HouseRulesEssentialsBase.LogWarning($"Map1: {_randomMaps[0]} Shop1: {_randomMaps[1]} Map2: {_randomMaps[2]} Shop2: {_randomMaps[3]} Map3: {_randomMaps[4]}");
             Traverse.Create(gsmLevelSequence).Field<string[]>("levels").Value =
                 _randomMaps.Prepend(originalSequence[0]).ToArray();
             return originalSequence.ToList();

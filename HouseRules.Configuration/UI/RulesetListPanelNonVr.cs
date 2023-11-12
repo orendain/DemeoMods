@@ -178,9 +178,14 @@
                 {
                     setName = "<color=#057004><b>Demeo Revolutions</b></color> <color=#A2115D><b>(PROGRESSIVE)</b></color>";
                 }
-                else
+                else if (setName.Equals("Demeo Revolutions"))
                 {
                     setName = "<color=#057004><b>Demeo Revolutions</b></color>";
+                }
+                else
+                {
+                    string tempName = setName;
+                    setName = "<color=#057004><b>" + tempName + "</b></color>";
                 }
             }
             else if (setName.Equals("Friendly Competition"))
