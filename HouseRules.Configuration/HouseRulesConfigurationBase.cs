@@ -178,6 +178,8 @@
         /// <param name="directory">Path of the directory from which to load rulesets.</param>
         internal static void LoadRulesetsFromDirectory(string directory)
         {
+            // Uncomment next line to export registered rulesets.
+            // ExampleRulesetExporter.ExportRegisteredRulesets("HouseRules\\ExampleRulesets");
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
