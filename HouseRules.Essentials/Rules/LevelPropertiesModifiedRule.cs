@@ -233,7 +233,7 @@
         {
             Traverse.Create(gameContext.playerDataController)
                 .Field<Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>>("mergedDreadDataCollection")
-                .Value = new Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>(); // was null
+                .Value = null;
             Traverse.Create(gameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
         }
 

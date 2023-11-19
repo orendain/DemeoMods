@@ -66,7 +66,7 @@
             selectionPanel.transform.SetParent(transform, worldPositionStays: false);
             selectionPanel.transform.localPosition = new Vector3(0, 2.5f, 0);
 
-            var versionText = _elementCreator.CreateNormalText($"v{RevolutionsVersion.Version}");
+            var versionText = _elementCreator.CreateNormalText($"v{BuildVersion.Version}");
             versionText.transform.SetParent(transform, worldPositionStays: false);
             versionText.transform.localPosition = new Vector3(-7, -15.85f, VrElementCreator.TextZShift);
 

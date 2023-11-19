@@ -23,7 +23,7 @@
             try
             {
                 var latestReleaseVersion = await FindLatestReleaseVersion();
-                return IsLessThan(RevolutionsVersion.Version, latestReleaseVersion);
+                return IsLessThan(BuildVersion.Version, latestReleaseVersion);
             }
             catch (Exception e)
             {

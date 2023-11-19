@@ -204,7 +204,7 @@
             detailsPanel.transform.localPosition = new Vector3(0, details, VrElementCreator.TextZShift);
 
             sb.Clear();
-            sb.Append(ColorizeString($"v{RevolutionsVersion.Version}", Color.yellow));
+            sb.Append(ColorizeString($"v{BuildVersion.Version}", Color.yellow));
             var version = -9.5f;
             var versionText = _elementCreator.CreateNormalText(sb.ToString());
             versionText.transform.SetParent(transform, worldPositionStays: false);

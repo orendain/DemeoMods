@@ -116,7 +116,8 @@
             HR.Rulebook.Register(typeof(PiecePieceTypeListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceProgressRule));
             HR.Rulebook.Register(typeof(PieceProgressLostRule));
-            HR.Rulebook.Register(typeof(PieceUseOnCreatedOverriddenRule));
+
+            // HR.Rulebook.Register(typeof(PieceUseOnCreatedOverriddenRule));
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));
             HR.Rulebook.Register(typeof(PointGainRule));
             HR.Rulebook.Register(typeof(PotionAdditionOverriddenRule));
@@ -133,10 +134,13 @@
             HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderRandomizedRule));
+
+            // HR.Rulebook.Register(typeof(XpGainDisabledRule));
         }
 
         private static void RegisterRulesets()
         {
+            // HR.Rulebook.Register(TESTGAME.Create());
             HR.Rulebook.Register(DemeoRevolutions.Create());
             HR.Rulebook.Register(DemeoRevolutions_Easy.Create());
             HR.Rulebook.Register(DemeoRevolutions_Hard.Create());
