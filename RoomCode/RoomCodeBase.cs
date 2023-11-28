@@ -56,7 +56,7 @@
             {
                 _logInfo = mod.LoggerInstance.Msg;
                 _logDebug = mod.LoggerInstance.Msg;
-				_logError = mod.LoggerInstance.Error;
+                _logError = mod.LoggerInstance.Error;
 
                 Enabled = mod.Enabled.Value;
                 RoomCodes = mod.RoomCodes.Value;

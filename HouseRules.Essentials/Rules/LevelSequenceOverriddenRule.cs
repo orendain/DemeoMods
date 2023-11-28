@@ -14,6 +14,7 @@
         public override string Description => "The adventure's map order is adjusted";
 
         private static bool isRandomMaps;
+        private static bool isFastForward;
         private static List<string> _globalAdjustments;
         private static List<string> _randomMaps = new List<string>
                     { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
@@ -210,6 +211,12 @@
             else
             {
                 isRandomMaps = true;
+                isFastForward = false;
+                if (replacements[0].Contains("fastforward"))
+                {
+                    isFastForward = true;
+                    HouseRulesEssentialsBase.LogWarning("Fast Forward mode detected");
+                }
             }
 
             int rndLevel = Random.Range(1, 6);
@@ -468,6 +475,33 @@
                 case "Town":
                     _randomMaps[3] = "TownsShopFloor";
                     break;
+            }
+
+            if (isFastForward)
+            {
+                switch (gsmLevelSequence.gameType)
+                {
+                    case LevelSequence.GameType.Town:
+                        _randomMaps[0] = "CryptEntrance";
+                        _randomMaps[1] = "ForestShop";
+                        _randomMaps[2] = "TownsEntrance";
+                        _randomMaps[3] = "ForestShop";
+                        break;
+                    case LevelSequence.GameType.ElvenQueen:
+                    case LevelSequence.GameType.RatKing:
+                    case LevelSequence.GameType.Desert:
+                        _randomMaps[0] = "TownsEntrance";
+                        _randomMaps[1] = "ForestShop";
+                        _randomMaps[2] = "TownsEntrance";
+                        _randomMaps[3] = "ForestShop";
+                        break;
+                    case LevelSequence.GameType.Forest:
+                        _randomMaps[0] = "ElvenFloor15";
+                        _randomMaps[1] = "ForestShop";
+                        _randomMaps[2] = "ElvenFloor15";
+                        _randomMaps[3] = "ForestShop";
+                        break;
+                }
             }
 
             HouseRulesEssentialsBase.LogWarning("Randomly generated level sequence loaded");
