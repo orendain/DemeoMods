@@ -65,6 +65,7 @@
             HR.Rulebook.Register(typeof(AbilityTargetEffectsRule));
             HR.Rulebook.Register(typeof(ApplyEffectOnHitAdjustedRule));
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
+            HR.Rulebook.Register(typeof(BossOnlyRule));
             HR.Rulebook.Register(typeof(CourageShantyAddsHpRule));
             HR.Rulebook.Register(typeof(CardAdditionOverriddenRule));
             HR.Rulebook.Register(typeof(CardChestAdditionOverriddenRule));
@@ -96,7 +97,6 @@
             HR.Rulebook.Register(typeof(LevelPropertiesModifiedRule));
             HR.Rulebook.Register(typeof(LevelSequenceOverriddenRule));
             HR.Rulebook.Register(typeof(SmallLevelSequenceOverriddenRule));
-            HR.Rulebook.Register(typeof(MerchantOfferRarityOverriddenRule));
             HR.Rulebook.Register(typeof(MonsterDeckOverriddenRule));
             HR.Rulebook.Register(typeof(MyMonsterDeckOverriddenRule));
             HR.Rulebook.Register(typeof(PartyElectricityDamageOverriddenRule));
@@ -116,8 +116,6 @@
             HR.Rulebook.Register(typeof(PiecePieceTypeListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceProgressRule));
             HR.Rulebook.Register(typeof(PieceProgressLostRule));
-
-            // HR.Rulebook.Register(typeof(PieceUseOnCreatedOverriddenRule));
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));
             HR.Rulebook.Register(typeof(PointGainRule));
             HR.Rulebook.Register(typeof(PotionAdditionOverriddenRule));
@@ -134,13 +132,10 @@
             HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderRandomizedRule));
-
-            // HR.Rulebook.Register(typeof(XpGainDisabledRule));
         }
 
         private static void RegisterRulesets()
         {
-            // HR.Rulebook.Register(TESTGAME.Create());
             HR.Rulebook.Register(DemeoRevolutions.Create());
             HR.Rulebook.Register(DemeoRevolutions_Easy.Create());
             HR.Rulebook.Register(DemeoRevolutions_Hard.Create());
