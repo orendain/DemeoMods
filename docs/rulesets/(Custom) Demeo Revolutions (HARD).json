@@ -2073,6 +2073,7 @@
         "MinionCharge": false,
         "SpellPowerPotion": false,
         "PVPBlink": false,
+        "PVPMissileSwarm": false,
         "WeakeningShout": false,
         "LeapHeavy": false,
         "SpawnRandomLamp": false,
@@ -2197,6 +2198,7 @@
     {
       "Rule": "AbilityAoeAdjusted",
       "Config": {
+        "PoisonGas": 1,
         "SongOfRecovery": 2,
         "SongOfResilience": 2,
         "FlashBomb": 1,

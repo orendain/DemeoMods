@@ -1123,6 +1123,7 @@
                 { AbilityKey.Grab, false },
                 { AbilityKey.SpellPowerPotion, false },
                 { AbilityKey.PVPBlink, false },
+                { AbilityKey.PVPMissileSwarm, false },
                 { AbilityKey.WeakeningShout, false },
                 { AbilityKey.LeapHeavy, false },
                 { AbilityKey.SpawnRandomLamp, false },
@@ -1209,6 +1210,7 @@
 
             var aoeAdjustedRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
+                { AbilityKey.PoisonGas, 1 },
                 { AbilityKey.SongOfRecovery, 2 },
                 { AbilityKey.SongOfResilience, 2 },
                 { AbilityKey.FlashBomb, 1 },

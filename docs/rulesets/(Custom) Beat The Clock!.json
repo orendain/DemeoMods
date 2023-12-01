@@ -49,6 +49,26 @@
       ]
     },
     {
+      "Rule": "StatusEffectConfig",
+      "Config": [
+        {
+          "effectStateType": "Venom",
+          "durationTurns": 15,
+          "tickWhen": "EndTurn",
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": true,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
+        }
+      ]
+    },
+    {
       "Rule": "CardEnergyFromRecyclingMultiplied",
       "Config": 3.0
     },

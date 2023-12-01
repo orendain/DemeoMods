@@ -115,7 +115,7 @@
                 }
             }
 
-            // Handle fixing character stats for and cards Revolutions/Reloaded game when the Host reconnects and becomes the Master Client again
+            // Handle fixing character stats and cards for Revolutions/Reloaded game when the Host reconnects and becomes the Master Client again
             if (GameStateMachine.IsMasterClient && !piece.IsDead() && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 42 && piece.GetStat(Stats.Type.InnateCounterDamageExtraDamage) != 69)
             {
                 _isReconnect = true;
@@ -718,7 +718,7 @@
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.LightningBolt)
+                        if (value.abilityKey == AbilityKey.PVPMissileSwarm)
                         {
                             hasPower = true;
                             break;
@@ -737,7 +737,7 @@
                         Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
-                            abilityKey = AbilityKey.LightningBolt,
+                            abilityKey = AbilityKey.PVPMissileSwarm,
                             flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,

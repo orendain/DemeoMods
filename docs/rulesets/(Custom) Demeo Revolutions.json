@@ -1531,6 +1531,21 @@
           "counterAttackDamage": 0,
           "applyAfterDissipate": "Diseased",
           "useOnDissipate": 0
+        },
+        {
+          "effectStateType": "Thorns",
+          "durationTurns": 2,
+          "tickWhen": "EndTurn",
+          "damagePerTurn": 0,
+          "clearOnNewLevel": false,
+          "damageTags": null,
+          "healPerTurn": 0,
+          "healthBoost": 0,
+          "killOnExpire": false,
+          "counterAttackDirections": 0,
+          "counterAttackDamage": 0,
+          "applyAfterDissipate": "Diseased",
+          "useOnDissipate": 0
         }
       ]
     },
@@ -1912,6 +1927,7 @@
         "MinionCharge": false,
         "SpellPowerPotion": false,
         "PVPBlink": false,
+        "PVPMissileSwarm": false,
         "WeakeningShout": false,
         "LeapHeavy": false,
         "SpawnRandomLamp": false,
@@ -2036,6 +2052,7 @@
     {
       "Rule": "AbilityAoeAdjusted",
       "Config": {
+        "PoisonGas": 1,
         "SongOfRecovery": 2,
         "SongOfResilience": 2,
         "FlashBomb": 1,

@@ -117,12 +117,12 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroHunter)
                     {
-                        if (piece.HasEffectState(EffectStateType.Discharge))
+                        for (int i = 0; i < piece.inventory.Items.Count; i++)
                         {
-                            for (int i = 0; i < piece.inventory.Items.Count; i++)
+                            value = piece.inventory.Items[i];
+                            if (value.abilityKey == AbilityKey.PVPMissileSwarm)
                             {
-                                value = piece.inventory.Items[i];
-                                if (value.abilityKey == AbilityKey.Zap)
+                                if (value.IsReplenishing)
                                 {
                                     hasChanged = true;
                                     howMany -= 1;
@@ -132,9 +132,9 @@
                                         piece.DisableEffectState(EffectStateType.ExtraEnergy);
                                         piece.inventory.Items.Remove(value);
                                     }
-
-                                    break;
                                 }
+
+                                break;
                             }
                         }
                     }
