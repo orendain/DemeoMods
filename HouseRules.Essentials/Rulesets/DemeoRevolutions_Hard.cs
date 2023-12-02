@@ -1063,6 +1063,7 @@
                 { AbilityKey.LeapHeavy, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.ImplosionExplosionRain, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.TornadoCharge, new List<int> { 3, 3, 3, 3 } },
+                { AbilityKey.PVPMissileSwarm, new List<int> { 3, 6, 3, 6 } },
             });
 
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId>
