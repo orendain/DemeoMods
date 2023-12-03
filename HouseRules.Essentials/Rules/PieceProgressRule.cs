@@ -538,7 +538,7 @@
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.FretsOfFire)
+                        if (value.abilityKey == AbilityKey.PVPFireball)
                         {
                             hasPower = true;
                             break;
@@ -550,7 +550,7 @@
                         Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
-                            abilityKey = AbilityKey.FretsOfFire,
+                            abilityKey = AbilityKey.PVPFireball,
                             flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 1,

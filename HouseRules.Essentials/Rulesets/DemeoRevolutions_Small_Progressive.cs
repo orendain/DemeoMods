@@ -1124,11 +1124,11 @@
                 { AbilityKey.SpellPowerPotion, false },
                 { AbilityKey.PVPBlink, false },
                 { AbilityKey.PVPMissileSwarm, false },
+                { AbilityKey.PVPFireball, false },
                 { AbilityKey.WeakeningShout, false },
                 { AbilityKey.LeapHeavy, false },
                 { AbilityKey.SpawnRandomLamp, false },
                 { AbilityKey.DeathBeam, false },
-                { AbilityKey.FretsOfFire, false },
                 { AbilityKey.Net, true },
                 { AbilityKey.ImplosionExplosionRain, false },
                 { AbilityKey.Petrify, false },
@@ -1154,7 +1154,6 @@
                 { AbilityKey.Arrow, new List<int> { 3, 8, 3, 8 } },
                 { AbilityKey.Electricity, new List<int> { 3, 5, 1, 2 } },
                 { AbilityKey.PVPBlink, new List<int> { 9, 18, 9, 18 } },
-                { AbilityKey.FretsOfFire, new List<int> { 3, 6, 3, 6 } },
                 { AbilityKey.GrapplingPush, new List<int> { 2, 4, 2, 4 } },
                 { AbilityKey.Petrify, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.WeakeningShout, new List<int> { 2, 2, 2, 2 } },
@@ -1164,6 +1163,7 @@
                 { AbilityKey.DeathFlurry, new List<int> { 5, 5, 5, 5 } },
                 { AbilityKey.TornadoCharge, new List<int> { 3, 3, 3, 3 } },
                 { AbilityKey.PVPMissileSwarm, new List<int> { 3, 6, 3, 6 } },
+                { AbilityKey.PVPFireball, new List<int> { 5, 10, 5, 10 } },
             });
 
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId>
@@ -1184,13 +1184,13 @@
                 { AbilityKey.PoisonBomb, false },
                 { AbilityKey.FlashBomb, false },
                 { AbilityKey.DiseasedBite, false },
+                { AbilityKey.PVPFireball, false },
             });
 
             var abilityStealthDamageRule = new AbilityStealthDamageOverriddenRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.DiseasedBite, 2 },
                 { AbilityKey.PlayerMelee, 2 },
-                { AbilityKey.FretsOfFire, 1 },
             });
 
             var enemyCooldownRule = new EnemyCooldownOverriddenRule(new Dictionary<AbilityKey, int>

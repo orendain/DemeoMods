@@ -2058,7 +2058,8 @@
       "Config": {
         "PoisonBomb": false,
         "FlashBomb": false,
-        "DiseasedBite": false
+        "DiseasedBite": false,
+        "PVPFireball": false
       }
     },
     {
@@ -2074,11 +2075,11 @@
         "SpellPowerPotion": false,
         "PVPBlink": false,
         "PVPMissileSwarm": false,
+        "PVPFireball": false,
         "WeakeningShout": false,
         "LeapHeavy": false,
         "SpawnRandomLamp": false,
         "DeathBeam": false,
-        "FretsOfFire": false,
         "Grapple": false,
         "Net": true,
         "ImplosionExplosionRain": false
@@ -2174,8 +2175,7 @@
       "Rule": "AbilityStealthDamageOverridden",
       "Config": {
         "DiseasedBite": 2,
-        "PlayerMelee": 2,
-        "FretsOfFire": 1
+        "PlayerMelee": 2
       }
     },
     {
@@ -2245,12 +2245,6 @@
           9,
           18
         ],
-        "FretsOfFire": [
-          3,
-          6,
-          3,
-          6
-        ],
         "GrapplingPush": [
           2,
           4,
@@ -2292,6 +2286,12 @@
           6,
           3,
           6
+        ],
+        "PVPFireball": [
+          5,
+          10,
+          5,
+          10
         ]
       }
     },

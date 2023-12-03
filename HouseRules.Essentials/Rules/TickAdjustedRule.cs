@@ -189,7 +189,7 @@
                         for (int i = 0; i < piece.inventory.Items.Count; i++)
                         {
                             value = piece.inventory.Items[i];
-                            if (value.abilityKey == AbilityKey.FretsOfFire)
+                            if (value.abilityKey == AbilityKey.PVPFireball)
                             {
                                 if (value.IsReplenishing)
                                 {
