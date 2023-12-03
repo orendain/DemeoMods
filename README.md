@@ -24,18 +24,15 @@ Demeo Revolutions Gameplay Changes
 - Each floor's map will be from a different adventure
 - No Lamps or Antitoxins as loot
 - Improved loot from chests, energy (mana), and potion stands
-- Lamp spawns found throughout each floor are now much more random
 - Pets and charmed creatures will always focus on Hunter's Marked targets
 - Number of chests/stands/fountains/traders per floor changed based on the adventure selected
-- Card energy (mana) gained from attacks reduced by 20%
-- Card energy (mana) gained from recycled cards increased by 20%
+- Card energy (mana) gained from attacks and recycling cards varies depending on the ruleset
 - Healing Potion heals for 5, Water Bottle heals for 2, and Rejuvenation/Fountains heal for 8
 - Reviving a player by any means removes Stunned and Frozen effects so they get their turn
-- Thorns debuff now also does 2 damage per turn
 - Lures and Barricades now Thorn enemies who hit them
 - Acid Spit (Giant Slime ability) now poisons targets
 - Sigataur Javelin now weakens an enemy when used by a player
-- Repeating Ballistas now hamstring (tangle) targets and poison enemies who hit them
+- Repeating Ballista arrows now hamstring (tangle) targets and poison enemies who hit them
 - The Behemoth now blinds and panics targets and poisons enemies who hit them
 - Healing Wards heal for 2 and poisons enemies who hit them
 - Verochka, Arly Owl, and placed torches now panic enemies who hit them
@@ -47,12 +44,13 @@ Demeo Revolutions Gameplay Changes
 - Class turn order starts as Bard, Guardian, Warlock, Sorcerer, Barbarian, Hunter and then Assassin
 - Hunter's Mark, Invisibility Potions, and Adamant Potions only last 2 for rounds instead of 3
 - Strength, Swiftness, and Magic stats can be increased up to 5 times with potions instead of 3
-- Torches last 20 rounds and placed Torches have 4 health instead of 15
-- Arly Owl's health is now 9 and movement is now 5
+- Torches last 15 rounds and placed Torches have 4 health instead of 15
+- Arly Owl's health is now 8 and movement is now 5
 - Arly Owl's panic shot now also Nets enemies so they can't move unless they use an ability to do so
 - A NEW Energy Potion loot card [DETAILS](https://github.com/TheGrayAlien/DemeoMods/blob/DemeoRevolutions/README.md#about-the-extra-energy-buff-given-by-the-energy-potion)
 - Elven Queen, keyholders on the first 2 floors, and elemental type enemies have 1 counter-attack damage when hit by melee
 - Each floor's keyholder (including bosses) start with 1 innate damage resist
+- Players who obtain the key will gain 1 extra damage resist and 1 extra counter-damage to melee attacks while they hold it
 - All bosses will start with more health and are immune to Net
 - The Elven Queen has new self buffs and abilities to add more of a challenge
 - If playing Roots of Evil the players with javelins will be first in turn order on the LAST floor
