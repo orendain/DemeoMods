@@ -185,10 +185,10 @@ When the Energy Potion card is used it will give each character 2 extra maximum 
 - ***Vortex Storm*** - Drops 3 meteors over a large area that cause small vortexes that do 5 damage to each thing hit. This includes allies but not yourself. Does NOT hit lamps.
 
 **`Hunter:`**
-- ***Lightning Bolt*** - Charges your bow with electricity that bounces and stuns enemies for 3 damage each. Triple damage on wet targets. CAN hit allies! Will be disabled on your turn if you are made wet.
+- ***Spectral Strike*** - Charges your bow with a magical AoE that hits a 5x5 area 3 damage each. Can NOT hit allies!
 
 **`Assassin:`**
-- ***Frets of Fire*** - Causes fire damage in a 7x7 area around you that does 3 damage to enemies. Does NOT break sneak. DOES hit lamps!
+- ***Firebolt*** - Launches a 3x3 firebolt at range for 5 damage to enemies. Does NOT break sneak. DOES hit allies and lamps!
 
 **`Bard:`**
 - ***Blink*** - Teleports to and attacks an enemy for 9 damage. This move also Weakens and Confuses the target.
