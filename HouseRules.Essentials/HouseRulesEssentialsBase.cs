@@ -135,6 +135,7 @@
 
         private static void RegisterRulesets()
         {
+            // HR.Rulebook.Register(TESTGAME.Create());
             HR.Rulebook.Register(DemeoRevolutions.Create());
             HR.Rulebook.Register(DemeoRevolutions_Easy.Create());
             HR.Rulebook.Register(DemeoRevolutions_Hard.Create());

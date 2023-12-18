@@ -8,7 +8,11 @@
     {
         internal static void ExportRegisteredRulesets(string directory)
         {
-            Directory.CreateDirectory(directory);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             foreach (var ruleset in HR.Rulebook.Rulesets)
             {
                 var newName = $"(Custom) {ruleset.Name}";
