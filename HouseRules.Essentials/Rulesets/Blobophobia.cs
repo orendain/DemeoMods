@@ -64,7 +64,7 @@
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PanicPowder, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BottleOfLye, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonBomb, ReplenishFrequency = 0 },
             };
@@ -258,12 +258,181 @@
                 { BoardPieceId.ElvenArcher, new List<Behaviour> { Behaviour.Patrol, Behaviour.RangedSpellCaster, Behaviour.FollowPlayerRangedAttacker } },
             });
 
-            var cardClassRestrictionRule = new CardClassRestrictionOverriddenRule(new Dictionary<AbilityKey, BoardPieceId>
+            var allowedChestCardsRule = new CardChestAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { AbilityKey.BeastWhisperer, BoardPieceId.SporeFungus },
-                { AbilityKey.OilLamp, BoardPieceId.SporeFungus },
-                { AbilityKey.Antitoxin, BoardPieceId.SporeFungus },
-                { AbilityKey.PanicPowder, BoardPieceId.SporeFungus },
+                {
+                    BoardPieceId.HeroBarbarian, new List<AbilityKey>
+                    {
+                        AbilityKey.DetectEnemies,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.Teleportation,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.HeavensFury,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingSmash,
+                        AbilityKey.GrapplingTotem,
+                        AbilityKey.TauntingScream,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingPush,
+                        AbilityKey.GrapplingSmash,
+                        AbilityKey.TauntingScream,
+                        AbilityKey.PlayerLeap,
+                        AbilityKey.MarkOfVerga,
+                        AbilityKey.GrapplingPush,
+                        AbilityKey.GrapplingSmash,
+                    }
+                },
+                {
+                    BoardPieceId.HeroGuardian, new List<AbilityKey>
+                    {
+                        AbilityKey.DetectEnemies,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.Teleportation,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.HeavensFury,
+                        AbilityKey.HealingWard,
+                        AbilityKey.WhirlwindAttack,
+                        AbilityKey.WarCry,
+                        AbilityKey.PiercingThrow,
+                        AbilityKey.Charge,
+                        AbilityKey.HealingWard,
+                        AbilityKey.WhirlwindAttack,
+                        AbilityKey.WarCry,
+                        AbilityKey.TheBehemoth,
+                        AbilityKey.PiercingThrow,
+                        AbilityKey.Charge,
+                        AbilityKey.WhirlwindAttack,
+                        AbilityKey.WarCry,
+                        AbilityKey.TheBehemoth,
+                        AbilityKey.PiercingThrow,
+                    }
+                },
+                {
+                    BoardPieceId.HeroBard, new List<AbilityKey>
+                    {
+                        AbilityKey.DetectEnemies,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.Teleportation,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.HeavensFury,
+                        AbilityKey.SongOfRecovery,
+                        AbilityKey.SongOfResilience,
+                        AbilityKey.BlockAbilities,
+                        AbilityKey.PiercingVoice,
+                        AbilityKey.ShatteringVoice,
+                        AbilityKey.SongOfRecovery,
+                        AbilityKey.ScrollOfCharm,
+                        AbilityKey.SongOfResilience,
+                        AbilityKey.ShatteringVoice,
+                        AbilityKey.HurricaneAnthem,
+                        AbilityKey.ScrollOfCharm,
+                        AbilityKey.SongOfRecovery,
+                        AbilityKey.SongOfResilience,
+                        AbilityKey.ShatteringVoice,
+                        AbilityKey.HurricaneAnthem,
+                    }
+                },
+                {
+                    BoardPieceId.HeroHunter, new List<AbilityKey>
+                    {
+                        AbilityKey.DetectEnemies,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.Teleportation,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.HeavensFury,
+                        AbilityKey.ScrollOfCharm,
+                        AbilityKey.CallCompanion,
+                        AbilityKey.PoisonedTip,
+                        AbilityKey.HuntersMark,
+                        AbilityKey.Lure,
+                        AbilityKey.ScrollOfCharm,
+                        AbilityKey.HailOfArrows,
+                        AbilityKey.CallCompanion,
+                        AbilityKey.PoisonedTip,
+                        AbilityKey.HuntersMark,
+                        AbilityKey.HailOfArrows,
+                        AbilityKey.CallCompanion,
+                        AbilityKey.Lure,
+                    }
+                },
+                {
+                    BoardPieceId.HeroRogue, new List<AbilityKey>
+                    {
+                        AbilityKey.DetectEnemies,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.Teleportation,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.HeavensFury,
+                        AbilityKey.Blink,
+                        AbilityKey.PoisonBomb,
+                        AbilityKey.CoinFlip,
+                        AbilityKey.CursedDagger,
+                        AbilityKey.BoobyTrap,
+                        AbilityKey.FlashBomb,
+                        AbilityKey.Blink,
+                        AbilityKey.PoisonBomb,
+                        AbilityKey.CursedDagger,
+                        AbilityKey.FlashBomb,
+                        AbilityKey.Blink,
+                        AbilityKey.PoisonBomb,
+                        AbilityKey.CursedDagger,
+                        AbilityKey.BoobyTrap,
+                        AbilityKey.FlashBomb,
+                    }
+                },
+                {
+                    BoardPieceId.HeroSorcerer, new List<AbilityKey>
+                    {
+                        AbilityKey.DetectEnemies,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.Teleportation,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.HeavensFury,
+                        AbilityKey.Banish,
+                        AbilityKey.Fireball,
+                        AbilityKey.Freeze,
+                        AbilityKey.Vortex,
+                        AbilityKey.Banish,
+                        AbilityKey.Fireball,
+                        AbilityKey.Freeze,
+                        AbilityKey.MagicShield,
+                        AbilityKey.MagicBarrier,
+                        AbilityKey.Vortex,
+                        AbilityKey.Banish,
+                        AbilityKey.Fireball,
+                        AbilityKey.Freeze,
+                        AbilityKey.MagicBarrier,
+                        AbilityKey.Vortex,
+                    }
+                },
+                {
+                    BoardPieceId.HeroWarlock, new List<AbilityKey>
+                    {
+                        AbilityKey.DetectEnemies,
+                        AbilityKey.HealingPotion,
+                        AbilityKey.Teleportation,
+                        AbilityKey.ExtraActionPotion,
+                        AbilityKey.HeavensFury,
+                        AbilityKey.Deflect,
+                        AbilityKey.GuidingLight,
+                        AbilityKey.Implode,
+                        AbilityKey.MissileSwarm,
+                        AbilityKey.Portal,
+                        AbilityKey.Deflect,
+                        AbilityKey.GuidingLight,
+                        AbilityKey.Implode,
+                        AbilityKey.MissileSwarm,
+                        AbilityKey.Portal,
+                        AbilityKey.Deflect,
+                        AbilityKey.GuidingLight,
+                        AbilityKey.Implode,
+                        AbilityKey.MissileSwarm,
+                        AbilityKey.Portal,
+                    }
+                },
             });
 
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);
@@ -295,7 +464,7 @@
                 myMonsterDeckRule,
                 pieceAbilityRule,
                 pieceBehaviorsRule,
-                cardClassRestrictionRule,
+                allowedChestCardsRule,
                 enemyRespawnRule,
                 pieceUseWhenKilledRule,
                 statusEffectRule);
