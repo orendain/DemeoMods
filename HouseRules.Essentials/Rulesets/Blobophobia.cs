@@ -16,7 +16,11 @@
 
             var blobophobiaRule = new PieceBlobophobiaRule(true);
 
-            var abilityDamageRule = new AbilityDamageOverriddenRule(new Dictionary<AbilityKey, List<int>> { { AbilityKey.Zap, new List<int> { 2, 4 } } });
+            var abilityDamageAllRule = new AbilityDamageAllOverriddenRule(new Dictionary<AbilityKey, List<int>>
+            {
+                { AbilityKey.Zap, new List<int> { 2, 4, 2, 4 } },
+                { AbilityKey.AcidSpit, new List<int> { 2, 2, 2, 2} },
+            });
 
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -99,12 +103,11 @@
                 { AbilityKey.ReplenishArmor, 1 },
                 { AbilityKey.StrengthPotion, 1 },
                 { AbilityKey.SwiftnessPotion, 1 },
+                { AbilityKey.MagicPotion, 1 },
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.ExtraActionPotion, 1 },
-                { AbilityKey.OneMoreThing, 1 },
                 { AbilityKey.Antitoxin, 1 },
-                { AbilityKey.AdamantPotion, 1 },
                 { AbilityKey.HealingPotion, 1 },
             });
 
@@ -128,6 +131,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WarlockMinion, Property = "StartHealth", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "MoveRange", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "MoveRange", Value = 5 },
 
@@ -140,7 +144,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "MoveRange", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Verochka, Property = "VisionRange", Value = 40 },
 
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Slimeling, Property = "StartHealth", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Slimeling, Property = "StartHealth", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Slimeling, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Slimeling, Property = "MoveRange", Value = 2 },
 
@@ -257,6 +261,9 @@
             var cardClassRestrictionRule = new CardClassRestrictionOverriddenRule(new Dictionary<AbilityKey, BoardPieceId>
             {
                 { AbilityKey.BeastWhisperer, BoardPieceId.SporeFungus },
+                { AbilityKey.OilLamp, BoardPieceId.SporeFungus },
+                { AbilityKey.Antitoxin, BoardPieceId.SporeFungus },
+                { AbilityKey.PanicPowder, BoardPieceId.SporeFungus },
             });
 
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);
@@ -277,7 +284,7 @@
                 description,
                 longdesc,
                 blobophobiaRule,
-                abilityDamageRule,
+                abilityDamageAllRule,
                 startingCardsRule,
                 abilityAoeRule,
                 abilityMaxedRule,
