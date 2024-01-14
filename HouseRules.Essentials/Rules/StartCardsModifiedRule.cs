@@ -104,8 +104,9 @@
                         }
                     }
                 }
-                else if (ruleSet.Contains("Heroes "))
+                else
                 {
+                    // This code would only possibly work for SKIRMISH or ONLY the game Host but not Clients
                     if (value.abilityKey == AbilityKey.Grab)
                     {
                         AbilityFactory.GetAbility(AbilityKey.Grab).maxRange = 15;

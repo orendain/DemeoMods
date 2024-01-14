@@ -36,7 +36,7 @@
                     nameof(Damage_DealDamage_Prefix)));
         }
 
-        private static bool Damage_DealDamage_Prefix(Target target, Damage damage, Target attacker)
+        private static bool Damage_DealDamage_Prefix(Target target, Damage damage)
         {
             if (!_isActivated)
             {

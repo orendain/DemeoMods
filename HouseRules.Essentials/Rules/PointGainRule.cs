@@ -351,6 +351,11 @@
                 return;
             }
 
+            if (attackerUnit == null)
+            {
+                return;
+            }
+
             if (!attackerUnit.IsPlayer())
             {
                 Piece piece2;
