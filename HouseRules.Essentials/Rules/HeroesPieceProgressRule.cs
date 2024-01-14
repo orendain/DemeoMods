@@ -257,7 +257,6 @@
                         ability.costActionPoint = false;
                     }
                 }
-
                 else if (nextLevel == 3) // new abilities at level 3.
                 {
                     if (piece.boardPieceId == BoardPieceId.HeroBarbarian)

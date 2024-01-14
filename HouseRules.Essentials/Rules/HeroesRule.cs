@@ -57,23 +57,19 @@
                     nameof(Inventory_RestoreReplenishables_Prefix)));
         }
 
-        private static bool Inventory_RestoreReplenishables_Prefix(ref bool __result, Piece piece)
+        private static bool Inventory_RestoreReplenishables_Prefix(Piece piece)
         {
             if (!_isActivated)
             {
                 return true;
             }
 
-            if (!piece.IsPlayer())
+            if (piece == null || !piece.IsPlayer())
             {
                 return true;
             }
 
-            Inventory.Item value;
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-
-            // force refresh of everything?
-            gameContext.serializableEventQueue.OnStartLoadNewLevel();
 
             if (_checkPlayers)
             {
@@ -457,8 +453,10 @@
 
                 return;
             }
-
-            __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, _globalGameType);
+            else
+            {
+                __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, _globalGameType);
+            }
         }
     }
 }

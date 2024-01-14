@@ -44,19 +44,9 @@
                 return;
             }
 
-            var ruleSet = HR.SelectedRuleset.Name;
-            if (!ruleSet.Contains("PROGRESSIVE") && !ruleSet.Equals("TEST GAME"))
+            if (sourceAbility != AbilityKey.Revive)
             {
                 return;
-            }
-
-            // If magic, a potion, or a fountain was used then don't lose a level (except on LEGENDARY)
-            if (!ruleSet.Contains("(LEGENDARY"))
-            {
-                if (sourceAbility != AbilityKey.Revive)
-                {
-                    return;
-                }
             }
 
             Piece piece = revivedPiece;
@@ -149,7 +139,6 @@
 
                 if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
                 {
-                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                     Inventory.Item value;
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
@@ -157,6 +146,7 @@
                         if (value.abilityKey == AbilityKey.EnemyJavelin)
                         {
                             piece.inventory.Items.Remove(value);
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                             break;
                         }
                     }
@@ -165,7 +155,6 @@
                 }
                 else if (piece.boardPieceId == BoardPieceId.HeroBard)
                 {
-                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                     Inventory.Item value;
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
@@ -173,6 +162,7 @@
                         if (value.abilityKey == AbilityKey.TeleportLamp)
                         {
                             piece.inventory.Items.Remove(value);
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                             break;
                         }
                     }
@@ -181,15 +171,19 @@
                 }
                 else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
                 {
-                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                     Inventory.Item value;
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.Zap || value.abilityKey == AbilityKey.TurretHealProjectile)
+                        if (value.abilityKey == AbilityKey.Zap)
                         {
                             piece.inventory.Items.Remove(value);
-                            break;
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                        }
+                        else if (value.abilityKey == AbilityKey.TurretHealProjectile)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                         }
                     }
 
@@ -197,15 +191,19 @@
                 }
                 else if (piece.boardPieceId == BoardPieceId.HeroRogue)
                 {
-                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                     Inventory.Item value;
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.EnemyFireball || value.abilityKey == AbilityKey.DiseasedBite)
+                        if (value.abilityKey == AbilityKey.EnemyFireball)
                         {
                             piece.inventory.Items.Remove(value);
-                            break;
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                        }
+                        else if (value.abilityKey == AbilityKey.DiseasedBite)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                         }
                     }
 
@@ -218,10 +216,15 @@
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
                         value = piece.inventory.Items[i];
-                        if (value.abilityKey == AbilityKey.TornadoCharge || value.abilityKey == AbilityKey.WaterDive)
+                        if (value.abilityKey == AbilityKey.TornadoCharge)
                         {
                             piece.inventory.Items.Remove(value);
-                            break;
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
+                        }
+                        else if (value.abilityKey == AbilityKey.WaterDive)
+                        {
+                            piece.inventory.Items.Remove(value);
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                         }
                     }
 
@@ -229,7 +232,6 @@
                 }
                 else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
                 {
-                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                     Inventory.Item value;
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
@@ -237,6 +239,7 @@
                         if (value.abilityKey == AbilityKey.TurretHighDamageProjectile)
                         {
                             piece.inventory.Items.Remove(value);
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                             break;
                         }
                     }
@@ -248,7 +251,6 @@
                 }
                 else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
                 {
-                    Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                     Inventory.Item value;
                     for (var i = 0; i < piece.inventory.Items.Count; i++)
                     {
@@ -256,6 +258,7 @@
                         if (value.abilityKey == AbilityKey.EnemyFireball)
                         {
                             piece.inventory.Items.Remove(value);
+                            Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                             break;
                         }
                     }
@@ -354,7 +357,6 @@
             }
             else if (level == 7)
             {
-                Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                 Inventory.Item value;
                 for (var i = 0; i < piece.inventory.Items.Count; i++)
                 {
@@ -362,6 +364,7 @@
                     if (value.abilityKey == AbilityKey.Petrify || value.abilityKey == AbilityKey.AcidSpit || value.abilityKey == AbilityKey.DeathFlurry || value.abilityKey == AbilityKey.DeathBeam || value.abilityKey == AbilityKey.HeavensFury || value.abilityKey == AbilityKey.CoinFlip || value.abilityKey == AbilityKey.DropChest)
                     {
                         piece.inventory.Items.Remove(value);
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value -= 1;
                         break;
                     }
                 }

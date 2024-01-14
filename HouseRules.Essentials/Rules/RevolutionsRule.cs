@@ -54,7 +54,7 @@
                     nameof(Inventory_RestoreReplenishables_Prefix)));
         }
 
-        private static bool Inventory_RestoreReplenishables_Prefix(ref bool __result, Piece piece)
+        private static bool Inventory_RestoreReplenishables_Prefix(Piece piece)
         {
             if (!_isActivated)
             {
@@ -917,8 +917,10 @@
 
                 return;
             }
-
-            __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, _globalGameType);
+            else
+            {
+                __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, _globalGameType);
+            }
         }
     }
 }

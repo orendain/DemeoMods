@@ -14,8 +14,6 @@
 
         private static bool _isActivated;
 
-        
-
         public HeroesTickAdjustedRule(bool value)
         {
         }
@@ -48,9 +46,6 @@
             var pieceId = Traverse.Create(__instance).Field<int>("sourcePieceId").Value;
             var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
             Piece piece = pieceAndTurnController.GetPiece(pieceId);
-
-            HouseRulesEssentialsBase.LogDebug($"PieceID = {piece.boardPieceId} Has Effect: {__instance.effectStateType} Ticks left: {__instance.DurationTurnsLeft}");
-
             if (piece == null)
             {
                 return;
@@ -61,6 +56,7 @@
                 return;
             }
 
+            HouseRulesEssentialsBase.LogDebug($"PieceID = {piece.boardPieceId} Has Effect: {__instance.effectStateType} Ticks left: {__instance.DurationTurnsLeft}");
             if (__instance.effectStateType == EffectStateType.PVPLimitArenaBurn || __instance.effectStateType == EffectStateType.PVPLimitArenaBurnLv2 || __instance.effectStateType == EffectStateType.PVPLimitArenaBurnLv3 || __instance.effectStateType == EffectStateType.PVPLimitArenaBurnLv4)
             {
                 piece.AddGold(0);
