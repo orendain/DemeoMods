@@ -2,20 +2,21 @@
 {
     using System.Collections.Generic;
     using Boardgame.Board;
+    using Boardgame.BoardEntities;
     using DataKeys;
     using global::Types;
     using HouseRules.Core.Types;
     using HouseRules.Essentials.Rules;
 
-    internal static class Heroes_of_the_Voice_Machine
+    internal static class Heroes_of_the_Voice_Machine_Easy
     {
         internal static Ruleset Create()
         {
-            // Heroes of the Voice Machine Standard PROGRESSIVE
+            // Heroes of the Voice Machine Easy PROGRESSIVE
             // by BobtheBunny  version 1.2
-            const string name = "Heroes of the Voice Machine (PROGRESSIVE)";
-            const string description = "The adventure begins.. take a chance, roll the dice.";
-            const string longdesc = "Many thanks to TheGrayAlien!\nThis is a rebuild of BobtheBunnys Legend of the Voice Machine mod with the leveling features of the DemeoRevolutions Progressive mods.\n\nTheme is based on a popular TTRPG stream by a bunch of nerdy voice actors and their hit animated series.\n\nSorcerer\nThe snarky and witty gunslinger. Descendant of royalty and tragedy, his soul is corrupt.\n\nGuardian\nUnsure and often unreliable, but always lovable cleric. She is every bit as much a warrior as a healer.\n\nBarbarian\nMuscles, big weapon, yells a lot, and always fond of ale. He would like to rage.\n\nBard\nGird your loins and tap your toes, this clever artist can weave melodies and magic to aid his friends in battle.\n\nHunter\nA powerful druid if she had more confidence in herself. Her people count on her to lead some day, but for now just try not to die.\n\nAssassin\nMove fast and strike with dagger-dagger-dagger. He's got a few tricks up his sleeve and feathers in his cloak.\n\nWarlock\nArcher with a pet bear. Which one has a more pleasant attitude? You wont have time to ask before you are marked for death.";
+            const string name = "Heroes of the Voice Machine (EASY PROGRESSIVE)";
+            const string description = "The adventure begins.. take (slighty less of) a chance, roll the dice.";
+            const string longdesc = "Many thanks to TheGrayAlien!\nThis is a rebuild of BobtheBunnys Legend of the Voice Machine mod with the leveling features of the DemeoRevolutions Progressive mods.\nEasy mode: You will skip the first floor and Heroes start at level 3. Experience gains faster.\n\nTheme is based on a popular TTRPG stream by a bunch of nerdy voice actors and their hit animated series.\n\nSorcerer\nThe snarky and witty gunslinger. Descendant of royalty and tragedy, his soul is corrupt.\n\nGuardian\nUnsure and often unreliable, but always lovable cleric. She is every bit as much a warrior as a healer.\n\nBarbarian\nMuscles, big weapon, yells a lot, and always fond of ale. He would like to rage.\n\nBard\nGird your loins and tap your toes, this clever artist can weave melodies and magic to aid his friends in battle.\n\nHunter\nA powerful druid if she had more confidence in herself. Her people count on her to lead some day, but for now just try not to die.\n\nAssassin\nMove fast and strike with dagger-dagger-dagger. He's got a few tricks up his sleeve and feathers in his cloak.\n\nWarlock\nArcher with a pet bear. Which one has a more pleasant attitude? You wont have time to ask before you are marked for death.";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -64,16 +65,18 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "StartHealth", Value = 13 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "AttackDamage", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "MoveRange", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Mimic, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 110 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "StartHealth", Value = 100 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "PowerIndex", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "ActionPoint", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "BerserkBelowHealth", Value = 0.90f },
-                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "MagicBonus", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "MagicBonus", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 210 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 160 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "PowerIndex", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "MoveRange", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MadElvenKingHandLeft, Property = "PreciseHealth", Value = 1 },
@@ -83,87 +86,92 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 98 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "PowerIndex", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 80 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "PowerIndex", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "ActionPoint", Value = 3 },
-                // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "MagicBonus", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "MagicBonus", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "StartHealth", Value = 115 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "PowerIndex", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "MoveRange", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "BerserkBelowHealth", Value = 0.90f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 135 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "PowerIndex", Value = 6 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "ActionPoint", Value = 3 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "MagicBonus", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "ActionPoint", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "AttackDamage", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeTailBoss, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeTailBoss, Property = "PowerIndex", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeTailBoss, Property = "PreciseHealth", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeTailBoss, Property = "MagicBonus", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "StartHealth", Value = 18 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "MoveRange", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BarkArmor", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "BerserkBelowHealth", Value = 0.35f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Wyvern, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "AttackDamage", Value = 2 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.EarthElemental, Property = "PowerIndex", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "PowerIndex", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SilentSentinel, Property = "StartHealth", Value = 12 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Brookmare, Property = "PowerIndex", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "StartHealth", Value = 35 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BigBoiMutant, Property = "PowerIndex", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "StartHealth", Value = 45 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 1 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Cavetroll, Property = "PowerIndex", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "StartHealth", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "AttackDamage", Value = 7 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "BerserkBelowHealth", Value = 0.99f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "StartArmor", Value = 13 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Gorgon, Property = "PowerIndex", Value = 0 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "StartHealth", Value = 25 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenMarauder, Property = "BerserkBelowHealth", Value = .5f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "StartHealth", Value = 22 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "PowerIndex", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSlime, Property = "BerserkBelowHealth", Value = .5f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "StartHealth", Value = 25 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "MoveRange", Value = 3 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GiantSpider, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "StartHealth", Value = 30 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Sigataur, Property = "PowerIndex", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootGolem, Property = "BerserkBelowHealth", Value = .5f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PowerIndex", Value = 0 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "PowerIndex", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ServantOfAlfaragh, Property = "StartHealth", Value = 27 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenSkirmisher, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenSkirmisher, Property = "PreciseAttack", Value = 1 },
@@ -171,12 +179,10 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ScabRat, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ScabRat, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ScabRat, Property = "StartHealth", Value = 8 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ScabRat, Property = "PowerIndex", Value = 0 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinMadUn, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinMadUn, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinMadUn, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinMadUn, Property = "BerserkBelowHealth", Value = .75f },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinMadUn, Property = "PowerIndex", Value = 0 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ReptileArcher, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ReptileArcher, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ReptileMutantWizard, Property = "PreciseHealth", Value = 1 },
@@ -197,7 +203,6 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.DruidArcher, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.DruidHoundMaster, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.DruidHoundMaster, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.DruidHoundMaster, Property = "PowerIndex", Value = 0 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinChieftan, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinChieftan, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.GoblinFighter, Property = "PreciseHealth", Value = 1 },
@@ -212,10 +217,8 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Slimeling, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Bandit, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Bandit, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Bandit, Property = "PowerIndex", Value = 0 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Thug, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Thug, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.Thug, Property = "PowerIndex", Value = 0 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenArcher, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenArcher, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenCultist, Property = "PreciseHealth", Value = 1 },
@@ -1351,7 +1354,7 @@
                 { BoardPieceId.ReptileMutantWizard, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.Deflect, AbilityKey.DrainingKiss, AbilityKey.Electricity } },
                 { BoardPieceId.GiantSpider, new List<AbilityKey> { AbilityKey.EnemyKnockbackMelee, AbilityKey.SpiderWebshot, AbilityKey.Grab, AbilityKey.PoisonBomb } },
                 { BoardPieceId.ScabRat, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.DiseasedBiteKnockback } },
-                { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportLamp, AbilityKey.ElvenSummonerDeflect, AbilityKey.DrainingKiss, AbilityKey.Electricity, AbilityKey.AcidSpit, AbilityKey.EnemyFireball, AbilityKey.Grab } },
+                { BoardPieceId.ElvenQueen, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.TeleportLamp, AbilityKey.ElvenSummonerDeflect, AbilityKey.DrainingKiss, AbilityKey.Electricity, AbilityKey.AcidSpit, AbilityKey.EnemyFireball, AbilityKey.Grab, AbilityKey.LeapHeavy } },
                 { BoardPieceId.RatKing, new List<AbilityKey> { AbilityKey.EnemyMelee, AbilityKey.ElvenKingMeleeWhip, AbilityKey.AcidSpit, AbilityKey.EarthShatter, AbilityKey.PoisonBomb, AbilityKey.RatBomb, AbilityKey.RatFrenzy, AbilityKey.RatWhisperer, AbilityKey.WaterDive } },
             });
 
@@ -1451,7 +1454,6 @@
                 { AbilityKey.BoobyTrap, false },
                 { AbilityKey.BeastWhisperer, false },
                 { AbilityKey.CoinFlip, false },
-                { AbilityKey.EnemyMeleeBleed, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -1646,38 +1648,44 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.SpellPower,
+                    durationTurns = 4,
+                    damagePerTurn = 0,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.PVPLimitArenaBurn,
+                    durationTurns = 4,
+                    damagePerTurn = 0,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.PVPLimitArenaBurnLv2,
+                    durationTurns = 3,
+                    damagePerTurn = 0,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.PVPLimitArenaBurnLv3,
+                    durationTurns = 2,
+                    damagePerTurn = 0,
+                    clearOnNewLevel = false,
+                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.PVPLimitArenaBurnLv4,
                     durationTurns = 1,
                     damagePerTurn = 0,
                     clearOnNewLevel = false,
-                    counterAttackDirections = 0,
-                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
-                    applyAfterDissipate = EffectStateType.ElvenHand1RespawnCooldown,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Bleeding1,
-                    durationTurns = 1,
-                    damagePerTurn = 7,
-                    clearOnNewLevel = true,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                    applyAfterDissipate = EffectStateType.Bleeding2,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Bleeding2,
-                    durationTurns = 1,
-                    damagePerTurn = 12,
-                    clearOnNewLevel = true,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                    applyAfterDissipate = EffectStateType.Bleeding3,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.Bleeding3,
-                    durationTurns = 1,
-                    damagePerTurn = 18,
-                    clearOnNewLevel = true,
-                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                    applyAfterDissipate = EffectStateType.Overcharge,
                 },
                 new StatusEffectData
                 {
@@ -1742,7 +1750,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.Courageous,
-                    durationTurns = 5,
+                    durationTurns = 4,
                     damagePerTurn = 0,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
@@ -1750,7 +1758,7 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.Heroic,
-                    durationTurns = 5,
+                    durationTurns = 4,
                     damagePerTurn = 0,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
@@ -1758,78 +1766,22 @@
                 new StatusEffectData
                 {
                     effectStateType = EffectStateType.Fearless,
-                    durationTurns = 6,
+                    durationTurns = 5,
                     damagePerTurn = 0,
                     clearOnNewLevel = false,
                     tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
                 },
             });
 
-            // Calling Monster deck Addition rule. So only need to Add to the default decks.
-            // Exit Decks may not spawn if EnemyRespawnDisabledRule == true.
-            // Need to check if adding a monster already in the deck overwrites the current count or adds to the total.
-            // had to write it as a postfix to add to the decks after the game creates the initial decks.
-            // testing what happens if we do or don't pass a keyholder for floor1 and floor2.
-            var myEntranceDeckFloor1 = new Dictionary<BoardPieceId, int>
+            var smallLevelSequenceRule = new SmallLevelSequenceOverriddenRule(new List<string>
             {
-                { BoardPieceId.CultMemberElder, 20 },
-                { BoardPieceId.KillerBee, 20 },
-                { BoardPieceId.BigBoiMutant, 5 },
-            };
-            var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.ElvenSpearman, 2 },
-                { BoardPieceId.CultMemberElder, 1 },
-                { BoardPieceId.KillerBee, 1 },
-                { BoardPieceId.EarthElemental, 1 },
-                { BoardPieceId.Sigataur, 1 },
-                { BoardPieceId.Brookmare, 1 },
-                { BoardPieceId.SilentSentinel, 1 },
-                { BoardPieceId.BigBoiMutant, 1 },
-                { BoardPieceId.ChestGoblin, 1 },
-            };
-            var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.ElvenSpearman, 2 },
-                { BoardPieceId.CultMemberElder, 2 },
-                { BoardPieceId.KillerBee, 2 },
-                { BoardPieceId.EarthElemental, 2 },
-                { BoardPieceId.Gorgon, 1 },
-                { BoardPieceId.Brookmare, 1 },
-                { BoardPieceId.SilentSentinel, 1 },
-                { BoardPieceId.BigBoiMutant, 1 },
-            };
-            var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.ElvenSpearman, 2 },
-                { BoardPieceId.CultMemberElder, 1 },
-                { BoardPieceId.KillerBee, 2 },
-                { BoardPieceId.ChestGoblin, 1 },
-                { BoardPieceId.Gorgon, 2 },
-            };
-            var myBossDeck = new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.ElvenSpearman, 2 },
-                { BoardPieceId.ElvenMystic, 1 },
-                { BoardPieceId.CultMemberElder, 1 },
-                { BoardPieceId.KillerBee, 1 },
-                { BoardPieceId.EarthElemental, 1 },
-                { BoardPieceId.RootGolem, 1 },
-                { BoardPieceId.BigBoiMutant, 1 },
-            };
-            var myMonsterDeckConfig = new MyMonsterDeckOverriddenRule.MyDeckConfig
-            {
-                EntranceDeckFloor1 = myEntranceDeckFloor1,
-                ExitDeckFloor1 = myExitDeckFloor1,
-                EntranceDeckFloor2 = myEntranceDeckFloor2,
-                ExitDeckFloor2 = myExitDeckFloor2,
-                BossDeck = myBossDeck,
-                KeyHolderFloor1 = BoardPieceId.BigBoiMutant, // should allow the game to decide the key holder.
-                KeyHolderFloor2 = BoardPieceId.ElvenSummoner,
-            };
-
-            var myMonsterDeckRule = new MyMonsterDeckOverriddenRule(myMonsterDeckConfig);
-            // var heroMonsterDeckAddition = new HeroesMonsterDeckAdditionRule(myMonsterDeckConfig);
+                "ElvenFloor17",
+                "SewersFloor08",
+                "SewersFloor11",
+                "ForestFloor02",
+                "ForestFloor01",
+                "ElvenFloor14",
+            });
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
             {
@@ -1839,6 +1791,7 @@
                 { "FloorOneMerchant", 0 },
                 { "FloorOneLootChests", 3 },
                 { "FloorOneGoldMaxAmount", 150 },
+                { "FloorOneElvenSummoners", 0 },
                 { "FloorOneSellswords", 1 },
                 { "FloorOneVillagers", 2 },
                 { "FloorTwoHealingFountains", 2 },
@@ -1848,10 +1801,12 @@
                 { "FloorTwoVillagers", 2 },
                 { "FloorTwoLootChests", 6 },
                 { "FloorTwoGoldMaxAmount", 300 },
-                { "FloorThreeHealingFountains", 0 },
+                { "FloorTwoElvenSummoners", 0 },
+                { "FloorThreeHealingFountains", 1 },
                 { "FloorThreePotionStand", 0 },
                 { "FloorThreeMerchant", 0 },
                 { "FloorThreeLootChests", 2 },
+                { "FloorThreeElvenSummoners", 0 },
                 { "PacingSpikeSegmentFloorThreeBudget", 12 },
             });
 
@@ -1904,8 +1859,7 @@
                 courageShantyRule,
                 reviveEffectsRule,
                 tileEffectRule,
-                myMonsterDeckRule,
-                // heroMonsterDeckAddition, // not working. Game fails at trying to start the level.
+                // myMonsterDeckRule,
                 startingCardsRule,
                 allowedChestCardsRule,
                 allowedEnergyCardsRule,
@@ -1942,7 +1896,7 @@
                 enemyHealthScaledRule,
                 enemyAttackScaledRule,
                 abilityRandomPieceRule,
-                // smallLevelSequenceRule,
+                smallLevelSequenceRule,
                 levelPropertiesRule);
         }
     }

@@ -48,6 +48,15 @@
             public int UseFountain;
             public int RevivePlayer;
             public bool PVPisOn; // set for PVP = true, or Co-op = false.
+            public int Points4Minions; // 0 for none. 1 for Cana. 2 for Arly. 3 for Cana and Arly.
+        }
+
+        public enum PointsKeys
+        {
+            MinionsNone = 0,
+            MinionsOnlyCana = 1,
+            MinionsOnlyArly = 2,
+            MinionsALL = 3,
         }
 
         public PointGainRule(Points points)
@@ -356,7 +365,7 @@
                 return;
             }
 
-            if (!attackerUnit.IsPlayer())
+            if (!attackerUnit.IsPlayer() && (_globalConfig.Points4Minions == (int)PointsKeys.MinionsOnlyCana || _globalConfig.Points4Minions == (int)PointsKeys.MinionsALL))
             {
                 Piece piece2;
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
@@ -377,7 +386,7 @@
                         return;
                     }
                 }
-                else if (attackerUnit.boardPieceId == BoardPieceId.SellswordArbalestierActive)
+                else if (attackerUnit.boardPieceId == BoardPieceId.SellswordArbalestierActive && (_globalConfig.Points4Minions == (int)PointsKeys.MinionsOnlyArly || _globalConfig.Points4Minions == (int)PointsKeys.MinionsALL))
                 {
                     PieceAI pieceAI = attackerUnit.pieceAI;
                     if (pieceAI == null)
@@ -406,25 +415,38 @@
                 pointCount = 0;
             }
 
-            bool flag;
-            if (!defeatedUnit.IsPlayer())
+            bool flag = false;
+
+            if (!defeatedUnit.IsPlayer() && attackerUnit.IsPlayer())
             {
-                HouseRulesEssentialsBase.LogDebug($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed enemy {defeatedUnit.boardPieceId} ({_globalConfig.KillEnemy})");
+                // Heroes. Adjust for total HP of killed monster. More points for bigger enemies.
+                int killedHP = (int)defeatedUnit.GetMaxHealth() / 10;
+                if (killedHP > 0)
+                {
+                    pointCount += killedHP;
+                }
+                else
+                {
+                    killedHP = 0;
+                }
+
+                HouseRulesEssentialsBase.LogDebug($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed enemy {defeatedUnit.boardPieceId} ({_globalConfig.KillEnemy + killedHP})");
                 flag = true;
                 pointCount += _globalConfig.KillEnemy;
+
                 if (defeatedUnit.HasPieceType(PieceType.Boss))
                 {
                     HouseRulesEssentialsBase.LogDebug($"Enemy was the BOSS ({_globalConfig.KillBoss})");
                     pointCount += _globalConfig.KillBoss;
                 }
             }
-            else if (defeatedUnit != attackerUnit)
+            else if (defeatedUnit != attackerUnit && attackerUnit.IsPlayer())
             {
                 HouseRulesEssentialsBase.LogDebug($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed player {defeatedUnit.boardPieceId} ({_globalConfig.KillPlayer})");
                 flag = true;
                 pointCount += _globalConfig.KillPlayer;
             }
-            else
+            else if (defeatedUnit == attackerUnit)
             {
                 HouseRulesEssentialsBase.LogDebug($"{attackerUnit.boardPieceId} [ID: {attackerUnit.networkID}] killed self {defeatedUnit.boardPieceId} ({_globalConfig.KillSelf})");
                 flag = true;
@@ -461,7 +483,7 @@
             {
                 Piece piece2;
                 var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
-                if (source.boardPieceId == BoardPieceId.WarlockMinion && source.GetHealth() > 0)
+                if (source.boardPieceId == BoardPieceId.WarlockMinion && source.GetHealth() > 0 && (_globalConfig.Points4Minions == (int)PointsKeys.MinionsOnlyCana || _globalConfig.Points4Minions == (int)PointsKeys.MinionsALL))
                 {
                     PieceAI pieceAI = source.pieceAI;
                     if (pieceAI == null)
@@ -478,7 +500,7 @@
                         return;
                     }
                 }
-                else if (source.boardPieceId == BoardPieceId.SellswordArbalestierActive)
+                else if (source.boardPieceId == BoardPieceId.SellswordArbalestierActive && (_globalConfig.Points4Minions == (int)PointsKeys.MinionsOnlyArly || _globalConfig.Points4Minions == (int)PointsKeys.MinionsALL))
                 {
                     PieceAI pieceAI = source.pieceAI;
                     if (pieceAI == null)
@@ -523,13 +545,13 @@
                     {
                         continue;
                     }
-                    else if (targets[i].IsPlayer() && targets[i] != source && !targets[i].IsDowned() && !targets[i].IsImmuneToDamage())
+                    else if (targets[i] != source && !targets[i].IsDowned() && !targets[i].IsImmuneToDamage())
                     {
-                        if (_globalConfig.PVPisOn && (diceResult == Dice.Outcome.Hit || diceResult == Dice.Outcome.Crit)) // pvp and hit.
+                        if (targets[i].IsPlayer() && (diceResult == Dice.Outcome.Hit || diceResult == Dice.Outcome.Crit)) // hit.
                         {
                             HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt player {targets[i].boardPieceId} ({_globalConfig.HurtPlayer})");
                             flag = true;
-                            pointCount += _globalConfig.HurtPlayer; // test pvp
+                            pointCount += _globalConfig.HurtPlayer; // negative for co-op. positive for pvp.
 
                             if (source.HasEffectState(EffectStateType.Key))
                             {
@@ -537,27 +559,9 @@
                                 pointCount += _globalConfig.Keyholder;
                             }
                         }
-                        else if (_globalConfig.PVPisOn && diceResult == Dice.Outcome.None) // pvp and buff.
+                        else if (targets[i].IsPlayer() && diceResult == Dice.Outcome.None) // pvp and buff.
                         {
                             HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] buffed player {targets[i].boardPieceId} ({_globalConfig.BuffPlayer})");
-                            flag = true;
-                            pointCount += _globalConfig.BuffPlayer; // test pvp
-
-                            if (source.HasEffectState(EffectStateType.Key))
-                            {
-                                HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
-                                pointCount += _globalConfig.Keyholder;
-                            }
-                        }
-                        else if (!_globalConfig.PVPisOn && (diceResult == Dice.Outcome.Hit || diceResult == Dice.Outcome.Crit)) // not pvp and hit.
-                        {
-                            HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt player (not PVP) {targets[i].boardPieceId} ({_globalConfig.HurtPlayer})");
-                            flag = true;
-                            pointCount += _globalConfig.HurtPlayer; // this should be negative if not PVP.
-                        }
-                        else if (!_globalConfig.PVPisOn && (diceResult == Dice.Outcome.None)) // not pvp and buff.
-                        {
-                            HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] buff player (not PVP) {targets[i].boardPieceId} ({_globalConfig.BuffPlayer})");
                             flag = true;
                             pointCount += _globalConfig.BuffPlayer; // test pvp
 
@@ -590,6 +594,10 @@
                             HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
                             pointCount += _globalConfig.Keyholder;
                         }
+                    }
+                    else
+                    {
+                        HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt <undefined target>");
                     }
                 }
             }

@@ -104,22 +104,6 @@
                         }
                     }
                 }
-                else
-                {
-                    // This code would only possibly work for SKIRMISH or ONLY the game Host but not Clients
-                    if (value.abilityKey == AbilityKey.Grab)
-                    {
-                        AbilityFactory.GetAbility(AbilityKey.Grab).maxRange = 15;
-                    }
-                    else if (value.abilityKey == AbilityKey.BoobyTrap)
-                    {
-                        AbilityFactory.GetAbility(AbilityKey.BoobyTrap).maxRange = 5;
-                    }
-                    else if (value.abilityKey == AbilityKey.CourageShanty)
-                    {
-                        AbilityFactory.GetAbility(AbilityKey.CourageShanty).mayTargetSelf = true;
-                    }
-                }
 
                 // Bypass problem with replenishCooldown somehow being set to -1 by Demeo
                 foreach (var card in _globalHeroStartCards[piece.boardPieceId])

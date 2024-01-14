@@ -44,9 +44,14 @@
                 return;
             }
 
-            if (sourceAbility != AbilityKey.Revive)
+            var ruleSet = HR.SelectedRuleset.Name;
+            // If magic, a potion, or a fountain was used then don't lose a level (except on LEGENDARY)
+            if (!ruleSet.Contains("(LEGENDARY"))
             {
-                return;
+                if (sourceAbility != AbilityKey.Revive)
+                {
+                    return;
+                }
             }
 
             Piece piece = revivedPiece;

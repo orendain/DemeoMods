@@ -2,11 +2,13 @@
 {
     using Boardgame;
     using Boardgame.BoardEntities;
+    using Boardgame.BoardEntities.Abilities;
     using Data.GameData;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Core;
     using HouseRules.Core.Types;
+    using UnityEngine;
 
     public sealed class HeroesRule : Rule, IConfigWritable<int>, IPatchable, IMultiplayerSafe
     {
@@ -422,7 +424,20 @@
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 6);
                 }
 
-                piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
+                var ruleSet = HR.SelectedRuleset.Name;
+                if (ruleSet.Contains("(LEGENDARY"))
+                {
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 3);
+                }
+                else if (ruleSet.Contains("(EASY"))
+                {
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 1);
+                }
+                else
+                {
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 2);
+                }
+
                 piece.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
                 piece.EnableEffectState(EffectStateType.Flying);
                 piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1); // flying is the level tracker.
@@ -440,15 +455,294 @@
                 return;
             }
 
+
+            if (__result.IsPlayer())
+            {
+                // Apply level 2.
+                if (HR.SelectedRuleset.Name.Contains("Heroes ") && HR.SelectedRuleset.Name.Contains("Easy PROGRESSIVE"))
+                {
+                    Piece piece = __result;
+                    GameUI.ShowCameraMessage("<color=#F0F312>The party Starts at</color> <color=#00FF00>LEVEL 3</color><color=#F0F312>!</color>", 6);
+
+                    // extra stats and refreshables become 0AP at level 2
+                    // piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
+                    // piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
+                    piece.GetPieceConfig().StartHealth += 1;
+
+                    if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.TauntingScream, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.CourageShanty, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                    {
+                        // Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.TryAddAbilityToInventory(AbilityKey.DropChest);
+                        piece.AddGold(0);
+
+                        AbilityFactory.TryGetAbility(AbilityKey.BlindingLight, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.Whip, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.SnakeBossLongRange, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                    {
+                        AbilityFactory.TryGetAbility(AbilityKey.MagicMissile, out var ability);
+                        ability.costActionPoint = false;
+                    }
+
+                    // Apply level 3.
+                    if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
+                    {
+                        // increases their hand size incase their hand is full, so they can take the card.
+                        // I think this is making everything refreshing. update: it was the 'flags' variable that made it refreshing.
+                        // Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.TryAddAbilityToInventory(AbilityKey.SpawnRandomLamp);
+                        piece.AddGold(0); // this only updates their inventory, but its still helpful.
+
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.EnemyJavelin,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 2,
+                        });
+                        piece.AddGold(0);
+
+                        piece.TryAddAbilityToInventory(AbilityKey.WeakeningShout);
+                        piece.AddGold(0);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroBard)
+                    {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.TeleportLamp,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 2,
+                        });
+
+                        piece.TryAddAbilityToInventory(AbilityKey.BlindingLight);
+                        piece.TryAddAbilityToInventory(AbilityKey.PoisonBomb);
+                        piece.AddGold(0);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
+                    {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.Zap,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 2,
+                        });
+
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.TurretHealProjectile,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 3,
+                        });
+                        piece.AddGold(0);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroRogue)
+                    {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.EnemyFireball,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.DiseasedBite,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+
+                        piece.TryAddAbilityToInventory(AbilityKey.BoobyTrap);
+                        piece.AddGold(0);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
+                    {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.TornadoCharge,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 1,
+                        });
+
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.WaterDive,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 3,
+                        });
+
+                        piece.TryAddAbilityToInventory(AbilityKey.EnemyFrostball);
+                        piece.TryAddAbilityToInventory(AbilityKey.BeastWhisperer);
+                        piece.AddGold(0);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
+                    {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.TurretHighDamageProjectile,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 3,
+                        });
+
+                        piece.TryAddAbilityToInventory(AbilityKey.Implode);
+                        piece.AddGold(0);
+                    }
+                    else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
+                    {
+                        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.inventory.Items.Add(new Inventory.Item
+                        {
+                            abilityKey = AbilityKey.EnemyFireball,
+                            flags = (Inventory.ItemFlag)1,
+                            originalOwner = -1,
+                            replenishCooldown = 2,
+                        });
+                        piece.AddGold(0);
+
+                        // Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
+                        piece.TryAddAbilityToInventory(AbilityKey.MinionCharge);
+                        piece.AddGold(0);
+
+                        AbilityFactory.TryGetAbility(AbilityKey.MinionCharge, out var ability);
+                        ability.costActionPoint = false;
+                    }
+                }
+            }
+
             if (!__result.IsPlayer())
             {
-                if (__result.boardPieceId == BoardPieceId.FireElemental)
+                var ruleSet = HR.SelectedRuleset.Name;
+                var heroesInsaneMultiplier = 1.0f;
+                var heroesDifficultyMultiplier = 1.0f;
+                if (ruleSet.Contains("Heroes ") && ruleSet.Contains("Insane PROGRESSIVE"))
                 {
-                    __result.effectSink.AddStatusEffect(EffectStateType.FireImmunity, 99);
+                    heroesInsaneMultiplier = 1.20f;
                 }
-                else if (__result.boardPieceId == BoardPieceId.IceElemental)
+                else if (ruleSet.Contains("Heroes ") && ruleSet.Contains("Easy PROGRESSIVE"))
                 {
-                    __result.effectSink.AddStatusEffect(EffectStateType.IceImmunity, 99);
+                    heroesDifficultyMultiplier = 0.10f;
+                }
+
+                // checks the game type for Heroes, and makes sure its not giving lamps more HP.
+                if (ruleSet.Contains("Heroes ") && (__result.boardPieceId != BoardPieceId.GasLamp || __result.boardPieceId != BoardPieceId.IceLamp || __result.boardPieceId != BoardPieceId.OilLamp || __result.boardPieceId != BoardPieceId.VortexLamp || __result.boardPieceId != BoardPieceId.WaterLamp))
+                {
+                    if (__result.boardPieceId == BoardPieceId.FireElemental)
+                    {
+                        __result.effectSink.AddStatusEffect(EffectStateType.FireImmunity, 99);
+                    }
+                    else if (__result.boardPieceId == BoardPieceId.IceElemental)
+                    {
+                        __result.effectSink.AddStatusEffect(EffectStateType.IceImmunity, 99);
+                    }
+
+                    if (ruleSet.Contains("PROGRESSIVE") || ruleSet.Contains("(LEGENDARY"))
+                    {
+                        var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                        if (gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIndex == 3)
+                        {
+                            // increase the monster health by 1/4. Should scale for bigger enemies.
+                            __result.effectSink.TrySetStatMaxValue(Stats.Type.Health, __result.GetMaxHealth() * (1.25f * heroesInsaneMultiplier));
+                            __result.effectSink.TrySetStatBaseValue(Stats.Type.Health, __result.GetMaxHealth() * (1.25f * heroesInsaneMultiplier));
+                        }
+                        else if (gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIndex == 5)
+                        {
+                            // check if it's a boss so they don't get too many hit points.
+                            if (__result.boardPieceId != BoardPieceId.ElvenQueen && __result.boardPieceId != BoardPieceId.RootLord && __result.boardPieceId != BoardPieceId.MotherCy && __result.boardPieceId != BoardPieceId.WizardBoss && __result.boardPieceId != BoardPieceId.BossTown)
+                            {
+                                // increase the monster health by 1/2. Should scale for bigger enemies.
+                                __result.effectSink.TrySetStatMaxValue(Stats.Type.Health, __result.GetMaxHealth() * (1.5f * heroesInsaneMultiplier));
+                                __result.effectSink.TrySetStatBaseValue(Stats.Type.Health, __result.GetMaxHealth() * (1.5f * heroesInsaneMultiplier));
+
+                                // if Insane mode, all monsters berserk at low health.
+                                if (heroesInsaneMultiplier > 1.0f)
+                                {
+                                    if (__result.GetPieceConfig().BerserkBelowHealth < 40.0f)
+                                    {
+                                        __result.GetPieceConfig().BerserkBelowHealth = 40.0f;
+                                    }
+                                }
+                            }
+                            else if (__result.boardPieceId == BoardPieceId.ElvenQueen && __result.boardPieceId == BoardPieceId.RootLord && __result.boardPieceId == BoardPieceId.MotherCy && __result.boardPieceId == BoardPieceId.WizardBoss && __result.boardPieceId == BoardPieceId.BossTown)
+                            {
+                                // decrease Boss health for easy mode.
+                                __result.effectSink.TrySetStatMaxValue(Stats.Type.Health, __result.GetMaxHealth() * heroesDifficultyMultiplier);
+                                __result.effectSink.TrySetStatBaseValue(Stats.Type.Health, __result.GetMaxHealth() * heroesDifficultyMultiplier);
+                            }
+                        }
+
+                        // check if they have 0 health and give them at least 1 HP.
+                        if (__result.GetMaxHealth() < 1)
+                        {
+                            __result.effectSink.TrySetStatMaxValue(Stats.Type.Health, 1);
+                            __result.effectSink.TrySetStatBaseValue(Stats.Type.Health, 1);
+                        }
+                    }
+                }
+
+                // Insanity! Corresponds to check in Tick. If durration is above 50, reset to another random buff.
+                if (heroesInsaneMultiplier > 1.0f && (__result.boardPieceId != BoardPieceId.ElvenQueen && __result.boardPieceId != BoardPieceId.RootLord))
+                {
+                    int nextPhase = Random.Range(1, 6);
+                    switch (nextPhase)
+                    {
+                        case 1:
+                            __result.EnableEffectState(EffectStateType.Deflect, 55);
+                            // __result.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
+                            break;
+                        case 2:
+                            __result.EnableEffectState(EffectStateType.MagicShield, 55);
+                            break;
+                        case 3:
+                            __result.EnableEffectState(EffectStateType.Invisibility, 55);
+                            break;
+                        case 4:
+                            __result.EnableEffectState(EffectStateType.Recovery, 55);
+                            break;
+                        case 5:
+                            __result.EnableEffectState(EffectStateType.Courageous, 55);
+                            break;
+                    }
                 }
 
                 return;

@@ -135,7 +135,17 @@
                 else if (setName.Contains("Voice Machine (PROGRESSIVE"))
                 {
                     fontSize = 16;
-                    setName = "<color=#AAEA04><b>Heroes of the Voice Machine</b></color> <color=#FD56D3><b>(PROGRESSIVE)</b></color>";
+                    setName = "<color=#FFFF00><b>Heroes of the Voice Machine</b></color>\n<color=#FD56D3><b>(PROGRESSIVE)</b></color>";
+                }
+                else if (setName.Contains("Voice Machine (EASY PROGRESSIVE"))
+                {
+                    fontSize = 16;
+                    setName = "<color=#FFFF00><b>Heroes of the Voice Machine</b></color>\n<color=#567FFD><b>(EASY PROGRESSIVE)</b></color>";
+                }
+                else if (setName.Contains("Voice Machine (INSANE PROGRESSIVE"))
+                {
+                    fontSize = 16;
+                    setName = "<color=#FFFF00><b>Heroes of the Voice Machine</b></color>\n<color=#D456FD><b>(LEGENDARY PROGRESSIVE)</b></color>";
                 }
             }
 
