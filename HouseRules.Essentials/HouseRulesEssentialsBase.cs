@@ -91,6 +91,7 @@
             HR.Rulebook.Register(typeof(FreeReplenishablesOnCritRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
             HR.Rulebook.Register(typeof(GrappleUnhookedRule));
+            HR.Rulebook.Register(typeof(HeroesMonsterDeckAdditionRule));
             HR.Rulebook.Register(typeof(HeroesPieceProgressLostRule));
             HR.Rulebook.Register(typeof(HeroesPieceProgressRule));
             HR.Rulebook.Register(typeof(HeroesRule));
@@ -152,6 +153,8 @@
             HR.Rulebook.Register(FriendlyCompetition.Create());
             HR.Rulebook.Register(DarkestDankestDemeoRuleset.Create());
             HR.Rulebook.Register(Heroes_of_the_Voice_Machine.Create());
+            // HR.Rulebook.Register(Heroes_of_the_Voice_Machine_Easy.Create());
+            // HR.Rulebook.Register(Heroes_of_the_Voice_Machine_Insane.Create());
             HR.Rulebook.Register(HardcoreRuleset.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(Blobophobia.Create());
