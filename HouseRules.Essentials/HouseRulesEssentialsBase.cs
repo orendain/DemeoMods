@@ -101,6 +101,7 @@
             HR.Rulebook.Register(typeof(PartyElectricityDamageOverriddenRule));
             HR.Rulebook.Register(typeof(PetsFocusHunterMarkRule));
             HR.Rulebook.Register(typeof(PieceAbilityListOverriddenRule));
+            HR.Rulebook.Register(typeof(PieceBlobophobiaRule));
             HR.Rulebook.Register(typeof(PieceReplenishAbilityEveryLevelRule));
             HR.Rulebook.Register(typeof(PieceBehavioursListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceConfigAdjustedRule));
@@ -147,6 +148,7 @@
             HR.Rulebook.Register(DarkestDankestDemeoRuleset.Create());
             HR.Rulebook.Register(HardcoreRuleset.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
+            HR.Rulebook.Register(Blobophobia.Create());
             HR.Rulebook.Register(LuckyDip.Create());
             HR.Rulebook.Register(TheSwirlRuleset.Create());
             HR.Rulebook.Register(BeatTheClockRuleset.Create());
