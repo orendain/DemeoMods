@@ -55,7 +55,7 @@
                 return true;
             }
 
-            if (targetPiece.HasPieceType(PieceType.Creature) && targetPiece.boardPieceId != BoardPieceId.Verochka && damage.HasTag(DamageTag.Acid))
+            if (targetPiece.HasPieceType(PieceType.Creature) && !targetPiece.HasPieceType(PieceType.Prop) && targetPiece.boardPieceId != BoardPieceId.Verochka && damage.HasTag(DamageTag.Acid))
             {
                 targetPiece.effectSink.SubtractHealth(0);
                 return false;
