@@ -84,20 +84,39 @@
 
                 // Fix for Progressive adding new cards late in the game with longer than 1 cooldown
                 AbilityKey lateAbility = value.abilityKey;
-                if (lateAbility == AbilityKey.EnemyFlashbang || lateAbility == AbilityKey.DiseasedBite || lateAbility == AbilityKey.Net)
+                var ruleSet = HR.SelectedRuleset.Name;
+                if (!ruleSet.Contains("Heroes "))
                 {
-                    if (value.replenishCooldown < 0)
+                    if (lateAbility == AbilityKey.EnemyFlashbang || lateAbility == AbilityKey.DiseasedBite || lateAbility == AbilityKey.Net)
                     {
-                        value.replenishCooldown = 2;
-                        piece.inventory.Items[i] = value;
+                        if (value.replenishCooldown < 0)
+                        {
+                            value.replenishCooldown = 2;
+                            piece.inventory.Items[i] = value;
+                        }
+                    }
+                    else if (lateAbility == AbilityKey.Petrify || lateAbility == AbilityKey.AcidSpit || lateAbility == AbilityKey.DropChest || lateAbility == AbilityKey.Shockwave || lateAbility == AbilityKey.DeathFlurry)
+                    {
+                        if (value.replenishCooldown < 0)
+                        {
+                            value.replenishCooldown = 5;
+                            piece.inventory.Items[i] = value;
+                        }
                     }
                 }
-                else if (lateAbility == AbilityKey.Petrify || lateAbility == AbilityKey.AcidSpit || lateAbility == AbilityKey.DropChest || lateAbility == AbilityKey.Shockwave || lateAbility == AbilityKey.DeathFlurry)
+                else if (ruleSet.Contains("Heroes "))
                 {
-                    if (value.replenishCooldown < 0)
+                    if (value.abilityKey == AbilityKey.Grab)
                     {
-                        value.replenishCooldown = 5;
-                        piece.inventory.Items[i] = value;
+                        AbilityFactory.GetAbility(AbilityKey.Grab).maxRange = 15;
+                    }
+                    else if (value.abilityKey == AbilityKey.BoobyTrap)
+                    {
+                        AbilityFactory.GetAbility(AbilityKey.BoobyTrap).maxRange = 5;
+                    }
+                    else if (value.abilityKey == AbilityKey.CourageShanty)
+                    {
+                        AbilityFactory.GetAbility(AbilityKey.CourageShanty).mayTargetSelf = true;
                     }
                 }
 

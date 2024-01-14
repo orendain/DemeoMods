@@ -164,9 +164,14 @@
                     _ = new GameObject("HouseRulesUiGameVr2", typeof(HouseRulesUiGameVr2));
                 }
 
-                if (progressive)
+                if (progressive && HR.SelectedRuleset.Name.Contains("Heroes "))
                 {
-                    LogDebug("Recognized Progressive game in VR. Loading UI.");
+                    LogDebug("Recognized Heroes Progressive game in VR. Loading UI.");
+                    _ = new GameObject("HouseRulesUiGameVr4", typeof(HouseRulesUiGameVr4));
+                }
+                else if (progressive)
+                {
+                    LogDebug("Recognized Revolutions Progressive game in VR. Loading UI.");
                     _ = new GameObject("HouseRulesUiGameVr3", typeof(HouseRulesUiGameVr3));
                 }
             }

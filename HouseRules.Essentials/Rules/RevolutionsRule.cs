@@ -551,6 +551,7 @@
                     piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);
                 }
 
+                piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, _globalGameType);
                 piece.AddGold(0);
             }
 

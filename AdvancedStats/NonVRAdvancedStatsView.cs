@@ -278,395 +278,125 @@
 
                     if (level > 0)
                     {
-                        int hp = 0;
-                        int kd = 0;
-                        int bon = 0;
-                        bool spd = false;
-                        bool app = true;
-                        sb.AppendLine();
-                        sb.Append(ColorizeString("--", Color.gray));
-                        sb.Append(ColorizeString(" Character ", pink));
-                        if (level < 10)
+                        // Show Revolutions game information here
+                        if (revolutions != 55)
                         {
-                            sb.Append(ColorizeString($"Level {level}", orange));
-                            sb.Append(ColorizeString(" PERKS ", pink));
-                            sb.AppendLine(ColorizeString("--", Color.gray));
-                        }
-                        else
-                        {
-                            sb.Append(ColorizeString($"Level {level}", orange));
-                            sb.Append(ColorizeString($" (MAXED!) ", gold));
-                            sb.Append(ColorizeString("PERKS ", pink));
-                            sb.AppendLine(ColorizeString("--", Color.gray));
-                        }
-
-                        sb.Append(ColorizeString("Critical hits on ", Color.yellow));
-                        sb.Append(ColorizeString("LAST ACTION", Color.white));
-                        sb.Append(ColorizeString(" activate ", Color.yellow));
-                        switch (myPiece.boardPieceId)
-                        {
-                            case BoardPieceId.HeroGuardian:
-                                sb.Append(ColorizeString("Berserk", Color.white));
-                                sb.Append(ColorizeString(" and restore ", Color.yellow));
-                                if (level > 3)
-                                {
-                                    sb.AppendLine(ColorizeString("2 Action Points", Color.white));
-                                }
-                                else
-                                {
-                                    sb.AppendLine(ColorizeString("1 Action Point", Color.white));
-                                }
-
-                                break;
-                            case BoardPieceId.HeroSorcerer:
-                                sb.Append(ColorizeString("Overcharge", Color.white));
-                                sb.Append(ColorizeString(" and gain ", Color.yellow));
-                                sb.Append(ColorizeString("Water Bottle", Color.white));
-                                sb.AppendLine(ColorizeString(" ability", Color.yellow));
-                                break;
-                            case BoardPieceId.HeroWarlock:
-                                sb.Append(ColorizeString("Self-Deflect", Color.white));
-                                sb.Append(ColorizeString(" and gain ", Color.yellow));
-                                sb.Append(ColorizeString("Spellpower Potion", Color.white));
-                                sb.AppendLine(ColorizeString(" ability", Color.yellow));
-                                break;
-                            case BoardPieceId.HeroHunter:
-                                sb.Append(ColorizeString("Freeze Arrow", Color.white));
-                                sb.Append(ColorizeString(" and gain ", Color.yellow));
-                                sb.Append(ColorizeString("Bone", Color.white));
-                                sb.AppendLine(ColorizeString(" ability", Color.yellow));
-                                break;
-                            case BoardPieceId.HeroBarbarian:
-                                sb.Append(ColorizeString("2 Resilience", Color.white));
-                                sb.Append(ColorizeString(" and gain ", Color.yellow));
-                                sb.AppendLine(ColorizeString("6 Vargas", Color.white));
-                                break;
-                            case BoardPieceId.HeroRogue:
-                                sb.Append(ColorizeString("Invisibility", Color.white));
-                                sb.AppendLine(ColorizeString(" until the NEXT turn ends ", Color.yellow));
-                                break;
-                            case BoardPieceId.HeroBard:
-                                sb.Append(ColorizeString("Deflection", Color.white));
-                                sb.Append(ColorizeString(" and gain ", Color.yellow));
-                                sb.Append(ColorizeString("Panic Powder", Color.white));
-                                sb.AppendLine(ColorizeString(" ability", Color.yellow));
-                                break;
-                        }
-
-                        if (level > 1)
-                        {
-                            app = true;
-                            switch (myPiece.boardPieceId)
+                            int hp = 0;
+                            int kd = 0;
+                            int bon = 0;
+                            bool spd = false;
+                            bool app = true;
+                            sb.AppendLine();
+                            sb.Append(ColorizeString("--", Color.gray));
+                            sb.Append(ColorizeString(" Character ", pink));
+                            if (level < 10)
                             {
-                                case BoardPieceId.HeroGuardian:
-                                    sb.Append(ColorizeString("Gained ", Color.yellow));
-                                    sb.Append(ColorizeString("Pull", Color.white));
-                                    sb.Append(ColorizeString(" ability", Color.yellow));
-                                    break;
-                                case BoardPieceId.HeroSorcerer:
-                                    sb.Append(ColorizeString("Replaced ", Color.yellow));
-                                    sb.Append(ColorizeString("Overcharge", Color.white));
-                                    sb.Append(ColorizeString(" with ", Color.yellow));
-                                    sb.Append(ColorizeString("Thunderbolt", Color.white));
-                                    break;
-                                case BoardPieceId.HeroWarlock:
-                                    sb.Append(ColorizeString("Gained ", Color.yellow));
-                                    sb.Append(ColorizeString("Feral Charge", Color.white));
-                                    sb.Append(ColorizeString(" ability", Color.yellow));
-                                    break;
-                                case BoardPieceId.HeroHunter:
-                                    sb.Append(ColorizeString("Replaced ", Color.yellow));
-                                    sb.Append(ColorizeString("1 Arrow", Color.white));
-                                    sb.Append(ColorizeString(" with a ", Color.yellow));
-                                    sb.Append(ColorizeString("Fire Arrow", Color.white));
-                                    break;
-                                case BoardPieceId.HeroBarbarian:
-                                    sb.Append(ColorizeString("Gained ", Color.yellow));
-                                    sb.Append(ColorizeString("Net", Color.white));
-                                    sb.Append(ColorizeString(" ability ", Color.yellow));
-                                    sb.Append(ColorizeString("(3 turn cooldown)", orange));
-                                    break;
-                                case BoardPieceId.HeroRogue:
-                                    sb.Append(ColorizeString("Gained ", Color.yellow));
-                                    sb.Append(ColorizeString("Poisonous Bite", Color.white));
-                                    sb.Append(ColorizeString(" ability ", Color.yellow));
-                                    sb.Append(ColorizeString("(3 turn cooldown)", orange));
-                                    break;
-                                case BoardPieceId.HeroBard:
-                                    sb.Append(ColorizeString("Gained ", Color.yellow));
-                                    sb.Append(ColorizeString("Flash Bomb", Color.white));
-                                    sb.Append(ColorizeString(" ability ", Color.yellow));
-                                    sb.Append(ColorizeString("(3 turn cooldown)", orange));
-                                    break;
-                            }
-
-                            sb.Append(ColorizeString(" and ", Color.yellow));
-                            switch (myPiece.boardPieceId)
-                            {
-                                case BoardPieceId.HeroSorcerer:
-                                    sb.Append(ColorizeString("both ", Color.yellow));
-                                    sb.Append(ColorizeString("Zap", Color.white));
-                                    sb.Append(ColorizeString(" and ", Color.yellow));
-                                    sb.Append(ColorizeString("Lightning Bolt", Color.white));
-                                    break;
-                                case BoardPieceId.HeroHunter:
-                                    sb.Append(ColorizeString("Arrow", Color.white));
-                                    break;
-                                case BoardPieceId.HeroBarbarian:
-                                    sb.Append(ColorizeString("Grapple", Color.white));
-                                    break;
-                                case BoardPieceId.HeroRogue:
-                                    sb.Append(ColorizeString("Sneak", Color.white));
-                                    break;
-                                case BoardPieceId.HeroBard:
-                                    sb.Append(ColorizeString("Courage Shanty", Color.white));
-                                    break;
-                            }
-
-                            if (myPiece.boardPieceId == BoardPieceId.HeroSorcerer)
-                            {
-                                sb.Append(ColorizeString(" are now ", Color.yellow));
-                                sb.AppendLine(ColorizeString("FREE Actions", lightgreen));
-                            }
-                            else if (myPiece.boardPieceId == BoardPieceId.HeroGuardian || myPiece.boardPieceId == BoardPieceId.HeroWarlock)
-                            {
-                                sb.Append(ColorizeString("it is a ", Color.yellow));
-                                sb.AppendLine(ColorizeString("FREE Action", lightgreen));
+                                sb.Append(ColorizeString($"Level {level}", orange));
+                                sb.Append(ColorizeString(" PERKS ", pink));
+                                sb.AppendLine(ColorizeString("--", Color.gray));
                             }
                             else
                             {
-                                sb.Append(ColorizeString(" is now a ", Color.yellow));
-                                sb.AppendLine(ColorizeString("FREE Action", lightgreen));
+                                sb.Append(ColorizeString($"Level {level}", orange));
+                                sb.Append(ColorizeString($" (MAXED!) ", gold));
+                                sb.Append(ColorizeString("PERKS ", pink));
+                                sb.AppendLine(ColorizeString("--", Color.gray));
                             }
-                        }
 
-                        if (level > 2)
-                        {
-                            hp++;
-                            app = false;
-                            sb.Append(ColorizeString("Critical hits gain ", Color.yellow));
-                            sb.Append(ColorizeString("20 gold", Color.white));
-                        }
-
-                        if (level > 3)
-                        {
-                            kd++;
-                            app = true;
-                            sb.Append(ColorizeString(" and restore ", Color.yellow));
+                            sb.Append(ColorizeString("Critical hits on ", Color.yellow));
+                            sb.Append(ColorizeString("LAST ACTION", Color.white));
+                            sb.Append(ColorizeString(" activate ", Color.yellow));
                             switch (myPiece.boardPieceId)
                             {
                                 case BoardPieceId.HeroGuardian:
-                                    sb.Append(ColorizeString("Pull", Color.white));
-                                    sb.Append(ColorizeString(" and ", Color.yellow));
-                                    sb.AppendLine(ColorizeString("1 Action Point", Color.white));
-                                    break;
-                                case BoardPieceId.HeroSorcerer:
-                                    sb.AppendLine(ColorizeString("Zap", Color.white));
-                                    break;
-                                case BoardPieceId.HeroWarlock:
-                                    sb.AppendLine(ColorizeString("Feral Charge", Color.white));
-                                    break;
-                                case BoardPieceId.HeroHunter:
-                                    sb.AppendLine(ColorizeString("Arrow", Color.white));
-                                    break;
-                                case BoardPieceId.HeroBarbarian:
-                                    sb.AppendLine(ColorizeString("Grapple", Color.white));
-                                    break;
-                                case BoardPieceId.HeroRogue:
-                                    sb.AppendLine(ColorizeString("1 Action Point", Color.white));
-                                    break;
-                                case BoardPieceId.HeroBard:
-                                    sb.AppendLine(ColorizeString("Courage Shanty", Color.white));
-                                    break;
-                            }
-                        }
-
-                        if (level > 4)
-                        {
-                            bon++;
-                        }
-
-                        if (level > 5)
-                        {
-                            hp += 2;
-                        }
-
-                        if (level > 6)
-                        {
-                            spd = true;
-                        }
-
-                        if (level > 7)
-                        {
-                            kd++;
-                            app = true;
-                            sb.Append(ColorizeString("Gained ", Color.yellow));
-                            Inventory.Item value;
-                            for (var i = 0; i < myPiece.inventory.Items.Count; i++)
-                            {
-                                value = myPiece.inventory.Items[i];
-                                if (value.abilityKey == AbilityKey.Petrify || value.abilityKey == AbilityKey.DropChest || value.abilityKey == AbilityKey.Shockwave || value.abilityKey == AbilityKey.AcidSpit || value.abilityKey == AbilityKey.DeathFlurry)
-                                {
-                                    if (value.abilityKey == AbilityKey.DeathFlurry)
+                                    sb.Append(ColorizeString("Berserk", Color.white));
+                                    sb.Append(ColorizeString(" and restore ", Color.yellow));
+                                    if (level > 3)
                                     {
-                                        sb.Append(ColorizeString("Regal Burst", Color.white));
-                                    }
-                                    else if (value.abilityKey == AbilityKey.AcidSpit)
-                                    {
-                                        sb.Append(ColorizeString("Acid Spit", Color.white));
-                                    }
-                                    else if (value.abilityKey == AbilityKey.DropChest)
-                                    {
-                                        sb.Append(ColorizeString("Drop Chest", Color.white));
+                                        sb.AppendLine(ColorizeString("2 Action Points", Color.white));
                                     }
                                     else
                                     {
-                                        sb.Append(ColorizeString($"{value.abilityKey}", Color.white));
+                                        sb.AppendLine(ColorizeString("1 Action Point", Color.white));
                                     }
 
                                     break;
-                                }
+                                case BoardPieceId.HeroSorcerer:
+                                    sb.Append(ColorizeString("Overcharge", Color.white));
+                                    sb.Append(ColorizeString(" and gain ", Color.yellow));
+                                    sb.Append(ColorizeString("Water Bottle", Color.white));
+                                    sb.AppendLine(ColorizeString(" ability", Color.yellow));
+                                    break;
+                                case BoardPieceId.HeroWarlock:
+                                    sb.Append(ColorizeString("Self-Deflect", Color.white));
+                                    sb.Append(ColorizeString(" and gain ", Color.yellow));
+                                    sb.Append(ColorizeString("Spellpower Potion", Color.white));
+                                    sb.AppendLine(ColorizeString(" ability", Color.yellow));
+                                    break;
+                                case BoardPieceId.HeroHunter:
+                                    sb.Append(ColorizeString("Freeze Arrow", Color.white));
+                                    sb.Append(ColorizeString(" and gain ", Color.yellow));
+                                    sb.Append(ColorizeString("Bone", Color.white));
+                                    sb.AppendLine(ColorizeString(" ability", Color.yellow));
+                                    break;
+                                case BoardPieceId.HeroBarbarian:
+                                    sb.Append(ColorizeString("2 Resilience", Color.white));
+                                    sb.Append(ColorizeString(" and gain ", Color.yellow));
+                                    sb.AppendLine(ColorizeString("6 Vargas", Color.white));
+                                    break;
+                                case BoardPieceId.HeroRogue:
+                                    sb.Append(ColorizeString("Invisibility", Color.white));
+                                    sb.AppendLine(ColorizeString(" until the NEXT turn ends ", Color.yellow));
+                                    break;
+                                case BoardPieceId.HeroBard:
+                                    sb.Append(ColorizeString("Deflection", Color.white));
+                                    sb.Append(ColorizeString(" and gain ", Color.yellow));
+                                    sb.Append(ColorizeString("Panic Powder", Color.white));
+                                    sb.AppendLine(ColorizeString(" ability", Color.yellow));
+                                    break;
                             }
 
-                            sb.Append(ColorizeString(" ability ", Color.yellow));
-                            sb.Append(ColorizeString("(FREE Action) ", lightgreen));
-                            sb.AppendLine(ColorizeString("(7 turn cooldown)", orange));
-                        }
-
-                        if (level > 9)
-                        {
-                            bon += 2;
-                        }
-
-                        if (level > 8)
-                        {
-                            app = true;
-                            sb.Append(ColorizeString("Gained ", Color.yellow));
-                            sb.Append(ColorizeString("1 health regeneration", Color.white));
-                            sb.Append(ColorizeString(" per turn ", Color.yellow));
-                            sb.AppendLine(ColorizeString("(except if downed, poisoned, or petrified)", orange));
-                        }
-
-                        if (!app)
-                        {
-                            sb.AppendLine();
-                            app = true;
-                        }
-
-                        if (hp > 0)
-                        {
-                            app = false;
-                            sb.Append(ColorizeString("Gained ", Color.yellow));
-                            sb.Append(ColorizeString($"{hp} Max Health", Color.white));
-                        }
-
-                        if (kd > 0)
-                        {
-                            app = false;
-                            if (bon > 0)
+                            if (level > 1)
                             {
-                                sb.Append(ColorizeString(", ", Color.yellow));
-                            }
-                            else
-                            {
-                                sb.Append(ColorizeString(" and ", Color.yellow));
-                            }
-
-                            if (kd > 1)
-                            {
-                                sb.Append(ColorizeString($"{kd} Knockdowns", Color.white));
-                            }
-                            else
-                            {
-                                sb.Append(ColorizeString($"{kd} Knockdown", Color.white));
-                            }
-                        }
-
-                        if (bon > 0)
-                        {
-                            app = false;
-                            if (spd)
-                            {
-                                sb.Append(ColorizeString(", ", Color.yellow));
-                            }
-                            else
-                            {
-                                sb.Append(ColorizeString(" and ", Color.yellow));
-                            }
-
-                            if (myPiece.boardPieceId == BoardPieceId.HeroWarlock || myPiece.boardPieceId == BoardPieceId.HeroSorcerer)
-                            {
-                                sb.Append(ColorizeString($"{bon} Magic", Color.white));
-                            }
-                            else
-                            {
-                                sb.Append(ColorizeString($"{bon} Strength", Color.white));
-                            }
-                        }
-
-                        if (spd)
-                        {
-                            app = true;
-                            sb.Append(ColorizeString(" and ", Color.yellow));
-                            sb.AppendLine(ColorizeString("2 Swiftness", Color.white));
-                        }
-
-                        if (level > 9)
-                        {
-                            app = true;
-                            sb.Append(ColorizeString("Gained ", Color.yellow));
-                            sb.AppendLine(ColorizeString("1 Extra Action Point", Color.white));
-                        }
-
-                        if (level < 10)
-                        {
-                            if (!app)
-                            {
-                                sb.AppendLine();
-                            }
-
-                            sb.AppendLine();
-                            sb.Append(ColorizeString("NEXT PERK: ", Color.cyan));
-                            if (level == 1)
-                            {
+                                app = true;
                                 switch (myPiece.boardPieceId)
                                 {
                                     case BoardPieceId.HeroGuardian:
-                                        sb.Append(ColorizeString("Gain ", Color.yellow));
+                                        sb.Append(ColorizeString("Gained ", Color.yellow));
                                         sb.Append(ColorizeString("Pull", Color.white));
                                         sb.Append(ColorizeString(" ability", Color.yellow));
                                         break;
                                     case BoardPieceId.HeroSorcerer:
-                                        sb.Append(ColorizeString("Replace ", Color.yellow));
+                                        sb.Append(ColorizeString("Replaced ", Color.yellow));
                                         sb.Append(ColorizeString("Overcharge", Color.white));
                                         sb.Append(ColorizeString(" with ", Color.yellow));
                                         sb.Append(ColorizeString("Thunderbolt", Color.white));
                                         break;
                                     case BoardPieceId.HeroWarlock:
-                                        sb.Append(ColorizeString("Gain ", Color.yellow));
+                                        sb.Append(ColorizeString("Gained ", Color.yellow));
                                         sb.Append(ColorizeString("Feral Charge", Color.white));
                                         sb.Append(ColorizeString(" ability", Color.yellow));
                                         break;
                                     case BoardPieceId.HeroHunter:
-                                        sb.Append(ColorizeString("Replace ", Color.yellow));
+                                        sb.Append(ColorizeString("Replaced ", Color.yellow));
                                         sb.Append(ColorizeString("1 Arrow", Color.white));
                                         sb.Append(ColorizeString(" with a ", Color.yellow));
                                         sb.Append(ColorizeString("Fire Arrow", Color.white));
                                         break;
                                     case BoardPieceId.HeroBarbarian:
-                                        sb.Append(ColorizeString("Gain ", Color.yellow));
+                                        sb.Append(ColorizeString("Gained ", Color.yellow));
                                         sb.Append(ColorizeString("Net", Color.white));
                                         sb.Append(ColorizeString(" ability ", Color.yellow));
                                         sb.Append(ColorizeString("(3 turn cooldown)", orange));
                                         break;
                                     case BoardPieceId.HeroRogue:
-                                        sb.Append(ColorizeString("Gain ", Color.yellow));
+                                        sb.Append(ColorizeString("Gained ", Color.yellow));
                                         sb.Append(ColorizeString("Poisonous Bite", Color.white));
                                         sb.Append(ColorizeString(" ability ", Color.yellow));
                                         sb.Append(ColorizeString("(3 turn cooldown)", orange));
                                         break;
                                     case BoardPieceId.HeroBard:
-                                        sb.Append(ColorizeString("Gain ", Color.yellow));
+                                        sb.Append(ColorizeString("Gained ", Color.yellow));
                                         sb.Append(ColorizeString("Flash Bomb", Color.white));
                                         sb.Append(ColorizeString(" ability ", Color.yellow));
                                         sb.Append(ColorizeString("(3 turn cooldown)", orange));
@@ -698,7 +428,7 @@
 
                                 if (myPiece.boardPieceId == BoardPieceId.HeroSorcerer)
                                 {
-                                    sb.Append(ColorizeString(" become ", Color.yellow));
+                                    sb.Append(ColorizeString(" are now ", Color.yellow));
                                     sb.AppendLine(ColorizeString("FREE Actions", lightgreen));
                                 }
                                 else if (myPiece.boardPieceId == BoardPieceId.HeroGuardian || myPiece.boardPieceId == BoardPieceId.HeroWarlock)
@@ -708,112 +438,390 @@
                                 }
                                 else
                                 {
-                                    sb.Append(ColorizeString(" becomes a ", Color.yellow));
+                                    sb.Append(ColorizeString(" is now a ", Color.yellow));
                                     sb.AppendLine(ColorizeString("FREE Action", lightgreen));
                                 }
                             }
 
-                            if (level == 2)
+                            if (level > 2)
                             {
-                                sb.Append(ColorizeString("Gain ", Color.yellow));
-                                sb.Append(ColorizeString("1 Max Health", Color.white));
-                                sb.Append(ColorizeString(" and critical hits gain ", Color.yellow));
-                                sb.AppendLine(ColorizeString("20 gold", Color.white));
+                                hp++;
+                                app = false;
+                                sb.Append(ColorizeString("Critical hits gain ", Color.yellow));
+                                sb.Append(ColorizeString("20 gold", Color.white));
                             }
 
-                            if (level == 3)
+                            if (level > 3)
                             {
-                                sb.Append(ColorizeString("Gain ", Color.yellow));
-                                sb.Append(ColorizeString("1 Knockdown", Color.white));
-                                sb.Append(ColorizeString(" and critical hits restore ", Color.yellow));
+                                kd++;
+                                app = true;
+                                sb.Append(ColorizeString(" and restore ", Color.yellow));
                                 switch (myPiece.boardPieceId)
                                 {
                                     case BoardPieceId.HeroGuardian:
                                         sb.Append(ColorizeString("Pull", Color.white));
                                         sb.Append(ColorizeString(" and ", Color.yellow));
-                                        sb.Append(ColorizeString("1 Action Point", Color.white));
+                                        sb.AppendLine(ColorizeString("1 Action Point", Color.white));
                                         break;
                                     case BoardPieceId.HeroSorcerer:
-                                        sb.Append(ColorizeString("Zap", Color.white));
+                                        sb.AppendLine(ColorizeString("Zap", Color.white));
                                         break;
                                     case BoardPieceId.HeroWarlock:
-                                        sb.Append(ColorizeString("Feral Charge", Color.white));
+                                        sb.AppendLine(ColorizeString("Feral Charge", Color.white));
                                         break;
                                     case BoardPieceId.HeroHunter:
-                                        sb.Append(ColorizeString("Arrow", Color.white));
+                                        sb.AppendLine(ColorizeString("Arrow", Color.white));
                                         break;
                                     case BoardPieceId.HeroBarbarian:
-                                        sb.Append(ColorizeString("Grapple", Color.white));
+                                        sb.AppendLine(ColorizeString("Grapple", Color.white));
                                         break;
                                     case BoardPieceId.HeroRogue:
-                                        sb.Append(ColorizeString("1 Action Point", Color.white));
+                                        sb.AppendLine(ColorizeString("1 Action Point", Color.white));
                                         break;
                                     case BoardPieceId.HeroBard:
-                                        sb.Append(ColorizeString("Courage Shanty", Color.white));
+                                        sb.AppendLine(ColorizeString("Courage Shanty", Color.white));
                                         break;
                                 }
                             }
 
-                            if (level == 4)
+                            if (level > 4)
                             {
-                                if (myPiece.boardPieceId == BoardPieceId.HeroWarlock || myPiece.boardPieceId == BoardPieceId.HeroSorcerer)
+                                bon++;
+                            }
+
+                            if (level > 5)
+                            {
+                                hp += 2;
+                            }
+
+                            if (level > 6)
+                            {
+                                spd = true;
+                            }
+
+                            if (level > 7)
+                            {
+                                kd++;
+                                app = true;
+                                sb.Append(ColorizeString("Gained ", Color.yellow));
+                                Inventory.Item value;
+                                for (var i = 0; i < myPiece.inventory.Items.Count; i++)
                                 {
-                                    sb.Append(ColorizeString("Gain ", Color.yellow));
-                                    sb.AppendLine(ColorizeString("1 Magic", Color.white));
+                                    value = myPiece.inventory.Items[i];
+                                    if (value.abilityKey == AbilityKey.Petrify || value.abilityKey == AbilityKey.DropChest || value.abilityKey == AbilityKey.Shockwave || value.abilityKey == AbilityKey.AcidSpit || value.abilityKey == AbilityKey.DeathFlurry)
+                                    {
+                                        if (value.abilityKey == AbilityKey.DeathFlurry)
+                                        {
+                                            sb.Append(ColorizeString("Regal Burst", Color.white));
+                                        }
+                                        else if (value.abilityKey == AbilityKey.AcidSpit)
+                                        {
+                                            sb.Append(ColorizeString("Acid Spit", Color.white));
+                                        }
+                                        else if (value.abilityKey == AbilityKey.DropChest)
+                                        {
+                                            sb.Append(ColorizeString("Drop Chest", Color.white));
+                                        }
+                                        else
+                                        {
+                                            sb.Append(ColorizeString($"{value.abilityKey}", Color.white));
+                                        }
+
+                                        break;
+                                    }
                                 }
-                                else
-                                {
-                                    sb.Append(ColorizeString("Gain ", Color.yellow));
-                                    sb.AppendLine(ColorizeString("1 Strength", Color.white));
-                                }
-                            }
 
-                            if (level == 5)
-                            {
-                                sb.Append(ColorizeString("Gain ", Color.yellow));
-                                sb.AppendLine(ColorizeString("2 Max Health", Color.white));
-                            }
-
-                            if (level == 6)
-                            {
-                                sb.Append(ColorizeString("Gain ", Color.yellow));
-                                sb.AppendLine(ColorizeString("2 Swiftness", Color.white));
-                            }
-
-                            if (level == 7)
-                            {
-                                sb.Append(ColorizeString("Gain ", Color.yellow));
-                                sb.Append(ColorizeString("1 Knockdown", Color.white));
-                                sb.Append(ColorizeString(" and a ", Color.yellow));
-                                sb.Append(ColorizeString("Random", Color.white));
                                 sb.Append(ColorizeString(" ability ", Color.yellow));
                                 sb.Append(ColorizeString("(FREE Action) ", lightgreen));
                                 sb.AppendLine(ColorizeString("(7 turn cooldown)", orange));
                             }
 
-                            if (level == 8)
+                            if (level > 9)
                             {
-                                sb.Append(ColorizeString("Gain ", Color.yellow));
+                                bon += 2;
+                            }
+
+                            if (level > 8)
+                            {
+                                app = true;
+                                sb.Append(ColorizeString("Gained ", Color.yellow));
                                 sb.Append(ColorizeString("1 health regeneration", Color.white));
                                 sb.Append(ColorizeString(" per turn ", Color.yellow));
                                 sb.AppendLine(ColorizeString("(except if downed, poisoned, or petrified)", orange));
                             }
 
-                            if (level == 9)
+                            if (!app)
                             {
-                                sb.Append(ColorizeString("Gain ", Color.yellow));
-                                if (myPiece.boardPieceId == BoardPieceId.HeroWarlock || myPiece.boardPieceId == BoardPieceId.HeroSorcerer)
+                                sb.AppendLine();
+                                app = true;
+                            }
+
+                            if (hp > 0)
+                            {
+                                app = false;
+                                sb.Append(ColorizeString("Gained ", Color.yellow));
+                                sb.Append(ColorizeString($"{hp} Max Health", Color.white));
+                            }
+
+                            if (kd > 0)
+                            {
+                                app = false;
+                                if (bon > 0)
                                 {
-                                    sb.Append(ColorizeString("2 Magic", Color.white));
+                                    sb.Append(ColorizeString(", ", Color.yellow));
                                 }
                                 else
                                 {
-                                    sb.Append(ColorizeString("2 Strength", Color.white));
+                                    sb.Append(ColorizeString(" and ", Color.yellow));
                                 }
 
-                                sb.Append(ColorizeString(" and ", Color.yellow));
-                                sb.AppendLine(ColorizeString("1 Action Point", Color.white));
+                                if (kd > 1)
+                                {
+                                    sb.Append(ColorizeString($"{kd} Knockdowns", Color.white));
+                                }
+                                else
+                                {
+                                    sb.Append(ColorizeString($"{kd} Knockdown", Color.white));
+                                }
                             }
+
+                            if (bon > 0)
+                            {
+                                app = false;
+                                if (spd)
+                                {
+                                    sb.Append(ColorizeString(", ", Color.yellow));
+                                }
+                                else
+                                {
+                                    sb.Append(ColorizeString(" and ", Color.yellow));
+                                }
+
+                                if (myPiece.boardPieceId == BoardPieceId.HeroWarlock || myPiece.boardPieceId == BoardPieceId.HeroSorcerer)
+                                {
+                                    sb.Append(ColorizeString($"{bon} Magic", Color.white));
+                                }
+                                else
+                                {
+                                    sb.Append(ColorizeString($"{bon} Strength", Color.white));
+                                }
+                            }
+
+                            if (spd)
+                            {
+                                app = true;
+                                sb.Append(ColorizeString(" and ", Color.yellow));
+                                sb.AppendLine(ColorizeString("2 Swiftness", Color.white));
+                            }
+
+                            if (level > 9)
+                            {
+                                app = true;
+                                sb.Append(ColorizeString("Gained ", Color.yellow));
+                                sb.AppendLine(ColorizeString("1 Extra Action Point", Color.white));
+                            }
+
+                            if (level < 10)
+                            {
+                                if (!app)
+                                {
+                                    sb.AppendLine();
+                                }
+
+                                sb.AppendLine();
+                                sb.Append(ColorizeString("NEXT PERK: ", Color.cyan));
+                                if (level == 1)
+                                {
+                                    switch (myPiece.boardPieceId)
+                                    {
+                                        case BoardPieceId.HeroGuardian:
+                                            sb.Append(ColorizeString("Gain ", Color.yellow));
+                                            sb.Append(ColorizeString("Pull", Color.white));
+                                            sb.Append(ColorizeString(" ability", Color.yellow));
+                                            break;
+                                        case BoardPieceId.HeroSorcerer:
+                                            sb.Append(ColorizeString("Replace ", Color.yellow));
+                                            sb.Append(ColorizeString("Overcharge", Color.white));
+                                            sb.Append(ColorizeString(" with ", Color.yellow));
+                                            sb.Append(ColorizeString("Thunderbolt", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroWarlock:
+                                            sb.Append(ColorizeString("Gain ", Color.yellow));
+                                            sb.Append(ColorizeString("Feral Charge", Color.white));
+                                            sb.Append(ColorizeString(" ability", Color.yellow));
+                                            break;
+                                        case BoardPieceId.HeroHunter:
+                                            sb.Append(ColorizeString("Replace ", Color.yellow));
+                                            sb.Append(ColorizeString("1 Arrow", Color.white));
+                                            sb.Append(ColorizeString(" with a ", Color.yellow));
+                                            sb.Append(ColorizeString("Fire Arrow", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroBarbarian:
+                                            sb.Append(ColorizeString("Gain ", Color.yellow));
+                                            sb.Append(ColorizeString("Net", Color.white));
+                                            sb.Append(ColorizeString(" ability ", Color.yellow));
+                                            sb.Append(ColorizeString("(3 turn cooldown)", orange));
+                                            break;
+                                        case BoardPieceId.HeroRogue:
+                                            sb.Append(ColorizeString("Gain ", Color.yellow));
+                                            sb.Append(ColorizeString("Poisonous Bite", Color.white));
+                                            sb.Append(ColorizeString(" ability ", Color.yellow));
+                                            sb.Append(ColorizeString("(3 turn cooldown)", orange));
+                                            break;
+                                        case BoardPieceId.HeroBard:
+                                            sb.Append(ColorizeString("Gain ", Color.yellow));
+                                            sb.Append(ColorizeString("Flash Bomb", Color.white));
+                                            sb.Append(ColorizeString(" ability ", Color.yellow));
+                                            sb.Append(ColorizeString("(3 turn cooldown)", orange));
+                                            break;
+                                    }
+
+                                    sb.Append(ColorizeString(" and ", Color.yellow));
+                                    switch (myPiece.boardPieceId)
+                                    {
+                                        case BoardPieceId.HeroSorcerer:
+                                            sb.Append(ColorizeString("both ", Color.yellow));
+                                            sb.Append(ColorizeString("Zap", Color.white));
+                                            sb.Append(ColorizeString(" and ", Color.yellow));
+                                            sb.Append(ColorizeString("Lightning Bolt", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroHunter:
+                                            sb.Append(ColorizeString("Arrow", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroBarbarian:
+                                            sb.Append(ColorizeString("Grapple", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroRogue:
+                                            sb.Append(ColorizeString("Sneak", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroBard:
+                                            sb.Append(ColorizeString("Courage Shanty", Color.white));
+                                            break;
+                                    }
+
+                                    if (myPiece.boardPieceId == BoardPieceId.HeroSorcerer)
+                                    {
+                                        sb.Append(ColorizeString(" become ", Color.yellow));
+                                        sb.AppendLine(ColorizeString("FREE Actions", lightgreen));
+                                    }
+                                    else if (myPiece.boardPieceId == BoardPieceId.HeroGuardian || myPiece.boardPieceId == BoardPieceId.HeroWarlock)
+                                    {
+                                        sb.Append(ColorizeString("it is a ", Color.yellow));
+                                        sb.AppendLine(ColorizeString("FREE Action", lightgreen));
+                                    }
+                                    else
+                                    {
+                                        sb.Append(ColorizeString(" becomes a ", Color.yellow));
+                                        sb.AppendLine(ColorizeString("FREE Action", lightgreen));
+                                    }
+                                }
+
+                                if (level == 2)
+                                {
+                                    sb.Append(ColorizeString("Gain ", Color.yellow));
+                                    sb.Append(ColorizeString("1 Max Health", Color.white));
+                                    sb.Append(ColorizeString(" and critical hits gain ", Color.yellow));
+                                    sb.AppendLine(ColorizeString("20 gold", Color.white));
+                                }
+
+                                if (level == 3)
+                                {
+                                    sb.Append(ColorizeString("Gain ", Color.yellow));
+                                    sb.Append(ColorizeString("1 Knockdown", Color.white));
+                                    sb.Append(ColorizeString(" and critical hits restore ", Color.yellow));
+                                    switch (myPiece.boardPieceId)
+                                    {
+                                        case BoardPieceId.HeroGuardian:
+                                            sb.Append(ColorizeString("Pull", Color.white));
+                                            sb.Append(ColorizeString(" and ", Color.yellow));
+                                            sb.Append(ColorizeString("1 Action Point", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroSorcerer:
+                                            sb.Append(ColorizeString("Zap", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroWarlock:
+                                            sb.Append(ColorizeString("Feral Charge", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroHunter:
+                                            sb.Append(ColorizeString("Arrow", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroBarbarian:
+                                            sb.Append(ColorizeString("Grapple", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroRogue:
+                                            sb.Append(ColorizeString("1 Action Point", Color.white));
+                                            break;
+                                        case BoardPieceId.HeroBard:
+                                            sb.Append(ColorizeString("Courage Shanty", Color.white));
+                                            break;
+                                    }
+                                }
+
+                                if (level == 4)
+                                {
+                                    if (myPiece.boardPieceId == BoardPieceId.HeroWarlock || myPiece.boardPieceId == BoardPieceId.HeroSorcerer)
+                                    {
+                                        sb.Append(ColorizeString("Gain ", Color.yellow));
+                                        sb.AppendLine(ColorizeString("1 Magic", Color.white));
+                                    }
+                                    else
+                                    {
+                                        sb.Append(ColorizeString("Gain ", Color.yellow));
+                                        sb.AppendLine(ColorizeString("1 Strength", Color.white));
+                                    }
+                                }
+
+                                if (level == 5)
+                                {
+                                    sb.Append(ColorizeString("Gain ", Color.yellow));
+                                    sb.AppendLine(ColorizeString("2 Max Health", Color.white));
+                                }
+
+                                if (level == 6)
+                                {
+                                    sb.Append(ColorizeString("Gain ", Color.yellow));
+                                    sb.AppendLine(ColorizeString("2 Swiftness", Color.white));
+                                }
+
+                                if (level == 7)
+                                {
+                                    sb.Append(ColorizeString("Gain ", Color.yellow));
+                                    sb.Append(ColorizeString("1 Knockdown", Color.white));
+                                    sb.Append(ColorizeString(" and a ", Color.yellow));
+                                    sb.Append(ColorizeString("Random", Color.white));
+                                    sb.Append(ColorizeString(" ability ", Color.yellow));
+                                    sb.Append(ColorizeString("(FREE Action) ", lightgreen));
+                                    sb.AppendLine(ColorizeString("(7 turn cooldown)", orange));
+                                }
+
+                                if (level == 8)
+                                {
+                                    sb.Append(ColorizeString("Gain ", Color.yellow));
+                                    sb.Append(ColorizeString("1 health regeneration", Color.white));
+                                    sb.Append(ColorizeString(" per turn ", Color.yellow));
+                                    sb.AppendLine(ColorizeString("(except if downed, poisoned, or petrified)", orange));
+                                }
+
+                                if (level == 9)
+                                {
+                                    sb.Append(ColorizeString("Gain ", Color.yellow));
+                                    if (myPiece.boardPieceId == BoardPieceId.HeroWarlock || myPiece.boardPieceId == BoardPieceId.HeroSorcerer)
+                                    {
+                                        sb.Append(ColorizeString("2 Magic", Color.white));
+                                    }
+                                    else
+                                    {
+                                        sb.Append(ColorizeString("2 Strength", Color.white));
+                                    }
+
+                                    sb.Append(ColorizeString(" and ", Color.yellow));
+                                    sb.AppendLine(ColorizeString("1 Action Point", Color.white));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Show Heroes game leveling information here
                         }
                     }
 

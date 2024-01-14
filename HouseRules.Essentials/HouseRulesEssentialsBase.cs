@@ -64,6 +64,7 @@
             HR.Rulebook.Register(typeof(AbilityStealthDamageOverriddenRule));
             HR.Rulebook.Register(typeof(AbilityTargetEffectsRule));
             HR.Rulebook.Register(typeof(ApplyEffectOnHitAdjustedRule));
+            HR.Rulebook.Register(typeof(ApplyEffectOnHitLampsRule));
             HR.Rulebook.Register(typeof(BackstabConfigOverriddenRule));
             HR.Rulebook.Register(typeof(CourageShantyAddsHpRule));
             HR.Rulebook.Register(typeof(CardAdditionOverriddenRule));
@@ -90,6 +91,10 @@
             HR.Rulebook.Register(typeof(FreeReplenishablesOnCritRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
             HR.Rulebook.Register(typeof(GrappleUnhookedRule));
+            HR.Rulebook.Register(typeof(HeroesPieceProgressLostRule));
+            HR.Rulebook.Register(typeof(HeroesPieceProgressRule));
+            HR.Rulebook.Register(typeof(HeroesRule));
+            HR.Rulebook.Register(typeof(HeroesTickAdjustedRule));
             HR.Rulebook.Register(typeof(LampTypesOverriddenRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilOneHeroRemainsRule));
@@ -146,6 +151,7 @@
             HR.Rulebook.Register(DemeoRevolutions_Legendary_Progressive.Create());
             HR.Rulebook.Register(FriendlyCompetition.Create());
             HR.Rulebook.Register(DarkestDankestDemeoRuleset.Create());
+            HR.Rulebook.Register(Heroes_of_the_Voice_Machine.Create());
             HR.Rulebook.Register(HardcoreRuleset.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(Blobophobia.Create());

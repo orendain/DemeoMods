@@ -147,6 +147,11 @@
                 {
                     setName = "<color=#000000><b>Darkest Dankest Demeo</b></color>";
                 }
+                else if (setName.Contains("Voice Machine (PROGRESSIVE"))
+                {
+                    fontSize = 4;
+                    setName = "<color=#AAEA04><b>Heroes of the Voice Machine</b></color> <color=#F813BE><b>(PROGRESSIVE)</b></color>";
+                }
             }
 
             var container = new GameObject("Text");

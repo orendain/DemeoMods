@@ -195,6 +195,10 @@
             {
                 setName = "<color=#080800><b>Darkest Dankest Demeo</b></color>";
             }
+            else if (setName.Contains("Voice Machine (PROGRESSIVE"))
+            {
+                setName = "<color=#AAEA04><b>Heroes of the Voice Machine</b></color> <color=#9F11A2><b>(PROGRESSIVE)</b></color>";
+            }
 
             _selectedText.text = $"Selected ruleset: {setName}";
         }

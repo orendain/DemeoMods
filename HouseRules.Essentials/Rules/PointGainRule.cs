@@ -32,8 +32,9 @@
         {
             public int KillEnemy;
             public int HurtEnemy;
-            public int KillPlayer;
-            public int HurtPlayer;
+            public int KillPlayer; // set to positive for PVP, or negative for Co-op.
+            public int HurtPlayer; // set to positive for PVP, or negative for Co-op.
+            public int BuffPlayer; // set to positive for PVP and Co-op.
             public int Keyholder;
             public int UnlockDoor;
             public int HurtBoss;
@@ -46,6 +47,7 @@
             public int OpenDoor;
             public int UseFountain;
             public int RevivePlayer;
+            public bool PVPisOn; // set for PVP = true, or Co-op = false.
         }
 
         public PointGainRule(Points points)
@@ -220,16 +222,20 @@
                 pointCount = 0;
             }
 
-            HouseRulesEssentialsBase.LogDebug($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] was revived by player {sourcePiece.boardPieceId} (-{_globalConfig.RevivePlayer})");
-            pointCount -= _globalConfig.RevivePlayer;
-            if (pointCount < 0)
+            // only "steal" points in PVP.
+            if (_globalConfig.PVPisOn)
             {
-                pointCount = 0;
-            }
+                HouseRulesEssentialsBase.LogDebug($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] was revived by player (PVP on) {sourcePiece.boardPieceId} (-{_globalConfig.RevivePlayer}) and stole some points!");
+                pointCount -= _globalConfig.RevivePlayer;
+                if (pointCount < 0)
+                {
+                    pointCount = 0;
+                }
 
-            HouseRulesEssentialsBase.LogDebug($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] total points: {pointCount}");
-            revivedPiece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
-            revivedPiece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
+                HouseRulesEssentialsBase.LogDebug($"{revivedPiece.boardPieceId} [ID: {revivedPiece.networkID}] total points: {pointCount}");
+                revivedPiece.effectSink.RemoveStatusEffect(EffectStateType.StrengthInNumbers);
+                revivedPiece.effectSink.AddStatusEffect(EffectStateType.StrengthInNumbers, pointCount);
+            }
         }
 
         private static void Interactable_OnInteraction_Prefix(
@@ -504,6 +510,8 @@
 
             if (targets.Length != 0)
             {
+
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                 for (int i = 0; i < targets.Length; i++)
                 {
                     if (targets[i].boardPieceId == BoardPieceId.GoldPile || targets[i].HasEffectState(EffectStateType.WizardDoppelganger))
@@ -512,13 +520,47 @@
                     }
                     else if (targets[i].IsPlayer() && targets[i] != source && !targets[i].IsDowned() && !targets[i].IsImmuneToDamage())
                     {
-                        HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed player {targets[i].boardPieceId} ({_globalConfig.HurtPlayer})");
-                        flag = true;
-                        pointCount += _globalConfig.HurtPlayer;
-                        if (source.HasEffectState(EffectStateType.Key))
+                        if (_globalConfig.PVPisOn && (diceResult == Dice.Outcome.Hit || diceResult == Dice.Outcome.Crit)) // pvp and hit.
                         {
-                            HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
-                            pointCount += _globalConfig.Keyholder;
+                            HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt player {targets[i].boardPieceId} ({_globalConfig.HurtPlayer})");
+                            flag = true;
+                            pointCount += _globalConfig.HurtPlayer; // test pvp
+
+                            if (source.HasEffectState(EffectStateType.Key))
+                            {
+                                HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
+                                pointCount += _globalConfig.Keyholder;
+                            }
+                        }
+                        else if (_globalConfig.PVPisOn && diceResult == Dice.Outcome.None) // pvp and buff.
+                        {
+                            HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] buffed player {targets[i].boardPieceId} ({_globalConfig.BuffPlayer})");
+                            flag = true;
+                            pointCount += _globalConfig.BuffPlayer; // test pvp
+
+                            if (source.HasEffectState(EffectStateType.Key))
+                            {
+                                HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
+                                pointCount += _globalConfig.Keyholder;
+                            }
+                        }
+                        else if (!_globalConfig.PVPisOn && (diceResult == Dice.Outcome.Hit || diceResult == Dice.Outcome.Crit)) // not pvp and hit.
+                        {
+                            HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt player (not PVP) {targets[i].boardPieceId} ({_globalConfig.HurtPlayer})");
+                            flag = true;
+                            pointCount += _globalConfig.HurtPlayer; // this should be negative if not PVP.
+                        }
+                        else if (!_globalConfig.PVPisOn && (diceResult == Dice.Outcome.None)) // not pvp and buff.
+                        {
+                            HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] buff player (not PVP) {targets[i].boardPieceId} ({_globalConfig.BuffPlayer})");
+                            flag = true;
+                            pointCount += _globalConfig.BuffPlayer; // test pvp
+
+                            if (source.HasEffectState(EffectStateType.Key))
+                            {
+                                HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
+                                pointCount += _globalConfig.Keyholder;
+                            }
                         }
                     }
                     else if (targets[i] == source && !source.IsDowned() && diceResult != Dice.Outcome.None)
