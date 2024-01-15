@@ -8,6 +8,7 @@
     using DataKeys;
     using HarmonyLib;
     using UnityEngine;
+    using static Boardgame.LevelSequence;
 
     internal static class VRAdvancedStatsView
     {
@@ -39,7 +40,7 @@
             int resist = myPiece.GetStat(Stats.Type.DamageResist);
             int maxresist = myPiece.GetStatMax(Stats.Type.DamageResist);
             int numdowns = myPiece.GetStat(Stats.Type.DownedCounter);
-            var revolutions = myPiece.GetStat(Stats.Type.InnateCounterDamageExtraDamage);
+            var gametype = myPiece.GetStat(Stats.Type.InnateCounterDamageExtraDamage);
             int level = myPiece.GetStatMax(Stats.Type.CritChance);
             var freeSlots = 9;
             Inventory.Item value2;
@@ -149,7 +150,7 @@
             sb.Append(ColorizeString(" Immunities ", Color.white));
             sb.AppendLine(ColorizeString("--", Color.gray));
 
-            if (revolutions == 69 || myPiece.HasEffectState(EffectStateType.Flying))
+            if (gametype == 69 || (myPiece.HasEffectState(EffectStateType.Flying) && gametype != 55))
             {
                 switch (myPiece.boardPieceId)
                 {
@@ -176,7 +177,7 @@
                         break;
                 }
             }
-            else if (revolutions == 42)
+            else if (gametype == 42)
             {
                 switch (myPiece.boardPieceId)
                 {
@@ -272,8 +273,8 @@
             if (level > 0)
             {
 
-                // Show Revolutions game information here
-                if (revolutions != 55)
+                // Show gametype game information here
+                if (gametype != 55)
                 {
                     int hp = 0;
                     int kd = 0;
