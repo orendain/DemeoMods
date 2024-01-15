@@ -6,12 +6,6 @@
     using HarmonyLib;
     using HouseRules.Core;
     using HouseRules.Core.Types;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using UnityEngine;
-    using Utils;
-    using static Boardgame.Board.TransientBoardState;
 
     public sealed class HeroesTickAdjustedRule : Rule, IConfigWritable<bool>, IPatchable, IMultiplayerSafe, IDisableOnReconnect
     {
@@ -194,8 +188,7 @@
                     }
 
                     // decrease the counter by 1.
-                    int countCurrent2 = 0;
-                    piece.effectSink.TryGetStat(Stats.Type.InnateCounterDirections, out countCurrent2);
+                    piece.effectSink.TryGetStat(Stats.Type.InnateCounterDirections, out int countCurrent2);
                     if (countCurrent2 > 0)
                     {
                         piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, countCurrent2 - 1);
