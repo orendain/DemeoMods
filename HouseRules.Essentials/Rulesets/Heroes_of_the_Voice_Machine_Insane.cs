@@ -1663,37 +1663,29 @@
                 },
                 new StatusEffectData
                 {
-                    effectStateType = EffectStateType.PVPLimitArenaBurn,
-                    durationTurns = 4,
-                    damagePerTurn = 0,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.PVPLimitArenaBurnLv2,
-                    durationTurns = 3,
-                    damagePerTurn = 0,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
-                },
-
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.PVPLimitArenaBurnLv3,
-                    durationTurns = 2,
-                    damagePerTurn = 0,
-                    clearOnNewLevel = false,
-                    tickWhen = StatusEffectsConfig.TickWhen.EndTurn,
-                },
-                new StatusEffectData
-                {
-                    effectStateType = EffectStateType.PVPLimitArenaBurnLv4,
+                    effectStateType = EffectStateType.Bleeding1,
                     durationTurns = 1,
-                    damagePerTurn = 0,
-                    clearOnNewLevel = false,
+                    damagePerTurn = 7,
+                    clearOnNewLevel = true,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
-                    applyAfterDissipate = EffectStateType.Overcharge,
+                    applyAfterDissipate = EffectStateType.Bleeding2,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Bleeding2,
+                    durationTurns = 1,
+                    damagePerTurn = 12,
+                    clearOnNewLevel = true,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
+                    applyAfterDissipate = EffectStateType.Bleeding3,
+                },
+                new StatusEffectData
+                {
+                    effectStateType = EffectStateType.Bleeding3,
+                    durationTurns = 1,
+                    damagePerTurn = 18,
+                    clearOnNewLevel = true,
+                    tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
                 new StatusEffectData
                 {
