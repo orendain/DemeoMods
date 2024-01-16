@@ -1778,9 +1778,9 @@
             };
             var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ElvenSpearman, 2 },
-                { BoardPieceId.CultMemberElder, 1 },
-                { BoardPieceId.KillerBee, 1 },
+                { BoardPieceId.ElvenSpearman, 5 },
+                { BoardPieceId.CultMemberElder, 3 },
+                { BoardPieceId.KillerBee, 5 },
                 { BoardPieceId.EarthElemental, 1 },
                 { BoardPieceId.Sigataur, 1 },
                 { BoardPieceId.Brookmare, 1 },
@@ -1790,10 +1790,10 @@
             };
             var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ElvenSpearman, 2 },
-                { BoardPieceId.CultMemberElder, 2 },
-                { BoardPieceId.KillerBee, 2 },
-                { BoardPieceId.EarthElemental, 2 },
+                { BoardPieceId.ElvenSpearman, 6 },
+                { BoardPieceId.CultMemberElder, 4 },
+                { BoardPieceId.KillerBee, 4 },
+                { BoardPieceId.EarthElemental, 4 },
                 { BoardPieceId.Gorgon, 1 },
                 { BoardPieceId.Brookmare, 1 },
                 { BoardPieceId.SilentSentinel, 1 },
@@ -1801,19 +1801,19 @@
             };
             var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ElvenSpearman, 2 },
-                { BoardPieceId.CultMemberElder, 1 },
-                { BoardPieceId.KillerBee, 2 },
+                { BoardPieceId.ElvenSpearman, 8 },
+                { BoardPieceId.CultMemberElder, 4 },
+                { BoardPieceId.KillerBee, 6 },
                 { BoardPieceId.ChestGoblin, 1 },
                 { BoardPieceId.Gorgon, 2 },
             };
             var myBossDeck = new Dictionary<BoardPieceId, int>
             {
-                { BoardPieceId.ElvenSpearman, 2 },
-                { BoardPieceId.ElvenMystic, 1 },
-                { BoardPieceId.CultMemberElder, 1 },
-                { BoardPieceId.KillerBee, 1 },
-                { BoardPieceId.EarthElemental, 1 },
+                { BoardPieceId.ElvenSpearman, 8 },
+                { BoardPieceId.ElvenMystic, 3 },
+                { BoardPieceId.CultMemberElder, 4 },
+                { BoardPieceId.KillerBee, 4 },
+                { BoardPieceId.EarthElemental, 3 },
                 { BoardPieceId.RootGolem, 1 },
                 { BoardPieceId.BigBoiMutant, 1 },
             };
@@ -1824,7 +1824,7 @@
                 EntranceDeckFloor2 = myEntranceDeckFloor2,
                 ExitDeckFloor2 = myExitDeckFloor2,
                 BossDeck = myBossDeck,
-                KeyHolderFloor1 = BoardPieceId.BigBoiMutant, // should allow the game to decide the key holder.
+                KeyHolderFloor1 = BoardPieceId.Cavetroll, // should allow the game to decide the key holder.
                 KeyHolderFloor2 = BoardPieceId.ElvenSummoner,
             };
 
