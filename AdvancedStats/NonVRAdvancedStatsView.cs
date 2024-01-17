@@ -278,9 +278,18 @@
 
                     if (level > 0)
                     {
-                        // Show gametype game information here
-                        if (gametype != 55)
+                        // Show Heroes game leveling information here
+                        if (gametype == 55)
                         {
+                            sb.AppendLine();
+                            sb.Append(ColorizeString("--", Color.gray));
+                            sb.Append(ColorizeString(" Character ", pink));
+                            sb.Append(ColorizeString($"Level {level} ", orange));
+                            sb.AppendLine(ColorizeString("--", Color.gray));
+                        }
+                        else
+                        {
+                            // Show Reloaded/Revolutions game information here
                             int hp = 0;
                             int kd = 0;
                             int bon = 0;
@@ -818,10 +827,6 @@
                                     sb.AppendLine(ColorizeString("1 Action Point", Color.white));
                                 }
                             }
-                        }
-                        else
-                        {
-                            // Show Heroes game leveling information here
                         }
                     }
 
