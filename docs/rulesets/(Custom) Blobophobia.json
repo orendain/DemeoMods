@@ -15,12 +15,6 @@
           4,
           2,
           4
-        ],
-        "AcidSpit": [
-          2,
-          2,
-          2,
-          2
         ]
       }
     },
@@ -97,6 +91,10 @@
             "ReplenishFrequency": 1
           },
           {
+            "Card": "LeapHeavy",
+            "ReplenishFrequency": 2
+          },
+          {
             "Card": "Bone",
             "ReplenishFrequency": 1
           },
@@ -120,6 +118,10 @@
           },
           {
             "Card": "Arrow",
+            "ReplenishFrequency": 1
+          },
+          {
+            "Card": "EnemyFireball",
             "ReplenishFrequency": 1
           },
           {
@@ -149,8 +151,12 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "BottleOfLye",
+            "Card": "OilLamp",
             "ReplenishFrequency": 1
+          },
+          {
+            "Card": "DiseasedBite",
+            "ReplenishFrequency": 2
           },
           {
             "Card": "BoobyTrap",
@@ -171,7 +177,7 @@
             "ReplenishFrequency": 1
           },
           {
-            "Card": "OilLamp",
+            "Card": "WaterLamp",
             "ReplenishFrequency": 1
           },
           {
@@ -180,6 +186,10 @@
           },
           {
             "Card": "DetectEnemies",
+            "ReplenishFrequency": 0
+          },
+          {
+            "Card": "Fireball",
             "ReplenishFrequency": 0
           }
         ],
@@ -198,7 +208,7 @@
           },
           {
             "Card": "MinionCharge",
-            "ReplenishFrequency": 0
+            "ReplenishFrequency": 1
           },
           {
             "Card": "MissileSwarm",
@@ -253,14 +263,14 @@
           "Value": 6.0
         },
         {
-          "Piece": "HeroBarbarian",
+          "Piece": "GiantSlime",
           "Property": "StartHealth",
-          "Value": 15.0
+          "Value": 50.0
         },
         {
           "Piece": "HeroBarbarian",
-          "Property": "MoveRange",
-          "Value": 5.0
+          "Property": "StartHealth",
+          "Value": 15.0
         },
         {
           "Piece": "HeroBard",
@@ -270,7 +280,7 @@
         {
           "Piece": "HeroGuardian",
           "Property": "StartHealth",
-          "Value": 20.0
+          "Value": 18.0
         },
         {
           "Piece": "HeroHunter",
@@ -281,6 +291,11 @@
           "Piece": "HeroRogue",
           "Property": "StartHealth",
           "Value": 15.0
+        },
+        {
+          "Piece": "HeroRogue",
+          "Property": "MoveRange",
+          "Value": 5.0
         },
         {
           "Piece": "HeroSorcerer",
@@ -328,6 +343,11 @@
           "Value": 20.0
         },
         {
+          "Piece": "SwordOfAvalon",
+          "Property": "ActionPoint",
+          "Value": 3.0
+        },
+        {
           "Piece": "Verochka",
           "Property": "ActionPoint",
           "Value": 3.0
@@ -345,7 +365,7 @@
         {
           "Piece": "Slimeling",
           "Property": "StartHealth",
-          "Value": 2.0
+          "Value": 3.0
         },
         {
           "Piece": "Slimeling",
@@ -358,14 +378,19 @@
           "Value": 2.0
         },
         {
+          "Piece": "Slimeling",
+          "Property": "PowerIndex",
+          "Value": 2.0
+        },
+        {
           "Piece": "RatKing",
           "Property": "StartHealth",
-          "Value": 50.0
+          "Value": 120.0
         },
         {
           "Piece": "ElvenQueen",
           "Property": "StartHealth",
-          "Value": 60.0
+          "Value": 90.0
         }
       ]
     },
@@ -373,11 +398,12 @@
       "Rule": "AbilityActionCostAdjusted",
       "Config": {
         "Zap": false,
-        "MagicMissile": false,
+        "MinionCharge": false,
         "CourageShanty": false,
         "Sneak": false,
         "Grapple": false,
-        "Arrow": false
+        "Arrow": false,
+        "LeapHeavy": false
       }
     },
     {
@@ -396,38 +422,6 @@
         "FloorThreeHealingFountains": 0,
         "FloorThreeLootChests": 0,
         "FloorThreeElvenSummoners": 0
-      }
-    },
-    {
-      "Rule": "PieceImmunityListAdjusted",
-      "Config": {
-        "HeroBarbarian": [
-          "Diseased"
-        ],
-        "HeroBard": [
-          "Diseased"
-        ],
-        "HeroGuardian": [
-          "Diseased"
-        ],
-        "HeroHunter": [
-          "Diseased"
-        ],
-        "HeroRogue": [
-          "Diseased"
-        ],
-        "HeroSorcerer": [
-          "Diseased"
-        ],
-        "HeroWarlock": [
-          "Diseased"
-        ],
-        "Verochka": [
-          "Diseased"
-        ],
-        "WarlockMinion": [
-          "Diseased"
-        ]
       }
     },
     {
@@ -490,7 +484,8 @@
           "AttackAndRetreat",
           "Patrol",
           "RangedSpellCaster",
-          "FleeToFOW"
+          "FleeToFOW",
+          "SlimeFusion"
         ],
         "ElvenArcher": [
           "Patrol",
@@ -657,8 +652,23 @@
       }
     },
     {
+      "Rule": "PartyElectricityDamageOverridden",
+      "Config": true
+    },
+    {
       "Rule": "EnemyRespawnDisabled",
       "Config": true
+    },
+    {
+      "Rule": "GrappleUnhooked",
+      "Config": true
+    },
+    {
+      "Rule": "BackstabConfigOverridden",
+      "Config": [
+        "HeroBard",
+        "HeroRogue"
+      ]
     },
     {
       "Rule": "PieceUseWhenKilledOverridden",
