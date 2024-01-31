@@ -103,7 +103,6 @@
             var abilityAoeRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
                 { AbilityKey.CourageShanty, 1 },
-                { AbilityKey.ReplenishArmor, 1 },
                 { AbilityKey.StrengthPotion, 1 },
                 { AbilityKey.SwiftnessPotion, 1 },
                 { AbilityKey.MagicPotion, 1 },
