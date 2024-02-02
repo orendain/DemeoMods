@@ -108,9 +108,13 @@
                 { AbilityKey.MagicPotion, 1 },
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
-                { AbilityKey.ExtraActionPotion, 1 },
                 { AbilityKey.Antitoxin, 1 },
                 { AbilityKey.HealingPotion, 1 },
+            });
+
+            var enemyCooldownRule = new EnemyCooldownOverriddenRule(new Dictionary<AbilityKey, int>
+            {
+                { AbilityKey.AcidSpit, 2 },
             });
 
             var abilityMaxedRule = new RegainAbilityIfMaxxedOutOverriddenRule(new Dictionary<AbilityKey, bool>
@@ -447,6 +451,7 @@
                 abilityDamageAllRule,
                 startingCardsRule,
                 abilityAoeRule,
+                enemyCooldownRule,
                 abilityMaxedRule,
                 piecesAdjustedRule,
                 abilityActionCostRule,

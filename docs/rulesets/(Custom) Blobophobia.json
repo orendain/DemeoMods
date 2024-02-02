@@ -229,15 +229,19 @@
       "Rule": "AbilityAoeAdjusted",
       "Config": {
         "CourageShanty": 1,
-        "ReplenishArmor": 1,
         "StrengthPotion": 1,
         "SwiftnessPotion": 1,
         "MagicPotion": 1,
         "VigorPotion": 1,
         "DamageResistPotion": 1,
-        "ExtraActionPotion": 1,
         "Antitoxin": 1,
         "HealingPotion": 1
+      }
+    },
+    {
+      "Rule": "EnemyCooldownOverridden",
+      "Config": {
+        "AcidSpit": 2
       }
     },
     {
