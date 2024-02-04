@@ -571,33 +571,33 @@
                                 pointCount += _globalConfig.Keyholder;
                             }
                         }
+                        else if (!targets[i].IsPlayer() && targets[i].HasPieceType(PieceType.Boss))
+                        {
+                            HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt a boss {targets[i].boardPieceId} ({_globalConfig.HurtBoss})");
+                            flag = true;
+                            pointCount += _globalConfig.HurtBoss;
+                        }
+                        else if (!targets[i].IsPlayer() && !targets[i].IsBot() && !targets[i].IsProp())
+                        {
+                            HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt an enemy {targets[i].boardPieceId} ({_globalConfig.HurtEnemy})");
+                            flag = true;
+                            pointCount += _globalConfig.HurtEnemy;
+                            if (source.HasEffectState(EffectStateType.Key))
+                            {
+                                HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
+                                pointCount += _globalConfig.Keyholder;
+                            }
+                        }
+                        else
+                        {
+                            HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt <undefined target>");
+                        }
                     }
                     else if (targets[i] == source && !source.IsDowned() && diceResult != Dice.Outcome.None)
                     {
                         HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt/buffed themself ({_globalConfig.HurtSelf})");
                         flag = true;
                         pointCount += _globalConfig.HurtSelf;
-                    }
-                    else if (!targets[i].IsPlayer() && targets[i].HasPieceType(PieceType.Boss))
-                    {
-                        HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt a boss {targets[i].boardPieceId} ({_globalConfig.HurtBoss})");
-                        flag = true;
-                        pointCount += _globalConfig.HurtBoss;
-                    }
-                    else if (!targets[i].IsPlayer() && !targets[i].IsBot() && !targets[i].IsProp())
-                    {
-                        HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt an enemy {targets[i].boardPieceId} ({_globalConfig.HurtEnemy})");
-                        flag = true;
-                        pointCount += _globalConfig.HurtEnemy;
-                        if (source.HasEffectState(EffectStateType.Key))
-                        {
-                            HouseRulesEssentialsBase.LogDebug($"Keyholder bonus ({_globalConfig.Keyholder})");
-                            pointCount += _globalConfig.Keyholder;
-                        }
-                    }
-                    else
-                    {
-                        HouseRulesEssentialsBase.LogDebug($"{source.boardPieceId} [ID: {source.networkID}] hurt <undefined target>");
                     }
                 }
             }

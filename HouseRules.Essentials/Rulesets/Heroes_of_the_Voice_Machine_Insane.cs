@@ -327,7 +327,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 }, // becomes 0AP
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExtraActionPotion, ReplenishFrequency = 4 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 1 },
+                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyMeleeBleed, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyJavelin, ReplenishFrequency = 1 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 1 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, ReplenishFrequency = 0 },
@@ -1655,7 +1655,7 @@
             {
                 new StatusEffectData
                 {
-                    effectStateType = EffectStateType.SpellPower,
+                    effectStateType = EffectStateType.Antidote,
                     durationTurns = 4,
                     damagePerTurn = 0,
                     clearOnNewLevel = false,
@@ -1815,13 +1815,13 @@
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.25f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(0.9f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
-            var revolutionsRule = new HeroesRule(55); //
-            var progressRule = new HeroesPieceProgressRule(true); //
-            var progressLostRule = new HeroesPieceProgressLostRule(true); //
+            var revolutionsRule = new HeroesRule(55);
+            var progressRule = new HeroesPieceProgressRule(true);
+            var progressLostRule = new HeroesPieceProgressLostRule(true);
             // var goldPickupRule = new GoldPickedUpMultipliedRule(1);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
-            var tickRule = new HeroesTickAdjustedRule(true); //
+            var tickRule = new HeroesTickAdjustedRule(true);
             var queenBuffsRule = new ElvenQueenBuffsRule(false);
             var grappleUnhookedRule = new GrappleUnhookedRule(false);
             var pieceKeyholderRule = new PieceKeyholderRule(false);

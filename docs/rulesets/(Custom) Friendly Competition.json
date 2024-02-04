@@ -1631,6 +1631,7 @@
         "HurtEnemy": 1,
         "KillPlayer": 8,
         "HurtPlayer": 2,
+        "BuffPlayer": 0,
         "Keyholder": 1,
         "UnlockDoor": 20,
         "HurtBoss": 3,
@@ -1642,7 +1643,9 @@
         "LootStand": 4,
         "OpenDoor": 1,
         "UseFountain": 6,
-        "RevivePlayer": 4
+        "RevivePlayer": 4,
+        "PVPisOn": false,
+        "Points4Minions": 0
       }
     },
     {

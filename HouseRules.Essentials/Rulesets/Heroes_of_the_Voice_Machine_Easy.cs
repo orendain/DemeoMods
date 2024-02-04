@@ -22,17 +22,17 @@
             {
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "StartHealth", Value = 8 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SellswordArbalestierActive, Property = "MoveRange", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 7 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "StartHealth", Value = 17 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "CriticalHitDamage", Value = 5 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBarbarian, Property = "BerserkBelowHealth", Value = 0.81f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "MoveRange", Value = 4 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "MoveRange", Value = 4 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 6 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 6 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 5 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 5 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroBard, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroGuardian, Property = "StartHealth", Value = 16 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroRogue, Property = "StartHealth", Value = 16 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroHunter, Property = "StartHealth", Value = 15 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "StartHealth", Value = 15 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroSorcerer, Property = "CriticalHitDamage", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "AttackDamage", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.HeroWarlock, Property = "CriticalHitDamage", Value = 4 },
@@ -256,22 +256,22 @@
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyJavelin, ReplenishFrequency = 2 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyJavelin, ReplenishFrequency = 2 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PlayerLeap, ReplenishFrequency = 3 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TauntingScream, ReplenishFrequency = 3 }, // becomes 0AP
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WeakeningShout, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TauntingScream, ReplenishFrequency = 3 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WeakeningShout, ReplenishFrequency = 0 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingSmash, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SpawnRandomLamp, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SpawnRandomLamp, ReplenishFrequency = 0 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GrapplingTotem, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 }, // masters call, becomes 0AP
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyArrow, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 2 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 2 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFrostball, ReplenishFrequency = 2 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HuntersMark, ReplenishFrequency = 3 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HailOfArrows, ReplenishFrequency = 0 },
@@ -280,24 +280,24 @@
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 }, // becomes 0AP
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ScrollElectricity, ReplenishFrequency = 4 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DrainingKiss, ReplenishFrequency = 2 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 2 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 2 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Weaken, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BlindingLight, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BlindingLight, ReplenishFrequency = 0 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.FretsOfFire, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonBomb, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonBomb, ReplenishFrequency = 0 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BlindingLight, ReplenishFrequency = 2 }, // Becomes 0AP
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BlindingLight, ReplenishFrequency = 2 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TurretHealProjectile, ReplenishFrequency = 3 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 2 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TurretHealProjectile, ReplenishFrequency = 3 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 2 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicShield, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DropChest, ReplenishFrequency = 0 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Charge, ReplenishFrequency = 0 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BottleOfLye, ReplenishFrequency = 0 },
             };
@@ -305,40 +305,40 @@
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.LetItRain, ReplenishFrequency = 4 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TornadoCharge, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Whip, ReplenishFrequency = 1 }, // becomes 0AP
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TornadoCharge, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Whip, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFrostball, ReplenishFrequency = 0 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Freeze, ReplenishFrequency = 4 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterDive, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BeastWhisperer, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BeastWhisperer, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterDive, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WaterDive, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BeastWhisperer, ReplenishFrequency = 0 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Shockwave, ReplenishFrequency = 0 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 }, // becomes 0AP
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExtraActionPotion, ReplenishFrequency = 4 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyFireball, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyJavelin, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DiseasedBite, ReplenishFrequency = 1 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Blink, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.WhirlwindAttack, ReplenishFrequency = 0 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 0 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EnemyArrow, ReplenishFrequency = 1 },
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TurretHighDamageProjectile, ReplenishFrequency = 3 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TurretHighDamageProjectile, ReplenishFrequency = 3 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 3 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SnakeBossLongRange, ReplenishFrequency = 2 }, // becomes 0AP
-                // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implode, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SnakeBossLongRange, ReplenishFrequency = 2 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Implode, ReplenishFrequency = 0 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ImplosionExplosionRain, ReplenishFrequency = 0 },
                 // new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MissileSwarm, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ScrollOfCharm, ReplenishFrequency = 0 },
             };
-            // Heroes cahnges.
+            // Heroes changes.
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
                 { BoardPieceId.HeroWarlock, warlockCards },
@@ -1437,19 +1437,22 @@
 
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
-                // { AbilityKey.SnakeBossLongRange, false },
+                { AbilityKey.SnakeBossLongRange, false },
                 { AbilityKey.SpawnSpiderlings, false },
                 { AbilityKey.SpiderWebshot, false },
-                // { AbilityKey.TauntingScream, false },
+                { AbilityKey.TauntingScream, false },
                 { AbilityKey.DivineLight, false },
                 { AbilityKey.SpawnGoldPile, false },
                 { AbilityKey.LightningBolt, false },
-                // { AbilityKey.Sneak, false },
+                { AbilityKey.Sneak, false },
                 { AbilityKey.Grab, true },
-                // { AbilityKey.CourageShanty, false },
+                { AbilityKey.BlindingLight, false },
+                { AbilityKey.Whip, false },
+                { AbilityKey.MinionCharge, false },
+                { AbilityKey.CourageShanty, false },
                 { AbilityKey.Weaken, false },
                 { AbilityKey.DrainingKiss, false },
-                // { AbilityKey.MagicMissile, false },
+                { AbilityKey.MagicMissile, false },
                 { AbilityKey.SpawnRandomLamp, false },
                 { AbilityKey.BoobyTrap, false },
                 { AbilityKey.BeastWhisperer, false },

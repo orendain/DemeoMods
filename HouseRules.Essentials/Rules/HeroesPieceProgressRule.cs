@@ -84,213 +84,23 @@
                 return;
             }
 
-            if (_heroesEasy)
-            {
-                // start at level 3.
-                __result.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 3);
-            }
-            else
-            {
-                __result.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
-            }
-
-            var tempFly = 0;
-            __result.effectSink.TryGetStatMax(Stats.Type.CritChance, out tempFly);
-            __result.EnableEffectState(EffectStateType.Flying);
-            __result.effectSink.SetStatusEffectDuration(EffectStateType.Flying, tempFly);
-
             // track the use of group boost.
             __result.effectSink.TrySetStatMaxValue(Stats.Type.InnateCounterDirections, 10);
             __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 0);
 
-            // Apply level 2.
-            // if (_heroesEasy)
-            // {
-            //    Piece piece = __result;
-            //    GameUI.ShowCameraMessage("<color=#F0F312>The party Starts</color> <color=#00FF00>LEVELED UP</color><color=#F0F312>!</color>", 6);
-            //    // extra stats and refreshables become 0AP at level 2
-            //    piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 10);
-            //    piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 10);
-
-            //    if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
-            //    {
-            //        AbilityFactory.TryGetAbility(AbilityKey.TauntingScream, out var ability);
-            //        ability.costActionPoint = false;
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroBard)
-            //    {
-            //        AbilityFactory.TryGetAbility(AbilityKey.CourageShanty, out var ability);
-            //        ability.costActionPoint = false;
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
-            //    {
-            //        // Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.TryAddAbilityToInventory(AbilityKey.DropChest);
-            //        piece.AddGold(0);
-
-            //        AbilityFactory.TryGetAbility(AbilityKey.BlindingLight, out var ability);
-            //        ability.costActionPoint = false;
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroRogue)
-            //    {
-            //        AbilityFactory.TryGetAbility(AbilityKey.Sneak, out var ability);
-            //        ability.costActionPoint = false;
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
-            //    {
-            //        AbilityFactory.TryGetAbility(AbilityKey.Whip, out var ability);
-            //        ability.costActionPoint = false;
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
-            //    {
-            //        AbilityFactory.TryGetAbility(AbilityKey.SnakeBossLongRange, out var ability);
-            //        ability.costActionPoint = false;
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
-            //    {
-            //        AbilityFactory.TryGetAbility(AbilityKey.MagicMissile, out var ability);
-            //        ability.costActionPoint = false;
-            //    }
-
-            //    // Apply level 3.
-            //    if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
-            //    {
-            //        // increases their hand size incase their hand is full, so they can take the card.
-            //        // I think this is making everything refreshing. update: it was the 'flags' variable that made it refreshing.
-            //        // Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.TryAddAbilityToInventory(AbilityKey.SpawnRandomLamp);
-            //        piece.AddGold(0); // this only updates their inventory, but its still helpful.
-
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.EnemyJavelin,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 2,
-            //        });
-            //        piece.AddGold(0);
-
-            //        piece.TryAddAbilityToInventory(AbilityKey.WeakeningShout);
-            //        piece.AddGold(0);
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroBard)
-            //    {
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.TeleportLamp,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 2,
-            //        });
-
-            //        piece.TryAddAbilityToInventory(AbilityKey.BlindingLight);
-            //        piece.TryAddAbilityToInventory(AbilityKey.PoisonBomb);
-            //        piece.AddGold(0);
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
-            //    {
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.Zap,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 2,
-            //        });
-
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.TurretHealProjectile,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 3,
-            //        });
-            //        piece.AddGold(0);
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroRogue)
-            //    {
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.EnemyFireball,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 1,
-            //        });
-
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.DiseasedBite,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 1,
-            //        });
-
-            //        piece.TryAddAbilityToInventory(AbilityKey.BoobyTrap);
-            //        piece.AddGold(0);
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroHunter)
-            //    {
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.TornadoCharge,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 1,
-            //        });
-
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.WaterDive,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 3,
-            //        });
-
-            //        piece.TryAddAbilityToInventory(AbilityKey.EnemyFrostball);
-            //        piece.TryAddAbilityToInventory(AbilityKey.BeastWhisperer);
-            //        piece.AddGold(0);
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroSorcerer)
-            //    {
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.TurretHighDamageProjectile,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 3,
-            //        });
-
-            //        piece.TryAddAbilityToInventory(AbilityKey.Implode);
-            //        piece.AddGold(0);
-            //    }
-            //    else if (piece.boardPieceId == BoardPieceId.HeroWarlock)
-            //    {
-            //        Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.inventory.Items.Add(new Inventory.Item
-            //        {
-            //            abilityKey = AbilityKey.EnemyFireball,
-            //            flags = (Inventory.ItemFlag)1,
-            //            originalOwner = -1,
-            //            replenishCooldown = 2,
-            //        });
-            //        piece.AddGold(0);
-
-            //        // Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
-            //        piece.TryAddAbilityToInventory(AbilityKey.MinionCharge);
-            //        piece.AddGold(0);
-
-            //        AbilityFactory.TryGetAbility(AbilityKey.MinionCharge, out var ability);
-            //        ability.costActionPoint = false;
-            //    }
-            //}
+            if (_heroesEasy)
+            {
+                // start at level 3.
+                __result.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 3);
+                __result.EnableEffectState(EffectStateType.Flying);
+                __result.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 3);
+            }
+            else
+            {
+                __result.effectSink.TrySetStatMaxValue(Stats.Type.CritChance, 1);
+                __result.EnableEffectState(EffectStateType.Flying);
+                __result.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1);
+            }
         }
 
         public static class RandomProvider
@@ -435,27 +245,22 @@
                 }
 
                 GameUI.ShowCameraMessage("<color=#F0F312>The party has</color> <color=#00FF00>LEVELED UP</color><color=#F0F312>!</color>", 8);
-                if (nextLevel == 2) // extra stats and refreshables become 0AP at level 2
+
+                // extra stats and refreshables become 0AP at level 2
+                if (nextLevel == 2)
                 {
                     // piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
                     // piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
                     piece.GetPieceConfig().StartHealth += 1; // test HP
 
-                    // Give Overcharge cards.
+                    /* Give Overcharge cards (for testing).
                     if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
                     {
                         // track the use of group boost. give the card and 1 counter.
-                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
                         piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
                         piece.DisableEffectState(EffectStateType.Wet);
-                        // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
                         piece.AddGold(0);
-
-                        if (_heroesLogDisplayOn)
-                        {
-                            HouseRulesEssentialsBase.LogDebug($"InnateCounterDirections = {piece.GetStat(Stats.Type.InnateCounterDirections)} for {piece.boardPieceId}");
-                        }
-                    }
+                    }*/
 
                     if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
                     {
@@ -469,7 +274,6 @@
                     }
                     else if (piece.boardPieceId == BoardPieceId.HeroGuardian)
                     {
-                        // Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.TryAddAbilityToInventory(AbilityKey.DropChest);
                         piece.AddGold(0);
 
@@ -501,9 +305,6 @@
                 {
                     if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
                     {
-                        // increases their hand size incase their hand is full, so they can take the card.
-                        // I think this is making everything refreshing. update: it was the 'flags' variable that made it refreshing.
-                        // Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.TryAddAbilityToInventory(AbilityKey.SpawnRandomLamp);
                         piece.AddGold(0); // this only updates their inventory, but its still helpful.
 
@@ -631,9 +432,7 @@
                             originalOwner = -1,
                             replenishCooldown = 2,
                         });
-                        piece.AddGold(0);
 
-                        // Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.TryAddAbilityToInventory(AbilityKey.MinionCharge);
                         piece.AddGold(0);
 
@@ -647,10 +446,8 @@
                     if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
                     {
                         // track the use of group boost. give the card and 1 counter.
-                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
                         piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
                         piece.DisableEffectState(EffectStateType.Wet);
-                        // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
                         piece.AddGold(0);
 
                         if (_heroesLogDisplayOn)
@@ -839,10 +636,8 @@
                     if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
                     {
                         // track the use of group boost. give the card and 1 counter.
-                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
                         piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
                         piece.DisableEffectState(EffectStateType.Wet);
-                        // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
                         piece.AddGold(0);
 
                         if (_heroesLogDisplayOn)
@@ -988,10 +783,8 @@
                     if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
                     {
                         // track the use of group boost. give the card and 1 counter.
-                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
                         piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
                         piece.DisableEffectState(EffectStateType.Wet);
-                        // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
                         piece.AddGold(0);
 
                         if (_heroesLogDisplayOn)
@@ -1039,10 +832,8 @@
                     if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
                     {
                         // track the use of group boost. give the card and 1 counter.
-                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
                         piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
                         piece.DisableEffectState(EffectStateType.Wet);
-                        // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
                         piece.AddGold(0);
 
                         if (_heroesLogDisplayOn)
@@ -1070,80 +861,90 @@
                 return true;
             }
 
-            if (!piece.IsPlayer())
-            {
-                return true;
-            }
-
-            // Health Regeneration, Extra Actions, and Action Point cost changes per character class
-            if (piece.HasEffectState(EffectStateType.ConfusedPermanentVisualOnly))
-            {
-                piece.DisableEffectState(EffectStateType.ConfusedPermanentVisualOnly);
-                piece.DisableEffectState(EffectStateType.Corruption);
-            }
-
             // using CritChance to track levels.
             int level = piece.GetStatMax(Stats.Type.CritChance);
 
-            // Warlock minion has increased stats at level 7 and higher. Using InnateCounterDamage to track when to apply.
+            // Warlock minion has increased stats at level 7 and higher.
             // tracking Cana increased stats based on the Warlock owner.
-            if (piece.GetStatMax(Stats.Type.CritChance) >= 7 && piece.boardPieceId == BoardPieceId.HeroWarlock)
+            if (piece.boardPieceId == BoardPieceId.WarlockMinion)
             {
-                // Create the counter to track to buff or not. When Cana is dead.
-                if (piece.HasEffectState(EffectStateType.RespawnCounter))
+                HouseRulesEssentialsBase.LogDebug("Cana lives...");
+                // Let's try to increase their Cana's stats, but only for this warlock that leveled up.
+                var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+                Piece piece2;
+                PieceAI pieceAI = piece.pieceAI;
+                if (pieceAI == null)
                 {
-                    piece.SetStatBaseValue(Stats.Type.InnateCounterDamage, 1);
+                    HouseRulesEssentialsBase.LogDebug("No pieceAI found in gameContext!");
+                    return true;
                 }
-
-                // we have a warlock that is level 7 or higher,
-                if (piece.GetStat(Stats.Type.InnateCounterDamage) > 0)
+                else if (pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out piece2))
                 {
-                    // Let's try to increase their Cana's stats, but only for this warlock that leveled up.
-                    var gameContext = Traverse.Create(SerializableEventQueue.GetInstance()).Property<GameContext>("gameContext").Value;
-                    PieceAI pieceAI = piece.pieceAI; // grab the current piece's AI, which can be Arly or Cana.
-                    Piece[] listMinions = gameContext.pieceAndTurnController.GetPieceByType(PieceType.HasMinionPowder); // Get a list of all Cana's in the game.
-                    int minionListLength = listMinions.GetLength(0);
-
-                    for (int temp = 0; temp < minionListLength; temp++)
+                    HouseRulesEssentialsBase.LogDebug("pieceAI found.");
+                    if (piece2.GetStatMax(Stats.Type.CritChance) > 6)
                     {
-                        if (_heroesLogDisplayOn)
+                        HouseRulesEssentialsBase.LogDebug("Warlock is level 7+ and Cana needs buff!");
+                        if (piece.GetStat(Stats.Type.InnateCounterDamage) < 1)
                         {
-                            HouseRulesEssentialsBase.LogDebug($"Trying to match Warlock ID = {piece.networkID} and Minion ID = {listMinions[temp].networkID}, slot {temp} {listMinions[temp].boardPieceId}");
-                            // HouseRulesEssentialsBase.LogDebug($"Minion PieceIDs = slot {temp}: {listMinions[temp].boardPieceId}");
+                            HouseRulesEssentialsBase.LogDebug("CounterDamage not found...");
+                            piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 3);
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 3);
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.Strength, piece.GetStat(Stats.Type.Strength) + 2);
+                            piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 2);
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, piece.GetStat(Stats.Type.Speed) + 1);
+                            piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, piece.GetStatMax(Stats.Type.Speed) + 1);
+                            piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamage, 1);
+                            HouseRulesEssentialsBase.LogDebug($"Match found! Leveled up Cana ({piece2.networkID}) for Warlock ({piece.networkID}).");
                         }
-
-                        // if the AI is there, and the piece's associated piece is the current iteration of the list of Canas:
-                        if (pieceAI != null && pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out listMinions[temp]))
+                        else
                         {
-                            // pieceOwner should be the warlock that leveled up.
-                            if (listMinions[temp].boardPieceId == BoardPieceId.WarlockMinion && listMinions[temp].networkID == piece.networkID)
-                            {
-                                listMinions[temp].effectSink.TrySetStatMaxValue(Stats.Type.Health, listMinions[temp].GetMaxHealth() + 3);
-                                listMinions[temp].effectSink.TrySetStatBaseValue(Stats.Type.Health, listMinions[temp].GetHealth() + 3);
-
-                                listMinions[temp].effectSink.TrySetStatBaseValue(Stats.Type.Strength, listMinions[temp].GetStat(Stats.Type.Strength) + 2);
-                                listMinions[temp].effectSink.TrySetStatMaxValue(Stats.Type.Strength, listMinions[temp].GetStatMax(Stats.Type.Strength) + 2);
-                                listMinions[temp].effectSink.TrySetStatBaseValue(Stats.Type.Speed, listMinions[temp].GetStat(Stats.Type.Speed) + 1);
-                                listMinions[temp].effectSink.TrySetStatMaxValue(Stats.Type.Speed, listMinions[temp].GetStatMax(Stats.Type.Speed) + 1);
-
-                                HouseRulesEssentialsBase.LogDebug($"Match found! Leveled up Cana ({listMinions[temp].networkID}) for Warlock ({piece.networkID}). Setting counter to 0.");
-
-                                // reset the counter variable.
-                                piece.SetStatBaseValue(Stats.Type.InnateCounterDamage, 0);
-                            }
+                            HouseRulesEssentialsBase.LogDebug($"CounterDamage is already set to {piece.GetStat(Stats.Type.InnateCounterDamage)}!");
                         }
                     }
                 }
 
-                // if this warlock has a Cana and is counter is > 0, then decrease the counter. This covers some overlap.
-                if (piece.HasEffectState(EffectStateType.MinionSummoned) && piece.GetStat(Stats.Type.InnateCounterDamage) > 0)
+                if (!piece.IsPlayer())
                 {
-                    piece.SetStatBaseValue(Stats.Type.InnateCounterDamage, piece.GetStat(Stats.Type.InnateCounterDamage) - 1);
+                    return true;
                 }
-                else
+
+                // Health Regeneration, Extra Actions, and Action Point cost changes per character class
+                if (piece.HasEffectState(EffectStateType.ConfusedPermanentVisualOnly))
                 {
-                    piece.SetStatBaseValue(Stats.Type.InnateCounterDamage, 0);
+                    piece.DisableEffectState(EffectStateType.ConfusedPermanentVisualOnly);
+                    piece.DisableEffectState(EffectStateType.Corruption);
                 }
+
+                /* PieceAI pieceAI = piece.pieceAI; // grab the current piece's AI, which can be Arly or Cana.
+                Piece[] listMinions = gameContext.pieceAndTurnController.GetPieceByType(PieceType.HasMinionPowder); // Get a list of all Cana's in the game.
+                int minionListLength = listMinions.GetLength(0);
+
+                for (int temp = 0; temp < minionListLength; temp++)
+                {
+                    if (_heroesLogDisplayOn)
+                    {
+                        HouseRulesEssentialsBase.LogDebug($"Trying to match Warlock ID = {piece.networkID} and Minion ID = {listMinions[temp].networkID}, slot {temp} {listMinions[temp].boardPieceId}");
+                        // HouseRulesEssentialsBase.LogDebug($"Minion PieceIDs = slot {temp}: {listMinions[temp].boardPieceId}");
+                    }
+
+                    // if the AI is there, and the piece's associated piece is the current iteration of the list of Canas:
+                    if (pieceAI != null && pieceAI.memory.TryGetAssociatedPiece(gameContext.pieceAndTurnController, out listMinions[temp]))
+                    {
+                        // pieceOwner should be the warlock that leveled up.
+                        if (listMinions[temp].boardPieceId == BoardPieceId.WarlockMinion && listMinions[temp].networkID == piece.networkID)
+                        {
+                            listMinions[temp].effectSink.TrySetStatMaxValue(Stats.Type.Health, listMinions[temp].GetMaxHealth() + 3);
+                            listMinions[temp].effectSink.TrySetStatBaseValue(Stats.Type.Health, listMinions[temp].GetHealth() + 3);
+
+                            listMinions[temp].effectSink.TrySetStatBaseValue(Stats.Type.Strength, listMinions[temp].GetStat(Stats.Type.Strength) + 2);
+                            listMinions[temp].effectSink.TrySetStatMaxValue(Stats.Type.Strength, listMinions[temp].GetStatMax(Stats.Type.Strength) + 2);
+                            listMinions[temp].effectSink.TrySetStatBaseValue(Stats.Type.Speed, listMinions[temp].GetStat(Stats.Type.Speed) + 1);
+                            listMinions[temp].effectSink.TrySetStatMaxValue(Stats.Type.Speed, listMinions[temp].GetStatMax(Stats.Type.Speed) + 1);
+
+                            HouseRulesEssentialsBase.LogDebug($"Match found! Leveled up Cana ({listMinions[temp].networkID}) for Warlock ({piece.networkID}). Setting counter to 0.");
+                        }
+                    }
+                }*/
             }
 
             // at levels 10 and higher they get an extra AP each turn, but we must keep giving it to them.
