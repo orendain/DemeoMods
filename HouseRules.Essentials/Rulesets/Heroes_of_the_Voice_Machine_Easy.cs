@@ -401,7 +401,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.Sneak,
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
@@ -468,7 +468,7 @@
                         AbilityKey.DropChest,
                         AbilityKey.DropChest,
                         AbilityKey.DropChest,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.Sneak,
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
@@ -531,7 +531,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.Sneak,
                         AbilityKey.Charge,
                         AbilityKey.FlashBomb,
@@ -598,7 +598,7 @@
                         AbilityKey.Freeze,
                         AbilityKey.Freeze,
                         AbilityKey.EarthShatter,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
                         AbilityKey.FlashBomb,
@@ -654,7 +654,7 @@
                         AbilityKey.WhirlwindAttack,
                         AbilityKey.WhirlwindAttack,
                         AbilityKey.WhirlwindAttack,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
                         AbilityKey.FlashBomb,
@@ -718,7 +718,7 @@
                         AbilityKey.Vortex,
                         AbilityKey.Vortex,
                         AbilityKey.Vortex,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
                         AbilityKey.FlashBomb,
@@ -765,7 +765,7 @@
                         AbilityKey.SpawnGoldPile,
                         AbilityKey.SpawnGoldPile,
                         AbilityKey.SpawnGoldPile, //card says 'jeweled scarab', no image, it spawns gold though.
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.Sneak,
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
@@ -826,7 +826,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -888,7 +888,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -949,7 +949,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -1011,7 +1011,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -1071,7 +1071,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -1131,7 +1131,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -1191,14 +1191,14 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
                         AbilityKey.PoisonBomb,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.WhirlwindAttack,
-                        AbilityKey.Zap
+                        AbilityKey.Zap,
                     }
                 },
             });

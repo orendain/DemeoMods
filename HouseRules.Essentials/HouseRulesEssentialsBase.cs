@@ -153,8 +153,8 @@
             HR.Rulebook.Register(FriendlyCompetition.Create());
             HR.Rulebook.Register(DarkestDankestDemeoRuleset.Create());
             HR.Rulebook.Register(Heroes_of_the_Voice_Machine.Create());
-            // HR.Rulebook.Register(Heroes_of_the_Voice_Machine_Easy.Create());
-            // HR.Rulebook.Register(Heroes_of_the_Voice_Machine_Insane.Create());
+            HR.Rulebook.Register(Heroes_of_the_Voice_Machine_Easy.Create());
+            HR.Rulebook.Register(Heroes_of_the_Voice_Machine_Insane.Create());
             HR.Rulebook.Register(HardcoreRuleset.Create());
             HR.Rulebook.Register(Arachnophobia.Create());
             HR.Rulebook.Register(Blobophobia.Create());

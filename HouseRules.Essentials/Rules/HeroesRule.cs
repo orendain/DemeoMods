@@ -33,7 +33,47 @@
             _globalGameType = _gameType;
             _isActivated = true;
 
-            Traverse.Create(typeof(AIDirectorConfig)).Field<float>("CardEnergy_EnergyRequiredToGetNewCard").Value = 5.0f;
+            // Traverse.Create(typeof(AIDirectorConfig)).Field<float>("CardEnergy_EnergyRequiredToGetNewCard").Value = 5.0f;
+            if (HR.SelectedRuleset.Name.Contains("Heroes "))
+            {
+                // set sorting priority in player hands for refreshing cards.
+                // warlock.
+                AbilityFactory.GetAbility(AbilityKey.MagicMissile).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.EnemyArrow).hasCardHandSortingPriority = true;
+
+                // guardian.
+                AbilityFactory.GetAbility(AbilityKey.ReplenishArmor).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.Zap).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.TurretHealProjectile).hasCardHandSortingPriority = true;
+
+                // bard.
+                AbilityFactory.GetAbility(AbilityKey.CourageShanty).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.DrainingKiss).hasCardHandSortingPriority = true;
+
+                // hunter.
+                AbilityFactory.GetAbility(AbilityKey.LetItRain).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.Whip).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.TornadoCharge).hasCardHandSortingPriority = true;
+
+                // assassin.
+                AbilityFactory.GetAbility(AbilityKey.Sneak).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.EnemyJavelin).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.DiseasedBite).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.EnemyFireball).hasCardHandSortingPriority = true;
+
+                // barbarian.
+                AbilityFactory.GetAbility(AbilityKey.Grapple).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.EnemyJavelin).hasCardHandSortingPriority = true;
+
+                // sorcerer.
+                AbilityFactory.GetAbility(AbilityKey.SnakeBossLongRange).hasCardHandSortingPriority = true;
+                AbilityFactory.GetAbility(AbilityKey.EnemyArrow).hasCardHandSortingPriority = true;
+
+                // extra adjustments for some abilities.
+                // AbilityFactory.GetAbility(AbilityKey.Grab).maxRange = 15; // only works for the host
+                // AbilityFactory.GetAbility(AbilityKey.BoobyTrap).maxRange = 5; // only works for the host
+                // AbilityFactory.GetAbility(AbilityKey.CourageShanty).mayTargetSelf = true; // only works for the host
+            }
         }
 
         protected override void OnDeactivate(GameContext gameContext)
@@ -59,7 +99,7 @@
                     nameof(Inventory_RestoreReplenishables_Prefix)));
         }
 
-        private static bool Inventory_RestoreReplenishables_Prefix(Piece piece)
+        private static bool Inventory_RestoreReplenishables_Prefix(ref bool __result, Piece piece)
         {
             if (!_isActivated)
             {
@@ -71,7 +111,25 @@
                 return true;
             }
 
+            var ruleSet = HR.SelectedRuleset.Name;
+
+            if (ruleSet.Contains("Heroes ") && ruleSet.Contains("PROGRESSIVE"))
+            {
+                // decrease the counter by 1.
+                piece.effectSink.TryGetStat(Stats.Type.InnateCounterDirections, out int countCurrent);
+                if (countCurrent > 0)
+                {
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, countCurrent - 1);
+                }
+            }
+
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
+
+            // force refresh of everything?
+            // gameContext.serializableEventQueue.OnStartLoadNewLevel();
+            // gameContext.serializableEventQueue.ProcessRequests();
+            // gameContext.serializableEventQueue.SendResponseEvent(SerializableEvent.CreateRecovery());
+            // gameContext.serializableEventQueue.Tick();
 
             if (_checkPlayers)
             {
@@ -235,7 +293,7 @@
                         replenishCooldown = 0,
                     });
 
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, 2); //reset hunter stats.
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, 2); // reset hunter stats.
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.CritDamage, 4);
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 5);
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 5);
@@ -279,7 +337,7 @@
                         replenishCooldown = 0,
                     });
 
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, 2); //reset bard stats.
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.AttackDamage, 2); // reset bard stats.
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.CritDamage, 3);
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, 5);
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 5);
@@ -424,12 +482,11 @@
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, 6);
                 }
 
-                var ruleSet = HR.SelectedRuleset.Name;
-                if (ruleSet.Contains("(LEGENDARY"))
+                if (ruleSet.Contains("INSANE"))
                 {
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 3);
                 }
-                else if (ruleSet.Contains("(EASY"))
+                else if (ruleSet.Contains("EASY"))
                 {
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, 1);
                 }
@@ -442,6 +499,7 @@
                 piece.EnableEffectState(EffectStateType.Flying);
                 piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, 1); // flying is the level tracker.
                 piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, _globalGameType);
+                piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 0);
                 piece.AddGold(0);
             }
 
@@ -455,11 +513,10 @@
                 return;
             }
 
-
             if (__result.IsPlayer())
             {
                 // Apply level 2.
-                if (HR.SelectedRuleset.Name.Contains("Heroes ") && HR.SelectedRuleset.Name.Contains("Easy PROGRESSIVE"))
+                if (HR.SelectedRuleset.Name.Contains("Heroes ") && HR.SelectedRuleset.Name.Contains("EASY PROGRESSIVE"))
                 {
                     Piece piece = __result;
                     GameUI.ShowCameraMessage("<color=#F0F312>The party Starts at</color> <color=#00FF00>LEVEL 3</color><color=#F0F312>!</color>", 6);
@@ -655,11 +712,11 @@
                 var ruleSet = HR.SelectedRuleset.Name;
                 var heroesInsaneMultiplier = 1.0f;
                 var heroesDifficultyMultiplier = 1.0f;
-                if (ruleSet.Contains("Heroes ") && ruleSet.Contains("Insane PROGRESSIVE"))
+                if (ruleSet.Contains("Heroes ") && ruleSet.Contains("INSANE PROGRESSIVE"))
                 {
                     heroesInsaneMultiplier = 1.20f;
                 }
-                else if (ruleSet.Contains("Heroes ") && ruleSet.Contains("Easy PROGRESSIVE"))
+                else if (ruleSet.Contains("Heroes ") && ruleSet.Contains("EASY PROGRESSIVE"))
                 {
                     heroesDifficultyMultiplier = 0.10f;
                 }
@@ -676,7 +733,7 @@
                         __result.effectSink.AddStatusEffect(EffectStateType.IceImmunity, 99);
                     }
 
-                    if (ruleSet.Contains("PROGRESSIVE") || ruleSet.Contains("(LEGENDARY"))
+                    if (ruleSet.Contains("Insane"))
                     {
                         var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
                         if (gameContext.levelLoaderAndInitializer.GetLevelSequence().CurrentLevelIndex == 3)
@@ -718,6 +775,13 @@
                             __result.effectSink.TrySetStatBaseValue(Stats.Type.Health, 1);
                         }
                     }
+
+                    if (__result.boardPieceId == BoardPieceId.GasLamp || __result.boardPieceId == BoardPieceId.IceLamp || __result.boardPieceId == BoardPieceId.OilLamp || __result.boardPieceId == BoardPieceId.VortexLamp || __result.boardPieceId == BoardPieceId.WaterLamp)
+                    {
+                        // check to make sure lamps only have 1HP.
+                        __result.effectSink.TrySetStatMaxValue(Stats.Type.Health, 1.0f);
+                        __result.effectSink.TrySetStatBaseValue(Stats.Type.Health, 1.0f);
+                    }
                 }
 
                 // Insanity! Corresponds to check in Tick. If durration is above 50, reset to another random buff.
@@ -750,6 +814,7 @@
             else
             {
                 __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDamageExtraDamage, _globalGameType);
+                __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 0);
             }
         }
     }

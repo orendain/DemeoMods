@@ -13,8 +13,6 @@
 
         private static bool _isActivated;
 
-
-
         public HeroesTickAdjustedRule(bool value)
         {
         }
@@ -50,7 +48,8 @@
             var pieceAndTurnController = Traverse.Create(__instance).Field<PieceAndTurnController>("pieceAndTurnController").Value;
             Piece piece = pieceAndTurnController.GetPiece(pieceId);
 
-            HouseRulesEssentialsBase.LogDebug($"PieceID = {piece.boardPieceId} Has Effect: {__instance.effectStateType} Ticks left: {__instance.DurationTurnsLeft}");
+            // display in the log every buff as it ticks.
+            // HouseRulesEssentialsBase.LogDebug($"PieceID = {piece.boardPieceId} Has Effect: {__instance.effectStateType} Ticks left: {__instance.DurationTurnsLeft}");
 
             if (piece == null)
             {
@@ -64,7 +63,7 @@
             //  }
 
             // for Insanity random monster buffs.
-            if (HR.SelectedRuleset.Name.Contains("Heroes ") && HR.SelectedRuleset.Name.Contains("Insane") && (__instance.effectStateType == EffectStateType.Deflect || __instance.effectStateType == EffectStateType.MagicShield || __instance.effectStateType == EffectStateType.Invisibility || __instance.effectStateType == EffectStateType.Recovery || __instance.effectStateType == EffectStateType.Courageous))
+            if (HR.SelectedRuleset.Name.Contains("Heroes ") && HR.SelectedRuleset.Name.Contains("INSANE") && (__instance.effectStateType == EffectStateType.Deflect || __instance.effectStateType == EffectStateType.MagicShield || __instance.effectStateType == EffectStateType.Invisibility || __instance.effectStateType == EffectStateType.Recovery || __instance.effectStateType == EffectStateType.Courageous))
             {
                 if (piece.HasEffectState(__instance.effectStateType) && piece.effectSink.GetEffectStateDurationTurnsLeft(__instance.effectStateType) > 53)
                 {
@@ -134,14 +133,14 @@
                                     listHeroes[temp].EnableEffectState(EffectStateType.Overcharge, listHeroes[temp].GetStat(Stats.Type.InnateCounterDirections));
                                     listHeroes[temp].EnableEffectState(EffectStateType.ElvenHand4RespawnCooldown, 1);
                                     listHeroes[temp].TryAddAbilityToInventory(AbilityKey.LightningBolt); // grant powerful ability.
-                                    //if (listHeroes[temp].boardPieceId == BoardPieceId.HeroGuardian)
-                                    //{
+                                    // if (listHeroes[temp].boardPieceId == BoardPieceId.HeroGuardian)
+                                    // {
                                     //    listHeroes[temp].TryAddAbilityToInventory(AbilityKey.LuckPotion); // guardian already has zap which will become LightningBolt.
-                                    //}
-                                    //else
-                                    //{
+                                    // }
+                                    // else
+                                    // {
                                     //    listHeroes[temp].TryAddAbilityToInventory(AbilityKey.LightningBolt); // grant powerful ability.
-                                    //}
+                                    // }
 
                                     listHeroes[temp].effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 0);
                                     HouseRulesEssentialsBase.LogDebug($"Hero # {temp}: {listHeroes[temp].boardPieceId} counter is reset to 0.");

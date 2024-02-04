@@ -90,16 +90,16 @@
             List<MonsterDeck.MonsterDeckEntry> spikeDeck;
             MonsterDeck.MonsterDeckEntry keyHolder;
 
-            //public Dictionary<BoardPieceId, int> EntranceDeckFloor1;
-            //public Dictionary<BoardPieceId, int> ExitDeckFloor1;
-            //public Dictionary<BoardPieceId, int> EntranceDeckFloor2;
-            //public Dictionary<BoardPieceId, int> ExitDeckFloor2;
-            //public Dictionary<BoardPieceId, int> BossDeck;
+            // public Dictionary<BoardPieceId, int> EntranceDeckFloor1;
+            // public Dictionary<BoardPieceId, int> ExitDeckFloor1;
+            // public Dictionary<BoardPieceId, int> EntranceDeckFloor2;
+            // public Dictionary<BoardPieceId, int> ExitDeckFloor2;
+            // public Dictionary<BoardPieceId, int> BossDeck;
 
-            //public BoardPieceId KeyHolderFloor1;
+            // public BoardPieceId KeyHolderFloor1;
             // bool skipKeyHolderFloor1 = true;
 
-            //public BoardPieceId KeyHolderFloor2;
+            // public BoardPieceId KeyHolderFloor2;
             // bool skipKeyHolderFloor2 = true;
 
             // keyHolder = new MonsterDeck.MonsterDeckEntry();
@@ -141,8 +141,6 @@
 
             List<MonsterDeck.MonsterDeckEntry> bossDeck = CreateSubDeck(_globalAdjustments.BossDeck);
 
-
-
             MonsterDeck monsterDeck = new MonsterDeck
             {
                 monsterDeckStandard = standardDeck,
@@ -150,7 +148,6 @@
                 monsterDeckBoss = bossDeck,
                 Keyholder = keyHolder, // need to check if a keyholder was specified. If not then we don't want to add nothing, it may overwrite the existing keyholder with nothing?
             };
-
 
             // if a keyholder was specified, add to the deck.
             //if (skipKeyHolderFloor1 || skipKeyHolderFloor2)

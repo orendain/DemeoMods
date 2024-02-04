@@ -43,22 +43,22 @@
             var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var previousProperties = new Dictionary<BoardPieceId, EffectStateType>();
 
-            /// foreach (var item in pieceConfigChanges)
-            /// {
-            ///     var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
-            ///     if (item.BoardPieceId == BoardPieceId.GasLamp)
-            ///     {
-            ///         previousProperties[item.Key] = pieceConfigDto.ApplyEffectOnHit;
-            ///         pieceConfigDto.ApplyEffectOnHit = EffectStateType.Antidote;
-            ///         gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
-            ///     }
-            /// }
-            foreach (var item in pieceConfigChanges) /// goes through the current game objects.
+            // foreach (var item in pieceConfigChanges)
+            // {
+            //     var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
+            //     if (item.BoardPieceId == BoardPieceId.GasLamp)
+            //     {
+            //         previousProperties[item.Key] = pieceConfigDto.ApplyEffectOnHit;
+            //         pieceConfigDto.ApplyEffectOnHit = EffectStateType.Antidote;
+            //         gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
+            //     }
+            // }
+            foreach (var item in pieceConfigChanges) // goes through the current game objects.
             {
-                var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key]; /// access the current game context's value. its PieceConfig.
-                previousProperties[item.Key] = pieceConfigDto.ApplyEffectOnHit; /// 
-                pieceConfigDto.ApplyEffectOnHit = item.Value; /// 
-                gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto; /// 
+                var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key]; // access the current game context's value. its PieceConfig.
+                previousProperties[item.Key] = pieceConfigDto.ApplyEffectOnHit;
+                pieceConfigDto.ApplyEffectOnHit = item.Value;
+                gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
 
             return previousProperties;

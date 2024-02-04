@@ -103,9 +103,9 @@
             __result.effectSink.TrySetStatMaxValue(Stats.Type.InnateCounterDirections, 10);
             __result.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 0);
 
-            //// Apply level 2.
-            //if (_heroesEasy)
-            //{
+            // Apply level 2.
+            // if (_heroesEasy)
+            // {
             //    Piece piece = __result;
             //    GameUI.ShowCameraMessage("<color=#F0F312>The party Starts</color> <color=#00FF00>LEVELED UP</color><color=#F0F312>!</color>", 6);
             //    // extra stats and refreshables become 0AP at level 2
@@ -373,21 +373,21 @@
                 // This gets called for each hero that levels up. So it actualy makes it more difficult when there are more heroes playing.
                 float expChangePercent1 = 0.75f;
                 float expChangePercent2 = 0.90f;
-                float expChangePercent3 = 0.95f;
+                float expChangePercent3 = 0.99f;
                 if (_heroesEasy)
                 {
                     expChangePercent1 = 0.85f;
-                    expChangePercent2 = 0.90f;
-                    expChangePercent3 = 0.95f;
+                    expChangePercent2 = 0.95f;
+                    expChangePercent3 = 1.0f;
                 }
                 else if (_heroesInsane)
                 {
                     expChangePercent1 = 0.80f;
-                    expChangePercent2 = 0.90f;
+                    expChangePercent2 = 0.95f;
                     expChangePercent3 = 0.99f;
                 }
 
-                if (nextLevel < 2)
+                if (nextLevel < 3)
                 {
                     var originalValue_DealDam = AIDirectorConfig.CardEnergy_EnergyToGetFromDealingDamage;
                     Traverse.Create(typeof(AIDirectorConfig)).Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = originalValue_DealDam * expChangePercent1;
@@ -403,7 +403,7 @@
                         HouseRulesEssentialsBase.LogDebug($"CardEnergy_EnergyToGetindirect kill changed from {originalValue_IndirectKill} to {originalValue_IndirectKill * expChangePercent1}");
                     }
                 }
-                else if (nextLevel < 3)
+                else if (nextLevel < 4)
                 {
                     var originalValue_DealDam = AIDirectorConfig.CardEnergy_EnergyToGetFromDealingDamage;
                     Traverse.Create(typeof(AIDirectorConfig)).Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = originalValue_DealDam * expChangePercent2;
@@ -444,20 +444,20 @@
                     piece.GetPieceConfig().StartHealth += 1; // test HP
 
                     // give energy cards.
-                    if (!piece.inventory.HasAbility(AbilityKey.SpellPowerPotion)) // check if the have it already.
-                    {
-                        // track the use of group boost. give the card and 1 counter.
-                        piece.TryAddAbilityToInventory(AbilityKey.SpellPowerPotion);
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 5);
-                        // piece.DisableEffectState(EffectStateType.Wet);
-                        // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
-                        piece.AddGold(0);
+                    // if (!piece.inventory.HasAbility(AbilityKey.SpellPowerPotion)) // check if the have it already.
+                    // {
+                    //    // track the use of group boost. give the card and 1 counter.
+                    //    piece.TryAddAbilityToInventory(AbilityKey.SpellPowerPotion);
+                    //    piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 5);
+                    //    // piece.DisableEffectState(EffectStateType.Wet);
+                    //    // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
+                    //    piece.AddGold(0);
 
-                        if (_heroesLogDisplayOn)
-                        {
-                            HouseRulesEssentialsBase.LogDebug($"InnateCounterDirections = {piece.GetStat(Stats.Type.InnateCounterDirections)} for {piece.boardPieceId}");
-                        }
-                    }
+                    //    if (_heroesLogDisplayOn)
+                    //    {
+                    //        HouseRulesEssentialsBase.LogDebug($"InnateCounterDirections = {piece.GetStat(Stats.Type.InnateCounterDirections)} for {piece.boardPieceId}");
+                    //    }
+                    // }
 
                     if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
                     {
@@ -827,7 +827,6 @@
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, piece.GetStat(Stats.Type.Speed) + 1);
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, piece.GetStatMax(Stats.Type.Speed) + 1);
 
-
                     // piece.DisableEffectState(EffectStateType.ExtraEnergy);
                     // piece.EnableEffectState(EffectStateType.ExtraEnergy, 1);
 
@@ -1085,7 +1084,7 @@
                     piece.SetStatBaseValue(Stats.Type.InnateCounterDamage, 1);
                 }
 
-                // we have a warlock that is level 7 or higher, 
+                // we have a warlock that is level 7 or higher,
                 if (piece.GetStat(Stats.Type.InnateCounterDamage) > 0)
                 {
                     // Let's try to increase their Cana's stats, but only for this warlock that leveled up.

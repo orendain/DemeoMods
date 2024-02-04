@@ -398,7 +398,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.Sneak,
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
@@ -465,7 +465,7 @@
                         AbilityKey.DropChest,
                         AbilityKey.DropChest,
                         AbilityKey.DropChest,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.Sneak,
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
@@ -528,7 +528,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.Sneak,
                         AbilityKey.Charge,
                         AbilityKey.FlashBomb,
@@ -595,7 +595,7 @@
                         AbilityKey.Freeze,
                         AbilityKey.Freeze,
                         AbilityKey.EarthShatter,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
                         AbilityKey.FlashBomb,
@@ -651,7 +651,7 @@
                         AbilityKey.WhirlwindAttack,
                         AbilityKey.WhirlwindAttack,
                         AbilityKey.WhirlwindAttack,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
                         AbilityKey.FlashBomb,
@@ -715,7 +715,7 @@
                         AbilityKey.Vortex,
                         AbilityKey.Vortex,
                         AbilityKey.Vortex,
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
                         AbilityKey.FlashBomb,
@@ -762,7 +762,7 @@
                         AbilityKey.SpawnGoldPile,
                         AbilityKey.SpawnGoldPile,
                         AbilityKey.SpawnGoldPile, //card says 'jeweled scarab', no image, it spawns gold though.
-                        //rare bonus cards.
+                        // rare bonus cards.
                         AbilityKey.Sneak,
                         AbilityKey.CourageShanty,
                         AbilityKey.Charge,
@@ -823,7 +823,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -885,7 +885,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -946,7 +946,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -1008,7 +1008,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -1068,7 +1068,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -1128,7 +1128,7 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
@@ -1188,14 +1188,14 @@
                         AbilityKey.OilLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.VortexLamp,
-                        //rare class cards, for overlap
+                        // rare class cards, for overlap
                         AbilityKey.Grab,
                         AbilityKey.CourageShanty,
                         AbilityKey.CallCompanion,
                         AbilityKey.PoisonBomb,
                         AbilityKey.ScrollElectricity,
                         AbilityKey.WhirlwindAttack,
-                        AbilityKey.Zap
+                        AbilityKey.Zap,
                     }
                 },
             });
@@ -1870,13 +1870,13 @@
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.25f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(0.9f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
-            var revolutionsRule = new HeroesRule(55); //
-            var progressRule = new HeroesPieceProgressRule(true); //
-            var progressLostRule = new HeroesPieceProgressLostRule(true); //
+            var revolutionsRule = new HeroesRule(55);
+            var progressRule = new HeroesPieceProgressRule(true);
+            var progressLostRule = new HeroesPieceProgressLostRule(true);
             // var goldPickupRule = new GoldPickedUpMultipliedRule(1);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
-            var tickRule = new HeroesTickAdjustedRule(true); //
+            var tickRule = new HeroesTickAdjustedRule(true);
             var queenBuffsRule = new ElvenQueenBuffsRule(false);
             var grappleUnhookedRule = new GrappleUnhookedRule(false);
             var pieceKeyholderRule = new PieceKeyholderRule(false);
