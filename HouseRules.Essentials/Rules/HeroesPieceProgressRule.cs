@@ -560,7 +560,7 @@
                         Traverse.Create(piece.inventory).Field<int>("numberOfReplenishableCards").Value += 1;
                         piece.inventory.Items.Add(new Inventory.Item
                         {
-                            abilityKey = AbilityKey.EnemyMeleeBleed,
+                            abilityKey = AbilityKey.Implode,
                             flags = (Inventory.ItemFlag)1,
                             originalOwner = -1,
                             replenishCooldown = 5,
