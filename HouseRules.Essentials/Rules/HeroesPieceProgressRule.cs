@@ -359,8 +359,6 @@
                     piece.effectSink.RemoveStatusEffect(EffectStateType.Frozen);
                 }
 
-                // piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                // piece.EnableEffectState(EffectStateType.ExtraEnergy, 1);
                 piece.effectSink.SetStatusEffectDuration(EffectStateType.Flying, nextLevel); // uses flying as the level indicator.
 
                 if (piece.GetHealth() < piece.GetMaxHealth())
@@ -443,21 +441,21 @@
                     // piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
                     piece.GetPieceConfig().StartHealth += 1; // test HP
 
-                    // give energy cards.
-                    // if (!piece.inventory.HasAbility(AbilityKey.SpellPowerPotion)) // check if the have it already.
-                    // {
-                    //    // track the use of group boost. give the card and 1 counter.
-                    //    piece.TryAddAbilityToInventory(AbilityKey.SpellPowerPotion);
-                    //    piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 5);
-                    //    // piece.DisableEffectState(EffectStateType.Wet);
-                    //    // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
-                    //    piece.AddGold(0);
+                    // Give Overcharge cards.
+                    if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
+                    {
+                        // track the use of group boost. give the card and 1 counter.
+                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
+                        piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
+                        piece.DisableEffectState(EffectStateType.Wet);
+                        // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
+                        piece.AddGold(0);
 
-                    //    if (_heroesLogDisplayOn)
-                    //    {
-                    //        HouseRulesEssentialsBase.LogDebug($"InnateCounterDirections = {piece.GetStat(Stats.Type.InnateCounterDirections)} for {piece.boardPieceId}");
-                    //    }
-                    // }
+                        if (_heroesLogDisplayOn)
+                        {
+                            HouseRulesEssentialsBase.LogDebug($"InnateCounterDirections = {piece.GetStat(Stats.Type.InnateCounterDirections)} for {piece.boardPieceId}");
+                        }
+                    }
 
                     if (piece.boardPieceId == BoardPieceId.HeroBarbarian)
                     {
@@ -645,6 +643,22 @@
                 }
                 else if (nextLevel == 4) // extra stats and increased down counter at level 4.
                 {
+                    // Give Overcharge cards.
+                    if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
+                    {
+                        // track the use of group boost. give the card and 1 counter.
+                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
+                        piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
+                        piece.DisableEffectState(EffectStateType.Wet);
+                        // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
+                        piece.AddGold(0);
+
+                        if (_heroesLogDisplayOn)
+                        {
+                            HouseRulesEssentialsBase.LogDebug($"InnateCounterDirections = {piece.GetStat(Stats.Type.InnateCounterDirections)} for {piece.boardPieceId}");
+                        }
+                    }
+
                     piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 2);
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 2);
                     piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
@@ -821,22 +835,13 @@
                 }
                 else if (nextLevel == 7) // increase downed counter and movement at level 7.
                 {
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
-
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, piece.GetStat(Stats.Type.Speed) + 1);
-                    piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, piece.GetStatMax(Stats.Type.Speed) + 1);
-
-                    // piece.DisableEffectState(EffectStateType.ExtraEnergy);
-                    // piece.EnableEffectState(EffectStateType.ExtraEnergy, 1);
-
-                    // give energy cards.
-                    if (!piece.inventory.HasAbility(AbilityKey.SpellPowerPotion)) // check if the have it already.
+                    // Give Overcharge cards.
+                    if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
                     {
                         // track the use of group boost. give the card and 1 counter.
-                        piece.TryAddAbilityToInventory(AbilityKey.SpellPowerPotion);
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 5);
-                        // piece.DisableEffectState(EffectStateType.Wet);
+                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
+                        piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
+                        piece.DisableEffectState(EffectStateType.Wet);
                         // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
                         piece.AddGold(0);
 
@@ -845,6 +850,12 @@
                             HouseRulesEssentialsBase.LogDebug($"InnateCounterDirections = {piece.GetStat(Stats.Type.InnateCounterDirections)} for {piece.boardPieceId}");
                         }
                     }
+
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedCounter, piece.GetStat(Stats.Type.DownedCounter) - 1);
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.DownedTimer, piece.GetStat(Stats.Type.DownedTimer) + 1);
+
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.Speed, piece.GetStat(Stats.Type.Speed) + 1);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.Speed, piece.GetStatMax(Stats.Type.Speed) + 1);
 
                     // Let's try to increase their Cana's stats, but only for this warlock that leveled up.
                     // var gameContext = Traverse.Create(SerializableEventQueue.GetInstance()).Property<GameContext>("gameContext").Value;
@@ -973,19 +984,13 @@
                 }
                 else if (nextLevel == 9) // boost to magic and strength at 9th level.
                 {
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, piece.GetStat(Stats.Type.MagicBonus) + 1);
-                    piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, piece.GetStatMax(Stats.Type.MagicBonus) + 1);
-
-                    piece.effectSink.TrySetStatBaseValue(Stats.Type.Strength, piece.GetStat(Stats.Type.Strength) + 1);
-                    piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 1);
-
-                    // give energy cards.
-                    if (!piece.inventory.HasAbility(AbilityKey.SpellPowerPotion)) // check if the have it already.
+                    // Give Overcharge cards.
+                    if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
                     {
                         // track the use of group boost. give the card and 1 counter.
-                        piece.TryAddAbilityToInventory(AbilityKey.SpellPowerPotion);
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 5);
-                        // piece.DisableEffectState(EffectStateType.Wet);
+                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
+                        piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
+                        piece.DisableEffectState(EffectStateType.Wet);
                         // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
                         piece.AddGold(0);
 
@@ -994,6 +999,12 @@
                             HouseRulesEssentialsBase.LogDebug($"InnateCounterDirections = {piece.GetStat(Stats.Type.InnateCounterDirections)} for {piece.boardPieceId}");
                         }
                     }
+
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.MagicBonus, piece.GetStat(Stats.Type.MagicBonus) + 1);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.MagicBonus, piece.GetStatMax(Stats.Type.MagicBonus) + 1);
+
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.Strength, piece.GetStat(Stats.Type.Strength) + 1);
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.Strength, piece.GetStatMax(Stats.Type.Strength) + 1);
                 }
                 else if (nextLevel == 10) // increase their AP at levels 10 and higher.
                 {
@@ -1024,13 +1035,13 @@
                 }
                 else if (nextLevel == 14 || nextLevel == 19)
                 {
-                    // give energy cards.
-                    if (!piece.inventory.HasAbility(AbilityKey.SpellPowerPotion)) // check if the have it already.
+                    // Give Overcharge cards.
+                    if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.
                     {
                         // track the use of group boost. give the card and 1 counter.
-                        piece.TryAddAbilityToInventory(AbilityKey.SpellPowerPotion);
-                        piece.effectSink.TrySetStatBaseValue(Stats.Type.InnateCounterDirections, 5);
-                        // piece.DisableEffectState(EffectStateType.Wet);
+                        piece.RestoreReplenishableAbility(AbilityKey.Zap); // just in case the guardian used their zap.
+                        piece.TryAddAbilityToInventory(AbilityKey.Overcharge);
+                        piece.DisableEffectState(EffectStateType.Wet);
                         // piece.EnableEffectState(EffectStateType.Overcharge, piece.GetStat(Stats.Type.InnateCounterDirections));
                         piece.AddGold(0);
 

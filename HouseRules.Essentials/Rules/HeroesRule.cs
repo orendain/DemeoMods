@@ -3,6 +3,7 @@
     using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
+    using Boardgame.BoardEntities.AI;
     using Data.GameData;
     using DataKeys;
     using HarmonyLib;
@@ -784,28 +785,31 @@
                     }
                 }
 
-                // Insanity! Corresponds to check in Tick. If durration is above 50, reset to another random buff.
+                // Insanity! Corresponds to check in Tick. If duration is above 50, reset to another random buff.
                 if (heroesInsaneMultiplier > 1.0f && (__result.boardPieceId != BoardPieceId.ElvenQueen && __result.boardPieceId != BoardPieceId.RootLord))
                 {
-                    int nextPhase = Random.Range(1, 6);
-                    switch (nextPhase)
+                    if (__result.HasPieceType(PieceType.Creature) && !__result.HasPieceType(PieceType.ExplodingLamp) && !__result.HasEffectState(EffectStateType.Confused) && __result.boardPieceId != BoardPieceId.Verochka && __result.boardPieceId != BoardPieceId.WarlockMinion)
                     {
-                        case 1:
-                            __result.EnableEffectState(EffectStateType.Deflect, 55);
-                            // __result.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
-                            break;
-                        case 2:
-                            __result.EnableEffectState(EffectStateType.MagicShield, 55);
-                            break;
-                        case 3:
-                            __result.EnableEffectState(EffectStateType.Invisibility, 55);
-                            break;
-                        case 4:
-                            __result.EnableEffectState(EffectStateType.Recovery, 55);
-                            break;
-                        case 5:
-                            __result.EnableEffectState(EffectStateType.Courageous, 55);
-                            break;
+                        int nextPhase = Random.Range(1, 6);
+                        switch (nextPhase)
+                        {
+                            case 1:
+                                __result.EnableEffectState(EffectStateType.Deflect, 55);
+                                // __result.effectSink.SetStatusEffectDuration(EffectStateType.Deflect, 2);
+                                break;
+                            case 2:
+                                __result.EnableEffectState(EffectStateType.MagicShield, 55);
+                                break;
+                            case 3:
+                                __result.EnableEffectState(EffectStateType.Frenzy, 55);
+                                break;
+                            case 4:
+                                __result.EnableEffectState(EffectStateType.Recovery, 55);
+                                break;
+                            case 5:
+                                __result.EnableEffectState(EffectStateType.Courageous, 55);
+                                break;
+                        }
                     }
                 }
 

@@ -160,7 +160,7 @@
                 else if (setName.Contains("Voice Machine (INSANE PROGRESSIVE"))
                 {
                     fontSize = 4;
-                    setName = "<color=#FFFF00><b>Heroes of the Voice Machine</b></color>\n<color=#D456FD><b>(LEGENDARY PROGRESSIVE)</b></color>";
+                    setName = "<color=#FFFF00><b>Heroes of the Voice Machine</b></color>\n<color=#D456FD><b>(INSANE PROGRESSIVE)</b></color>";
                 }
             }
 

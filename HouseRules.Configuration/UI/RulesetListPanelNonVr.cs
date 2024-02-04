@@ -198,7 +198,15 @@
             }
             else if (setName.Contains("Voice Machine (PROGRESSIVE"))
             {
-                setName = "<color=#AAEA04><b>Heroes of the Voice Machine</b></color> <color=#9F11A2><b>(PROGRESSIVE)</b></color>";
+                setName = "<color=#AAEA04><b>Heroes of the Voice Machine</b></color> <color=#A2115D><b>(PROGRESSIVE)</b></color>";
+            }
+            else if (setName.Contains("Voice Machine (EASY PROGRESSIVE"))
+            {
+                setName = "<color=#AAEA04><b>Heroes of the Voice Machine</b></color> <color=#1D21E0><b>(EASY PROGRESSIVE)</b></color>";
+            }
+            else if (setName.Contains("Voice Machine (INSANE PROGRESSIVE"))
+            {
+                setName = "<color=#AAEA04><b>Heroes of the Voice Machine</b></color> <color=#9F11A2><b>(INSANE PROGRESSIVE)</b></color>";
             }
 
             _selectedText.text = $"Selected ruleset: {setName}";
