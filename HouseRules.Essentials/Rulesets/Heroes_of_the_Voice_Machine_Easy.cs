@@ -1812,41 +1812,36 @@
             var pointGainRule = new PointGainRule(new PointGainRule.Points
             { PVPisOn = false, Points4Minions = 2, KillEnemy = 1, KillPlayer = -8, KillSelf = -10, KillBoss = 25, HurtEnemy = 1, HurtPlayer = -3, BuffPlayer = 1, HurtSelf = -5, HurtBoss = 3, Keyholder = 1, UnlockDoor = 20, LootGold = 3, LootChest = 4, LootStand = 5, OpenDoor = 1, UseFountain = 6, RevivePlayer = 4 });
 
-            var pieceExtraImmunitiesRule = new PieceExtraImmunitiesRule(false);
-            var partyElectricityRule = new PartyElectricityDamageOverriddenRule(false);
             // var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(3.0f); // base game starts at 0.25f
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.25f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(0.9f);
             var enemyAttackScaledRule = new EnemyAttackScaledRule(1.0f);
-            var revolutionsRule = new HeroesRule(55); //
-            var progressRule = new HeroesPieceProgressRule(true); //
-            var progressLostRule = new HeroesPieceProgressLostRule(true); //
+            var revolutionsRule = new HeroesRule(55);
+            var progressRule = new HeroesPieceProgressRule(true);
+            var progressLostRule = new HeroesPieceProgressLostRule(true);
             // var goldPickupRule = new GoldPickedUpMultipliedRule(1);
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
-            var tickRule = new HeroesTickAdjustedRule(true); //
-            var queenBuffsRule = new ElvenQueenBuffsRule(false);
-            var grappleUnhookedRule = new GrappleUnhookedRule(false);
-            var pieceKeyholderRule = new PieceKeyholderRule(false);
+            var tickRule = new HeroesTickAdjustedRule(true);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 longdesc,
-                pieceKeyholderRule,
+                // pieceKeyholderRule,
                 progressLostRule,
                 tickRule,
                 revolutionsRule,
                 progressRule,
-                grappleUnhookedRule,
+                // grappleUnhookedRule,
                 pieceDownedCountRule,
                 pieceMagicStatsRule,
                 pieceCounterDamageRule,
                 // pieceDamageResistRule,
                 pieceExtraStatsRule,
-                queenBuffsRule,
+                // queenBuffsRule,
                 // statModifiersRule,
                 // goldPickupRule,
                 // piecePieceTypeRule,
@@ -1882,8 +1877,8 @@
                 enemyCooldownRule,
                 aoeAdjustedRule,
                 abilityDamageAllRule,
-                partyElectricityRule,
-                pieceExtraImmunitiesRule,
+                // partyElectricityRule,
+                // pieceExtraImmunitiesRule,
                 // petsFocusHuntersMarkRule,
                 enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,

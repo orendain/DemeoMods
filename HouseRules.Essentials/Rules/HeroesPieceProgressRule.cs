@@ -38,19 +38,11 @@
             {
                 _heroesEasy = true;
             }
-            else
-            {
-                _heroesEasy = false;
-            }
 
             // Heroes *Insane* PROGRESSIVE
             if (HR.SelectedRuleset.Name.Contains("Heroes ") && HR.SelectedRuleset.Name.Contains("INSANE PROGRESSIVE"))
             {
                 _heroesInsane = true;
-            }
-            else
-            {
-                _heroesInsane = false;
             }
         }
 

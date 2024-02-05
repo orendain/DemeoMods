@@ -70,37 +70,44 @@
             // for Insanity random monster buffs.
             if (HR.SelectedRuleset.Name.Contains("INSANE") && (__instance.effectStateType == EffectStateType.Deflect || __instance.effectStateType == EffectStateType.Courageous || __instance.effectStateType == EffectStateType.Frenzy || __instance.effectStateType == EffectStateType.Recovery || __instance.effectStateType == EffectStateType.MagicShield))
             {
-                if (piece.HasPieceType(PieceType.Creature) && !piece.HasEffectState(EffectStateType.Confused) && !piece.HasPieceType(PieceType.ExplodingLamp) && piece.boardPieceId != BoardPieceId.Verochka && piece.boardPieceId != BoardPieceId.WarlockMinion)
+                if (piece.HasPieceType(PieceType.Creature) && !piece.HasPieceType(PieceType.ExplodingLamp) && piece.boardPieceId != BoardPieceId.Verochka && piece.boardPieceId != BoardPieceId.WarlockMinion)
                 {
-                    if (piece.effectSink.GetEffectStateDurationTurnsLeft(__instance.effectStateType) > 53)
+                    if (piece.effectSink.GetEffectStateDurationTurnsLeft(__instance.effectStateType) > 9 && piece.effectSink.GetEffectStateDurationTurnsLeft(__instance.effectStateType) < 54)
                     {
                         // remove the current effect/buff.
                         piece.DisableEffectState(__instance.effectStateType);
 
-                        // set a new random effect/buff.
-                        int nextPhase = UnityEngine.Random.Range(1, 6);
-                        if (__instance.effectStateType == EffectStateType.Deflect || __instance.effectStateType == EffectStateType.MagicShield)
+                        if (!piece.HasEffectState(EffectStateType.Confused) || !piece.HasPieceType(PieceType.Lure) || piece.boardPieceId != BoardPieceId.SwordOfAvalon || piece.boardPieceId != BoardPieceId.SmiteWard)
                         {
-                            nextPhase = UnityEngine.Random.Range(2, 5);
-                        }
+                            // set a new random effect/buff.
+                            int nextPhase = UnityEngine.Random.Range(1, 8);
+                            if (__instance.effectStateType == EffectStateType.Deflect || __instance.effectStateType == EffectStateType.MagicShield)
+                            {
+                                nextPhase = UnityEngine.Random.Range(2, 7);
+                            }
 
-                        switch (nextPhase)
-                        {
-                            case 1:
-                                piece.EnableEffectState(EffectStateType.Deflect, 55);
-                                break;
-                            case 2:
-                                piece.EnableEffectState(EffectStateType.Courageous, 55);
-                                break;
-                            case 3:
-                                piece.EnableEffectState(EffectStateType.Frenzy, 55);
-                                break;
-                            case 4:
-                                piece.EnableEffectState(EffectStateType.Recovery, 55);
-                                break;
-                            case 5:
-                                piece.EnableEffectState(EffectStateType.MagicShield, 55);
-                                break;
+                            switch (nextPhase)
+                            {
+                                case 1:
+                                    piece.EnableEffectState(EffectStateType.Deflect, 55);
+                                    break;
+                                case 2:
+                                    piece.EnableEffectState(EffectStateType.Courageous, 55);
+                                    break;
+                                case 3:
+                                    piece.EnableEffectState(EffectStateType.Frenzy, 55);
+                                    break;
+                                case 4:
+                                    piece.EnableEffectState(EffectStateType.Recovery, 55);
+                                    break;
+                                case 5:
+                                    break;
+                                case 6:
+                                    break;
+                                case 7:
+                                    piece.EnableEffectState(EffectStateType.MagicShield, 55);
+                                    break;
+                            }
                         }
                     }
                 }

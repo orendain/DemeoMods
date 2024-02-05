@@ -1807,8 +1807,6 @@
             var pointGainRule = new PointGainRule(new PointGainRule.Points
             { PVPisOn = false, Points4Minions = 2, KillEnemy = 2, KillPlayer = -8, KillSelf = -10, KillBoss = 25, HurtEnemy = 1, HurtPlayer = -3, BuffPlayer = 1, HurtSelf = -5, HurtBoss = 5, Keyholder = 1, UnlockDoor = 30, LootGold = 3, LootChest = 4, LootStand = 5, OpenDoor = 1, UseFountain = 6, RevivePlayer = 4 });
 
-            var pieceExtraImmunitiesRule = new PieceExtraImmunitiesRule(false);
-            var partyElectricityRule = new PartyElectricityDamageOverriddenRule(false);
             // var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
             // var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(3.0f); // base game starts at 0.25f
@@ -1822,26 +1820,23 @@
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new HeroesTickAdjustedRule(true);
-            var queenBuffsRule = new ElvenQueenBuffsRule(false);
-            var grappleUnhookedRule = new GrappleUnhookedRule(false);
-            var pieceKeyholderRule = new PieceKeyholderRule(false);
 
             return Ruleset.NewInstance(
                 name,
                 description,
                 longdesc,
-                pieceKeyholderRule,
+                // pieceKeyholderRule,
                 progressLostRule,
                 tickRule,
                 revolutionsRule,
                 progressRule,
-                grappleUnhookedRule,
+                // grappleUnhookedRule,
                 pieceDownedCountRule,
                 pieceMagicStatsRule,
                 pieceCounterDamageRule,
                 // pieceDamageResistRule,
                 pieceExtraStatsRule,
-                queenBuffsRule,
+                // queenBuffsRule,
                 // statModifiersRule,
                 // goldPickupRule,
                 // piecePieceTypeRule,
@@ -1877,8 +1872,8 @@
                 enemyCooldownRule,
                 aoeAdjustedRule,
                 abilityDamageAllRule,
-                partyElectricityRule,
-                pieceExtraImmunitiesRule,
+                // partyElectricityRule,
+                // pieceExtraImmunitiesRule,
                 // petsFocusHuntersMarkRule,
                 // enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,
