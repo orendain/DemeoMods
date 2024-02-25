@@ -80,10 +80,10 @@
                         if (!piece.HasEffectState(EffectStateType.Confused) || !piece.HasPieceType(PieceType.Lure) || piece.boardPieceId != BoardPieceId.SwordOfAvalon || piece.boardPieceId != BoardPieceId.SmiteWard)
                         {
                             // set a new random effect/buff.
-                            int nextPhase = UnityEngine.Random.Range(1, 8);
+                            int nextPhase = UnityEngine.Random.Range(1, 7);
                             if (__instance.effectStateType == EffectStateType.Deflect || __instance.effectStateType == EffectStateType.MagicShield)
                             {
-                                nextPhase = UnityEngine.Random.Range(2, 7);
+                                nextPhase = UnityEngine.Random.Range(2, 6);
                             }
 
                             switch (nextPhase)
@@ -103,8 +103,6 @@
                                 case 5:
                                     break;
                                 case 6:
-                                    break;
-                                case 7:
                                     piece.EnableEffectState(EffectStateType.MagicShield, 55);
                                     break;
                             }

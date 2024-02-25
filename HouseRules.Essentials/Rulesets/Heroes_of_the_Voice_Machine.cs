@@ -12,10 +12,10 @@
         internal static Ruleset Create()
         {
             // Heroes of the Voice Machine Standard PROGRESSIVE
-            // by BobtheBunny  version 1.2
+            // by BobtheBunny  version 1.4
             const string name = "Heroes of the Voice Machine (PROGRESSIVE)";
             const string description = "The adventure begins.. take a chance, roll the dice.";
-            const string longdesc = "Many thanks to TheGrayAlien!\nThis is a rebuild of BobtheBunnys Legend of the Voice Machine mod with the leveling features of the DemeoRevolutions Progressive mods.\n\nTheme is based on a popular TTRPG stream by a bunch of nerdy voice actors and their hit animated series.\n\nSorcerer\nThe snarky and witty gunslinger. Descendant of royalty and tragedy, his soul is corrupt.\n\nGuardian\nUnsure and often unreliable, but always lovable cleric. She is every bit as much a warrior as a healer.\n\nBarbarian\nMuscles, big weapon, yells a lot, and always fond of ale. He would like to rage.\n\nBard\nGird your loins and tap your toes, this clever artist can weave melodies and magic to aid his friends in battle.\n\nHunter\nA powerful druid if she had more confidence in herself. Her people count on her to lead some day, but for now just try not to die.\n\nAssassin\nMove fast and strike with dagger-dagger-dagger. He's got a few tricks up his sleeve and feathers in his cloak.\n\nWarlock\nArcher with a pet bear. Which one has a more pleasant attitude? You wont have time to ask before you are marked for death.";
+            const string longdesc = "Many thanks to TheGrayAlien!       version 1.4\nThis is a rebuild of BobtheBunnys Legend of the Voice Machine mod with the leveling features of the DemeoRevolutions Progressive mods.\n\nTheme is based on a popular TTRPG stream by a bunch of nerdy voice actors and their hit animated series.\n\nSorcerer\nThe snarky and witty gunslinger. Descendant of royalty and tragedy, his soul is corrupt.\n\nGuardian\nUnsure and often unreliable, but always lovable cleric. She is every bit as much a warrior as a healer.\n\nBarbarian\nMuscles, big weapon, yells a lot, and always fond of ale. He would like to rage.\n\nBard\nGird your loins and tap your toes, this clever artist can weave melodies and magic to aid his friends in battle.\n\nHunter\nA powerful druid if she had more confidence in herself. Her people count on her to lead some day, but for now just try not to die.\n\nAssassin\nMove fast and strike with dagger-dagger-dagger. He's got a few tricks up his sleeve and feathers in his cloak.\n\nWarlock\nArcher with a pet bear. Which one has a more pleasant attitude? You wont have time to ask before you are marked for death.";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -73,7 +73,7 @@
                 // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.ElvenQueen, Property = "MagicBonus", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 210 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "StartHealth", Value = 230 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.BossTown, Property = "MoveRange", Value = 2 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MadElvenKingHandLeft, Property = "PreciseHealth", Value = 1 },
@@ -82,11 +82,11 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MadElvenKingHandRight, Property = "PreciseAttack", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 98 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "StartHealth", Value = 105 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RootLord, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 80 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "StartHealth", Value = 90 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "BerserkBelowHealth", Value = 0.75f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "ActionPoint", Value = 3 },
                 // new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.MotherCy, Property = "MagicBonus", Value = 1 },
@@ -98,7 +98,7 @@
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.RatKing, Property = "BerserkBelowHealth", Value = 0.90f },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "PreciseAttack", Value = 1 },
-                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 135 },
+                new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "StartHealth", Value = 155 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.WizardBoss, Property = "ActionPoint", Value = 3 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "PreciseHealth", Value = 1 },
                 new PieceConfigAdjustedRule.PieceProperty { Piece = BoardPieceId.SnakeBoss, Property = "PreciseAttack", Value = 1 },
@@ -422,9 +422,6 @@
                         AbilityKey.ExtraActionPotion,
                         AbilityKey.DamageResistPotion,
                         AbilityKey.AdamantPotion,
-                        AbilityKey.Overcharge,
-                        AbilityKey.Overcharge,
-                        AbilityKey.Overcharge,
                         AbilityKey.HeavensFury,
                         AbilityKey.HeavensFury,
                         AbilityKey.HeavensFury,
@@ -577,7 +574,6 @@
                         AbilityKey.BeastWhisperer,
                         AbilityKey.BeastWhisperer,
                         AbilityKey.BeastWhisperer,
-                        AbilityKey.Overcharge,
                         // AbilityKey.Overcharge,
                         // AbilityKey.Petrify,
                         // AbilityKey.Petrify,
@@ -1379,6 +1375,7 @@
                 { BoardPieceId.HeroRogue, new List<EffectStateType> { EffectStateType.Diseased } },
                 { BoardPieceId.HeroWarlock, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Thorns } },
                 { BoardPieceId.WarlockMinion, new List<EffectStateType> { EffectStateType.CorruptedRage, EffectStateType.Stunned, EffectStateType.Diseased } },
+                { BoardPieceId.ProximityMine, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns } },
                 { BoardPieceId.OilLamp, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns, EffectStateType.Wet } },
                 { BoardPieceId.GasLamp, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns, EffectStateType.Wet } },
                 { BoardPieceId.IceLamp, new List<EffectStateType> { EffectStateType.Weaken1Turn, EffectStateType.Weaken2Turns, EffectStateType.Wet } },
@@ -1418,9 +1415,10 @@
                 { AbilityKey.AcidSpit, new List<EffectStateType> { EffectStateType.Diseased } },
                 { AbilityKey.TauntingScream, new List<EffectStateType> { EffectStateType.Weaken2Turns, EffectStateType.Disoriented } },
                 { AbilityKey.WarCry, new List<EffectStateType> { EffectStateType.Panic, EffectStateType.Blinded } },
+                { AbilityKey.EnemyMeleeBleed, new List<EffectStateType> { EffectStateType.Bleeding1 } },
             });
 
-            // Heroes cahnges.
+            // Heroes changes.
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
                 { BoardPieceId.ChestGoblin, new List<AbilityKey> { AbilityKey.EnemyDropStolenGoods, AbilityKey.DropChest } },
@@ -1452,6 +1450,7 @@
                 { AbilityKey.BeastWhisperer, false },
                 { AbilityKey.CoinFlip, false },
                 { AbilityKey.EnemyMeleeBleed, false },
+                { AbilityKey.Overcharge, false },
             });
 
             var abilityHealOverriddenRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int>
@@ -1530,8 +1529,8 @@
             {
                 { AbilityKey.DiseasedBite, 2 },
                 { AbilityKey.PlayerMelee, 2 },
-                { AbilityKey.EnemyFireball, 1 },
-                { AbilityKey.EnemyJavelin, 1 },
+                { AbilityKey.EnemyFireball, 2 },
+                { AbilityKey.EnemyJavelin, 2 },
             });
 
             var enemyCooldownRule = new EnemyCooldownOverriddenRule(new Dictionary<AbilityKey, int>
@@ -1658,6 +1657,7 @@
                     effectStateType = EffectStateType.Bleeding1,
                     durationTurns = 1,
                     damagePerTurn = 7,
+                    damageTags = new DamageTag[(int)DamageTag.Unblockable],
                     clearOnNewLevel = true,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                     applyAfterDissipate = EffectStateType.Bleeding2,
@@ -1667,6 +1667,7 @@
                     effectStateType = EffectStateType.Bleeding2,
                     durationTurns = 1,
                     damagePerTurn = 12,
+                    damageTags = new DamageTag[(int)DamageTag.Unblockable],
                     clearOnNewLevel = true,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                     applyAfterDissipate = EffectStateType.Bleeding3,
@@ -1676,6 +1677,7 @@
                     effectStateType = EffectStateType.Bleeding3,
                     durationTurns = 1,
                     damagePerTurn = 18,
+                    damageTags = new DamageTag[(int)DamageTag.Unblockable],
                     clearOnNewLevel = true,
                     tickWhen = StatusEffectsConfig.TickWhen.StartTurn,
                 },
@@ -1770,65 +1772,58 @@
             // Need to check if adding a monster already in the deck overwrites the current count or adds to the total.
             // had to write it as a postfix to add to the decks after the game creates the initial decks.
             // testing what happens if we do or don't pass a keyholder for floor1 and floor2.
-            var myEntranceDeckFloor1 = new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.CultMemberElder, 20 },
-                { BoardPieceId.KillerBee, 20 },
-                { BoardPieceId.BigBoiMutant, 5 },
-            };
-            var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.ElvenSpearman, 5 },
-                { BoardPieceId.CultMemberElder, 3 },
-                { BoardPieceId.KillerBee, 5 },
-                { BoardPieceId.EarthElemental, 1 },
-                { BoardPieceId.Sigataur, 1 },
-                { BoardPieceId.Brookmare, 1 },
-                { BoardPieceId.SilentSentinel, 1 },
-                { BoardPieceId.BigBoiMutant, 1 },
-                { BoardPieceId.ChestGoblin, 1 },
-            };
-            var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.ElvenSpearman, 6 },
-                { BoardPieceId.CultMemberElder, 4 },
-                { BoardPieceId.KillerBee, 4 },
-                { BoardPieceId.EarthElemental, 4 },
-                { BoardPieceId.Gorgon, 1 },
-                { BoardPieceId.Brookmare, 1 },
-                { BoardPieceId.SilentSentinel, 1 },
-                { BoardPieceId.BigBoiMutant, 1 },
-            };
-            var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.ElvenSpearman, 8 },
-                { BoardPieceId.CultMemberElder, 4 },
-                { BoardPieceId.KillerBee, 6 },
-                { BoardPieceId.ChestGoblin, 1 },
-                { BoardPieceId.Gorgon, 2 },
-            };
-            var myBossDeck = new Dictionary<BoardPieceId, int>
-            {
-                { BoardPieceId.ElvenSpearman, 8 },
-                { BoardPieceId.ElvenMystic, 3 },
-                { BoardPieceId.CultMemberElder, 4 },
-                { BoardPieceId.KillerBee, 4 },
-                { BoardPieceId.EarthElemental, 3 },
-                { BoardPieceId.RootGolem, 1 },
-                { BoardPieceId.BigBoiMutant, 1 },
-            };
-            var myMonsterDeckConfig = new MyMonsterDeckOverriddenRule.MyDeckConfig
-            {
-                EntranceDeckFloor1 = myEntranceDeckFloor1,
-                ExitDeckFloor1 = myExitDeckFloor1,
-                EntranceDeckFloor2 = myEntranceDeckFloor2,
-                ExitDeckFloor2 = myExitDeckFloor2,
-                BossDeck = myBossDeck,
-                KeyHolderFloor1 = BoardPieceId.Cavetroll, // should allow the game to decide the key holder.
-                KeyHolderFloor2 = BoardPieceId.ElvenSummoner,
-            };
+            //var myEntranceDeckFloor1 = new Dictionary<BoardPieceId, int>
+            //{
+            //    { BoardPieceId.CultMemberElder, 1 },
+            //    { BoardPieceId.KillerBee, 5 },
+            //    { BoardPieceId.ChestGoblin, 3 },
+            //};
+            //var myExitDeckFloor1 = new Dictionary<BoardPieceId, int>
+            //{
+            //    { BoardPieceId.ElvenSpearman, 3 },
+            //    { BoardPieceId.CultMemberElder, 1 },
+            //    { BoardPieceId.KillerBee, 2 },
+            //    { BoardPieceId.EarthElemental, 1 },
+            //    { BoardPieceId.ChestGoblin, 1 },
+            //};
+            //var myEntranceDeckFloor2 = new Dictionary<BoardPieceId, int>
+            //{
+            //    { BoardPieceId.ElvenSpearman, 3 },
+            //    { BoardPieceId.CultMemberElder, 2 },
+            //    { BoardPieceId.KillerBee, 4 },
+            //    { BoardPieceId.EarthElemental, 2 },
+            //    { BoardPieceId.Gorgon, 1 },
+            //    { BoardPieceId.SilentSentinel, 1 },
+            //    { BoardPieceId.ChestGoblin, 6 },
+            //};
+            //var myExitDeckFloor2 = new Dictionary<BoardPieceId, int>
+            //{
+            //    { BoardPieceId.ElvenSpearman, 3 },
+            //    { BoardPieceId.CultMemberElder, 2 },
+            //    { BoardPieceId.KillerBee, 4 },
+            //    { BoardPieceId.ChestGoblin, 3 },
+            //    { BoardPieceId.Gorgon, 1 },
+            //};
+            //var myBossDeck = new Dictionary<BoardPieceId, int>
+            //{
+            //    { BoardPieceId.ElvenSpearman, 5 },
+            //    { BoardPieceId.ElvenMystic, 3 },
+            //    { BoardPieceId.CultMemberElder, 2 },
+            //    { BoardPieceId.KillerBee, 4 },
+            //    { BoardPieceId.EarthElemental, 2 },
+            //};
+            //var myMonsterDeckConfig = new MyMonsterDeckOverriddenRule.MyDeckConfig
+            //{
+            //    EntranceDeckFloor1 = myEntranceDeckFloor1,
+            //    ExitDeckFloor1 = myExitDeckFloor1,
+            //    EntranceDeckFloor2 = myEntranceDeckFloor2,
+            //    ExitDeckFloor2 = myExitDeckFloor2,
+            //    BossDeck = myBossDeck,
+            //    KeyHolderFloor1 = BoardPieceId.Cavetroll, // should allow the game to decide the key holder.
+            //    KeyHolderFloor2 = BoardPieceId.ElvenSummoner,
+            //};
 
-            var myMonsterDeckRule = new MyMonsterDeckOverriddenRule(myMonsterDeckConfig);
+            // var myMonsterDeckRule = new MyMonsterDeckOverriddenRule(myMonsterDeckConfig);
             // var heroMonsterDeckAddition = new HeroesMonsterDeckAdditionRule(myMonsterDeckConfig);
 
             var levelPropertiesRule = new LevelPropertiesModifiedRule(new Dictionary<string, int>
@@ -1846,7 +1841,7 @@
                 { "FloorTwoMerchant", 0 },
                 { "FloorTwoBeggars", 1 },
                 { "FloorTwoVillagers", 2 },
-                { "FloorTwoLootChests", 6 },
+                { "FloorTwoLootChests", 4 },
                 { "FloorTwoGoldMaxAmount", 300 },
                 { "FloorThreeHealingFountains", 0 },
                 { "FloorThreePotionStand", 0 },
@@ -1860,10 +1855,12 @@
 
             // Points4Minions; // 0 for none. 1 for Cana. 2 for Arly. 3 for Cana and Arly.
             var pointGainRule = new PointGainRule(new PointGainRule.Points
-            { PVPisOn = false, Points4Minions = 2, KillEnemy = 1, KillPlayer = -8, KillSelf = -10, KillBoss = 25, HurtEnemy = 1, HurtPlayer = -3, BuffPlayer = 1, HurtSelf = -5, HurtBoss = 3, Keyholder = 1, UnlockDoor = 20, LootGold = 3, LootChest = 4, LootStand = 5, OpenDoor = 1, UseFountain = 6, RevivePlayer = 4 });
+            { PVPisOn = false, Points4Minions = 2, KillEnemy = 1, KillPlayer = -8, KillSelf = -10, KillBoss = 25, HurtEnemy = 1, HurtPlayer = -3, BuffPlayer = 0, HurtSelf = -5, HurtBoss = 3, Keyholder = 1, UnlockDoor = 20, LootGold = 4, LootChest = 5, LootStand = 6, OpenDoor = 2, UseFountain = 6, RevivePlayer = 5 });
 
+            // var pieceExtraImmunitiesRule = new PieceExtraImmunitiesRule(false);
+            // var partyElectricityRule = new PartyElectricityDamageOverriddenRule(false);
             // var petsFocusHuntersMarkRule = new PetsFocusHunterMarkRule(true);
-            var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
+            // var enemyRespawnDisabledRule = new EnemyRespawnDisabledRule(true);
             var cardEnergyFromAttackRule = new CardEnergyFromAttackMultipliedRule(3.0f); // base game starts at 0.25f
             var cardEnergyFromRecyclingRule = new CardEnergyFromRecyclingMultipliedRule(0.25f);
             var enemyHealthScaledRule = new EnemyHealthScaledRule(0.9f);
@@ -1875,6 +1872,9 @@
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new HeroesTickAdjustedRule(true);
+            // var queenBuffsRule = new ElvenQueenBuffsRule(false);
+            // var grappleUnhookedRule = new GrappleUnhookedRule(false);
+            // var pieceKeyholderRule = new PieceKeyholderRule(false);
 
             return Ruleset.NewInstance(
                 name,
@@ -1899,7 +1899,7 @@
                 courageShantyRule,
                 reviveEffectsRule,
                 tileEffectRule,
-                myMonsterDeckRule,
+                // myMonsterDeckRule,
                 // heroMonsterDeckAddition, // not working. Game fails at trying to start the level.
                 startingCardsRule,
                 allowedChestCardsRule,
@@ -1931,7 +1931,7 @@
                 // partyElectricityRule,
                 // pieceExtraImmunitiesRule,
                 // petsFocusHuntersMarkRule,
-                enemyRespawnDisabledRule,
+                // enemyRespawnDisabledRule,
                 cardEnergyFromAttackRule,
                 cardEnergyFromRecyclingRule,
                 enemyHealthScaledRule,
