@@ -241,9 +241,9 @@
                 // extra stats and refreshables become 0AP at level 2
                 if (nextLevel == 2)
                 {
-                    // piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
-                    // piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
-                    piece.GetPieceConfig().StartHealth += 1; // test HP
+                    piece.effectSink.TrySetStatMaxValue(Stats.Type.Health, piece.GetMaxHealth() + 1);
+                    piece.effectSink.TrySetStatBaseValue(Stats.Type.Health, piece.GetHealth() + 1);
+                    // piece.GetPieceConfig().StartHealth += 1; // test HP
 
                     /* Give Overcharge cards (for testing).
                     if (!piece.inventory.HasAbility(AbilityKey.Overcharge)) // check if the have it already.

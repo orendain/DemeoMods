@@ -12,10 +12,10 @@
         internal static Ruleset Create()
         {
             // Heroes of the Voice Machine Standard PROGRESSIVE
-            // by BobtheBunny  version 1.4
+            // by BobtheBunny  version 1.5
             const string name = "Heroes of the Voice Machine (PROGRESSIVE)";
             const string description = "The adventure begins.. take a chance, roll the dice.";
-            const string longdesc = "Many thanks to TheGrayAlien!       version 1.4\nThis is a rebuild of BobtheBunnys Legend of the Voice Machine mod with the leveling features of the DemeoRevolutions Progressive mods.\n\nTheme is based on a popular TTRPG stream by a bunch of nerdy voice actors and their hit animated series.\n\nSorcerer\nThe snarky and witty gunslinger. Descendant of royalty and tragedy, his soul is corrupt.\n\nGuardian\nUnsure and often unreliable, but always lovable cleric. She is every bit as much a warrior as a healer.\n\nBarbarian\nMuscles, big weapon, yells a lot, and always fond of ale. He would like to rage.\n\nBard\nGird your loins and tap your toes, this clever artist can weave melodies and magic to aid his friends in battle.\n\nHunter\nA powerful druid if she had more confidence in herself. Her people count on her to lead some day, but for now just try not to die.\n\nAssassin\nMove fast and strike with dagger-dagger-dagger. He's got a few tricks up his sleeve and feathers in his cloak.\n\nWarlock\nArcher with a pet bear. Which one has a more pleasant attitude? You wont have time to ask before you are marked for death.";
+            const string longdesc = "Many thanks to TheGrayAlien!       version 1.5\nThis is a rebuild of BobtheBunnys Legend of the Voice Machine mod with the leveling features of the DemeoRevolutions Progressive mods.\n\nTheme is based on a popular TTRPG stream by a bunch of nerdy voice actors and their hit animated series.\n\nSorcerer\nThe snarky and witty gunslinger. Descendant of royalty and tragedy, his soul is corrupt.\n\nGuardian\nUnsure and often unreliable, but always lovable cleric. She is every bit as much a warrior as a healer.\n\nBarbarian\nMuscles, big weapon, yells a lot, and always fond of ale. He would like to rage.\n\nBard\nGird your loins and tap your toes, this clever artist can weave melodies and magic to aid his friends in battle.\n\nHunter\nA powerful druid if she had more confidence in herself. Her people count on her to lead some day, but for now just try not to die.\n\nAssassin\nMove fast and strike with dagger-dagger-dagger. He's got a few tricks up his sleeve and feathers in his cloak.\n\nWarlock\nArcher with a pet bear. Which one has a more pleasant attitude? You wont have time to ask before you are marked for death.";
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
             {
@@ -1485,7 +1485,7 @@
                 { AbilityKey.PlayerLeap, new List<int> { 2, 5, 2, 5 } },
                 { AbilityKey.Arrow, new List<int> { 3, 7, 3, 7 } },
                 { AbilityKey.DeathBeam, new List<int> { 11, 12, 8, 10 } }, // first number is damage to each thing it hits. Straight line.
-                { AbilityKey.DeathFlurry, new List<int> { 8, 8, 5, 8 } }, // first number is damage to each thing it hits. AoE missles.
+                { AbilityKey.DeathFlurry, new List<int> { 5, 5, 3, 5 } }, // first number is damage to each thing it hits. AoE missles. set to 8 it did 44 damage to single target.
             });
 
             var backstabConfigRule = new BackstabConfigOverriddenRule(new List<BoardPieceId>
@@ -1523,6 +1523,7 @@
                 { AbilityKey.WaterBottle, false },
                 { AbilityKey.Weaken, false },
                 { AbilityKey.WebBomb, false },
+                { AbilityKey.EnemyMeleeBleed, false },
             });
 
             var abilityStealthDamageRule = new AbilityStealthDamageOverriddenRule(new Dictionary<AbilityKey, int>
@@ -1872,8 +1873,8 @@
             var reviveEffectsRule = new ReviveRemovesEffectsRule(true);
             var courageShantyRule = new CourageShantyAddsHpRule(1);
             var tickRule = new HeroesTickAdjustedRule(true);
-            // var queenBuffsRule = new ElvenQueenBuffsRule(false);
-            // var grappleUnhookedRule = new GrappleUnhookedRule(false);
+            var queenBuffsRule = new HeroesEnemyBuffsRule(true);
+            var grappleUnhookedRule = new GrappleUnhookedRule(true);
             // var pieceKeyholderRule = new PieceKeyholderRule(false);
 
             return Ruleset.NewInstance(
@@ -1885,13 +1886,13 @@
                 tickRule,
                 revolutionsRule,
                 progressRule,
-                // grappleUnhookedRule,
+                grappleUnhookedRule,
                 pieceDownedCountRule,
                 pieceMagicStatsRule,
                 pieceCounterDamageRule,
                 // pieceDamageResistRule,
                 pieceExtraStatsRule,
-                // queenBuffsRule,
+                queenBuffsRule,
                 // statModifiersRule,
                 // goldPickupRule,
                 // piecePieceTypeRule,
