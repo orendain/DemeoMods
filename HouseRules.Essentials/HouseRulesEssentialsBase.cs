@@ -76,6 +76,7 @@
             HR.Rulebook.Register(typeof(CardLimitModifiedRule));
             HR.Rulebook.Register(typeof(CardSellValueMultipliedRule));
             HR.Rulebook.Register(typeof(DarknessRule));
+            HR.Rulebook.Register(typeof(EnergyPotionRule));
             HR.Rulebook.Register(typeof(ElvenQueenBuffsRule));
             HR.Rulebook.Register(typeof(ElvenQueenSuperBuffRule));
             HR.Rulebook.Register(typeof(EnemyAttackScaledRule));
