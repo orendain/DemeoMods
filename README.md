@@ -47,9 +47,7 @@ However, before you do, [make sure you have installed a modloader](#installing-a
 
 ## Installing a Modloader
 
-In order to use any of the mods in this repository, you must have one of either two modloaders:  **BepInEx 5.x** or **MelonLoader 0.5.7**.
-
-The difference between the two is negligible to most people, so there is no need to contemplate the selection.  Choose whichever one you have an easier time installing.
+In order to use any of the mods in this repository, you must have one of either two modloaders:  **BepInEx 5.x** (PC & VR) or **MelonLoader 0.5.7** (PC ONLY).
 
 <details>
 <summary><b>Installing BepInEx 5.x</b></summary><p></p>
