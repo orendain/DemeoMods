@@ -58,7 +58,7 @@
                 Quaternion.Euler(-90, 0, 0); // Un-flip card from it's default face-up position.
             background.transform.localScale = new Vector3(3.75f, 1, 2.5f);
 
-            var headerText = _elementCreator.CreateMenuHeaderText("<b>HouseRules <u>Revolutions</u></b>");
+            var headerText = _elementCreator.CreateMenuHeaderText("<b>Frakolutions</b>");
             headerText.transform.SetParent(transform, worldPositionStays: false);
             headerText.transform.localPosition = new Vector3(0, 5.95f, VrElementCreator.TextZShift);
 
