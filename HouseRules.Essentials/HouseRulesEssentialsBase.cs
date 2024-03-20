@@ -140,6 +140,7 @@
             HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderRandomizedRule));
+            HR.Rulebook.Register(typeof(XpGainDisabledRule));
         }
 
         private static void RegisterRulesets()
