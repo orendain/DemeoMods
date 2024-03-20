@@ -54,6 +54,13 @@
             {
                 return;
             }
+            else
+            {
+                var random = new System.Random();
+                var list = new List<string> { "Nice roll!", "<color=#F0F312>That was</color> <color=#00FF00>AMAZING</color><color=#F0F312>!</color>", "<color=#F0F312>That's</color> what I'm <color=#00FF00> talking about!</color>", "You've got the magic touch with those Crits!", "Critical hit! You're unstoppable!", "The dice gods favor you today!", "Crit hits for the win!" };
+                int index = random.Next(list.Count);
+                GameUI.ShowCameraMessage(list[index], 5);
+            }            
 
             if (!source.IsPlayer())
             {
