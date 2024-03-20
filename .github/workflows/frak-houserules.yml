@@ -1,0 +1,56 @@
+name: HouseRules
+
+on:
+  pull_request:
+    paths:
+      - 'HouseRules*/**'
+      - '.github/workflows/frak-houserules.yml'
+  push:
+    branches:
+      - 'frak-tweaks-2.1.6'
+  workflow_dispatch:  # on button click
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        
+
+      - run: git checkout origin/frak-tweaks-2.1.6
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Add Dependencies
+        run: |
+          wget -O deps.zip https://gist.github.com/frakman1/226cf7ec62cccbde406b51d454d9798c/raw/f8f691f8cbe8ba7dbf2d9586fc799f872492d2a2/2023-12-17.zip
+          7z x deps.zip -o./libs
+
+      - name: Build HouseRules.Core BepInEx Plugin
+        run: dotnet build HouseRules.Core/HouseRules.Core.csproj -c BepInEx -v d
+
+      - name: Build HouseRules.Essentials BepInEx Plugin
+        run: dotnet build HouseRules.Essentials/HouseRules.Essentials.csproj -c BepInEx -v d
+
+      - name: Build HouseRules.Configuration BepInEx Mod
+        run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c BepInEx -v d
+
+      - name: Assemble into BepInEx Bundle
+        run: |
+          mkdir -p HouseRules.BepInEx/BepInEx/plugins
+          cp HouseRules.Core/bin/netstandard2.1/HouseRules.Core.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          cp HouseRules.Essentials/bin/netstandard2.1/HouseRules.Essentials.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          cp HouseRules.Configuration/bin/netstandard2.1/HouseRules.Configuration.BIE.dll HouseRules.BepInEx/BepInEx/plugins
+          mkdir -p HouseRules.BepInEx/HouseRules/ExampleRulesets
+          cp docs/rulesets/* HouseRules.BepInEx/HouseRules/ExampleRulesets
+
+      - name: Upload BepInEx Bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: HouseRules.BepInEx
+          path: HouseRules.BepInEx
