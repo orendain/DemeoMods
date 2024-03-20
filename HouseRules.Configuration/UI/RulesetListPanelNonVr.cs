@@ -209,7 +209,7 @@
                 setName = "<color=#AAEA04><b>Heroes of the Voice Machine</b></color> <color=#9F11A2><b>(INSANE PROGRESSIVE)</b></color>";
             }
 
-            _selectedText.text = $"Selected ruleset: {setName}";
+            _selectedText.text = $"Selected ruleset: \n{setName}";
         }
     }
 }
