@@ -6,6 +6,9 @@
     using HarmonyLib;
     using HouseRules.Core;
     using HouseRules.Core.Types;
+    using System;
+    using System.Collections.Generic;
+    using Utils;       
 
     public sealed class GoldPickedUpMultipliedRule : Rule, IConfigWritable<float>, IPatchable, IMultiplayerSafe
     {
@@ -50,14 +53,20 @@
             }
 
             var ruleSet = HR.SelectedRuleset.Name;
-            if (ruleSet.Contains("(LEGENDARY") || ruleSet.Contains("(HARD") || ruleSet.Contains("PROGRESSIVE"))
+            //if (ruleSet.Contains("(LEGENDARY") || ruleSet.Contains("(HARD") || ruleSet.Contains("PROGRESSIVE") || ruleSet.Contains("fastforward") )
             {
-                __instance.goldAmount = 69;
+                List<int> numbers = new List<int>() { 51, 50 };
+                Random rnd = new Random();
+                int randIndex = rnd.Next(numbers.Count);
+                int randomGold = numbers[randIndex];
+
+                __instance.goldAmount = randomGold;
+                //__instance.goldAmount = 69;
             }
-            else
-            {
-                __instance.goldAmount = (int)(__instance.goldAmount * _globalMultiplier);
-            }
+            //else
+            //{
+            //    __instance.goldAmount = (int)(__instance.goldAmount * _globalMultiplier);
+            //}            
         }
     }
 }
