@@ -123,7 +123,7 @@
             background.transform.localScale = new Vector3(4.75f, 1, scale);
 
             var header = 3.6f;
-            var headerText = _elementCreator.CreateMenuHeaderText("HouseRules <u>Revolutions</u>");
+            var headerText = _elementCreator.CreateMenuHeaderText("<b>Frakolutions</b>");
             headerText.transform.SetParent(transform, worldPositionStays: false);
             if (numRules > 11)
             {
@@ -166,7 +166,7 @@
             sb.Clear();
             if (textLength > 0)
             {
-                sb.AppendLine(ColorizeString("<========== Ruleset Creator's Description ==========>", Color.white));
+                //sb.AppendLine(ColorizeString("<========== Ruleset Creator's Description ==========>", Color.white));
                 sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Longdesc}", Color.black));
             }
             else
