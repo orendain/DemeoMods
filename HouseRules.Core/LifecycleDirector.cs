@@ -17,7 +17,7 @@
     {
         private const string ModdedRoomPropertyKey = "modded";
 
-        private static float welcomeMessageDurationSeconds = 30f;
+        private static float welcomeMessageDurationSeconds = 15f;
         private static GameContext _gameContext;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
@@ -83,7 +83,7 @@
             harmony.Patch(
                 original: AccessTools.Method(
                     typeof(HandSettingsPageController),
-                    "<SetupGameButtons>g__ToggleGamePrivacy|18_4"),
+                    "<SetupGameButtons>g__ToggleGamePrivacy|19_4"),
                 prefix: new HarmonyMethod(
                     typeof(LifecycleDirector),
                     nameof(HandSettingsPageController_ToggleGamePrivacy_Prefix)));
@@ -591,10 +591,7 @@
                     sb.AppendLine(ColorizeString($"{HR.SelectedRuleset.Rules.Count} Rules loaded!", gold));
                 }
             }
-            else
-            {
-                welcomeMessageDurationSeconds = 10f;
-            }
+
 
             // Pad lines to raise text higher on PC-Edition screen
             sb.AppendLine();
