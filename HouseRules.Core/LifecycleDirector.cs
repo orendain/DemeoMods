@@ -69,7 +69,7 @@
             harmony.Patch(
                 original: AccessTools.Method(
                     typeof(HandSettingsPageController),
-                    "<SetupGameButtons>g__ToggleGamePrivacy|18_4"),
+                    "<SetupGameButtons>g__ToggleGamePrivacy|19_4"),
                 prefix: new HarmonyMethod(
                     typeof(LifecycleDirector),
                     nameof(HandSettingsPageController_ToggleGamePrivacy_Prefix)));
