@@ -34,17 +34,17 @@ jobs:
       - name: Build HouseRules.Core BepInEx Plugin
         run: dotnet build HouseRules.Core/HouseRules.Core.csproj -c BepInEx -v d
 
-      - name: Build HouseRules.Essentials BepInEx Plugin
-        run: dotnet build HouseRules.Essentials/HouseRules.Essentials.csproj -c BepInEx -v d
-
-      - name: Build HouseRules.Configuration BepInEx Mod
-        run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c BepInEx -v d
-
       - name: Build HouseRules.Core MelonLoader Mod
         run: dotnet build HouseRules.Core/HouseRules.Core.csproj -c MelonLoader -v d
 
+      - name: Build HouseRules.Essentials BepInEx Plugin
+        run: dotnet build HouseRules.Essentials/HouseRules.Essentials.csproj -c BepInEx -v d
+
       - name: Build HouseRules.Essentials MelonLoader Mod
         run: dotnet build HouseRules.Essentials/HouseRules.Essentials.csproj -c MelonLoader -v d
+
+      - name: Build HouseRules.Configuration BepInEx Mod
+        run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c BepInEx -v d
 
       - name: Build HouseRules.Configuration MelonLoader Mod
         run: dotnet build HouseRules.Configuration/HouseRules.Configuration.csproj -c MelonLoader -v d
