@@ -7,9 +7,9 @@ A full list of all of the different parameter names used by HouseRules rules
 - AbsorbCorruption
 - AbsorbMySoul
 - AcidSpit
-- AdamantPotion
+- DamageResistPotion
 - AltarHeal
-- Antitoxin
+- Antidote
 - ArbalestierArrow
 - ArbalestierBarrage
 - ArbalestierPoisonTip
@@ -127,7 +127,7 @@ A full list of all of the different parameter names used by HouseRules rules
 - GuidingLight
 - HailOfArrows
 - HealingLight
-- HealingPotion
+- Heal
 - HealingPowder
 - HealingWard
 - HeavensFury
@@ -165,10 +165,10 @@ A full list of all of the different parameter names used by HouseRules rules
 - MissileSwarm
 - Net
 - OilLamp
-- OneMoreThing
+- ExtraActionPotion
 - Overcharge
 - Overload
-- PVPAdamantPotion
+- PVPDamageResistPotion
 - PVPBarricade
 - PVPBeastWhisperer
 - PVPBlink
@@ -257,7 +257,7 @@ A full list of all of the different parameter names used by HouseRules rules
 - SpellPowerPotion
 - SpiderWebshot
 - SplittingArrow
-- StrengthPotion
+- Strength
 - StrengthenMinion
 - SummonBossMinions
 - SummonElemental
@@ -266,7 +266,7 @@ A full list of all of the different parameter names used by HouseRules rules
 - SummonMediumMonster
 - SummonMinion
 - SummoningRiftFusion
-- SwiftnessPotion
+- Speed
 - SyncEmerge
 - TauntingScream
 - Telekinesis

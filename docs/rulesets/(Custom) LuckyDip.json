@@ -17,7 +17,7 @@
       "Config": {
         "HeroBarbarian": [
           {
-            "Card": "HealingPotion",
+            "Card": "Heal",
             "ReplenishFrequency": 0
           },
           {
@@ -39,7 +39,7 @@
         ],
         "HeroBard": [
           {
-            "Card": "HealingPotion",
+            "Card": "Heal",
             "ReplenishFrequency": 0
           },
           {
@@ -65,7 +65,7 @@
         ],
         "HeroGuardian": [
           {
-            "Card": "HealingPotion",
+            "Card": "Heal",
             "ReplenishFrequency": 0
           },
           {
@@ -87,7 +87,7 @@
         ],
         "HeroHunter": [
           {
-            "Card": "HealingPotion",
+            "Card": "Heal",
             "ReplenishFrequency": 0
           },
           {
@@ -113,7 +113,7 @@
         ],
         "HeroRogue": [
           {
-            "Card": "HealingPotion",
+            "Card": "Heal",
             "ReplenishFrequency": 0
           },
           {
@@ -135,7 +135,7 @@
         ],
         "HeroSorcerer": [
           {
-            "Card": "HealingPotion",
+            "Card": "Heal",
             "ReplenishFrequency": 0
           },
           {
@@ -157,7 +157,7 @@
         ],
         "HeroWarlock": [
           {
-            "Card": "HealingPotion",
+            "Card": "Heal",
             "ReplenishFrequency": 0
           },
           {
@@ -188,14 +188,14 @@
       "Config": {
         "CourageShanty": 1,
         "ReplenishArmor": 1,
-        "StrengthPotion": 1,
-        "SwiftnessPotion": 1,
-        "Antitoxin": 1,
+        "Strength": 1,
+        "Speed": 1,
+        "Antidote": 1,
         "DamageResistPotion": 1,
         "VigorPotion": 1,
         "ExtraActionPotion": 1,
-        "AdamantPotion": 1,
-        "HealingPotion": 1
+        "DamageResistPotion": 1,
+        "Heal": 1
       }
     },
     {
@@ -315,8 +315,8 @@
       "Rule": "CardAdditionOverridden",
       "Config": {
         "HeroHunter": [
-          "StrengthPotion",
-          "SwiftnessPotion",
+          "Strength",
+          "Speed",
           "DamageResistPotion",
           "VigorPotion",
           "Bone",

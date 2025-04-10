@@ -175,12 +175,12 @@
     {
       "Rule": "AbilityAoeAdjusted",
       "Config": {
-        "StrengthPotion": 1,
-        "SwiftnessPotion": 1,
+        "Strength": 1,
+        "Speed": 1,
         "VigorPotion": 1,
         "DamageResistPotion": 1,
         "ExtraActionPotion": 1,
-        "OneMoreThing": 1
+        "ExtraActionPotion": 1
       }
     },
     {

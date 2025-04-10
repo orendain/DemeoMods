@@ -121,7 +121,7 @@
                 score += scores.Downed;
             }
 
-            if (piece.inventory.HasAbility(AbilityKey.SigataurianJavelin) && MotherbrainGlobalVars.CurrentConfig == GameConfigType.Forest)
+            if (piece.inventory.HasAbility(AbilityKey.Javelin) && MotherbrainGlobalVars.CurrentConfig == GameConfigType.Forest)
             {
                 score += scores.Javelin;
             }

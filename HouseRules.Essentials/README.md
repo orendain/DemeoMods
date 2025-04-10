@@ -26,7 +26,7 @@ HouseRules API.
 - __Difficulty Easy__ : Decreased game difficulty for a more casual playstyle.
 - __Difficulty Hard__ : Increased game difficulty for a greater challenge.
 - __Difficulty Legendary__ : Increased game difficulty for those who want to be a legend.
-- __3x3 Potions and Buffs__ : Heal, Strength, Speed, Adamant, Antitoxin, RepairArmor and Bard buffs are 3x3 AOE.
+- __3x3 Potions and Buffs__ : Heal, Strength, Speed, Adamant, Antidote, RepairArmor and Bard buffs are 3x3 AOE.
 - __Better Sorcerer__ : 0 Action Cost for Sorcerer's Zap - No other changes. #STS
 - __No Surprises__ :  No surprises in the dark or coming through doors.
 - __Quick and the Dead__ : A mode with a small hand but fast turnaround time on cards means you need to not hesitate.
@@ -62,7 +62,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": {
       "Zap": false,
       "CourageShanty": false,
-      "HealingPotion": true
+      "Heal": true
     }
   },
   ```
@@ -80,9 +80,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "AbilityAoeAdjusted",
     "Config": {
       "CourageShanty": 1,
-      "StrengthPotion": 1,
-      "SwiftnessPotion": 1,
-      "HealingPotion": 1
+      "Strength": 1,
+      "Speed": 1,
+      "Heal": 1
     }
   },
   ```
@@ -110,7 +110,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 #### __AbilityDamageOverridden__: Ability targetDamage and critDamage are adjusted
-  - Only functions for abilities which do damage. (You can't make a HealingPotion hurt).
+  - Only functions for abilities which do damage. (You can't make a Heal hurt).
   - CriticalHitDamage is adjusted to double normal damage.
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
@@ -140,7 +140,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "AbilityHealOverridden",
     "Config": {
-      "HealingPotion": 3
+      "Heal": 3
     }
   },
   ```
@@ -239,8 +239,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
-      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"]
+      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
+      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "Heal"]
     }
   },
   ```
@@ -256,8 +256,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardChestAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
-      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"]
+      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
+      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "Heal"]
     }
   },
   ```
@@ -274,8 +274,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardEnergyAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["StrengthPotion", "SwiftnessPotion", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
-      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "HealingPotion"]
+      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
+      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "Heal"]
     }
   },
   ```
@@ -456,7 +456,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "FreeAbilityOnCrit",
     "Config": {
-      "HeroBard": "OneMoreThing",
+      "HeroBard": "ExtraActionPotion",
       "HeroHunter": "PoisonedTip",
       "HeroSorcerer": "Fireball",
       "HeroGuardian": "Bone",
@@ -802,7 +802,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "PieceUseWhenKilledOverridden",
     "Config": {
-      "Spiderling": [ "HealingPotion" ],
+      "Spiderling": [ "Heal" ],
       "CaveTroll": [ "Rejuvenation" ]
     }
   },
@@ -820,8 +820,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "PotionAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["MagicPotion", "SwiftnessPotion", "DamageResistPotion"],
-      "HeroGuardian": ["StrengthPotion", "VigorPotion", "WaterBottle", "HealingPotion"]
+      "HeroSorcerer": ["MagicPotion", "Speed", "DamageResistPotion"],
+      "HeroGuardian": ["Strength", "VigorPotion", "WaterBottle", "Heal"]
     }
   },
   ```
@@ -853,8 +853,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     {
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
-        "SwiftnessPotion": false,
-        "StrengthPotion": false
+        "Speed": false,
+        "Strength": false
       }
     },
   ```
@@ -917,7 +917,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "StartCardsModified",
     "Config": {
       "HeroGuardian": [
-        { "Card": "HealingPotion", "ReplenishFrequency": 0 },
+        { "Card": "Heal", "ReplenishFrequency": 0 },
         { "Card": "ReplenishArmor", "ReplenishFrequency": 1 },
         { "Card": "WhirlwindAttack", "ReplenishFrequency": 1 },
         { "Card": "PiercingThrow", "ReplenishFrequency": 0 },
@@ -926,14 +926,14 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
         { "Card": "SwordOfAvalon", "ReplenishFrequency": 0 }
       ],
       "HeroHunter": [
-        { "Card": "HealingPotion", "ReplenishFrequency": 0 },
+        { "Card": "Heal", "ReplenishFrequency": 0 },
         { "Card": "Arrow", "ReplenishFrequency": 1 },
         { "Card": "Arrow", "ReplenishFrequency": 1 },
         { "Card": "CoinFlip", "ReplenishFrequency": 0 },
         { "Card": "DropChest", "ReplenishFrequency": 0 }
       ],
       "HeroSorcerer": [
-        { "Card": "HealingPotion", "ReplenishFrequency": 0 },
+        { "Card": "Heal", "ReplenishFrequency": 0 },
         { "Card": "Zap", "ReplenishFrequency": 1 },
         { "Card": "WhirlwindAttack", "ReplenishFrequency": 1 },
         { "Card": "Freeze", "ReplenishFrequency": 0 },
@@ -945,7 +945,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   ```
 
 #### __StatModifiersOverridden__: The additiveBonus parameters of StatModifiers are overridden.
-  - There are only six different StatModifiers in the game. They are used by 💪StrengthPotion, 🦶SwiftnessPotion, 🛡️ReplenishArmor, HuntersMark, etc.
+  - There are only six different StatModifiers in the game. They are used by 💪Strength, 🦶Speed, 🛡️ReplenishArmor, HuntersMark, etc.
   - These modifiers control the power of each corresponding ability.  E.g., by default the stat modifier for SongOfResilience is 5, as it grants 5 units of armor.  
   - To configure:
     - Specify the [AbilityKey](../docs/SettingsReference.md#boardpieceids) of the ability whose stat modifer should be replaced.
@@ -957,8 +957,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "StatModifiersOverridden",
     "Config": {
-      "StrengthPotion": 2,
-      "SwiftnessPotion": 2,
+      "Strength": 2,
+      "Speed": 2,
       "HuntersMark": -4,
       "ReplenishBarkArmor": 4,
       "SongOfResilience": 6,

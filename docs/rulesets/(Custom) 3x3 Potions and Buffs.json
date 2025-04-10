@@ -1,6 +1,6 @@
 {
   "Name": "(Custom) 3x3 Potions and Buffs",
-  "Description": "Heal, Strength, Speed, Adamant, Vitality, Damage Resist, Focus, One More Thing, Antitoxin, Repair Armor and Bard buffs are 3x3 AOE.",
+  "Description": "Heal, Strength, Speed, Adamant, Vitality, Damage Resist, Focus, One More Thing, Antidote, Repair Armor and Bard buffs are 3x3 AOE.",
   "Longdesc": "",
   "Rules": [
     {
@@ -8,25 +8,25 @@
       "Config": {
         "CourageShanty": 1,
         "ReplenishArmor": 1,
-        "StrengthPotion": 1,
-        "SwiftnessPotion": 1,
+        "Strength": 1,
+        "Speed": 1,
         "VigorPotion": 1,
         "ExtraActionPotion": 1,
         "DamageResistPotion": 1,
-        "OneMoreThing": 1,
-        "Antitoxin": 1,
-        "AdamantPotion": 1,
-        "HealingPotion": 1
+        "ExtraActionPotion": 1,
+        "Antidote": 1,
+        "DamageResistPotion": 1,
+        "Heal": 1
       }
     },
     {
       "Rule": "RegainAbilityIfMaxxedOutOverridden",
       "Config": {
-        "StrengthPotion": false,
-        "SwiftnessPotion": false,
+        "Strength": false,
+        "Speed": false,
         "VigorPotion": false,
         "DamageResistPotion": false,
-        "OneMoreThing": false
+        "ExtraActionPotion": false
       }
     }
   ]
