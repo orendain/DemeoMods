@@ -42,10 +42,11 @@
             Dictionary<AbilityKey, List<BoardPieceId>> replacements)
         {
             var originals = new Dictionary<AbilityKey, List<BoardPieceId>>();
-
+            IAssetContextInterface? assetContext = null;
+            AbilityFactory abilityFactory = new(assetContext);
             foreach (var replacement in replacements)
             {
-                if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
+                if (!abilityFactory.TryGetAbility(replacement.Key, out var ability))
                 {
                     throw new InvalidOperationException(
                         $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");

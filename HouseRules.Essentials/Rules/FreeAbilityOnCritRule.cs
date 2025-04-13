@@ -65,7 +65,10 @@
                 return;
             }
 
-            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
+            IAssetContextInterface? assetContext = null;
+            AbilityFactory abilityFactory = new(assetContext);
+            abilityFactory.TryGetAbility(_globalAdjustments[source.boardPieceId], out var ability);
+            source.TryAddAbilityToInventory(ability, isReplenishable: false);
             HR.ScheduleBoardSync();
         }
     }

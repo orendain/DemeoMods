@@ -40,10 +40,11 @@
         private static Dictionary<AbilityKey, bool> ReplaceAbilities(Dictionary<AbilityKey, bool> replacements)
         {
             var originals = new Dictionary<AbilityKey, bool>();
-
+            IAssetContextInterface? assetContext = null;
+            AbilityFactory abilityFactory = new(assetContext);
             foreach (var replacement in replacements)
             {
-                if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
+                if (!abilityFactory.TryGetAbility(replacement.Key, out var ability))
                 {
                     throw new InvalidOperationException(
                         $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");

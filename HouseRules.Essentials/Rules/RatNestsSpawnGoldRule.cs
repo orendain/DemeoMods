@@ -22,7 +22,9 @@
 
         protected override void OnPreGameCreated(GameContext gameContext)
         {
-            if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
+            IAssetContextInterface? assetContext = null;
+            AbilityFactory abilityFactory = new(assetContext);
+            if (!abilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
             {
                 throw new InvalidOperationException(
                     $"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");
@@ -35,7 +37,9 @@
 
         protected override void OnDeactivate(GameContext gameContext)
         {
-            if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
+            IAssetContextInterface? assetContext = null;
+            AbilityFactory abilityFactory = new(assetContext);
+            if (!abilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
             {
                 throw new InvalidOperationException(
                     $"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");

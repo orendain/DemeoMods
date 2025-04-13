@@ -45,10 +45,11 @@
         private static Dictionary<AbilityKey, int> ReplaceAbilities(Dictionary<AbilityKey, int> replacements)
         {
             var originals = new Dictionary<AbilityKey, int>();
-
+            IAssetContextInterface? assetContext = null;
+            AbilityFactory abilityFactory = new(assetContext);
             foreach (var replacement in replacements)
             {
-                if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
+                if (!abilityFactory.TryGetAbility(replacement.Key, out var ability))
                 {
                     throw new InvalidOperationException(
                         $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
@@ -57,7 +58,9 @@
                 originals[replacement.Key] = -replacement.Value;
                 var aoe = Traverse.Create(ability).Field<AreaOfEffect>("areaOfEffect").Value;
                 Traverse.Create(aoe).Field<int>("range").Value += replacement.Value; // Adjust the AOE outline when casting.
-                ability.areaOfEffectRange += replacement.Value; // Adjust value displayed on the card.
+
+                // FIX THIS!
+                // ability.areaOfEffectRange += replacement.Value; // Adjust value displayed on the card.
             }
 
             return originals;

@@ -118,8 +118,9 @@
             var originalGridPos = currentPiece.gridPos;
 
             currentPiece.gridPos = originalGridPos.GetMoveTo(hoveredTile);
-            var moveSet = AbilityFactory
-                .GetAbility(AbilityKey.MagicMissile)
+
+            Ability ability = new();
+            var moveSet = ability
                 .CreateMoveSet(currentPiece, _gameContext.pieceAndTurnController, _gameContext.boardModel);
             currentPiece.gridPos = originalGridPos;
 
