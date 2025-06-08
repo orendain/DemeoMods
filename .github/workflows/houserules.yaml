@@ -23,7 +23,7 @@ jobs:
 
       - name: Add Dependencies
         run: |
-          wget -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/1d94aee9fe14b23affdb975d57aa6b4c5f6c04f2/2023-09-07.zip
+          wget -O deps.zip https://gist.github.com/orendain/9053d92b9f3571c619618619665c8cbc/raw/63c8d96e6eb642d540c096f5bb9fb8dbcbe937a7/2025-06-08.zip
           7z x deps.zip -o./libs
 
       - name: Build HouseRules.Core BepInEx Plugin
@@ -63,13 +63,13 @@ jobs:
           cp docs/rulesets/* HouseRules.MelonLoader/HouseRules/ExampleRulesets
 
       - name: Upload BepInEx Bundle
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: HouseRules.BepInEx
           path: HouseRules.BepInEx
 
       - name: Upload MelonLoader Bundle
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: HouseRules.MelonLoader
           path: HouseRules.MelonLoader
