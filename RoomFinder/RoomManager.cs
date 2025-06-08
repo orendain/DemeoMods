@@ -23,6 +23,7 @@
         /// </summary>
         internal static void RefreshRoomList()
         {
+            _lobby = _gameContext.gameStateMachine.lobby as Lobby;
             if (_lobby == null)
             {
                 RoomFinderBase.LogWarning("Lobby is uninitialized. Skipping room refresh.");
@@ -86,7 +87,6 @@
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
             _gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
-            _lobby = Traverse.Create(__instance).Field<Lobby>("lobby").Value;
         }
 
         private static void MatchmakingControllerFactory_Create_Postfix(MatchmakingController __result)
