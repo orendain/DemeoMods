@@ -12,7 +12,9 @@
 
     public static class MoveHighlighter
     {
+        private const AbilityKey _highlightDistanceEquivalent = AbilityKey.MagicMissile;
         private static GameContext _gameContext;
+        private static AbilityFactory _abilityFactory;
         private static IntPoint2D _lastHoveredTile;
 
         internal static void Patch(Harmony harmony)
@@ -46,6 +48,11 @@
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
             _gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
+            _abilityFactory = Traverse.Create(__instance).Field<AbilityFactory>("abilityFactory").Value;
+
+            // Load the ability that is later used to help compute line of sight distances.
+            var abilityLoad = _abilityFactory.LoadAbility(_highlightDistanceEquivalent);
+            abilityLoad.OnLoaded(_ => { });
         }
 
         private static void NonVrGrabbableMiniature_OnGrabMoved_Postfix(
@@ -86,7 +93,8 @@
             var isMoveInvalid = !actionSelect.MovesInRange.IsMove(hoveredTile);
             if (isMoveInvalid)
             {
-                // No redraw required.
+                // Previous hovered tile invalid, and thus there's no existing highlighting.
+                // Highlight clearing not required.
                 if (_lastHoveredTile == IntPoint2D.Invalid)
                 {
                     return;
@@ -97,7 +105,7 @@
                 return;
             }
 
-            // No redraw required.
+            // Hovering over the same tile. No redraw required.
             if (_lastHoveredTile == hoveredTile)
             {
                 return;
@@ -114,14 +122,25 @@
 
         private static void HighlightLineOfSight(IntPoint2D hoveredTile)
         {
-            var currentPiece = _gameContext.pieceAndTurnController.CurrentPiece;
-            var originalGridPos = currentPiece.gridPos;
+            // We borrow the current piece to be able to compute the LOS of the ghost piece.
+            var ghostPiece = _gameContext.pieceAndTurnController.CurrentPiece;
+            if (ghostPiece == null)
+            {
+                return;
+            }
 
-            currentPiece.gridPos = originalGridPos.GetMoveTo(hoveredTile);
-            var moveSet = AbilityFactory
-                .GetAbility(AbilityKey.MagicMissile)
-                .CreateMoveSet(currentPiece, _gameContext.pieceAndTurnController, _gameContext.boardModel);
-            currentPiece.gridPos = originalGridPos;
+            var originalGridPos = ghostPiece.gridPos;
+            ghostPiece.gridPos = originalGridPos.GetMoveTo(hoveredTile);
+
+            if (!_abilityFactory.TryGetAbility(_highlightDistanceEquivalent, out var abilityDistance))
+            {
+                return;
+            }
+
+            var moveSet = abilityDistance.CreateMoveSet(
+                ghostPiece,
+                _gameContext.pieceAndTurnController,
+                _gameContext.boardModel);
 
             TileHighlightController.TileHighLight?.UpdateHighlights(
                 moveSet,
@@ -129,6 +148,8 @@
                 null,
                 _gameContext.boardModel);
             TileHighlightController.TileHighLight?.FadeIn();
+
+            ghostPiece.gridPos = originalGridPos;
         }
     }
 }
