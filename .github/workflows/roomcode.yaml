@@ -32,13 +32,13 @@ jobs:
         run: dotnet build RoomCode/RoomCode.csproj -c MelonLoader -v d
 
       - name: Upload BepInEx DLL
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: RoomCode.BIE.dll
           path: RoomCode/bin/netstandard2.1/RoomCode.BIE.dll
 
       - name: Upload MelonLoader DLL
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: RoomCode.ML.dll
           path: RoomCode/bin/netstandard2.1/RoomCode.ML.dll

@@ -32,13 +32,13 @@ jobs:
         run: dotnet build Highlighter/Highlighter.csproj -c MelonLoader -v d
 
       - name: Upload BepInEx DLL
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Highlighter.BIE.dll
           path: Highlighter/bin/netstandard2.1/Highlighter.BIE.dll
 
       - name: Upload MelonLoader DLL
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Highlighter.ML.dll
           path: Highlighter/bin/netstandard2.1/Highlighter.ML.dll

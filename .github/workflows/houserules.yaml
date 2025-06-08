@@ -63,13 +63,13 @@ jobs:
           cp docs/rulesets/* HouseRules.MelonLoader/HouseRules/ExampleRulesets
 
       - name: Upload BepInEx Bundle
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: HouseRules.BepInEx
           path: HouseRules.BepInEx
 
       - name: Upload MelonLoader Bundle
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: HouseRules.MelonLoader
           path: HouseRules.MelonLoader
