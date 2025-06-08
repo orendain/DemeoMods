@@ -26,8 +26,8 @@
         private static bool MotherbrainSceneUtil_LoadIntro_Prefix(ref AsyncOperation __result)
         {
             SkipIntroBase.LogDebug("Skipping the intro scene.");
-            (AsyncOperation, AsyncOperation) tuple = MotherbrainSceneUtil.LoadLobby();
-            __result = tuple.Item1;
+            var (loadLobby, _) = MotherbrainSceneUtil.LoadLobby();
+            __result = loadLobby;
             return false;
         }
 
