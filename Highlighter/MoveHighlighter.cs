@@ -12,7 +12,8 @@
 
     public static class MoveHighlighter
     {
-        private const AbilityKey _highlightDistanceEquivalent = AbilityKey.MagicMissile;
+        private const AbilityKey _highlightDistanceEquivalent = AbilityKey.HunterArrow;
+
         private static GameContext _gameContext;
         private static AbilityFactory _abilityFactory;
         private static IntPoint2D _lastHoveredTile;
