@@ -149,8 +149,8 @@
           "BeastWhisperer",
           "PiercingVoice",
           "Bone",
-          "StrengthPotion",
-          "SwiftnessPotion"
+          "Strength",
+          "Speed"
         ],
         "HeroBard": [
           "CallCompanion",
@@ -158,8 +158,8 @@
           "BeastWhisperer",
           "PiercingVoice",
           "Bone",
-          "StrengthPotion",
-          "SwiftnessPotion"
+          "Strength",
+          "Speed"
         ],
         "HeroGuardian": [
           "CallCompanion",
@@ -167,8 +167,8 @@
           "BeastWhisperer",
           "PiercingVoice",
           "Bone",
-          "StrengthPotion",
-          "SwiftnessPotion"
+          "Strength",
+          "Speed"
         ],
         "HeroHunter": [
           "CallCompanion",
@@ -176,8 +176,8 @@
           "BeastWhisperer",
           "PiercingVoice",
           "Bone",
-          "StrengthPotion",
-          "SwiftnessPotion"
+          "Strength",
+          "Speed"
         ],
         "HeroRogue": [
           "CallCompanion",
@@ -185,8 +185,8 @@
           "BeastWhisperer",
           "PiercingVoice",
           "Bone",
-          "StrengthPotion",
-          "SwiftnessPotion"
+          "Strength",
+          "Speed"
         ],
         "HeroSorcerer": [
           "CallCompanion",
@@ -194,8 +194,8 @@
           "BeastWhisperer",
           "PiercingVoice",
           "Bone",
-          "StrengthPotion",
-          "SwiftnessPotion"
+          "Strength",
+          "Speed"
         ],
         "HeroWarlock": [
           "CallCompanion",
@@ -203,8 +203,8 @@
           "BeastWhisperer",
           "PiercingVoice",
           "Bone",
-          "StrengthPotion",
-          "SwiftnessPotion"
+          "Strength",
+          "Speed"
         ]
       }
     },

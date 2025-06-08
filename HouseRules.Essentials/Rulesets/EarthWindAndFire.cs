@@ -17,66 +17,66 @@
 
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Heal, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Tornado, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Heal, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Tornado, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Heal, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Tornado, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Heal, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Tornado, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Heal, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Tornado, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
             };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Heal, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Tornado, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HurricaneAnthem, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Heal, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Tornado, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Electricity, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Fireball, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
@@ -93,23 +93,23 @@
             {
                 AbilityKey.Bone,
                 AbilityKey.Fireball,
-                AbilityKey.Teleportation,
+                AbilityKey.Teleport,
                 AbilityKey.RevealPath,
                 AbilityKey.Freeze,
-                AbilityKey.StrengthPotion,
-                AbilityKey.SwiftnessPotion,
+                AbilityKey.Strength,
+                AbilityKey.Speed,
                 AbilityKey.DamageResistPotion,
                 AbilityKey.VigorPotion,
                 AbilityKey.ExtraActionPotion,
                 AbilityKey.CallCompanion,
-                AbilityKey.WhirlwindAttack,
+                AbilityKey.Whirlwind,
                 AbilityKey.LetItRain,
                 AbilityKey.WaterDive,
-                AbilityKey.HeavensFury,
-                AbilityKey.AdamantPotion,
-                AbilityKey.HealingPotion,
-                AbilityKey.WoodenBone,
-                AbilityKey.Torch,
+                AbilityKey.GodsFury,
+                AbilityKey.DamageResistPotion,
+                AbilityKey.Heal,
+                AbilityKey.WoodBone,
+                AbilityKey.TorchLight,
             };
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
@@ -144,13 +144,13 @@
             var abilityBackstabRule = new AbilityBackstabAdjustedRule(new Dictionary<AbilityKey, bool>
             {
                 { AbilityKey.Zap, true },
-                { AbilityKey.Arrow, true },
-                { AbilityKey.PiercingThrow, true },
+                { AbilityKey.HunterArrow, true },
+                { AbilityKey.PiercingSpear, true },
                 { AbilityKey.PoisonedTip, true },
                 { AbilityKey.Fireball, true },
                 { AbilityKey.Freeze, true },
                 { AbilityKey.Bone, true },
-                { AbilityKey.WhirlwindAttack, true },
+                { AbilityKey.Whirlwind, true },
                 { AbilityKey.Grapple, true },
                 { AbilityKey.GrapplingPush, true },
             });
@@ -216,44 +216,44 @@
 
             var abilityAoeRule = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.CourageShanty, 1 },
+                { AbilityKey.StrengthenCourage, 1 },
                 { AbilityKey.ReplenishArmor, 1 },
-                { AbilityKey.StrengthPotion, 1 },
-                { AbilityKey.SwiftnessPotion, 1 },
-                { AbilityKey.Antitoxin, 1 },
+                { AbilityKey.Strength, 1 },
+                { AbilityKey.Speed, 1 },
+                { AbilityKey.Antidote, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.ExtraActionPotion, 1 },
-                { AbilityKey.AdamantPotion, 1 },
-                { AbilityKey.HealingPotion, 1 },
-                { AbilityKey.OneMoreThing, 1 },
+                { AbilityKey.DamageResistPotion, 1 },
+                { AbilityKey.Heal, 1 },
+                { AbilityKey.ExtraActionPotion, 1 },
             });
 
-            var abilityHealRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int> { { AbilityKey.HealingPotion, 3 } });
+            var abilityHealRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int> { { AbilityKey.Heal, 3 } });
 
             var abilityMaxedRule = new RegainAbilityIfMaxxedOutOverriddenRule(new Dictionary<AbilityKey, bool>
             {
-                { AbilityKey.StrengthPotion, false },
-                { AbilityKey.SwiftnessPotion, false },
+                { AbilityKey.Strength, false },
+                { AbilityKey.Speed, false },
                 { AbilityKey.DamageResistPotion, false },
                 { AbilityKey.VigorPotion, false },
             });
 
             var pieceUseWhenKilledRule = new PieceUseWhenKilledOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { BoardPieceId.Spider, new List<AbilityKey> { AbilityKey.HealingPotion, AbilityKey.OneMoreThing } },
+                { BoardPieceId.Spider, new List<AbilityKey> { AbilityKey.Heal, AbilityKey.ExtraActionPotion } },
                 { BoardPieceId.IceElemental, new List<AbilityKey> { AbilityKey.LetItRain } },
             });
 
             var pieceAbilityListOverriddenRule = new PieceAbilityListOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { BoardPieceId.HeroBarbarian, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
-                { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
-                { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
-                { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
-                { BoardPieceId.HeroRogue, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
-                { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
-                { BoardPieceId.HeroWarlock, new List<AbilityKey> { AbilityKey.OneMoreThing, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.HurricaneAnthem, AbilityKey.AbsorbMySoul } },
+                { BoardPieceId.HeroBarbarian, new List<AbilityKey> { AbilityKey.ExtraActionPotion, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.Tornado, AbilityKey.AbsorbMySoul } },
+                { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.ExtraActionPotion, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.Tornado, AbilityKey.AbsorbMySoul } },
+                { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.ExtraActionPotion, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.Tornado, AbilityKey.AbsorbMySoul } },
+                { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.ExtraActionPotion, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.Tornado, AbilityKey.AbsorbMySoul } },
+                { BoardPieceId.HeroRogue, new List<AbilityKey> { AbilityKey.ExtraActionPotion, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.Tornado, AbilityKey.AbsorbMySoul } },
+                { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.ExtraActionPotion, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.Tornado, AbilityKey.AbsorbMySoul } },
+                { BoardPieceId.HeroWarlock, new List<AbilityKey> { AbilityKey.ExtraActionPotion, AbilityKey.EarthShatter, AbilityKey.Fireball, AbilityKey.Tornado, AbilityKey.AbsorbMySoul } },
             });
 
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);

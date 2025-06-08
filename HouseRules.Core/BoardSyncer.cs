@@ -188,19 +188,19 @@
 
                     return false;
                 case AbilityKey.RevealPath:
-                case AbilityKey.DetectEnemies:
-                case AbilityKey.BeastWhisperer:
-                case AbilityKey.HurricaneAnthem:
-                case AbilityKey.Lure:
-                case AbilityKey.BoobyTrap:
-                case AbilityKey.RepeatingBallista:
-                case AbilityKey.TheBehemoth:
-                case AbilityKey.HealingWard:
+                case AbilityKey.DetectStealthedUnits:
+                case AbilityKey.RatWhisperer:
+                case AbilityKey.Tornado:
+                case AbilityKey.MonsterBait:
+                case AbilityKey.ProximityMine:
+                case AbilityKey.SwordOfAvalon:
+                case AbilityKey.BeaconOfSmite:
+                case AbilityKey.BeaconOfHealing:
                 case AbilityKey.RaiseRoots:
                 case AbilityKey.CallCompanion:
                 case AbilityKey.DigRatsNest:
-                case AbilityKey.Barricade:
-                case AbilityKey.MagicBarrier:
+                case AbilityKey.MiniBarricade:
+                case AbilityKey.MagicWall:
                     return true;
             }
 

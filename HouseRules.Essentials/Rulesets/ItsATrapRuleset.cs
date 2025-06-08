@@ -17,71 +17,71 @@
 
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ProximityMine, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ExplodingLampPlaceholder, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
             };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ProximityMine, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.StrengthenCourage, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ProximityMine, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ProximityMine, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HunterArrow, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ProximityMine, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ProximityMine, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HealingPotion, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Heal, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.BoobyTrap, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ProximityMine, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectEnemies, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
@@ -99,121 +99,121 @@
                 {
                     BoardPieceId.HeroBarbarian, new List<AbilityKey>
                     {
-                        AbilityKey.PoisonBomb,
-                        AbilityKey.HealingPotion,
+                        AbilityKey.PoisonGasGrenade,
+                        AbilityKey.Heal,
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
-                        AbilityKey.Vortex,
-                        AbilityKey.Torch,
+                        AbilityKey.VortexDust,
+                        AbilityKey.TorchLight,
                         AbilityKey.Bone,
-                        AbilityKey.DetectEnemies,
+                        AbilityKey.DetectStealthedUnits,
                         AbilityKey.WebBomb,
                         AbilityKey.VortexLamp,
-                        AbilityKey.Teleportation,
+                        AbilityKey.Teleport,
                     }
                 },
                 {
                     BoardPieceId.HeroBard, new List<AbilityKey>
                     {
-                        AbilityKey.PoisonBomb,
-                        AbilityKey.MagicBarrier,
+                        AbilityKey.PoisonGasGrenade,
+                        AbilityKey.MagicWall,
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
-                        AbilityKey.TheBehemoth,
-                        AbilityKey.RepeatingBallista,
-                        AbilityKey.TheBehemoth,
+                        AbilityKey.BeaconOfSmite,
+                        AbilityKey.SwordOfAvalon,
+                        AbilityKey.BeaconOfSmite,
                         AbilityKey.VortexLamp,
-                        AbilityKey.HealingPotion,
-                        AbilityKey.Torch,
-                        AbilityKey.Sneak,
+                        AbilityKey.Heal,
+                        AbilityKey.TorchLight,
+                        AbilityKey.Stealth,
                         AbilityKey.Bone,
-                        AbilityKey.DetectEnemies,
+                        AbilityKey.DetectStealthedUnits,
                     }
                 },
                 {
                     BoardPieceId.HeroGuardian, new List<AbilityKey>
                     {
-                        AbilityKey.PoisonBomb,
-                        AbilityKey.MagicBarrier,
+                        AbilityKey.PoisonGasGrenade,
+                        AbilityKey.MagicWall,
                         AbilityKey.Bone,
-                        AbilityKey.HealingPotion,
+                        AbilityKey.Heal,
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
                         AbilityKey.VortexLamp,
                         AbilityKey.RevealPath,
-                        AbilityKey.Torch,
-                        AbilityKey.Sneak,
-                        AbilityKey.DetectEnemies,
+                        AbilityKey.TorchLight,
+                        AbilityKey.Stealth,
+                        AbilityKey.DetectStealthedUnits,
                     }
                 },
                 {
                     BoardPieceId.HeroHunter, new List<AbilityKey>
                     {
-                        AbilityKey.PoisonBomb,
-                        AbilityKey.MagicBarrier,
-                        AbilityKey.HealingPotion,
+                        AbilityKey.PoisonGasGrenade,
+                        AbilityKey.MagicWall,
+                        AbilityKey.Heal,
                         AbilityKey.PoisonedTip,
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
-                        AbilityKey.Torch,
-                        AbilityKey.Sneak,
-                        AbilityKey.DetectEnemies,
+                        AbilityKey.TorchLight,
+                        AbilityKey.Stealth,
+                        AbilityKey.DetectStealthedUnits,
                     }
                 },
                 {
                     BoardPieceId.HeroRogue, new List<AbilityKey>
                     {
-                        AbilityKey.PoisonBomb,
-                        AbilityKey.HealingPotion,
+                        AbilityKey.PoisonGasGrenade,
+                        AbilityKey.Heal,
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
-                        AbilityKey.Vortex,
-                        AbilityKey.Torch,
+                        AbilityKey.VortexDust,
+                        AbilityKey.TorchLight,
                         AbilityKey.Bone,
-                        AbilityKey.DetectEnemies,
+                        AbilityKey.DetectStealthedUnits,
                         AbilityKey.WebBomb,
                         AbilityKey.VortexLamp,
-                        AbilityKey.Teleportation,
+                        AbilityKey.Teleport,
                     }
                 },
                 {
                     BoardPieceId.HeroSorcerer, new List<AbilityKey>
                     {
-                        AbilityKey.HealingPotion,
+                        AbilityKey.Heal,
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
-                        AbilityKey.Vortex,
-                        AbilityKey.Torch,
-                        AbilityKey.Sneak,
-                        AbilityKey.DetectEnemies,
+                        AbilityKey.VortexDust,
+                        AbilityKey.TorchLight,
+                        AbilityKey.Stealth,
+                        AbilityKey.DetectStealthedUnits,
                         AbilityKey.Banish,
-                        AbilityKey.Lure,
+                        AbilityKey.MonsterBait,
                         AbilityKey.WebBomb,
-                        AbilityKey.Teleportation,
+                        AbilityKey.Teleport,
                         AbilityKey.Regroup,
                     }
                 },
                 {
                     BoardPieceId.HeroWarlock, new List<AbilityKey>
                     {
-                        AbilityKey.HealingPotion,
+                        AbilityKey.Heal,
                         AbilityKey.OilLamp,
                         AbilityKey.GasLamp,
                         AbilityKey.IceLamp,
-                        AbilityKey.Vortex,
-                        AbilityKey.Torch,
+                        AbilityKey.VortexDust,
+                        AbilityKey.TorchLight,
                         AbilityKey.MissileSwarm,
-                        AbilityKey.DetectEnemies,
+                        AbilityKey.DetectStealthedUnits,
                         AbilityKey.Banish,
-                        AbilityKey.Lure,
+                        AbilityKey.MonsterBait,
                         AbilityKey.MinionCharge,
-                        AbilityKey.Teleportation,
+                        AbilityKey.Teleport,
                         AbilityKey.Regroup,
                         AbilityKey.TeleportLamp,
                     }
@@ -249,17 +249,17 @@
 
             var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.StrengthPotion, 1 },
-                { AbilityKey.SwiftnessPotion, 1 },
+                { AbilityKey.Strength, 1 },
+                { AbilityKey.Speed, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.ExtraActionPotion, 1 },
-                { AbilityKey.HealingPotion, 1 },
+                { AbilityKey.Heal, 1 },
             });
 
             var abilityActionCostRule = new AbilityActionCostAdjustedRule(new Dictionary<AbilityKey, bool>
             {
-                { AbilityKey.BoobyTrap, false },
+                { AbilityKey.ProximityMine, false },
             });
 
             var lampTypesRule = new LampTypesOverriddenRule(new Dictionary<int, List<BoardPieceId>>

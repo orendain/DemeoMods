@@ -18,7 +18,7 @@
             {
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CallCompanion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SummonElemental, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HuntersMark, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MarkOfAvalon, ReplenishFrequency = 1 },
             };
             var startingCardsRule = new StartCardsModifiedRule(
                 new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
@@ -56,11 +56,11 @@
             {
                 AbilityKey.CallCompanion,
                 AbilityKey.SummonElemental,
-                AbilityKey.BeastWhisperer,
-                AbilityKey.PiercingVoice,
+                AbilityKey.RatWhisperer,
+                AbilityKey.NotesOfConfusion,
                 AbilityKey.Bone,
-                AbilityKey.StrengthPotion,
-                AbilityKey.SwiftnessPotion,
+                AbilityKey.Strength,
+                AbilityKey.Speed,
             };
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {

@@ -74,7 +74,7 @@
                 // Bypass problem with replenishCooldown somehow being set to -1 by Demeo
                 foreach (var card in _globalHeroStartCards[piece.boardPieceId])
                 {
-                    if (value.abilityKey == card.Card && card.ReplenishFrequency > 1 && value.replenishCooldown < 0)
+                    if (value.AbilityKey == card.Card && card.ReplenishFrequency > 1 && value.replenishCooldown < 0)
                     {
                         value.replenishCooldown = card.ReplenishFrequency - 1;
                         piece.inventory.Items[i] = value;
@@ -82,7 +82,7 @@
                 }
 
                 var skipReplenishing = false;
-                if (!AbilityFactory.TryGetAbility(value.abilityKey, out var ability))
+                if (!AbilityFactory.TryGetAbility(value.AbilityKey, out var ability))
                 {
                     throw new Exception("Failed to get ability prefab from ability key while attempting to replenish hand!");
                 }
@@ -147,12 +147,13 @@
 
         private static Inventory CreateInventory(BoardPieceId boardPieceId)
         {
-            var inventory = new Inventory();
+            AbilityFactory? abilityFactory = null;
+            var inventory = new Inventory(abilityFactory);
             if (MotherbrainGlobalVars.CurrentConfig == GameConfigType.Sewers)
             {
                 inventory.Items.Add(new Inventory.Item
                 {
-                    abilityKey = AbilityKey.Torch,
+                    abilityKey = AbilityKey.TorchLight,
                     flags = 0,
                     originalOwner = -1,
                     replenishCooldown = 0,

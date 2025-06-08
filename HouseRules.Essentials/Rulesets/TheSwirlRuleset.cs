@@ -15,37 +15,37 @@
 
             var barbarianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexDust, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Grapple, ReplenishFrequency = 1 },
             };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CourageShanty, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexDust, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.StrengthenCourage, ReplenishFrequency = 1 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexDust, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.ReplenishArmor, ReplenishFrequency = 1 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Arrow, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexDust, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HunterArrow, ReplenishFrequency = 1 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Sneak, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexDust, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 1 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexDust, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Vortex, ReplenishFrequency = 1 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.VortexDust, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MagicMissile, ReplenishFrequency = 1 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
@@ -61,13 +61,13 @@
 
             var allowedCardsRule = new CardAdditionOverriddenRule(new Dictionary<BoardPieceId, List<AbilityKey>>
             {
-                { BoardPieceId.HeroBarbarian, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.GrapplingPush } },
-                { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.HurricaneAnthem } },
-                { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.Charge } },
-                { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.PoisonedTip } },
-                { BoardPieceId.HeroRogue, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.Blink } },
-                { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.SummonElemental } },
-                { BoardPieceId.HeroWarlock, new List<AbilityKey> { AbilityKey.PoisonBomb, AbilityKey.Fireball, AbilityKey.MissileSwarm } },
+                { BoardPieceId.HeroBarbarian, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.GrapplingPush } },
+                { BoardPieceId.HeroBard, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Tornado } },
+                { BoardPieceId.HeroGuardian, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Charge } },
+                { BoardPieceId.HeroHunter, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.PoisonedTip } },
+                { BoardPieceId.HeroRogue, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.Blink } },
+                { BoardPieceId.HeroSorcerer, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.SummonElemental } },
+                { BoardPieceId.HeroWarlock, new List<AbilityKey> { AbilityKey.PoisonGasGrenade, AbilityKey.Fireball, AbilityKey.MissileSwarm } },
             });
 
             var piecesAdjustedRule = new PieceConfigAdjustedRule(new List<PieceConfigAdjustedRule.PieceProperty>
@@ -96,12 +96,12 @@
 
             var aoePotions = new AbilityAoeAdjustedRule(new Dictionary<AbilityKey, int>
             {
-                { AbilityKey.StrengthPotion, 1 },
-                { AbilityKey.SwiftnessPotion, 1 },
+                { AbilityKey.Strength, 1 },
+                { AbilityKey.Speed, 1 },
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.ExtraActionPotion, 1 },
-                { AbilityKey.OneMoreThing, 1 },
+                { AbilityKey.ExtraActionPotion, 1 },
             });
 
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);
