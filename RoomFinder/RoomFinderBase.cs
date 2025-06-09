@@ -9,13 +9,13 @@
     {
         internal const string ModId = "com.orendain.demeomods.roomfinder";
         internal const string ModName = "RoomFinder";
-        internal const string ModVersion = "1.9.0";
+        internal const string ModVersion = "2.0.0";
         internal const string ModAuthor = "DemeoMods Team";
 
-        private const int NonVrSteamWindowsLobbySceneIndex = 2;
-        private const int NonVrOculusWindowsLobbySceneIndex = 2;
-        private const int SteamVRLobbySceneIndex = 1;
-        private const int RiftLobbySceneIndex = 1;
+        private const int NonVrSteamLobbySceneIndex = 1;
+        private const int NonVrCombinedSteamLobbySceneIndex = 3;
+        private const int VrSteamLobbySceneIndex = 1;
+        private const int VrQuestLobbySceneIndex = 1;
 
         private static Action<object>? _logInfo;
         private static Action<object>? _logDebug;
@@ -74,44 +74,22 @@
 
         internal static void OnSceneLoaded(int buildIndex)
         {
-            if (MotherbrainGlobalVars.SelectedPlatform == MotherbrainPlatform.NonVrSteamWindows)
+            if (MotherbrainGlobalVars.IsRunningOnNonVRPlatform)
             {
-                if (buildIndex == NonVrSteamWindowsLobbySceneIndex)
+                if (buildIndex == NonVrSteamLobbySceneIndex || buildIndex == NonVrCombinedSteamLobbySceneIndex)
                 {
-                    LogDebug("Recognized lobby in NonVrSteamWindows. Loading UI.");
+                    LogDebug("Recognized lobby in PC. Loading UI.");
                     _ = new GameObject("RoomFinderUiNonVr", typeof(RoomFinderUiNonVr));
                 }
 
                 return;
             }
 
-            if (MotherbrainGlobalVars.SelectedPlatform == MotherbrainPlatform.NonVrOculusWindows)
+            if (MotherbrainGlobalVars.IsRunningOnVRPlatform)
             {
-                if (buildIndex == NonVrOculusWindowsLobbySceneIndex)
+                if (buildIndex == VrSteamLobbySceneIndex || buildIndex == VrQuestLobbySceneIndex)
                 {
-                    LogDebug("Recognized lobby in NonVrOculusWindows. Loading UI.");
-                    _ = new GameObject("RoomFinderUiNonVr", typeof(RoomFinderUiNonVr));
-                }
-
-                return;
-            }
-
-            if (MotherbrainGlobalVars.SelectedPlatform == MotherbrainPlatform.SteamVR)
-            {
-                if (buildIndex == SteamVRLobbySceneIndex)
-                {
-                    LogDebug("Recognized lobby in SteamVR. Loading UI.");
-                    _ = new GameObject("RoomFinderUiVr", typeof(RoomFinderUiVr));
-                }
-
-                return;
-            }
-
-            if (MotherbrainGlobalVars.SelectedPlatform == MotherbrainPlatform.Rift)
-            {
-                if (buildIndex == RiftLobbySceneIndex)
-                {
-                    LogDebug("Recognized lobby in Rift. Loading UI.");
+                    LogDebug("Recognized lobby in VR. Loading UI.");
                     _ = new GameObject("RoomFinderUiVr", typeof(RoomFinderUiVr));
                 }
             }
