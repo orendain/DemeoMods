@@ -1,7 +1,5 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
-    using System;
-    using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HouseRules.Core.Types;
 
@@ -21,27 +19,23 @@
 
         protected override void OnPreGameCreated(Context context)
         {
-            if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
+            var abilityPromise = context.AbilityFactory.LoadAbility(AbilityKey.SpawnRat);
+            abilityPromise.OnLoaded(ability =>
             {
-                throw new InvalidOperationException(
-                    $"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");
-            }
-
-            ability.pieceToSpawn = BoardPieceId.GoldPile;
-            _originalSpawnAmount = ability.spawnMaxAmount;
-            ability.spawnMaxAmount = _pileCount;
+                ability.pieceToSpawn = BoardPieceId.GoldPile;
+                _originalSpawnAmount = ability.spawnMaxAmount;
+                ability.spawnMaxAmount = _pileCount;
+            });
         }
 
         protected override void OnDeactivate(Context context)
         {
-            if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
+            var abilityPromise = context.AbilityFactory.LoadAbility(AbilityKey.SpawnRat);
+            abilityPromise.OnLoaded(ability =>
             {
-                throw new InvalidOperationException(
-                    $"AbilityKey [{AbilityKey.SpawnRat}] does not have a corresponding ability.");
-            }
-
-            ability.pieceToSpawn = BoardPieceId.Rat;
-            ability.spawnMaxAmount = _originalSpawnAmount;
+                ability.pieceToSpawn = BoardPieceId.Rat;
+                ability.spawnMaxAmount = _originalSpawnAmount;
+            });
         }
     }
 }
