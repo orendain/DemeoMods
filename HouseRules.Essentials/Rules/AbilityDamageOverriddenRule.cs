@@ -46,7 +46,7 @@
                 abilityPromise.OnLoaded(ability =>
                 {
                     originals[replacement.Key] =
-                        [ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage];
+                        new List<int> { ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage };
                     ability.abilityDamage.targetDamage = replacement.Value[0];
                     ability.abilityDamage.critDamage = replacement.Value[1];
                 });
