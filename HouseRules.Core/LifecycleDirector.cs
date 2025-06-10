@@ -1,4 +1,6 @@
-﻿namespace HouseRules.Core
+﻿using Boardgame.BoardEntities.Abilities;
+
+namespace HouseRules.Core
 {
     using System;
     using System.Linq;
@@ -17,6 +19,8 @@
 
         private static float welcomeMessageDurationSeconds = 30f;
         private static GameContext _gameContext;
+        private static AbilityFactory _abilityFactory;
+        private static Context _context;
         private static bool _isCreatingGame;
         private static bool _isLoadingGame;
 
@@ -77,8 +81,10 @@
 
         private static void GameStartup_InitializeGame_Postfix(GameStartup __instance)
         {
-            var gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
-            _gameContext = gameContext;
+            _gameContext = Traverse.Create(__instance).Field<GameContext>("gameContext").Value;
+            _abilityFactory = Traverse.Create(__instance).Field<AbilityFactory>("abilityFactory").Value;
+
+            _context = new Context(_gameContext, _abilityFactory);
         }
 
         private static void CreatingGameState_TryCreateRoom_Prefix()
@@ -268,7 +274,7 @@
                 try
                 {
                     HouseRulesCoreBase.LogDebug($"Activating rule type: {rule.GetType()}");
-                    rule.OnActivate(_gameContext);
+                    rule.OnActivate(_context);
                 }
                 catch (Exception e)
                 {
@@ -293,7 +299,7 @@
                 try
                 {
                     HouseRulesCoreBase.LogDebug($"Deactivating rule type: {rule.GetType()}");
-                    rule.OnDeactivate(_gameContext);
+                    rule.OnDeactivate(_context);
                 }
                 catch (Exception e)
                 {
@@ -320,7 +326,7 @@
                 try
                 {
                     HouseRulesCoreBase.LogDebug($"Calling OnPreGameCreated for rule type: {rule.GetType()}");
-                    rule.OnPreGameCreated(_gameContext);
+                    rule.OnPreGameCreated(_context);
                 }
                 catch (Exception e)
                 {
@@ -347,7 +353,7 @@
                 try
                 {
                     HouseRulesCoreBase.LogDebug($"Calling OnPostGameCreated for rule type: {rule.GetType()}");
-                    rule.OnPostGameCreated(_gameContext);
+                    rule.OnPostGameCreated(_context);
                 }
                 catch (Exception e)
                 {
