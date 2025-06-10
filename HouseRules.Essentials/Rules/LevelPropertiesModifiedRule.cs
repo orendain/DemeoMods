@@ -20,7 +20,7 @@
 
         public Dictionary<string, int> GetConfigObject() => _levelProperties;
 
-        protected override void OnDeactivate(GameContext gameContext)
+        protected override void OnDeactivate(Context context)
         {
             Traverse.Create(gameContext.playerDataController)
                 .Field<Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>>("mergedDreadDataCollection")
@@ -28,7 +28,7 @@
             Traverse.Create(gameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
         }
 
-        protected override void OnPreGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(Context context)
         {
             Traverse.Create(gameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
 

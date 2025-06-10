@@ -28,13 +28,13 @@
 
         public List<string> GetConfigObject() => _adjustments;
 
-        protected override void OnActivate(GameContext gameContext)
+        protected override void OnActivate(Context context)
         {
             _globalAdjustments = _adjustments;
             _isActivated = true;
         }
 
-        protected override void OnPreGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(Context context)
         {
             ReplaceExistingProperties(_globalAdjustments, gameContext);
         }

@@ -20,13 +20,13 @@
 
         public float GetConfigObject() => _multiplier;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPostGameCreated(Context context)
         {
             Traverse.Create(typeof(AIDirectorConfig))
                 .Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = _originalValue * _multiplier;
         }
 
-        protected override void OnDeactivate(GameContext gameContext)
+        protected override void OnDeactivate(Context context)
         {
             Traverse.Create(typeof(AIDirectorConfig))
                 .Field<float>("CardEnergy_EnergyToGetFromDealingDamage").Value = _originalValue;

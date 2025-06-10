@@ -27,13 +27,13 @@
 
         public Dictionary<BoardPieceId, int> GetConfigObject() => _adjustments;
 
-        protected override void OnActivate(GameContext gameContext)
+        protected override void OnActivate(Context context)
         {
             _globalAdjustments = _adjustments;
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(Context context) => _isActivated = false;
 
         private static void Patch(Harmony harmony)
         {

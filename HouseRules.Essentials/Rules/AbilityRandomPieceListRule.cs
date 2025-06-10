@@ -28,12 +28,12 @@
 
         public Dictionary<AbilityKey, List<BoardPieceId>> GetConfigObject() => _adjustments;
 
-        protected override void OnPreGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(Context context)
         {
             _originals = ReplaceAbilities(_adjustments);
         }
 
-        protected override void OnDeactivate(GameContext gameContext)
+        protected override void OnDeactivate(Context context)
         {
             ReplaceAbilities(_originals);
         }

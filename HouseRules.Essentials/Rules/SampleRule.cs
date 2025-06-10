@@ -34,7 +34,7 @@
         ///     to be created.
         ///     </para>
         /// </remarks>
-        protected override void OnActivate(GameContext gameContext)
+        protected override void OnActivate(Context context)
         {
         }
 
@@ -44,14 +44,14 @@
         /// <remarks>
         /// This method should undo any persisting changes made by the rule up until this point.
         /// </remarks>
-        protected override void OnDeactivate(GameContext gameContext)
+        protected override void OnDeactivate(Context context)
         {
         }
 
         /// <summary>
         /// Called before a game is created.
         /// </summary>
-        protected override void OnPreGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(Context context)
         {
         }
 
@@ -61,7 +61,7 @@
         /// <remarks>
         /// Note that even though the game is created, the level/POIs/enemies may not yet fully be loaded/spawned.
         /// </remarks>
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPostGameCreated(Context context)
         {
         }
 
