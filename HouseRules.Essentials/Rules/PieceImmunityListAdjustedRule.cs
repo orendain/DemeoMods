@@ -21,7 +21,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PieceImmunityListAdjustedRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Dict of piece name and List<EffectStateType>
+        /// <param name="adjustments">Dict of piece name and list of EffectStateType.
         /// Replaces original settings with new list.</param>
         public PieceImmunityListAdjustedRule(Dictionary<BoardPieceId, List<EffectStateType>> adjustments)
         {

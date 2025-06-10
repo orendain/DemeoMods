@@ -2,9 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Boardgame;
     using DataKeys;
-    using HarmonyLib;
     using HouseRules.Core;
     using HouseRules.Core.Types;
 
@@ -33,26 +31,26 @@
 
         protected override void OnPreGameCreated(Context context)
         {
-            _originals = ReplaceExistingProperties(_adjustments);
+            _originals = ReplaceExistingProperties(context, _adjustments);
         }
 
         protected override void OnDeactivate(Context context)
         {
-            ReplaceExistingProperties(_originals);
+            ReplaceExistingProperties(context, _originals);
         }
 
         private static Dictionary<BoardPieceId, List<PieceType>> ReplaceExistingProperties(
+            Context context,
             Dictionary<BoardPieceId, List<PieceType>> pieceConfigChanges)
         {
-            var gameContext = Traverse.Create(typeof(GameHub)).Field<GameContext>("gameContext").Value;
             var previousProperties = new Dictionary<BoardPieceId, List<PieceType>>();
 
             foreach (var item in pieceConfigChanges)
             {
-                var pieceConfigDto = gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
+                var pieceConfigDto = context.GameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key];
                 previousProperties[item.Key] = pieceConfigDto.PieceType.ToList();
                 pieceConfigDto.PieceType = item.Value.ToArray();
-                gameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
+                context.GameContext.gameDataAPI.PieceConfig[MotherbrainGlobalVars.CurrentConfig][item.Key] = pieceConfigDto;
             }
 
             return previousProperties;
