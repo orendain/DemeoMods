@@ -39,6 +39,7 @@
             Dictionary<AbilityKey, bool> replacements)
         {
             var originals = new Dictionary<AbilityKey, bool>();
+
             foreach (var replacement in replacements)
             {
                 var abilityPromise = context.AbilityFactory.LoadAbility(replacement.Key);
