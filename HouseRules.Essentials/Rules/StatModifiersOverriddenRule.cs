@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using Boardgame;
-    using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HarmonyLib;
     using HouseRules.Core.Types;
@@ -31,37 +29,40 @@
 
         protected override void OnPreGameCreated(Context context)
         {
-            _originals = ReplaceStatModifiers(_adjustments);
+            _originals = ReplaceStatModifiers(context, _adjustments);
         }
 
         protected override void OnDeactivate(Context context)
         {
-            ReplaceStatModifiers(_originals);
+            ReplaceStatModifiers(context, _originals);
         }
 
-        private static Dictionary<AbilityKey, int> ReplaceStatModifiers(Dictionary<AbilityKey, int> replacements)
+        private static Dictionary<AbilityKey, int> ReplaceStatModifiers(
+            Context context,
+            Dictionary<AbilityKey, int> replacements)
         {
             var originals = new Dictionary<AbilityKey, int>();
 
             var statModifierType = AccessTools.TypeByName("Boardgame.GameplayEffects.StatModifier");
             foreach (var replacement in replacements)
             {
-                if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
+                var abilityPromise = context.AbilityFactory.LoadAbility(replacement.Key);
+                abilityPromise.OnLoaded(ability =>
                 {
-                    throw new InvalidOperationException(
-                        $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
-                }
+                    if (!ability.TryGetComponent(statModifierType, out var statModifier))
+                    {
+                        throw new InvalidOperationException(
+                            $"AbilityKey [{replacement.Key}] does not have a corresponding StatModifier.");
+                    }
 
-                if (!ability.TryGetComponent(statModifierType, out var statModifier))
-                {
-                    throw new InvalidOperationException(
-                        $"AbilityKey [{replacement.Key}] does not have a corresponding StatModifier.");
-                }
-
-                originals[replacement.Key] = Traverse.Create(statModifier).Field<int>("additiveBonus").Value;
-                Traverse.Create(statModifier).Field<int>("additiveBonus").Value = replacement.Value;
+                    originals[replacement.Key] = Traverse.Create(statModifier).Field<int>("additiveBonus").Value;
+                    Traverse.Create(statModifier).Field<int>("additiveBonus").Value = replacement.Value;
+                });
             }
 
+            // Theoretically, there can be a race condition as there's no guarantee the promise above is fulfilled by
+            // the return value is used. Realistically, there's no concern since the value isn't used until after the
+            // promise has long been fulfilled.
             return originals;
         }
     }

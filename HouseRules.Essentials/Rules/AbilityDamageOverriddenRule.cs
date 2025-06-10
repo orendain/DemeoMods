@@ -1,9 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
-    using System;
     using System.Collections.Generic;
-    using Boardgame;
-    using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HouseRules.Core.Types;
 
@@ -29,33 +26,35 @@
 
         protected override void OnPreGameCreated(Context context)
         {
-            _originals = ReplaceAbilities(_adjustments);
+            _originals = ReplaceAbilities(context, _adjustments);
         }
 
         protected override void OnDeactivate(Context context)
         {
-            ReplaceAbilities(_originals);
+            ReplaceAbilities(context, _originals);
         }
 
         private static Dictionary<AbilityKey, List<int>> ReplaceAbilities(
+            Context context,
             Dictionary<AbilityKey, List<int>> replacements)
         {
             var originals = new Dictionary<AbilityKey, List<int>>();
 
             foreach (var replacement in replacements)
             {
-                if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
+                var abilityPromise = context.AbilityFactory.LoadAbility(replacement.Key);
+                abilityPromise.OnLoaded(ability =>
                 {
-                    throw new InvalidOperationException(
-                        $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
-                }
-
-                originals[replacement.Key] = new List<int>
-                    { ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage };
-                ability.abilityDamage.targetDamage = replacement.Value[0];
-                ability.abilityDamage.critDamage = replacement.Value[1];
+                    originals[replacement.Key] =
+                        new List<int> { ability.abilityDamage.targetDamage, ability.abilityDamage.critDamage };
+                    ability.abilityDamage.targetDamage = replacement.Value[0];
+                    ability.abilityDamage.critDamage = replacement.Value[1];
+                });
             }
 
+            // Theoretically, there can be a race condition as there's no guarantee the promise above is fulfilled by
+            // the return value is used. Realistically, there's no concern since the value isn't used until after the
+            // promise has long been fulfilled.
             return originals;
         }
     }

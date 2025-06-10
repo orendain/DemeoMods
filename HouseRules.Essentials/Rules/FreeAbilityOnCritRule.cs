@@ -1,7 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
-    using Boardgame;
     using Boardgame.BoardEntities;
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
@@ -14,6 +13,7 @@
     {
         public override string Description => "Hero critical hits give a free card";
 
+        private static Context _context;
         private static Dictionary<BoardPieceId, AbilityKey> _globalAdjustments;
         private static bool _isActivated;
 
@@ -28,6 +28,7 @@
 
         protected override void OnActivate(Context context)
         {
+            _context = context;
             _globalAdjustments = _adjustments;
             _isActivated = true;
         }
@@ -60,13 +61,17 @@
                 return;
             }
 
-            if (!_globalAdjustments.ContainsKey(source.boardPieceId))
+            if (!_globalAdjustments.TryGetValue(source.boardPieceId, out var abilityKey))
             {
                 return;
             }
 
-            source.TryAddAbilityToInventory(_globalAdjustments[source.boardPieceId], isReplenishable: false);
-            HR.ScheduleBoardSync();
+            var abilityPromise = _context.AbilityFactory.LoadAbility(abilityKey);
+            abilityPromise.OnLoaded(ability =>
+            {
+                source.TryAddAbilityToInventory(ability, isReplenishable: false);
+                HR.ScheduleBoardSync();
+            });
         }
     }
 }

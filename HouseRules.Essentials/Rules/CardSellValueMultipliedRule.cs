@@ -1,7 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Reflection;
-    using Boardgame;
     using HarmonyLib;
     using HouseRules.Core.Types;
 

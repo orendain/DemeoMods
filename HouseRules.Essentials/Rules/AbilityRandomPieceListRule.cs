@@ -1,10 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Boardgame;
-    using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HouseRules.Core.Types;
 
@@ -30,31 +27,33 @@
 
         protected override void OnPreGameCreated(Context context)
         {
-            _originals = ReplaceAbilities(_adjustments);
+            _originals = ReplaceAbilities(context, _adjustments);
         }
 
         protected override void OnDeactivate(Context context)
         {
-            ReplaceAbilities(_originals);
+            ReplaceAbilities(context, _originals);
         }
 
         private static Dictionary<AbilityKey, List<BoardPieceId>> ReplaceAbilities(
+            Context context,
             Dictionary<AbilityKey, List<BoardPieceId>> replacements)
         {
             var originals = new Dictionary<AbilityKey, List<BoardPieceId>>();
 
             foreach (var replacement in replacements)
             {
-                if (!AbilityFactory.TryGetAbility(replacement.Key, out var ability))
+                var abilityPromise = context.AbilityFactory.LoadAbility(replacement.Key);
+                abilityPromise.OnLoaded(ability =>
                 {
-                    throw new InvalidOperationException(
-                        $"AbilityKey [{replacement.Key}] does not have a corresponding ability.");
-                }
-
-                originals[replacement.Key] = ability.randomPieceList.ToList();
-                ability.randomPieceList = replacement.Value.ToArray();
+                    originals[replacement.Key] = ability.randomPieceList.ToList();
+                    ability.randomPieceList = replacement.Value.ToArray();
+                });
             }
 
+            // Theoretically, there can be a race condition as there's no guarantee the promise above is fulfilled by
+            // the return value is used. Realistically, there's no concern since the value isn't used until after the
+            // promise has long been fulfilled.
             return originals;
         }
     }

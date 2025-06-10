@@ -1,7 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
-    using Boardgame;
     using Boardgame.LayerCake;
     using DataKeys;
     using HarmonyLib;
@@ -49,13 +48,13 @@
             }
 
             var floorIndex = MotherTracker.motherTrackerData.floorIndex + 1;
-            if (!_globalAdjustments.ContainsKey(floorIndex))
+            if (!_globalAdjustments.TryGetValue(floorIndex, out var adjustment))
             {
                 return true;
             }
 
-            __result = _globalAdjustments[floorIndex].ToArray();
-            return false; // We returned an user-adjusted config.
+            __result = adjustment.ToArray();
+            return false; // We returned a user-adjusted config.
         }
     }
 }

@@ -17,8 +17,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplyEffectOnHitAdjustedRule"/> class.
         /// </summary>
-        /// <param name="adjustments">Dict of piece name and effect.<EffectStateType>
-        /// Replaces original settings with new effect.</param>
+        /// <param name="adjustments">Dict of piece name and effect. Replaces original settings with new effect.</param>
         public ApplyEffectOnHitAdjustedRule(Dictionary<BoardPieceId, EffectStateType> adjustments)
         {
             _adjustments = adjustments;

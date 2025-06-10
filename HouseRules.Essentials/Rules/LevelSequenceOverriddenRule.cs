@@ -36,7 +36,7 @@
 
         protected override void OnPreGameCreated(Context context)
         {
-            ReplaceExistingProperties(_globalAdjustments, gameContext);
+            ReplaceExistingProperties(_globalAdjustments, context.GameContext);
         }
 
         private static void Patch(Harmony harmony)
