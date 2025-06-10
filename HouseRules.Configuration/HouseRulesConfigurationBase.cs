@@ -15,7 +15,7 @@
         internal const string ModName = "HouseRules.Configuration";
         internal const string ModAuthor = "DemeoMods Team";
 
-        private const int NonVrSteamLobbySceneIndex = 1;
+        private const int NonVrSteamLobbySceneIndex = 2;
         private const int NonVrCombinedSteamLobbySceneIndex = 3;
 
         private static Action<object>? _logInfo;
