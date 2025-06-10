@@ -224,10 +224,8 @@
                 { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.ExtraActionPotion, 1 },
-                { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.Heal, 1 },
-                { AbilityKey.ExtraActionPotion, 1 },
-            });
+             });
 
             var abilityHealRule = new AbilityHealOverriddenRule(new Dictionary<AbilityKey, int> { { AbilityKey.Heal, 3 } });
 

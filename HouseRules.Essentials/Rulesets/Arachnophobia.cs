@@ -100,9 +100,7 @@
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.ExtraActionPotion, 1 },
-                { AbilityKey.ExtraActionPotion, 1 },
                 { AbilityKey.Antidote, 1 },
-                { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.Heal, 1 },
             });
 
