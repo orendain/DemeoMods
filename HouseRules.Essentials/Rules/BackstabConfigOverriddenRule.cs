@@ -1,7 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System.Collections.Generic;
-    using Boardgame;
     using Boardgame.BoardEntities;
     using DataKeys;
     using HarmonyLib;
@@ -49,7 +48,7 @@
             }
 
             __result = _globalAdjustments.Contains(__instance.boardPieceId);
-            return false; // We returned an user-adjusted config.
+            return false; // We returned a user-adjusted config.
         }
     }
 }

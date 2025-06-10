@@ -1,10 +1,7 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Boardgame;
-    using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HouseRules.Core.Types;
 

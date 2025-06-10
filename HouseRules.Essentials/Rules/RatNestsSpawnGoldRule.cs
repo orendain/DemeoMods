@@ -1,7 +1,6 @@
 ﻿namespace HouseRules.Essentials.Rules
 {
     using System;
-    using Boardgame;
     using Boardgame.BoardEntities.Abilities;
     using DataKeys;
     using HouseRules.Core.Types;
