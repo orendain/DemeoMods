@@ -22,17 +22,17 @@
 
         protected override void OnDeactivate(Context context)
         {
-            Traverse.Create(gameContext.playerDataController)
+            Traverse.Create(context.GameContext.playerDataController)
                 .Field<Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>>("mergedDreadDataCollection")
                 .Value = null;
-            Traverse.Create(gameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
+            Traverse.Create(context.GameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
         }
 
         protected override void OnPreGameCreated(Context context)
         {
-            Traverse.Create(gameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
+            Traverse.Create(context.GameContext.playerDataController).Method("AssembleDreadModesIfNull").GetValue();
 
-            var mergedDreadDataCollection = Traverse.Create(gameContext.playerDataController)
+            var mergedDreadDataCollection = Traverse.Create(context.GameContext.playerDataController)
                 .Field<Dictionary<GameConfigType, PlayerDataController.MergedDreadData[]>>("mergedDreadDataCollection")
                 .Value;
 
