@@ -22,7 +22,7 @@
 
         protected override void OnActivate(Context context)
         {
-            _gameContext = gameContext;
+            _gameContext = context.GameContext;
             _isActivated = true;
         }
 
