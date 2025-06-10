@@ -24,7 +24,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EyeOfAvalon, ReplenishFrequency = 0 },
             };
             var bardCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -34,7 +34,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EyeOfAvalon, ReplenishFrequency = 0 },
             };
             var guardianCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -43,7 +43,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EyeOfAvalon, ReplenishFrequency = 0 },
             };
             var hunterCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -52,7 +52,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EyeOfAvalon, ReplenishFrequency = 0 },
             };
             var assassinCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -61,7 +61,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EyeOfAvalon, ReplenishFrequency = 0 },
             };
             var sorcererCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -70,7 +70,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EyeOfAvalon, ReplenishFrequency = 0 },
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -81,7 +81,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GasLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.IceLamp, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.TeleportLamp, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EyeOfAvalon, ReplenishFrequency = 0 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
@@ -107,7 +107,7 @@
                         AbilityKey.VortexDust,
                         AbilityKey.TorchLight,
                         AbilityKey.Bone,
-                        AbilityKey.DetectStealthedUnits,
+                        AbilityKey.EyeOfAvalon,
                         AbilityKey.WebBomb,
                         AbilityKey.VortexLamp,
                         AbilityKey.Teleport,
@@ -129,7 +129,7 @@
                         AbilityKey.TorchLight,
                         AbilityKey.Stealth,
                         AbilityKey.Bone,
-                        AbilityKey.DetectStealthedUnits,
+                        AbilityKey.EyeOfAvalon,
                     }
                 },
                 {
@@ -146,7 +146,7 @@
                         AbilityKey.RevealPath,
                         AbilityKey.TorchLight,
                         AbilityKey.Stealth,
-                        AbilityKey.DetectStealthedUnits,
+                        AbilityKey.EyeOfAvalon,
                     }
                 },
                 {
@@ -161,7 +161,7 @@
                         AbilityKey.IceLamp,
                         AbilityKey.TorchLight,
                         AbilityKey.Stealth,
-                        AbilityKey.DetectStealthedUnits,
+                        AbilityKey.EyeOfAvalon,
                     }
                 },
                 {
@@ -175,7 +175,7 @@
                         AbilityKey.VortexDust,
                         AbilityKey.TorchLight,
                         AbilityKey.Bone,
-                        AbilityKey.DetectStealthedUnits,
+                        AbilityKey.EyeOfAvalon,
                         AbilityKey.WebBomb,
                         AbilityKey.VortexLamp,
                         AbilityKey.Teleport,
@@ -191,7 +191,7 @@
                         AbilityKey.VortexDust,
                         AbilityKey.TorchLight,
                         AbilityKey.Stealth,
-                        AbilityKey.DetectStealthedUnits,
+                        AbilityKey.EyeOfAvalon,
                         AbilityKey.Banish,
                         AbilityKey.MonsterBait,
                         AbilityKey.WebBomb,
@@ -209,7 +209,7 @@
                         AbilityKey.VortexDust,
                         AbilityKey.TorchLight,
                         AbilityKey.MissileSwarm,
-                        AbilityKey.DetectStealthedUnits,
+                        AbilityKey.EyeOfAvalon,
                         AbilityKey.Banish,
                         AbilityKey.MonsterBait,
                         AbilityKey.MinionCharge,
