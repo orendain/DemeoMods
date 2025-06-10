@@ -1,7 +1,5 @@
 ﻿namespace HouseRules.Core.Types
 {
-    using Boardgame;
-
     public abstract class Rule
     {
         /// <summary>
@@ -12,7 +10,7 @@
         /// <summary>
         /// Called when the rule is activated.
         /// </summary>
-        /// <param name="gameContext">The game's global GameContext.</param>
+        /// <param name="context">A HouseRules Context.</param>
         /// <remarks>
         ///     <para>
         ///     Rules should use this as an indication that they may begin to take effect.
@@ -22,37 +20,37 @@
         ///     to be created.
         ///     </para>
         /// </remarks>
-        protected internal virtual void OnActivate(GameContext gameContext)
+        protected internal virtual void OnActivate(Context context)
         {
         }
 
         /// <summary>
         /// Called when the rule is deactivated.
         /// </summary>
-        /// <param name="gameContext">The game's global GameContext.</param>
+        /// <param name="context">A HouseRules Context.</param>
         /// <remarks>
         /// This method should undo any persisting changes made by the rule up until this point.
         /// </remarks>
-        protected internal virtual void OnDeactivate(GameContext gameContext)
+        protected internal virtual void OnDeactivate(Context context)
         {
         }
 
         /// <summary>
         /// Called before a game is created.
         /// </summary>
-        /// <param name="gameContext">The game's global GameContext.</param>
-        protected internal virtual void OnPreGameCreated(GameContext gameContext)
+        /// <param name="context">A HouseRules Context.</param>
+        protected internal virtual void OnPreGameCreated(Context context)
         {
         }
 
         /// <summary>
         /// Called after a game is created.
         /// </summary>
-        /// <param name="gameContext">The game's global GameContext.</param>
+        /// <param name="context">A HouseRules Context.</param>
         /// <remarks>
         /// Note that even though the game is created, the level/POIs/enemies may not yet fully be loaded/spawned.
         /// </remarks>
-        protected internal virtual void OnPostGameCreated(GameContext gameContext)
+        protected internal virtual void OnPostGameCreated(Context context)
         {
         }
 
@@ -65,7 +63,7 @@
         ///     <see cref="SyncableTrigger"/> types.
         ///     </para>
         ///     <para>
-        ///     Multiple types may be seperated by a vertical bar <c>|</c>.
+        ///     Multiple types may be separated by a vertical bar <c>|</c>.
         ///     </para>
         /// </remarks>
         /// <example><code>SyncableTrigger.PieceDataChanged</code></example>
