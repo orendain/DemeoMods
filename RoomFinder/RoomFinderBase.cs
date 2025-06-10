@@ -1,4 +1,4 @@
-﻿namespace RoomFinder
+﻿﻿namespace RoomFinder
 {
     using System;
     using HarmonyLib;
@@ -9,7 +9,7 @@
     {
         internal const string ModId = "com.orendain.demeomods.roomfinder";
         internal const string ModName = "RoomFinder";
-        internal const string ModVersion = "1.9.0";
+        internal const string ModVersion = "2.0.0";
         internal const string ModAuthor = "DemeoMods Team";
 
         private const int NonVrSteamWindowsLobbySceneIndex = 2;

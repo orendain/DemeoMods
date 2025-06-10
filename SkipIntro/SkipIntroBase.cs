@@ -6,7 +6,7 @@
     {
         internal const string ModId = "com.orendain.demeomods.skipintro";
         internal const string ModName = "SkipIntro";
-        internal const string ModVersion = "1.5.0";
+        internal const string ModVersion = "2.0.0";
         internal const string ModAuthor = "DemeoMods Team";
 
         private static Action<object>? _logDebug;
