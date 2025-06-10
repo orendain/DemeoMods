@@ -26,13 +26,13 @@
 
         public Dictionary<BoardPieceId, List<AbilityKey>> GetConfigObject() => _energyCards;
 
-        protected override void OnActivate(GameContext gameContext)
+        protected override void OnActivate(Context context)
         {
             _globalEnergyCards = _energyCards;
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(Context context) => _isActivated = false;
 
         private static void Patch(Harmony harmony)
         {

@@ -21,13 +21,13 @@
 
         public int GetConfigObject() => _limit;
 
-        protected override void OnActivate(GameContext gameContext)
+        protected override void OnActivate(Context context)
         {
             _globalLimit = _limit;
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(Context context) => _isActivated = false;
 
         private static void Patch(Harmony harmony)
         {

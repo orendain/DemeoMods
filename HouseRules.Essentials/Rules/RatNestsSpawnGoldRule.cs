@@ -20,7 +20,7 @@
 
         public int GetConfigObject() => _pileCount;
 
-        protected override void OnPreGameCreated(GameContext gameContext)
+        protected override void OnPreGameCreated(Context context)
         {
             if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
             {
@@ -33,7 +33,7 @@
             ability.spawnMaxAmount = _pileCount;
         }
 
-        protected override void OnDeactivate(GameContext gameContext)
+        protected override void OnDeactivate(Context context)
         {
             if (!AbilityFactory.TryGetAbility(AbilityKey.SpawnRat, out var ability))
             {

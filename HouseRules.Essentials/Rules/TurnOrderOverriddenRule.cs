@@ -39,13 +39,13 @@
 
         public Scores GetConfigObject() => _config;
 
-        protected override void OnActivate(GameContext gameContext)
+        protected override void OnActivate(Context context)
         {
             _globalConfig = _config;
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(Context context) => _isActivated = false;
 
         private static void Patch(Harmony harmony)
         {

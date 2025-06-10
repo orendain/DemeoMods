@@ -31,13 +31,13 @@
 
         public Dictionary<BoardPieceId, List<CardConfig>> GetConfigObject() => _heroStartCards;
 
-        protected override void OnActivate(GameContext gameContext)
+        protected override void OnActivate(Context context)
         {
             _globalHeroStartCards = _heroStartCards;
             _isActivated = true;
         }
 
-        protected override void OnDeactivate(GameContext gameContext) => _isActivated = false;
+        protected override void OnDeactivate(Context context) => _isActivated = false;
 
         private static void Patch(Harmony harmony)
         {

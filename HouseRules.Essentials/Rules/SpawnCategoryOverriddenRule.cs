@@ -26,12 +26,12 @@
 
         public Dictionary<BoardPieceId, List<int>> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPostGameCreated(Context context)
         {
             _originals = UpdateSpawnCategories(_adjustments);
         }
 
-        protected override void OnDeactivate(GameContext gameContext)
+        protected override void OnDeactivate(Context context)
         {
             UpdateSpawnCategories(_originals);
         }

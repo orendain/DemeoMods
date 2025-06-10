@@ -26,12 +26,12 @@
 
         public Dictionary<AbilityKey, BoardPieceId> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(GameContext gameContext)
+        protected override void OnPostGameCreated(Context context)
         {
             _originals = UpdateExistingCardConfigs(_adjustments);
         }
 
-        protected override void OnDeactivate(GameContext gameContext)
+        protected override void OnDeactivate(Context context)
         {
             UpdateExistingCardConfigs(_originals);
         }
