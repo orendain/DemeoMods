@@ -22,9 +22,9 @@
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.ExtraActionPotion, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
-                { AbilityKey.ExtraActionPotion, 1 },
+                { AbilityKey.FreeAP, 1 },
                 { AbilityKey.Antidote, 1 },
-                { AbilityKey.DamageResistPotion, 1 },
+                { AbilityKey.Invulnerability, 1 },
                 { AbilityKey.Heal, 1 },
             });
 
@@ -35,6 +35,7 @@
                 { AbilityKey.VigorPotion, false },
                 { AbilityKey.DamageResistPotion, false },
                 { AbilityKey.ExtraActionPotion, false },
+                { AbilityKey.FreeAP, false },
             });
 
             return Ruleset.NewInstance(
