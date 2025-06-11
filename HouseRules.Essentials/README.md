@@ -79,7 +79,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "AbilityAoeAdjusted",
     "Config": {
-      "CourageShanty": 1,
+      "StrengthenCourage": 1,
       "Strength": 1,
       "Speed": 1,
       "Heal": 1
@@ -100,8 +100,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "AbilityBackstabAdjusted",
     "Config": {
       "Zap": true,
-      "Arrow": true,
-      "PiercingArrow": true,
+      "HunterArrow": true,
+      "PiercingSpear": true,
       "PoisonedTip": true,
       "Fireball": true,
       "Freeze": true
@@ -182,7 +182,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     {
       "Blink": 4,
       "DiseasedBite": 2,
-      "PoisonBomb": 1,
+      "PoisonGasGrenade": 1,
       "CursedDagger": 3,
       "PlayerMelee": 2
     }
@@ -202,9 +202,9 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "ApplyEffectOnHitAdjusted",
     "Config": {
-      "HealingBeacon": "Confused",
+      "BeaconOfHealing": "Confused",
       "SwordOfAvalon": "Diseased",
-      "Lure": "Thorns",
+      "MonsterBait": "Thorns",
       "HeroWarlock": "ExposeEnergy",
       "Verochka": "Panic"
     }
@@ -239,8 +239,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
-      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "Heal"]
+      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodsFury", "RevealPath"],
+      "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "Heal"]
     }
   },
   ```
@@ -256,8 +256,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardChestAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
-      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "Heal"]
+      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodssFury", "RevealPath"],
+      "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "Heal"]
     }
   },
   ```
@@ -274,8 +274,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardEnergyAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "BottleOfLye", "Teleportation", "HeavensFury", "RevealPath"],
-      "HeroGuardian": ["WhirlwindAttack", "Charge", "CallCompanion", "Heal"]
+      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodsFury", "RevealPath"],
+      "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "Heal"]
     }
   },
   ```
@@ -351,8 +351,8 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     {
       "Rule": "CardClassRestrictionOverridden",
       "Config": {
-        "BeastWhisperer": "SporeFungus",
-        "Sneak": "Guardian",
+        "NaturesCall": "SporeFungus",
+        "Stealth": "Guardian",
         "Zap": "Hunter"
       }
     },
@@ -460,7 +460,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "HeroHunter": "PoisonedTip",
       "HeroSorcerer": "Fireball",
       "HeroGuardian": "Bone",
-      "HeroRogue": "PoisonBomb"
+      "HeroRogue": "PoisonGasGrenade"
     }
   },
 ```  
@@ -508,7 +508,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Config": {
       "1": [
         "OilLamp",
-        "OilLamp",
+        "WaterLamp",
         "OilLamp",
         "VortexLamp"
       ],
@@ -520,7 +520,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       ],
       "3": [
         "IceLamp",
-        "IceLamp",
+        "WaterLamp",
         "IceLamp",
         "VortexLamp"
       ]
@@ -919,16 +919,13 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "HeroGuardian": [
         { "Card": "Heal", "ReplenishFrequency": 0 },
         { "Card": "ReplenishArmor", "ReplenishFrequency": 1 },
-        { "Card": "WhirlwindAttack", "ReplenishFrequency": 1 },
-        { "Card": "PiercingThrow", "ReplenishFrequency": 0 },
-        { "Card": "CoinFlip", "ReplenishFrequency": 0 },
-        { "Card": "TheBehemoth", "ReplenishFrequency": 0 },
-        { "Card": "SwordOfAvalon", "ReplenishFrequency": 0 }
+        { "Card": "Whirlwind", "ReplenishFrequency": 1 },
+        { "Card": "Charge", "ReplenishFrequency": 0 },
+        { "Card": "CoinFlip", "ReplenishFrequency": 0 }
       ],
       "HeroHunter": [
         { "Card": "Heal", "ReplenishFrequency": 0 },
-        { "Card": "Arrow", "ReplenishFrequency": 1 },
-        { "Card": "Arrow", "ReplenishFrequency": 1 },
+        { "Card": "CallCompanion", "ReplenishFrequency": 0 },
         { "Card": "CoinFlip", "ReplenishFrequency": 0 },
         { "Card": "DropChest", "ReplenishFrequency": 0 }
       ],
@@ -937,8 +934,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
         { "Card": "Zap", "ReplenishFrequency": 1 },
         { "Card": "WhirlwindAttack", "ReplenishFrequency": 1 },
         { "Card": "Freeze", "ReplenishFrequency": 0 },
-        { "Card": "Fireball", "ReplenishFrequency": 0 },
-        { "Card": "CallCompanion", "ReplenishFrequency": 0 }
+        { "Card": "Fireball", "ReplenishFrequency": 0 }
       ]
     }
   },
@@ -1019,8 +1015,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "Gas": 3,
       "Acid": 4,
       "Web": 2,
-      "Water": 2,
-      "Target": 0
+      "Water": 2
     }
   },
   ```
