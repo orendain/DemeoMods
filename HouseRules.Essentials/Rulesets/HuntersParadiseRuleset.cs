@@ -56,7 +56,7 @@
             {
                 AbilityKey.CallCompanion,
                 AbilityKey.SummonElemental,
-                AbilityKey.RatWhisperer,
+                AbilityKey.NaturesCall,
                 AbilityKey.NotesOfConfusion,
                 AbilityKey.Bone,
                 AbilityKey.Strength,
