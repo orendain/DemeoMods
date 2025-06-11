@@ -156,7 +156,7 @@
             {
                 AbilityKey.CallCompanion,
                 AbilityKey.MarkOfAvalon,
-                AbilityKey.RatWhisperer,
+                AbilityKey.PVPBeastWhisperer,
                 AbilityKey.RevealPath,
             };
 

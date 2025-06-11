@@ -56,7 +56,7 @@
             {
                 AbilityKey.CallCompanion,
                 AbilityKey.SummonElemental,
-                AbilityKey.RatWhisperer,
+                AbilityKey.PVPBeastWhisperer,
                 AbilityKey.NotesOfConfusion,
                 AbilityKey.Bone,
                 AbilityKey.Strength,
