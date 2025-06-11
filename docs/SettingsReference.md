@@ -277,7 +277,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - TeleportLamp
 - TeleportRotateSit
 - TeleportToBattle
-- Teleportation
+- Teleportation -> (Teleport)
 - BeaconOfSmite -> (TheBehemoth)
 - ThornPowder
 - TileBlock
