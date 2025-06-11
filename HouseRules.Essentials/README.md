@@ -274,7 +274,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardEnergyAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide, "Teleport", "GodsFury", "RevealPath"],
+      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodsFury", "RevealPath"],
       "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "Heal"]
     }
   },
