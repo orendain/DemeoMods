@@ -101,7 +101,7 @@
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.ExtraActionPotion, 1 },
-                { AbilityKey.ExtraActionPotion, 1 },
+                { AbilityKey.FreeAP, 1 },
             });
 
             var respawnsDisabledRule = new EnemyRespawnDisabledRule(true);
