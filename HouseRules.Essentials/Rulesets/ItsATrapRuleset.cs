@@ -352,7 +352,8 @@
                 { TileEffect.Acid, 1 },
                 { TileEffect.Web, 10 },
                 { TileEffect.Water, 10 },
-                { TileEffect.Target, 0 },
+
+                // { TileEffect.Target, 0 }, This bugs movement of player pieces for some reason
             });
 
             return Ruleset.NewInstance(
