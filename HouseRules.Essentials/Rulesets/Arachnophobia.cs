@@ -255,7 +255,7 @@
 
             var cardClassRestrictionRule = new CardClassRestrictionOverriddenRule(new Dictionary<AbilityKey, BoardPieceId>
             {
-                { AbilityKey.RatWhisperer, BoardPieceId.SporeFungus },
+                { AbilityKey.NaturesCall, BoardPieceId.SporeFungus },
             });
 
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);
