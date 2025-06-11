@@ -191,7 +191,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - NotesOfConfusion -> (PiercingVoice)
 - PlayerLeap
 - PlayerMelee
-- PoisonBomb
+- PoisonBomb -> (PoisonGasGrenade)
 - PoisonGas
 - PoisonedTip
 - Portal
