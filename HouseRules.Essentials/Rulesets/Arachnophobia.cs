@@ -50,7 +50,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Heal, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.HunterArrow, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.PoisonedTip, ReplenishFrequency = 1 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.SplittingArrow, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Exterminate, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.CallCompanion, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Stealth, ReplenishFrequency = 0 },
             };
@@ -68,7 +68,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.Zap, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.OilLamp, ReplenishFrequency = 1 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GodsFury, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EyeOfAvalon, ReplenishFrequency = 0 },
             };
             var warlockCards = new List<StartCardsModifiedRule.CardConfig>
             {
@@ -78,7 +78,7 @@
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MinionCharge, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.MissileSwarm, ReplenishFrequency = 0 },
                 new StartCardsModifiedRule.CardConfig { Card = AbilityKey.GodsFury, ReplenishFrequency = 0 },
-                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.DetectStealthedUnits, ReplenishFrequency = 0 },
+                new StartCardsModifiedRule.CardConfig { Card = AbilityKey.EyeOfAvalon, ReplenishFrequency = 0 },
             };
             var startingCardsRule = new StartCardsModifiedRule(new Dictionary<BoardPieceId, List<StartCardsModifiedRule.CardConfig>>
             {
@@ -100,9 +100,9 @@
                 { AbilityKey.VigorPotion, 1 },
                 { AbilityKey.DamageResistPotion, 1 },
                 { AbilityKey.ExtraActionPotion, 1 },
-                { AbilityKey.ExtraActionPotion, 1 },
+                { AbilityKey.FreeAP, 1 },
                 { AbilityKey.Antidote, 1 },
-                { AbilityKey.DamageResistPotion, 1 },
+                { AbilityKey.Invulnerability, 1 },
                 { AbilityKey.Heal, 1 },
             });
 
@@ -255,7 +255,7 @@
 
             var cardClassRestrictionRule = new CardClassRestrictionOverriddenRule(new Dictionary<AbilityKey, BoardPieceId>
             {
-                { AbilityKey.RatWhisperer, BoardPieceId.SporeFungus },
+                { AbilityKey.NaturesCall, BoardPieceId.SporeFungus },
             });
 
             var enemyRespawnRule = new EnemyRespawnDisabledRule(true);
