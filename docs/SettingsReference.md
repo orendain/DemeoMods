@@ -1,7 +1,7 @@
 # Demeo Parameter Names
 
 A full list of all of the different parameter names used by HouseRules rules
-The ability anmes to the right -> (in braces) are from the previous Demeo releases before the v1.39 update.
+The ability names to the right -> (in braces) are from the previous Demeo releases before the v1.39 update.
 
 ## AbilityKey(s)
 
