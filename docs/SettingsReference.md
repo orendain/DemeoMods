@@ -1,32 +1,33 @@
 # Demeo Parameter Names
 
 A full list of all of the different parameter names used by HouseRules rules
+The ability names to the right -> (in braces) are from the previous Demeo releases before the v1.39 update.
 
 ## AbilityKey(s)
 
 - AbsorbCorruption
 - AbsorbMySoul
 - AcidSpit
-- DamageResistPotion
+- Invulnerability -> (AdamantPotion)
 - AltarHeal
 - Antidote
 - ArbalestierArrow
 - ArbalestierBarrage
 - ArbalestierPoisonTip
-- Arrow
+- HunterArrow -> (Arrow)
 - Bandage
 - Banish
 - Barrage
-- Barricade
-- BeastWhisperer
+- MiniBarricade -> (Barricade)
+- NaturesCall -> (BeastWhisperer)
 - BlindingLight
 - Blink
 - BlockAbilities
 - Bone
-- BoobyTrap
+- ProximityMine -> (BoobyTrap)
 - BossBerserkOnDeath
 - BossShockwave
-- BottleOfLye
+- SodiumHydroxide -> (BottleOfLye)
 - CallCompanion
 - Charge
 - ChargeBarbarian
@@ -36,7 +37,7 @@ A full list of all of the different parameter names used by HouseRules rules
 - CorruptOneTurn
 - CorruptedDeathExplode
 - CorruptionBomb
-- CourageShanty
+- StrengthenCourage -> (CourageShanty)
 - CursedDagger
 - DamageResistPotion
 - DeathBeam
@@ -48,7 +49,7 @@ A full list of all of the different parameter names used by HouseRules rules
 - DeathDropWoodBone
 - DeathFlurry
 - Deflect
-- DetectEnemies
+- EyeOfAvalon -> (DetectEnemies)
 - Detox
 - DigRatsNest
 - DiseasedBite
@@ -125,15 +126,15 @@ A full list of all of the different parameter names used by HouseRules rules
 - GrapplingTotem
 - GrapplingTotemHook
 - GuidingLight
-- HailOfArrows
+- Exterminate -> (HailOfArrows)
 - HealingLight
-- Heal
+- HealingPotion -> (Heal)
 - HealingPowder
-- HealingWard
-- HeavensFury
+- BeaconOfHealing -> (HealingWard)
+- GodsFury -> (HeavensFury)
 - HolyWater
-- HuntersMark
-- HurricaneAnthem
+- MarkOfAvalon -> (HuntersMark)
+- Tornado -> (HurricaneAnthem)
 - HymnOfBattle
 - HymnOfHealing
 - HymnOfIntimidation
@@ -152,8 +153,8 @@ A full list of all of the different parameter names used by HouseRules rules
 - LightningBolt
 - LongRangeSpearPoke
 - LuckPotion
-- Lure
-- MagicBarrier
+- MonsterBait -> (Lure)
+- MagicWall -> (MagicBarrier)
 - MagicMissile
 - MagicPotion
 - MagicShield
@@ -165,9 +166,10 @@ A full list of all of the different parameter names used by HouseRules rules
 - MissileSwarm
 - Net
 - OilLamp
-- ExtraActionPotion
+- FreeAP -> (OneMoreThing)
 - Overcharge
 - Overload
+- ScarePowder -> (PanicPowder)
 - PVPDamageResistPotion
 - PVPBarricade
 - PVPBeastWhisperer
@@ -185,11 +187,11 @@ A full list of all of the different parameter names used by HouseRules rules
 - PanicPowder
 - PanicPowderArrow
 - Petrify
-- PiercingThrow
-- PiercingVoice
+- PiercingSpear -> (PiercingThrow)
+- NotesOfConfusion -> (PiercingVoice)
 - PlayerLeap
 - PlayerMelee
-- PoisonBomb
+- PoisonBomb -> (PoisonGasGrenade)
 - PoisonGas
 - PoisonedTip
 - Portal
@@ -206,7 +208,7 @@ A full list of all of the different parameter names used by HouseRules rules
 - ReleaseEnergy
 - RemoveCorruption
 - RemoveScorpionFrenzy
-- RepeatingBallista
+- SwordOfAvalon -> (RepeatingBallista)
 - ReplenishArmor
 - ReplenishBarkArmor
 - RevealPath
@@ -225,7 +227,7 @@ A full list of all of the different parameter names used by HouseRules rules
 - SnakeBossMeteorRain
 - SnakeBossOneshot
 - SnakeBossShortRange
-- Sneak
+- Stealth -> (Sneak)
 - SongOfRecovery
 - SongOfResilience
 - SpawnCorruptionNode
@@ -250,9 +252,9 @@ A full list of all of the different parameter names used by HouseRules rules
 - SpawnSnakeBossAgain
 - SpawnSnakeTailBossAgain
 - SpawnSpiderlings
-- SpawnSummoningGreaterRift
-- SpawnSummoningLesserRift
-- SpawnSummoningMediumRift
+- SpawnSummoningRiftGreater -> (SpawnSummoningGreaterRift)
+- SpawnSummoningRiftLesser -> (SpawnSummoningLesserRift)
+- SpawnSummoningRiftMedium -> (SpawnSummoningMediumRift)
 - SpawnTombstone
 - SpellPowerPotion
 - SpiderWebshot
@@ -275,8 +277,8 @@ A full list of all of the different parameter names used by HouseRules rules
 - TeleportLamp
 - TeleportRotateSit
 - TeleportToBattle
-- Teleportation
-- TheBehemoth
+- Teleportation -> (Teleport)
+- BeaconOfSmite -> (TheBehemoth)
 - ThornPowder
 - TileBlock
 - TileUnblock
@@ -291,7 +293,7 @@ A full list of all of the different parameter names used by HouseRules rules
 - VenomousSting
 - VerminFrenzy
 - VigorPotion
-- Vortex
+- Implosion -> (Vortex)
 - VortexDust
 - VortexLamp
 - WallDestroy
@@ -305,7 +307,7 @@ A full list of all of the different parameter names used by HouseRules rules
 - WebBomb
 - Whip
 - WhipSmall
-- WhirlwindAttack
+- WhirlWind -> (WhirlwindAttack)
 - WizardBossFocusFire
 - WizardBossShowHint
 - WizardBossShuffle
