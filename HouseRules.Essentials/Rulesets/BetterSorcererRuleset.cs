@@ -23,7 +23,7 @@
                 description,
                 longdesc,
                 abilityActionCostRule,
-                new PartyElectricityDamageOverriddenRule(true));
+                new PartyDamageOverriddenRule(true));
         }
     }
 }
