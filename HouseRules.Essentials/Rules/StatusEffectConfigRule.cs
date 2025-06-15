@@ -28,7 +28,7 @@
 
         public List<StatusEffectData> GetConfigObject() => _adjustments;
 
-        protected override void OnPostGameCreated(Context context)
+        protected override void OnPreGameCreated(Context context)
         {
             _originals = UpdateStatusEffectConfig(_adjustments);
         }
