@@ -61,7 +61,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     "Rule": "AbilityActionCostAdjusted",
     "Config": {
       "Zap": false,
-      "CourageShanty": false,
+      "StrengthenCourage": false,
       "Heal": true
     }
   },
@@ -159,7 +159,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "AbilityRandomPieceList",
     "Config": {
-      "BeastWhisperer": [
+      "NaturesCall": [
         "GoblinRanger",
         "Slime"
       ]
@@ -256,7 +256,7 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   {
     "Rule": "CardChestAdditionOverridden",
     "Config": {
-      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodssFury", "RevealPath"],
+      "HeroSorcerer": ["Strength", "Speed", "Bone", "Fireball", "Freeze", "SodiumHydroxide", "Teleport", "GodsFury", "RevealPath"],
       "HeroGuardian": ["Whirlwind", "Charge", "CallCompanion", "Heal"]
     }
   },
@@ -633,16 +633,16 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
-#### __PartyElectricityDamageOverridden__: Electrical damage between players is zeroed
-  - Electricity Damage from friendly fire is zeroed
+#### __PartyDamageOverridden__: Electrical damage between players is zeroed and doesn't stun them
+  - Electricity Damage from friendly fire is zeroed and doesn't stun
   - To configure:
-    - Specify `true` to remove player on player electrical damage.
+    - Specify `true` to remove player on player electrical damage and stun.
 
-  ###### _Example JSON config for PartyElectricityDamageOverridden_
+  ###### _Example JSON config for PartyDamageOverridden_
 
   ```json
     {
-      "Rule": "PartyElectricityDamageOverridden",
+      "Rule": "PartyDamageOverridden",
       "Config": true
     },
   ```
