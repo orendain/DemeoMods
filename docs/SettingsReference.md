@@ -8,26 +8,22 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - AbsorbCorruption
 - AbsorbMySoul
 - AcidSpit
-- Invulnerability -> (AdamantPotion)
 - AltarHeal
-- Antidote
+- Antitoxin -> (Antidote)
 - ArbalestierArrow
 - ArbalestierBarrage
-- ArbalestierPoisonTip
-- HunterArrow -> (Arrow)
+- ArbalestierPoisonedTip -> (ArbalestierPoisonTip)
 - Bandage
 - Banish
 - Barrage
-- MiniBarricade -> (Barricade)
-- NaturesCall -> (BeastWhisperer)
+- BeaconOfHealing -> (HealingWard)
+- BeaconOfSmite -> (TheBehemoth)
 - BlindingLight
 - Blink
 - BlockAbilities
 - Bone
-- ProximityMine -> (BoobyTrap)
 - BossBerserkOnDeath
 - BossShockwave
-- SodiumHydroxide -> (BottleOfLye)
 - CallCompanion
 - Charge
 - ChargeBarbarian
@@ -37,7 +33,6 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - CorruptOneTurn
 - CorruptedDeathExplode
 - CorruptionBomb
-- StrengthenCourage -> (CourageShanty)
 - CursedDagger
 - DamageResistPotion
 - DeathBeam
@@ -49,7 +44,6 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - DeathDropWoodBone
 - DeathFlurry
 - Deflect
-- EyeOfAvalon -> (DetectEnemies)
 - Detox
 - DigRatsNest
 - DiseasedBite
@@ -63,10 +57,8 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - ElvenKingMeleeWhip
 - ElvenKingShockwaveChargeup
 - ElvenSummonerDeflect
-- Emerge
 - EmergencyTeleport
 - EnemyArrow
-- EnemyArrowSnipe
 - EnemyBossHandCharge
 - EnemyBossHandGoToHealingState
 - EnemyBossHandHeal
@@ -81,6 +73,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - EnemyHeal
 - EnemyHealOne
 - EnemyHumanHeal
+- EnemyHunterArrowSnipe -> (EnemyArrowSnipe)
 - EnemyInvulnerability
 - EnemyJavelin
 - EnemyKnockbackMelee
@@ -91,8 +84,6 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - EnemyRaiseBossHands
 - EnemySpawnLeftBossHand
 - EnemySpawnRightBossHand
-- EnemySplashWater
-- EnemySplashWaterCorruption
 - EnemyStealCard
 - EnemyStealGold
 - EnemyTelegraphBossHandCharge
@@ -110,10 +101,12 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - ExplodingWaterLamp
 - Explosion
 - ExplosiveOrb
+- Exterminate -> (HailOfArrows)
 - ExtraActionPotion
-- FireImmunePotion
+- EyeOfAvalon -> (DetectEnemies)
 - Fireball
-- FlashBomb
+- FlashBang - > (FlashBomb)
+- FreeAP -> (OneMoreThing)
 - Freeze
 - FretsOfFire
 - GasLamp
@@ -126,24 +119,23 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - GrapplingTotem
 - GrapplingTotemHook
 - GuidingLight
-- Exterminate -> (HailOfArrows)
 - HealingLight
 - HealingPotion -> (Heal)
 - HealingPowder
-- BeaconOfHealing -> (HealingWard)
+- HunterArrow -> (Arrow)
 - GodsFury -> (HeavensFury)
 - HolyWater
-- MarkOfAvalon -> (HuntersMark)
-- Tornado -> (HurricaneAnthem)
 - HymnOfBattle
 - HymnOfHealing
 - HymnOfIntimidation
+- Implosion -> (Vortex)
+- Invulnerability -> (AdamantPotion)
 - IceExplosion
-- IceImmunePotion
 - IceLamp
 - Implode
 - ImplosionExplosionRain
 - InvisibilityPotion
+- Javelin = -> (SigataurianJavelin)
 - LastCrusade
 - LaySpiderEgg
 - Leap
@@ -153,33 +145,35 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - LightningBolt
 - LongRangeSpearPoke
 - LuckPotion
-- MonsterBait -> (Lure)
 - MagicWall -> (MagicBarrier)
 - MagicMissile
 - MagicPotion
 - MagicShield
+- MarkOfAvalon -> (HuntersMark)
 - MarkOfVerga
 - MarkTargetTile
+- MiniBarricade -> (Barricade)
 - MinionCharge
 - MinionMelee
 - MinionRespawnInitiator
 - MissileSwarm
+- MonsterBait -> (Lure)
+- NaturesCall -> (BeastWhisperer)
 - Net
+- NotesOfConfusion -> (PiercingVoice)
 - OilLamp
-- FreeAP -> (OneMoreThing)
 - Overcharge
 - Overload
-- ScarePowder -> (PanicPowder)
 - PVPDamageResistPotion
 - PVPBarricade
 - PVPBeastWhisperer
 - PVPBlink
+- PVPConfuse -> (PVPScrollOfCharm)
 - PVPCursedDagger
 - PVPGasLamp
 - PVPHuntersMark
 - PVPIceLamp
 - PVPOilLamp
-- PVPScrollOfCharm
 - PVPStealth
 - PVPSummonElemental
 - PVPVortexLamp
@@ -188,7 +182,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - PanicPowderArrow
 - Petrify
 - PiercingSpear -> (PiercingThrow)
-- NotesOfConfusion -> (PiercingVoice)
+- ProximityMine -> (BoobyTrap)
 - PlayerLeap
 - PlayerMelee
 - PoisonBomb -> (PoisonGasGrenade)
@@ -199,7 +193,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - RaiseRoots
 - Rally
 - RalmasRevenge
-- RatBomb
+- RatKingRatBomb - > (RatBomb)
 - RatFrenzy
 - RatWhisperer
 - RatsNest
@@ -208,13 +202,13 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - ReleaseEnergy
 - RemoveCorruption
 - RemoveScorpionFrenzy
-- SwordOfAvalon -> (RepeatingBallista)
 - ReplenishArmor
 - ReplenishBarkArmor
 - RevealPath
 - Revive
 - RootWall
 - ScabRat
+- ScarePowder -> (PanicPowder)
 - ScrollElectricity
 - ScrollOfCharm
 - ScrollTsunami
@@ -222,14 +216,15 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - ShatteringVoice
 - Shockwave
 - Shuffle
-- SigataurianJavelin
 - SnakeBossLongRange
 - SnakeBossMeteorRain
 - SnakeBossOneshot
 - SnakeBossShortRange
 - Stealth -> (Sneak)
+- SodiumHydroxide -> (BottleOfLye)
 - SongOfRecovery
 - SongOfResilience
+- SpawnBossMinions -> (SummonBossMinions)
 - SpawnCorruptionNode
 - SpawnCultists
 - SpawnElvenSummonerDefenders
@@ -240,8 +235,11 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - SpawnGoblinBrute
 - SpawnGoblinRanger
 - SpawnGoldPile
+- SpawnGreaterMonster -> (SummonGreaterMonster)
 - SpawnJeweledScarab
 - SpawnLargeSpider
+- SpawnLesserMonster -> (SummonLesserMonster)
+- SpawnMediumMonster -> (SummonMediumMonster)
 - SpawnMarauder
 - SpawnMoreUnseenOnDeath
 - SpawnMushrooms
@@ -256,20 +254,17 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - SpawnSummoningRiftLesser -> (SpawnSummoningLesserRift)
 - SpawnSummoningRiftMedium -> (SpawnSummoningMediumRift)
 - SpawnTombstone
-- SpellPowerPotion
+- Speed -> (SwiftnessPotion)
+- SpellPower -> (SpellPowerPotion)
 - SpiderWebshot
 - SplittingArrow
-- Strength
+- Strength -> (StrengthPotion)
+- StrengthenCourage -> (CourageShanty)
 - StrengthenMinion
-- SummonBossMinions
 - SummonElemental
-- SummonGreaterMonster
-- SummonLesserMonster
-- SummonMediumMonster
 - SummonMinion
 - SummoningRiftFusion
-- Speed
-- SyncEmerge
+- SwordOfAvalon -> (RepeatingBallista)
 - TauntingScream
 - Telekinesis
 - TelekineticBurst
@@ -278,11 +273,11 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - TeleportRotateSit
 - TeleportToBattle
 - Teleportation -> (Teleport)
-- BeaconOfSmite -> (TheBehemoth)
 - ThornPowder
 - TileBlock
 - TileUnblock
-- Torch
+- TorchLight -> (Torch)
+- Tornado -> (HurricaneAnthem)
 - TornadoCharge
 - TownBossAddXWalls
 - TownBossWallAbility
@@ -292,8 +287,9 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - TurretHighDamageProjectile
 - VenomousSting
 - VerminFrenzy
+- VialOfIceImmunity -> (IceImmunePotion)
+- VialOfFireImmunity -> (FireImmunePotion)
 - VigorPotion
-- Implosion -> (Vortex)
 - VortexDust
 - VortexLamp
 - WallDestroy
@@ -302,6 +298,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - WaterDive
 - WaterExplosion
 - WaterLamp
+- WaterSplashCorruption -> (EnemySplashWaterCorruption)
 - Weaken
 - WeakeningShout
 - WebBomb
@@ -314,7 +311,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - WizardBossSpawnDoppelgangers
 - WizardBossSqueeze
 - WizardBossZap
-- WoodenBone
+- WoodBone -> (WoodenBone)
 - Zap
 ## Behaviour(s)
 
@@ -529,6 +526,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - VortexLamp
 - WarlockMinion
 - WaterBottleChest
+- WaterSplash -> (EnemySplashWater)
 - WaterLamp
 - WizardBoss
 - Wyvern
