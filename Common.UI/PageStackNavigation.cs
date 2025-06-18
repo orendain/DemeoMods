@@ -34,7 +34,7 @@
             _nextButton = elementCreator.CreateButton(OnNextPageClick);
             _nextButtonText = elementCreator.CreateButtonText(">");
 
-            if (Environments.CurrentEnvironment() == Environment.NonVr)
+            if (MotherbrainGlobalVars.IsRunningOnNonVRPlatform)
             {
                 InitializeForNonVr();
             }

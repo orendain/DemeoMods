@@ -2,42 +2,20 @@
 {
     using UnityEngine.SceneManagement;
 
-    public enum Environment
-    {
-        Hangouts,
-        NonVr,
-        Vr,
-    }
-
     public static class Environments
     {
-        private const int SteamHangoutsSceneIndex = 45;
-        private const int OculusHangoutsSceneIndex = 43;
-
-        public static Environment CurrentEnvironment()
-        {
-            if (IsPcEdition())
-            {
-                return Environment.NonVr;
-            }
-
-            if (IsInHangouts())
-            {
-                return Environment.Hangouts;
-            }
-
-            return Environment.Vr;
-        }
-
-        public static bool IsPcEdition()
-        {
-            return MotherbrainGlobalVars.IsRunningOnNonVRPlatform;
-        }
+        private const int SteamVRHangoutsSceneIndex = 45;
+        private const int RiftHangoutsSceneIndex = 43;
 
         public static bool IsInHangouts()
         {
-            return SceneManager.GetActiveScene().buildIndex == SteamHangoutsSceneIndex
-                || SceneManager.GetActiveScene().buildIndex == OculusHangoutsSceneIndex;
+            if (!MotherbrainGlobalVars.IsRunningOnVRPlatform)
+            {
+                return false;
+            }
+
+            return SceneManager.GetActiveScene().buildIndex == SteamVRHangoutsSceneIndex
+                || SceneManager.GetActiveScene().buildIndex == RiftHangoutsSceneIndex;
         }
     }
 }
