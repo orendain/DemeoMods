@@ -461,9 +461,26 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
       "HeroSorcerer": "Fireball",
       "HeroGuardian": "Bone",
       "HeroRogue": "PoisonGasGrenade"
-    }
-  },
+  }
 ```  
+
+#### __FreeActionPointsOnCrit__: A Critical Hit rewards you with a free action point.
+  - Whenever you score a critical hit, the listed player pieces will gain one action point.
+  - Allows configuration of different abilities on a per-hero basis.
+  - To configure:
+    - Specify a Dictionary of [BoardPieceIds](../docs/SettingsReference.md#boardpieceids).
+
+  ###### _Example JSON config for FreeActionPointsOnCrit_
+
+  ```json
+  {
+    "Rule": "FreeActionPointsOnCrit",
+    "Config": [
+      "HeroGuardian",
+      "HeroRogue"
+    ]
+  },
+``` 
 
 #### __GoldPickedUpMultiplied__: 💰Gold💰 picked up is multiplied
   - To configure:
