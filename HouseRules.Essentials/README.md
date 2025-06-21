@@ -768,6 +768,23 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+  #### __PieceMagicStatAdded__: Add magic bonus and max allowed magic to player ♟️BoardPiece
+  - Allows configuration of starting Magic stat and adjust max magic stat on a per-hero basis.
+  - To configure:
+    - Specify a Dictionary of [BoardPieceIds](../docs/SettingsReference.md#boardpieceids) and a number.
+
+  ###### _Example JSON config for PieceMagicStatAdded_
+
+  ```json
+  {
+    "Rule": "PieceMagicStatAdded",
+    "Config": {
+      "HeroSorcerer": "2",
+      "HeroWarlock": "1"
+    }
+  },
+```
+
 #### __PiecePieceTypeListOverridden__: Allows the list of PieceTypes for a ♟️BoardPiece to be overridden.
   - Board pieces have PieceTypes such as IgnoreWhenCharmed, Brittle, Enemy, Prop, Interactable which dictate certain behaviours.
   - With the right combination of rules, you can turn 🕷️spiderlings into thieves who steal your gold, cards, etc.
