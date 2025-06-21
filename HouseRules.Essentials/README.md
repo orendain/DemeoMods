@@ -1043,3 +1043,16 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
     }
   },
   ```
+
+#### __TurnOrderRandomized__: Randomize hero turn order every round.
+  - To configure:
+    - Specify `true` to have the player turn order randomize every round.
+
+  ###### _Example JSON config for TurnOrderRandomized_
+
+  ```json
+  {
+    "Rule": "TurnOrderRandomized",
+    "Config": true
+  },
+  ```
