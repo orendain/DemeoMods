@@ -91,6 +91,7 @@
             HR.Rulebook.Register(typeof(PieceAbilityListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceBehavioursListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceDownedCountAdjustedRule));
+            HR.Rulebook.Register(typeof(PieceMagicStatAddedRule));
             HR.Rulebook.Register(typeof(PiecePieceTypeListOverriddenRule));
             HR.Rulebook.Register(typeof(PieceUseWhenKilledOverriddenRule));
             HR.Rulebook.Register(typeof(PotionAdditionOverriddenRule));
