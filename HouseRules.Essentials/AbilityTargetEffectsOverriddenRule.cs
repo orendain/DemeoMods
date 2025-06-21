@@ -5,7 +5,7 @@
     using DataKeys;
     using HouseRules.Core.Types;
 
-    public sealed class AbilityTargetEffectsRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<EffectStateType>>>, IMultiplayerSafe
+    public sealed class AbilityTargetEffectsOverriddenRule : Rule, IConfigWritable<Dictionary<AbilityKey, List<EffectStateType>>>, IMultiplayerSafe
     {
         public override string Description => "Some abilities have added secondary effects.";
 
@@ -13,10 +13,10 @@
         private Dictionary<AbilityKey, List<EffectStateType>> _originals;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AbilityTargetEffectsRule"/> class.
+        /// Initializes a new instance of the <see cref="AbilityTargetEffectsOverriddenRule"/> class.
         /// </summary>
         /// <param name="adjustments">Key-value pairs of abilityKey and List<EffectStateType>.</param>
-        public AbilityTargetEffectsRule(Dictionary<AbilityKey, List<EffectStateType>> adjustments)
+        public AbilityTargetEffectsOverriddenRule(Dictionary<AbilityKey, List<EffectStateType>> adjustments)
         {
             _adjustments = adjustments;
             _originals = new Dictionary<AbilityKey, List<EffectStateType>>();
