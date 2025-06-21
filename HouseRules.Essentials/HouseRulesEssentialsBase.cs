@@ -77,6 +77,7 @@
             HR.Rulebook.Register(typeof(EnemyHealthScaledRule));
             HR.Rulebook.Register(typeof(EnemyRespawnDisabledRule));
             HR.Rulebook.Register(typeof(FreeAbilityOnCritRule));
+            HR.Rulebook.Register(typeof(FreeActionPointsOnCritRule));
             HR.Rulebook.Register(typeof(GoldPickedUpMultipliedRule));
             HR.Rulebook.Register(typeof(LampTypesOverriddenRule));
             HR.Rulebook.Register(typeof(LevelExitLockedUntilAllEnemiesDefeatedRule));
