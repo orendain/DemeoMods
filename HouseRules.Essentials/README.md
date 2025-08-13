@@ -478,6 +478,19 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+#### __GrappleUnhooked__: Using Grapple doesn't disable throwing lamps
+  - To configure:
+    - Specify `true` to enable throwing lamps after using Grapple.
+
+  ###### _Example JSON config for GrappleUnhooked_
+
+  ```json
+  {
+    "Rule": "GrappleUnhooked",
+    "Config": true
+  },
+  ```
+
 #### __LevelExitLockedUntilAllEnemiesDefeated__: The 🔒exit🔑 from each level will not open if any enemies remain.
   - This rule needs to be used in combination with other rules or it will not be possible to complete a level. (e.g. EnemyRespawnDisabled)
   - To configure:
