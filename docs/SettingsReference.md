@@ -210,7 +210,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - ScabRat
 - ScarePowder -> (PanicPowder)
 - ScrollElectricity
-- ScrollOfCharm
+- Confuse -> (ScrollOfCharm)
 - ScrollTsunami
 - SecondWind
 - ShatteringVoice
