@@ -48,7 +48,7 @@ Roots of Evil:
 
 Serpent Lord:
 - DesertBossFloor01
-- DesertEntrance
+- DesertEntranceFloor
 - DesertFloor01
 - DesertFloor02
 - DesertFloor03
