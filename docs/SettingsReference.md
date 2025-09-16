@@ -9,7 +9,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - AbsorbMySoul
 - AcidSpit
 - AltarHeal
-- Antitoxin -> (Antidote)
+- Antidote -> (Antitoxin)
 - ArbalestierArrow
 - ArbalestierBarrage
 - ArbalestierPoisonedTip -> (ArbalestierPoisonTip)
@@ -29,6 +29,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - ChargeBarbarian
 - ChargeMove
 - CoinFlip
+- Confuse -> (ScrollOfCharm)
 - Corrupt
 - CorruptOneTurn
 - CorruptedDeathExplode
@@ -73,7 +74,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - EnemyHeal
 - EnemyHealOne
 - EnemyHumanHeal
-- EnemyHunterArrowSnipe -> (EnemyArrowSnipe)
+- EnemyArrowSnipe -> (EnemyHunterArrowSnipe)
 - EnemyInvulnerability
 - EnemyJavelin
 - EnemyKnockbackMelee
@@ -124,6 +125,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - HealingPowder
 - HunterArrow -> (Arrow)
 - GodsFury -> (HeavensFury)
+- Heal -> (HealingPotion)
 - HolyWater
 - HymnOfBattle
 - HymnOfHealing
@@ -185,7 +187,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - ProximityMine -> (BoobyTrap)
 - PlayerLeap
 - PlayerMelee
-- PoisonBomb -> (PoisonGasGrenade)
+- PoisonGasGrenade -> (PoisonGasBomb)
 - PoisonGas
 - PoisonedTip
 - Portal
@@ -210,7 +212,6 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - ScabRat
 - ScarePowder -> (PanicPowder)
 - ScrollElectricity
-- ScrollOfCharm
 - ScrollTsunami
 - SecondWind
 - ShatteringVoice
@@ -272,7 +273,7 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - TeleportLamp
 - TeleportRotateSit
 - TeleportToBattle
-- Teleportation -> (Teleport)
+- Teleport -> (Teleportation)
 - ThornPowder
 - TileBlock
 - TileUnblock
