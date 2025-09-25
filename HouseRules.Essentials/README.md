@@ -189,6 +189,23 @@ The [Settings Reference](../docs/SettingsReference.md) contains lists of all dif
   },
   ```
 
+  #### __AbilityTargetEffectsAdjusted__: Replaces the list of addition effects to the selected abilities
+  - REPLACES the list of addition effects for the selected abilities. You may manually include the original effect if desired.
+  - To configure:
+    - Specify the [AbilityKey](../docs/SettingsReference.md#abilitykeys) of the ability to modify.
+    - Specify the list of [EffectStates](../docs/SettingsReference.md#effectstatetypes) that the ability should apply.
+
+  ###### _Example JSON config for AbilityTargetEffectsAdjusted_
+
+  ```json
+  {
+    "Rule": "AbilityTargetEffectsAdjusted",
+    "Config": {
+      "Javelin": [ "Weaken1Turn" ],
+      "WarCry": [ "Panic", "Blinded" ]
+  }
+  ```
+
 #### __ApplyEffectOnHitAdjusted__: Adjusts the effect that a ♟️BoardPiece has on attackers.
   - For example, you can make Barricades inspire Panic on enemies that hit it.
   - To be useful the effect has to last at least 2 rounds.
