@@ -12,9 +12,10 @@
     public sealed class PartyDamageOverriddenRule : Rule, IConfigWritable<bool>, IPatchable,
         IMultiplayerSafe
     {
-        public override string Description => "Some player attacks and stuns/effects won't affect other players or pets";
+        public override string Description => "Electrical attacks won't affect other players, pets, or player made constructs";
 
         private static bool _isActivated;
+        private static Piece? _targetPiece;
 
         public PartyDamageOverriddenRule(bool value)
         {
@@ -33,6 +34,31 @@
                 prefix: new HarmonyMethod(
                     typeof(PartyDamageOverriddenRule),
                     nameof(Damage_DealDamage_Prefix)));
+
+            harmony.Patch(
+                original: AccessTools.Method(typeof(Piece), "EnableEffectState"),
+                postfix: new HarmonyMethod(
+                    typeof(PartyDamageOverriddenRule),
+                    nameof(Piece_EnableEffectState_Postfix)));
+        }
+
+        private static void Piece_EnableEffectState_Postfix()
+        {
+            if (!_isActivated)
+            {
+                return;
+            }
+
+            if (_targetPiece != null)
+            {
+                if (!_targetPiece.IsImmuneToStatusEffect(EffectStateType.Stunned))
+                {
+                    _targetPiece.DisableEffectState(EffectStateType.Stunned);
+                    _targetPiece.effectSink.SubtractHealth(0);
+                }
+            }
+
+            _targetPiece = null;
         }
 
         private static bool Damage_DealDamage_Prefix(Target target, Damage damage, Target attacker)
@@ -51,12 +77,12 @@
             Piece attackerPiece = attacker.piece;
             if (attackerPiece != null)
             {
-                if (attackerPiece.IsPlayer() && (targetPiece.IsPlayer() || targetPiece.IsBot()) && damage.HasTag(DamageTag.Electricity))
+                if (attackerPiece.IsPlayer() && (targetPiece.IsPlayer() || targetPiece.IsBot() || targetPiece.HasEffectState(EffectStateType.ConfusedPermanentVisualOnly)) && damage.HasTag(DamageTag.Electricity))
                 {
                     targetPiece.effectSink.SubtractHealth(0);
-                    if (!targetPiece.HasEffectState(EffectStateType.Invulnerable3) && !targetPiece.HasEffectState(EffectStateType.Stunned) && !targetPiece.HasEffectState(EffectStateType.Frozen) && damage.AbilityKey == AbilityKey.Zap)
+                    if (!targetPiece.HasEffectState(EffectStateType.Stunned))
                     {
-                        targetPiece.EnableEffectState(EffectStateType.Invulnerable1);
+                        _targetPiece = targetPiece;
                     }
 
                     return false;
