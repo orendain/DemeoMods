@@ -105,6 +105,7 @@
             HR.Rulebook.Register(typeof(StatusEffectConfigRule));
             HR.Rulebook.Register(typeof(TileEffectDurationOverriddenRule));
             HR.Rulebook.Register(typeof(TurnOrderOverriddenRule));
+            HR.Rulebook.Register(typeof(TurnOrderRandomizedRule));
         }
 
         private static void RegisterRulesets()
