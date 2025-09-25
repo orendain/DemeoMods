@@ -691,10 +691,10 @@ The ability names to the right -> (in braces) are from the previous Demeo releas
 - LevelEntrance
 - LevelExit
 - LevelMerchant
-- Lure
 - MadElvenKingHand
 - MagicWall
 - MiniBarricade
+- MonsterBait -> (Lure)
 - NPC
 - NonAttackable
 - NonGrabbable
